@@ -17,7 +17,8 @@ C0_POLICY = {
 SYSTEM = (
     "Organize the supplied document into source-faithful knowledge groups. Assign EVERY "
     "unit_id exactly once, including headings, blank lines, examples and repeated clauses. "
-    "Return only the required JSON: unit references and source-literal metadata, never "
+    "Return only the required JSON with contract_version 2: unit references and "
+    "source-literal metadata, never "
     "rewritten rule text, advice or likelihood/impact/urgency scores. "
     "Group units by their actual applicability, not just adjacent headings. Units in one "
     "group need not be contiguous. Keep a prescriptive rule with its governing subject, "
@@ -37,15 +38,19 @@ SYSTEM = (
     "aliases are only source-explicit alternative names for "
     "that same subject, not invented synonyms; use aliases only with one scope. "
     "Use empty scopes/aliases when general or uncertain. "
-    "For EACH scope or alias, evidence must quote the exact case-sensitive literal, with "
-    "whole-word endpoints, from a unit_id OWNED BY THAT SAME GROUP. A citation in another "
+    "For EACH scope or alias, cite a unit_id OWNED BY THAT SAME GROUP containing the exact "
+    "case-sensitive literal with whole-word endpoints. Evidence entries contain ONLY "
+    "unit_id; code derives exact full-unit quotes. Never copy or generate quote strings. "
+    "Cite each unit_id at most once per group; one citation can support multiple labels or links. "
+    "A citation in another "
     "group does not support a metadata label, even if groups are linked. Prefer grouping "
     "a subject declaration with its related rules and qualifications; never duplicate "
     "units or invent a repeated subject declaration to obtain evidence. "
     "Use required_with only when separately grouped passages must be returned together "
     "to preserve a condition or qualification. Links are bidirectional: including either "
-    "group includes the other. Cite exact source substrings from BOTH endpoint groups "
-    "in the linking group's evidence. Mere shared source, proximity or similar words "
+    "group includes the other. Cite unit_ids from BOTH endpoint groups "
+    "in the linking group's evidence; code supplies full-unit quotations. Mere shared source, "
+    "proximity or similar words "
     "is not a required context relation. General context is always returned; a standalone "
     "observation does not need a link merely because it mentions a rule's condition. "
     "Do not link unrelated global guidance to every "
@@ -55,18 +60,19 @@ SYSTEM = (
 )
 _STRINGS = {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": True}
 SCHEMA = {
-    "type": "object", "additionalProperties": False, "required": ["groups"],
-    "properties": {"groups": {"type": "array", "minItems": 1, "items": {
+    "type": "object", "additionalProperties": False, "required": ["contract_version", "groups"],
+    "properties": {"contract_version": {"type": "integer", "const": 2},
+                   "groups": {"type": "array", "minItems": 1, "items": {
         "type": "object", "additionalProperties": False,
         "required": ["group_id", "unit_ids", "scopes", "aliases", "evidence", "required_with"],
         "properties": {
             "group_id": {"type": "string", "pattern": "^[a-z][a-z0-9_-]{0,63}$"},
             "unit_ids": _STRINGS,
             "scopes": _STRINGS, "aliases": _STRINGS, "required_with": _STRINGS,
-            "evidence": {"type": "array", "items": {
+            "evidence": {"type": "array", "uniqueItems": True, "items": {
                 "type": "object", "additionalProperties": False,
-                "required": ["unit_id", "quote"],
-                "properties": {"unit_id": {"type": "string"}, "quote": {"type": "string"}},
+                "required": ["unit_id"],
+                "properties": {"unit_id": {"type": "string", "minLength": 1}},
             }},
         },
     }}},
@@ -140,7 +146,13 @@ def metadata_supported(label: str, quote: str, unit_text: str) -> bool:
 
 def validate_proposal(document: SourceDocument, proposal) -> Extraction:
     proposal = _copy(proposal)
-    fields(proposal, {"groups"}, "proposal")
+    unit_evidence = isinstance(proposal, dict) and "contract_version" in proposal
+    if unit_evidence:
+        fields(proposal, {"contract_version", "groups"}, "proposal")
+        require(type(proposal["contract_version"]) is int and proposal["contract_version"] == 2,
+                "unsupported_contract", "Only explicit proposal contract version 2 is supported.")
+    else:
+        fields(proposal, {"groups"}, "proposal")
     groups = proposal["groups"]
     require(isinstance(groups, list) and groups, "proposal", "Nonempty groups required.")
     units = {u["unit_id"]: u for u in document.units}
@@ -158,20 +170,31 @@ def validate_proposal(document: SourceDocument, proposal) -> Extraction:
         require(group["unit_ids"] and all(x in units for x in group["unit_ids"]),
                 "unit_reference", "Unknown or empty source unit reference.")
         seen.extend(group["unit_ids"])
-        evidence = group["evidence"]
-        require(isinstance(evidence, list), "evidence", "Evidence must be a list.")
-        for ev in evidence:
-            fields(ev, {"unit_id", "quote"}, "evidence")
-            require(ev["unit_id"] in units and isinstance(ev["quote"], str) and ev["quote"]
-                    and ev["quote"] in units[ev["unit_id"]]["text"],
-                    "evidence", "Evidence must quote an exact source unit substring.")
+        require(isinstance(group["evidence"], list), "evidence", "Evidence must be a list.")
+        evidence = []
+        evidence_ids = set()
+        for ev in group["evidence"]:
+            if unit_evidence:
+                fields(ev, {"unit_id"}, "evidence")
+                unit_id = ev["unit_id"]
+                require(isinstance(unit_id, str) and bool(unit_id.strip()) and unit_id in units
+                        and unit_id not in evidence_ids,
+                        "evidence", "Evidence must reference unique existing nonempty source unit IDs.")
+                evidence_ids.add(unit_id)
+                evidence.append({"unit_id": unit_id, "quote": units[unit_id]["text"]})
+            else:
+                fields(ev, {"unit_id", "quote"}, "evidence")
+                require(ev["unit_id"] in units and isinstance(ev["quote"], str) and ev["quote"]
+                        and ev["quote"] in units[ev["unit_id"]]["text"],
+                        "evidence", "Evidence must quote an exact source unit substring.")
+                evidence.append(ev)
         for label in group["scopes"] + group["aliases"]:
             require(any(ev["unit_id"] in group["unit_ids"]
                         and metadata_supported(label, ev["quote"], units[ev["unit_id"]]["text"])
                         for ev in evidence),
                     "metadata_evidence", "Metadata requires exact literal evidence in its group.")
         own = sorted((units[x] for x in group["unit_ids"]), key=lambda u: u["start"])
-        materialized.append({**group, "unit_ids": [u["unit_id"] for u in own],
+        materialized.append({**group, "evidence": evidence, "unit_ids": [u["unit_id"] for u in own],
                              "source_id": document.source_id,
                              "source_sha256": document.source_sha256,
                              "spans": [{"start": u["start"], "end": u["end"]} for u in own],

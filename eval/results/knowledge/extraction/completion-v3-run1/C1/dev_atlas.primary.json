@@ -1,0 +1,428 @@
+{
+  "accepted": true,
+  "assessment": {
+    "accepted_wrong_critical": false,
+    "atom_count": 5,
+    "critical_errors": {
+      "detached_scoped_context_pairs": [],
+      "disconnected_scoped_atoms": [],
+      "nonempty_incomplete_scope_atoms": [],
+      "unsupported_alias_facts": [],
+      "unsupported_scope_facts": []
+    },
+    "fidelity": "pass",
+    "group_graph": {
+      "atoms_not_whole_in_one_component": [],
+      "component_count": 4,
+      "components": [
+        {
+          "group_count": 1,
+          "source_bytes": {
+            "dev_atlas": 69
+          },
+          "whole_atom_ids": []
+        },
+        {
+          "group_count": 1,
+          "source_bytes": {
+            "dev_atlas": 338
+          },
+          "whole_atom_ids": [
+            "pause",
+            "raise"
+          ]
+        },
+        {
+          "group_count": 1,
+          "source_bytes": {
+            "dev_atlas": 157
+          },
+          "whole_atom_ids": [
+            "cart1",
+            "cart2"
+          ]
+        },
+        {
+          "group_count": 1,
+          "source_bytes": {
+            "dev_atlas": 91
+          },
+          "whole_atom_ids": [
+            "legend"
+          ]
+        }
+      ],
+      "overclosure_pair_count": 1
+    },
+    "incomplete_scope_byte_facts": [],
+    "metrics": {
+      "alias": {
+        "expected": 1,
+        "missing": [],
+        "observed": 1,
+        "precision": 1.0,
+        "recall": 1.0,
+        "true_positive": 1,
+        "unsupported": []
+      },
+      "context": {
+        "expected": 1,
+        "missing": [],
+        "observed": 2,
+        "precision": 0.5,
+        "recall": 1.0,
+        "true_positive": 1,
+        "unsupported": [
+          [
+            "cart1",
+            "cart2"
+          ]
+        ]
+      },
+      "scope": {
+        "expected": 4,
+        "missing": [],
+        "observed": 4,
+        "precision": 1.0,
+        "recall": 1.0,
+        "true_positive": 4,
+        "unsupported": []
+      }
+    },
+    "repair_count_basis": "Missing complete atom-level scope/alias facts and context-closure pairs; NOT observed human corrections or review benefit.",
+    "repair_counts": {
+      "alias_add": 0,
+      "context_add": 0,
+      "scope_add": 0
+    },
+    "repair_required": false,
+    "semantic": "pass",
+    "status": "pass",
+    "unresolved_alias_count": 0,
+    "unresolved_atom_count": 0
+  },
+  "observation": {
+    "groups": [
+      {
+        "spans": [
+          {
+            "end": 67,
+            "source_id": "dev_atlas",
+            "start": 0
+          },
+          {
+            "end": 69,
+            "source_id": "dev_atlas",
+            "start": 67
+          }
+        ],
+        "text": "Atlas festival cue cards; artificial rehearsal instructions only.\r\n\r\n"
+      },
+      {
+        "spans": [
+          {
+            "end": 84,
+            "source_id": "dev_atlas",
+            "start": 69
+          },
+          {
+            "end": 104,
+            "source_id": "dev_atlas",
+            "start": 84
+          },
+          {
+            "end": 129,
+            "source_id": "dev_atlas",
+            "start": 104
+          },
+          {
+            "end": 181,
+            "source_id": "dev_atlas",
+            "start": 129
+          },
+          {
+            "end": 253,
+            "source_id": "dev_atlas",
+            "start": 181
+          },
+          {
+            "end": 313,
+            "source_id": "dev_atlas",
+            "start": 253
+          },
+          {
+            "end": 315,
+            "source_id": "dev_atlas",
+            "start": 313
+          },
+          {
+            "end": 332,
+            "source_id": "dev_atlas",
+            "start": 315
+          },
+          {
+            "end": 405,
+            "source_id": "dev_atlas",
+            "start": 332
+          },
+          {
+            "end": 407,
+            "source_id": "dev_atlas",
+            "start": 405
+          }
+        ],
+        "text": "# Amber-Kites\r\nScope: Amber-Kites\r\nAliases: sunset ribbons\r\nDo not raise Amber-Kites while the bell is silent.\r\nIf the bell sounds, raise one ribbon; except during the painted pause.\r\nThe painted pause below qualifies the raising instruction.\r\n\r\n# Painted pause\r\nDuring a painted pause, keep the ribbon folded even if the bell sounds.\r\n\r\n"
+      },
+      {
+        "spans": [
+          {
+            "end": 422,
+            "source_id": "dev_atlas",
+            "start": 407
+          },
+          {
+            "end": 446,
+            "source_id": "dev_atlas",
+            "start": 422
+          },
+          {
+            "end": 505,
+            "source_id": "dev_atlas",
+            "start": 446
+          },
+          {
+            "end": 564,
+            "source_id": "dev_atlas",
+            "start": 505
+          }
+        ],
+        "text": "# Glass-Carts\r\nEquipment: Glass-Carts\r\nMove Glass-Carts only after the chalk square is complete.\r\nMove Glass-Carts only after the chalk square is complete.\r\n"
+      },
+      {
+        "spans": [
+          {
+            "end": 566,
+            "source_id": "dev_atlas",
+            "start": 564
+          },
+          {
+            "end": 577,
+            "source_id": "dev_atlas",
+            "start": 566
+          },
+          {
+            "end": 655,
+            "source_id": "dev_atlas",
+            "start": 577
+          }
+        ],
+        "text": "\r\n# General\r\nAn uncertain cue stays uncertain; a higher cue number means less brightness.\r\n"
+      }
+    ],
+    "metadata": {
+      "aliases": [
+        {
+          "evidence": [
+            {
+              "end": 104,
+              "source_id": "dev_atlas",
+              "start": 84
+            },
+            {
+              "end": 129,
+              "source_id": "dev_atlas",
+              "start": 104
+            }
+          ],
+          "target": "Amber-Kites",
+          "value": "sunset ribbons"
+        }
+      ],
+      "links": [],
+      "scopes": [
+        {
+          "evidence": [
+            {
+              "end": 104,
+              "source_id": "dev_atlas",
+              "start": 84
+            },
+            {
+              "end": 129,
+              "source_id": "dev_atlas",
+              "start": 104
+            }
+          ],
+          "spans": [
+            {
+              "end": 84,
+              "source_id": "dev_atlas",
+              "start": 69
+            },
+            {
+              "end": 104,
+              "source_id": "dev_atlas",
+              "start": 84
+            },
+            {
+              "end": 129,
+              "source_id": "dev_atlas",
+              "start": 104
+            },
+            {
+              "end": 181,
+              "source_id": "dev_atlas",
+              "start": 129
+            },
+            {
+              "end": 253,
+              "source_id": "dev_atlas",
+              "start": 181
+            },
+            {
+              "end": 313,
+              "source_id": "dev_atlas",
+              "start": 253
+            },
+            {
+              "end": 315,
+              "source_id": "dev_atlas",
+              "start": 313
+            },
+            {
+              "end": 332,
+              "source_id": "dev_atlas",
+              "start": 315
+            },
+            {
+              "end": 405,
+              "source_id": "dev_atlas",
+              "start": 332
+            },
+            {
+              "end": 407,
+              "source_id": "dev_atlas",
+              "start": 405
+            }
+          ],
+          "value": "Amber-Kites"
+        },
+        {
+          "evidence": [
+            {
+              "end": 446,
+              "source_id": "dev_atlas",
+              "start": 422
+            }
+          ],
+          "spans": [
+            {
+              "end": 422,
+              "source_id": "dev_atlas",
+              "start": 407
+            },
+            {
+              "end": 446,
+              "source_id": "dev_atlas",
+              "start": 422
+            },
+            {
+              "end": 505,
+              "source_id": "dev_atlas",
+              "start": 446
+            },
+            {
+              "end": 564,
+              "source_id": "dev_atlas",
+              "start": 505
+            }
+          ],
+          "value": "Glass-Carts"
+        }
+      ]
+    },
+    "source_id": "dev_atlas",
+    "source_sha256": "35a95953d27cf67b4385a2c322fe887bb7b928876c2a0cfa5be642c827383818",
+    "status": "accepted"
+  },
+  "raw_proposal": {
+    "groups": [
+      {
+        "aliases": [],
+        "evidence": [],
+        "group_id": "document-frame",
+        "required_with": [],
+        "scopes": [],
+        "unit_ids": [
+          "u0001",
+          "u0002"
+        ]
+      },
+      {
+        "aliases": [
+          "sunset ribbons"
+        ],
+        "evidence": [
+          {
+            "quote": "Scope: Amber-Kites",
+            "unit_id": "u0004"
+          },
+          {
+            "quote": "Aliases: sunset ribbons",
+            "unit_id": "u0005"
+          }
+        ],
+        "group_id": "amber-kites",
+        "required_with": [],
+        "scopes": [
+          "Amber-Kites"
+        ],
+        "unit_ids": [
+          "u0003",
+          "u0004",
+          "u0005",
+          "u0006",
+          "u0007",
+          "u0008",
+          "u0009",
+          "u0010",
+          "u0011",
+          "u0012"
+        ]
+      },
+      {
+        "aliases": [],
+        "evidence": [
+          {
+            "quote": "Equipment: Glass-Carts",
+            "unit_id": "u0014"
+          }
+        ],
+        "group_id": "glass-carts",
+        "required_with": [],
+        "scopes": [
+          "Glass-Carts"
+        ],
+        "unit_ids": [
+          "u0013",
+          "u0014",
+          "u0015",
+          "u0016"
+        ]
+      },
+      {
+        "aliases": [],
+        "evidence": [],
+        "group_id": "general-context",
+        "required_with": [],
+        "scopes": [],
+        "unit_ids": [
+          "u0017",
+          "u0018",
+          "u0019"
+        ]
+      }
+    ]
+  },
+  "slot_id": "dev_atlas.primary"
+}

@@ -1,0 +1,2575 @@
+{
+  "attempts": [
+    {
+      "number": 1,
+      "outcome": {
+        "status": "success",
+        "validation": {
+          "accepted": true,
+          "assessment": {
+            "accepted_wrong_critical": false,
+            "atom_count": 5,
+            "critical_errors": {
+              "detached_scoped_context_pairs": [],
+              "disconnected_scoped_atoms": [],
+              "nonempty_incomplete_scope_atoms": [],
+              "unsupported_alias_facts": [],
+              "unsupported_scope_facts": []
+            },
+            "fidelity": "pass",
+            "group_graph": {
+              "atoms_not_whole_in_one_component": [],
+              "component_count": 4,
+              "components": [
+                {
+                  "group_count": 1,
+                  "source_bytes": {
+                    "dev_atlas": 69
+                  },
+                  "whole_atom_ids": []
+                },
+                {
+                  "group_count": 1,
+                  "source_bytes": {
+                    "dev_atlas": 338
+                  },
+                  "whole_atom_ids": [
+                    "pause",
+                    "raise"
+                  ]
+                },
+                {
+                  "group_count": 1,
+                  "source_bytes": {
+                    "dev_atlas": 157
+                  },
+                  "whole_atom_ids": [
+                    "cart1",
+                    "cart2"
+                  ]
+                },
+                {
+                  "group_count": 1,
+                  "source_bytes": {
+                    "dev_atlas": 91
+                  },
+                  "whole_atom_ids": [
+                    "legend"
+                  ]
+                }
+              ],
+              "overclosure_pair_count": 1
+            },
+            "incomplete_scope_byte_facts": [],
+            "metrics": {
+              "alias": {
+                "expected": 1,
+                "missing": [],
+                "observed": 1,
+                "precision": 1.0,
+                "recall": 1.0,
+                "true_positive": 1,
+                "unsupported": []
+              },
+              "context": {
+                "expected": 1,
+                "missing": [],
+                "observed": 2,
+                "precision": 0.5,
+                "recall": 1.0,
+                "true_positive": 1,
+                "unsupported": [
+                  [
+                    "cart1",
+                    "cart2"
+                  ]
+                ]
+              },
+              "scope": {
+                "expected": 4,
+                "missing": [],
+                "observed": 4,
+                "precision": 1.0,
+                "recall": 1.0,
+                "true_positive": 4,
+                "unsupported": []
+              }
+            },
+            "repair_count_basis": "Missing complete atom-level scope/alias facts and context-closure pairs; NOT observed human corrections or review benefit.",
+            "repair_counts": {
+              "alias_add": 0,
+              "context_add": 0,
+              "scope_add": 0
+            },
+            "repair_required": false,
+            "semantic": "pass",
+            "status": "pass",
+            "unresolved_alias_count": 0,
+            "unresolved_atom_count": 0
+          },
+          "observation": {
+            "groups": [
+              {
+                "spans": [
+                  {
+                    "end": 67,
+                    "source_id": "dev_atlas",
+                    "start": 0
+                  },
+                  {
+                    "end": 69,
+                    "source_id": "dev_atlas",
+                    "start": 67
+                  }
+                ],
+                "text": "Atlas festival cue cards; artificial rehearsal instructions only.\r\n\r\n"
+              },
+              {
+                "spans": [
+                  {
+                    "end": 84,
+                    "source_id": "dev_atlas",
+                    "start": 69
+                  },
+                  {
+                    "end": 104,
+                    "source_id": "dev_atlas",
+                    "start": 84
+                  },
+                  {
+                    "end": 129,
+                    "source_id": "dev_atlas",
+                    "start": 104
+                  },
+                  {
+                    "end": 181,
+                    "source_id": "dev_atlas",
+                    "start": 129
+                  },
+                  {
+                    "end": 253,
+                    "source_id": "dev_atlas",
+                    "start": 181
+                  },
+                  {
+                    "end": 313,
+                    "source_id": "dev_atlas",
+                    "start": 253
+                  },
+                  {
+                    "end": 315,
+                    "source_id": "dev_atlas",
+                    "start": 313
+                  },
+                  {
+                    "end": 332,
+                    "source_id": "dev_atlas",
+                    "start": 315
+                  },
+                  {
+                    "end": 405,
+                    "source_id": "dev_atlas",
+                    "start": 332
+                  },
+                  {
+                    "end": 407,
+                    "source_id": "dev_atlas",
+                    "start": 405
+                  }
+                ],
+                "text": "# Amber-Kites\r\nScope: Amber-Kites\r\nAliases: sunset ribbons\r\nDo not raise Amber-Kites while the bell is silent.\r\nIf the bell sounds, raise one ribbon; except during the painted pause.\r\nThe painted pause below qualifies the raising instruction.\r\n\r\n# Painted pause\r\nDuring a painted pause, keep the ribbon folded even if the bell sounds.\r\n\r\n"
+              },
+              {
+                "spans": [
+                  {
+                    "end": 422,
+                    "source_id": "dev_atlas",
+                    "start": 407
+                  },
+                  {
+                    "end": 446,
+                    "source_id": "dev_atlas",
+                    "start": 422
+                  },
+                  {
+                    "end": 505,
+                    "source_id": "dev_atlas",
+                    "start": 446
+                  },
+                  {
+                    "end": 564,
+                    "source_id": "dev_atlas",
+                    "start": 505
+                  }
+                ],
+                "text": "# Glass-Carts\r\nEquipment: Glass-Carts\r\nMove Glass-Carts only after the chalk square is complete.\r\nMove Glass-Carts only after the chalk square is complete.\r\n"
+              },
+              {
+                "spans": [
+                  {
+                    "end": 566,
+                    "source_id": "dev_atlas",
+                    "start": 564
+                  },
+                  {
+                    "end": 577,
+                    "source_id": "dev_atlas",
+                    "start": 566
+                  },
+                  {
+                    "end": 655,
+                    "source_id": "dev_atlas",
+                    "start": 577
+                  }
+                ],
+                "text": "\r\n# General\r\nAn uncertain cue stays uncertain; a higher cue number means less brightness.\r\n"
+              }
+            ],
+            "metadata": {
+              "aliases": [
+                {
+                  "evidence": [
+                    {
+                      "end": 104,
+                      "source_id": "dev_atlas",
+                      "start": 84
+                    },
+                    {
+                      "end": 129,
+                      "source_id": "dev_atlas",
+                      "start": 104
+                    }
+                  ],
+                  "target": "Amber-Kites",
+                  "value": "sunset ribbons"
+                }
+              ],
+              "links": [],
+              "scopes": [
+                {
+                  "evidence": [
+                    {
+                      "end": 104,
+                      "source_id": "dev_atlas",
+                      "start": 84
+                    },
+                    {
+                      "end": 129,
+                      "source_id": "dev_atlas",
+                      "start": 104
+                    }
+                  ],
+                  "spans": [
+                    {
+                      "end": 84,
+                      "source_id": "dev_atlas",
+                      "start": 69
+                    },
+                    {
+                      "end": 104,
+                      "source_id": "dev_atlas",
+                      "start": 84
+                    },
+                    {
+                      "end": 129,
+                      "source_id": "dev_atlas",
+                      "start": 104
+                    },
+                    {
+                      "end": 181,
+                      "source_id": "dev_atlas",
+                      "start": 129
+                    },
+                    {
+                      "end": 253,
+                      "source_id": "dev_atlas",
+                      "start": 181
+                    },
+                    {
+                      "end": 313,
+                      "source_id": "dev_atlas",
+                      "start": 253
+                    },
+                    {
+                      "end": 315,
+                      "source_id": "dev_atlas",
+                      "start": 313
+                    },
+                    {
+                      "end": 332,
+                      "source_id": "dev_atlas",
+                      "start": 315
+                    },
+                    {
+                      "end": 405,
+                      "source_id": "dev_atlas",
+                      "start": 332
+                    },
+                    {
+                      "end": 407,
+                      "source_id": "dev_atlas",
+                      "start": 405
+                    }
+                  ],
+                  "value": "Amber-Kites"
+                },
+                {
+                  "evidence": [
+                    {
+                      "end": 446,
+                      "source_id": "dev_atlas",
+                      "start": 422
+                    }
+                  ],
+                  "spans": [
+                    {
+                      "end": 422,
+                      "source_id": "dev_atlas",
+                      "start": 407
+                    },
+                    {
+                      "end": 446,
+                      "source_id": "dev_atlas",
+                      "start": 422
+                    },
+                    {
+                      "end": 505,
+                      "source_id": "dev_atlas",
+                      "start": 446
+                    },
+                    {
+                      "end": 564,
+                      "source_id": "dev_atlas",
+                      "start": 505
+                    }
+                  ],
+                  "value": "Glass-Carts"
+                }
+              ]
+            },
+            "source_id": "dev_atlas",
+            "source_sha256": "35a95953d27cf67b4385a2c322fe887bb7b928876c2a0cfa5be642c827383818",
+            "status": "accepted"
+          },
+          "source_id": "dev_atlas"
+        }
+      },
+      "request_sha256": "6c621aa8d8aa0ab943e6fde5bd5b1de24f6dd634e250fe2ca510a41ad0f51ade",
+      "reserved_at": "2026-11-16T17:45:49.647517+00:00",
+      "slot": "dev_atlas.primary",
+      "state": "finished"
+    },
+    {
+      "number": 2,
+      "outcome": {
+        "status": "success",
+        "validation": {
+          "accepted": true,
+          "assessment": {
+            "accepted_wrong_critical": false,
+            "atom_count": 6,
+            "critical_errors": {
+              "detached_scoped_context_pairs": [],
+              "disconnected_scoped_atoms": [],
+              "nonempty_incomplete_scope_atoms": [],
+              "unsupported_alias_facts": [],
+              "unsupported_scope_facts": []
+            },
+            "fidelity": "pass",
+            "group_graph": {
+              "atoms_not_whole_in_one_component": [],
+              "component_count": 5,
+              "components": [
+                {
+                  "group_count": 1,
+                  "source_bytes": {
+                    "dev_quill": 47
+                  },
+                  "whole_atom_ids": []
+                },
+                {
+                  "group_count": 1,
+                  "source_bytes": {
+                    "dev_quill": 318
+                  },
+                  "whole_atom_ids": [
+                    "file",
+                    "tray"
+                  ]
+                },
+                {
+                  "group_count": 1,
+                  "source_bytes": {
+                    "dev_quill": 108
+                  },
+                  "whole_atom_ids": [
+                    "legend"
+                  ]
+                },
+                {
+                  "group_count": 1,
+                  "source_bytes": {
+                    "dev_quill": 138
+                  },
+                  "whole_atom_ids": [
+                    "conflict"
+                  ]
+                },
+                {
+                  "group_count": 1,
+                  "source_bytes": {
+                    "dev_quill": 162
+                  },
+                  "whole_atom_ids": [
+                    "brass1",
+                    "brass2"
+                  ]
+                }
+              ],
+              "overclosure_pair_count": 1
+            },
+            "incomplete_scope_byte_facts": [],
+            "metrics": {
+              "alias": {
+                "expected": 1,
+                "missing": [],
+                "observed": 1,
+                "precision": 1.0,
+                "recall": 1.0,
+                "true_positive": 1,
+                "unsupported": []
+              },
+              "context": {
+                "expected": 1,
+                "missing": [],
+                "observed": 2,
+                "precision": 0.5,
+                "recall": 1.0,
+                "true_positive": 1,
+                "unsupported": [
+                  [
+                    "brass1",
+                    "brass2"
+                  ]
+                ]
+              },
+              "scope": {
+                "expected": 4,
+                "missing": [],
+                "observed": 4,
+                "precision": 1.0,
+                "recall": 1.0,
+                "true_positive": 4,
+                "unsupported": []
+              }
+            },
+            "repair_count_basis": "Missing complete atom-level scope/alias facts and context-closure pairs; NOT observed human corrections or review benefit.",
+            "repair_counts": {
+              "alias_add": 0,
+              "context_add": 0,
+              "scope_add": 0
+            },
+            "repair_required": false,
+            "semantic": "pass",
+            "status": "pass",
+            "unresolved_alias_count": 0,
+            "unresolved_atom_count": 0
+          },
+          "observation": {
+            "groups": [
+              {
+                "spans": [
+                  {
+                    "end": 47,
+                    "source_id": "dev_quill",
+                    "start": 0
+                  }
+                ],
+                "text": "QUILL ARCHIVE: fictional desk game transcript\r\n"
+              },
+              {
+                "spans": [
+                  {
+                    "end": 84,
+                    "source_id": "dev_quill",
+                    "start": 47
+                  },
+                  {
+                    "end": 168,
+                    "source_id": "dev_quill",
+                    "start": 84
+                  },
+                  {
+                    "end": 224,
+                    "source_id": "dev_quill",
+                    "start": 168
+                  },
+                  {
+                    "end": 305,
+                    "source_id": "dev_quill",
+                    "start": 224
+                  },
+                  {
+                    "end": 365,
+                    "source_id": "dev_quill",
+                    "start": 305
+                  }
+                ],
+                "text": "Q: Which desk accepts a moon token?\r\nA: The rules in this conversation concern Velvet Desks, also called soft counters.\r\nDo not file a moon token unless its reverse is marked.\r\nException: an unmarked token may rest in the waiting tray, never in the ledger.\r\nThe waiting tray rule qualifies the preceding prohibition.\r\n"
+              },
+              {
+                "spans": [
+                  {
+                    "end": 394,
+                    "source_id": "dev_quill",
+                    "start": 365
+                  },
+                  {
+                    "end": 473,
+                    "source_id": "dev_quill",
+                    "start": 394
+                  }
+                ],
+                "text": "Q: What does the dial mean?\r\nA: Higher ink stability means lower smudge likelihood, not higher likelihood.\r\n"
+              },
+              {
+                "spans": [
+                  {
+                    "end": 505,
+                    "source_id": "dev_quill",
+                    "start": 473
+                  },
+                  {
+                    "end": 611,
+                    "source_id": "dev_quill",
+                    "start": 505
+                  }
+                ],
+                "text": "Q: Can a tray be called ready?\r\nA: A ready mark is reported, but another speaker calls readiness unknown; keep that conflict unresolved.\r\n"
+              },
+              {
+                "spans": [
+                  {
+                    "end": 623,
+                    "source_id": "dev_quill",
+                    "start": 611
+                  },
+                  {
+                    "end": 643,
+                    "source_id": "dev_quill",
+                    "start": 623
+                  },
+                  {
+                    "end": 708,
+                    "source_id": "dev_quill",
+                    "start": 643
+                  },
+                  {
+                    "end": 773,
+                    "source_id": "dev_quill",
+                    "start": 708
+                  }
+                ],
+                "text": "OTHER DESK\r\nScope: Brass Desks\r\nLeave a brass token beside Brass Desks until the arch is drawn.\r\nLeave a brass token beside Brass Desks until the arch is drawn.\r\n"
+              }
+            ],
+            "metadata": {
+              "aliases": [
+                {
+                  "evidence": [
+                    {
+                      "end": 168,
+                      "source_id": "dev_quill",
+                      "start": 84
+                    },
+                    {
+                      "end": 168,
+                      "source_id": "dev_quill",
+                      "start": 84
+                    }
+                  ],
+                  "target": "Velvet Desks",
+                  "value": "soft counters"
+                }
+              ],
+              "links": [],
+              "scopes": [
+                {
+                  "evidence": [
+                    {
+                      "end": 168,
+                      "source_id": "dev_quill",
+                      "start": 84
+                    },
+                    {
+                      "end": 168,
+                      "source_id": "dev_quill",
+                      "start": 84
+                    }
+                  ],
+                  "spans": [
+                    {
+                      "end": 84,
+                      "source_id": "dev_quill",
+                      "start": 47
+                    },
+                    {
+                      "end": 168,
+                      "source_id": "dev_quill",
+                      "start": 84
+                    },
+                    {
+                      "end": 224,
+                      "source_id": "dev_quill",
+                      "start": 168
+                    },
+                    {
+                      "end": 305,
+                      "source_id": "dev_quill",
+                      "start": 224
+                    },
+                    {
+                      "end": 365,
+                      "source_id": "dev_quill",
+                      "start": 305
+                    }
+                  ],
+                  "value": "Velvet Desks"
+                },
+                {
+                  "evidence": [
+                    {
+                      "end": 643,
+                      "source_id": "dev_quill",
+                      "start": 623
+                    }
+                  ],
+                  "spans": [
+                    {
+                      "end": 623,
+                      "source_id": "dev_quill",
+                      "start": 611
+                    },
+                    {
+                      "end": 643,
+                      "source_id": "dev_quill",
+                      "start": 623
+                    },
+                    {
+                      "end": 708,
+                      "source_id": "dev_quill",
+                      "start": 643
+                    },
+                    {
+                      "end": 773,
+                      "source_id": "dev_quill",
+                      "start": 708
+                    }
+                  ],
+                  "value": "Brass Desks"
+                }
+              ]
+            },
+            "source_id": "dev_quill",
+            "source_sha256": "3a004b8eccc41b1be4bceed97313c7bd709513aa3ea4aa73a08000d7b2016094",
+            "status": "accepted"
+          },
+          "source_id": "dev_quill"
+        }
+      },
+      "request_sha256": "afd12a458fb658f95319af0cbbd37faa5b478cf4c5c095fc1f0e32c7cf68d21a",
+      "reserved_at": "2026-11-16T17:46:04.141199+00:00",
+      "slot": "dev_quill.primary",
+      "state": "finished"
+    },
+    {
+      "number": 3,
+      "outcome": {
+        "status": "success",
+        "validation": {
+          "accepted": true,
+          "assessment": {
+            "accepted_wrong_critical": false,
+            "atom_count": 7,
+            "critical_errors": {
+              "detached_scoped_context_pairs": [],
+              "disconnected_scoped_atoms": [],
+              "nonempty_incomplete_scope_atoms": [],
+              "unsupported_alias_facts": [],
+              "unsupported_scope_facts": []
+            },
+            "fidelity": "pass",
+            "group_graph": {
+              "atoms_not_whole_in_one_component": [],
+              "component_count": 5,
+              "components": [
+                {
+                  "group_count": 1,
+                  "source_bytes": {
+                    "dev_mosaic": 80
+                  },
+                  "whole_atom_ids": []
+                },
+                {
+                  "group_count": 1,
+                  "source_bytes": {
+                    "dev_mosaic": 264
+                  },
+                  "whole_atom_ids": [
+                    "dotted",
+                    "link",
+                    "rotate"
+                  ]
+                },
+                {
+                  "group_count": 1,
+                  "source_bytes": {
+                    "dev_mosaic": 75
+                  },
+                  "whole_atom_ids": [
+                    "legend"
+                  ]
+                },
+                {
+                  "group_count": 1,
+                  "source_bytes": {
+                    "dev_mosaic": 69
+                  },
+                  "whole_atom_ids": [
+                    "uncertain"
+                  ]
+                },
+                {
+                  "group_count": 1,
+                  "source_bytes": {
+                    "dev_mosaic": 144
+                  },
+                  "whole_atom_ids": [
+                    "ochre1",
+                    "ochre2"
+                  ]
+                }
+              ],
+              "overclosure_pair_count": 1
+            },
+            "incomplete_scope_byte_facts": [],
+            "metrics": {
+              "alias": {
+                "expected": 2,
+                "missing": [],
+                "observed": 2,
+                "precision": 1.0,
+                "recall": 1.0,
+                "true_positive": 2,
+                "unsupported": []
+              },
+              "context": {
+                "expected": 3,
+                "missing": [],
+                "observed": 4,
+                "precision": 0.75,
+                "recall": 1.0,
+                "true_positive": 3,
+                "unsupported": [
+                  [
+                    "ochre1",
+                    "ochre2"
+                  ]
+                ]
+              },
+              "scope": {
+                "expected": 5,
+                "missing": [],
+                "observed": 5,
+                "precision": 1.0,
+                "recall": 1.0,
+                "true_positive": 5,
+                "unsupported": []
+              }
+            },
+            "repair_count_basis": "Missing complete atom-level scope/alias facts and context-closure pairs; NOT observed human corrections or review benefit.",
+            "repair_counts": {
+              "alias_add": 0,
+              "context_add": 0,
+              "scope_add": 0
+            },
+            "repair_required": false,
+            "semantic": "pass",
+            "status": "pass",
+            "unresolved_alias_count": 0,
+            "unresolved_atom_count": 0
+          },
+          "observation": {
+            "groups": [
+              {
+                "spans": [
+                  {
+                    "end": 24,
+                    "source_id": "dev_mosaic",
+                    "start": 0
+                  },
+                  {
+                    "end": 78,
+                    "source_id": "dev_mosaic",
+                    "start": 24
+                  },
+                  {
+                    "end": 80,
+                    "source_id": "dev_mosaic",
+                    "start": 78
+                  }
+                ],
+                "text": "# Mosaic board charter\r\nAll instructions describe an imaginary tile contest.\r\n\r\n"
+              },
+              {
+                "spans": [
+                  {
+                    "end": 96,
+                    "source_id": "dev_mosaic",
+                    "start": 80
+                  },
+                  {
+                    "end": 120,
+                    "source_id": "dev_mosaic",
+                    "start": 96
+                  },
+                  {
+                    "end": 156,
+                    "source_id": "dev_mosaic",
+                    "start": 120
+                  },
+                  {
+                    "end": 206,
+                    "source_id": "dev_mosaic",
+                    "start": 156
+                  },
+                  {
+                    "end": 279,
+                    "source_id": "dev_mosaic",
+                    "start": 206
+                  },
+                  {
+                    "end": 281,
+                    "source_id": "dev_mosaic",
+                    "start": 279
+                  },
+                  {
+                    "end": 419,
+                    "source_id": "dev_mosaic",
+                    "start": 356
+                  }
+                ],
+                "text": "## Azure Tiles\r\nEquipment: Azure Tiles\r\nAliases: blue counters; sky pieces\r\nWhen a ring is drawn, do not rotate Azure Tiles.\r\nUnless the ring is dotted, the prohibition holds through the next turn.\r\n\r\nThe dotted-ring exception qualifies the rotation prohibition.\r\n"
+              },
+              {
+                "spans": [
+                  {
+                    "end": 298,
+                    "source_id": "dev_mosaic",
+                    "start": 281
+                  },
+                  {
+                    "end": 356,
+                    "source_id": "dev_mosaic",
+                    "start": 298
+                  }
+                ],
+                "text": "## Scale legend\r\nA higher calmness index implies a lower wobble tendency.\r\n"
+              },
+              {
+                "spans": [
+                  {
+                    "end": 488,
+                    "source_id": "dev_mosaic",
+                    "start": 419
+                  }
+                ],
+                "text": "The observer says the ring may be dotted; this is not confirmation.\r\n"
+              },
+              {
+                "spans": [
+                  {
+                    "end": 490,
+                    "source_id": "dev_mosaic",
+                    "start": 488
+                  },
+                  {
+                    "end": 506,
+                    "source_id": "dev_mosaic",
+                    "start": 490
+                  },
+                  {
+                    "end": 526,
+                    "source_id": "dev_mosaic",
+                    "start": 506
+                  },
+                  {
+                    "end": 579,
+                    "source_id": "dev_mosaic",
+                    "start": 526
+                  },
+                  {
+                    "end": 632,
+                    "source_id": "dev_mosaic",
+                    "start": 579
+                  }
+                ],
+                "text": "\r\n## Ochre Tiles\r\nScope: Ochre Tiles\r\nStack Ochre Tiles only when the paper flag is flat.\r\nStack Ochre Tiles only when the paper flag is flat.\r\n"
+              }
+            ],
+            "metadata": {
+              "aliases": [
+                {
+                  "evidence": [
+                    {
+                      "end": 120,
+                      "source_id": "dev_mosaic",
+                      "start": 96
+                    },
+                    {
+                      "end": 156,
+                      "source_id": "dev_mosaic",
+                      "start": 120
+                    },
+                    {
+                      "end": 156,
+                      "source_id": "dev_mosaic",
+                      "start": 120
+                    }
+                  ],
+                  "target": "Azure Tiles",
+                  "value": "blue counters"
+                },
+                {
+                  "evidence": [
+                    {
+                      "end": 120,
+                      "source_id": "dev_mosaic",
+                      "start": 96
+                    },
+                    {
+                      "end": 156,
+                      "source_id": "dev_mosaic",
+                      "start": 120
+                    },
+                    {
+                      "end": 156,
+                      "source_id": "dev_mosaic",
+                      "start": 120
+                    }
+                  ],
+                  "target": "Azure Tiles",
+                  "value": "sky pieces"
+                }
+              ],
+              "links": [],
+              "scopes": [
+                {
+                  "evidence": [
+                    {
+                      "end": 120,
+                      "source_id": "dev_mosaic",
+                      "start": 96
+                    },
+                    {
+                      "end": 156,
+                      "source_id": "dev_mosaic",
+                      "start": 120
+                    },
+                    {
+                      "end": 156,
+                      "source_id": "dev_mosaic",
+                      "start": 120
+                    }
+                  ],
+                  "spans": [
+                    {
+                      "end": 96,
+                      "source_id": "dev_mosaic",
+                      "start": 80
+                    },
+                    {
+                      "end": 120,
+                      "source_id": "dev_mosaic",
+                      "start": 96
+                    },
+                    {
+                      "end": 156,
+                      "source_id": "dev_mosaic",
+                      "start": 120
+                    },
+                    {
+                      "end": 206,
+                      "source_id": "dev_mosaic",
+                      "start": 156
+                    },
+                    {
+                      "end": 279,
+                      "source_id": "dev_mosaic",
+                      "start": 206
+                    },
+                    {
+                      "end": 281,
+                      "source_id": "dev_mosaic",
+                      "start": 279
+                    },
+                    {
+                      "end": 419,
+                      "source_id": "dev_mosaic",
+                      "start": 356
+                    }
+                  ],
+                  "value": "Azure Tiles"
+                },
+                {
+                  "evidence": [
+                    {
+                      "end": 526,
+                      "source_id": "dev_mosaic",
+                      "start": 506
+                    }
+                  ],
+                  "spans": [
+                    {
+                      "end": 490,
+                      "source_id": "dev_mosaic",
+                      "start": 488
+                    },
+                    {
+                      "end": 506,
+                      "source_id": "dev_mosaic",
+                      "start": 490
+                    },
+                    {
+                      "end": 526,
+                      "source_id": "dev_mosaic",
+                      "start": 506
+                    },
+                    {
+                      "end": 579,
+                      "source_id": "dev_mosaic",
+                      "start": 526
+                    },
+                    {
+                      "end": 632,
+                      "source_id": "dev_mosaic",
+                      "start": 579
+                    }
+                  ],
+                  "value": "Ochre Tiles"
+                }
+              ]
+            },
+            "source_id": "dev_mosaic",
+            "source_sha256": "0852927bd7abe608ce450eb87d6e21a23137fa6394e1e5ea36140d84002c338f",
+            "status": "accepted"
+          },
+          "source_id": "dev_mosaic"
+        }
+      },
+      "request_sha256": "68798c22408f6dffcef6c256a5291609caeeb6e7e568a05931ad350b74e13ebc",
+      "reserved_at": "2026-11-16T17:46:17.818852+00:00",
+      "slot": "dev_mosaic.primary",
+      "state": "finished"
+    },
+    {
+      "number": 4,
+      "outcome": {
+        "status": "success",
+        "validation": {
+          "accepted": true,
+          "assessment": {
+            "accepted_wrong_critical": false,
+            "atom_count": 6,
+            "critical_errors": {
+              "detached_scoped_context_pairs": [],
+              "disconnected_scoped_atoms": [],
+              "nonempty_incomplete_scope_atoms": [],
+              "unsupported_alias_facts": [],
+              "unsupported_scope_facts": []
+            },
+            "fidelity": "pass",
+            "group_graph": {
+              "atoms_not_whole_in_one_component": [],
+              "component_count": 5,
+              "components": [
+                {
+                  "group_count": 1,
+                  "source_bytes": {
+                    "dev_beacon": 75
+                  },
+                  "whole_atom_ids": []
+                },
+                {
+                  "group_count": 1,
+                  "source_bytes": {
+                    "dev_beacon": 239
+                  },
+                  "whole_atom_ids": [
+                    "silver",
+                    "turn"
+                  ]
+                },
+                {
+                  "group_count": 1,
+                  "source_bytes": {
+                    "dev_beacon": 56
+                  },
+                  "whole_atom_ids": []
+                },
+                {
+                  "group_count": 1,
+                  "source_bytes": {
+                    "dev_beacon": 125
+                  },
+                  "whole_atom_ids": [
+                    "legend",
+                    "uncertain"
+                  ]
+                },
+                {
+                  "group_count": 1,
+                  "source_bytes": {
+                    "dev_beacon": 108
+                  },
+                  "whole_atom_ids": [
+                    "tin1",
+                    "tin2"
+                  ]
+                }
+              ],
+              "overclosure_pair_count": 2
+            },
+            "incomplete_scope_byte_facts": [],
+            "metrics": {
+              "alias": {
+                "expected": 1,
+                "missing": [],
+                "observed": 1,
+                "precision": 1.0,
+                "recall": 1.0,
+                "true_positive": 1,
+                "unsupported": []
+              },
+              "context": {
+                "expected": 1,
+                "missing": [],
+                "observed": 3,
+                "precision": 0.3333333333333333,
+                "recall": 1.0,
+                "true_positive": 1,
+                "unsupported": [
+                  [
+                    "legend",
+                    "uncertain"
+                  ],
+                  [
+                    "tin1",
+                    "tin2"
+                  ]
+                ]
+              },
+              "scope": {
+                "expected": 4,
+                "missing": [],
+                "observed": 4,
+                "precision": 1.0,
+                "recall": 1.0,
+                "true_positive": 4,
+                "unsupported": []
+              }
+            },
+            "repair_count_basis": "Missing complete atom-level scope/alias facts and context-closure pairs; NOT observed human corrections or review benefit.",
+            "repair_counts": {
+              "alias_add": 0,
+              "context_add": 0,
+              "scope_add": 0
+            },
+            "repair_required": false,
+            "semantic": "pass",
+            "status": "pass",
+            "unresolved_alias_count": 0,
+            "unresolved_atom_count": 0
+          },
+          "observation": {
+            "groups": [
+              {
+                "spans": [
+                  {
+                    "end": 31,
+                    "source_id": "dev_beacon",
+                    "start": 0
+                  },
+                  {
+                    "end": 73,
+                    "source_id": "dev_beacon",
+                    "start": 31
+                  },
+                  {
+                    "end": 75,
+                    "source_id": "dev_beacon",
+                    "start": 73
+                  }
+                ],
+                "text": "Beacon toy station directions\r\n1. Read the sign before choosing a step.\r\n\r\n"
+              },
+              {
+                "spans": [
+                  {
+                    "end": 93,
+                    "source_id": "dev_beacon",
+                    "start": 75
+                  },
+                  {
+                    "end": 115,
+                    "source_id": "dev_beacon",
+                    "start": 93
+                  },
+                  {
+                    "end": 138,
+                    "source_id": "dev_beacon",
+                    "start": 115
+                  },
+                  {
+                    "end": 190,
+                    "source_id": "dev_beacon",
+                    "start": 138
+                  },
+                  {
+                    "end": 254,
+                    "source_id": "dev_beacon",
+                    "start": 190
+                  },
+                  {
+                    "end": 312,
+                    "source_id": "dev_beacon",
+                    "start": 254
+                  },
+                  {
+                    "end": 314,
+                    "source_id": "dev_beacon",
+                    "start": 312
+                  }
+                ],
+                "text": "## Paper-Beacons\r\nScope: Paper-Beacons\r\nAliases: folded stars\r\n- If a bead is present, do not turn Paper-Beacons.\r\n  - Exception: a silver bead permits one turn after the chime.\r\n  - The silver-bead line qualifies the turn restriction.\r\n\r\n"
+              },
+              {
+                "spans": [
+                  {
+                    "end": 323,
+                    "source_id": "dev_beacon",
+                    "start": 314
+                  },
+                  {
+                    "end": 340,
+                    "source_id": "dev_beacon",
+                    "start": 323
+                  },
+                  {
+                    "end": 363,
+                    "source_id": "dev_beacon",
+                    "start": 340
+                  },
+                  {
+                    "end": 368,
+                    "source_id": "dev_beacon",
+                    "start": 363
+                  },
+                  {
+                    "end": 370,
+                    "source_id": "dev_beacon",
+                    "start": 368
+                  }
+                ],
+                "text": "```text\r\n# Not a section\r\nScope: Pretend-Scopes\r\n```\r\n\r\n"
+              },
+              {
+                "spans": [
+                  {
+                    "end": 393,
+                    "source_id": "dev_beacon",
+                    "start": 370
+                  },
+                  {
+                    "end": 442,
+                    "source_id": "dev_beacon",
+                    "start": 393
+                  },
+                  {
+                    "end": 493,
+                    "source_id": "dev_beacon",
+                    "start": 442
+                  },
+                  {
+                    "end": 495,
+                    "source_id": "dev_beacon",
+                    "start": 493
+                  }
+                ],
+                "text": "## Quiet instructions\r\nMore reserve marks mean less flutter, not more.\r\nThe chime is possibly late; its state is unknown.\r\n\r\n"
+              },
+              {
+                "spans": [
+                  {
+                    "end": 509,
+                    "source_id": "dev_beacon",
+                    "start": 495
+                  },
+                  {
+                    "end": 531,
+                    "source_id": "dev_beacon",
+                    "start": 509
+                  },
+                  {
+                    "end": 567,
+                    "source_id": "dev_beacon",
+                    "start": 531
+                  },
+                  {
+                    "end": 603,
+                    "source_id": "dev_beacon",
+                    "start": 567
+                  }
+                ],
+                "text": "## Tin-Moons\r\nEquipment: Tin-Moons\r\nPlace Tin-Moons behind the stripe.\r\nPlace Tin-Moons behind the stripe.\r\n"
+              }
+            ],
+            "metadata": {
+              "aliases": [
+                {
+                  "evidence": [
+                    {
+                      "end": 115,
+                      "source_id": "dev_beacon",
+                      "start": 93
+                    },
+                    {
+                      "end": 138,
+                      "source_id": "dev_beacon",
+                      "start": 115
+                    }
+                  ],
+                  "target": "Paper-Beacons",
+                  "value": "folded stars"
+                }
+              ],
+              "links": [],
+              "scopes": [
+                {
+                  "evidence": [
+                    {
+                      "end": 115,
+                      "source_id": "dev_beacon",
+                      "start": 93
+                    },
+                    {
+                      "end": 138,
+                      "source_id": "dev_beacon",
+                      "start": 115
+                    }
+                  ],
+                  "spans": [
+                    {
+                      "end": 93,
+                      "source_id": "dev_beacon",
+                      "start": 75
+                    },
+                    {
+                      "end": 115,
+                      "source_id": "dev_beacon",
+                      "start": 93
+                    },
+                    {
+                      "end": 138,
+                      "source_id": "dev_beacon",
+                      "start": 115
+                    },
+                    {
+                      "end": 190,
+                      "source_id": "dev_beacon",
+                      "start": 138
+                    },
+                    {
+                      "end": 254,
+                      "source_id": "dev_beacon",
+                      "start": 190
+                    },
+                    {
+                      "end": 312,
+                      "source_id": "dev_beacon",
+                      "start": 254
+                    },
+                    {
+                      "end": 314,
+                      "source_id": "dev_beacon",
+                      "start": 312
+                    }
+                  ],
+                  "value": "Paper-Beacons"
+                },
+                {
+                  "evidence": [
+                    {
+                      "end": 531,
+                      "source_id": "dev_beacon",
+                      "start": 509
+                    }
+                  ],
+                  "spans": [
+                    {
+                      "end": 509,
+                      "source_id": "dev_beacon",
+                      "start": 495
+                    },
+                    {
+                      "end": 531,
+                      "source_id": "dev_beacon",
+                      "start": 509
+                    },
+                    {
+                      "end": 567,
+                      "source_id": "dev_beacon",
+                      "start": 531
+                    },
+                    {
+                      "end": 603,
+                      "source_id": "dev_beacon",
+                      "start": 567
+                    }
+                  ],
+                  "value": "Tin-Moons"
+                }
+              ]
+            },
+            "source_id": "dev_beacon",
+            "source_sha256": "58f29e3fd9c927c30c9cbc65a3c5c01961fbce9929c16118bcef9bcf395e088f",
+            "status": "accepted"
+          },
+          "source_id": "dev_beacon"
+        }
+      },
+      "request_sha256": "cfc6bd677bcd27dea05639b71eeb3fd718ea94c1d187c52b2b77b247420027f5",
+      "reserved_at": "2026-11-16T17:46:34.209190+00:00",
+      "slot": "dev_beacon.primary",
+      "state": "finished"
+    },
+    {
+      "number": 5,
+      "outcome": {
+        "status": "success",
+        "validation": {
+          "accepted": true,
+          "assessment": {
+            "accepted_wrong_critical": false,
+            "atom_count": 1,
+            "critical_errors": {
+              "detached_scoped_context_pairs": [],
+              "disconnected_scoped_atoms": [],
+              "nonempty_incomplete_scope_atoms": [],
+              "unsupported_alias_facts": [],
+              "unsupported_scope_facts": []
+            },
+            "fidelity": "pass",
+            "group_graph": {
+              "atoms_not_whole_in_one_component": [
+                "whole"
+              ],
+              "component_count": 10,
+              "components": [
+                {
+                  "group_count": 1,
+                  "source_bytes": {
+                    "original_domain": 189
+                  },
+                  "whole_atom_ids": []
+                },
+                {
+                  "group_count": 1,
+                  "source_bytes": {
+                    "original_domain": 583
+                  },
+                  "whole_atom_ids": []
+                },
+                {
+                  "group_count": 1,
+                  "source_bytes": {
+                    "original_domain": 485
+                  },
+                  "whole_atom_ids": []
+                },
+                {
+                  "group_count": 1,
+                  "source_bytes": {
+                    "original_domain": 637
+                  },
+                  "whole_atom_ids": []
+                },
+                {
+                  "group_count": 1,
+                  "source_bytes": {
+                    "original_domain": 287
+                  },
+                  "whole_atom_ids": []
+                },
+                {
+                  "group_count": 1,
+                  "source_bytes": {
+                    "original_domain": 259
+                  },
+                  "whole_atom_ids": []
+                },
+                {
+                  "group_count": 1,
+                  "source_bytes": {
+                    "original_domain": 727
+                  },
+                  "whole_atom_ids": []
+                },
+                {
+                  "group_count": 1,
+                  "source_bytes": {
+                    "original_domain": 450
+                  },
+                  "whole_atom_ids": []
+                },
+                {
+                  "group_count": 1,
+                  "source_bytes": {
+                    "original_domain": 318
+                  },
+                  "whole_atom_ids": []
+                },
+                {
+                  "group_count": 1,
+                  "source_bytes": {
+                    "original_domain": 391
+                  },
+                  "whole_atom_ids": []
+                }
+              ],
+              "overclosure_pair_count": 0
+            },
+            "incomplete_scope_byte_facts": [],
+            "metrics": {
+              "alias": {
+                "expected": 0,
+                "missing": [],
+                "observed": 0,
+                "precision": null,
+                "recall": null,
+                "true_positive": 0,
+                "unsupported": []
+              },
+              "context": {
+                "expected": 0,
+                "missing": [],
+                "observed": 0,
+                "precision": null,
+                "recall": null,
+                "true_positive": 0,
+                "unsupported": []
+              },
+              "scope": {
+                "expected": 0,
+                "missing": [],
+                "observed": 0,
+                "precision": null,
+                "recall": null,
+                "true_positive": 0,
+                "unsupported": []
+              }
+            },
+            "repair_count_basis": "Missing complete atom-level scope/alias facts and context-closure pairs; NOT observed human corrections or review benefit.",
+            "repair_counts": {
+              "alias_add": 0,
+              "context_add": 0,
+              "scope_add": 0
+            },
+            "repair_required": false,
+            "semantic": "pass",
+            "status": "pass",
+            "unresolved_alias_count": 0,
+            "unresolved_atom_count": 0
+          },
+          "observation": {
+            "groups": [
+              {
+                "spans": [
+                  {
+                    "end": 53,
+                    "source_id": "original_domain",
+                    "start": 0
+                  },
+                  {
+                    "end": 54,
+                    "source_id": "original_domain",
+                    "start": 53
+                  },
+                  {
+                    "end": 156,
+                    "source_id": "original_domain",
+                    "start": 54
+                  },
+                  {
+                    "end": 188,
+                    "source_id": "original_domain",
+                    "start": 156
+                  },
+                  {
+                    "end": 189,
+                    "source_id": "original_domain",
+                    "start": 188
+                  }
+                ],
+                "text": "# Integrity and Reliability Notes \u2014 Bravo Platform\n\nHandover notes from the outgoing Integrity Engineer. Unedited. This is the only written record of how\nfindings are currently triaged.\n\n"
+              },
+              {
+                "spans": [
+                  {
+                    "end": 210,
+                    "source_id": "original_domain",
+                    "start": 189
+                  },
+                  {
+                    "end": 211,
+                    "source_id": "original_domain",
+                    "start": 210
+                  },
+                  {
+                    "end": 310,
+                    "source_id": "original_domain",
+                    "start": 211
+                  },
+                  {
+                    "end": 411,
+                    "source_id": "original_domain",
+                    "start": 310
+                  },
+                  {
+                    "end": 513,
+                    "source_id": "original_domain",
+                    "start": 411
+                  },
+                  {
+                    "end": 546,
+                    "source_id": "original_domain",
+                    "start": 513
+                  },
+                  {
+                    "end": 547,
+                    "source_id": "original_domain",
+                    "start": 546
+                  },
+                  {
+                    "end": 648,
+                    "source_id": "original_domain",
+                    "start": 547
+                  },
+                  {
+                    "end": 704,
+                    "source_id": "original_domain",
+                    "start": 648
+                  },
+                  {
+                    "end": 705,
+                    "source_id": "original_domain",
+                    "start": 704
+                  },
+                  {
+                    "end": 771,
+                    "source_id": "original_domain",
+                    "start": 705
+                  },
+                  {
+                    "end": 772,
+                    "source_id": "original_domain",
+                    "start": 771
+                  }
+                ],
+                "text": "## The two questions\n\n**Likelihood** concerns the item itself: given what the inspection found, how likely is it to stop\nperforming its function in the near term. A hairline coating blister on a thick-walled vessel is low\nlikelihood even on a critical vessel. A bearing with a vibration trend that has not plateaued is high\nlikelihood even on a spare pump.\n\n**Impact** concerns what happens if it does fail. This depends mainly on what the equipment does and\nwhat sits behind it, not on the wording of the finding.\n\nThe common error is scoring by how severe the description sounds.\n\n"
+              },
+              {
+                "spans": [
+                  {
+                    "end": 797,
+                    "source_id": "original_domain",
+                    "start": 772
+                  },
+                  {
+                    "end": 798,
+                    "source_id": "original_domain",
+                    "start": 797
+                  },
+                  {
+                    "end": 896,
+                    "source_id": "original_domain",
+                    "start": 798
+                  },
+                  {
+                    "end": 994,
+                    "source_id": "original_domain",
+                    "start": 896
+                  },
+                  {
+                    "end": 1096,
+                    "source_id": "original_domain",
+                    "start": 994
+                  },
+                  {
+                    "end": 1121,
+                    "source_id": "original_domain",
+                    "start": 1096
+                  },
+                  {
+                    "end": 1122,
+                    "source_id": "original_domain",
+                    "start": 1121
+                  },
+                  {
+                    "end": 1221,
+                    "source_id": "original_domain",
+                    "start": 1122
+                  },
+                  {
+                    "end": 1256,
+                    "source_id": "original_domain",
+                    "start": 1221
+                  },
+                  {
+                    "end": 1257,
+                    "source_id": "original_domain",
+                    "start": 1256
+                  }
+                ],
+                "text": "## What moves likelihood\n\nUp: a trend that is still moving; a repeat of a failure that has already occurred this period; an\nactive, unmitigated mechanism (corrosion under wet insulation is progressing now); detection by a\nmethod that only catches late-stage damage \u2014 a finding detected by ear or smell is further advanced\nthan one detected by UT.\n\nDown: design margin; a measurement inside its acceptance criterion; an item that is out of service\nand not required to be in service.\n\n"
+              },
+              {
+                "spans": [
+                  {
+                    "end": 1278,
+                    "source_id": "original_domain",
+                    "start": 1257
+                  },
+                  {
+                    "end": 1279,
+                    "source_id": "original_domain",
+                    "start": 1278
+                  },
+                  {
+                    "end": 1378,
+                    "source_id": "original_domain",
+                    "start": 1279
+                  },
+                  {
+                    "end": 1478,
+                    "source_id": "original_domain",
+                    "start": 1378
+                  },
+                  {
+                    "end": 1581,
+                    "source_id": "original_domain",
+                    "start": 1478
+                  },
+                  {
+                    "end": 1677,
+                    "source_id": "original_domain",
+                    "start": 1581
+                  },
+                  {
+                    "end": 1688,
+                    "source_id": "original_domain",
+                    "start": 1677
+                  },
+                  {
+                    "end": 1689,
+                    "source_id": "original_domain",
+                    "start": 1688
+                  },
+                  {
+                    "end": 1790,
+                    "source_id": "original_domain",
+                    "start": 1689
+                  },
+                  {
+                    "end": 1893,
+                    "source_id": "original_domain",
+                    "start": 1790
+                  },
+                  {
+                    "end": 1894,
+                    "source_id": "original_domain",
+                    "start": 1893
+                  }
+                ],
+                "text": "## What moves impact\n\nUp: absence of redundancy; Safety Critical Elements, which exist because a major accident scenario\ndepends on them and are judged against that scenario rather than against repair cost; failures that\ndegrade a protection layer rather than causing direct loss; delayed or hidden consequences \u2014 loss of\ncorrosion inhibitor has no effect today and a substantial effect in eighteen months; escalation\npotential.\n\nDown: redundancy that is available and capable; items that can be bypassed without loss of function;\natmospheric, non-hydrocarbon, low-energy services; consequences limited to housekeeping or appearance.\n\n"
+              },
+              {
+                "spans": [
+                  {
+                    "end": 1918,
+                    "source_id": "original_domain",
+                    "start": 1894
+                  },
+                  {
+                    "end": 1919,
+                    "source_id": "original_domain",
+                    "start": 1918
+                  },
+                  {
+                    "end": 2017,
+                    "source_id": "original_domain",
+                    "start": 1919
+                  },
+                  {
+                    "end": 2117,
+                    "source_id": "original_domain",
+                    "start": 2017
+                  },
+                  {
+                    "end": 2180,
+                    "source_id": "original_domain",
+                    "start": 2117
+                  },
+                  {
+                    "end": 2181,
+                    "source_id": "original_domain",
+                    "start": 2180
+                  }
+                ],
+                "text": "## Two recurring errors\n\n**Voted arrangements.** One detector head out of a 2oo3 group is a degradation, not a defeat. The\narrangement still functions, so impact is moderate rather than extreme. It is time-limited, because\nthe group has lost its margin and the next failure defeats it.\n\n"
+              },
+              {
+                "spans": [
+                  {
+                    "end": 2284,
+                    "source_id": "original_domain",
+                    "start": 2181
+                  },
+                  {
+                    "end": 2379,
+                    "source_id": "original_domain",
+                    "start": 2284
+                  },
+                  {
+                    "end": 2439,
+                    "source_id": "original_domain",
+                    "start": 2379
+                  },
+                  {
+                    "end": 2440,
+                    "source_id": "original_domain",
+                    "start": 2439
+                  }
+                ],
+                "text": "**Redundancy is a claim, not a fact.** Check whether the redundant partner is healthy before crediting\nit. If findings exist against both legs of a redundant pair in the same batch, the pair is not\nredundant. Assessing each finding in isolation misses this.\n\n"
+              },
+              {
+                "spans": [
+                  {
+                    "end": 2451,
+                    "source_id": "original_domain",
+                    "start": 2440
+                  },
+                  {
+                    "end": 2452,
+                    "source_id": "original_domain",
+                    "start": 2451
+                  },
+                  {
+                    "end": 2546,
+                    "source_id": "original_domain",
+                    "start": 2452
+                  },
+                  {
+                    "end": 2643,
+                    "source_id": "original_domain",
+                    "start": 2546
+                  },
+                  {
+                    "end": 2741,
+                    "source_id": "original_domain",
+                    "start": 2643
+                  },
+                  {
+                    "end": 2757,
+                    "source_id": "original_domain",
+                    "start": 2741
+                  },
+                  {
+                    "end": 2758,
+                    "source_id": "original_domain",
+                    "start": 2757
+                  },
+                  {
+                    "end": 2774,
+                    "source_id": "original_domain",
+                    "start": 2758
+                  },
+                  {
+                    "end": 2793,
+                    "source_id": "original_domain",
+                    "start": 2774
+                  },
+                  {
+                    "end": 2813,
+                    "source_id": "original_domain",
+                    "start": 2793
+                  },
+                  {
+                    "end": 2844,
+                    "source_id": "original_domain",
+                    "start": 2813
+                  },
+                  {
+                    "end": 2861,
+                    "source_id": "original_domain",
+                    "start": 2844
+                  },
+                  {
+                    "end": 2862,
+                    "source_id": "original_domain",
+                    "start": 2861
+                  },
+                  {
+                    "end": 2964,
+                    "source_id": "original_domain",
+                    "start": 2862
+                  },
+                  {
+                    "end": 3062,
+                    "source_id": "original_domain",
+                    "start": 2964
+                  },
+                  {
+                    "end": 3159,
+                    "source_id": "original_domain",
+                    "start": 3062
+                  },
+                  {
+                    "end": 3166,
+                    "source_id": "original_domain",
+                    "start": 3159
+                  },
+                  {
+                    "end": 3167,
+                    "source_id": "original_domain",
+                    "start": 3166
+                  }
+                ],
+                "text": "## Urgency\n\nNot an average of likelihood and impact, and not the maximum, though the maximum is closer. A\nlow-likelihood, high-impact finding on an SCE still requires attention this week. A near-certain\nfailure of something inconsequential can wait for the next shutdown. Urgency expresses how soon a\nhuman must act.\n\n- 9\u201310: today\n- 7\u20138: this week\n- 5\u20136: this month\n- 3\u20134: next planned shutdown\n- 1\u20132: backlog\n\nTwo conditions override the derived value. Anything that leaves a protection layer impaired without a\nrecorded deviation is immediate, because the installation is out of compliance from the point the\nimpairment is known. The same applies to anything that reduces evacuation capacity below the POB\ncount.\n\n"
+              },
+              {
+                "spans": [
+                  {
+                    "end": 3186,
+                    "source_id": "original_domain",
+                    "start": 3167
+                  },
+                  {
+                    "end": 3187,
+                    "source_id": "original_domain",
+                    "start": 3186
+                  },
+                  {
+                    "end": 3289,
+                    "source_id": "original_domain",
+                    "start": 3187
+                  },
+                  {
+                    "end": 3390,
+                    "source_id": "original_domain",
+                    "start": 3289
+                  },
+                  {
+                    "end": 3410,
+                    "source_id": "original_domain",
+                    "start": 3390
+                  },
+                  {
+                    "end": 3411,
+                    "source_id": "original_domain",
+                    "start": 3410
+                  },
+                  {
+                    "end": 3512,
+                    "source_id": "original_domain",
+                    "start": 3411
+                  },
+                  {
+                    "end": 3607,
+                    "source_id": "original_domain",
+                    "start": 3512
+                  },
+                  {
+                    "end": 3616,
+                    "source_id": "original_domain",
+                    "start": 3607
+                  },
+                  {
+                    "end": 3617,
+                    "source_id": "original_domain",
+                    "start": 3616
+                  }
+                ],
+                "text": "## Registry scores\n\n`reliability_score` is 10 = highly reliable, 1 = frequent failures. It runs in the opposite direction\nto likelihood. New starters routinely invert it. `criticality_score` runs in the expected direction,\n10 = most critical.\n\nNeither is sufficient on its own. Criticality is a starting point for impact, reliability a starting\npoint for likelihood; the finding text moves both. A reliable item with a crack in it is still\ncracked.\n\n"
+              },
+              {
+                "spans": [
+                  {
+                    "end": 3640,
+                    "source_id": "original_domain",
+                    "start": 3617
+                  },
+                  {
+                    "end": 3641,
+                    "source_id": "original_domain",
+                    "start": 3640
+                  },
+                  {
+                    "end": 3743,
+                    "source_id": "original_domain",
+                    "start": 3641
+                  },
+                  {
+                    "end": 3836,
+                    "source_id": "original_domain",
+                    "start": 3743
+                  },
+                  {
+                    "end": 3934,
+                    "source_id": "original_domain",
+                    "start": 3836
+                  },
+                  {
+                    "end": 3935,
+                    "source_id": "original_domain",
+                    "start": 3934
+                  }
+                ],
+                "text": "## Output expectations\n\nMaintenance planning needs two lines: what is wrong, on what, and why it matters \u2014 readable without\nopening the inspection record, and not a restatement of the original finding text. Where the\nassessment is uncertain, that should be stated rather than resolved by picking a mid-range score.\n\n"
+              },
+              {
+                "spans": [
+                  {
+                    "end": 4004,
+                    "source_id": "original_domain",
+                    "start": 3935
+                  },
+                  {
+                    "end": 4005,
+                    "source_id": "original_domain",
+                    "start": 4004
+                  },
+                  {
+                    "end": 4067,
+                    "source_id": "original_domain",
+                    "start": 4005
+                  },
+                  {
+                    "end": 4169,
+                    "source_id": "original_domain",
+                    "start": 4067
+                  },
+                  {
+                    "end": 4219,
+                    "source_id": "original_domain",
+                    "start": 4169
+                  },
+                  {
+                    "end": 4277,
+                    "source_id": "original_domain",
+                    "start": 4219
+                  },
+                  {
+                    "end": 4326,
+                    "source_id": "original_domain",
+                    "start": 4277
+                  }
+                ],
+                "text": "Recurring causes of loss of confidence in a triage output, in order:\n\n1. Confidently incorrect scores on safety critical equipment.\n2. Summaries that omit a detail that changes the decision \u2014 a measurement, a repeat occurrence, the\n   fact that the standby was already unavailable.\n3. The same finding scored differently on different days.\n4. Uniform mid-range scores across all findings.\n"
+              }
+            ],
+            "metadata": {
+              "aliases": [],
+              "links": [],
+              "scopes": []
+            },
+            "source_id": "original_domain",
+            "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+            "status": "accepted"
+          },
+          "source_id": "original_domain"
+        }
+      },
+      "request_sha256": "843a65e091530d1b492ad1f92f0c1ba4a1cd039f6d1c79fd32fe88ff11064ff3",
+      "reserved_at": "2026-11-16T17:47:12.577989+00:00",
+      "slot": "original_domain.primary",
+      "state": "finished"
+    },
+    {
+      "number": 6,
+      "outcome": {
+        "status": "success",
+        "validation": {
+          "accepted": true,
+          "assessment": {
+            "accepted_wrong_critical": false,
+            "atom_count": 7,
+            "critical_errors": {
+              "detached_scoped_context_pairs": [],
+              "disconnected_scoped_atoms": [],
+              "nonempty_incomplete_scope_atoms": [],
+              "unsupported_alias_facts": [],
+              "unsupported_scope_facts": []
+            },
+            "fidelity": "pass",
+            "group_graph": {
+              "atoms_not_whole_in_one_component": [],
+              "component_count": 5,
+              "components": [
+                {
+                  "group_count": 1,
+                  "source_bytes": {
+                    "eval_prism": 90
+                  },
+                  "whole_atom_ids": []
+                },
+                {
+                  "group_count": 1,
+                  "source_bytes": {
+                    "eval_prism": 305
+                  },
+                  "whole_atom_ids": [
+                    "hush",
+                    "open",
+                    "permission"
+                  ]
+                },
+                {
+                  "group_count": 1,
+                  "source_bytes": {
+                    "eval_prism": 65
+                  },
+                  "whole_atom_ids": [
+                    "legend"
+                  ]
+                },
+                {
+                  "group_count": 1,
+                  "source_bytes": {
+                    "eval_prism": 81
+                  },
+                  "whole_atom_ids": [
+                    "conflict"
+                  ]
+                },
+                {
+                  "group_count": 1,
+                  "source_bytes": {
+                    "eval_prism": 136
+                  },
+                  "whole_atom_ids": [
+                    "wheel1",
+                    "wheel2"
+                  ]
+                }
+              ],
+              "overclosure_pair_count": 1
+            },
+            "incomplete_scope_byte_facts": [],
+            "metrics": {
+              "alias": {
+                "expected": 2,
+                "missing": [],
+                "observed": 2,
+                "precision": 1.0,
+                "recall": 1.0,
+                "true_positive": 2,
+                "unsupported": []
+              },
+              "context": {
+                "expected": 3,
+                "missing": [],
+                "observed": 4,
+                "precision": 0.75,
+                "recall": 1.0,
+                "true_positive": 3,
+                "unsupported": [
+                  [
+                    "wheel1",
+                    "wheel2"
+                  ]
+                ]
+              },
+              "scope": {
+                "expected": 5,
+                "missing": [],
+                "observed": 5,
+                "precision": 1.0,
+                "recall": 1.0,
+                "true_positive": 5,
+                "unsupported": []
+              }
+            },
+            "repair_count_basis": "Missing complete atom-level scope/alias facts and context-closure pairs; NOT observed human corrections or review benefit.",
+            "repair_counts": {
+              "alias_add": 0,
+              "context_add": 0,
+              "scope_add": 0
+            },
+            "repair_required": false,
+            "semantic": "pass",
+            "status": "pass",
+            "unresolved_alias_count": 0,
+            "unresolved_atom_count": 0
+          },
+          "observation": {
+            "groups": [
+              {
+                "spans": [
+                  {
+                    "end": 19,
+                    "source_id": "eval_prism",
+                    "start": 0
+                  },
+                  {
+                    "end": 88,
+                    "source_id": "eval_prism",
+                    "start": 19
+                  },
+                  {
+                    "end": 90,
+                    "source_id": "eval_prism",
+                    "start": 88
+                  }
+                ],
+                "text": "# Prism catalogue\r\nThis is a fictional lantern-display puzzle, not equipment guidance.\r\n\r\n"
+              },
+              {
+                "spans": [
+                  {
+                    "end": 106,
+                    "source_id": "eval_prism",
+                    "start": 90
+                  },
+                  {
+                    "end": 126,
+                    "source_id": "eval_prism",
+                    "start": 106
+                  },
+                  {
+                    "end": 164,
+                    "source_id": "eval_prism",
+                    "start": 126
+                  },
+                  {
+                    "end": 224,
+                    "source_id": "eval_prism",
+                    "start": 164
+                  },
+                  {
+                    "end": 292,
+                    "source_id": "eval_prism",
+                    "start": 224
+                  },
+                  {
+                    "end": 294,
+                    "source_id": "eval_prism",
+                    "start": 292
+                  },
+                  {
+                    "end": 312,
+                    "source_id": "eval_prism",
+                    "start": 294
+                  },
+                  {
+                    "end": 395,
+                    "source_id": "eval_prism",
+                    "start": 312
+                  }
+                ],
+                "text": "## Prism-Gates\r\nScope: Prism-Gates\r\nAliases: rainbow doors; split lights\r\nDo not open Prism-Gates when the violet card is face down.\r\nIf the card is face up, opening is allowed except during the hush.\r\n\r\n## Hush footnote\r\nThe hush forbids opening even with a face-up card; it qualifies the opening rule.\r\n"
+              },
+              {
+                "spans": [
+                  {
+                    "end": 460,
+                    "source_id": "eval_prism",
+                    "start": 395
+                  }
+                ],
+                "text": "Higher steadiness means lower flicker likelihood, never higher.\r\n"
+              },
+              {
+                "spans": [
+                  {
+                    "end": 541,
+                    "source_id": "eval_prism",
+                    "start": 460
+                  }
+                ],
+                "text": "The card is described as face up and as unreadable; its state remains disputed.\r\n"
+              },
+              {
+                "spans": [
+                  {
+                    "end": 543,
+                    "source_id": "eval_prism",
+                    "start": 541
+                  },
+                  {
+                    "end": 561,
+                    "source_id": "eval_prism",
+                    "start": 543
+                  },
+                  {
+                    "end": 587,
+                    "source_id": "eval_prism",
+                    "start": 561
+                  },
+                  {
+                    "end": 632,
+                    "source_id": "eval_prism",
+                    "start": 587
+                  },
+                  {
+                    "end": 677,
+                    "source_id": "eval_prism",
+                    "start": 632
+                  }
+                ],
+                "text": "\r\n## Copper Wheels\r\nEquipment: Copper Wheels\r\nRoll Copper Wheels only on the striped mat.\r\nRoll Copper Wheels only on the striped mat.\r\n"
+              }
+            ],
+            "metadata": {
+              "aliases": [
+                {
+                  "evidence": [
+                    {
+                      "end": 126,
+                      "source_id": "eval_prism",
+                      "start": 106
+                    },
+                    {
+                      "end": 164,
+                      "source_id": "eval_prism",
+                      "start": 126
+                    },
+                    {
+                      "end": 164,
+                      "source_id": "eval_prism",
+                      "start": 126
+                    }
+                  ],
+                  "target": "Prism-Gates",
+                  "value": "rainbow doors"
+                },
+                {
+                  "evidence": [
+                    {
+                      "end": 126,
+                      "source_id": "eval_prism",
+                      "start": 106
+                    },
+                    {
+                      "end": 164,
+                      "source_id": "eval_prism",
+                      "start": 126
+                    },
+                    {
+                      "end": 164,
+                      "source_id": "eval_prism",
+                      "start": 126
+                    }
+                  ],
+                  "target": "Prism-Gates",
+                  "value": "split lights"
+                }
+              ],
+              "links": [],
+              "scopes": [
+                {
+                  "evidence": [
+                    {
+                      "end": 126,
+                      "source_id": "eval_prism",
+                      "start": 106
+                    },
+                    {
+                      "end": 164,
+                      "source_id": "eval_prism",
+                      "start": 126
+                    },
+                    {
+                      "end": 164,
+                      "source_id": "eval_prism",
+                      "start": 126
+                    }
+                  ],
+                  "spans": [
+                    {
+                      "end": 106,
+                      "source_id": "eval_prism",
+                      "start": 90
+                    },
+                    {
+                      "end": 126,
+                      "source_id": "eval_prism",
+                      "start": 106
+                    },
+                    {
+                      "end": 164,
+                      "source_id": "eval_prism",
+                      "start": 126
+                    },
+                    {
+                      "end": 224,
+                      "source_id": "eval_prism",
+                      "start": 164
+                    },
+                    {
+                      "end": 292,
+                      "source_id": "eval_prism",
+                      "start": 224
+                    },
+                    {
+                      "end": 294,
+                      "source_id": "eval_prism",
+                      "start": 292
+                    },
+                    {
+                      "end": 312,
+                      "source_id": "eval_prism",
+                      "start": 294
+                    },
+                    {
+                      "end": 395,
+                      "source_id": "eval_prism",
+                      "start": 312
+                    }
+                  ],
+                  "value": "Prism-Gates"
+                },
+                {
+                  "evidence": [
+                    {
+                      "end": 587,
+                      "source_id": "eval_prism",
+                      "start": 561
+                    }
+                  ],
+                  "spans": [
+                    {
+                      "end": 543,
+                      "source_id": "eval_prism",
+                      "start": 541
+                    },
+                    {
+                      "end": 561,
+                      "source_id": "eval_prism",
+                      "start": 543
+                    },
+                    {
+                      "end": 587,
+                      "source_id": "eval_prism",
+                      "start": 561
+                    },
+                    {
+                      "end": 632,
+                      "source_id": "eval_prism",
+                      "start": 587
+                    },
+                    {
+                      "end": 677,
+                      "source_id": "eval_prism",
+                      "start": 632
+                    }
+                  ],
+                  "value": "Copper Wheels"
+                }
+              ]
+            },
+            "source_id": "eval_prism",
+            "source_sha256": "72765663cf1ff3ff2fb8cd92bbae6051dc4f10493b1df2dfe0452865068c32c1",
+            "status": "accepted"
+          },
+          "source_id": "eval_prism"
+        }
+      },
+      "request_sha256": "3ff38880b988f78fd51489d45d1081dd07d2601bdc647319d3ee0dbdf0bcb22f",
+      "reserved_at": "2026-11-16T17:47:28.876386+00:00",
+      "slot": "eval_prism.primary",
+      "state": "finished"
+    },
+    {
+      "number": 7,
+      "outcome": {
+        "error_class": "proposal_validation",
+        "message": "Evidence must quote an exact source unit substring.",
+        "status": "failed"
+      },
+      "request_sha256": "70af2fccbd83b6fd4dc59238189706c4e81507e95c9d84fe33844d686958a945",
+      "reserved_at": "2026-11-16T17:47:42.702388+00:00",
+      "slot": "eval_river.primary",
+      "state": "finished"
+    }
+  ],
+  "contract": "knowledge-attempt-ledger-v1",
+  "plan": {
+    "development_slots": [
+      "dev_atlas.primary",
+      "dev_beacon.primary",
+      "dev_mosaic.primary",
+      "dev_quill.primary",
+      "eval_loom.primary",
+      "eval_orchard.primary",
+      "eval_orchard.repeat1",
+      "eval_orchard.repeat2",
+      "eval_prism.primary",
+      "eval_prism.repeat1",
+      "eval_prism.repeat2",
+      "eval_river.primary",
+      "original_domain.primary"
+    ],
+    "maximum_attempts": 22,
+    "per_slot_attempts": 2,
+    "phase": "source-first-completion-v3-163db152825f40145cd199b88e7072da64d601ea8b087c3a417b5d6258b723b4",
+    "recoverable_codes": [
+      "malformed_json",
+      "schema_violation",
+      "timeout",
+      "transport"
+    ],
+    "schedule": [
+      "dev_atlas.primary",
+      "dev_quill.primary",
+      "dev_mosaic.primary",
+      "dev_beacon.primary",
+      "original_domain.primary",
+      "eval_prism.primary",
+      "eval_river.primary",
+      "eval_orchard.primary",
+      "eval_loom.primary",
+      "eval_orchard.repeat1",
+      "eval_orchard.repeat2",
+      "eval_prism.repeat1",
+      "eval_prism.repeat2"
+    ],
+    "slots": {
+      "dev_atlas.primary": "6c621aa8d8aa0ab943e6fde5bd5b1de24f6dd634e250fe2ca510a41ad0f51ade",
+      "dev_beacon.primary": "cfc6bd677bcd27dea05639b71eeb3fd718ea94c1d187c52b2b77b247420027f5",
+      "dev_mosaic.primary": "68798c22408f6dffcef6c256a5291609caeeb6e7e568a05931ad350b74e13ebc",
+      "dev_quill.primary": "afd12a458fb658f95319af0cbbd37faa5b478cf4c5c095fc1f0e32c7cf68d21a",
+      "eval_loom.primary": "15c23830bc86d1a187fd79a50303a7568d87f3664a67cdb6e15070c879f28519",
+      "eval_orchard.primary": "fb96119eb4911f1d74a3a7fc0608ea87da8a28475ac6c77ff7ed972306083b04",
+      "eval_orchard.repeat1": "fb96119eb4911f1d74a3a7fc0608ea87da8a28475ac6c77ff7ed972306083b04",
+      "eval_orchard.repeat2": "fb96119eb4911f1d74a3a7fc0608ea87da8a28475ac6c77ff7ed972306083b04",
+      "eval_prism.primary": "3ff38880b988f78fd51489d45d1081dd07d2601bdc647319d3ee0dbdf0bcb22f",
+      "eval_prism.repeat1": "3ff38880b988f78fd51489d45d1081dd07d2601bdc647319d3ee0dbdf0bcb22f",
+      "eval_prism.repeat2": "3ff38880b988f78fd51489d45d1081dd07d2601bdc647319d3ee0dbdf0bcb22f",
+      "eval_river.primary": "70af2fccbd83b6fd4dc59238189706c4e81507e95c9d84fe33844d686958a945",
+      "original_domain.primary": "843a65e091530d1b492ad1f92f0c1ba4a1cd039f6d1c79fd32fe88ff11064ff3"
+    }
+  },
+  "plan_sha256": "9932e2eec624ce4d5637b28a42a39594fd2c37eb313d595a5db3cfc50978bd61"
+}

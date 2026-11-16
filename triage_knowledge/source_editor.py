@@ -156,7 +156,9 @@ def main() -> None:
                 aliases = st.text_area("Source-written aliases (one per line)", "\n".join(item["aliases"]))
                 evidence = st.text_area("Evidence JSON: unit_id and exact quote",
                                        "[]")
-                st.caption("Literal evidence proves location, not entailment. Read conditions and exceptions.")
+                st.caption("Literal evidence proves location, not entailment. Unit-ID extraction "
+                           "uses a code-expanded unit, not a model-selected phrase. "
+                           "Read conditions and exceptions.")
                 if st.form_submit_button("Save metadata for review"):
                     try:
                         store.update_metadata(

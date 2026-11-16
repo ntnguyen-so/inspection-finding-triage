@@ -1,0 +1,40 @@
+{
+  "attempts": [
+    {
+      "number": 1,
+      "outcome": {
+        "status": "success",
+        "validation": {
+          "accepted": true,
+          "scope": "transport_only"
+        }
+      },
+      "request_sha256": "46be5394e954887d6ee2ce9097ba9320ce8e8001ff62cf7d6981a36b7ab867c8",
+      "reserved_at": "2026-11-16T17:44:35.874888+00:00",
+      "slot": "development-context.handoff-v2",
+      "state": "finished"
+    }
+  ],
+  "contract": "knowledge-attempt-ledger-v1",
+  "plan": {
+    "development_slots": [
+      "development-context.handoff-v2"
+    ],
+    "maximum_attempts": 1,
+    "per_slot_attempts": 1,
+    "phase": "source-first-handoff-v2-dfb071801b5e9492c42601f5d0ad290054473a3427898783d9e0b2ef5bdf0890",
+    "recoverable_codes": [
+      "malformed_json",
+      "schema_violation",
+      "timeout",
+      "transport"
+    ],
+    "schedule": [
+      "development-context.handoff-v2"
+    ],
+    "slots": {
+      "development-context.handoff-v2": "46be5394e954887d6ee2ce9097ba9320ce8e8001ff62cf7d6981a36b7ab867c8"
+    }
+  },
+  "plan_sha256": "537437b68025e4ec248e4f73df88bcc1d601c50547ca96610f0364bc80632a86"
+}

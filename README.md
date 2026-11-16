@@ -138,17 +138,21 @@ time, strategy and policy pins. Do not use legacy rubric/context APIs or silentl
 substitute archived source text. Publication and workflow activation are separate;
 a new draft never mutates an older pinned release.
 
-Actual package observation `eval\results\knowledge\source-package-regression-3`
+Actual package observation `eval\results\knowledge\source-package-regression-4`
 passes eight mechanical goals using all 21 supplied findings and 18 registry rows,
-including 24 contexts and 14 rejection checks. Historical `source-handoff-1`
+including 24 contexts and 14 rejection checks. Historical `source-handoff-2`
 records a real development-only Copilot context acknowledgement, not knowledge
-influence or triage quality. Its receipt remains bound to its original freeze.
+influence or triage quality. The two handoff sends exhausted their cumulative
+ceiling; historical `source-handoff-1` stays bound to its original freeze.
 The source-first code baseline preserves all required atoms but historically
 fails selective usefulness; it remains a disclosed conservative baseline.
-The latest completed extraction experiment, `extraction\completion-v2-run1`,
-stopped after three development sends on a critical scope error; ten slots were
+The latest completed extraction experiment, `extraction\completion-v3-run1`,
+passed all four development sources, the original source and one evaluation
+source, then stopped at send seven on invalid copied evidence; six slots were
 unexecuted. **Not all evaluation goals pass; nothing is promoted.**
-The reviewed v3 correction and cumulative budgets are recorded in document 06;
+The reviewed v4 correction replaces model-copied quotes with unit references and
+code-expanded evidence, without changing semantic grading. Its authorization,
+non-blind disclosure and cumulative budgets are recorded in document 06;
 LLM extraction remains experimental and off by default. Never reset a spent
 ledger or treat software-fixture review as engineer approval.
 Document 06 section 11 distinguishes retained legacy evidence, including the

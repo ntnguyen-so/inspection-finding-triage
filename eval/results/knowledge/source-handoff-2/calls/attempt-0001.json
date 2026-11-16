@@ -1,0 +1,199 @@
+{
+  "number": 1,
+  "parsed": {
+    "received": true
+  },
+  "receipt": {
+    "accounting_checkpoint": {
+      "providerModelMetrics": [
+        {
+          "metrics": {
+            "aiCreditsStatus": "complete",
+            "requests": {
+              "cost": 1.0,
+              "count": 1
+            },
+            "tokenDetails": {
+              "cache_read": {
+                "tokenCount": 0
+              },
+              "cache_write": {
+                "tokenCount": 11818
+              },
+              "input": {
+                "tokenCount": 3
+              },
+              "output": {
+                "tokenCount": 9
+              }
+            },
+            "totalNanoAiu": 148205000.0,
+            "usage": {
+              "cacheReadTokens": 0,
+              "cacheWriteTokens": 11818,
+              "inputTokens": 11821,
+              "outputTokens": 9,
+              "reasoningTokens": 0
+            }
+          },
+          "modelDisplayName": "GPT-6 Luna",
+          "modelId": "gpt-6-luna",
+          "provider": {
+            "id": "copilot",
+            "kind": "copilot",
+            "label": "GitHub Copilot"
+          }
+        }
+      ],
+      "totalNanoAiu": 148205000.0,
+      "totalPremiumRequests": 1.0
+    },
+    "adapter_attempts": 1,
+    "binary_sha256": "32d01e0b0100fcdeaa684fba2cc8d00b6f127ac408749ff3c1b1a6fa0b2b8698",
+    "boundary_violation": null,
+    "cache_mode": "no_application_result_cache_backend_cache_uncontrolled",
+    "capabilities": {
+      "adapter_retries": 0,
+      "conversation": "fresh_session_per_request",
+      "internal_http_retries": "unknown",
+      "json_schema": "prompt_guidance_and_local_validation",
+      "max_output_tokens": false,
+      "native_structured_output": false,
+      "raw_provider_equivalence": false,
+      "reasoning_effort": "catalog_validated_when_supplied",
+      "sampling_controls": false,
+      "streaming_api": false,
+      "system_message": "replace_requested",
+      "text": true,
+      "tools": false
+    },
+    "dispatched": true,
+    "elapsed_seconds": 3.1089999999967404,
+    "event_counts": {
+      "assistant.idle": 1,
+      "assistant.message": 1,
+      "assistant.turn_end": 1,
+      "assistant.turn_start": 1,
+      "assistant.usage": 1,
+      "commands.changed": 3,
+      "model.call_final_result": 1,
+      "model.call_finished": 1,
+      "model.call_start": 1,
+      "model.captured_assignment_context": 1,
+      "model.message": 1,
+      "model.messages_snapshot": 1,
+      "model.model_call_started": 1,
+      "model.model_call_success": 1,
+      "model.response": 1,
+      "model.telemetry": 1,
+      "model.turn_ended": 1,
+      "model.turn_started": 1,
+      "pending_messages.modified": 2,
+      "session.idle": 1,
+      "session.info": 1,
+      "session.managed_settings_resolved": 1,
+      "session.mcp_servers_loaded": 1,
+      "session.skills_loaded": 1,
+      "session.start": 1,
+      "session.tools_updated": 2,
+      "session.usage_checkpoint": 1,
+      "session.usage_info": 1,
+      "system.message": 1,
+      "user.message": 1
+    },
+    "http_attempts": null,
+    "inference_calls_observed": 1,
+    "message_audit": [
+      {
+        "content_sha256": "c39b5b1b3f970e93794c882048d32e637f2b88a55f4778c38699a12020d50f5d",
+        "kind": "user.message",
+        "matches_sdk_input": true,
+        "role": null
+      },
+      {
+        "content_sha256": "bc59bda4c3de4154a86033515701a38b519d11b1509058524859998832cafb21",
+        "kind": "system.message",
+        "matches_sdk_input": true,
+        "role": "system"
+      }
+    ],
+    "observed_model": "gpt-6-luna",
+    "provider": "github-copilot",
+    "requested_model": "gpt-6-luna",
+    "requested_reasoning_effort": "low",
+    "response_sha256": "332ddb00d111581386a54b79f7f57765ffc70cf17001c124c3db983a6e7d131b",
+    "runtime_version": "1.0.112",
+    "sdk_version": "1.0.34",
+    "session_deleted": true,
+    "session_id": "e0bd5384-574a-4652-aae1-b801e5b7565a",
+    "started_at": "2026-11-16T17:44:36.097112+00:00",
+    "system_sha256": "bc59bda4c3de4154a86033515701a38b519d11b1509058524859998832cafb21",
+    "tool_counts_observed": [
+      0
+    ],
+    "usage": [
+      {
+        "availableToolCount": 0,
+        "cacheReadTokens": 0,
+        "cacheWriteTokens": 11818,
+        "copilotUsage": {
+          "tokenDetails": [
+            {
+              "batchSize": 1000000,
+              "costPerBatch": 10000000000,
+              "model": "gpt-6-luna",
+              "tokenCount": 3,
+              "tokenType": "input"
+            },
+            {
+              "batchSize": 1000000,
+              "costPerBatch": 1000000000,
+              "model": "gpt-6-luna",
+              "tokenCount": 0,
+              "tokenType": "cache_read"
+            },
+            {
+              "batchSize": 1000000,
+              "costPerBatch": 12500000000,
+              "model": "gpt-6-luna",
+              "tokenCount": 11818,
+              "tokenType": "cache_write"
+            },
+            {
+              "batchSize": 1000000,
+              "costPerBatch": 50000000000,
+              "model": "gpt-6-luna",
+              "tokenCount": 9,
+              "tokenType": "output"
+            }
+          ],
+          "totalNanoAiu": 148205000.0
+        },
+        "cost": 1.0,
+        "finishReason": "stop",
+        "inputTokens": 11821,
+        "isByok": false,
+        "model": "gpt-6-luna",
+        "outputTokens": 9,
+        "provider": {
+          "id": "copilot",
+          "kind": "copilot",
+          "label": "GitHub Copilot"
+        },
+        "reasoningEffort": "low",
+        "reasoningTokens": 0,
+        "responseModel": "gpt-6-luna"
+      }
+    ],
+    "usd_cost": null,
+    "user_sha256": "c39b5b1b3f970e93794c882048d32e637f2b88a55f4778c38699a12020d50f5d"
+  },
+  "request_sha256": "46be5394e954887d6ee2ce9097ba9320ce8e8001ff62cf7d6981a36b7ab867c8",
+  "response_text": "{\"received\":true}",
+  "slot": "development-context.handoff-v2",
+  "status": "success",
+  "validation": {
+    "accepted": true,
+    "scope": "transport_only"
+  }
+}

@@ -26,6 +26,13 @@ def document(raw=b"# General\nAlways preserve exceptions.\n", sid="test-source")
     return SourceDocument.from_bytes(raw, name="Synthetic software test", source_id=sid)
 
 
+def unit_evidence_proposal(doc):
+    proposal = extract_code(doc).proposal
+    for group in proposal["groups"]:
+        group["evidence"] = [{"unit_id": ev["unit_id"]} for ev in group["evidence"]]
+    return {"contract_version": 2, **proposal}
+
+
 def table(rows, fields, kind, sid):
     output = io.StringIO(newline="")
     writer = csv.DictWriter(output, fieldnames=sorted(fields), lineterminator="\r\n")
@@ -52,6 +59,111 @@ def inputs(types=("Pumps", "Fans"), descriptions=None):
 
 
 class SourceTests(unittest.TestCase):
+    def test_v2_unit_evidence_preserves_raw_proposal_and_materializes_exact_quotes(self):
+        doc = document(("\ufeff# Main\r\nScope: Pumps\r\nAliases: Pump units\r\n"
+                        "Keep qualifier \u2713.\r\n# Qualification\r\nCheck the condition.\r\n").encode())
+        proposal = unit_evidence_proposal(doc)
+        proposal["groups"][0]["unit_ids"].reverse()
+        original = canonical_bytes(proposal)
+        extraction = validate_proposal(doc, proposal)
+        self.assertEqual(extraction._proposal_bytes, original)
+        self.assertEqual(canonical_bytes(proposal), original)
+        self.assertEqual(extraction.proposal, proposal)
+        units = {unit["unit_id"]: unit for unit in doc.units}
+        for raw, group in zip(proposal["groups"], extraction.groups):
+            self.assertEqual(group["scopes"], raw["scopes"])
+            self.assertEqual(group["aliases"], raw["aliases"])
+            self.assertEqual(group["required_with"], raw["required_with"])
+            self.assertEqual(group["evidence"], [
+                {**entry, "quote": units[entry["unit_id"]]["text"]} for entry in raw["evidence"]])
+            self.assertEqual(group["text"].encode(), b"".join(
+                doc.raw[span["start"]:span["end"]] for span in group["spans"]))
+        self.assertEqual("".join(group["text"] for group in extraction.groups).encode(), doc.raw)
+
+    def test_v2_rejects_bad_versions_evidence_and_unit_partitions_without_repair(self):
+        doc = document(b"# Main\nScope: Pumps\n# Other\nCondition.\n")
+        for change, code in (
+            ("bool_version", "unsupported_contract"), ("old_version", "unsupported_contract"),
+            ("text_version", "unsupported_contract"), ("missing_version", "schema"),
+            ("unknown_evidence", "evidence"), ("empty_evidence_id", "evidence"),
+            ("nonstring_evidence_id", "evidence"), ("object_evidence_id", "evidence"),
+            ("extra_quote", "schema"),
+            ("duplicate_evidence", "evidence"),
+            ("duplicate_unit", "unit_partition"), ("omitted_unit", "unit_partition"),
+            ("unknown_unit", "unit_reference"),
+        ):
+            proposal = unit_evidence_proposal(doc)
+            group = proposal["groups"][0]
+            if change.endswith("_version"):
+                if change == "missing_version":
+                    del proposal["contract_version"]
+                else:
+                    proposal["contract_version"] = {
+                        "bool_version": True, "old_version": 1, "text_version": "2"}[change]
+            elif change in ("unknown_evidence", "empty_evidence_id",
+                            "nonstring_evidence_id", "object_evidence_id"):
+                group["evidence"][0]["unit_id"] = {
+                    "unknown_evidence": "u9999", "empty_evidence_id": "",
+                    "nonstring_evidence_id": [], "object_evidence_id": {}}[change]
+            elif change == "extra_quote":
+                group["evidence"][0]["quote"] = doc.units[1]["text"]
+            elif change == "duplicate_evidence":
+                group["evidence"].append(dict(group["evidence"][0]))
+            elif change == "duplicate_unit":
+                proposal["groups"][1]["unit_ids"].append(group["unit_ids"][0])
+            elif change == "omitted_unit":
+                proposal["groups"][1]["unit_ids"].pop()
+            else:
+                proposal["groups"][1]["unit_ids"][0] = "u9999"
+            original = canonical_bytes(proposal)
+            with self.subTest(change=change), self.assertRaises(KnowledgeError) as raised:
+                validate_proposal(doc, proposal)
+            self.assertEqual(raised.exception.code, code)
+            self.assertEqual(canonical_bytes(proposal), original)
+
+    def test_v2_metadata_still_requires_owned_case_sensitive_whole_word_literal(self):
+        doc = document(b"# Main\nScope: Pumps\n# Foreign\nScope: Fans\n")
+        for field in ("scopes", "aliases"):
+            for label, unit_id in (("Pump", "u0002"), ("pumps", "u0002"),
+                                   ("ump", "u0002"), ("Fans", "u0004")):
+                proposal = unit_evidence_proposal(doc)
+                evidence_ids = ["u0002", "u0004"] if field == "aliases" else [unit_id]
+                proposal["groups"][0].update({
+                    field: [label], "evidence": [{"unit_id": key} for key in evidence_ids]})
+                with self.subTest(field=field, label=label), self.assertRaises(KnowledgeError) as raised:
+                    validate_proposal(doc, proposal)
+                self.assertEqual(raised.exception.code, "metadata_evidence")
+        doc = document(b"# Main\nPumps and Pump units share this label evidence.\n")
+        proposal = unit_evidence_proposal(doc)
+        proposal["groups"][0].update(
+            scopes=["Pumps"], aliases=["Pump units"], evidence=[{"unit_id": "u0002"}])
+        self.assertEqual(validate_proposal(doc, proposal).groups[0]["evidence"], [
+            {"unit_id": "u0002", "quote": doc.units[1]["text"]}])
+
+    def test_v2_context_evidence_still_requires_both_endpoint_groups(self):
+        doc = document(b"# Main\nMain rule\n# Exception\nException\n")
+        for citations in ([], ["u0002"], ["u0004"]):
+            proposal = unit_evidence_proposal(doc)
+            proposal["groups"][0]["evidence"] = [{"unit_id": unit_id} for unit_id in citations]
+            with self.subTest(citations=citations), self.assertRaises(KnowledgeError) as raised:
+                validate_proposal(doc, proposal)
+            self.assertEqual(raised.exception.code, "context_evidence")
+        proposal = unit_evidence_proposal(doc)
+        proposal["groups"][0]["evidence"] = [{"unit_id": "u0002"}, {"unit_id": "u0004"}]
+        extraction = validate_proposal(doc, proposal)
+        self.assertEqual(extraction.groups[0]["evidence"], [
+            {"unit_id": "u0002", "quote": "Main rule\n"},
+            {"unit_id": "u0004", "quote": "Exception\n"}])
+
+    def test_legacy_v1_inexact_quote_is_rejected_not_reconstructed(self):
+        doc = document(b"# Main\nScope: Pumps\n")
+        proposal = extract_code(doc).proposal
+        proposal["groups"][0]["evidence"][0]["quote"] = "scope: pumps"
+        with self.assertRaises(KnowledgeError) as raised:
+            validate_proposal(doc, proposal)
+        self.assertEqual(raised.exception.code, "evidence")
+        self.assertEqual(proposal["groups"][0]["evidence"][0]["quote"], "scope: pumps")
+
     def test_exact_byte_units_and_safe_copies(self):
         raw = b"\xef\xbb\xbfPreamble\r\n# Heading\r\nScope: Pumps\r\nTail \xe2\x9c\x93"
         doc = document(raw)
@@ -394,6 +506,33 @@ class StoreTests(StoreHarness):
         self.assertTrue(self.store.resolve_release(release_id))
         with self.assertRaises(KnowledgeError):
             SourceKnowledgeStore(self.root).resolve_release(release_id)
+
+    def test_v2_code_expanded_evidence_round_trips_existing_store_and_retrieval(self):
+        doc = document(b"# Main\nScope: Pumps\nPreserve the condition.\n"
+                       b"# Qualification\nCheck the qualification.\n")
+        extraction = validate_proposal(doc, unit_evidence_proposal(doc))
+        self.store = SourceKnowledgeStore(self.root, experimental_profile={
+            "experiment_id": "software-only-v2-unit-evidence"})
+        self.digest = self.store.create_draft([extraction])
+        self.review_all()
+        release_id = self.publish()
+        candidate = self.store.resolve_release(release_id)["candidate"]
+        units = {unit["unit_id"]: unit["text"] for unit in doc.units}
+        self.assertEqual(candidate["schema_version"], 3)
+        for item in candidate["items"].values():
+            self.assertTrue(all(entry["quote"] == units[entry["unit_id"]]
+                                for entry in item["revision"]["evidence"]))
+        frows, rrows = inputs(("Pumps",))
+        findings = table(frows, FINDING_FIELDS, "finding_input", "findings")
+        registry = table(rrows, REGISTRY_FIELDS, "registry_input", "registry")
+        result = get_triage_knowledge(
+            self.store, {"findings": {row["finding_id"]: row for row in frows},
+                         "registry": {row["equipment_id"]: row for row in rrows}},
+            knowledge_version=release_id, assessment_time=NOW, expected_strategy=strategy_binding(),
+            allowed_input_binding=binding_from_tables(findings, registry), max_bytes=64000)
+        self.assertEqual(result.status, "ok", result.error_code)
+        self.assertEqual(set(result.provider_payload().values()),
+                         {group["text"] for group in extraction.groups})
 
     def test_metadata_edit_changes_revision_and_invalidates_review(self):
         item_id, = self.create(b"# Main\nScope: Pumps\nAliases: Rotors\nRule\n")

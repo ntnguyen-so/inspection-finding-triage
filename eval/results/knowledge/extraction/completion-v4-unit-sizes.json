@@ -1,0 +1,99 @@
+{
+  "contract": "knowledge-source-unit-size-observation-v1",
+  "captured_at": "2026-11-16T17:55:39.910691+00:00",
+  "source": "Opaque mechanical byte-range statistics; no expected atoms or model output used",
+  "unitization": "Existing source-line units; unchanged, not resized using evaluation results",
+  "scope": "Location evidence only, not entailment or reviewer benefit",
+  "sources": [
+    {
+      "source_id": "dev_atlas",
+      "partition": "development",
+      "source_sha256": "35a95953d27cf67b4385a2c322fe887bb7b928876c2a0cfa5be642c827383818",
+      "unit_count": 19,
+      "minimum_bytes": 2,
+      "median_bytes": 24,
+      "p95_nearest_rank_bytes": 78,
+      "maximum_bytes": 78
+    },
+    {
+      "source_id": "dev_quill",
+      "partition": "development",
+      "source_sha256": "3a004b8eccc41b1be4bceed97313c7bd709513aa3ea4aa73a08000d7b2016094",
+      "unit_count": 14,
+      "minimum_bytes": 12,
+      "median_bytes": 58.0,
+      "p95_nearest_rank_bytes": 106,
+      "maximum_bytes": 106
+    },
+    {
+      "source_id": "dev_mosaic",
+      "partition": "development",
+      "source_sha256": "0852927bd7abe608ce450eb87d6e21a23137fa6394e1e5ea36140d84002c338f",
+      "unit_count": 18,
+      "minimum_bytes": 2,
+      "median_bytes": 30.0,
+      "p95_nearest_rank_bytes": 73,
+      "maximum_bytes": 73
+    },
+    {
+      "source_id": "dev_beacon",
+      "partition": "development",
+      "source_sha256": "58f29e3fd9c927c30c9cbc65a3c5c01961fbce9929c16118bcef9bcf395e088f",
+      "unit_count": 23,
+      "minimum_bytes": 2,
+      "median_bytes": 23,
+      "p95_nearest_rank_bytes": 58,
+      "maximum_bytes": 64
+    },
+    {
+      "source_id": "eval_prism",
+      "partition": "evaluation",
+      "source_sha256": "72765663cf1ff3ff2fb8cd92bbae6051dc4f10493b1df2dfe0452865068c32c1",
+      "unit_count": 18,
+      "minimum_bytes": 2,
+      "median_bytes": 32.0,
+      "p95_nearest_rank_bytes": 83,
+      "maximum_bytes": 83
+    },
+    {
+      "source_id": "eval_river",
+      "partition": "evaluation",
+      "source_sha256": "cb87dd0ce116a2813451daa873830d5b53269ac41742330b6d4baee09b61663e",
+      "unit_count": 14,
+      "minimum_bytes": 2,
+      "median_bytes": 58.0,
+      "p95_nearest_rank_bytes": 101,
+      "maximum_bytes": 101
+    },
+    {
+      "source_id": "eval_orchard",
+      "partition": "evaluation",
+      "source_sha256": "412ea94c07b410bb43a46c04e98de2acfcaca0d5641e39f9f6f8e035f893d66c",
+      "unit_count": 21,
+      "minimum_bytes": 2,
+      "median_bytes": 26,
+      "p95_nearest_rank_bytes": 68,
+      "maximum_bytes": 90
+    },
+    {
+      "source_id": "eval_loom",
+      "partition": "evaluation",
+      "source_sha256": "7c10850f21de579945f1daa3d62353b9fba505a9a78c18ea04049b6fa21c3cfc",
+      "unit_count": 19,
+      "minimum_bytes": 2,
+      "median_bytes": 33,
+      "p95_nearest_rank_bytes": 90,
+      "maximum_bytes": 90
+    },
+    {
+      "source_id": "original_domain",
+      "partition": "shared_smoke",
+      "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+      "unit_count": 89,
+      "minimum_bytes": 1,
+      "median_bytes": 33,
+      "p95_nearest_rank_bytes": 102,
+      "maximum_bytes": 103
+    }
+  ]
+}

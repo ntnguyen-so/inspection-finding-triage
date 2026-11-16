@@ -1,0 +1,15 @@
+{
+  "captured_at": "2026-11-16T17:43:54.195286+00:00",
+  "git_revision": "6736fc2284e611c8ba2e48a91727a69cbf50dd00",
+  "dirty_status": " M .gitignore\n M AGENTS.md\n M README.md\n M pyproject.toml\n",
+  "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+  "executable": "C:\\Users\\thanh\\falkor_case2\\.venv\\Scripts\\python.exe",
+  "packages": {
+    "github-copilot-sdk": "1.0.34",
+    "streamlit": "1.51.0",
+    "jsonschema": "4.26.0"
+  },
+  "command": "python -B -m eval.run_knowledge_completion --plan-only",
+  "scope": "Pre-dispatch provenance; not an inference result",
+  "phase": "source-first-completion-v3-163db152825f40145cd199b88e7072da64d601ea8b087c3a417b5d6258b723b4"
+}

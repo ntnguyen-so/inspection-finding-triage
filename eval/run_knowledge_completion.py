@@ -1,4 +1,4 @@
-"""Bounded v3 extraction/selector experiment; no inference without --allow-inference.
+"""Bounded v4 extraction/selector experiment; no inference without --allow-inference.
 
 Plan: python -B -m eval.run_knowledge_completion --plan-only
 Authorized execution additionally requires --output <new-results-child>.
@@ -31,18 +31,22 @@ from .knowledge_query_inputs import load_registry_fixture
 
 RESULTS = existing.RESULTS
 PRIOR_LEDGER = RESULTS / "source-first-completion.experimental-ledger.json"
-LEDGER = RESULTS / "source-first-completion-v3.experimental-ledger.json"
+V3_LEDGER = RESULTS / "source-first-completion-v3.experimental-ledger.json"
+LEDGER = RESULTS / "source-first-completion-v4.experimental-ledger.json"
 CUMULATIVE_MAXIMUM = 26
 PROFILE = {
-    "version": "source-first-completion-v3", "provider": "copilot",
+    "version": "source-first-completion-v4", "provider": "copilot",
     "model": "gpt-6-luna", "reasoning_effort": "medium", "timeout_seconds": 120,
     "fallback": False,
 }
 REVISION_DISCLOSURE = (
-    "Post-development generic prompt correction after v2's third development "
-    "proposal failed critical semantic validation. All thirteen v3 slots are "
-    "fresh requests; no accepted v2 outputs are reused. The v2 ledger and "
-    "observations remain unchanged. This is not a blind test or C1 qualification."
+    "TEST-INFORMED non-blind REGRESSION after v3 stopped on a held-out "
+    "STRUCTURAL exact-quoted-evidence validation failure. The proposed source-only "
+    "format revision uses evidence unit IDs and code-materialized exact unit text, "
+    "not semantic metadata repair or held-out answers. All thirteen v4 slots are "
+    "fresh requests; no earlier accepted outputs are reused. All prior ledgers "
+    "and observations remain unchanged. This does not authorize paid v4 dispatch "
+    "or any v5, qualify C1, or renew the exhausted two-send handoff budget."
 )
 DISCLOSURE = (
     "SOFTWARE-ONLY fixture review of ALL unchanged raw C1 groups. "
@@ -70,7 +74,7 @@ def code_identity(root: Path = ROOT) -> dict[str, Any]:
 
 def prior_accounting() -> dict[str, Any]:
     ledgers = []
-    for relative in (existing.LEDGER, PRIOR_LEDGER):
+    for relative in (existing.LEDGER, PRIOR_LEDGER, V3_LEDGER):
         path = ROOT / relative
         raw = path.read_bytes()
         observed = inspect_ledger(path)
@@ -156,7 +160,7 @@ def build_plan(suite: Suite, identity: dict[str, Any]):
     if maximum_attempts < 1:
         raise ValueError("No cumulative extraction application-send budget remains")
     freeze = {
-        "contract": "knowledge-completion-freeze-v3", "profile": dict(PROFILE),
+        "contract": "knowledge-completion-freeze-v4", "profile": dict(PROFILE),
         "code_identity": identity,
         "reference_version": suite.manifest["version"],
         "grader_version": suite.manifest.get("grader_version"),
@@ -177,10 +181,10 @@ def build_plan(suite: Suite, identity: dict[str, Any]):
         "registry_construction": registry_fixture["construction"],
         "dispatch_readiness": {
             "status": "ready_explicit_cli_authorization",
-            "note": "Parent must freeze this exact reviewed plan first; --freeze and --allow-inference are both required.",
+            "note": "New explicit paid v4 approval and this exact reviewed freeze are required; v3 approval does not carry forward. --freeze and --allow-inference are both required.",
         },
         "prior_extraction_accounting": prior, "revision_disclosure": REVISION_DISCLOSURE,
-        "cumulative_budget_scope": "Original extraction + completion v2 + v3 only; historical B02 and the separate two-send handoff cohort are not extraction attempts.",
+        "cumulative_budget_scope": "Original extraction + completion v2 + v3 + v4 only; historical B02 and the exhausted separate two-send handoff cohort are not extraction attempts.",
         "maximum_cumulative_application_attempts": CUMULATIVE_MAXIMUM,
         "maximum_application_attempts": maximum_attempts, "maximum_attempts_per_slot": 2,
         "recoverable_codes": sorted(RECOVERABLE), "semantic_retry_allowed": False,
@@ -533,7 +537,7 @@ async def run_completion(
     checks["cumulative_budget"] = cumulative
     overall = _status(row["status"] for row in checks.values())
     report = {
-        "contract": "knowledge-completion-observation-v3", "profile": PROFILE,
+        "contract": "knowledge-completion-observation-v4", "profile": PROFILE,
         "freeze_sha256": canonical_hash(freeze), "code_identity": freeze["code_identity"],
         "approved_plan_sha256": canonical_hash(approved_plan),
         "query_registry_fixture": freeze["query_registry_fixture"],

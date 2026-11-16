@@ -1,0 +1,375 @@
+{
+  "number": 5,
+  "parsed": {
+    "groups": [
+      {
+        "aliases": [],
+        "evidence": [],
+        "group_id": "handover-context",
+        "required_with": [],
+        "scopes": [],
+        "unit_ids": [
+          "u0001",
+          "u0002",
+          "u0003",
+          "u0004",
+          "u0005"
+        ]
+      },
+      {
+        "aliases": [],
+        "evidence": [],
+        "group_id": "likelihood-impact-definitions",
+        "required_with": [],
+        "scopes": [],
+        "unit_ids": [
+          "u0006",
+          "u0007",
+          "u0008",
+          "u0009",
+          "u0010",
+          "u0011",
+          "u0012",
+          "u0013",
+          "u0014",
+          "u0015",
+          "u0016",
+          "u0017"
+        ]
+      },
+      {
+        "aliases": [],
+        "evidence": [],
+        "group_id": "likelihood-factors",
+        "required_with": [],
+        "scopes": [],
+        "unit_ids": [
+          "u0018",
+          "u0019",
+          "u0020",
+          "u0021",
+          "u0022",
+          "u0023",
+          "u0024",
+          "u0025",
+          "u0026",
+          "u0027"
+        ]
+      },
+      {
+        "aliases": [],
+        "evidence": [],
+        "group_id": "impact-factors",
+        "required_with": [],
+        "scopes": [],
+        "unit_ids": [
+          "u0028",
+          "u0029",
+          "u0030",
+          "u0031",
+          "u0032",
+          "u0033",
+          "u0034",
+          "u0035",
+          "u0036",
+          "u0037",
+          "u0038"
+        ]
+      },
+      {
+        "aliases": [],
+        "evidence": [],
+        "group_id": "voted-arrangements",
+        "required_with": [],
+        "scopes": [],
+        "unit_ids": [
+          "u0039",
+          "u0040",
+          "u0041",
+          "u0042",
+          "u0043",
+          "u0044"
+        ]
+      },
+      {
+        "aliases": [],
+        "evidence": [],
+        "group_id": "redundancy-assessment",
+        "required_with": [],
+        "scopes": [],
+        "unit_ids": [
+          "u0045",
+          "u0046",
+          "u0047",
+          "u0048"
+        ]
+      },
+      {
+        "aliases": [],
+        "evidence": [],
+        "group_id": "urgency-guidance",
+        "required_with": [],
+        "scopes": [],
+        "unit_ids": [
+          "u0049",
+          "u0050",
+          "u0051",
+          "u0052",
+          "u0053",
+          "u0054",
+          "u0055",
+          "u0056",
+          "u0057",
+          "u0058",
+          "u0059",
+          "u0060",
+          "u0061",
+          "u0062",
+          "u0063",
+          "u0064",
+          "u0065",
+          "u0066"
+        ]
+      },
+      {
+        "aliases": [],
+        "evidence": [],
+        "group_id": "registry-scores",
+        "required_with": [],
+        "scopes": [],
+        "unit_ids": [
+          "u0067",
+          "u0068",
+          "u0069",
+          "u0070",
+          "u0071",
+          "u0072",
+          "u0073",
+          "u0074",
+          "u0075",
+          "u0076"
+        ]
+      },
+      {
+        "aliases": [],
+        "evidence": [],
+        "group_id": "output-expectations",
+        "required_with": [],
+        "scopes": [],
+        "unit_ids": [
+          "u0077",
+          "u0078",
+          "u0079",
+          "u0080",
+          "u0081",
+          "u0082"
+        ]
+      },
+      {
+        "aliases": [],
+        "evidence": [],
+        "group_id": "confidence-loss-observations",
+        "required_with": [],
+        "scopes": [],
+        "unit_ids": [
+          "u0083",
+          "u0084",
+          "u0085",
+          "u0086",
+          "u0087",
+          "u0088",
+          "u0089"
+        ]
+      }
+    ]
+  },
+  "receipt": {
+    "accounting_checkpoint": {
+      "providerModelMetrics": [
+        {
+          "metrics": {
+            "aiCreditsStatus": "complete",
+            "requests": {
+              "cost": 1.0,
+              "count": 1
+            },
+            "tokenDetails": {
+              "cache_read": {
+                "tokenCount": 0
+              },
+              "cache_write": {
+                "tokenCount": 3590
+              },
+              "input": {
+                "tokenCount": 3
+              },
+              "output": {
+                "tokenCount": 1306
+              }
+            },
+            "totalNanoAiu": 110205000.0,
+            "usage": {
+              "cacheReadTokens": 0,
+              "cacheWriteTokens": 3590,
+              "inputTokens": 3593,
+              "outputTokens": 1306,
+              "reasoningTokens": 669
+            }
+          },
+          "modelDisplayName": "GPT-6 Luna",
+          "modelId": "gpt-6-luna",
+          "provider": {
+            "id": "copilot",
+            "kind": "copilot",
+            "label": "GitHub Copilot"
+          }
+        }
+      ],
+      "totalNanoAiu": 110205000.0,
+      "totalPremiumRequests": 1.0
+    },
+    "adapter_attempts": 1,
+    "binary_sha256": "32d01e0b0100fcdeaa684fba2cc8d00b6f127ac408749ff3c1b1a6fa0b2b8698",
+    "boundary_violation": null,
+    "cache_mode": "no_application_result_cache_backend_cache_uncontrolled",
+    "capabilities": {
+      "adapter_retries": 0,
+      "conversation": "fresh_session_per_request",
+      "internal_http_retries": "unknown",
+      "json_schema": "prompt_guidance_and_local_validation",
+      "max_output_tokens": false,
+      "native_structured_output": false,
+      "raw_provider_equivalence": false,
+      "reasoning_effort": "catalog_validated_when_supplied",
+      "sampling_controls": false,
+      "streaming_api": false,
+      "system_message": "replace_requested",
+      "text": true,
+      "tools": false
+    },
+    "dispatched": true,
+    "elapsed_seconds": 16.01600000000326,
+    "event_counts": {
+      "assistant.idle": 1,
+      "assistant.message": 2,
+      "assistant.reasoning": 2,
+      "assistant.turn_end": 1,
+      "assistant.turn_start": 1,
+      "assistant.usage": 1,
+      "commands.changed": 3,
+      "model.call_final_result": 1,
+      "model.call_finished": 1,
+      "model.call_start": 1,
+      "model.captured_assignment_context": 1,
+      "model.message": 2,
+      "model.messages_snapshot": 1,
+      "model.model_call_started": 1,
+      "model.model_call_success": 1,
+      "model.response": 2,
+      "model.telemetry": 1,
+      "model.turn_ended": 1,
+      "model.turn_started": 1,
+      "pending_messages.modified": 2,
+      "session.idle": 1,
+      "session.info": 1,
+      "session.managed_settings_resolved": 1,
+      "session.mcp_servers_loaded": 1,
+      "session.skills_loaded": 1,
+      "session.start": 1,
+      "session.tools_updated": 2,
+      "session.usage_checkpoint": 1,
+      "session.usage_info": 1,
+      "system.message": 1,
+      "user.message": 1
+    },
+    "http_attempts": null,
+    "inference_calls_observed": 1,
+    "message_audit": [
+      {
+        "content_sha256": "d66c2a5172b440f39bad3a8b2a3d8a9a97ae892e641b505b8e8c133483227214",
+        "kind": "user.message",
+        "matches_sdk_input": true,
+        "role": null
+      },
+      {
+        "content_sha256": "4efabd1ea7a570988912d72be405dc23181510a733e7ee8f10a1dbee2a7989fb",
+        "kind": "system.message",
+        "matches_sdk_input": true,
+        "role": "system"
+      }
+    ],
+    "observed_model": "gpt-6-luna",
+    "provider": "github-copilot",
+    "requested_model": "gpt-6-luna",
+    "requested_reasoning_effort": "medium",
+    "response_sha256": "934fa1aaf588509a2632e09d88b8500e1322a30fe0a4e34c8d8b2e9b4367cd5e",
+    "runtime_version": "1.0.112",
+    "sdk_version": "1.0.34",
+    "session_deleted": true,
+    "session_id": "73474c43-d78d-44a9-9d3d-bf64c9f2d531",
+    "started_at": "2026-11-16T17:47:12.828041+00:00",
+    "system_sha256": "4efabd1ea7a570988912d72be405dc23181510a733e7ee8f10a1dbee2a7989fb",
+    "tool_counts_observed": [
+      0
+    ],
+    "usage": [
+      {
+        "availableToolCount": 0,
+        "cacheReadTokens": 0,
+        "cacheWriteTokens": 3590,
+        "copilotUsage": {
+          "tokenDetails": [
+            {
+              "batchSize": 1000000,
+              "costPerBatch": 10000000000,
+              "model": "gpt-6-luna",
+              "tokenCount": 3,
+              "tokenType": "input"
+            },
+            {
+              "batchSize": 1000000,
+              "costPerBatch": 1000000000,
+              "model": "gpt-6-luna",
+              "tokenCount": 0,
+              "tokenType": "cache_read"
+            },
+            {
+              "batchSize": 1000000,
+              "costPerBatch": 12500000000,
+              "model": "gpt-6-luna",
+              "tokenCount": 3590,
+              "tokenType": "cache_write"
+            },
+            {
+              "batchSize": 1000000,
+              "costPerBatch": 50000000000,
+              "model": "gpt-6-luna",
+              "tokenCount": 1306,
+              "tokenType": "output"
+            }
+          ],
+          "totalNanoAiu": 110205000.0
+        },
+        "cost": 1.0,
+        "finishReason": "stop",
+        "inputTokens": 3593,
+        "isByok": false,
+        "model": "gpt-6-luna",
+        "outputTokens": 1306,
+        "provider": {
+          "id": "copilot",
+          "kind": "copilot",
+          "label": "GitHub Copilot"
+        },
+        "reasoningEffort": "medium",
+        "reasoningTokens": 669,
+        "responseModel": "gpt-6-luna"
+      }
+    ],
+    "usd_cost": null,
+    "user_sha256": "d66c2a5172b440f39bad3a8b2a3d8a9a97ae892e641b505b8e8c133483227214"
+  },
+  "request_sha256": "843a65e091530d1b492ad1f92f0c1ba4a1cd039f6d1c79fd32fe88ff11064ff3",
+  "response_text": "{\"groups\":[{\"group_id\":\"handover-context\",\"unit_ids\":[\"u0001\",\"u0002\",\"u0003\",\"u0004\",\"u0005\"],\"scopes\":[],\"aliases\":[],\"evidence\":[],\"required_with\":[]},{\"group_id\":\"likelihood-impact-definitions\",\"unit_ids\":[\"u0006\",\"u0007\",\"u0008\",\"u0009\",\"u0010\",\"u0011\",\"u0012\",\"u0013\",\"u0014\",\"u0015\",\"u0016\",\"u0017\"],\"scopes\":[],\"aliases\":[],\"evidence\":[],\"required_with\":[]},{\"group_id\":\"likelihood-factors\",\"unit_ids\":[\"u0018\",\"u0019\",\"u0020\",\"u0021\",\"u0022\",\"u0023\",\"u0024\",\"u0025\",\"u0026\",\"u0027\"],\"scopes\":[],\"aliases\":[],\"evidence\":[],\"required_with\":[]},{\"group_id\":\"impact-factors\",\"unit_ids\":[\"u0028\",\"u0029\",\"u0030\",\"u0031\",\"u0032\",\"u0033\",\"u0034\",\"u0035\",\"u0036\",\"u0037\",\"u0038\"],\"scopes\":[],\"aliases\":[],\"evidence\":[],\"required_with\":[]},{\"group_id\":\"voted-arrangements\",\"unit_ids\":[\"u0039\",\"u0040\",\"u0041\",\"u0042\",\"u0043\",\"u0044\"],\"scopes\":[],\"aliases\":[],\"evidence\":[],\"required_with\":[]},{\"group_id\":\"redundancy-assessment\",\"unit_ids\":[\"u0045\",\"u0046\",\"u0047\",\"u0048\"],\"scopes\":[],\"aliases\":[],\"evidence\":[],\"required_with\":[]},{\"group_id\":\"urgency-guidance\",\"unit_ids\":[\"u0049\",\"u0050\",\"u0051\",\"u0052\",\"u0053\",\"u0054\",\"u0055\",\"u0056\",\"u0057\",\"u0058\",\"u0059\",\"u0060\",\"u0061\",\"u0062\",\"u0063\",\"u0064\",\"u0065\",\"u0066\"],\"scopes\":[],\"aliases\":[],\"evidence\":[],\"required_with\":[]},{\"group_id\":\"registry-scores\",\"unit_ids\":[\"u0067\",\"u0068\",\"u0069\",\"u0070\",\"u0071\",\"u0072\",\"u0073\",\"u0074\",\"u0075\",\"u0076\"],\"scopes\":[],\"aliases\":[],\"evidence\":[],\"required_with\":[]},{\"group_id\":\"output-expectations\",\"unit_ids\":[\"u0077\",\"u0078\",\"u0079\",\"u0080\",\"u0081\",\"u0082\"],\"scopes\":[],\"aliases\":[],\"evidence\":[],\"required_with\":[]},{\"group_id\":\"confidence-loss-observations\",\"unit_ids\":[\"u0083\",\"u0084\",\"u0085\",\"u0086\",\"u0087\",\"u0088\",\"u0089\"],\"scopes\":[],\"aliases\":[],\"evidence\":[],\"required_with\":[]}]}",
+  "slot": "original_domain.primary"
+}

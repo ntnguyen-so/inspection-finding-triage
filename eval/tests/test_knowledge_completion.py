@@ -94,6 +94,11 @@ class CompletionTests(unittest.TestCase):
         legacy_patch = patch.object(completion.existing, "LEDGER", self.legacy_path.relative_to(ROOT))
         legacy_patch.start()
         self.addCleanup(legacy_patch.stop)
+        self.v3_path = self.root / "prior-v3.experimental-ledger.json"
+        self.v3_bytes = self.seed_prior(self.v3_path, "synthetic-v3", 7)
+        v3_patch = patch.object(completion, "V3_LEDGER", self.v3_path.relative_to(ROOT))
+        v3_patch.start()
+        self.addCleanup(v3_patch.stop)
 
     def seed_prior(self, path, phase, count):
         slots = {f"prior{i}": "a" * 64 for i in range(count)}
@@ -125,11 +130,13 @@ class CompletionTests(unittest.TestCase):
         self.assertEqual(len(requests), 13)
         self.assertEqual(set(requests), set(self.suite.manifest["slot_ids"]))
         self.assertEqual(list(requests)[:5], [f"dev{i}.primary" for i in range(4)] + ["original_domain.primary"])
-        self.assertEqual(freeze["maximum_application_attempts"], 22)
+        self.assertEqual(freeze["maximum_application_attempts"], 15)
         self.assertEqual(freeze["maximum_cumulative_application_attempts"], 26)
-        self.assertEqual(freeze["prior_extraction_accounting"]["application_attempts_reserved"], 4)
-        self.assertEqual([row["application_attempts_reserved"] for row in freeze["prior_extraction_accounting"]["ledgers"]], [1, 3])
-        self.assertEqual(ledger["maximum_attempts"], 22)
+        self.assertEqual(freeze["prior_extraction_accounting"]["application_attempts_reserved"], 11)
+        self.assertEqual([row["application_attempts_reserved"] for row in freeze["prior_extraction_accounting"]["ledgers"]], [1, 3, 7])
+        self.assertEqual(ledger["maximum_attempts"], 15)
+        self.assertEqual(freeze["profile"]["version"], "source-first-completion-v4")
+        self.assertIn("TEST-INFORMED", freeze["revision_disclosure"])
         self.assertEqual(freeze["maximum_attempts_per_slot"], 2)
         self.assertEqual(set(ledger["development_slots"]), set(requests))
         self.assertIn("NOT a partition", freeze["driver_stop_policy"])
@@ -325,10 +332,10 @@ class CompletionTests(unittest.TestCase):
         self.assertEqual(result["exit_code"], 1)
         selector.assert_not_called()
 
-    def test_v3_cannot_spend_the_prior_four_again_or_exceed_the_remaining_twenty_two(self):
+    def test_v4_cannot_spend_the_prior_eleven_again_or_exceed_the_remaining_fifteen(self):
         result, _, calls, path = self.run_mocked(recover_each=True)
-        self.assertEqual(len(calls), 22)
-        self.assertEqual(result["checks"]["attempts"]["application_attempts"], 22)
+        self.assertEqual(len(calls), 15)
+        self.assertEqual(result["checks"]["attempts"]["application_attempts"], 15)
         self.assertEqual(result["checks"]["hard_extraction"]["status"], "fail")
         self.assertEqual(result["cumulative_accounting"]["cumulative_reserved"], 26)
         self.assertEqual(result["cumulative_accounting"]["remaining_application_attempts"], 0)
@@ -343,23 +350,26 @@ class CompletionTests(unittest.TestCase):
         self.assertEqual(path.read_bytes(), before)
         self.assertEqual(self.prior_path.read_bytes(), self.prior_bytes)
         self.assertEqual(self.legacy_path.read_bytes(), self.legacy_bytes)
+        self.assertEqual(self.v3_path.read_bytes(), self.v3_bytes)
 
     def test_unresolved_prior_reservation_blocks_new_plan(self):
-        prior = json.loads(self.prior_bytes)
-        prior["attempts"][-1].update(state="reserved", outcome=None)
-        self.prior_path.write_bytes(completion.existing._encoded(prior))
-        with self.assertRaisesRegex(ValueError, "unresolved reserved"):
-            self.build()
+        for path, raw in ((self.prior_path, self.prior_bytes), (self.v3_path, self.v3_bytes)):
+            prior = json.loads(raw)
+            prior["attempts"][-1].update(state="reserved", outcome=None)
+            path.write_bytes(completion.existing._encoded(prior))
+            with self.assertRaisesRegex(ValueError, "unresolved reserved"):
+                self.build()
+            path.write_bytes(raw)
 
-    def test_remaining_ceiling_is_derived_from_both_inspected_histories(self):
+    def test_remaining_ceiling_is_derived_from_all_three_inspected_histories(self):
         self.seed_prior(self.legacy_path, "synthetic-original", 2)
         _, _, freeze, plan = self.build()
-        self.assertEqual(freeze["prior_extraction_accounting"]["application_attempts_reserved"], 5)
-        self.assertEqual(plan["maximum_attempts"], 21)
+        self.assertEqual(freeze["prior_extraction_accounting"]["application_attempts_reserved"], 12)
+        self.assertEqual(plan["maximum_attempts"], 14)
 
     def test_current_ledger_cannot_ignore_frozen_remaining_ceiling(self):
         _, _, freeze, plan = self.build()
-        path = self.root / "inflated-v3.experimental-ledger.json"
+        path = self.root / "inflated-v4.experimental-ledger.json"
         inflated = deepcopy(plan)
         inflated["maximum_attempts"] = 26
         AttemptLedger(path, inflated)
@@ -370,14 +380,14 @@ class CompletionTests(unittest.TestCase):
     def test_prior_hash_change_blocks_before_provider_send(self):
         from unittest.mock import AsyncMock
         requests, _, freeze, plan = self.build()
-        path = self.root / "guarded-v3.experimental-ledger.json"
+        path = self.root / "guarded-v4.experimental-ledger.json"
         ledger = AttemptLedger(path, plan)
         slot = next(iter(requests))
         ledger.reserve(slot, plan["slots"][slot])
         freeze["ledger"] = str(path.relative_to(ROOT))
-        prior = json.loads(self.prior_bytes)
+        prior = json.loads(self.v3_bytes)
         prior["attempts"][-1]["outcome"]["message"] = "Changed synthetic observation"
-        self.prior_path.write_bytes(completion.existing._encoded(prior))
+        self.v3_path.write_bytes(completion.existing._encoded(prior))
         provider = SimpleNamespace(generate=AsyncMock())
         writer = EvidenceWriter(self.root / "prior-guard")
         guarded = completion.CapturedProvider(provider, requests, freeze, writer)

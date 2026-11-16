@@ -1,0 +1,670 @@
+{
+  "number": 6,
+  "parsed": {
+    "groups": [
+      {
+        "aliases": [],
+        "evidence": [],
+        "group_id": "catalogue-context",
+        "required_with": [],
+        "scopes": [],
+        "unit_ids": [
+          "u0001",
+          "u0002",
+          "u0003"
+        ]
+      },
+      {
+        "aliases": [
+          "rainbow doors",
+          "split lights"
+        ],
+        "evidence": [
+          {
+            "quote": "Prism-Gates",
+            "unit_id": "u0005"
+          },
+          {
+            "quote": "rainbow doors",
+            "unit_id": "u0006"
+          },
+          {
+            "quote": "split lights",
+            "unit_id": "u0006"
+          }
+        ],
+        "group_id": "prism-gates-opening-rule",
+        "required_with": [],
+        "scopes": [
+          "Prism-Gates"
+        ],
+        "unit_ids": [
+          "u0004",
+          "u0005",
+          "u0006",
+          "u0007",
+          "u0008",
+          "u0009",
+          "u0010",
+          "u0011"
+        ]
+      },
+      {
+        "aliases": [],
+        "evidence": [],
+        "group_id": "steadiness-observation",
+        "required_with": [],
+        "scopes": [],
+        "unit_ids": [
+          "u0012"
+        ]
+      },
+      {
+        "aliases": [],
+        "evidence": [],
+        "group_id": "card-state-dispute",
+        "required_with": [],
+        "scopes": [],
+        "unit_ids": [
+          "u0013"
+        ]
+      },
+      {
+        "aliases": [],
+        "evidence": [
+          {
+            "quote": "Copper Wheels",
+            "unit_id": "u0016"
+          }
+        ],
+        "group_id": "copper-wheels-rule",
+        "required_with": [],
+        "scopes": [
+          "Copper Wheels"
+        ],
+        "unit_ids": [
+          "u0014",
+          "u0015",
+          "u0016",
+          "u0017",
+          "u0018"
+        ]
+      }
+    ]
+  },
+  "receipt": {
+    "accounting_checkpoint": {
+      "providerModelMetrics": [
+        {
+          "metrics": {
+            "aiCreditsStatus": "complete",
+            "requests": {
+              "cost": 1.0,
+              "count": 1
+            },
+            "tokenDetails": {
+              "cache_read": {
+                "tokenCount": 0
+              },
+              "cache_write": {
+                "tokenCount": 1361
+              },
+              "input": {
+                "tokenCount": 3
+              },
+              "output": {
+                "tokenCount": 1106
+              }
+            },
+            "totalNanoAiu": 72342500.0,
+            "usage": {
+              "cacheReadTokens": 0,
+              "cacheWriteTokens": 1361,
+              "inputTokens": 1364,
+              "outputTokens": 1106,
+              "reasoningTokens": 818
+            }
+          },
+          "modelDisplayName": "GPT-6 Luna",
+          "modelId": "gpt-6-luna",
+          "provider": {
+            "id": "copilot",
+            "kind": "copilot",
+            "label": "GitHub Copilot"
+          }
+        }
+      ],
+      "totalNanoAiu": 72342500.0,
+      "totalPremiumRequests": 1.0
+    },
+    "adapter_attempts": 1,
+    "binary_sha256": "32d01e0b0100fcdeaa684fba2cc8d00b6f127ac408749ff3c1b1a6fa0b2b8698",
+    "boundary_violation": null,
+    "cache_mode": "no_application_result_cache_backend_cache_uncontrolled",
+    "capabilities": {
+      "adapter_retries": 0,
+      "conversation": "fresh_session_per_request",
+      "internal_http_retries": "unknown",
+      "json_schema": "prompt_guidance_and_local_validation",
+      "max_output_tokens": false,
+      "native_structured_output": false,
+      "raw_provider_equivalence": false,
+      "reasoning_effort": "catalog_validated_when_supplied",
+      "sampling_controls": false,
+      "streaming_api": false,
+      "system_message": "replace_requested",
+      "text": true,
+      "tools": false
+    },
+    "dispatched": true,
+    "elapsed_seconds": 13.577999999979511,
+    "event_counts": {
+      "assistant.idle": 1,
+      "assistant.message": 2,
+      "assistant.reasoning": 2,
+      "assistant.turn_end": 1,
+      "assistant.turn_start": 1,
+      "assistant.usage": 1,
+      "commands.changed": 3,
+      "model.call_final_result": 1,
+      "model.call_finished": 1,
+      "model.call_start": 1,
+      "model.captured_assignment_context": 1,
+      "model.message": 2,
+      "model.messages_snapshot": 1,
+      "model.model_call_started": 1,
+      "model.model_call_success": 1,
+      "model.response": 2,
+      "model.telemetry": 1,
+      "model.turn_ended": 1,
+      "model.turn_started": 1,
+      "pending_messages.modified": 2,
+      "session.idle": 1,
+      "session.info": 1,
+      "session.managed_settings_resolved": 1,
+      "session.mcp_servers_loaded": 1,
+      "session.skills_loaded": 1,
+      "session.start": 1,
+      "session.tools_updated": 2,
+      "session.usage_checkpoint": 1,
+      "session.usage_info": 1,
+      "system.message": 1,
+      "user.message": 1
+    },
+    "http_attempts": null,
+    "inference_calls_observed": 1,
+    "message_audit": [
+      {
+        "content_sha256": "8f3f5eddaa1850397239389ebc34f0c65c674acabc976183156b9a43fc95941a",
+        "kind": "user.message",
+        "matches_sdk_input": true,
+        "role": null
+      },
+      {
+        "content_sha256": "4efabd1ea7a570988912d72be405dc23181510a733e7ee8f10a1dbee2a7989fb",
+        "kind": "system.message",
+        "matches_sdk_input": true,
+        "role": "system"
+      }
+    ],
+    "observed_model": "gpt-6-luna",
+    "provider": "github-copilot",
+    "requested_model": "gpt-6-luna",
+    "requested_reasoning_effort": "medium",
+    "response_sha256": "97cb3826b4f173adb32a9dbe4f76a6158b568757125c77a841a5f365057b5e11",
+    "runtime_version": "1.0.112",
+    "sdk_version": "1.0.34",
+    "session_deleted": true,
+    "session_id": "1d0a167d-1574-40c8-ad79-c8026a9995da",
+    "started_at": "2026-11-16T17:47:29.087786+00:00",
+    "system_sha256": "4efabd1ea7a570988912d72be405dc23181510a733e7ee8f10a1dbee2a7989fb",
+    "tool_counts_observed": [
+      0
+    ],
+    "usage": [
+      {
+        "availableToolCount": 0,
+        "cacheReadTokens": 0,
+        "cacheWriteTokens": 1361,
+        "copilotUsage": {
+          "tokenDetails": [
+            {
+              "batchSize": 1000000,
+              "costPerBatch": 10000000000,
+              "model": "gpt-6-luna",
+              "tokenCount": 3,
+              "tokenType": "input"
+            },
+            {
+              "batchSize": 1000000,
+              "costPerBatch": 1000000000,
+              "model": "gpt-6-luna",
+              "tokenCount": 0,
+              "tokenType": "cache_read"
+            },
+            {
+              "batchSize": 1000000,
+              "costPerBatch": 12500000000,
+              "model": "gpt-6-luna",
+              "tokenCount": 1361,
+              "tokenType": "cache_write"
+            },
+            {
+              "batchSize": 1000000,
+              "costPerBatch": 50000000000,
+              "model": "gpt-6-luna",
+              "tokenCount": 1106,
+              "tokenType": "output"
+            }
+          ],
+          "totalNanoAiu": 72342500.0
+        },
+        "cost": 1.0,
+        "finishReason": "stop",
+        "inputTokens": 1364,
+        "isByok": false,
+        "model": "gpt-6-luna",
+        "outputTokens": 1106,
+        "provider": {
+          "id": "copilot",
+          "kind": "copilot",
+          "label": "GitHub Copilot"
+        },
+        "reasoningEffort": "medium",
+        "reasoningTokens": 818,
+        "responseModel": "gpt-6-luna"
+      }
+    ],
+    "usd_cost": null,
+    "user_sha256": "8f3f5eddaa1850397239389ebc34f0c65c674acabc976183156b9a43fc95941a"
+  },
+  "request_sha256": "3ff38880b988f78fd51489d45d1081dd07d2601bdc647319d3ee0dbdf0bcb22f",
+  "response_text": "{\"groups\":[{\"group_id\":\"catalogue-context\",\"unit_ids\":[\"u0001\",\"u0002\",\"u0003\"],\"scopes\":[],\"aliases\":[],\"evidence\":[],\"required_with\":[]},{\"group_id\":\"prism-gates-opening-rule\",\"unit_ids\":[\"u0004\",\"u0005\",\"u0006\",\"u0007\",\"u0008\",\"u0009\",\"u0010\",\"u0011\"],\"scopes\":[\"Prism-Gates\"],\"aliases\":[\"rainbow doors\",\"split lights\"],\"evidence\":[{\"unit_id\":\"u0005\",\"quote\":\"Prism-Gates\"},{\"unit_id\":\"u0006\",\"quote\":\"rainbow doors\"},{\"unit_id\":\"u0006\",\"quote\":\"split lights\"}],\"required_with\":[]},{\"group_id\":\"steadiness-observation\",\"unit_ids\":[\"u0012\"],\"scopes\":[],\"aliases\":[],\"evidence\":[],\"required_with\":[]},{\"group_id\":\"card-state-dispute\",\"unit_ids\":[\"u0013\"],\"scopes\":[],\"aliases\":[],\"evidence\":[],\"required_with\":[]},{\"group_id\":\"copper-wheels-rule\",\"unit_ids\":[\"u0014\",\"u0015\",\"u0016\",\"u0017\",\"u0018\"],\"scopes\":[\"Copper Wheels\"],\"aliases\":[],\"evidence\":[{\"unit_id\":\"u0016\",\"quote\":\"Copper Wheels\"}],\"required_with\":[]}]}",
+  "slot": "eval_prism.primary",
+  "status": "success",
+  "validation": {
+    "accepted": true,
+    "assessment": {
+      "accepted_wrong_critical": false,
+      "atom_count": 7,
+      "critical_errors": {
+        "detached_scoped_context_pairs": [],
+        "disconnected_scoped_atoms": [],
+        "nonempty_incomplete_scope_atoms": [],
+        "unsupported_alias_facts": [],
+        "unsupported_scope_facts": []
+      },
+      "fidelity": "pass",
+      "group_graph": {
+        "atoms_not_whole_in_one_component": [],
+        "component_count": 5,
+        "components": [
+          {
+            "group_count": 1,
+            "source_bytes": {
+              "eval_prism": 90
+            },
+            "whole_atom_ids": []
+          },
+          {
+            "group_count": 1,
+            "source_bytes": {
+              "eval_prism": 305
+            },
+            "whole_atom_ids": [
+              "hush",
+              "open",
+              "permission"
+            ]
+          },
+          {
+            "group_count": 1,
+            "source_bytes": {
+              "eval_prism": 65
+            },
+            "whole_atom_ids": [
+              "legend"
+            ]
+          },
+          {
+            "group_count": 1,
+            "source_bytes": {
+              "eval_prism": 81
+            },
+            "whole_atom_ids": [
+              "conflict"
+            ]
+          },
+          {
+            "group_count": 1,
+            "source_bytes": {
+              "eval_prism": 136
+            },
+            "whole_atom_ids": [
+              "wheel1",
+              "wheel2"
+            ]
+          }
+        ],
+        "overclosure_pair_count": 1
+      },
+      "incomplete_scope_byte_facts": [],
+      "metrics": {
+        "alias": {
+          "expected": 2,
+          "missing": [],
+          "observed": 2,
+          "precision": 1.0,
+          "recall": 1.0,
+          "true_positive": 2,
+          "unsupported": []
+        },
+        "context": {
+          "expected": 3,
+          "missing": [],
+          "observed": 4,
+          "precision": 0.75,
+          "recall": 1.0,
+          "true_positive": 3,
+          "unsupported": [
+            [
+              "wheel1",
+              "wheel2"
+            ]
+          ]
+        },
+        "scope": {
+          "expected": 5,
+          "missing": [],
+          "observed": 5,
+          "precision": 1.0,
+          "recall": 1.0,
+          "true_positive": 5,
+          "unsupported": []
+        }
+      },
+      "repair_count_basis": "Missing complete atom-level scope/alias facts and context-closure pairs; NOT observed human corrections or review benefit.",
+      "repair_counts": {
+        "alias_add": 0,
+        "context_add": 0,
+        "scope_add": 0
+      },
+      "repair_required": false,
+      "semantic": "pass",
+      "status": "pass",
+      "unresolved_alias_count": 0,
+      "unresolved_atom_count": 0
+    },
+    "observation": {
+      "groups": [
+        {
+          "spans": [
+            {
+              "end": 19,
+              "source_id": "eval_prism",
+              "start": 0
+            },
+            {
+              "end": 88,
+              "source_id": "eval_prism",
+              "start": 19
+            },
+            {
+              "end": 90,
+              "source_id": "eval_prism",
+              "start": 88
+            }
+          ],
+          "text": "# Prism catalogue\r\nThis is a fictional lantern-display puzzle, not equipment guidance.\r\n\r\n"
+        },
+        {
+          "spans": [
+            {
+              "end": 106,
+              "source_id": "eval_prism",
+              "start": 90
+            },
+            {
+              "end": 126,
+              "source_id": "eval_prism",
+              "start": 106
+            },
+            {
+              "end": 164,
+              "source_id": "eval_prism",
+              "start": 126
+            },
+            {
+              "end": 224,
+              "source_id": "eval_prism",
+              "start": 164
+            },
+            {
+              "end": 292,
+              "source_id": "eval_prism",
+              "start": 224
+            },
+            {
+              "end": 294,
+              "source_id": "eval_prism",
+              "start": 292
+            },
+            {
+              "end": 312,
+              "source_id": "eval_prism",
+              "start": 294
+            },
+            {
+              "end": 395,
+              "source_id": "eval_prism",
+              "start": 312
+            }
+          ],
+          "text": "## Prism-Gates\r\nScope: Prism-Gates\r\nAliases: rainbow doors; split lights\r\nDo not open Prism-Gates when the violet card is face down.\r\nIf the card is face up, opening is allowed except during the hush.\r\n\r\n## Hush footnote\r\nThe hush forbids opening even with a face-up card; it qualifies the opening rule.\r\n"
+        },
+        {
+          "spans": [
+            {
+              "end": 460,
+              "source_id": "eval_prism",
+              "start": 395
+            }
+          ],
+          "text": "Higher steadiness means lower flicker likelihood, never higher.\r\n"
+        },
+        {
+          "spans": [
+            {
+              "end": 541,
+              "source_id": "eval_prism",
+              "start": 460
+            }
+          ],
+          "text": "The card is described as face up and as unreadable; its state remains disputed.\r\n"
+        },
+        {
+          "spans": [
+            {
+              "end": 543,
+              "source_id": "eval_prism",
+              "start": 541
+            },
+            {
+              "end": 561,
+              "source_id": "eval_prism",
+              "start": 543
+            },
+            {
+              "end": 587,
+              "source_id": "eval_prism",
+              "start": 561
+            },
+            {
+              "end": 632,
+              "source_id": "eval_prism",
+              "start": 587
+            },
+            {
+              "end": 677,
+              "source_id": "eval_prism",
+              "start": 632
+            }
+          ],
+          "text": "\r\n## Copper Wheels\r\nEquipment: Copper Wheels\r\nRoll Copper Wheels only on the striped mat.\r\nRoll Copper Wheels only on the striped mat.\r\n"
+        }
+      ],
+      "metadata": {
+        "aliases": [
+          {
+            "evidence": [
+              {
+                "end": 126,
+                "source_id": "eval_prism",
+                "start": 106
+              },
+              {
+                "end": 164,
+                "source_id": "eval_prism",
+                "start": 126
+              },
+              {
+                "end": 164,
+                "source_id": "eval_prism",
+                "start": 126
+              }
+            ],
+            "target": "Prism-Gates",
+            "value": "rainbow doors"
+          },
+          {
+            "evidence": [
+              {
+                "end": 126,
+                "source_id": "eval_prism",
+                "start": 106
+              },
+              {
+                "end": 164,
+                "source_id": "eval_prism",
+                "start": 126
+              },
+              {
+                "end": 164,
+                "source_id": "eval_prism",
+                "start": 126
+              }
+            ],
+            "target": "Prism-Gates",
+            "value": "split lights"
+          }
+        ],
+        "links": [],
+        "scopes": [
+          {
+            "evidence": [
+              {
+                "end": 126,
+                "source_id": "eval_prism",
+                "start": 106
+              },
+              {
+                "end": 164,
+                "source_id": "eval_prism",
+                "start": 126
+              },
+              {
+                "end": 164,
+                "source_id": "eval_prism",
+                "start": 126
+              }
+            ],
+            "spans": [
+              {
+                "end": 106,
+                "source_id": "eval_prism",
+                "start": 90
+              },
+              {
+                "end": 126,
+                "source_id": "eval_prism",
+                "start": 106
+              },
+              {
+                "end": 164,
+                "source_id": "eval_prism",
+                "start": 126
+              },
+              {
+                "end": 224,
+                "source_id": "eval_prism",
+                "start": 164
+              },
+              {
+                "end": 292,
+                "source_id": "eval_prism",
+                "start": 224
+              },
+              {
+                "end": 294,
+                "source_id": "eval_prism",
+                "start": 292
+              },
+              {
+                "end": 312,
+                "source_id": "eval_prism",
+                "start": 294
+              },
+              {
+                "end": 395,
+                "source_id": "eval_prism",
+                "start": 312
+              }
+            ],
+            "value": "Prism-Gates"
+          },
+          {
+            "evidence": [
+              {
+                "end": 587,
+                "source_id": "eval_prism",
+                "start": 561
+              }
+            ],
+            "spans": [
+              {
+                "end": 543,
+                "source_id": "eval_prism",
+                "start": 541
+              },
+              {
+                "end": 561,
+                "source_id": "eval_prism",
+                "start": 543
+              },
+              {
+                "end": 587,
+                "source_id": "eval_prism",
+                "start": 561
+              },
+              {
+                "end": 632,
+                "source_id": "eval_prism",
+                "start": 587
+              },
+              {
+                "end": 677,
+                "source_id": "eval_prism",
+                "start": 632
+              }
+            ],
+            "value": "Copper Wheels"
+          }
+        ]
+      },
+      "source_id": "eval_prism",
+      "source_sha256": "72765663cf1ff3ff2fb8cd92bbae6051dc4f10493b1df2dfe0452865068c32c1",
+      "status": "accepted"
+    },
+    "source_id": "eval_prism"
+  }
+}

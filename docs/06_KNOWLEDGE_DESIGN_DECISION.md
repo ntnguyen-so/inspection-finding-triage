@@ -133,6 +133,44 @@ new default is `knowledge\source-first` (schema 3), with immutable source blobs,
 revisions and releases. An actual engineer still reviews/publishes the source and
 the workflow owner explicitly pins a compatible release and assessment policy.
 
+### Post-v3 correction: explicit continuation approval
+
+V3 passed all four development sources, the original-domain smoke and the first
+evaluation primary, then stopped at its seventh send on deterministic evidence
+validation: a model-copied quote was not an exact source-unit substring. Six
+remaining slots/repeats were not executed. The held-out raw proposal and expected
+answers were not inspected to author the correction; the generic validator
+diagnostic motivates removing redundant model transcription.
+
+The proposed C1 proposal format 2 asks for evidence **unit IDs only**. Code
+materializes the cited original unit verbatim, then applies the same group-local
+literal-metadata and both-context-endpoint requirements. It must not change the
+model's grouping, scope, aliases or dependency decisions. Preserve the raw v2
+proposal, and retain strict old quote-bearing proposal validation for C0 and
+historical replay: an invalid old quote remains invalid, never repaired.
+This changes source-location representation, not semantic grading, corpus,
+thresholds, provider knowledge or the native workflow bundle-2/store-3 APIs.
+
+Free implementation and offline evaluation continue under the owner's task.
+Any further live profile is explicitly **test-informed regression**, not an
+untouched comparison. The proposed v4 retains thirteen fresh slots, the same
+model/settings, recoverable-only retries and fail-stop semantics. Pin all three
+prior ledgers (one + three + seven = eleven spent extraction sends), leaving
+**15 maximum new application attempts** in the unchanged extraction ceiling 26.
+Both handoff attempts are already spent. This v4 freeze does not itself enlarge
+the budget or authorize an automatic retry of a failed phase.
+
+The first explicit authorization request returned owner-unavailable, so no v4
+send occurred then. The owner subsequently explicitly approved continuation and
+further work/runs without additional questions. This authorizes v4 after bounded
+review, offline tests and a new freeze, within its remaining 15-send ceiling.
+Further development remains disclosed and bounded; approval does not reset
+ledgers, hide spending, waive semantic expectations or fabricate independent
+human review. Unknown hidden HTTP/USD accounting and independent human
+benefit/review still block C1 qualification; source-first production content stays
+pending actual engineer review. An implementation fix is not a successful live
+rerun, and this work cannot claim that all evaluation goals pass.
+
 ## 2. Evaluate the responsibilities separately
 
 | Stage | Question and observed artifact |
@@ -787,12 +825,39 @@ shared registry, with matching prepared-message/SDK audits and zero observed
 tools. It establishes transport only, not causal influence or scoring quality.
 Its exposed usage is not a verified USD charge.
 
+After the generic prompt correction, `source-package-regression-3` reruns and
+passes the same eight goals/24 contexts/14 rejection checks against its new code
+and strategy hashes. `source-handoff-2` passes the independently frozen current-
+build development transport probe with one new send, exhausting the cumulative
+two-send handoff ceiling. Neither receipt is rebound to a different revision.
+`extraction\completion-v3-software.json` records 292 passing committed-root and
+complete evaluator software tests, with no skips and unchanged executable bytes.
+The isolated committed-snapshot wheel build/import also passes; it excludes
+parallel uncommitted workflow/package-manifest changes. These remain software/
+transport evidence, not C1 qualification or system accuracy.
+
 `extraction\completion-v2-run1` records the failed medium-reasoning profile:
 two development proposals passed; `dev_mosaic.primary` then made an unsupported
 scope assertion for a standalone uncertainty statement. Exactly three application
 sends were reserved; all ten later slots stopped. No evaluation C1 proposal or
 retrieval qualification was produced by that phase. Its freeze, raw output,
 failure and spent ledger remain unchanged.
+
+`extraction\completion-v3-run1` records seven sends, no recovery sends, six
+accepted source proposals and the subsequent exact-evidence validation failure.
+The failed slot is `eval_river.primary`; six later slots were unexecuted.
+Retrieval efficiency, repeats and full source acceptance were not established.
+Cumulative recorded extraction sends are eleven across the three retained
+profiles; the budget check passes, not the component quality gate. No result is
+silently repaired or relabelled as blind.
+
+The unit-reference format correction passes 298 committed-root/evaluator
+software tests, including malformed IDs, duplicate citations, cross-group label
+rejection, both-endpoint links, raw parsed-proposal preservation and unchanged
+strict legacy validation. `source-package-regression-4` passes the eight goals
+on all supplied rows under its new hashes with zero provider calls. No new
+provider receipt is inferred from this offline rerun; the two historical handoffs
+stay bound to their actual implementations.
 
 The real default schema-3 store now contains eight pending source-exact items
 from the supplied 4326-byte domain, with no reviewed items or published release.
@@ -907,3 +972,45 @@ uncertain. The budget objection is resolved conservatively by including both
 historical extraction ledgers (four spent sends), leaving 22, not a reset 26.
 Hidden HTTP/USD and genuine human correction-benefit remain unqualified; software
 agreement cannot satisfy those gates. No frozen semantic expectation is relaxed.
+
+The second critic cross-reviewed that adjudication without new code/source
+inspection and found no blocking plan flaw. Accepted limitations: v3 is informed
+by the exact development failure it repairs; success cannot establish general
+scope competence. Existing independent raw semantic gates retain both directions
+(detached critical conditions/exceptions and unsupported restrictive scope)
+across the fixed corpus, not only the observed development case. Any different
+failure also stops; no v4 is implicitly authorized. Recoverable errors are
+exactly `timeout`, `transport`, `malformed_json` and `schema_violation`;
+`proposal_validation` is never recoverable.
+
+The proposed additional mutable pre-final-send progress record is not added:
+the existing durable per-send reservation is written before provider entry,
+retains the frozen full schedule and distinguishes unfinished reservations from
+finished outcomes. Unresolved old reservations block a new phase. Prior hashes
+and recorded counts are checked before every extraction send. The 28 ceiling is
+for this declared application-attempt cohort, not a financial or hidden-HTTP
+bound; historical B02 cost is retained separately. The owner handoff states
+provisional strategy pins, real pending content approval and the strengthened
+second package observation, not the weaker first run as acceptance.
+
+V4 proposal review and sequential cross-critique accepted eliminating model
+transcription while keeping semantic interpretation untrusted. V2 rejects
+unknown/duplicate/non-string evidence IDs, extra quote fields and non-integer
+versions. Scope/alias support still requires an owned source unit. The proposed
+blanket foreign-unit ban was rejected because context-link evidence deliberately
+cites both groups; it cannot lend scope support across that boundary.
+The editor labels unit-ID evidence as a code-expanded unit, not a model-selected
+phrase. `extraction\completion-v4-unit-sizes.json` records 235 unchanged line
+units across nine sources, maximum 106 bytes. This is measured granularity,
+not an entailment gate or reason to introduce an arbitrary post-observation
+threshold. Larger future units still require actual semantic review.
+
+Canonical parsed proposals and actual decoded SDK response text are retained
+separately; raw network bytes are not exposed and are not claimed. A failed
+quote-bearing proposal stays failed under its original contract. Do not rank
+v1/v2 literal-copy validity as comparable model evidence; v2 citation text is
+code-constructed. The unchanged independent scope/context gates still judge
+actual decisions. Current package reruns are offline with zero provider calls;
+both historical provider handoffs remain bound to their actual freezes.
+Owner continuation approval is recorded verbatim with actual capture time in
+phase provenance; the user-message timestamp is not exposed and stays unknown.
