@@ -1,6 +1,16 @@
 {
-  "version": "knowledge-extraction-reference-v1.2",
-  "grader_version": "knowledge-span-grader-v1.1",
+  "version": "knowledge-extraction-reference-v1.3",
+  "grader_version": "knowledge-span-grader-v1.3",
+  "context_grader_revision": {
+    "prior_snapshot": "915425f",
+    "runtime_snapshot": "cab1b24",
+    "observed_failure": "Retained source-first-offline-2 development/shared-source observations reported valid context endpoints rejected because headings/preambles or partial-atom groups did not individually contain whole reference atoms.",
+    "change": "Compute source-aware co-return components from validated materialized groups and declared link endpoints, then project only fully union-covered atoms. Evidence, same-source membership and shared reference atoms do not create edges. Unsupported overlapping scope remains critical; correct partial scope is repair-only when its whole atom co-returns, while restrictive scope on disconnected atom fragments remains critical.",
+    "comparability": "Grader semantic correction, NOT candidate/extraction improvement. Preserve all prior failures and version/hash-bind any new observations; do not silently regrade or carry prior candidate results forward.",
+    "exposure": "Non-blind regression: five unpersisted all-source C0 executions and retained persisted candidate observations already exposed evaluation outcomes. The accepted root cause comes from development and shared smoke. The critic's claim that no evaluation output had been observed is rejected. No paid calls have occurred according to the parent.",
+    "review": "Parent and bounded cross-critic approved this group-graph correction and the clarified scope-fragment safety rule. No independent human/domain approval is claimed.",
+    "unchanged": "Source/reference.json bytes and hashes, atom expectations, query labels/membership, partitions, thresholds and C0 implementation policy are unchanged."
+  },
   "controlled_revision": {
     "prior_snapshot": "4cdd46e",
     "reason": "Bounded cross-critique found a grader classification defect: safe empty/general metadata omissions were all classified as accepted-wrong critical, contradicting document 07's C0 fallback and separate human-repair gate.",

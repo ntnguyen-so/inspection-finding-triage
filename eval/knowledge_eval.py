@@ -271,7 +271,10 @@ def assess_extraction(suite: Suite, proposal: dict[str, Any]) -> dict[str, Any]:
     it is never filled into the proposal. Nonempty partial/unsupported scope,
     unsupported aliases and missing context with a scoped endpoint are critical.
     Retrieval completeness/usefulness and actual human work remain separate gates.
-    Co-location and linked context closure are equivalent.
+    Context closure is computed on actual groups before projecting fully covered
+    atoms. Reference atoms never create graph edges. Correct partial scope may
+    need repair when its whole atom co-returns; unsupported partial scope and
+    restrictive scope on an atom split across components remain critical.
     """
     report: dict[str, Any] = {"status": "fail", "fidelity": "fail", "semantic": "not_run", "accepted_wrong_critical": False}
     try:
@@ -305,9 +308,6 @@ def assess_extraction(suite: Suite, proposal: dict[str, Any]) -> dict[str, Any]:
         if any(not isinstance(metadata[key], list) for key in metadata):
             raise ValueError("metadata lists required")
 
-        def ids(spans: list[Span]) -> set[str]:
-            return {key for key, atom in atoms.items() if _covered(spans, sid, atom["start"], atom["end"])}
-
         def evidence(record: dict[str, Any], literals: Iterable[str] = ()) -> None:
             spans = _spans(suite, record["evidence"], {sid})
             texts = [suite.sources[s][a:b].decode("utf-8") for s, a, b in spans]
@@ -316,15 +316,16 @@ def assess_extraction(suite: Suite, proposal: dict[str, Any]) -> dict[str, Any]:
                     raise ValueError("metadata literal missing from source evidence")
 
         expected_scopes = {(key, scope.casefold()) for key, atom in atoms.items() for scope in atom["scopes"]}
-        actual_scopes: set[tuple[str, str]] = set()
+        scope_spans: dict[str, list[Span]] = {}
         for record in metadata["scopes"]:
             if set(record) != {"value", "spans", "evidence"}:
                 raise ValueError("invalid scope fields")
             evidence(record, [record["value"]])
-            affected = ids(_spans(suite, record["spans"], {sid}))
-            if not affected:
-                raise ValueError("scope does not cover a labelled atom")
-            actual_scopes.update((key, record["value"].casefold()) for key in affected)
+            affected = _spans(suite, record["spans"], {sid})
+            if not any(overlap_bytes([(a, b) for s, a, b in affected if s == sid],
+                                     [(atom["start"], atom["end"])]) for atom in atoms.values()):
+                raise ValueError("scope does not intersect a labelled atom")
+            scope_spans.setdefault(record["value"].casefold(), []).extend(affected)
         expected_aliases = {(alias["value"].casefold(), alias["target"].casefold()) for alias in source["aliases"]}
         actual_aliases = set()
         for record in metadata["aliases"]:
@@ -333,36 +334,85 @@ def assess_extraction(suite: Suite, proposal: dict[str, Any]) -> dict[str, Any]:
             evidence(record, [record["value"], record["target"]])
             actual_aliases.add((record["value"].casefold(), record["target"].casefold()))
         expected_links = _closure_pairs((key, other) for key, atom in atoms.items() for other in atom["requires"])
-        edges: list[tuple[str, str]] = []
-        for group in groups:
-            members = ids(group)
-            edges.extend((a, b) for a in members for b in members if a != b)
+        parents = list(range(len(groups)))
+
+        def root(index: int) -> int:
+            while parents[index] != index:
+                parents[index] = parents[parents[index]]
+                index = parents[index]
+            return index
+
+        def endpoint_groups(spans: list[Span]) -> set[int]:
+            matched = {
+                index for index, group in enumerate(groups)
+                if any(s == t and max(a, c) < min(b, d)
+                       for s, a, b in spans for t, c, d in group)
+            }
+            if not matched:
+                raise ValueError("context endpoint does not map to a materialized group")
+            return matched
+
         for record in metadata["links"]:
             if set(record) != {"from", "to", "evidence"}:
                 raise ValueError("invalid context fields")
             evidence(record)
-            left = ids(_spans(suite, record["from"], {sid}))
-            right = ids(_spans(suite, record["to"], {sid}))
-            if not left or not right:
-                raise ValueError("context endpoints do not cover atoms")
-            edges.extend((a, b) for a in left for b in right)
-        actual_links = _closure_pairs(edges)
+            left = endpoint_groups(_spans(suite, record["from"], {sid}))
+            right = endpoint_groups(_spans(suite, record["to"], {sid}))
+            joined = sorted(left | right)
+            for other in joined[1:]:
+                parents[root(other)] = root(joined[0])
+
+        grouped: dict[int, list[int]] = {}
+        for index in range(len(groups)):
+            grouped.setdefault(root(index), []).append(index)
+        components = sorted(grouped.values(), key=lambda indices: min(span for i in indices for span in groups[i]))
+        component_spans = [[span for index in indices for span in groups[index]] for indices in components]
+        component_atoms = [
+            {key for key, atom in atoms.items() if _covered(spans, sid, atom["start"], atom["end"])}
+            for spans in component_spans
+        ]
+        actual_links = {
+            tuple(sorted((a, b))) for members in component_atoms for a in members for b in members if a != b
+        }
+        whole_in_component = set().union(*component_atoms)
+        claimed_scopes: set[tuple[str, str]] = set()
+        actual_scopes: set[tuple[str, str]] = set()
+        incomplete_scope_bytes = []
+        for value, spans in sorted(scope_spans.items()):
+            for key, atom in atoms.items():
+                claimed_bytes = overlap_bytes(
+                    [(a, b) for s, a, b in spans if s == sid],
+                    [(atom["start"], atom["end"])],
+                )
+                if not claimed_bytes:
+                    continue
+                fact = (key, value)
+                claimed_scopes.add(fact)
+                complete = claimed_bytes == atom["end"] - atom["start"]
+                if complete and key in whole_in_component:
+                    actual_scopes.add(fact)
+                if not complete:
+                    incomplete_scope_bytes.append({
+                        "atom": key, "value": value, "claimed_bytes": claimed_bytes,
+                        "atom_bytes": atom["end"] - atom["start"],
+                    })
         report["metrics"] = {
             "scope": _diagnostic(expected_scopes, actual_scopes),
             "alias": _diagnostic(expected_aliases, actual_aliases),
             "context": _diagnostic(expected_links, actual_links),
         }
-        scoped_atoms = {key for key, _ in actual_scopes}
+        scoped_atoms = {key for key, _ in claimed_scopes}
+        disconnected_scoped_atoms = scoped_atoms - whole_in_component
         partial_scope_atoms = {
             key for key in scoped_atoms
-            if {value for atom, value in actual_scopes if atom == key}
+            if {value for atom, value in claimed_scopes if atom == key}
             != {value for atom, value in expected_scopes if atom == key}
         }
         detached_scoped_context = {
             pair for pair in expected_links - actual_links if set(pair) & scoped_atoms
         }
         semantic_fail = bool(
-            actual_scopes - expected_scopes or partial_scope_atoms
+            claimed_scopes - expected_scopes or partial_scope_atoms or disconnected_scoped_atoms
             or actual_aliases - expected_aliases or detached_scoped_context
         )
         repairs = {
@@ -370,12 +420,25 @@ def assess_extraction(suite: Suite, proposal: dict[str, Any]) -> dict[str, Any]:
             "alias_add": len(expected_aliases - actual_aliases),
             "context_add": len(expected_links - actual_links),
         }
-        report["repair_required"] = any(repairs.values())
+        report["repair_required"] = semantic_fail or any(repairs.values())
         report["repair_counts"] = repairs
-        report["repair_count_basis"] = "Missing atom-level scope/alias facts and context-closure pairs; NOT observed human corrections or review benefit."
+        report["repair_count_basis"] = "Missing complete atom-level scope/alias facts and context-closure pairs; NOT observed human corrections or review benefit."
+        report["incomplete_scope_byte_facts"] = incomplete_scope_bytes
+        report["group_graph"] = {
+            "component_count": len(components),
+            "components": [
+                {"group_count": len(indices),
+                 "source_bytes": {sid: interval_bytes([(a, b) for s, a, b in spans if s == sid])},
+                 "whole_atom_ids": sorted(members)}
+                for indices, spans, members in zip(components, component_spans, component_atoms)
+            ],
+            "atoms_not_whole_in_one_component": sorted(set(atoms) - whole_in_component),
+            "overclosure_pair_count": len(actual_links - expected_links),
+        }
         report["critical_errors"] = {
-            "unsupported_scope_facts": sorted(actual_scopes - expected_scopes),
+            "unsupported_scope_facts": sorted(claimed_scopes - expected_scopes),
             "nonempty_incomplete_scope_atoms": sorted(partial_scope_atoms),
+            "disconnected_scoped_atoms": sorted(disconnected_scoped_atoms),
             "unsupported_alias_facts": sorted(actual_aliases - expected_aliases),
             "detached_scoped_context_pairs": sorted(detached_scoped_context),
         }

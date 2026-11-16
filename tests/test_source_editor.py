@@ -42,6 +42,9 @@ class SourceEditorTests(unittest.TestCase):
         self.text_area("Revised source text").set_value("User amended condition.\n")
         next(value for value in self.app.text_input if value.label == "Edit reason").set_value(
             "Synthetic source-lineage test")
+        self.button("Preview source edit diff").click().run()
+        self.assertEqual(self.store.load_draft()[1], digest)
+        self.assertTrue(any("+User amended condition." in value.value for value in self.app.code))
         self.button("Save as new user revision").click().run()
         self.assertEqual(len(self.app.exception), 0)
         after, next_digest = self.store.load_draft()
@@ -75,6 +78,13 @@ class SourceEditorTests(unittest.TestCase):
             return next(value.value for value in self.app.code if value.value.startswith("sha256-"))
 
         initial = publish()
+        next(value for value in self.app.sidebar.text_input
+             if value.label == "Reviewed release to open for editing").set_value(initial)
+        next(value for value in self.app.sidebar.button
+             if value.label == "Open release as editable draft").click().run()
+        self.assertEqual([value.value for value in self.app.error], [])
+        self.assertEqual(self.store.load_draft()[0]["items"],
+                         self.store.resolve_release(initial)["candidate"]["items"])
         next(value for value in self.app.selectbox if value.label == "Desired lifecycle").set_value("retired")
         text_input("Lifecycle or rejection reason").set_value("Explicit software-fixture withdrawal.")
         self.button("Save lifecycle for review").click().run()

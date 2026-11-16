@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from datetime import datetime, timezone
+from difflib import unified_diff
 import json
 from pathlib import Path
 
@@ -70,6 +71,17 @@ def main() -> None:
             except (KnowledgeError, OSError, UnicodeError) as error:
                 show_error(error)
 
+    fork_version = st.sidebar.text_input("Reviewed release to open for editing")
+    st.sidebar.caption("Opening replaces the saved draft; immutable releases remain unchanged.")
+    if st.sidebar.button("Open release as editable draft"):
+        try:
+            if store.draft_path.exists() and "source_digest" not in st.session_state:
+                reload_draft()
+            store.fork_release(fork_version, expected_digest=st.session_state.get("source_digest"))
+            updated()
+        except (KnowledgeError, OSError) as error:
+            show_error(error)
+
     if not store.draft_path.exists():
         st.info("No source-first draft. Import creates pending knowledge, not a release.")
         return
@@ -109,6 +121,11 @@ def main() -> None:
             with st.form("source_edit_" + selected + digest):
                 revised = st.text_area("Revised source text", item["text"], height=200)
                 reason = st.text_input("Edit reason")
+                if st.form_submit_button("Preview source edit diff"):
+                    difference = "".join(unified_diff(
+                        item["text"].splitlines(keepends=True), revised.splitlines(keepends=True),
+                        fromfile="Current revision", tofile="Proposed user revision"))
+                    st.code(difference or "No text changes.", language="diff")
                 if st.form_submit_button("Save as new user revision"):
                     try:
                         store.edit_item(selected, revised, reason=reason, expected_digest=digest)

@@ -447,7 +447,7 @@ source are preserved as text; editable text cannot execute workflow policy.
 
 ```text
 get_triage_knowledge(
-    query_context, *,
+    store, query_context, *,
     knowledge_version, assessment_time, expected_strategy,
     allowed_input_binding, max_bytes
 ) -> KnowledgeResult
@@ -597,6 +597,33 @@ Those old additions do not qualify as newly supplied user knowledge.
 No replacement-model quality, selective recall, human-review savings, new
 calibration or promotion is established by this document.
 
+### 11.1 Source-first implementation evidence
+
+The evaluator/fixtures precede runtime in Git (`4cdd46e`); controlled grading/
+exposure records are in `915425f`, and source-first implementation is in
+`cab1b24`. The default CLI and editor now use `source_cli`/`source_editor`.
+`source`, `source_store`, `retrieval` and `source_context` implement the boundaries
+above. Explicit `legacy_cli`/`legacy_editor` preserve earlier replay behavior
+byte-for-byte; the old context/exporter remains legacy, not the new retrieval path.
+
+`source-first-verification-1\software-tests.json` records **158 passing committed
+test-module cases**, including source-first extraction/lifecycle/retrieval,
+CLI, actual Streamlit form operations, context assembly and inference/legacy
+regressions. A further 71 cases from parallel uncommitted workflow work were
+present in the broader shared-worktree run; do not claim those are delivered by
+these commits. The new form regression records explicit review/publication,
+retirement with fresh approval, an unchanged old pin and no usable retired
+knowledge. These are software fixtures, not a human editorial exercise.
+
+`source-first-verification-1\preservation.json` confirms unchanged source domain,
+unapproved legacy draft, four retained legacy modules, byte-identical renamed
+legacy entrypoints and no default source-first store/promotion. Frozen triage
+reference validation remains separate from acceptance. Native bundle-2 assembly
+checks exact active text and registry comments but is not an actual provider
+handoff: the parallel workflow's current consumer remains legacy v0. Coordinated
+consumer migration, real content approval and applicable downstream evidence
+remain required before activation.
+
 ## 12. Bounded review and adjudication
 
 Two read-only AI critics reviewed this candidate's extraction/comparison design
@@ -664,3 +691,26 @@ release membership covers both forked and same-draft publications without
 changing historical release hashes. Explicit restore on active content remains
 a reviewed reset, not automatic activation. The cross-critic did not inspect
 retrieval and ran no tests; these were bounded AI reviews, not certification.
+
+The second persisted C0 regression exposed another genuine grader defect on
+development/shared-smoke output: requiring every context endpoint to contain an
+entire reference atom rejected valid atomless headings and multi-item atoms.
+Bounded challenge and sequential cross-critique approved grader/reference v1.3:
+construct actual group co-return components first, then credit only whole-atom
+byte coverage within each component. Evidence spans, shared source and shared
+atom identity do not invent edges. Unsupported partial scope remains critical;
+connected, supported partial scope can remain safe-general repair work.
+Disconnected restrictively scoped atoms fail. Inline adversarial controls and an
+actual generic runtime-ID-to-adapter-span control cover the mapping independently.
+No source/atom/query/threshold changes are made, and both prior failed runs remain.
+This is a grading correction, not an extraction improvement.
+
+Rejected cross-review suggestions: importing a production/evaluator shared graph
+helper would weaken independent evaluation; use actual adapter integration
+controls instead. A blanket failure for every partial scope would disallow valid
+connected groupings, so retain critical unsupported/restrictive fragmentation
+without requiring evaluator atom boundaries. The critic's assertion that no
+evaluation-partition output had been observed is factually rejected: the earlier
+exposure is preserved above, and all later runs remain disclosed regression.
+Automatic repair diagnostics are not observed human correction counts; in
+particular they do not measure actual removals of conservative over-closure.

@@ -91,6 +91,314 @@ def human_control_records(suite, c0_count=8, c1_count=0):
     return records, hashes
 
 
+class GroupGraphControlTests(unittest.TestCase):
+    """Inline grader controls only; no frozen corpus or production extraction."""
+
+    def control(self, *, preamble=False, whole=False, scopes=True, required=True):
+        raw = b"PFX\nALPHA---MID\nBETA----" if preamble else b"ALPHA---BETA----"
+        a_start, a_end, b_start = (4, 12, 16) if preamble else (0, 8, 8)
+        atoms = [
+            {"id": "a", "start": a_start, "end": a_end, "scopes": ["ALPHA"] if scopes else [],
+             "requires": ["b"] if required else [], "roles": ["rule"]},
+            {"id": "b", "start": b_start, "end": len(raw), "scopes": ["BETA"] if scopes else [],
+             "requires": ["a"] if required else [], "roles": ["exception"]},
+        ]
+        if whole:
+            atoms = [{"id": "whole", "start": 0, "end": len(raw), "scopes": [], "requires": [], "roles": ["global"]}]
+        suite = Suite(
+            {"sources": [{"source_id": "control", "partition": "evaluation"}],
+             "efficiency_case_ids": [], "thresholds": {"each_scoped_irrelevant_byte_reduction": 0.2}},
+            {"sources": [{
+                "source_id": "control", "atoms": atoms, "aliases": [],
+                "queries": [{"id": "control.scoped", "kind": "scoped", "subject_types": ["ALPHA"]}],
+            }]},
+            {"control": raw},
+        )
+        return suite, proposal(suite, "control")
+
+    @staticmethod
+    def span(start, end):
+        return {"source_id": "control", "start": start, "end": end}
+
+    def repartition(self, suite, value, cuts):
+        raw = suite.sources["control"]
+        value["groups"] = [
+            {"spans": [self.span(start, end)], "text": raw[start:end].decode("utf-8")}
+            for start, end in zip(cuts, cuts[1:])
+        ]
+
+    def link(self, suite, value, left, right, evidence_spans=None):
+        value["metadata"]["links"].append({
+            "from": [self.span(*left)], "to": [self.span(*right)],
+            "evidence": evidence_spans or [full_span(suite, "control")],
+        })
+
+    def scope(self, suite, value, label, start, end):
+        value["metadata"]["scopes"].append({
+            "value": label, "spans": [self.span(start, end)],
+            "evidence": [full_span(suite, "control")],
+        })
+
+    def test_atomless_multihop_nodes_connect_whole_atoms_across_actual_groups(self):
+        suite, value = self.control(preamble=True)
+        self.repartition(suite, value, [0, 4, 8, 12, 16, 24])
+        value["metadata"]["links"] = []
+        # A is split across two groups. Preamble and MID have no reference atoms.
+        for left, right in [((0, 1), (12, 13)), ((12, 13), (4, 5)),
+                            ((12, 13), (8, 9)), ((12, 13), (16, 17))]:
+            self.link(suite, value, left, right)
+        result = assess_extraction(suite, value)
+        self.assertEqual(result["status"], "pass", result)
+        self.assertEqual(result["metrics"]["context"]["recall"], 1)
+        self.assertEqual(result["group_graph"]["component_count"], 1)
+        self.assertEqual(result["group_graph"]["components"][0]["source_bytes"], {"control": 24})
+        self.assertEqual(result["group_graph"]["components"][0]["whole_atom_ids"], ["a", "b"])
+        value["groups"].reverse()
+        value["metadata"]["links"].reverse()
+        reordered = assess_extraction(suite, value)
+        self.assertEqual(reordered["metrics"], result["metrics"])
+        self.assertEqual(reordered["group_graph"], result["group_graph"])
+
+    def test_whole_source_atom_does_not_require_atom_bearing_link_endpoints(self):
+        suite, value = self.control(preamble=True, whole=True)
+        self.repartition(suite, value, [0, 4, 8, 12, 16, 24])
+        for target in (4, 8, 12, 16):
+            self.link(suite, value, (0, 1), (target, target + 1))
+        result = assess_extraction(suite, value)
+        self.assertEqual(result["status"], "pass", result)
+        self.assertEqual(result["group_graph"]["components"][0]["whole_atom_ids"], ["whole"])
+        self.assertEqual(result["metrics"]["context"]["expected"], 0)
+        self.assertIsNone(result["metrics"]["context"]["precision"])
+
+    def test_single_byte_endpoint_does_not_promote_a_fragment_to_a_whole_atom(self):
+        suite, value = self.control()
+        self.repartition(suite, value, [0, 4, 8, 16])
+        # B is scoped and complete. A has a disconnected second half.
+        value["metadata"]["scopes"] = [value["metadata"]["scopes"][1]]
+        value["metadata"]["links"] = []
+        self.link(suite, value, (0, 1), (8, 9))
+        result = assess_extraction(suite, value)
+        self.assertEqual(result["fidelity"], "pass")
+        self.assertEqual(result["status"], "fail")
+        self.assertEqual(result["metrics"]["context"]["recall"], 0)
+        self.assertIn("a", result["group_graph"]["atoms_not_whole_in_one_component"])
+        self.assertEqual(result["critical_errors"]["detached_scoped_context_pairs"], [("a", "b")])
+        # Connecting the actual remaining group supplies the missing whole bytes.
+        self.link(suite, value, (4, 5), (0, 1))
+        self.assertEqual(assess_extraction(suite, value)["status"], "pass")
+
+    def test_single_byte_endpoint_can_bind_a_whole_actual_group_not_just_that_byte(self):
+        suite, value = self.control()
+        value["metadata"]["links"] = []
+        self.link(suite, value, (0, 1), (8, 9))
+        result = assess_extraction(suite, value)
+        self.assertEqual(result["status"], "pass", result)
+        self.assertEqual(result["group_graph"]["components"][0]["source_bytes"]["control"], 16)
+
+    def test_evidence_and_shared_atom_or_source_never_create_graph_edges(self):
+        suite, value = self.control(preamble=True)
+        self.repartition(suite, value, [0, 4, 12, 16, 24])
+        value["metadata"]["links"] = []
+        # Evidence cites everything, but the declared edge reaches only preamble/A.
+        self.link(suite, value, (0, 1), (4, 5))
+        result = assess_extraction(suite, value)
+        self.assertEqual(result["status"], "fail")
+        self.assertEqual(result["group_graph"]["component_count"], 3)
+        self.assertEqual(result["metrics"]["context"]["observed"], 0)
+        suite, value = self.control(scopes=False)
+        self.repartition(suite, value, [0, 4, 8, 16])
+        value["metadata"]["links"] = []
+        result = assess_extraction(suite, value)
+        self.assertEqual(result["group_graph"]["component_count"], 3)
+        self.assertIn("a", result["group_graph"]["atoms_not_whole_in_one_component"])
+        self.assertEqual(result["metrics"]["context"]["observed"], 0)
+        self.assertEqual(result["status"], "pass", "Both general remains repair-only, not an invented edge")
+        self.assertEqual(result["repair_counts"]["context_add"], 1)
+
+    def test_connected_correct_partial_scope_is_repair_not_an_unsupported_claim(self):
+        suite, value = self.control(scopes=False, required=False)
+        suite.reference["sources"][0]["atoms"][0]["scopes"] = ["ALPHA"]
+        self.repartition(suite, value, [0, 4, 8, 16])
+        self.scope(suite, value, "ALPHA", 0, 4)
+        self.link(suite, value, (0, 1), (4, 5))
+        result = assess_extraction(suite, value)
+        self.assertEqual(result["status"], "pass", result)
+        self.assertFalse(result["accepted_wrong_critical"])
+        self.assertEqual(result["repair_counts"]["scope_add"], 1)
+        self.assertEqual(result["metrics"]["scope"]["recall"], 0)
+        self.assertEqual(result["incomplete_scope_byte_facts"][0]["claimed_bytes"], 4)
+        self.assertEqual(result["critical_errors"]["unsupported_scope_facts"], [])
+        self.assertEqual(result["critical_errors"]["disconnected_scoped_atoms"], [])
+
+    def test_unsupported_partial_scope_on_general_atom_is_critical_despite_co_return(self):
+        suite, value = self.control(scopes=False, required=False)
+        self.scope(suite, value, "ALPHA", 0, 1)
+        self.link(suite, value, (0, 1), (8, 9))
+        result = assess_extraction(suite, value)
+        self.assertEqual(result["fidelity"], "pass")
+        self.assertEqual(result["status"], "fail")
+        self.assertTrue(result["accepted_wrong_critical"])
+        self.assertEqual(result["critical_errors"]["unsupported_scope_facts"], [("a", "alpha")])
+        self.assertEqual(result["incomplete_scope_byte_facts"][0]["claimed_bytes"], 1)
+
+    def test_disconnected_restrictively_scoped_atom_is_critical_even_with_full_scope_bytes(self):
+        suite, value = self.control(scopes=False, required=False)
+        suite.reference["sources"][0]["atoms"][0]["scopes"] = ["ALPHA"]
+        self.repartition(suite, value, [0, 4, 8, 16])
+        self.scope(suite, value, "ALPHA", 0, 8)
+        result = assess_extraction(suite, value)
+        self.assertEqual(result["status"], "fail")
+        self.assertEqual(result["critical_errors"]["unsupported_scope_facts"], [])
+        self.assertEqual(result["critical_errors"]["disconnected_scoped_atoms"], ["a"])
+        self.assertEqual(result["metrics"]["scope"]["recall"], 0)
+
+    def test_full_scope_union_across_connected_groups_is_credited_without_inventing_labels(self):
+        suite, value = self.control(scopes=False, required=False)
+        suite.reference["sources"][0]["atoms"][0]["scopes"] = ["ALPHA"]
+        self.repartition(suite, value, [0, 4, 8, 16])
+        self.scope(suite, value, "ALPHA", 0, 4)
+        self.scope(suite, value, "ALPHA", 4, 8)
+        self.link(suite, value, (0, 1), (4, 5))
+        result = assess_extraction(suite, value)
+        self.assertEqual(result["status"], "pass", result)
+        self.assertEqual(result["metrics"]["scope"]["recall"], 1)
+        self.assertEqual(result["repair_counts"]["scope_add"], 0)
+        value["metadata"]["scopes"] = []
+        result = assess_extraction(suite, value)
+        self.assertEqual(result["status"], "pass")
+        self.assertEqual(result["metrics"]["scope"]["observed"], 0)
+        self.assertEqual(result["repair_counts"]["scope_add"], 1)
+
+    def test_nonempty_partial_scope_label_set_remains_critical(self):
+        suite, value = self.control(required=False)
+        suite.reference["sources"][0]["atoms"][0]["scopes"].append("BETA")
+        result = assess_extraction(suite, value)
+        self.assertEqual(result["status"], "fail")
+        self.assertIn("a", result["critical_errors"]["nonempty_incomplete_scope_atoms"])
+        self.assertEqual(result["critical_errors"]["unsupported_scope_facts"], [])
+
+    def test_overclosure_is_counted_not_mislabeled_as_engineering_entailment(self):
+        suite, value = self.control(required=False)
+        self.link(suite, value, (0, 1), (8, 9))
+        result = assess_extraction(suite, value)
+        self.assertEqual(result["status"], "pass")
+        self.assertEqual(result["group_graph"]["overclosure_pair_count"], 1)
+        self.assertEqual(result["metrics"]["context"]["observed"], 1)
+        self.assertIsNone(result["metrics"]["context"]["recall"])
+        self.assertEqual(result["metrics"]["context"]["precision"], 0)
+
+    def test_bad_source_hash_unknown_source_empty_and_out_of_range_endpoints_fail(self):
+        for mutation in ("hash", "source", "empty", "range"):
+            suite, value = self.control()
+            if mutation == "hash":
+                value["source_sha256"] = "0" * 64
+            elif mutation == "source":
+                suite.sources["other"] = suite.sources["control"]
+                value["metadata"]["links"][0]["from"][0]["source_id"] = "other"
+            elif mutation == "empty":
+                value["metadata"]["links"][0]["from"] = []
+            else:
+                value["metadata"]["links"][0]["from"][0]["end"] = 17
+            with self.subTest(mutation=mutation):
+                self.assertEqual(assess_extraction(suite, value)["status"], "fail")
+
+    def test_graph_does_not_relax_unsupported_scope_alias_or_exact_text_controls(self):
+        suite, original = self.control()
+        for mutation in ("scope", "alias", "text", "duplicate_group", "gap"):
+            value = deepcopy(original)
+            if mutation == "scope":
+                value["metadata"]["scopes"][0]["value"] = "BETA"
+            elif mutation == "alias":
+                value["metadata"]["aliases"].append({
+                    "value": "ALPHA", "target": "BETA", "evidence": [full_span(suite, "control")],
+                })
+            elif mutation == "text":
+                value["groups"][0]["text"] += "invented"
+            elif mutation == "duplicate_group":
+                value["groups"].append(deepcopy(value["groups"][0]))
+            else:
+                value["groups"].pop(0)
+            with self.subTest(mutation=mutation):
+                self.assertEqual(assess_extraction(suite, value)["status"], "fail")
+
+    def test_fragment_duplicates_and_byte_gaps_still_cannot_satisfy_retrieval(self):
+        suite, _ = self.control()
+        fragments = [self.span(0, 4), self.span(0, 4), self.span(8, 16)]
+        result = assess_retrieval(suite, "control.scoped", retrieval(suite, fragments))
+        self.assertEqual(result["status"], "fail")
+        self.assertLess(result["recall"], 1)
+        fragments.append(self.span(5, 8))
+        self.assertEqual(assess_retrieval(suite, "control.scoped", retrieval(suite, fragments))["status"], "fail")
+        fragments.append(self.span(4, 5))
+        self.assertEqual(assess_retrieval(suite, "control.scoped", retrieval(suite, fragments))["status"], "pass")
+
+    def test_missing_negation_reversed_direction_and_unresolved_remain_nonpasses(self):
+        raw = b"Do not fold. Higher reserve means lower drift.\n"
+        suite = Suite({}, {"sources": [{
+            "source_id": "control", "aliases": [], "queries": [],
+            "atoms": [{"id": "rule", "start": 0, "end": len(raw), "scopes": [], "requires": []}],
+        }]}, {"control": raw})
+        original = proposal(suite, "control")
+        for old, new in (("not ", ""), ("lower drift", "higher drift")):
+            value = deepcopy(original)
+            value["groups"][0]["text"] = value["groups"][0]["text"].replace(old, new)
+            self.assertEqual(assess_extraction(suite, value)["fidelity"], "fail")
+        suite.reference["sources"][0]["atoms"][0]["judgment"] = "needs_review"
+        result = assess_extraction(suite, original)
+        self.assertEqual(result["status"], "needs_review")
+        self.assertEqual(result["atom_count"], 1)
+        self.assertEqual(result["unresolved_atom_count"], 1)
+
+    def test_generic_runtime_ids_adapter_spans_and_independent_atom_graph_agree(self):
+        from triage_knowledge.source import SourceDocument, validate_proposal
+        from eval.run_knowledge import adapt_extraction
+
+        pieces = [
+            b"Preamble for a paper puzzle.\n",
+            b"ALPHA: Do not fold the first panel.\n",
+            b"ALPHA: Keep the second panel flat.\n",
+            b"Bridge heading only.\n",
+            b"BETA: Unless the card is blue, hold the exception.\n",
+        ]
+        raw = b"".join(pieces)
+        document = SourceDocument.from_bytes(raw, name="Inline adapter control", source_id="real-control")
+        names = ["arbitrary-root", "first-fragment", "second-fragment", "bridge-only", "exception"]
+        targets = {0: [3], 3: [1, 2, 4]}
+        submitted = {"groups": [
+            {
+                "group_id": name, "unit_ids": [f"u{index + 1:04d}"],
+                "scopes": ["ALPHA"] if index in (1, 2) else ["BETA"] if index == 4 else [],
+                "aliases": [], "required_with": [names[i] for i in targets.get(index, [])],
+                "evidence": [
+                    {"unit_id": f"u{i + 1:04d}", "quote": pieces[i].decode("utf-8")}
+                    for i in [index] + targets.get(index, [])
+                ],
+            } for index, name in enumerate(names)
+        ]}
+        normalized = adapt_extraction(validate_proposal(document, submitted))
+        # Reference offsets come from independently authored byte pieces, not runtime units.
+        a_start, a_end, b_start = len(pieces[0]), sum(map(len, pieces[:3])), sum(map(len, pieces[:4]))
+        suite = Suite({}, {"sources": [{
+            "source_id": "real-control", "aliases": [], "queries": [],
+            "atoms": [
+                {"id": "rule", "start": a_start, "end": a_end, "scopes": ["ALPHA"], "requires": ["exception"]},
+                {"id": "exception", "start": b_start, "end": len(raw), "scopes": ["BETA"], "requires": ["rule"]},
+            ],
+        }]}, {"real-control": raw})
+        result = assess_extraction(suite, normalized)
+        self.assertEqual(result["status"], "pass", result)
+        self.assertEqual(result["metrics"]["scope"]["recall"], 1)
+        self.assertEqual(result["metrics"]["context"]["recall"], 1)
+        self.assertEqual(result["group_graph"]["component_count"], 1)
+        self.assertEqual(result["group_graph"]["components"][0]["source_bytes"], {"real-control": len(raw)})
+        self.assertNotIn("first-fragment", str(normalized))
+        for index, group in enumerate(normalized["groups"]):
+            self.assertEqual(group["spans"], [{
+                "source_id": "real-control", "start": sum(map(len, pieces[:index])),
+                "end": sum(map(len, pieces[:index + 1])),
+            }])
+
+
 class KnowledgeGraderTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
