@@ -1,0 +1,79 @@
+{
+  "scope": "pre_implementation_evaluation_readiness_not_system_acceptance",
+  "reference_version": "1.2",
+  "decision": "ready_for_system_design_then_implementation_against_contract",
+  "frozen_manifest": {
+    "path": "eval\\split.json",
+    "sha256": "90c3d402e211b518680c3fb94b61a8117db80d2979f198ee1192536b9e177e28",
+    "integrity_check": "pass"
+  },
+  "unchanged": {
+    "source_package": true,
+    "evidence_cards": true,
+    "partition_membership": true,
+    "development_findings": 13,
+    "test_findings": 8
+  },
+  "evaluator_self_tests": {
+    "command": "python -B -m unittest discover -s eval -p \"test_*.py\"",
+    "exit_code": 0,
+    "test_methods": 20,
+    "status": "pass",
+    "limitation": "Tests of evaluator/reference software, not triage-system or model performance."
+  },
+  "reference_validation": {
+    "command": "python -B eval\\validate.py",
+    "exit_code": 0,
+    "status": "pass",
+    "scenario_count": 17,
+    "system_scenarios_execution": "not_run_no_system"
+  },
+  "actual_disclosed_review_calibration": [
+    {
+      "reviewer": "readiness-reviewer-a",
+      "input": "eval\\results\\reviewer-a-calibration.json",
+      "input_sha256": "99bdbf0adb88e88bd99772e85b99ee9cfa920624965514e5fca063e39916d0f0",
+      "command": "python -B eval\\assess.py --partition development --calibration-reviews eval\\results\\reviewer-a-calibration.json",
+      "exit_code": 0,
+      "scope": "known_fixture_conformance",
+      "calibration_status": "pass",
+      "seeded_contradictions_rejected": ["A04-FW-HEALTHY", "A04-PSV-LABEL"]
+    },
+    {
+      "reviewer": "readiness-reviewer-b",
+      "input": "eval\\results\\reviewer-b-calibration.json",
+      "input_sha256": "22a51802d2992f70719aaccd875f05f57246a17b8e4a76195e2550860132d366",
+      "command": "python -B eval\\assess.py --partition development --calibration-reviews eval\\results\\reviewer-b-calibration.json",
+      "exit_code": 0,
+      "scope": "known_fixture_conformance",
+      "calibration_status": "pass",
+      "seeded_contradictions_rejected": ["A04-FW-HEALTHY", "A04-PSV-LABEL"]
+    }
+  ],
+  "system_acceptance": {
+    "status": "not_run_no_system",
+    "scenario_ids": [
+      "A01", "A02", "A03", "A04",
+      "B01", "B02", "B03",
+      "C01", "C02", "C03", "C04",
+      "D01", "D02", "D03", "D04",
+      "X01", "X02"
+    ],
+    "partial_pre_system_evidence": "Known-fixture reviewer checks support only a disclosed component of A04, not whole-scenario or system acceptance."
+  },
+  "design_choices_required_before_paid_baseline": [
+    "Model/provider and usage budget declared before observing cost",
+    "Explicit evidence-based likelihood/impact rubric and knowledge packaging",
+    "Documented urgency formula satisfying the preregistered constraints",
+    "Concrete implementation of bounded retries and failure/publication policy"
+  ],
+  "limitations": [
+    "All 21 findings were previously seen; the split is non-blind.",
+    "AI-assisted reference cards and reviewers are not domain-expert certification.",
+    "Calibration shows rejection of two disclosed false claims only; no positive-control measurement or reviewer accuracy claim.",
+    "No actual triage-system output, model stability, knowledge influence, cost, latency or end-to-end reproducibility has been measured.",
+    "Subagent configuration and usage cost were not exposed; no paid system-run cost claim is made.",
+    "The manifest is a trusted change-detection convention, not a tamper-proof signature.",
+    "Git author identity/history remains a delivery concern, not a reason to block System Design."
+  ]
+}

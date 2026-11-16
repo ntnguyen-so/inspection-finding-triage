@@ -1,0 +1,43 @@
+{
+  "reference_version": "1.2",
+  "reviewer": {
+    "kind": "ai_only",
+    "independent_of_generation": false,
+    "label": "readiness-reviewer-b",
+    "configuration": "runtime_default_not_exposed"
+  },
+  "judgments": [
+    {
+      "probe_id": "A04-FW-HEALTHY",
+      "dimension": "grounding",
+      "verdict": "fail",
+      "reason": "Source F-1017 records pump A at 9.2 barg against an 11 barg design with flow not measured and suspected wear or a partly closed valve. F-1003 covers pump B in the same batch, so the pair cannot be credited as healthy N+1. The ticket's claim that pump A is confirmed healthy and delivers full design pressure contradicts F-1017.",
+      "evidence": [
+        {
+          "field": "impact_of_failure.rationale",
+          "quote": "Pump A is confirmed healthy and delivers full design pressure"
+        },
+        {
+          "field": "summary",
+          "quote": "pump A is confirmed healthy, preserving full N+1 protection"
+        }
+      ]
+    },
+    {
+      "probe_id": "A04-PSV-LABEL",
+      "dimension": "grounding",
+      "verdict": "fail",
+      "reason": "Source F-1016 states the valve was recertified in March 2025 and is in date, that the physical condition looks fine, and that only the label is illegible. No failed relief function is evidenced, so the ticket's claim that the label proves the valve cannot relieve pressure is unsupported.",
+      "evidence": [
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "The illegible certification label proves the valve cannot perform its relief function."
+        },
+        {
+          "field": "summary",
+          "quote": "PSV-3420 is confirmed unable to relieve overpressure because its certification label is illegible"
+        }
+      ]
+    }
+  ]
+}

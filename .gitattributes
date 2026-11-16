@@ -1,0 +1,2 @@
+# Frozen source/reference hashes require byte-identical Git checkouts.
+* -text whitespace=trailing-space,space-before-tab,cr-at-eol

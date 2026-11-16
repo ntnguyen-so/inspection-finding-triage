@@ -1,0 +1,218 @@
+{
+  "reference_version": "1.2",
+  "status": "specification_only_no_system_results",
+  "source": "docs\\candidate-pack\\candidate-pack\\README.md",
+  "design_contract": "docs\\EVALUATION_ACCEPTANCE.md",
+  "urgency_constraints": {
+    "basis": "design",
+    "formula_selected": false,
+    "base_monotonic": true,
+    "anchors": [
+      {"likelihood": 1, "impact": 1, "allowed_urgency": [1, 2]},
+      {"likelihood": 10, "impact": 1, "allowed_urgency": [3, 4]},
+      {"likelihood": 1, "impact": 10, "allowed_urgency": [7, 8]},
+      {"likelihood": 10, "impact": 10, "allowed_urgency": [9, 10]}
+    ],
+    "confirmed_override_band": [9, 10],
+    "precautionary_immediate_band": [9, 10],
+    "other_material_safety_uncertainty_floor": 7,
+    "calibration": "prototype_policy_not_domain_expert_certified"
+  },
+  "review_dimensions": ["grounding", "planning", "uncertainty"],
+  "probe_fixtures": "eval\\probes.json",
+  "execution_choices": {
+    "maximum_provider_attempts_per_finding_including_sdk_retries": 2,
+    "success_output": "tickets.json",
+    "failure_diagnostic": "JSON diagnostic on stderr with run_status, finding_id, error_class, attempts, and published_output=false",
+    "existing_output_on_failure": "Previous output remains byte-identical; diagnostic and non-zero exit identify this run as failed."
+  },
+  "scenarios": [
+    {
+      "id": "A01",
+      "question": "A",
+      "kind": "output_contract",
+      "basis": "brief_and_stricter_design_choices",
+      "sources": ["brief:3. Required output", "brief:6. Design document"],
+      "setup": ["Assess the selected input/output identity mapping.", "Seed one mutation at a time: invalid JSON, duplicate object key, NaN, missing/extra field, wrong type including boolean score, out-of-range score, 301-character text, empty rationale, missing review reason, bad timestamp, duplicate ticket, omitted finding, extra finding, wrong equipment."],
+      "pass_criteria": ["Every named invalid mutation is rejected with a named diagnostic.", "An unmodified structurally valid control passes contract checks but remains pending until semantic review.", "Exactly one ticket exists for every selected finding; final-all scope contains all 21."],
+      "evidence_required": ["Mutation IDs and diagnostics", "Valid-control report", "Actual run input/output hashes"],
+      "status": "not_run_no_system"
+    },
+    {
+      "id": "A02",
+      "question": "A",
+      "kind": "fault_injection",
+      "basis": "design",
+      "sources": ["brief:6. Design document"],
+      "setup": ["Mock a malformed response followed by a valid response.", "Repeat for a structurally invalid response followed by a valid response.", "Use at most two provider attempts per finding, counting any SDK retries."],
+      "pass_criteria": ["Recovery stays within the declared attempt budget.", "The successful run has complete selected coverage without duplicates.", "Diagnostics distinguish malformed JSON from structural validation."],
+      "evidence_required": ["Provider-attempt trace", "Final contract report", "Configured retry budget"],
+      "status": "not_run_no_system"
+    },
+    {
+      "id": "A03",
+      "question": "A",
+      "kind": "fault_injection",
+      "basis": "design",
+      "sources": ["brief:6. Design document", "brief:7. Deliverables"],
+      "setup": ["Return invalid responses for both allowed attempts on one finding.", "Run once with no previous output and once with an old successful output present."],
+      "pass_criteria": ["Run exits non-zero with finding ID and error class.", "No new complete final ticket file is published.", "Partial diagnostics are separate and old output is not presented as the failed run's result.", "No placeholder scores or silently skipped findings."],
+      "evidence_required": ["Exit status", "Both attempts", "Before/after SHA-256 of any previous output", "JSON failure diagnostic on stderr with run_status, finding_id, error_class, attempts, published_output=false"],
+      "status": "not_run_no_system"
+    },
+    {
+      "id": "A04",
+      "question": "A",
+      "kind": "semantic_review",
+      "basis": "domain",
+      "sources": ["brief:3. Required output", "domain:Output expectations"],
+      "setup": ["Give the actual output reviewer the two frozen seeded false-claim tickets in eval\\probes.json.", "Evaluate their grounding judgments with the known-fixture calibration check.", "Include an uncertain adjacent-score judgment in real output review that cannot be resolved from available evidence."],
+      "pass_criteria": ["Known contradictions fail semantic review even when contract checks pass.", "Unresolved numeric judgments remain needs_review rather than being called objectively correct.", "Review explains evidence and never treats retry alone as semantic repair."],
+      "evidence_required": ["Frozen mutated tickets and source evidence", "Known-fixture calibration report", "Grounding review and provenance"],
+      "status": "not_run_no_system"
+    },
+    {
+      "id": "B01",
+      "question": "B",
+      "kind": "request_capture",
+      "basis": "brief_and_design",
+      "sources": ["brief:6. Design document", "domain:Two recurring errors"],
+      "setup": ["Capture actual provider-bound development requests for a firewater-pair finding and F-1016.", "Inspect source/version identifiers and the equipment selected for each comment.", "Reverse development CSV row order and rebuild context with the same assessment time and facts."],
+      "pass_criteria": ["Relevant domain knowledge and the correct engineer_comment reach the request.", "Partner evidence is present where needed and is not changed by CSV row order.", "No evaluation cards or test findings appear in development inference context.", "The report calls this evidence of delivery, not proof of use."],
+      "evidence_required": ["Redacted request capture", "Source/knowledge versions", "Context membership"],
+      "status": "not_run_no_system"
+    },
+    {
+      "id": "B02",
+      "question": "B",
+      "kind": "controlled_model_probe",
+      "basis": "design",
+      "sources": ["brief:6. Design document"],
+      "setup": ["Use the frozen synthetic F-9001 input and probe-A/probe-B overlays in eval\\probes.json, not production knowledge.", "Use F-1016 tag-only defect with valid certification as the negative control.", "Run one output for each input under each policy: four nominal requests, at most eight including the declared retries.", "Use identical model/configuration and record original/edited knowledge versions; do not modify the supplied package."],
+      "pass_criteria": ["A knowledge/policy edit alone changes the declared source without orchestration or case-ID branches.", "Synthetic positive likelihood follows the deliberately artificial 6-to-8 convention, not a claimed engineering truth.", "The negative control does not receive an inapplicable functional-failure conclusion; exact control-score equality is not required.", "Unexpected or unchanged behavior is reported as a failed/inconclusive probe, not silently retuned."],
+      "evidence_required": ["Synthetic fixture and expected effect declared before run", "Knowledge-only diff", "Before/after real model outputs", "Negative-control review"],
+      "status": "not_run_no_system"
+    },
+    {
+      "id": "B03",
+      "question": "B",
+      "kind": "design_review",
+      "basis": "brief",
+      "sources": ["brief:6. Design document"],
+      "setup": ["Inspect DESIGN.md and the actual knowledge-maintenance path after implementation."],
+      "pass_criteria": ["Names the file(s) an integrity engineer edits for a PSV scoring change.", "Explains why the chosen mechanism suits this small package and its trade-off against a reasonable alternative.", "Identifies affected checks and distinguishes delivery trace from behavioral evidence."],
+      "evidence_required": ["DESIGN.md section B", "Concrete edit path", "Change-impact list"],
+      "status": "not_run_no_system"
+    },
+    {
+      "id": "C01",
+      "question": "C",
+      "kind": "pure_policy",
+      "basis": "design",
+      "sources": ["brief:3. Required output", "domain:Urgency"],
+      "setup": ["Exercise all 100 integer L/I combinations with no escalation and other facts fixed.", "Use independently worked boundary examples, not the implementation as its own oracle."],
+      "pass_criteria": ["Every output is an integer 1-10.", "All declared anchor bands and chosen nondecreasing properties hold.", "The implemented calculation matches the documented versioned formula."],
+      "evidence_required": ["Versioned formula", "Grid results", "Independent boundary expectations"],
+      "status": "not_run_no_system"
+    },
+    {
+      "id": "C02",
+      "question": "C",
+      "kind": "design_review",
+      "basis": "brief",
+      "sources": ["brief:3. Required output", "brief:6. Design document", "domain:Urgency"],
+      "setup": ["Compare the chosen formula with plain average and plain maximum at both asymmetric anchors."],
+      "pass_criteria": ["Neither forbidden simple function is used.", "Explains different treatment of high-L/low-I and low-L/high-I.", "States this is a prototype attention policy, not statistically calibrated failure probability or operational optimality."],
+      "evidence_required": ["Worked corner comparison", "DESIGN.md section C", "Policy limitations"],
+      "status": "not_run_no_system"
+    },
+    {
+      "id": "C03",
+      "question": "C",
+      "kind": "pure_policy",
+      "basis": "domain_and_design",
+      "sources": ["domain:Urgency", "brief:3. Required output"],
+      "setup": ["Test protection impairment and recorded-deviation facts as confirmed true, confirmed false and unknown.", "Test below-POB comparison as confirmed true, confirmed false and unknown.", "Include both confirmed overrides together and a precautionary-only case."],
+      "pass_criteria": ["Confirmed qualifying conditions produce 9-10 and name the applicable override.", "Known nonqualifying conditions do not falsely claim an override.", "Unknown conditions stay unknown; qualifying precautionary floors are labeled as policy, not confirmed regulatory/capacity facts.", "Urgency equals the derived value with the applicable floor/override, never an unexplained model number."],
+      "evidence_required": ["Fact-state matrix", "Derived/final urgency trace", "Rationale checks"],
+      "status": "not_run_no_system"
+    },
+    {
+      "id": "C04",
+      "question": "C",
+      "kind": "semantic_review",
+      "basis": "domain",
+      "sources": ["domain:Urgency", "finding:F-1012:finding_description", "finding:F-1010:finding_description"],
+      "setup": ["Assess development F-1012 with unavailable craft but unknown capacity/POB, and F-1010 with 27 Pa versus 50 Pa.", "During final test only, assess reopened-valve chronology using F-1020 and its related finding."],
+      "pass_criteria": ["Evidence extraction matches known/unknown facts before code applies urgency.", "Missing POB or deviation data is not asserted as confirmed absence or capacity shortfall.", "Reopening is not mistaken for verified restored coverage.", "Chosen precautionary attention is explained without inventing functional consequences."],
+      "evidence_required": ["Fact extraction trace or equivalent observable evidence", "Output rationale", "Case review"],
+      "status": "not_run_no_system"
+    },
+    {
+      "id": "D01",
+      "question": "D",
+      "kind": "semantic_review",
+      "basis": "design",
+      "sources": ["brief:6. Design document", "domain:Output expectations", "finding:F-1012:finding_description"],
+      "setup": ["Use F-1012 and a supported but uncertain protection assessment."],
+      "pass_criteria": ["Supported uncertain drafts have review_required=true, a specific reason and concrete verification activity.", "Chosen precautionary attention floor applies; missing information does not force fabricated L/I.", "Rationale distinguishes uncertainty from severity."],
+      "evidence_required": ["Ticket and uncertainty review", "Routing policy version"],
+      "status": "not_run_no_system"
+    },
+    {
+      "id": "D02",
+      "question": "D",
+      "kind": "fault_injection",
+      "basis": "design",
+      "sources": ["brief:6. Design document", "brief:3. Required output"],
+      "setup": ["Supply an invalid primary equipment reference in a synthetic input.", "Separately simulate inability to support required scores after bounded attempts.", "Contrast a valid primary reference with a missing redundant-partner record."],
+      "pass_criteria": ["Invalid primary mapping or unassessable required output fails visibly with no fake completed batch.", "Missing partner context is not silently treated as healthy redundancy.", "A supported uncertain assessment may defer to human rather than being confused with an invalid primary key.", "No default middle-score fallback."],
+      "evidence_required": ["Input mutation", "Failure/review outcome", "Exit and publication diagnostics"],
+      "status": "not_run_no_system"
+    },
+    {
+      "id": "D03",
+      "question": "D",
+      "kind": "semantic_review",
+      "basis": "domain_and_design",
+      "sources": ["finding:F-1016:finding_description", "finding:F-1008:finding_description", "finding:F-1009:finding_description", "domain:The two questions"],
+      "setup": ["Contrast the development certification-tag issue and same-structure crack/coating pair."],
+      "pass_criteria": ["Does not label every SCE finding an immediate functional failure.", "Distinguishes mechanisms and retains decision-changing details.", "Any all-SCE review policy is explicit and not used as a substitute for assessing consequences.", "No arbitrary target review rate is used as a quality score."],
+      "evidence_required": ["Three case reviews", "Review-policy explanation"],
+      "status": "not_run_no_system"
+    },
+    {
+      "id": "D04",
+      "question": "D",
+      "kind": "design_review",
+      "basis": "brief",
+      "sources": ["brief:6. Design document", "brief:1. Scope", "brief:5. Constraints on building the system"],
+      "setup": ["Review DESIGN.md against implemented behavior and the exercise budget."],
+      "pass_criteria": ["Explains human approval and the case-specific review flag consistently.", "Lists deliberate exclusions with reasons and no unimplemented capability claims.", "Discloses assumptions, AI assistance, rejected AI suggestions and residual limitations.", "Reports pending/failing scenarios separately; does not convert an output-only pass into full A-D assurance."],
+      "evidence_required": ["DESIGN.md section D", "AI-assistance/assumptions record", "Scenario evidence index"],
+      "status": "not_run_no_system"
+    },
+    {
+      "id": "X01",
+      "question": "X",
+      "kind": "decision_stability",
+      "basis": "domain_and_design",
+      "sources": ["domain:Output expectations", "brief:8. Assessment criteria"],
+      "setup": ["Run the 13 development findings twice at fixed assessment time, source/model/prompt/policy/configuration versions; retain complete related context.", "Bypass result caching when testing model stability; if repeatability comes from cache, report that separately.", "Perform only this one preregistered repeat by default; do not keep sampling until two outputs agree."],
+      "pass_criteria": ["Compare L/I/U by finding ID, urgency time band, review flag, rule/precaution rationale and forbidden claims; ignore generated_at and harmless wording variation.", "New unsupported claims or changed urgency band/review gate require a failure or explicit unresolved review before baseline acceptance.", "Any numeric score drift is reported and reviewed rather than silently called deterministic; no expert-derived tolerance is invented.", "Report score distribution and flag possible uniform middle-score collapse for semantic review, without rewarding artificial score diversity."],
+      "evidence_required": ["Both original outputs and hashes", "Versions, fixed assessment time and cache mode", "Per-finding comparison and adjudication", "Score-distribution diagnostic"],
+      "status": "not_run_no_system"
+    },
+    {
+      "id": "X02",
+      "question": "X",
+      "kind": "reproducibility_and_delivery",
+      "basis": "brief_and_design",
+      "sources": ["brief:5. Constraints on building the system", "brief:7. Deliverables", "brief:6. Design document"],
+      "setup": ["From a fresh environment using the declared dependency manifest, run the single documented end-to-end command after providing required configuration.", "Declare the monetary or token/request budget and pricing assumptions before the first paid baseline run; report the final 21-finding run against that budget.", "Inspect source/dependencies, automatic output provenance and the final submission history."],
+      "pass_criteria": ["The documented command automatically generates all 21 valid tickets; outputs are not hand-corrected and required configuration is documented without secrets.", "Record actual attempts, token usage when available, model/provider, elapsed time, cost or explicitly qualified estimate, pricing provenance and reproduction steps; do not treat unavailable usage as zero.", "The declared budget is met; missing cost evidence remains unverified, not proven inexpensive.", "No prohibited orchestration framework or offloaded core orchestration is used; required DESIGN.md and dependency manifest exist.", "Submission includes real Git history and no committed API keys; current missing author configuration is resolved before claiming this delivery gate passes."],
+      "evidence_required": ["Clean-environment command log and exit status", "Generated-file and input/config/version hashes", "Usage/budget report", "Dependency/source inspection", "Submission checklist and Git log"],
+      "status": "not_run_no_system"
+    }
+  ]
+}

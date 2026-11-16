@@ -1,0 +1,35 @@
+{
+  "reference_version": "1.2",
+  "reviewer": {
+    "kind": "ai_only",
+    "independent_of_generation": false,
+    "label": "readiness-reviewer-a",
+    "configuration": "runtime_default_not_exposed"
+  },
+  "judgments": [
+    {
+      "probe_id": "A04-FW-HEALTHY",
+      "dimension": "grounding",
+      "verdict": "fail",
+      "reason": "Source F-1017 records pump A stabilising at 9.2 barg against an 11 barg design with flow not measured and suspected wear or a partly closed valve, so pump A is not confirmed healthy at full design pressure. F-1003 and F-1017 are findings against both legs of the N+1 pair, so the redundancy credit is unsupported per the domain notes.",
+      "evidence": [
+        {
+          "field": "impact_of_failure.rationale",
+          "quote": "Pump A is confirmed healthy and delivers full design pressure"
+        }
+      ]
+    },
+    {
+      "probe_id": "A04-PSV-LABEL",
+      "dimension": "grounding",
+      "verdict": "fail",
+      "reason": "Source F-1016 says the valve was recertified in March 2025 so it is in date, and its physical condition looks fine; only the certification tag is illegible. Failed relief function is not established, so the claim of proof is unsupported.",
+      "evidence": [
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "The illegible certification label proves the valve cannot perform its relief function."
+        }
+      ]
+    }
+  ]
+}

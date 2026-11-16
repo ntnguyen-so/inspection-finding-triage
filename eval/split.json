@@ -1,0 +1,47 @@
+{
+  "version": "1.2",
+  "status": "frozen",
+  "revision_reason": "Final candidate-pack coverage audit: add decision stability, score-collapse diagnostics, row-order context invariance, and reproducibility/cost/delivery acceptance. Sources, cards, and split membership unchanged.",
+  "reference_status": "ai_assisted_provisional_not_expert_certified",
+  "test_claim": "non_blind_procedural_freeze_prior_exposure_to_all_21_findings",
+  "source_root": "docs\\candidate-pack\\candidate-pack",
+  "sources_sha256": {
+    "README.md": "8b67e295e93c6eaccd0e40d3f7481cb954ca9b83432ee3f95e1ecf548ae99016",
+    "data\\equipment_registry.csv": "5520713b74a28a907b7167da638dca8879849ce3d85d99e1d3ef9968fb000033",
+    "data\\inspection_findings.csv": "4bb4b2d324b53cf8c748e25c7a511a1a5d683dc0bfba6602013da89c8256652b",
+    "reference\\README.md": "68b3d524978194e7710c7c117843dea0e212ccb491a3e9b235834f73e2225cf3",
+    "reference\\domain_knowledge.md": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+    "reference\\example_ticket.json": "63aa79897bf35abe1e685414b16cdeb7ee4121a61b3877b0d38ae1ddd40d4732"
+  },
+  "artifacts_sha256": {
+    "docs\\DATA_EVALUATION_PLAN.md": "2a5a462871fd7b0eb066aee5165fd306a1d534d68f5031e4601c6e0f9f122773",
+    "docs\\EVALUATION_ACCEPTANCE.md": "b58f89b8e694d691b0fe481a8cd5b4ee5791d221f56850b50315c8ab50548ac8",
+    "eval\\acceptance.json": "8aef59e64daf421c16a3123800777db527f357713d956fea312f6f4054f79d50",
+    "eval\\assess.py": "8daa915ab14c3a3ec20cd80327f7c37f0cb17c0128554a0b8612d39fc4013ea2",
+    "eval\\probes.json": "7f4005f8f5311b690adba6b53f8d1cbd603e477e1746d20399a542b197be374a",
+    "eval\\development.jsonl": "dd12bb1f740dc57f089ac1945103315facac0fcbcd1cdd460182dc5b79424f6e",
+    "eval\\test.jsonl": "14019fe2b41a298460ce42f0fe1385058cc0a4d24ad04e7c3e3805585a8ebf7d",
+    "eval\\validate.py": "21e3c0aeb8f26425e4bf65441a726da50233d300d61660af5a453441fd667b15",
+    "eval\\test_validate.py": "cd3a2602dc2060675350203005e76c60b3079a43b006fa2bf9df2810e86d6583",
+    "eval\\test_assess.py": "8c1281ff8ab9b939af267af0d28e08e238b5210d6ba37de71cd5d953108f64c1"
+  },
+  "partitions": {
+    "development": ["F-1001", "F-1003", "F-1004", "F-1005", "F-1006", "F-1007", "F-1008", "F-1009", "F-1010", "F-1012", "F-1016", "F-1017", "F-1019"],
+    "test": ["F-1002", "F-1011", "F-1013", "F-1014", "F-1015", "F-1018", "F-1020", "F-1021"]
+  },
+  "groups": [
+    {"group_id": "compressor-train", "finding_ids": ["F-1001", "F-1016", "F-1019"], "reason": "Compressor findings and discharge relief protection; retain distinct failure mechanisms.", "sources": ["finding:F-1001:equipment_id", "finding:F-1016:equipment_id", "finding:F-1019:equipment_id", "equipment:PSV-3420:service_description"]},
+    {"group_id": "separator-protection-control", "finding_ids": ["F-1002", "F-1013", "F-1018", "F-1021"], "reason": "Direct pressure-protection and duplicated control relationships on host vessel V-1201.", "sources": ["equipment:PSV-1310:service_description", "equipment:INST-2150:service_description", "equipment:INST-2150:redundancy", "equipment:INST-2151:redundancy", "finding:F-1021:equipment_id"]},
+    {"group_id": "firewater-pair", "finding_ids": ["F-1003", "F-1017"], "reason": "Reciprocal N+1 pumps both have degraded performance evidence.", "sources": ["equipment:FW-8101:redundancy", "equipment:FW-8102:redundancy", "domain:Two recurring errors"]},
+    {"group_id": "production-flowline", "finding_ids": ["F-1004"], "reason": "Local below-minimum wall finding; process adjacency is not assumed to establish shared symptoms.", "sources": ["finding:F-1004:finding_description", "equipment:PL-1002:service_description"]},
+    {"group_id": "voted-gas-detection", "finding_ids": ["F-1005"], "reason": "Known illustrative case; other heads are described in the same finding.", "sources": ["finding:F-1005:finding_description", "brief:2. Input data"]},
+    {"group_id": "crane", "finding_ids": ["F-1006"], "reason": "Self-contained wire-rope acceptance evidence.", "sources": ["finding:F-1006:finding_description"]},
+    {"group_id": "corrosion-inhibitor", "finding_ids": ["F-1007"], "reason": "Repeat injection failure with delayed downstream effects, without a demonstrated cause for other batch findings.", "sources": ["finding:F-1007:finding_description", "equipment:P-3305:engineer_comment"]},
+    {"group_id": "primary-structure", "finding_ids": ["F-1008", "F-1009"], "reason": "Same equipment but primary weld cracking and coating backlog must be distinguished.", "sources": ["finding:F-1008:equipment_id", "finding:F-1009:equipment_id", "equipment:SC-1001:engineer_comment"]},
+    {"group_id": "temporary-refuge", "finding_ids": ["F-1010"], "reason": "Protection function and acceptance limit are supplied in the finding and registry.", "sources": ["finding:F-1010:finding_description", "equipment:HVAC-7201:engineer_comment"]},
+    {"group_id": "wellhead-deluge", "finding_ids": ["F-1011", "F-1020"], "reason": "Shared north-quadrant delivery and later valve-state/impairment evidence.", "sources": ["finding:F-1011:finding_description", "finding:F-1020:finding_description"]},
+    {"group_id": "evacuation", "finding_ids": ["F-1012"], "reason": "Unavailable lifeboat; partner and POB/capacity evidence are incomplete.", "sources": ["finding:F-1012:finding_description", "equipment:LB-4102:redundancy", "equipment:LB-4102:engineer_comment"]},
+    {"group_id": "test-separator", "finding_ids": ["F-1014"], "reason": "Out-of-service bypassable separator; no shared state established with V-1201.", "sources": ["finding:F-1014:finding_description", "equipment:V-1305:service_description", "equipment:V-1305:redundancy"]},
+    {"group_id": "fuel-gas-scrubber", "finding_ids": ["F-1015"], "reason": "Visibility issue with reported normal control and no carryover indications.", "sources": ["finding:F-1015:finding_description"]}
+  ]
+}

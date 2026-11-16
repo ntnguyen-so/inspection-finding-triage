@@ -1,0 +1,101 @@
+{
+  "reference_version": "1.2",
+  "purpose": "Synthetic evaluation probes, never production inputs or numeric gold for the original 21 findings.",
+  "b02": {
+    "status": "not_run_no_model",
+    "claim": "A managed knowledge-only edit can change the matching scoring decision without changing orchestration. This tests artificial policy conformance, not correct engineering scores or stable causality.",
+    "nominal_requests": 4,
+    "maximum_requests_including_retries": 8,
+    "repeats_per_condition": 1,
+    "configuration": "Same provider, model and generation settings for all four conditions; use temperature zero if supported and record the actual settings.",
+    "positive_input": {
+      "finding": {
+        "finding_id": "F-9001",
+        "reported_date": "2026-06-22",
+        "equipment_id": "PSV-9001",
+        "equipment_type": "Pressure Safety Valve",
+        "inspection_type": "Function Test",
+        "inspection_method": "Synthetic Bench Observation",
+        "finding_description": "On an isolated synthetic bench test, outlet seat passing was observed below the valve set pressure. No lifting or capacity test was performed.",
+        "reported_by": "Synthetic reporter",
+        "reporter_role": "Synthetic fixture role"
+      },
+      "equipment": {
+        "equipment_id": "PSV-9001",
+        "equipment_type": "Pressure Safety Valve",
+        "service_description": "Synthetic isolated bench device, not installed plant",
+        "criticality_score": "4",
+        "reliability_score": "7",
+        "safety_critical_element": "No",
+        "redundancy": "None",
+        "engineer_comment": "Evaluation fixture only. No installed plant, operating authority, or calibrated engineering rating is implied."
+      }
+    },
+    "negative_control_finding": "F-1016",
+    "policies": {
+      "before": {
+        "version": "probe-A",
+        "rule_id": "PROBE-PSV-SEAT-PASSING",
+        "text": "Testing-only diagnostic convention, not an engineering calibration: for pressure safety valve findings with observed seat passing below set pressure, assign likelihood_of_failure.score 6. This probe convention takes precedence for this synthetic experiment only. Do not apply to tag-only defects without passing evidence."
+      },
+      "after": {
+        "version": "probe-B",
+        "rule_id": "PROBE-PSV-SEAT-PASSING",
+        "text": "Testing-only diagnostic convention, not an engineering calibration: for pressure safety valve findings with observed seat passing below set pressure, assign likelihood_of_failure.score 8. This probe convention takes precedence for this synthetic experiment only. Do not apply to tag-only defects without passing evidence."
+      }
+    },
+    "expected": {
+      "positive_before_likelihood": 6,
+      "positive_after_likelihood": 8,
+      "negative_control": "Still recognizes in-date certification and a tag-only observation; does not infer a failed relief function or apply the passing rule. Exact control-score equality is not required.",
+      "source_trace": "Record original source hashes and policy versions, knowledge-only diff, actual requests/attempts/cost and all four outputs.",
+      "on_mismatch": "Report failed or inconclusive probe. Do not rewrite the rule or add repeats to conceal the initial result."
+    }
+  },
+  "review_calibration": {
+    "status": "fixtures_only_not_reviewed_by_actual_output_reviewer",
+    "scope": "known_fixture_conformance_only_not_semantic_truth_for_arbitrary_outputs",
+    "cases": [
+      {
+        "probe_id": "A04-FW-HEALTHY",
+        "finding_id": "F-1003",
+        "expected_dimension": "grounding",
+        "expected_verdict": "fail",
+        "sources": ["finding:F-1003:finding_description", "finding:F-1017:finding_description", "domain:Two recurring errors"],
+        "reason": "The paired finding records pump A at 9.2 barg against 11 barg design, not verified healthy full-design standby performance.",
+        "ticket": {
+          "ticket_id": "TKT-1003",
+          "finding_id": "F-1003",
+          "equipment_id": "FW-8102",
+          "summary": "Firewater pump B failed its first start but recovered on retry; pump A is confirmed healthy, preserving full N+1 protection.",
+          "likelihood_of_failure": {"score": 7, "rationale": "An initial start failure was followed by successful running after the second attempt."},
+          "impact_of_failure": {"score": 3, "rationale": "Pump A is confirmed healthy and delivers full design pressure, so the pair retains healthy N+1 redundancy."},
+          "urgency": {"score": 5, "rationale": "Routine planning is adequate because a healthy standby preserves protection."},
+          "recommended_action": "Inspect pump B starting batteries and verify its start performance under authorized test conditions.",
+          "review_required": true,
+          "review_reason": "Starting reliability requires engineering review."
+        }
+      },
+      {
+        "probe_id": "A04-PSV-LABEL",
+        "finding_id": "F-1016",
+        "expected_dimension": "grounding",
+        "expected_verdict": "fail",
+        "sources": ["finding:F-1016:finding_description", "domain:The two questions"],
+        "reason": "The source explicitly confirms certification is in date and only reports an illegible label; failed relief function is not established.",
+        "ticket": {
+          "ticket_id": "TKT-1016",
+          "finding_id": "F-1016",
+          "equipment_id": "PSV-3420",
+          "summary": "PSV-3420 is confirmed unable to relieve overpressure because its certification label is illegible.",
+          "likelihood_of_failure": {"score": 10, "rationale": "The illegible certification label proves the valve cannot perform its relief function."},
+          "impact_of_failure": {"score": 9, "rationale": "The valve provides compressor-discharge overpressure protection."},
+          "urgency": {"score": 9, "rationale": "Confirmed loss of the relief function requires immediate attention."},
+          "recommended_action": "Refer the valve for authorized replacement and rectify the identification record.",
+          "review_required": true,
+          "review_reason": "Claimed loss of overpressure protection requires review."
+        }
+      }
+    ]
+  }
+}
