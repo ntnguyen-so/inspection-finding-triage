@@ -32,11 +32,15 @@ async def run_requests(
     output: Path, ledger_path: Path, phase: str,
     validate_response: Callable[[str, object], dict],
     development_slots: frozenset[str], allow_inference: bool = False,
+    max_application_attempts: int = 26, max_attempts_per_slot: int = 2,
 ) -> dict:
     if not allow_inference:
         raise ValueError("Explicit inference authorization is required")
     if not requests or not development_slots <= requests.keys():
         raise ValueError("Invalid frozen request schedule")
+    if (type(max_application_attempts) is not int or not 1 <= max_application_attempts <= 26
+            or type(max_attempts_per_slot) is not int or not 1 <= max_attempts_per_slot <= 2):
+        raise ValueError("Application/per-slot ceilings must be integers in 1..26 and 1..2")
     profiles = {(r.model, r.system, fingerprint(r.response_schema),
                  r.reasoning_effort, r.timeout_seconds) for r in requests.values()}
     if len(profiles) != 1:
@@ -44,7 +48,7 @@ async def run_requests(
     records = {slot: request_record(request) for slot, request in requests.items()}
     plan = {"phase": phase, "slots": {slot: fingerprint(record)
                                     for slot, record in records.items()},
-            "maximum_attempts": 26, "per_slot_attempts": 2,
+            "maximum_attempts": max_application_attempts, "per_slot_attempts": max_attempts_per_slot,
             "schedule": list(requests), "development_slots": sorted(development_slots),
             "recoverable_codes": sorted(RECOVERABLE)}
     ledger = AttemptLedger(ledger_path, plan)
@@ -60,11 +64,16 @@ async def run_requests(
     })
     results: dict[str, dict] = {}
     stopped = False
+    stop_reason = "development_gate_failed"
     for slot, request in requests.items():
         if stopped:
-            results[slot] = {"status": "unexecuted", "reason": "development_gate_failed"}
+            results[slot] = {"status": "unexecuted", "reason": stop_reason}
             continue
-        for _ in range(2):
+        for _ in range(max_attempts_per_slot):
+            if ledger.observation()["application_attempts_reserved"] >= max_application_attempts:
+                results.setdefault(slot, {"status": "unexecuted", "reason": "application_budget_exhausted"})
+                stopped, stop_reason = True, "application_budget_exhausted"
+                break
             number = ledger.reserve(slot, plan["slots"][slot])
             attempt = {"slot": slot, "number": number,
                        "request_sha256": plan["slots"][slot]}

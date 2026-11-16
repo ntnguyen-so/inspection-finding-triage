@@ -77,6 +77,29 @@ no semantic retry, fallback model, best-of-N or changed-profile ledger reuse.
 The first failed development/semantic gate stops the schedule. The old one-send
 ledger stays immutable.
 
+Completion v2 subsequently stopped after three development sends: two passed and
+the third made an unsupported restrictive scope assertion for a standalone
+uncertainty report. Its ten remaining slots were not executed. The owner's
+continuation request authorizes a disclosed, development-informed **v3** prompt
+correction, not a semantic retry inside the stopped v2 experiment. Separate
+standalone descriptive reports from prescriptive rules without assigning a type
+by proximity. Keep conditions, exceptions and uncertainty that qualifies a rule
+with that rule; if the combined scope is uncertain, leave the whole group
+unscoped. General context remains included. Do not repair raw proposals, add toy
+examples or change source/reference/thresholds.
+
+V3 repeats all thirteen original slots with fresh requests and the same model,
+reasoning, deadline and recoverable-only retry policy. Its fixed new ledger
+freezes both historical extraction ledgers by hash and spent state. Conservatively
+count the original one-send extraction **and** v2's three sends toward the
+26-application-attempt extraction ceiling: v3 has at most **22 remaining sends**,
+at most two per slot. Check prior hashes and cumulative accounting before each
+dispatch. Budget exhaustion stops and records remaining slots as unexecuted;
+there is no automatic v4 approval, reset or reuse of earlier accepted proposals.
+These are application/observed SDK sends, not a claim that hidden HTTP retries
+are observable. The historical four-send B02 downstream experiment is a separate
+retained cost observation, not extraction budget headroom.
+
 Replay actual C0 and unchanged raw C1 through isolated software-fixture review,
 release and retrieval. C0's conservative star remains a negative usefulness
 baseline. A software-review declaration cannot satisfy the independent human
@@ -94,6 +117,13 @@ domain text, with no scoring. It has a separate persistent two-attempt ceiling
 and the same no-semantic-retry rule: maximum 28 new application attempts across
 both experiments, not 28 for each. Test descriptions never enter development
 provider context.
+
+The historical successful handoff used one send. A new hash-bound handoff v2
+may use **one remaining send with no retry** after the current mechanical run,
+keeping cumulative handoff attempts at two. Its new ledger pins the old ledger's
+hash/count; historical receipts are never rebound. The revised combined ceiling
+also includes the original extraction send, making it more conservative than
+the renewed phase's initial 28-new-send allowance.
 
 The integration deliverable includes an independently validating native consumer,
 storage/release discovery and a source-only initial **pending** draft. Neither
@@ -742,6 +772,41 @@ production release, C1 enablement or workflow activation. Further qualification
 requires actual content review and an explicitly approved subsequent development
 profile/experiment; never reset the spent ledger or tune from evaluation answers.
 
+### 11.3 Renewed integration observations
+
+The source-anchored `source-package-regression-2` passes all eight mechanical
+goals on the unchanged 21 findings and 18 registry rows: 24 assembled contexts,
+14 exact-code rejection checks, positive edited/successor inclusion and four
+lifecycle exclusions. The earlier, weaker first observation is retained, not
+silently replaced. The package runner verifies supplied fingerprints against the
+previously frozen split rather than blessing arbitrary current input bytes.
+
+`source-handoff-1` records one actual `gpt-6-luna` low-reasoning acknowledgement
+of independently validated native context for the 13 development findings and
+shared registry, with matching prepared-message/SDK audits and zero observed
+tools. It establishes transport only, not causal influence or scoring quality.
+Its exposed usage is not a verified USD charge.
+
+`extraction\completion-v2-run1` records the failed medium-reasoning profile:
+two development proposals passed; `dev_mosaic.primary` then made an unsupported
+scope assertion for a standalone uncertainty statement. Exactly three application
+sends were reserved; all ten later slots stopped. No evaluation C1 proposal or
+retrieval qualification was produced by that phase. Its freeze, raw output,
+failure and spent ledger remain unchanged.
+
+The real default schema-3 store now contains eight pending source-exact items
+from the supplied 4326-byte domain, with no reviewed items or published release.
+No engineer review or deployment is inferred. `status` exposes these distinctions;
+the legacy numeric-band draft remains unused and unchanged.
+
+The native independently regenerating consumer is implemented. A parallel
+workflow adapter now uses bundle 2 in the shared worktree, superseding the
+historical v0-only observation above; that parallel implementation and complete
+end-to-end acceptance remain the integration session's responsibility. The
+owner received an API/storage/evidence handoff with the remaining failures
+explicit. Changing the extraction prompt changes strategy identity: rerun
+applicable mechanical/transport observations under new freezes, not old receipts.
+
 ## 12. Bounded review and adjudication
 
 Two read-only AI critics reviewed this candidate's extraction/comparison design
@@ -832,3 +897,13 @@ evaluation-partition output had been observed is factually rejected: the earlier
 exposure is preserved above, and all later runs remain disclosed regression.
 Automatic repair diagnostics are not observed human correction counts; in
 particular they do not measure actual removals of conservative over-closure.
+
+Renewed completion review accepted stronger input trust anchors, exact rejection
+codes, positive lifecycle inclusion/stale-address assertions and actual runtime
+provenance. Prompt-fix review rejected a blanket separation that could detach a
+critical qualification: only standalone reports are separated; prescriptive
+conditions/exceptions stay intact, with whole-group conservative scope when
+uncertain. The budget objection is resolved conservatively by including both
+historical extraction ledgers (four spent sends), leaving 22, not a reset 26.
+Hidden HTTP/USD and genuine human correction-benefit remain unqualified; software
+agreement cannot satisfy those gates. No frozen semantic expectation is relaxed.

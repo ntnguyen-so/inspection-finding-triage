@@ -1,5 +1,6 @@
 """Synthetic-only transport preparation: no provider startup or network dispatch."""
 from contextlib import redirect_stderr
+import asyncio
 import io
 import unittest
 from unittest.mock import patch
@@ -7,6 +8,8 @@ from unittest.mock import patch
 from eval import run_knowledge_handoff as handoff
 from eval import run_knowledge_package as package
 from eval.tests import test_knowledge_package as package_tests
+from eval.knowledge_attempts import AttemptLedger, inspect_ledger
+from llm_inference import InferenceError
 from triage_knowledge.contracts import KnowledgeError, canonical_bytes, sha256, strict_json
 
 
@@ -15,8 +18,19 @@ class KnowledgeHandoffTests(unittest.TestCase):
         package_tests.KnowledgePackageTests.setUp(self)
         report = package.run_package(self.output, self.paths, self.plan)
         self.assertEqual(report["status"], "pass", report.get("failure"))
+        prior_path = self.inputs / "prior-handoff.experimental-ledger.json"
+        ledger = AttemptLedger(prior_path, {
+            "phase": "historical-software-fixture", "slots": {"historical": "0" * 64},
+            "maximum_attempts": 2, "per_slot_attempts": 2, "schedule": ["historical"],
+            "development_slots": ["historical"], "recoverable_codes": ["timeout"]})
+        ledger.finish(ledger.reserve("historical", "0" * 64), {"status": "success"})
+        self.prior_bytes = prior_path.read_bytes()
         for patcher in (patch.object(package, "SOURCE_PATHS", self.paths),
-                        patch.object(handoff, "COUNTS", self.counts)):
+                        patch.object(handoff, "COUNTS", self.counts),
+                        patch.object(handoff, "PRIOR_LEDGER", prior_path),
+                        patch.object(handoff, "PRIOR_LEDGER_SHA256", sha256(self.prior_bytes)),
+                        patch.object(handoff, "LEDGER",
+                                     self.inputs / "handoff-v2.experimental-ledger.json")):
             patcher.start()
             self.addCleanup(patcher.stop)
 
@@ -39,7 +53,10 @@ class KnowledgeHandoffTests(unittest.TestCase):
         self.assertEqual(set(packet["payload"]["findings"]), {"F-9001", "F-9002"})
         self.assertNotIn("Synthetic condition 3.", request.user)
         self.assertEqual(len(packet["payload"]["registry"]), 3)
-        self.assertEqual(plan["maximum_application_attempts"], 2)
+        self.assertEqual(plan["maximum_application_attempts"], 1)
+        self.assertEqual(plan["maximum_attempts_per_slot"], 1)
+        self.assertEqual(plan["prior_ledger"]["application_attempts_reserved"], 1)
+        self.assertEqual(plan["cumulative_handoff_ceiling"], 2)
         self.assertEqual(request.model, "gpt-6-luna")
         self.assertIsNone(plan["usd_cost"])
         receipt = {
@@ -84,6 +101,41 @@ class KnowledgeHandoffTests(unittest.TestCase):
                 self.assertEqual(diagnostic["status"], "failed")
                 self.assertIn(diagnostic["error_class"],
                               ("package_acceptance", "package_freeze", "source_lineage"))
+
+    def test_one_prior_reservation_leaves_one_send_and_never_resets_old_ledger(self):
+        request, plan = handoff.prepare(self.output)
+        calls = []
+
+        class NoNetworkProvider:
+            async def __aenter__(self):
+                return self
+
+            async def __aexit__(self, *args):
+                return False
+
+            async def generate(self, sent):
+                calls.append(sent)
+                raise InferenceError("timeout", "Synthetic timeout, no SDK or network.")
+
+        with patch("llm_inference.CopilotProvider", NoNetworkProvider):
+            with self.assertRaises(KnowledgeError) as raised:
+                asyncio.run(handoff.dispatch(request, plan, self.output / "probe-one"))
+            self.assertEqual(raised.exception.code, "handoff_failed")
+            with self.assertRaises(KnowledgeError) as raised:
+                asyncio.run(handoff.dispatch(request, plan, self.output / "probe-two"))
+            self.assertEqual(raised.exception.code, "handoff_failed")
+        exhausted = strict_json((self.output / "probe-two" / "calls" / "observation.json").read_bytes())
+        self.assertEqual(exhausted["results"][handoff.SLOT]["reason"], "application_budget_exhausted")
+        current = inspect_ledger(handoff.LEDGER)
+        self.assertEqual(len(calls), 1)
+        self.assertEqual(current["application_attempts_reserved"]
+                         + plan["prior_ledger"]["application_attempts_reserved"], 2)
+        self.assertEqual(current["maximum_application_attempts"], 1)
+        self.assertEqual(handoff.PRIOR_LEDGER.read_bytes(), self.prior_bytes)
+        handoff.PRIOR_LEDGER.write_bytes(self.prior_bytes + b"\n")
+        with self.assertRaises(KnowledgeError) as raised:
+            handoff.prepare(self.output)
+        self.assertEqual(raised.exception.code, "prior_ledger_integrity")
 
 
 if __name__ == "__main__":

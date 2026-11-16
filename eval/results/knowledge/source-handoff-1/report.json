@@ -1,0 +1,47 @@
+{
+  "disclosure": "Transport evidence only, not causal knowledge use, triage quality, human approval or system acceptance. Source content has SOFTWARE-only fixture review.",
+  "driver": {
+    "accounting": {
+      "application_attempts_reserved": 1,
+      "attempts": [
+        {
+          "number": 1,
+          "outcome": {
+            "status": "success",
+            "validation": {
+              "accepted": true,
+              "scope": "transport_only"
+            }
+          },
+          "request_sha256": "f6a8d1f514bb4b9ab90f4de67151587075d0a449bb6af755cd39bebf70577710",
+          "reserved_at": "2026-11-16T17:22:05.456623+00:00",
+          "slot": "development-context.handoff",
+          "state": "finished"
+        }
+      ],
+      "http_attempts": null,
+      "maximum_application_attempts": 26,
+      "plan_sha256": "93c08a3cbfbb0f3003da79dfb951a66748753391c90d1a339d86213a50a24506",
+      "strict_accounting_pass": false,
+      "usd_cost": null
+    },
+    "c1_qualified": false,
+    "contract": "knowledge-copilot-observation-v1",
+    "human_review_benefit": "unexecuted",
+    "results": {
+      "development-context.handoff": {
+        "attempt": 1,
+        "status": "success",
+        "validation": {
+          "accepted": true,
+          "scope": "transport_only"
+        }
+      }
+    },
+    "status": "experimental_observation_not_qualification"
+  },
+  "http_attempts": null,
+  "human_approval": "not established",
+  "status": "pass",
+  "usd_cost": null
+}

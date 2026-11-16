@@ -14,7 +14,7 @@ from unittest.mock import patch
 from uuid import uuid4
 
 from eval import run_knowledge_completion as completion
-from eval.knowledge_attempts import AttemptLedger
+from eval.knowledge_attempts import AttemptLedger, fingerprint
 from eval.knowledge_eval import ROOT, Suite
 from eval.knowledge_query_inputs import author_registry
 from eval.run_knowledge import EvidenceWriter
@@ -84,6 +84,38 @@ class CompletionTests(unittest.TestCase):
         self.suite.manifest.update(
             query_registry=str(path.relative_to(ROOT)), query_registry_sha256=hashlib.sha256(raw).hexdigest(),
         )
+        self.prior_path = self.root / "prior-v2.experimental-ledger.json"
+        self.prior_bytes = self.seed_prior(self.prior_path, "synthetic-v2", 3)
+        prior_patch = patch.object(completion, "PRIOR_LEDGER", self.prior_path.relative_to(ROOT))
+        prior_patch.start()
+        self.addCleanup(prior_patch.stop)
+        self.legacy_path = self.root / "original-extraction.experimental-ledger.json"
+        self.legacy_bytes = self.seed_prior(self.legacy_path, "synthetic-original", 1)
+        legacy_patch = patch.object(completion.existing, "LEDGER", self.legacy_path.relative_to(ROOT))
+        legacy_patch.start()
+        self.addCleanup(legacy_patch.stop)
+
+    def seed_prior(self, path, phase, count):
+        slots = {f"prior{i}": "a" * 64 for i in range(count)}
+        plan = {
+            "phase": phase, "slots": slots, "schedule": list(slots),
+            "maximum_attempts": 26, "per_slot_attempts": 2,
+            "development_slots": list(slots), "recoverable_codes": sorted(completion.RECOVERABLE),
+        }
+        data = {
+            "contract": "knowledge-attempt-ledger-v1", "plan": plan, "plan_sha256": fingerprint(plan),
+            "attempts": [
+                {"number": index + 1, "slot": slot, "request_sha256": slots[slot],
+                 "reserved_at": completion.existing.ASSESSMENT_TIME, "state": "finished",
+                 "outcome": {"status": "success"} if index < count - 1 else {
+                     "status": "failed", "error_class": "proposal_validation",
+                 }}
+                for index, slot in enumerate(slots)
+            ],
+        }
+        raw = completion.existing._encoded(data)
+        path.write_bytes(raw)
+        return raw
 
     def build(self, identity=None):
         return completion.build_plan(self.suite, identity or {"code_sha256": "synthetic"})
@@ -93,7 +125,11 @@ class CompletionTests(unittest.TestCase):
         self.assertEqual(len(requests), 13)
         self.assertEqual(set(requests), set(self.suite.manifest["slot_ids"]))
         self.assertEqual(list(requests)[:5], [f"dev{i}.primary" for i in range(4)] + ["original_domain.primary"])
-        self.assertEqual(freeze["maximum_application_attempts"], 26)
+        self.assertEqual(freeze["maximum_application_attempts"], 22)
+        self.assertEqual(freeze["maximum_cumulative_application_attempts"], 26)
+        self.assertEqual(freeze["prior_extraction_accounting"]["application_attempts_reserved"], 4)
+        self.assertEqual([row["application_attempts_reserved"] for row in freeze["prior_extraction_accounting"]["ledgers"]], [1, 3])
+        self.assertEqual(ledger["maximum_attempts"], 22)
         self.assertEqual(freeze["maximum_attempts_per_slot"], 2)
         self.assertEqual(set(ledger["development_slots"]), set(requests))
         self.assertIn("NOT a partition", freeze["driver_stop_policy"])
@@ -289,20 +325,68 @@ class CompletionTests(unittest.TestCase):
         self.assertEqual(result["exit_code"], 1)
         selector.assert_not_called()
 
-    def test_all_thirteen_slots_can_spend_exactly_twenty_six_allowlisted_attempts(self):
+    def test_v3_cannot_spend_the_prior_four_again_or_exceed_the_remaining_twenty_two(self):
         result, _, calls, path = self.run_mocked(recover_each=True)
-        self.assertEqual(len(calls), 26)
-        self.assertEqual(result["checks"]["attempts"]["application_attempts"], 26)
-        self.assertEqual(result["checks"]["attempts"]["recovery_attempts"], 13)
-        self.assertEqual(result["checks"]["hard_extraction"]["status"], "pass")
+        self.assertEqual(len(calls), 22)
+        self.assertEqual(result["checks"]["attempts"]["application_attempts"], 22)
+        self.assertEqual(result["checks"]["hard_extraction"]["status"], "fail")
+        self.assertEqual(result["cumulative_accounting"]["cumulative_reserved"], 26)
+        self.assertEqual(result["cumulative_accounting"]["remaining_application_attempts"], 0)
+        self.assertEqual(result["exit_code"], 1)
         self.assertFalse(result["C1_qualified"])
         data = json.loads(path.read_text("utf-8"))
         ledger = AttemptLedger(path, data["plan"])
         before = path.read_bytes()
-        slot = data["plan"]["schedule"][0]
-        with self.assertRaises(ValueError):
+        slot = data["plan"]["schedule"][-1]
+        with self.assertRaisesRegex(ValueError, "budget exhausted"):
             ledger.reserve(slot, data["plan"]["slots"][slot])
         self.assertEqual(path.read_bytes(), before)
+        self.assertEqual(self.prior_path.read_bytes(), self.prior_bytes)
+        self.assertEqual(self.legacy_path.read_bytes(), self.legacy_bytes)
+
+    def test_unresolved_prior_reservation_blocks_new_plan(self):
+        prior = json.loads(self.prior_bytes)
+        prior["attempts"][-1].update(state="reserved", outcome=None)
+        self.prior_path.write_bytes(completion.existing._encoded(prior))
+        with self.assertRaisesRegex(ValueError, "unresolved reserved"):
+            self.build()
+
+    def test_remaining_ceiling_is_derived_from_both_inspected_histories(self):
+        self.seed_prior(self.legacy_path, "synthetic-original", 2)
+        _, _, freeze, plan = self.build()
+        self.assertEqual(freeze["prior_extraction_accounting"]["application_attempts_reserved"], 5)
+        self.assertEqual(plan["maximum_attempts"], 21)
+
+    def test_current_ledger_cannot_ignore_frozen_remaining_ceiling(self):
+        _, _, freeze, plan = self.build()
+        path = self.root / "inflated-v3.experimental-ledger.json"
+        inflated = deepcopy(plan)
+        inflated["maximum_attempts"] = 26
+        AttemptLedger(path, inflated)
+        freeze["ledger"] = str(path.relative_to(ROOT))
+        with self.assertRaisesRegex(ValueError, "ceiling does not match"):
+            completion.verify_cumulative_budget(freeze, require_current=True)
+
+    def test_prior_hash_change_blocks_before_provider_send(self):
+        from unittest.mock import AsyncMock
+        requests, _, freeze, plan = self.build()
+        path = self.root / "guarded-v3.experimental-ledger.json"
+        ledger = AttemptLedger(path, plan)
+        slot = next(iter(requests))
+        ledger.reserve(slot, plan["slots"][slot])
+        freeze["ledger"] = str(path.relative_to(ROOT))
+        prior = json.loads(self.prior_bytes)
+        prior["attempts"][-1]["outcome"]["message"] = "Changed synthetic observation"
+        self.prior_path.write_bytes(completion.existing._encoded(prior))
+        provider = SimpleNamespace(generate=AsyncMock())
+        writer = EvidenceWriter(self.root / "prior-guard")
+        guarded = completion.CapturedProvider(provider, requests, freeze, writer)
+        from llm_inference import InferenceError
+        with patch.object(completion, "verify_freeze"):
+            with self.assertRaises(InferenceError):
+                asyncio.run(guarded.generate(requests[slot]))
+        provider.generate.assert_not_called()
+        self.assertEqual(list(writer.root.iterdir()), [])
 
     def test_all_slots_and_raw_selector_captures_preserve_simulated_grading_without_qualification(self):
         result, writer, calls, ledger = self.run_mocked(recover_first=True)

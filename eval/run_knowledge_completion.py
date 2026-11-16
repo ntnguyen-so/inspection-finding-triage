@@ -1,4 +1,4 @@
-"""Bounded v2 extraction/selector experiment; no inference without --allow-inference.
+"""Bounded v3 extraction/selector experiment; no inference without --allow-inference.
 
 Plan: python -B -m eval.run_knowledge_completion --plan-only
 Authorized execution additionally requires --output <new-results-child>.
@@ -20,7 +20,7 @@ from typing import Any
 from llm_inference import InferenceError
 
 from . import run_knowledge as existing
-from .knowledge_attempts import AttemptLedger, fingerprint
+from .knowledge_attempts import AttemptLedger, fingerprint, inspect_ledger
 from .knowledge_copilot import RECOVERABLE, request_record, run_requests
 from .knowledge_eval import (
     ROOT, Suite, assess_attempts, assess_repeats, assess_retrieval,
@@ -30,12 +30,20 @@ from .knowledge_query_inputs import load_registry_fixture
 
 
 RESULTS = existing.RESULTS
-LEDGER = RESULTS / "source-first-completion.experimental-ledger.json"
+PRIOR_LEDGER = RESULTS / "source-first-completion.experimental-ledger.json"
+LEDGER = RESULTS / "source-first-completion-v3.experimental-ledger.json"
+CUMULATIVE_MAXIMUM = 26
 PROFILE = {
-    "version": "source-first-completion-v2", "provider": "copilot",
+    "version": "source-first-completion-v3", "provider": "copilot",
     "model": "gpt-6-luna", "reasoning_effort": "medium", "timeout_seconds": 120,
     "fallback": False,
 }
+REVISION_DISCLOSURE = (
+    "Post-development generic prompt correction after v2's third development "
+    "proposal failed critical semantic validation. All thirteen v3 slots are "
+    "fresh requests; no accepted v2 outputs are reused. The v2 ledger and "
+    "observations remain unchanged. This is not a blind test or C1 qualification."
+)
 DISCLOSURE = (
     "SOFTWARE-ONLY fixture review of ALL unchanged raw C1 groups. "
     "Not genuine editorial review, human approval, engineering approval or "
@@ -57,6 +65,61 @@ def code_identity(root: Path = ROOT) -> dict[str, Any]:
         "revision": None, "dirty_status": None,
         "provenance_limitation": "Git was not invoked; current executable bytes are pinned.",
         "files_sha256": inventory, "code_sha256": canonical_hash(inventory),
+    }
+
+
+def prior_accounting() -> dict[str, Any]:
+    ledgers = []
+    for relative in (existing.LEDGER, PRIOR_LEDGER):
+        path = ROOT / relative
+        raw = path.read_bytes()
+        observed = inspect_ledger(path)
+        if path.read_bytes() != raw:
+            raise ValueError("Prior extraction ledger changed during inspection")
+        if any(attempt["state"] != "finished" for attempt in observed["attempts"]):
+            raise ValueError("Prior extraction ledger has unresolved reserved sends")
+        ledgers.append({
+            "path": str(relative), "sha256": hashlib.sha256(raw).hexdigest(),
+            "application_attempts_reserved": observed["application_attempts_reserved"],
+            "spent_states": [
+                {key: attempt[key] for key in ("number", "slot", "state", "request_sha256")}
+                | {"status": attempt["outcome"]["status"],
+                   "error_class": attempt["outcome"].get("error_class")}
+                for attempt in observed["attempts"]
+            ],
+        })
+    return {
+        "ledgers": ledgers,
+        "application_attempts_reserved": sum(row["application_attempts_reserved"] for row in ledgers),
+    }
+
+
+def verify_cumulative_budget(freeze, *, require_current=False):
+    prior = prior_accounting()
+    if prior != freeze["prior_extraction_accounting"]:
+        raise ValueError("Prior extraction ledgers differ from their frozen hashes/accounting")
+    maximum = CUMULATIVE_MAXIMUM - prior["application_attempts_reserved"]
+    if (freeze["maximum_cumulative_application_attempts"] != CUMULATIVE_MAXIMUM
+            or freeze["maximum_application_attempts"] != maximum):
+        raise ValueError("Cumulative extraction ceiling cannot be increased or reset")
+    path = ROOT / freeze["ledger"]
+    if path.exists():
+        current = inspect_ledger(path)
+        if current["maximum_application_attempts"] != maximum:
+            raise ValueError("Current ledger ceiling does not match the cumulative remainder")
+        count = current["application_attempts_reserved"]
+    elif require_current:
+        raise ValueError("The current application-send ledger is missing")
+    else:
+        count = 0
+    total = prior["application_attempts_reserved"] + count
+    if total > CUMULATIVE_MAXIMUM:
+        raise ValueError("Cumulative extraction application-send budget exceeded")
+    return {
+        "status": "pass", "prior_extraction_reserved": prior["application_attempts_reserved"],
+        "current_reserved": count, "cumulative_reserved": total,
+        "maximum_cumulative_application_attempts": CUMULATIVE_MAXIMUM,
+        "remaining_application_attempts": CUMULATIVE_MAXIMUM - total,
     }
 
 
@@ -88,8 +151,12 @@ def build_plan(suite: Suite, identity: dict[str, Any]):
     if registry_fixture is None:
         raise ValueError("Completion requires the frozen shared registry fixture")
     registry_pin = {key: registry_fixture[key] for key in ("path", "sha256", "registry_sha256")}
+    prior = prior_accounting()
+    maximum_attempts = CUMULATIVE_MAXIMUM - prior["application_attempts_reserved"]
+    if maximum_attempts < 1:
+        raise ValueError("No cumulative extraction application-send budget remains")
     freeze = {
-        "contract": "knowledge-completion-freeze-v2", "profile": dict(PROFILE),
+        "contract": "knowledge-completion-freeze-v3", "profile": dict(PROFILE),
         "code_identity": identity,
         "reference_version": suite.manifest["version"],
         "grader_version": suite.manifest.get("grader_version"),
@@ -112,7 +179,10 @@ def build_plan(suite: Suite, identity: dict[str, Any]):
             "status": "ready_explicit_cli_authorization",
             "note": "Parent must freeze this exact reviewed plan first; --freeze and --allow-inference are both required.",
         },
-        "maximum_application_attempts": 26, "maximum_attempts_per_slot": 2,
+        "prior_extraction_accounting": prior, "revision_disclosure": REVISION_DISCLOSURE,
+        "cumulative_budget_scope": "Original extraction + completion v2 + v3 only; historical B02 and the separate two-send handoff cohort are not extraction attempts.",
+        "maximum_cumulative_application_attempts": CUMULATIVE_MAXIMUM,
+        "maximum_application_attempts": maximum_attempts, "maximum_attempts_per_slot": 2,
         "recoverable_codes": sorted(RECOVERABLE), "semantic_retry_allowed": False,
         "assessment_time": existing.ASSESSMENT_TIME,
         "ledger": str(LEDGER), "review_disclosure": DISCLOSURE,
@@ -132,7 +202,7 @@ def build_plan(suite: Suite, identity: dict[str, Any]):
     phase = PROFILE["version"] + "-" + canonical_hash(freeze)
     ledger_plan = {
         "phase": phase, "slots": freeze["request_hashes"],
-        "maximum_attempts": 26, "per_slot_attempts": 2,
+        "maximum_attempts": maximum_attempts, "per_slot_attempts": 2,
         "schedule": schedule, "development_slots": sorted(stop_slots),
         "recoverable_codes": sorted(RECOVERABLE),
     }
@@ -168,6 +238,7 @@ class CapturedProvider:
     async def generate(self, request):
         try:
             verify_freeze(self.freeze)
+            verify_cumulative_budget(self.freeze, require_current=True)
             slot = self.slots[id(request)]
             actual = request_record(request)
             if fingerprint(actual) != self.freeze["request_hashes"][slot]:
@@ -340,6 +411,7 @@ async def run_completion(
     if canonical_hash(approved_plan) != canonical_hash(plan_record(freeze, plan)):
         raise ValueError("Reviewed freeze plan differs from the current prepared experiment")
     verify_freeze(freeze)
+    verify_cumulative_budget(freeze)
     registry_fixture = load_registry_fixture(suite)
     if registry_fixture is None:
         raise ValueError("Completion requires its frozen registry fixture")
@@ -350,6 +422,7 @@ async def run_completion(
     ledger = AttemptLedger(ROOT / LEDGER, plan)
     if ledger.observation()["application_attempts_reserved"]:
         raise ValueError("Completion ledger already spent; no automatic resume or reset")
+    verify_cumulative_budget(freeze, require_current=True)
     for sid, raw in suite.sources.items():
         writer.write(f"sources\\{sid}.bin", raw)
 
@@ -388,19 +461,24 @@ async def run_completion(
     # C0 remains a measured negative baseline, not a prerequisite for C1 sends.
     try:
         from llm_inference import CopilotProvider
+        verify_cumulative_budget(freeze, require_current=True)
         async with CopilotProvider() as provider:
             driver = await run_requests(
                 CapturedProvider(provider, requests, freeze, writer), requests,
                 output=writer.root / "calls", ledger_path=ROOT / LEDGER, phase=plan["phase"],
                 validate_response=validator, development_slots=frozenset(requests),
                 allow_inference=True,
+                max_application_attempts=freeze["maximum_application_attempts"],
+                max_attempts_per_slot=freeze["maximum_attempts_per_slot"],
             )
         writer.write("driver-observation.json", driver)
         attempts = attempt_assessment(suite, driver, requests)
         writer.write("attempt-assessment.json", attempts)
         checks["attempts"] = attempts["assessment"]
         checks["hard_extraction"] = {
-            "status": "fail" if any(row["status"] == "failed" for row in driver["results"].values())
+            "status": "fail" if any(row["status"] == "failed"
+                                  or row.get("reason") == "application_budget_exhausted"
+                                  for row in driver["results"].values())
             else "pass" if len(driver["results"]) == 13
             and all(row["status"] == "success" for row in driver["results"].values())
             and len(captured) == 13 else "unexecuted",
@@ -448,9 +526,14 @@ async def run_completion(
         }
         writer.write("execution-failure.json", failure)
         checks["execution"] = failure
+    try:
+        cumulative = verify_cumulative_budget(freeze, require_current=True)
+    except (OSError, ValueError, KeyError, TypeError) as error:
+        cumulative = {"status": "fail", "error": str(error)}
+    checks["cumulative_budget"] = cumulative
     overall = _status(row["status"] for row in checks.values())
     report = {
-        "contract": "knowledge-completion-observation-v2", "profile": PROFILE,
+        "contract": "knowledge-completion-observation-v3", "profile": PROFILE,
         "freeze_sha256": canonical_hash(freeze), "code_identity": freeze["code_identity"],
         "approved_plan_sha256": canonical_hash(approved_plan),
         "query_registry_fixture": freeze["query_registry_fixture"],
@@ -460,6 +543,9 @@ async def run_completion(
             "query_assessments": baseline["query_assessments"],
         },
         "accounting": ledger.observation(), "human_effort": "unexecuted",
+        "cumulative_accounting": cumulative,
+        "prior_extraction_accounting": freeze["prior_extraction_accounting"],
+        "revision_disclosure": REVISION_DISCLOSURE,
         "human_approval_established": False, "review_disclosure": DISCLOSURE,
         "strict_http_accounting": "unexecuted_or_unknown",
         "usd_cost": None, "C1_qualified": False, "system_acceptance": "not_established",

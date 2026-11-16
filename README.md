@@ -98,7 +98,15 @@ upgrade or publish the old numeric-band/PSV starter.
 .\.venv\Scripts\python.exe -B -m triage_knowledge --store knowledge\source-first import-source --source docs\candidate-pack\candidate-pack\reference\domain_knowledge.md --source-id domain --name "Supplied domain"
 .\.venv\Scripts\python.exe -m streamlit run triage_knowledge\editor.py --server.address 127.0.0.1 --browser.gatherUsageStats false
 .\.venv\Scripts\python.exe -B -m triage_knowledge --store knowledge\source-first check
+.\.venv\Scripts\python.exe -B -m triage_knowledge --store knowledge\source-first status
 ```
+
+The supplied source is already imported in the default store: eight pending
+items, no reviewed items or published release. The import command above is for
+a new store/source, not a required repeated startup step.
+`knowledge\source-first` stores exact source blobs, immutable revisions and the
+editable schema-3 candidate; published releases are separate. The old
+`knowledge\drafts\working.json` is unused legacy, not the current knowledge base.
 
 Import preserves source bytes and creates pending items, never an approved
 rubric. The editor supports source edits, evidence-backed metadata, context links,
@@ -123,14 +131,26 @@ Real Copilot measurements require the separate `--copilot-experiment
 ledger; do not reset it or rerun a failed semantic slot.
 
 Software checks and synthetic review declarations are not actual human content
-approval or system acceptance. The native `build_source_context` bundle uses
-contract 2 with separate workflow-supplied `assessment_policy`; it does not pretend
-to be compatible with the legacy workflow-v0 consumer.
-Actual observations: nine C0 extractions pass; all 24 diagnostic queries retain
-required atoms, but eight fail useful selection (0% reduction, 20% required).
-The one attempted Copilot development proposal was rejected; the other 12 slots
-were not run. **Not all evaluation goals pass; nothing is promoted.** See
-`eval\results\knowledge\extraction\source-first-verification-1\readiness.json`.
+approval or system acceptance. Native `build_source_context` and independently
+regenerating `validate_source_context` use contract 2 with separate workflow-owned
+`assessment_policy`. Retain one context for all retries, with explicit release,
+time, strategy and policy pins. Do not use legacy rubric/context APIs or silently
+substitute archived source text. Publication and workflow activation are separate;
+a new draft never mutates an older pinned release.
+
+Actual package observation `eval\results\knowledge\source-package-regression-3`
+passes eight mechanical goals using all 21 supplied findings and 18 registry rows,
+including 24 contexts and 14 rejection checks. Historical `source-handoff-1`
+records a real development-only Copilot context acknowledgement, not knowledge
+influence or triage quality. Its receipt remains bound to its original freeze.
+The source-first code baseline preserves all required atoms but historically
+fails selective usefulness; it remains a disclosed conservative baseline.
+The latest completed extraction experiment, `extraction\completion-v2-run1`,
+stopped after three development sends on a critical scope error; ten slots were
+unexecuted. **Not all evaluation goals pass; nothing is promoted.**
+The reviewed v3 correction and cumulative budgets are recorded in document 06;
+LLM extraction remains experimental and off by default. Never reset a spent
+ledger or treat software-fixture review as engineer approval.
 Document 06 section 11 distinguishes retained legacy evidence, including the
 four-send real Copilot knowledge probe:
 both synthetic positives were unassessable, so knowledge influence remains
