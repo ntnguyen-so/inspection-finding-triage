@@ -43,8 +43,9 @@ eval\
 not duplicate tests. There is one current evaluation reference, with its version
 in `spec\split.json`; earlier decisions are documented, not parallel eval copies.
 The split is non-blind, and the AI-assisted references are not expert-certified.
-Reference cards, probes and review results must never enter runtime inference
-context.
+Reference cards and review results must never enter production inference context.
+Synthetic probes belong only in their declared, isolated evaluation experiment,
+not normal ticket generation.
 
 ## Run from the repository root
 
@@ -70,3 +71,15 @@ All 17 system scenarios remain unexecuted until an implementation exists.
 Git preserves raw file bytes, including CRLF, so source/reference SHA-256 checks
 survive checkout. Do not normalize the supplied package or regenerate evidence
 cards during formatting.
+
+## Working with coding agents
+
+`AGENTS.md` is the canonical working agreement for design, implementation,
+evaluation and delivery. `.github\copilot-instructions.md` directs GitHub Copilot
+to the same rules. Agents must connect changes to panel requirements and the
+existing eval gates, preserve development/test boundaries and record honest
+evidence before claiming success.
+
+Instruction-file discovery depends on the tool. If an assistant does not discover
+these files, explicitly give it `AGENTS.md`. Instructions are guidance, not an
+automated substitute for the acceptance checks.
