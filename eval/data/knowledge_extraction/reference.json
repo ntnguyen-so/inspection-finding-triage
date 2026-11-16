@@ -1,0 +1,180 @@
+{
+  "version": "knowledge-atoms-v1",
+  "status": "AI_assisted_source_anchored_not_independent_human_gold",
+  "atom_schema": "IDs are evaluation-only. Byte intervals are half-open UTF-8 offsets in the source identified by the containing source_id. Roles may overlap. requires is a local atom-ID list; coverage includes transitive qualifiers. Empty scopes means general. Repeated clauses have distinct intervals.",
+  "sources": [
+    {
+      "source_id": "dev_atlas",
+      "atoms": [
+        {"id":"raise","start":129,"end":313,"roles":["rule","negation","condition"],"scopes":["Amber-Kites"],"requires":["pause"]},
+        {"id":"pause","start":332,"end":405,"roles":["exception","context_link"],"scopes":["Amber-Kites"],"requires":["raise"]},
+        {"id":"cart1","start":446,"end":505,"roles":["rule","condition"],"scopes":["Glass-Carts"],"requires":[]},
+        {"id":"cart2","start":505,"end":564,"roles":["rule","duplicate"],"scopes":["Glass-Carts"],"requires":[]},
+        {"id":"legend","start":577,"end":655,"roles":["direction","uncertainty","global"],"scopes":[],"requires":[]}
+      ],
+      "aliases": [{"value":"sunset ribbons","target":"Amber-Kites","start":104,"end":129}],
+      "queries": [
+        {"id":"dev_atlas.scoped","kind":"scoped","subject_types":["Amber-Kites"]},
+        {"id":"dev_atlas.qualifier","kind":"qualifier","subject_types":["sunset ribbons"]},
+        {"id":"dev_atlas.unknown","kind":"unknown","subject_types":["unlisted festival object"]}
+      ]
+    },
+    {
+      "source_id": "dev_quill",
+      "atoms": [
+        {"id":"file","start":168,"end":224,"roles":["rule","negation","condition"],"scopes":["Velvet Desks"],"requires":["tray"]},
+        {"id":"tray","start":224,"end":365,"roles":["exception","context_link","negation"],"scopes":["Velvet Desks"],"requires":["file"]},
+        {"id":"legend","start":394,"end":473,"roles":["direction","global"],"scopes":[],"requires":[]},
+        {"id":"conflict","start":505,"end":611,"roles":["uncertainty","contradiction","global"],"scopes":[],"requires":[]},
+        {"id":"brass1","start":643,"end":708,"roles":["rule","condition"],"scopes":["Brass Desks"],"requires":[]},
+        {"id":"brass2","start":708,"end":773,"roles":["rule","duplicate"],"scopes":["Brass Desks"],"requires":[]}
+      ],
+      "aliases": [{"value":"soft counters","target":"Velvet Desks","start":84,"end":168}],
+      "queries": [
+        {"id":"dev_quill.scoped","kind":"scoped","subject_types":["Velvet Desks"]},
+        {"id":"dev_quill.qualifier","kind":"qualifier","subject_types":["soft counters"]},
+        {"id":"dev_quill.unknown","kind":"unknown","subject_types":[]}
+      ]
+    },
+    {
+      "source_id": "dev_mosaic",
+      "atoms": [
+        {"id":"rotate","start":156,"end":206,"roles":["rule","negation","condition"],"scopes":["Azure Tiles"],"requires":["dotted"]},
+        {"id":"dotted","start":206,"end":279,"roles":["exception","condition"],"scopes":["Azure Tiles"],"requires":["rotate","link"]},
+        {"id":"legend","start":298,"end":356,"roles":["direction","global"],"scopes":[],"requires":[]},
+        {"id":"link","start":356,"end":419,"roles":["context_link"],"scopes":["Azure Tiles"],"requires":["dotted"]},
+        {"id":"uncertain","start":419,"end":488,"roles":["uncertainty","global"],"scopes":[],"requires":[]},
+        {"id":"ochre1","start":526,"end":579,"roles":["rule","condition"],"scopes":["Ochre Tiles"],"requires":[]},
+        {"id":"ochre2","start":579,"end":632,"roles":["rule","duplicate"],"scopes":["Ochre Tiles"],"requires":[]}
+      ],
+      "aliases": [{"value":"blue counters","target":"Azure Tiles","start":120,"end":156},{"value":"sky pieces","target":"Azure Tiles","start":120,"end":156}],
+      "queries": [
+        {"id":"dev_mosaic.scoped","kind":"scoped","subject_types":["Azure Tiles"]},
+        {"id":"dev_mosaic.qualifier","kind":"qualifier","subject_types":["sky pieces"]},
+        {"id":"dev_mosaic.unknown","kind":"unknown","subject_types":["uncertain tile family"]}
+      ]
+    },
+    {
+      "source_id": "dev_beacon",
+      "atoms": [
+        {"id":"turn","start":138,"end":190,"roles":["rule","negation","condition"],"scopes":["Paper-Beacons"],"requires":["silver"]},
+        {"id":"silver","start":190,"end":312,"roles":["exception","context_link"],"scopes":["Paper-Beacons"],"requires":["turn"]},
+        {"id":"legend","start":393,"end":442,"roles":["direction","global"],"scopes":[],"requires":[]},
+        {"id":"uncertain","start":442,"end":493,"roles":["uncertainty","global"],"scopes":[],"requires":[]},
+        {"id":"tin1","start":531,"end":567,"roles":["rule"],"scopes":["Tin-Moons"],"requires":[]},
+        {"id":"tin2","start":567,"end":603,"roles":["rule","duplicate"],"scopes":["Tin-Moons"],"requires":[]}
+      ],
+      "aliases": [{"value":"folded stars","target":"Paper-Beacons","start":115,"end":138}],
+      "queries": [
+        {"id":"dev_beacon.scoped","kind":"scoped","subject_types":["Paper-Beacons"]},
+        {"id":"dev_beacon.qualifier","kind":"qualifier","subject_types":["folded stars"]},
+        {"id":"dev_beacon.unknown","kind":"unknown","subject_types":["beacon with missing type"]}
+      ]
+    },
+    {
+      "source_id": "eval_prism",
+      "atoms": [
+        {"id":"open","start":164,"end":224,"roles":["rule","negation","condition"],"scopes":["Prism-Gates"],"requires":["permission","hush"]},
+        {"id":"permission","start":224,"end":292,"roles":["rule","condition","exception"],"scopes":["Prism-Gates"],"requires":["hush"]},
+        {"id":"hush","start":312,"end":395,"roles":["exception","context_link"],"scopes":["Prism-Gates"],"requires":["permission"]},
+        {"id":"legend","start":395,"end":460,"roles":["direction","global"],"scopes":[],"requires":[]},
+        {"id":"conflict","start":460,"end":541,"roles":["uncertainty","contradiction","global"],"scopes":[],"requires":[]},
+        {"id":"wheel1","start":587,"end":632,"roles":["rule","condition"],"scopes":["Copper Wheels"],"requires":[]},
+        {"id":"wheel2","start":632,"end":677,"roles":["rule","duplicate"],"scopes":["Copper Wheels"],"requires":[]}
+      ],
+      "aliases": [{"value":"rainbow doors","target":"Prism-Gates","start":126,"end":164},{"value":"split lights","target":"Prism-Gates","start":126,"end":164}],
+      "queries": [
+        {"id":"eval_prism.scoped","kind":"scoped","subject_types":["Prism-Gates"]},
+        {"id":"eval_prism.qualifier","kind":"qualifier","subject_types":["split lights"]},
+        {"id":"eval_prism.unknown","kind":"unknown","subject_types":["possibly a gate, type unconfirmed"]}
+      ]
+    },
+    {
+      "source_id": "eval_river",
+      "atoms": [
+        {"id":"dispatch","start":125,"end":193,"roles":["rule","negation","condition"],"scopes":["Foam Barges"],"requires":["dry","sleeve"]},
+        {"id":"dry","start":193,"end":258,"roles":["rule","condition"],"scopes":["Foam Barges"],"requires":["sleeve"]},
+        {"id":"sleeve","start":258,"end":353,"roles":["exception","context_link"],"scopes":["Foam Barges"],"requires":["dry"]},
+        {"id":"legend","start":353,"end":425,"roles":["direction","global"],"scopes":[],"requires":[]},
+        {"id":"conflict","start":425,"end":526,"roles":["uncertainty","contradiction","global"],"scopes":[],"requires":[]},
+        {"id":"bell","start":526,"end":586,"roles":["rule","global"],"scopes":[],"requires":[]},
+        {"id":"pebble1","start":664,"end":720,"roles":["rule","condition"],"scopes":["Pebble Counters"],"requires":[]},
+        {"id":"pebble2","start":720,"end":776,"roles":["rule","duplicate"],"scopes":["Pebble Counters"],"requires":[]}
+      ],
+      "aliases": [{"value":"cloud ferries","target":"Foam Barges","start":42,"end":125},{"value":"stone tabs","target":"Pebble Counters","start":643,"end":664}],
+      "queries": [
+        {"id":"eval_river.scoped","kind":"scoped","subject_types":["Foam Barges"]},
+        {"id":"eval_river.qualifier","kind":"qualifier","subject_types":["cloud ferries"]},
+        {"id":"eval_river.unknown","kind":"unknown","subject_types":["parcel toy of unknown class"]}
+      ]
+    },
+    {
+      "source_id": "eval_orchard",
+      "atoms": [
+        {"id":"fold","start":191,"end":242,"roles":["rule","negation","condition"],"scopes":["Plum-Arcs"],"requires":["unknown","silver"]},
+        {"id":"unknown","start":242,"end":306,"roles":["uncertainty","condition"],"scopes":["Plum-Arcs"],"requires":[]},
+        {"id":"silver","start":327,"end":457,"roles":["exception","context_link"],"scopes":["Plum-Arcs"],"requires":["fold"]},
+        {"id":"legend","start":470,"end":524,"roles":["direction","global"],"scopes":[],"requires":[]},
+        {"id":"conflict","start":524,"end":614,"roles":["uncertainty","contradiction","global"],"scopes":[],"requires":[]},
+        {"id":"lemon1","start":663,"end":707,"roles":["rule"],"scopes":["Lemon Cubes"],"requires":[]},
+        {"id":"lemon2","start":707,"end":751,"roles":["rule","duplicate"],"scopes":["Lemon Cubes"],"requires":[]}
+      ],
+      "aliases": [{"value":"purple bridges","target":"Plum-Arcs","start":143,"end":168}],
+      "queries": [
+        {"id":"eval_orchard.scoped","kind":"scoped","subject_types":["Plum-Arcs"]},
+        {"id":"eval_orchard.qualifier","kind":"qualifier","subject_types":["purple bridges"]},
+        {"id":"eval_orchard.unknown","kind":"unknown","subject_types":[]}
+      ]
+    },
+    {
+      "source_id": "eval_loom",
+      "atoms": [
+        {"id":"send","start":156,"end":216,"roles":["rule","negation","condition"],"scopes":["Silk Shuttles"],"requires":["permission","silent"]},
+        {"id":"permission","start":216,"end":283,"roles":["rule","condition"],"scopes":["Silk Shuttles"],"requires":["silent"]},
+        {"id":"silent","start":318,"end":472,"roles":["exception","context_link","negation"],"scopes":["Silk Shuttles"],"requires":["permission"]},
+        {"id":"legend","start":472,"end":542,"roles":["direction","global"],"scopes":[],"requires":[]},
+        {"id":"conflict","start":542,"end":632,"roles":["uncertainty","contradiction","global"],"scopes":[],"requires":[]},
+        {"id":"cork1","start":682,"end":729,"roles":["rule"],"scopes":["Cork Rings"],"requires":[]},
+        {"id":"cork2","start":729,"end":776,"roles":["rule","duplicate"],"scopes":["Cork Rings"],"requires":[]}
+      ],
+      "aliases": [{"value":"smooth runners","target":"Silk Shuttles","start":131,"end":156}],
+      "queries": [
+        {"id":"eval_loom.scoped","kind":"scoped","subject_types":["Silk Shuttles"]},
+        {"id":"eval_loom.qualifier","kind":"qualifier","subject_types":["smooth runners"]},
+        {"id":"eval_loom.unknown","kind":"unknown","subject_types":["unresolved routing object"]}
+      ]
+    },
+    {
+      "source_id": "original_domain",
+      "atoms": [{"id":"whole","start":0,"end":4326,"roles":["original_smoke","global"],"scopes":[],"requires":[]}],
+      "aliases": [],
+      "queries": []
+    }
+  ],
+  "semantic_controls": [
+    {"id":"supported","expected":"pass"},
+    {"id":"missing_negation","expected":"fail"},
+    {"id":"detached_exception","expected":"fail"},
+    {"id":"reversed_direction","expected":"fail"},
+    {"id":"unsupported_alias","expected":"fail"},
+    {"id":"unresolved","expected":"needs_review"}
+  ],
+  "boundary_cases": [
+    {"id":"retired","kind":"lifecycle","expected":"excluded"},
+    {"id":"future","kind":"lifecycle","expected":"excluded"},
+    {"id":"expired_at_cutoff","kind":"lifecycle","expected":"excluded"},
+    {"id":"active_from_cutoff","kind":"lifecycle","expected":"included"},
+    {"id":"replaced","kind":"lifecycle","expected":"excluded"},
+    {"id":"expired_successor_no_resurrection","kind":"lifecycle","expected":"excluded"},
+    {"id":"rejected_suggestion","kind":"isolation","expected":"excluded"},
+    {"id":"evaluator_answer","kind":"isolation","expected":"excluded"},
+    {"id":"unauthorized_finding","kind":"isolation","expected":"excluded"},
+    {"id":"broken_context","kind":"failure","code":"invalid_dependency"},
+    {"id":"malformed_unit","kind":"failure","code":"invalid_source_reference"},
+    {"id":"unsupported_version","kind":"failure","code":"unsupported_contract"},
+    {"id":"wrong_row_binding","kind":"failure","code":"input_binding_mismatch"},
+    {"id":"overflow","kind":"failure","code":"result_too_large"},
+    {"id":"corrupt_utf8","kind":"failure","code":"invalid_source"},
+    {"id":"unsupported_format","kind":"failure","code":"invalid_source"}
+  ]
+}

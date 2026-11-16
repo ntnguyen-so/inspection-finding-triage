@@ -1,0 +1,61 @@
+{
+  "version": "knowledge-extraction-reference-v1",
+  "status": "frozen_component_reference_not_system_acceptance",
+  "freeze_order": ["unitizer_and_C0_rules", "source_families_and_partitions", "source_bytes_and_atoms", "hash_sorted_repeat_selection", "candidate_outputs_not_yet_observed"],
+  "authority": "docs\\07_KNOWLEDGE_DESIGN_DECISION.md",
+  "triage_reference_version": "1.2",
+  "scenario_support": ["B01", "B02", "B03", "A04", "C04", "D04", "X01", "X02"],
+  "scenario_limits": "B03 is the actual maintenance/edit path, not isolation. Isolation supports B01/D04 and component gates. B02 requires the separate downstream change experiment.",
+  "exposure": "AI-authored and AI-exposed synthetic reference, not independently blind or human certified. Evaluation source labels must not enter production or development tuning.",
+  "baseline": {
+    "version": "c0-line-heading-literal-v1",
+    "unitizer": "Validate UTF-8 strictly; bytes.splitlines(keepends=True), without decoding/re-encoding or stripping BOM/CRLF. Consecutive IDs u0001, u0002, ... in byte order. Empty input is rejected.",
+    "groups": "Preamble then Markdown ATX heading sections; headings inside fenced code are ordinary text. Opening fence is at most three spaces followed by at least three backticks or tildes; matching closing fence uses the same character with at least the opening length. A heading begins a group and belongs to that group. No source-specific branches.",
+    "metadata": "Outside fences only, an entire stripped line Scope: <literal> or Equipment: <literal> declares one literal scope for its heading group. Aliases: <literal>[; <literal>...] declares source-literal aliases for the single scope in that group. Leading UTF-8 BOM is ignored only for grammar recognition, never removed from bytes. Empty, conflicting or ambiguous declarations stay general/unresolved. No inferred synonyms, prose scopes or links; other groups are general.",
+    "matching": "Unicode casefold exact type/alias match; lexical maximal Unicode letter/digit tokens may add only. Required context closes bidirectionally. Unknown subject, unreviewed scope or no scoped match broadens to all eligible. Shared selector for C0/C1."
+  },
+  "thresholds": {
+    "required_atom_recall": 1.0,
+    "each_scoped_irrelevant_byte_reduction": 0.2,
+    "c1_relative_correction_reduction": 0.25,
+    "c1_absolute_correction_reduction": 4,
+    "minimum_c0_corrections": 8
+  },
+  "effort_taxonomy": ["scope_add", "scope_remove", "alias_add", "alias_remove", "context_add", "context_remove", "group_change"],
+  "experiment": {
+    "nominal_slots": 13,
+    "maximum_application_attempts": 26,
+    "maximum_attempts_per_slot": 2,
+    "additional_repeats_per_chosen_source": 2,
+    "repeat_selection": "First two evaluation source IDs after sorting by (sha256, source_id), frozen before candidate outputs.",
+    "retry_allowed": ["transport_timeout", "transport_unavailable", "malformed_json", "structural_validation"],
+    "semantic_retry_allowed": false,
+    "copilot_strict_hidden_attempt_accounting": "unknown_not_qualified",
+    "independent_human_review": "unexecuted",
+    "paid_cost_approval": "pending_parent_experiment_freeze"
+  },
+  "slot_ids": ["dev_atlas.primary","dev_quill.primary","dev_mosaic.primary","dev_beacon.primary","eval_prism.primary","eval_river.primary","eval_orchard.primary","eval_loom.primary","original_domain.primary","eval_orchard.repeat1","eval_orchard.repeat2","eval_prism.repeat1","eval_prism.repeat2"],
+  "sources": [
+    {"source_id":"dev_atlas","path":"eval\\data\\knowledge_extraction\\dev_atlas.md","partition":"development","family":"festival-cue-manual","lineage":"independently authored cue-card manual, no mutation ancestry","sha256":"35a95953d27cf67b4385a2c322fe887bb7b928876c2a0cfa5be642c827383818","counts":{"conditions":3,"negations":1,"scopes":2,"aliases":1,"exceptions":1,"context_links":1}},
+    {"source_id":"dev_quill","path":"eval\\data\\knowledge_extraction\\dev_quill.txt","partition":"development","family":"archive-interview","lineage":"independently authored question-and-answer transcript, no mutation ancestry","sha256":"3a004b8eccc41b1be4bceed97313c7bd709513aa3ea4aa73a08000d7b2016094","counts":{"conditions":2,"negations":2,"scopes":2,"aliases":1,"exceptions":1,"context_links":1}},
+    {"source_id":"dev_mosaic","path":"eval\\data\\knowledge_extraction\\dev_mosaic.md","partition":"development","family":"tile-charter-and-legend","lineage":"independently authored board charter with dispersed legend, no mutation ancestry","sha256":"0852927bd7abe608ce450eb87d6e21a23137fa6394e1e5ea36140d84002c338f","counts":{"conditions":3,"negations":1,"scopes":2,"aliases":2,"exceptions":1,"context_links":1}},
+    {"source_id":"dev_beacon","path":"eval\\data\\knowledge_extraction\\dev_beacon.md","partition":"development","family":"toy-station-procedure","lineage":"independently authored numbered/nested procedure with fenced counterexample, no mutation ancestry","sha256":"58f29e3fd9c927c30c9cbc65a3c5c01961fbce9929c16118bcef9bcf395e088f","counts":{"conditions":1,"negations":1,"scopes":2,"aliases":1,"exceptions":1,"context_links":1}},
+    {"source_id":"eval_prism","path":"eval\\data\\knowledge_extraction\\eval_prism.md","partition":"evaluation","family":"lantern-catalogue-footnote","lineage":"independently authored catalogue with footnote override and disputed card, not a development rewrite","sha256":"72765663cf1ff3ff2fb8cd92bbae6051dc4f10493b1df2dfe0452865068c32c1","counts":{"conditions":3,"negations":1,"scopes":2,"aliases":2,"exceptions":2,"context_links":1}},
+    {"source_id":"eval_river","path":"eval\\data\\knowledge_extraction\\eval_river.txt","partition":"evaluation","family":"river-post-letter","lineage":"independently authored correspondence/postscript and unrelated annex, not a development rewrite","sha256":"cb87dd0ce116a2813451daa873830d5b53269ac41742330b6d4baee09b61663e","counts":{"conditions":3,"negations":1,"scopes":2,"aliases":2,"exceptions":1,"context_links":1}},
+    {"source_id":"eval_orchard","path":"eval\\data\\knowledge_extraction\\eval_orchard.md","partition":"evaluation","family":"cardboard-fruit-decision-tree","lineage":"independently authored branching decision tree with incompatible token descriptions, not a development rewrite","sha256":"412ea94c07b410bb43a46c04e98de2acfcaca0d5641e39f9f6f8e035f893d66c","counts":{"conditions":2,"negations":1,"scopes":2,"aliases":1,"exceptions":1,"context_links":1}},
+    {"source_id":"eval_loom","path":"eval\\data\\knowledge_extraction\\eval_loom.md","partition":"evaluation","family":"ribbon-sport-timed-log","lineage":"independently authored timestamped chronological log with late exception, not a development rewrite","sha256":"7c10850f21de579945f1daa3d62353b9fba505a9a78c18ea04049b6fa21c3cfc","counts":{"conditions":2,"negations":2,"scopes":2,"aliases":1,"exceptions":1,"context_links":1}},
+    {"source_id":"original_domain","path":"docs\\candidate-pack\\candidate-pack\\reference\\domain_knowledge.md","partition":"shared_smoke","family":"supplied-domain","lineage":"unchanged supplied source; already exposed; not synthetic or independent gold","sha256":"5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066","counts":null}
+  ],
+  "reference": "eval\\data\\knowledge_extraction\\reference.json",
+  "reference_sha256": "4d65b2c719af9df044fd27e907cbf682e636c95d757eca3720a342acf8e25c70",
+  "nominal_query_counts": {"development":12,"evaluation":12,"total":24,"efficiency":8,"evaluation_unknown":4,"original_smoke":0,"boundary_cases":0},
+  "efficiency_case_ids": ["eval_prism.scoped","eval_prism.qualifier","eval_river.scoped","eval_river.qualifier","eval_orchard.scoped","eval_orchard.qualifier","eval_loom.scoped","eval_loom.qualifier"],
+  "unknown_case_ids": ["eval_prism.unknown","eval_river.unknown","eval_orchard.unknown","eval_loom.unknown"],
+  "repeat_source_ids": ["eval_orchard","eval_prism"],
+  "review_schedule": [
+    {"source_id":"eval_prism","C0":"reviewer_a","C1":"reviewer_b","order":["C0","C1"]},
+    {"source_id":"eval_river","C0":"reviewer_b","C1":"reviewer_a","order":["C1","C0"]},
+    {"source_id":"eval_orchard","C0":"reviewer_a","C1":"reviewer_b","order":["C1","C0"]},
+    {"source_id":"eval_loom","C0":"reviewer_b","C1":"reviewer_a","order":["C0","C1"]}
+  ]
+}
