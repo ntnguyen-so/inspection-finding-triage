@@ -152,7 +152,8 @@ Policy-v2 integration deliberately refreshes execution pins separately in
 `eval\results\triage\native-owner-activation-v2`; never silently reuse stale pins.
 `knowledge\source-first` stores exact source blobs, immutable revisions and the
 editable schema-3 candidate; published releases are separate. The old
-`knowledge\drafts\working.json` is unused legacy, not the current knowledge base.
+schema-1/2 draft and its runtime were removed after native source-first migration.
+Historical observations remain under `eval\results`; Git retains prior bytes.
 
 Import preserves source bytes and creates pending items, never an approved
 rubric. The editor supports source edits, evidence-backed metadata, context links,
@@ -162,7 +163,7 @@ There is no automatic paid extraction in the editor: unqualified LLM extraction
 is limited to explicitly authorized isolated evaluation.
 
 ```powershell
-.\.venv\Scripts\python.exe -B -m unittest tests.test_source_knowledge tests.test_source_context tests.test_source_cli tests.test_source_editor
+.\.venv\Scripts\python.exe -B -m unittest tests.test_source_knowledge tests.test_source_context tests.test_source_contracts tests.test_source_cli tests.test_source_editor
 .\.venv\Scripts\python.exe -B -m unittest discover -s eval\tests -p "test_knowledge*.py"
 .\.venv\Scripts\python.exe -B -m unittest eval.tests.test_run_knowledge
 .\.venv\Scripts\python.exe -B -m eval.run_knowledge --output eval\results\knowledge\extraction\<new-run>
@@ -218,10 +219,8 @@ Document 06 section 11 distinguishes retained legacy evidence, including the
 four-send real Copilot knowledge probe:
 both synthetic positives were unassessable, so knowledge influence remains
 failed/inconclusive; mechanically valid controls are not semantic acceptance.
-Legacy schema-1/2 commands and forms are available only through
-`python -m triage_knowledge.legacy_cli` and `triage_knowledge\legacy_editor.py`
-for recorded replay. The legacy exporter re-appends archived domain text; do not
-use it to claim active-only behavior of the source-first path.
+Schema-1/2 commands, forms, store and exporter are no longer shipped. Historical
+artifacts remain evidence only and must not be used as an active knowledge path.
 
 ## Triage workflow (eval-driven, bottom-up)
 
@@ -287,8 +286,10 @@ evidence of an executed live run. There is no promoted source-first release in
 this checkout. Native B02 now has an explicit `isolated_probe` consumer contract
 and `tools.probe_native_knowledge` prepare/execute driver; software checks do not
 establish actual knowledge influence. It uses honest `evaluation_input` and
-workflow-owned policy overlays, never ordinary/final generation. Legacy exports remain usable only with `--context-export <path>
---legacy-replay`, for disclosed replay, not native acceptance.
+workflow-owned policy overlays, never ordinary/final generation. Legacy replay
+accepts only a previously materialized or archived `triage-export-v0` file via
+`--context-export <path> --legacy-replay`; this checkout no longer produces new
+v0 exports, and replay does not establish native acceptance.
 
 `run-config.json` contains `model` (approved Azure deployment), `knowledge_version`,
 timezone-aware `assessment_time`, `phase_attempt_budget`, and `attempt_ledger`
@@ -391,8 +392,8 @@ observations and both ledgers remain intact; do not reset them to evade ceilings
 
 These are development-informed experimental integration results, not a calibrated
 semantic pass or frozen test. Document 05 records usage and review limitations.
-`python -B -m tools.probe_triage --help` describes the bounded collector and its
-explicit same-ledger repeat option.
+The retired `tools.probe_triage` collector produced those historical observations;
+its spent ledgers and captured artifacts remain under `eval\results`.
 `eval\results\triage\postrun-provenance.json` distinguishes later parallel knowledge
 edits after the earlier failed smoke. The corrective pass has its own source
 snapshots; `copilot-correction-3\verification.json` binds output/receipt checks.

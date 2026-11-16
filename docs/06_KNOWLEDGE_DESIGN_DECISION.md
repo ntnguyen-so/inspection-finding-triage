@@ -5,8 +5,9 @@
 This is the **single current design decision** for the replacement knowledge
 module. It consolidates the owner's source-fidelity, editing, active-knowledge,
 relevant-retrieval and evaluation requirements. The obsolete pointer has been
-removed; this file is the renamed decision. The source-first implementation is separate
-from explicitly named legacy replay surfaces. Implementation does not imply
+removed; this file is the renamed decision. The shipped knowledge package now
+contains only the source-first implementation; schema-1/2 runtime surfaces were
+removed after native migration. Implementation does not imply
 evaluation success, content approval or workflow activation.
 Root `DESIGN.md` remains reserved for the project owner.
 
@@ -133,10 +134,12 @@ the renewed phase's initial 28-new-send allowance.
 The integration deliverable includes an independently validating native consumer,
 storage/release discovery and a source-only initial **pending** draft. Neither
 draft creation nor isolated fixture publication is real content approval.
-`knowledge\drafts\working.json` is legacy, ignored and preserved for audit; the
-new default is `knowledge\source-first` (schema 3), with immutable source blobs,
-revisions and releases. An actual engineer still reviews/publishes the source and
-the workflow owner explicitly pins a compatible release and assessment policy.
+The obsolete `knowledge\drafts\working.json` and schema-1/2 runtime were removed
+after native migration. Historical hashes and observations remain in Git and
+`eval\results`. The only active store is `knowledge\source-first` (schema 3), with
+immutable source blobs, revisions and releases. An actual engineer still
+reviews/publishes the source and the workflow owner explicitly pins a compatible
+release and assessment policy.
 
 ### Post-v3 correction: explicit continuation approval
 
@@ -779,8 +782,9 @@ The evaluator/fixtures precede runtime in Git (`4cdd46e`); controlled grading/
 exposure records are in `915425f`, and source-first implementation is in
 `cab1b24`. The default CLI and editor now use `source_cli`/`source_editor`.
 `source`, `source_store`, `retrieval` and `source_context` implement the boundaries
-above. Explicit `legacy_cli`/`legacy_editor` preserve earlier replay behavior
-byte-for-byte; the old context/exporter remains legacy, not the new retrieval path.
+above. The schema-1/2 CLI, editor, store and context/exporter were retained during
+the initial migration for bounded replay, then removed once native source-first
+integration and regression coverage were established.
 
 `source-first-verification-1\software-tests.json` records **158 passing committed
 test-module cases**, including source-first extraction/lifecycle/retrieval,
@@ -791,9 +795,10 @@ these commits. The new form regression records explicit review/publication,
 retirement with fresh approval, an unchanged old pin and no usable retired
 knowledge. These are software fixtures, not a human editorial exercise.
 
-`source-first-verification-1\preservation.json` confirms unchanged source domain,
-unapproved legacy draft, four retained legacy modules, byte-identical renamed
-legacy entrypoints and no default source-first store/promotion. Frozen triage
+`source-first-verification-1\preservation.json` confirms that, at that historical
+checkpoint, the source domain and unapproved legacy draft were unchanged and four
+legacy modules were retained. Those modules and the draft were removed later;
+the observation remains unchanged. Frozen triage
 reference validation remains separate from acceptance. Native bundle-2 assembly
 checks exact active text and registry comments but is not an actual provider
 handoff: the parallel workflow's current consumer remains legacy v0. Coordinated
@@ -896,7 +901,8 @@ stay bound to their actual implementations.
 The real default schema-3 store now contains eight pending source-exact items
 from the supplied 4326-byte domain, with no reviewed items or published release.
 No engineer review or deployment is inferred. `status` exposes these distinctions;
-the legacy numeric-band draft remains unused and unchanged.
+the legacy numeric-band draft remained unused and unchanged until its later
+post-migration removal.
 
 The native independently regenerating consumer is implemented. A parallel
 workflow adapter now uses bundle 2 in the shared worktree, superseding the
@@ -1085,7 +1091,8 @@ Precision/recall remain diagnostics. No complex edit-distance platform, extra pa
 judge or further review workflow is introduced.
 
 Consolidation removes obsolete schema-1/2/rubric-first design prescriptions from
-the superseded design; legacy runtime and historical observations remain unchanged.
+the superseded design. The legacy runtime was subsequently removed; historical
+observations remain unchanged.
 This decision guides the source-first implementation; neither the design nor
 review agreement proves the component or downstream system gates have passed.
 
@@ -1214,3 +1221,15 @@ the cleanup was accepted to remove a latent maintenance trap. Focused tests cove
 one-sided link exclusion, chronology, row-order stability, history tampering and
 target request delivery. These AI reviews are not domain certification or proof
 that a model uses the delivered history correctly.
+
+The post-migration schema-1/2 cleanup received a bounded implementation review
+and sequential cross-review. Both found no blocking source-first or triage
+regression. Accepted findings preserved active `TableSource` and strict-JSON
+contract tests, restored Unicode coverage, converted stale collector instructions
+to historical wording, and restricted v0 replay documentation to previously
+materialized or archived exports. Stale generated build copies were removed and
+an isolated wheel check confirmed that no legacy knowledge module is packaged.
+The existing triage v0 consumer remains only for explicit archived replay; the
+knowledge package no longer ships a v0 producer, schema-1/2 store, CLI or editor.
+Unrelated concurrent triage prompt/evidence changes were excluded from this
+cleanup review and disposition.

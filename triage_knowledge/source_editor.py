@@ -31,7 +31,7 @@ def main() -> None:
     st.info("Code extraction is the default. Copilot extraction is experimental and unqualified; "
             "there is no automatic paid extraction or scoring in this editor.")
     with st.sidebar.expander("Storage and saved releases"):
-        st.caption("Legacy knowledge\\drafts\\working.json is not read or migrated.")
+        st.caption("Only the configured source-first store is read or modified.")
         st.code(str(store.root.resolve()), language=None)
         try:
             releases = store.list_releases()

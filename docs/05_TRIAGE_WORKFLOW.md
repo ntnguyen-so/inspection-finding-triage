@@ -228,8 +228,10 @@ purpose/overlay rather than relabelling F-9001 or injecting evaluation policy
 into production knowledge. B02 uses only this explicit isolated path and its
 own eight-send budget; software coverage is not actual behavioral evidence.
 The old four-send failed legacy probe remains retained, not new-contract evidence.
-Legacy `--context-export` is available only with explicit `--legacy-replay`;
-it never activates native knowledge or qualifies new-contract acceptance.
+Legacy `--context-export` is available only with explicit `--legacy-replay` and
+a previously materialized or archived `triage-export-v0` file. No current module
+produces new v0 exports; replay never activates native knowledge or qualifies
+new-contract acceptance.
 
 Production does not inspect partition IDs/cards. The evaluation driver selects
 development rows before calling it; shared registry/domain are legitimate, test
@@ -771,14 +773,13 @@ from the parallel session with its own `WorkflowExport.from_bundle()` adapter.
 Do not invent a competing builder, call an unagreed positional API, or claim B03.
 The temporary `ContextExport.read_export()` seam consumes an already materialized
 artifact only. Its deliberately distinct `triage-export-v0` contract is **not**
-the version-1 headless knowledge API. A focused integration test now exercises
-the actual module-owned release/snapshot/TableSource/builder/export path using
-unchanged supplied domain notes and synthetic finding/inference dependencies.
-It preserves the domain bytes and pins the same delivered knowledge over a retry.
-Test-local review metadata is explicitly synthetic, not an actual human approval
-or production release. The producer owns the transformation; workflow has no
-replacement builder. Replacing the bridge with the direct version-1 API remains
-a separate jointly confirmed integration change.
+the version-1 headless knowledge API. Before schema-1/2 removal, a focused
+integration test exercised the module-owned release/snapshot/TableSource/builder/
+export path using unchanged supplied domain notes and synthetic finding/inference
+dependencies. It preserved domain bytes and pinned the same delivered knowledge
+over a retry; `offline-implementation-7` retains that historical evidence. The
+producer and test were retired after native migration. Test-local review metadata
+was explicitly synthetic, not actual human approval or a production release.
 
 ### Provisional export, not a knowledge release implementation
 
@@ -950,7 +951,8 @@ matching actual system/user event hashes, zero observed tools, completed session
 deletion and no boundary/cleanup errors. Missing/ambiguous evidence stops the run.
 This proves only the exposed runtime boundary, never hidden network-attempt bounds.
 
-Before any model send, `tools.probe_triage` records the unchanged reference check,
+For the completed historical experiment, the now-retired `tools.probe_triage`
+collector recorded the unchanged reference check,
 selected source hashes, explicit model/settings, code/Git state, command, knowledge
 release and phase ceiling. Selection is fixed to F-1005, F-1010 and F-1012: three
 singleton development groups, avoiding partial bound groups. Only those finding
@@ -1014,12 +1016,12 @@ explicit experiment accounting labels.
 
 The first live-command invocation (`copilot-integration-1`) stopped during offline
 preparation, before creating any Copilot send or phase ledger. The concurrently
-developed knowledge adapter now requires original TableSource values and cutoff
-to verify its export, not just snapshot/bundle. Owned callers now supply those
-original inputs; a real preparation/consumer regression checks the contract
-without calling a model. The failed observation remains unchanged. This consumed
-zero generation sends; the subsequent invocation retains the same six-send
-authorization, not a reset of spent budget.
+developed knowledge adapter required original TableSource values and cutoff to
+verify its export, not just snapshot/bundle. Owned callers supplied those original
+inputs; the retired collector's preparation/consumer regression checked the
+contract without calling a model. The failed observation remains unchanged. This
+consumed zero generation sends; the subsequent invocation retained the same
+six-send authorization, not a reset of spent budget.
 
 The first actual-model observation (`copilot-integration-2`) used two application
 sends on F-1005, then stopped without output. Both calls passed the exposed
@@ -1037,12 +1039,13 @@ message and its own untrusted rejected draft, not an expected answer. Evidence
 is still checked only against original context. This is a disclosed
 development-output-informed interface fix, not an untouched baseline.
 
-One diagnostic repeat uses the same gpt-6-luna model, source bytes, release,
-settings and **original spent phase ledger** (two of six sends already reserved).
-`--repeat-from` validates the original config against captured config, source
-hashes and unchanged ceiling; it builds a fixed CLI command rather than executing
-an arbitrary stored command. The new observation has at most four remaining
-sends, never a new six-send budget. Focused tests cover these constraints.
+One historical diagnostic repeat used the same gpt-6-luna model, source bytes,
+release, settings and **original spent phase ledger** (two of six sends already
+reserved). The retired collector's `--repeat-from` mode validated the original
+config against captured config, source hashes and unchanged ceiling; it built a
+fixed CLI command rather than executing an arbitrary stored command. The new
+observation had at most four remaining sends, never a new six-send budget. The
+collector and its focused tests were removed after the phase closed.
 
 ### Actual diagnostic outcome and stopping decision
 
@@ -1173,12 +1176,11 @@ no redundant language-behavior tests were added. Both reviews are bounded AI
 engineering feedback, not independent domain certification; billing is unexposed.
 
 The initial corrective observation is `copilot-correction-1`, explicitly launched
-with `--phase-budget 12`. This creates the sole corrective-phase ledger; any
-further observation must use `--repeat-from copilot-correction-1` and a concrete
-failure/fix reason, without overriding its budget. The prior closed phase remains
-at four sends. The nominal successful batch needs three sends, at most six with
-per-target recovery; twelve permits at most two worst-case complete batches, not
-unbounded sampling. Stop once the declared integration smoke passes.
+with `--phase-budget 12`. This created the sole corrective-phase ledger; the phase
+is now closed and the collector was retired, so no further observation is
+authorized. The prior closed phase remains at four sends. The nominal successful
+batch needed three sends, at most six with per-target recovery; twelve permitted
+at most two worst-case complete batches, not unbounded sampling.
 
 The first corrective observation validated F-1005 and F-1010 with code-composed
 actions, then stopped on an explicit F-1012 `unassessable` response (three sends,

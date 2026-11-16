@@ -27,21 +27,21 @@ def sha256(path: Path) -> str:
 def fingerprints() -> dict:
     files = [ROOT / "pyproject.toml", ROOT / "README.md", ROOT / "AGENTS.md",
              ROOT / "docs" / "05_TRIAGE_WORKFLOW.md", Path(__file__),
-             ROOT / "tools" / "probe_triage.py", ROOT / "tools" / "integrate_triage.py",
+             ROOT / "tools" / "integrate_triage.py",
              ROOT / "tools" / "probe_native_knowledge.py"]
     for package in ("triage", "llm_inference", "triage_knowledge"):
         files.extend(sorted((ROOT / package).glob("*.py")))
     files.extend(ROOT / "tests" / name for name in (
         "__init__.py", "test_triage.py", "test_copilot_triage.py", "triage_support.py",
-        "test_inference.py", "test_azure.py", "test_source_workflow.py", "test_knowledge_workflow.py",
-        "test_source_context.py", "test_source_knowledge.py", "test_integration_triage.py",
+        "test_inference.py", "test_azure.py", "test_source_workflow.py",
+        "test_source_context.py", "test_source_contracts.py", "test_source_knowledge.py",
+        "test_integration_triage.py",
         "test_native_knowledge_probe.py", "test_probe_knowledge_context.py",
     ))
     files.extend(sorted((ROOT / "eval").glob("*.py")))
     files.extend(sorted((ROOT / "eval" / "tests").glob("*.py")))
     files.extend(sorted((ROOT / "eval" / "spec").glob("*.json")))
-    files.extend([ROOT / "docs" / "06_KNOWLEDGE_DESIGN_DECISION.md",
-                  ROOT / "tests" / "knowledge_support.py"])
+    files.append(ROOT / "docs" / "06_KNOWLEDGE_DESIGN_DECISION.md")
     files.extend([ROOT / "eval" / "spec" / "split.json", ROOT / "eval" / "spec" / "acceptance.json"])
     return {str(path.relative_to(ROOT)): sha256(path) for path in files}
 
@@ -64,7 +64,7 @@ def main(argv=None):
     log = io.StringIO()
     suite = unittest.defaultTestLoader.loadTestsFromNames([
         "tests.test_triage", "tests.test_copilot_triage", "tests.test_source_workflow",
-        "tests.test_knowledge_workflow", "tests.test_integration_triage", "tests.test_native_knowledge_probe",
+        "tests.test_integration_triage", "tests.test_native_knowledge_probe",
     ])
     try:
         result = unittest.TextTestRunner(stream=log, verbosity=2).run(suite)
@@ -75,7 +75,7 @@ def main(argv=None):
     for arguments in (
         ["-B", "-m", "unittest", "tests.test_inference", "tests.test_azure", "-q"],
         ["-B", "-m", "unittest", "tests.test_source_context", "tests.test_source_knowledge",
-         "tests.test_probe_knowledge_context", "-q"],
+         "tests.test_source_contracts", "tests.test_probe_knowledge_context", "-q"],
         ["-B", "-m", "unittest", "discover", "-s", "eval\\tests", "-p", "test_*.py", "-q"],
         ["-B", "-m", "eval.validate"],
         ["-B", "-m", "eval.assess", "--partition", "development", "--checklist"],

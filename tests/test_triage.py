@@ -998,45 +998,5 @@ class WorkflowTests(Artifacts, unittest.TestCase):
                 (evidence / "process.json").write_text(json.dumps({"exit_code": result.returncode,
                                                                   "provider": "synthetic-no-network"}))
 
-    def test_real_knowledge_release_and_export_reach_fake_provider_without_local_builder(self):
-        from triage_knowledge import KnowledgeStore, Review, TableSource, build_context, starter_candidate
-        from triage_knowledge.workflow_export import WorkflowExport
-
-        domain = (Path(__file__).resolve().parents[1] / "docs" / "candidate-pack" /
-                  "candidate-pack" / "reference" / "domain_knowledge.md")
-        locator = str(domain.relative_to(Path(__file__).resolve().parents[1]))
-        original_domain = domain.read_bytes()
-        store = KnowledgeStore(self.root / "synthetic-review-store", domain,
-                               domain_locator=locator)
-        candidate = starter_candidate(original_domain, locator)
-        candidate_hash = store.save_draft(candidate, expected_digest=None)
-        version = store.publish(Review(
-            candidate_hash, "synthetic-test-author", "synthetic-test-reviewer",
-            "Test-only local declaration; not human approval or a production release.", CUTOFF,
-        ), published_at=CUTOFF)
-        snapshot = store.resolve_knowledge(version)
-        findings = TableSource.from_bytes((self.root / "findings.csv").read_bytes(),
-                                         source_id="findings", kind="finding_input")
-        registry = TableSource.from_bytes((self.root / "registry.csv").read_bytes(),
-                                         source_id="registry", kind="registry_input")
-        bundle = build_context(findings, registry, snapshot, CUTOFF)
-        export = WorkflowExport.from_bundle(snapshot, bundle, findings, registry, CUTOFF)
-        path = self.root / "real-module-export.json"
-        path.write_bytes(export.encoded)
-        self.source = ExportedContext(path)
-        provider = FakeProvider(["bad", assessment()])
-        config = replace(self.config(max_context_bytes=128_000), knowledge_version=version)
-        self.run_one(provider, config=config)
-        first = strict_json(provider.requests[0].user)["context"]
-        second = strict_json(provider.requests[1].user)["context"]
-        self.assertEqual(first, second)
-        self.assertEqual(version, first["knowledge_version"])
-        self.assertEqual(original_domain.decode("utf-8"), first["payload"]["knowledge"]["domain:source"])
-        self.assertIn("knowledge:managed", first["payload"]["knowledge"])
-        self.assertEqual(["F-8001"], first["finding_ids"])
-        self.assertEqual(original_domain, domain.read_bytes())
-        validate_output(strict_json(self.output.read_text()), self.inputs.data["findings"])
-
-
 if __name__ == "__main__":
     unittest.main()

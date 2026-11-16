@@ -1,4 +1,4 @@
-"""Source-first API; schema-1/2 exports are lazy, legacy-replay compatibility."""
+"""Public source-first knowledge API."""
 from importlib import import_module
 
 _EXPORTS = {
@@ -15,19 +15,9 @@ _EXPORTS = {
     "validate_source_context": ("source_context", "validate_source_context"),
 }
 for _name in (
-    "ContextBundle", "ContextError", "EvaluationOverlay", "KnowledgeError",
-    "KnowledgeSnapshot", "Review", "Rubric", "RubricBand", "TableSource",
+    "KnowledgeError", "TableSource",
 ):
     _EXPORTS[_name] = ("contracts", _name)
-for _name in (
-    "KnowledgeStore", "active_guidance", "candidate_diff", "candidate_digest",
-    "effective_guidance", "starter_candidate", "validate_candidate",
-):
-    _EXPORTS[_name] = ("knowledge", _name)
-for _name in (
-    "build_context", "canonical_context_bytes", "serialize_context", "validate_bundle", "verify_context",
-):
-    _EXPORTS[_name] = ("context", _name)
 
 __all__ = list(_EXPORTS)
 
