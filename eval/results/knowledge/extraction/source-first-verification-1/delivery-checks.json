@@ -1,0 +1,12 @@
+{
+  "scope": "precommit_delivery_checks",
+  "staged_paths_checked": 108,
+  "unrelated_workflow_instruction_files_staged": false,
+  "credential_pattern_matches": [],
+  "limitation": "Limited credential-pattern check, not a security review or assurance of absence.",
+  "renamed_current_design_only": true,
+  "all_goals_passed": false,
+  "qualification_state": "blocked; see readiness.json",
+  "packaging_pass_evidence": "packaging-corrected.json",
+  "concurrent_readme_and_project_worktree_bytes_preserved": true
+}

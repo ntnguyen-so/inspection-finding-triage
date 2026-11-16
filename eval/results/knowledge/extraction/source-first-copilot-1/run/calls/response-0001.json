@@ -1,0 +1,298 @@
+{
+  "number": 1,
+  "parsed": {
+    "groups": [
+      {
+        "aliases": [
+          "sunset ribbons"
+        ],
+        "evidence": [
+          {
+            "quote": "Scope: Amber-Kites",
+            "unit_id": "u0004"
+          },
+          {
+            "quote": "Aliases: sunset ribbons",
+            "unit_id": "u0005"
+          },
+          {
+            "quote": "The painted pause below qualifies the raising instruction.",
+            "unit_id": "u0008"
+          },
+          {
+            "quote": "During a painted pause, keep the ribbon folded even if the bell sounds.",
+            "unit_id": "u0011"
+          }
+        ],
+        "group_id": "amber_kites",
+        "required_with": [
+          "painted_pause"
+        ],
+        "scopes": [
+          "Amber-Kites"
+        ],
+        "unit_ids": [
+          "u0003",
+          "u0004",
+          "u0005",
+          "u0006",
+          "u0007",
+          "u0008",
+          "u0009"
+        ]
+      },
+      {
+        "aliases": [],
+        "evidence": [
+          {
+            "quote": "Scope: Amber-Kites",
+            "unit_id": "u0004"
+          },
+          {
+            "quote": "The painted pause below qualifies the raising instruction.",
+            "unit_id": "u0008"
+          },
+          {
+            "quote": "During a painted pause, keep the ribbon folded even if the bell sounds.",
+            "unit_id": "u0011"
+          }
+        ],
+        "group_id": "painted_pause",
+        "required_with": [
+          "amber_kites"
+        ],
+        "scopes": [
+          "Amber-Kites"
+        ],
+        "unit_ids": [
+          "u0010",
+          "u0011",
+          "u0012"
+        ]
+      },
+      {
+        "aliases": [],
+        "evidence": [
+          {
+            "quote": "Equipment: Glass-Carts",
+            "unit_id": "u0014"
+          }
+        ],
+        "group_id": "glass_carts",
+        "required_with": [],
+        "scopes": [
+          "Glass-Carts"
+        ],
+        "unit_ids": [
+          "u0013",
+          "u0014",
+          "u0015",
+          "u0016",
+          "u0017"
+        ]
+      },
+      {
+        "aliases": [],
+        "evidence": [],
+        "group_id": "general",
+        "required_with": [],
+        "scopes": [],
+        "unit_ids": [
+          "u0001",
+          "u0002",
+          "u0018",
+          "u0019"
+        ]
+      }
+    ]
+  },
+  "receipt": {
+    "accounting_checkpoint": {
+      "providerModelMetrics": [
+        {
+          "metrics": {
+            "aiCreditsStatus": "complete",
+            "requests": {
+              "cost": 1.0,
+              "count": 1
+            },
+            "tokenDetails": {
+              "cache_read": {
+                "tokenCount": 0
+              },
+              "cache_write": {
+                "tokenCount": 0
+              },
+              "input": {
+                "tokenCount": 956
+              },
+              "output": {
+                "tokenCount": 955
+              }
+            },
+            "totalNanoAiu": 57310000.0,
+            "usage": {
+              "cacheReadTokens": 0,
+              "cacheWriteTokens": 0,
+              "inputTokens": 956,
+              "outputTokens": 955,
+              "reasoningTokens": 592
+            }
+          },
+          "modelDisplayName": "GPT-6 Luna",
+          "modelId": "gpt-6-luna",
+          "provider": {
+            "id": "copilot",
+            "kind": "copilot",
+            "label": "GitHub Copilot"
+          }
+        }
+      ],
+      "totalNanoAiu": 57310000.0,
+      "totalPremiumRequests": 1.0
+    },
+    "adapter_attempts": 1,
+    "binary_sha256": "32d01e0b0100fcdeaa684fba2cc8d00b6f127ac408749ff3c1b1a6fa0b2b8698",
+    "boundary_violation": null,
+    "cache_mode": "no_application_result_cache_backend_cache_uncontrolled",
+    "capabilities": {
+      "adapter_retries": 0,
+      "conversation": "fresh_session_per_request",
+      "internal_http_retries": "unknown",
+      "json_schema": "prompt_guidance_and_local_validation",
+      "max_output_tokens": false,
+      "native_structured_output": false,
+      "raw_provider_equivalence": false,
+      "reasoning_effort": "catalog_validated_when_supplied",
+      "sampling_controls": false,
+      "streaming_api": false,
+      "system_message": "replace_requested",
+      "text": true,
+      "tools": false
+    },
+    "dispatched": true,
+    "elapsed_seconds": 11.98399999999674,
+    "event_counts": {
+      "assistant.idle": 1,
+      "assistant.message": 2,
+      "assistant.reasoning": 2,
+      "assistant.turn_end": 1,
+      "assistant.turn_start": 1,
+      "assistant.usage": 1,
+      "commands.changed": 3,
+      "model.call_final_result": 1,
+      "model.call_finished": 1,
+      "model.call_start": 1,
+      "model.captured_assignment_context": 1,
+      "model.message": 2,
+      "model.messages_snapshot": 1,
+      "model.model_call_started": 1,
+      "model.model_call_success": 1,
+      "model.response": 2,
+      "model.telemetry": 1,
+      "model.turn_ended": 1,
+      "model.turn_started": 1,
+      "pending_messages.modified": 2,
+      "session.idle": 1,
+      "session.info": 1,
+      "session.managed_settings_resolved": 1,
+      "session.mcp_servers_loaded": 1,
+      "session.skills_loaded": 1,
+      "session.start": 1,
+      "session.tools_updated": 2,
+      "session.usage_checkpoint": 1,
+      "session.usage_info": 1,
+      "system.message": 1,
+      "user.message": 1
+    },
+    "http_attempts": null,
+    "inference_calls_observed": 1,
+    "message_audit": [
+      {
+        "content_sha256": "d5de184a1f3b303b44abf39eb56eab15481ae14f647ebca9001a118a753f43b9",
+        "kind": "user.message",
+        "matches_sdk_input": true,
+        "role": null
+      },
+      {
+        "content_sha256": "c519d7fabd408a95c13e3599ca92eaa8915ef3aa2a2e9a04d4d5b685a2b38560",
+        "kind": "system.message",
+        "matches_sdk_input": true,
+        "role": "system"
+      }
+    ],
+    "observed_model": "gpt-6-luna",
+    "provider": "github-copilot",
+    "requested_model": "gpt-6-luna",
+    "requested_reasoning_effort": "low",
+    "response_sha256": "8d3fdb7fb7db2fd188d16a9cbf120851d0ac6c0bf33aa89c3db2fb0afba8832e",
+    "runtime_version": "1.0.112",
+    "sdk_version": "1.0.34",
+    "session_deleted": true,
+    "session_id": "8671430f-2673-41f9-84bf-635bcd6e5316",
+    "started_at": "2026-11-16T16:33:22.182006+00:00",
+    "system_sha256": "c519d7fabd408a95c13e3599ca92eaa8915ef3aa2a2e9a04d4d5b685a2b38560",
+    "tool_counts_observed": [
+      0
+    ],
+    "usage": [
+      {
+        "availableToolCount": 0,
+        "cacheReadTokens": 0,
+        "cacheWriteTokens": 0,
+        "copilotUsage": {
+          "tokenDetails": [
+            {
+              "batchSize": 1000000,
+              "costPerBatch": 10000000000,
+              "model": "gpt-6-luna",
+              "tokenCount": 956,
+              "tokenType": "input"
+            },
+            {
+              "batchSize": 1000000,
+              "costPerBatch": 1000000000,
+              "model": "gpt-6-luna",
+              "tokenCount": 0,
+              "tokenType": "cache_read"
+            },
+            {
+              "batchSize": 1000000,
+              "costPerBatch": 12500000000,
+              "model": "gpt-6-luna",
+              "tokenCount": 0,
+              "tokenType": "cache_write"
+            },
+            {
+              "batchSize": 1000000,
+              "costPerBatch": 50000000000,
+              "model": "gpt-6-luna",
+              "tokenCount": 955,
+              "tokenType": "output"
+            }
+          ],
+          "totalNanoAiu": 57310000.0
+        },
+        "cost": 1.0,
+        "finishReason": "stop",
+        "inputTokens": 956,
+        "isByok": false,
+        "model": "gpt-6-luna",
+        "outputTokens": 955,
+        "provider": {
+          "id": "copilot",
+          "kind": "copilot",
+          "label": "GitHub Copilot"
+        },
+        "reasoningEffort": "low",
+        "reasoningTokens": 592,
+        "responseModel": "gpt-6-luna"
+      }
+    ],
+    "usd_cost": null,
+    "user_sha256": "d5de184a1f3b303b44abf39eb56eab15481ae14f647ebca9001a118a753f43b9"
+  },
+  "request_sha256": "d90808857165672153411799c84192371d569543292f4324d4e65ca7e68aab10",
+  "response_text": "{\"groups\":[{\"group_id\":\"amber_kites\",\"unit_ids\":[\"u0003\",\"u0004\",\"u0005\",\"u0006\",\"u0007\",\"u0008\",\"u0009\"],\"scopes\":[\"Amber-Kites\"],\"aliases\":[\"sunset ribbons\"],\"evidence\":[{\"unit_id\":\"u0004\",\"quote\":\"Scope: Amber-Kites\"},{\"unit_id\":\"u0005\",\"quote\":\"Aliases: sunset ribbons\"},{\"unit_id\":\"u0008\",\"quote\":\"The painted pause below qualifies the raising instruction.\"},{\"unit_id\":\"u0011\",\"quote\":\"During a painted pause, keep the ribbon folded even if the bell sounds.\"}],\"required_with\":[\"painted_pause\"]},{\"group_id\":\"painted_pause\",\"unit_ids\":[\"u0010\",\"u0011\",\"u0012\"],\"scopes\":[\"Amber-Kites\"],\"aliases\":[],\"evidence\":[{\"unit_id\":\"u0004\",\"quote\":\"Scope: Amber-Kites\"},{\"unit_id\":\"u0008\",\"quote\":\"The painted pause below qualifies the raising instruction.\"},{\"unit_id\":\"u0011\",\"quote\":\"During a painted pause, keep the ribbon folded even if the bell sounds.\"}],\"required_with\":[\"amber_kites\"]},{\"group_id\":\"glass_carts\",\"unit_ids\":[\"u0013\",\"u0014\",\"u0015\",\"u0016\",\"u0017\"],\"scopes\":[\"Glass-Carts\"],\"aliases\":[],\"evidence\":[{\"unit_id\":\"u0014\",\"quote\":\"Equipment: Glass-Carts\"}],\"required_with\":[]},{\"group_id\":\"general\",\"unit_ids\":[\"u0001\",\"u0002\",\"u0018\",\"u0019\"],\"scopes\":[],\"aliases\":[],\"evidence\":[],\"required_with\":[]}]}",
+  "slot": "dev_atlas.primary"
+}

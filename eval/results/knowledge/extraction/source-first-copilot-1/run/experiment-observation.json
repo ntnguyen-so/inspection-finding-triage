@@ -1,0 +1,91 @@
+{
+  "C1_qualified": false,
+  "driver": {
+    "accounting": {
+      "application_attempts_reserved": 1,
+      "attempts": [
+        {
+          "number": 1,
+          "outcome": {
+            "error_class": "proposal_validation",
+            "message": "Metadata requires exact literal evidence in its group.",
+            "status": "failed"
+          },
+          "request_sha256": "d90808857165672153411799c84192371d569543292f4324d4e65ca7e68aab10",
+          "reserved_at": "2026-11-16T16:33:21.970953+00:00",
+          "slot": "dev_atlas.primary",
+          "state": "finished"
+        }
+      ],
+      "http_attempts": null,
+      "maximum_application_attempts": 26,
+      "plan_sha256": "d32a83a6dce6a586f5f87d4523145f6d3d027d0c7cfc671f126d3e2bcaf373e1",
+      "strict_accounting_pass": false,
+      "usd_cost": null
+    },
+    "c1_qualified": false,
+    "contract": "knowledge-copilot-observation-v1",
+    "human_review_benefit": "unexecuted",
+    "results": {
+      "dev_atlas.primary": {
+        "attempt": 1,
+        "error_class": "proposal_validation",
+        "message": "Metadata requires exact literal evidence in its group.",
+        "status": "failed"
+      },
+      "dev_beacon.primary": {
+        "reason": "development_gate_failed",
+        "status": "unexecuted"
+      },
+      "dev_mosaic.primary": {
+        "reason": "development_gate_failed",
+        "status": "unexecuted"
+      },
+      "dev_quill.primary": {
+        "reason": "development_gate_failed",
+        "status": "unexecuted"
+      },
+      "eval_loom.primary": {
+        "reason": "development_gate_failed",
+        "status": "unexecuted"
+      },
+      "eval_orchard.primary": {
+        "reason": "development_gate_failed",
+        "status": "unexecuted"
+      },
+      "eval_orchard.repeat1": {
+        "reason": "development_gate_failed",
+        "status": "unexecuted"
+      },
+      "eval_orchard.repeat2": {
+        "reason": "development_gate_failed",
+        "status": "unexecuted"
+      },
+      "eval_prism.primary": {
+        "reason": "development_gate_failed",
+        "status": "unexecuted"
+      },
+      "eval_prism.repeat1": {
+        "reason": "development_gate_failed",
+        "status": "unexecuted"
+      },
+      "eval_prism.repeat2": {
+        "reason": "development_gate_failed",
+        "status": "unexecuted"
+      },
+      "eval_river.primary": {
+        "reason": "development_gate_failed",
+        "status": "unexecuted"
+      },
+      "original_domain.primary": {
+        "reason": "development_gate_failed",
+        "status": "unexecuted"
+      }
+    },
+    "status": "experimental_observation_not_qualification"
+  },
+  "freeze_sha256": "0e616b015bdedf13282781b4cccf87668f2e34513ac656f5a1cd0ad76efd3b71",
+  "human_effort": "unexecuted",
+  "overall": "pending",
+  "strict_accounting_pass": false
+}

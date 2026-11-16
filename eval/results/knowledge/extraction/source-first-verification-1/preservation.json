@@ -1,0 +1,15 @@
+{
+  "all_pass": true,
+  "checks": {
+    "no_default_source_first_store_promoted": true,
+    "supplied_domain_unchanged": true,
+    "triage_knowledge\\context.py": true,
+    "triage_knowledge\\contracts.py": true,
+    "triage_knowledge\\knowledge.py": true,
+    "triage_knowledge\\legacy_cli.py": true,
+    "triage_knowledge\\legacy_editor.py": true,
+    "triage_knowledge\\workflow_export.py": true,
+    "unapproved_legacy_draft_unchanged": true
+  },
+  "limitation": "Historical replay checks do not qualify source-first quality or system behavior."
+}

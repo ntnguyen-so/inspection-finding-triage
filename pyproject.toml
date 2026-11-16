@@ -18,4 +18,4 @@ dependencies = [
 editor = ["streamlit==1.51.0"]
 
 [tool.setuptools]
-packages = ["llm_inference", "triage", "triage_knowledge"]
+packages = ["llm_inference", "triage_knowledge"]

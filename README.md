@@ -1,8 +1,9 @@
 # Inspection Finding Triage
 
 Evaluation-first candidate exercise, now with reusable Azure OpenAI and Copilot
-text/JSON inference adapters. The triage system is not implemented yet; no model-generated
-tickets or system-acceptance results are claimed.
+text/JSON inference adapters and source-first knowledge editing/retrieval. Knowledge
+qualification and coordinated workflow activation remain gated; no system acceptance
+is claimed by this component.
 
 ## Read the work in order
 
@@ -12,6 +13,7 @@ tickets or system-acceptance results are claimed.
 | 02 | `docs\02_DATA_EVALUATION_PLAN.md` | Profile the data; justify the development/test split and evidence references |
 | 03 | `docs\03_EVALUATION_ACCEPTANCE.md` | Define acceptance gates, panel-question coverage, review decisions and readiness |
 | 04 | `docs\04_INFERENCE_LIBRARY.md` | Inference API, implementation process, real probes and provider-parity limits |
+| 06 | `docs\06_KNOWLEDGE_DESIGN_DECISION.md` | Current knowledge Design Decision: extraction/retrieval evaluation, code-versus-LLM gates, source-first editing and workflow tool contract |
 
 `DESIGN.md` is reserved for the project owner to create later. Inference design,
 deferred system-design notes and implementation evidence are in document 04;
@@ -78,6 +80,65 @@ Recorded observations: six paired synthetic cases agreed on expected data,
 plus one Azure-native JSON pass. This does not establish identical model behavior,
 cost, hidden processing or triage accuracy. Evidence and limits are under
 `eval\results\inference` and document 04.
+
+## Knowledge editor and context module
+
+**Current design:** document 06 is the single knowledge Design Decision. It
+defines extraction/relevant-active-retrieval evaluation before reimplementation,
+source-faithful intake/editing, lifecycle and the module-owned callable tool.
+Workflow owns L/I interpretation and code-derived U. Code is the baseline; an
+LLM strategy needs explicit fidelity, retrieval, review-benefit and budget evidence.
+Bounded AI critique and adjudication are recorded in document 06 section 12.
+The default CLI/editor now use source-first entrypoints; no
+replacement release has been promoted. They use a separate store and never
+upgrade or publish the old numeric-band/PSV starter.
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install -e ".[editor]"
+.\.venv\Scripts\python.exe -B -m triage_knowledge --store knowledge\source-first import-source --source docs\candidate-pack\candidate-pack\reference\domain_knowledge.md --source-id domain --name "Supplied domain"
+.\.venv\Scripts\python.exe -m streamlit run triage_knowledge\editor.py --server.address 127.0.0.1 --browser.gatherUsageStats false
+.\.venv\Scripts\python.exe -B -m triage_knowledge --store knowledge\source-first check
+```
+
+Import preserves source bytes and creates pending items, never an approved
+rubric. The editor supports source edits, evidence-backed metadata, context links,
+review and lifecycle; every change requires fresh review. Publishing and workflow
+activation are separate. Use one trusted local writer.
+There is no automatic paid extraction in the editor: unqualified LLM extraction
+is limited to explicitly authorized isolated evaluation.
+
+```powershell
+.\.venv\Scripts\python.exe -B -m unittest tests.test_source_knowledge tests.test_source_context tests.test_source_cli tests.test_source_editor
+.\.venv\Scripts\python.exe -B -m unittest discover -s eval\tests -p "test_knowledge*.py"
+.\.venv\Scripts\python.exe -B -m unittest eval.tests.test_run_knowledge
+.\.venv\Scripts\python.exe -B -m eval.run_knowledge --output eval\results\knowledge\extraction\<new-run>
+```
+
+The offline runner preserves raw C0 proposals and leaves retrieval pending without
+reviewed input. An explicit `--synthetic-review-diagnostic` exercises actual
+publication/retrieval in isolated, clearly labelled software fixtures; it cannot
+establish human approval or qualification. Pending/failed evaluation exits nonzero.
+Real Copilot measurements require the separate `--copilot-experiment
+--allow-inference` controls, a new output directory and the fixed persistent
+ledger; do not reset it or rerun a failed semantic slot.
+
+Software checks and synthetic review declarations are not actual human content
+approval or system acceptance. The native `build_source_context` bundle uses
+contract 2 with separate workflow-supplied `assessment_policy`; it does not pretend
+to be compatible with the legacy workflow-v0 consumer.
+Actual observations: nine C0 extractions pass; all 24 diagnostic queries retain
+required atoms, but eight fail useful selection (0% reduction, 20% required).
+The one attempted Copilot development proposal was rejected; the other 12 slots
+were not run. **Not all evaluation goals pass; nothing is promoted.** See
+`eval\results\knowledge\extraction\source-first-verification-1\readiness.json`.
+Document 06 section 11 distinguishes retained legacy evidence, including the
+four-send real Copilot knowledge probe:
+both synthetic positives were unassessable, so knowledge influence remains
+failed/inconclusive; mechanically valid controls are not semantic acceptance.
+Legacy schema-1/2 commands and forms are available only through
+`python -m triage_knowledge.legacy_cli` and `triage_knowledge\legacy_editor.py`
+for recorded replay. The legacy exporter re-appends archived domain text; do not
+use it to claim active-only behavior of the source-first path.
 
 The original package is preserved at `docs\candidate-pack\candidate-pack`.
 Document numbers indicate the real sequence of work, not reconstructed Git

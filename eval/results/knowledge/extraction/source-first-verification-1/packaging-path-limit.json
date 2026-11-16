@@ -1,0 +1,8 @@
+{
+  "scope": "verification_environment_limitation",
+  "observation": "Extracting the entire staged archive under the longer .artifacts temporary-checkout prefix hit Windows path length handling on the immutable selector-diagnostic release filename.",
+  "build_dispatched": false,
+  "production_inference_dispatched": false,
+  "recovery": "Verify the exact staged packaging inputs in isolation instead: pyproject.toml and the committed inference/knowledge package files. Evaluation result archives are not build inputs.",
+  "limitation": "Use a short checkout/replay path on Windows when restoring deeply nested evidence. This packaging check does not claim that arbitrary longer checkout prefixes support every evidence path."
+}

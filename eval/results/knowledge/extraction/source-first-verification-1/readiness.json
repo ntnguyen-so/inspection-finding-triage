@@ -1,0 +1,145 @@
+{
+  "C0_source_checks": {
+    "observation": "source-first-offline-3\\observation.json",
+    "passed": 9,
+    "total": 9
+  },
+  "Copilot_experiment": {
+    "C1_qualified": false,
+    "application_attempt_ceiling": 26,
+    "application_attempts_reserved": 1,
+    "elapsed_seconds": 11.98399999999674,
+    "http_attempts": null,
+    "input_tokens": 956,
+    "ledger": "source-first-copilot.experimental-ledger.json",
+    "model": "gpt-6-luna",
+    "output_tokens": 955,
+    "provider_boundary_audit": {
+      "no_observed_tools": true,
+      "observed_model_matches_frozen": true,
+      "prepared_system_sha_matches_actual_receipt": true,
+      "prepared_user_sha_matches_actual_receipt": true,
+      "provider_user_fields_only_source_and_units": true,
+      "source_units_equal_independently_loaded_source": true
+    },
+    "raw_response_retained": true,
+    "reasoning_effort": "low",
+    "reasoning_tokens": 592,
+    "result": "Rejected group-local literal-evidence violation; development gate stopped remaining schedule.",
+    "semantic_retries": 0,
+    "slots_attempted": 1,
+    "slots_planned": 13,
+    "slots_unexecuted": 12,
+    "strict_accounting_pass": false,
+    "usd_cost": null
+  },
+  "all_goals_passed": false,
+  "blocked_goals": [
+    "Genuinely reviewed selective releases: diagnostic misses all eight efficiency gates.",
+    "Independent blinded paired human correction evidence and C1 benefit.",
+    "C1 fidelity/reliability qualification: first development proposal rejected; remaining slots/repeats unexecuted.",
+    "Strict HTTP/USD budget evidence unavailable through this Copilot adapter.",
+    "New-contract workflow/provider handoff and downstream B01/B02 acceptance."
+  ],
+  "current_code": {
+    "code_sha256": "4dbfdf277a08dedfcf4af12bd31e08f1bd7842f23b4b8077ff131196f7af0796",
+    "dirty_status": "M .gitignore\n M AGENTS.md\n M README.md\n D docs/07_KNOWLEDGE_DESIGN_DECISION.md\n M eval/spec/knowledge_extraction.json\n?? docs/05_TRIAGE_WORKFLOW.md\n?? docs/06_KNOWLEDGE_DESIGN_DECISION.md\n?? eval/results/artifacts-manifest.json\n?? eval/results/knowledge/component-verification.json\n?? eval/results/knowledge/copilot-b02-1/\n?? eval/results/knowledge/copilot-b02.experimental-ledger.json\n?? eval/results/knowledge/copilot-knowledge-catalog-1/\n?? eval/results/knowledge/design-verification.json\n?? eval/results/knowledge/extraction/source-first-copilot-1/\n?? eval/results/knowledge/extraction/source-first-copilot.experimental-ledger.json\n?? eval/results/knowledge/extraction/source-first-offline-1/C0/\n?? eval/results/knowledge/extraction/source-first-offline-1/queries/\n?? eval/results/knowledge/extraction/source-first-offline-1/sources/\n?? eval/results/knowledge/extraction/source-first-offline-1/unreviewed-drafts/\n?? eval/results/knowledge/extraction/source-first-offline-2/C0/\n?? eval/results/knowledge/extraction/source-first-offline-2/queries/\n?? eval/results/knowledge/extraction/source-first-offline-2/sources/\n?? eval/results/knowledge/extraction/source-first-offline-2/unreviewed-drafts/\n?? eval/results/knowledge/extraction/source-first-offline-3/\n?? eval/results/knowledge/extraction/source-first-selector-diagnostic-1/\n?? eval/results/knowledge/extraction/source-first-verification-1/\n?? eval/results/knowledge/lifecycle-regression-1/\n?? eval/results/knowledge/lifecycle-verification.json\n?? eval/results/knowledge/live-probe-driver-verification.json\n?? eval/results/knowledge/regression-implementation-1/\n?? eval/results/knowledge/regression-implementation-2/\n?? eval/results/knowledge/regression-implementation-3/\n?? eval/results/triage/\n?? knowledge/\n?? tests/test_copilot_triage.py\n?? tests/test_knowledge_probe.py\n?? tests/test_knowledge_workflow.py\n?? tests/test_triage.py\n?? tests/triage_support.py\n?? tools/probe_knowledge.py\n?? tools/probe_triage.py\n?? tools/verify_knowledge.py\n?? tools/verify_triage.py\n?? triage/",
+    "files_sha256": {
+      "eval\\assess.py": "f518fb5c9fc8d5fa1af3b12b6211e94e5b7724ff4aa7f19295ebd351feb1d4f8",
+      "eval\\knowledge_attempts.py": "d44c99c8cf3f6afb2c4e7c329aab992af31b337caeee3f6d7c2cde75979a9df0",
+      "eval\\knowledge_copilot.py": "ba12dbd96fb372f8a2b7160c47f1b39dcec736d475eb02031e4d9b9374a1f432",
+      "eval\\knowledge_eval.py": "043dd254bbc6dda16625bf64d6c33cd4d8a66f512ce51255a4b90b3152acccad",
+      "eval\\run_knowledge.py": "3f734d95482ccbcbb67092a511b0eee58340003062f83cb0d28a8987d8f5e11a",
+      "eval\\validate.py": "77622bc3748a31bb1e3eac36d5a985bf12289a8af8052e9234758007c6e19e9b",
+      "llm_inference\\__init__.py": "95dc7f05b494cd3c7135bdb061453e9ddc72c45a20777dee1569fe36e8c3f6bc",
+      "llm_inference\\__main__.py": "852673b93b39db4f1327547e2bacaeb2443cc40d0d15dc672b4cab9471035f24",
+      "llm_inference\\_lifecycle.py": "b8c983e8e230e0cdfce5d329f361cdebda6dd040ab6e7774b53626eb1d97bbef",
+      "llm_inference\\azure.py": "938ecb97aed4ab89306ead68f922507b2dc8d9d6f614cb1506beca3a82fbda8c",
+      "llm_inference\\contracts.py": "4d27d144808212ab93959d01c82574ec3add767ed80b30bcb1334596e67621cc",
+      "llm_inference\\copilot.py": "49b01321cfb2d7bb635f119c36e5c1768e40ca23863357e3425fd1c5909f3417",
+      "triage_knowledge\\__init__.py": "24df74ac087273eef600a6d04fd41f260631366fd535c6fe928aed0fd950fc09",
+      "triage_knowledge\\__main__.py": "68644fe2d0ec06345784a8b663eea0eeb77f2b598fc54310aeddb9c27755fd17",
+      "triage_knowledge\\context.py": "fa75c133540073923317900186a2aff2c25308aae676abaab9d928d4f613e14a",
+      "triage_knowledge\\contracts.py": "19d1ace2fbf1706dcd4a0bf4b565ef96cda17947172aa0ca987289b93f8008e8",
+      "triage_knowledge\\editor.py": "ad29cc29345f7ae4261a9b6e26efb764b9f347c4ad383f52097d67dd73568ad0",
+      "triage_knowledge\\knowledge.py": "9bcae12d5c6fb7872d704089bd032f68cc1ae3c2d9a01f25debfaa6e2f547b22",
+      "triage_knowledge\\legacy_cli.py": "c15c31637bf63658618a89e09d2cbbe4903f5aaafb6e2884f0493be0d49df45f",
+      "triage_knowledge\\legacy_editor.py": "1a14fc9b17e60459e9436469b1038e292e17cf1ec916c875be6fc30ba3842b67",
+      "triage_knowledge\\retrieval.py": "c16ac02cfdf2786f66727a7b3fdf254c22f8bb6b565eab3419cd764fc7c18376",
+      "triage_knowledge\\source.py": "6a5cd74f1bebd6349fb49c9d8f57d0e12c55fc2ac89ba49b13fb4581afdbf525",
+      "triage_knowledge\\source_cli.py": "c1ed761371dd82b913a636403cf222cefd727222b4c0c7e28d4c0ed7bc9d0ba3",
+      "triage_knowledge\\source_context.py": "24eb759e5602fc27a0049c42342f71ecc1d433e4cc5b513bb0ae73e805595268",
+      "triage_knowledge\\source_editor.py": "ffd2fba41ef2be3eda874d8a9fac7fbf4396097a486ff0c32678eec17f014375",
+      "triage_knowledge\\source_store.py": "cfd7c049b23248b9554adda18f648ace631ac1de79d754f466fd1c5d58f78c84",
+      "triage_knowledge\\workflow_export.py": "98ff2d65413cc47625d9ce712ca34c7506b61c44563eaa7de3ade0d0ebb67135"
+    },
+    "revision": "056d5c02257bb4715c76358b226b645b442d6389"
+  },
+  "default_source_store_absent": true,
+  "exposure": "All post-exposure runs are disclosed regression, never a new blind evaluation.",
+  "layout_only_authority_rename": true,
+  "overall": "blocked_not_all_goals_passed",
+  "production_release_promoted": false,
+  "recorded_at": "2026-11-16T16:37:30.311799+00:00",
+  "reference_version": "knowledge-extraction-reference-v1.3",
+  "selector_software_diagnostic": {
+    "all_required_atom_recall_one": true,
+    "case_failures": 8,
+    "case_passes": 16,
+    "efficiency_reductions": {
+      "eval_loom.qualifier": 0.0,
+      "eval_loom.scoped": 0.0,
+      "eval_orchard.qualifier": 0.0,
+      "eval_orchard.scoped": 0.0,
+      "eval_prism.qualifier": 0.0,
+      "eval_prism.scoped": 0.0,
+      "eval_river.qualifier": 0.0,
+      "eval_river.scoped": 0.0
+    },
+    "executed": 24,
+    "human_review": false,
+    "qualified": false,
+    "required_each_reduction": 0.2
+  },
+  "semantic_freeze": "056d5c0",
+  "software_regressions": {
+    "checks": [
+      {
+        "command": [
+          ".venv\\Scripts\\python.exe",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "eval\\tests",
+          "-p",
+          "test_*.py"
+        ],
+        "exit_code": 0,
+        "stderr": "..........................................................................................\n----------------------------------------------------------------------\nRan 90 tests in 0.594s\n\nOK\n",
+        "stdout": ""
+      },
+      {
+        "command": [
+          ".venv\\Scripts\\python.exe",
+          "-B",
+          "-m",
+          "eval.validate"
+        ],
+        "exit_code": 0,
+        "stderr": "",
+        "stdout": "{\n  \"findings\": 21,\n  \"equipment\": 18,\n  \"blank_cells\": 0,\n  \"duplicate_primary_keys\": 0,\n  \"orphan_findings\": 0,\n  \"equipment_type_mismatches\": 0,\n  \"invalid_ids_dates_scores_sce\": 0,\n  \"date_range\": [\n    \"2026-06-02\",\n    \"2026-06-22\"\n  ],\n  \"sce_counts\": {\n    \"No\": 8,\n    \"Yes\": 10\n  },\n  \"redundancy_counts\": {\n    \"None\": 11,\n    \"Yes (bypass available)\": 1,\n    \"Voted 2oo3\": 1,\n    \"Duplicated (INST-2151)\": 1,\n    \"Duplicated (INST-2150)\": 1,\n    \"N+1 (FW-8102)\": 1,\n    \"N+1 (FW-8101)\": 1,\n    \"N+1 (LB-4101)\": 1\n  },\n  \"missing_redundant_partners\": [\n    {\n      \"equipment_id\": \"LB-4102\",\n      \"partner\": \"LB-4101\"\n    }\n  ],\n  \"reference_version\": \"1.2\",\n  \"status\": \"frozen\",\n  \"acceptance_scenarios\": 17,\n  \"system_scenarios_execution\": \"not_run_no_system\",\n  \"partition_counts\": {\n    \"development\": {\n      \"cases\": 13,\n      \"groups\": 9\n    },\n    \"test\": {\n      \"cases\": 8,\n      \"groups\": 4\n    }\n  }\n}\nArtifact integrity checks passed; no ticket/model assessment was performed.\n"
+      }
+    ],
+    "committed_module_tests": 158,
+    "final_editor_followup": {
+      "cases": 3,
+      "command": ".\\.venv\\Scripts\\python.exe -B -m unittest tests.test_source_editor",
+      "observation": "Tool completion before 056d5c0, after final diff/fork test fixes; unchanged executable bytes since that pass.",
+      "status": "pass"
+    },
+    "final_evaluator_tests": 90,
+    "initial_evidence": "software-tests.json"
+  }
+}

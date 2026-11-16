@@ -1,0 +1,66 @@
+{
+  "attempts": [
+    {
+      "number": 1,
+      "outcome": {
+        "error_class": "proposal_validation",
+        "message": "Metadata requires exact literal evidence in its group.",
+        "status": "failed"
+      },
+      "request_sha256": "d90808857165672153411799c84192371d569543292f4324d4e65ca7e68aab10",
+      "reserved_at": "2026-11-16T16:33:21.970953+00:00",
+      "slot": "dev_atlas.primary",
+      "state": "finished"
+    }
+  ],
+  "contract": "knowledge-attempt-ledger-v1",
+  "plan": {
+    "development_slots": [
+      "dev_atlas.primary",
+      "dev_beacon.primary",
+      "dev_mosaic.primary",
+      "dev_quill.primary",
+      "original_domain.primary"
+    ],
+    "maximum_attempts": 26,
+    "per_slot_attempts": 2,
+    "phase": "source-first-copilot-0e616b015bdedf13282781b4cccf87668f2e34513ac656f5a1cd0ad76efd3b71",
+    "recoverable_codes": [
+      "malformed_json",
+      "schema_violation",
+      "timeout",
+      "transport"
+    ],
+    "schedule": [
+      "dev_atlas.primary",
+      "dev_quill.primary",
+      "dev_mosaic.primary",
+      "dev_beacon.primary",
+      "original_domain.primary",
+      "eval_prism.primary",
+      "eval_river.primary",
+      "eval_orchard.primary",
+      "eval_loom.primary",
+      "eval_orchard.repeat1",
+      "eval_orchard.repeat2",
+      "eval_prism.repeat1",
+      "eval_prism.repeat2"
+    ],
+    "slots": {
+      "dev_atlas.primary": "d90808857165672153411799c84192371d569543292f4324d4e65ca7e68aab10",
+      "dev_beacon.primary": "eca1fc98877d89f58f2d922f65d1c33c27604b0ea2481d6831a789d43a6200c4",
+      "dev_mosaic.primary": "57a8c331bbaf6a0395274ce74254183d187da9dd30b1866a23d259d24c80cd30",
+      "dev_quill.primary": "20e82c63433b26759ef6080e980764c1223dbed47537138cb84a75a3000e3b16",
+      "eval_loom.primary": "0b554c1a648b7c18112bc2be680b55d707100e6a3dac945b1c6bcdbdc2710093",
+      "eval_orchard.primary": "830dae93e48a93bc179ae7b1a09fbaef2b5eab750000a371ad2156c0a0b69f3c",
+      "eval_orchard.repeat1": "830dae93e48a93bc179ae7b1a09fbaef2b5eab750000a371ad2156c0a0b69f3c",
+      "eval_orchard.repeat2": "830dae93e48a93bc179ae7b1a09fbaef2b5eab750000a371ad2156c0a0b69f3c",
+      "eval_prism.primary": "dc7e9406e9b30581d19b807fe585d1889899ff14fe4587a18f7e9549fac13dea",
+      "eval_prism.repeat1": "dc7e9406e9b30581d19b807fe585d1889899ff14fe4587a18f7e9549fac13dea",
+      "eval_prism.repeat2": "dc7e9406e9b30581d19b807fe585d1889899ff14fe4587a18f7e9549fac13dea",
+      "eval_river.primary": "9c6d4bd739fcd77e00965d92f7d738abe22fd1074f1d9cd112d1b4471bf4e3eb",
+      "original_domain.primary": "1ad3803af2757592ea8d0afefbe920d2862ff18a52e18b7d4697564bb34b2d3e"
+    }
+  },
+  "plan_sha256": "d32a83a6dce6a586f5f87d4523145f6d3d027d0c7cfc671f126d3e2bcaf373e1"
+}

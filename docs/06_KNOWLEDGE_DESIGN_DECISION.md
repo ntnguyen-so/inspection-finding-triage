@@ -4,8 +4,8 @@
 
 This is the **single current design decision** for the replacement knowledge
 module. It consolidates the owner's source-fidelity, editing, active-knowledge,
-relevant-retrieval and evaluation requirements. Document 06 is a superseded-design
-pointer, not another specification. The source-first implementation is separate
+relevant-retrieval and evaluation requirements. The obsolete pointer has been
+removed; this file is the renamed decision. The source-first implementation is separate
 from explicitly named legacy replay surfaces. Implementation does not imply
 evaluation success, content approval or workflow activation.
 Root `DESIGN.md` remains reserved for the project owner.
@@ -624,6 +624,50 @@ handoff: the parallel workflow's current consumer remains legacy v0. Coordinated
 consumer migration, real content approval and applicable downstream evidence
 remain required before activation.
 
+A tracked-snapshot wheel check exposed a pre-existing manifest entry for the
+parallel, still-uncommitted `triage` package. Submitted packaging now declares only
+the committed inference/knowledge components. The shared working file retains the
+parallel owner's entry, to be committed with that implementation; their source
+and README edits are not swept into this delivery. Initial packaging failure and
+the corrected staged-snapshot wheel/import check are retained with verification.
+`packaging-corrected.json` is the passing isolated build/import observation.
+The preceding no-build-isolation check lacked `bdist_wheel`; normal isolated
+building uses the already-declared `setuptools==80.9.0` without upgrading the
+shared environment. Whole-evidence extraction under an artificially longer
+temporary prefix also hit Windows path handling: use a short replay checkout.
+The successful packaging check uses exact staged package/manifest inputs, not
+uncommitted source, and does not claim arbitrary long evidence paths work.
+
+### 11.2 Actual component observations, not qualification
+
+The semantic freeze before live dispatch is `056d5c0` (component reference/grader
+v1.3). The subsequent 07-to-06 document rename is layout-only and does not
+rebind old observations to a different manifest hash. Their exact identities and
+the prior specification remain in Git and each recorded freeze.
+
+| Observation | Actual result | Limit |
+|---|---|---|
+| `source-first-offline-3` | All nine C0 extractions pass fidelity/critical-semantic checks, including original domain | Raw repair diagnostics remain; 24 retrievals correctly await review |
+| `source-first-selector-diagnostic-1` | All 24 actual tool results have required-atom recall 1.0; 16 case passes, eight failures | All eight efficiency cases return 0% irrelevant-byte reduction, below 20%; software declarations are not genuine reviewed-release qualification |
+| `source-first-copilot-1\run` | One real `gpt-6-luna`/low call; first development proposal rejected for group-local literal-evidence violation | Twelve slots/repeats unexecuted after required development stop; no semantic retry, best-of-N or profile promotion |
+
+The Copilot request receipt exposes 956 input tokens, 955 output tokens,
+592 reasoning tokens and 11.984 seconds; preserve their original provider
+semantics, not a made-up USD conversion. The ledger reserves one of at most
+26 application attempts. HTTP attempts and USD cost remain unknown, strict
+accounting fails, and C1 is unqualified. The raw proposal/response and rejected
+decision are retained. The separate offline report's zero C1 attempts is local
+to that CPU-only run, not a reset of the actual persistent live ledger.
+
+Ninety evaluator software tests pass, and the final three source-first Streamlit
+tests cover the added non-mutating diff/release-open controls. These do not
+override the observed efficiency failure, absent independent blinded editorial
+effort, unexecuted repeats or missing new-contract workflow/provider handoff.
+There is **no claim that all evaluation goals pass** and no source-first
+production release, C1 enablement or workflow activation. Further qualification
+requires actual content review and an explicitly approved subsequent development
+profile/experiment; never reset the spent ledger or tune from evaluation answers.
+
 ## 12. Bounded review and adjudication
 
 Two read-only AI critics reviewed this candidate's extraction/comparison design
@@ -652,7 +696,7 @@ Precision/recall remain diagnostics. No complex edit-distance platform, extra pa
 judge or further review workflow is introduced.
 
 Consolidation removes obsolete schema-1/2/rubric-first design prescriptions from
-document 06; legacy runtime and historical observations remain unchanged.
+the superseded design; legacy runtime and historical observations remain unchanged.
 This decision guides the source-first implementation; neither the design nor
 review agreement proves the component or downstream system gates have passed.
 

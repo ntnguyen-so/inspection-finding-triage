@@ -1,0 +1,20 @@
+{
+  "scope": "tracked_snapshot_package_check",
+  "revision": "056d5c0",
+  "command": [
+    "C:\\Users\\thanh\\falkor_case2\\.venv\\Scripts\\python.exe",
+    "-m",
+    "pip",
+    "wheel",
+    "--no-index",
+    "--no-deps",
+    "--no-build-isolation",
+    "--wheel-dir",
+    "C:\\Users\\thanh\\falkor_case2\\.artifacts\\knowledge-package-j5ws0uyp\\wheel",
+    "C:\\Users\\thanh\\falkor_case2\\.artifacts\\knowledge-package-j5ws0uyp\\checkout"
+  ],
+  "exit_code": 1,
+  "stdout": "Processing c:\\users\\thanh\\falkor_case2\\.artifacts\\knowledge-package-j5ws0uyp\\checkout\n  Preparing metadata (pyproject.toml): started\n  Preparing metadata (pyproject.toml): finished with status 'error'\n",
+  "stderr": "  error: subprocess-exited-with-error\n  \n  Preparing metadata (pyproject.toml) did not run successfully.\n  exit code: 1\n  \n  [10 lines of output]\n  C:\\Users\\thanh\\falkor_case2\\.venv\\Lib\\site-packages\\setuptools\\config\\pyprojecttoml.py:108: _BetaConfiguration: Support for `[tool.setuptools]` in `pyproject.toml` is still *beta*.\n    warnings.warn(msg, _BetaConfiguration)\n  running dist_info\n  creating C:\\Users\\thanh\\AppData\\Local\\Temp\\pip-modern-metadata-lh4gqolj\\falkor_inference.egg-info\n  writing C:\\Users\\thanh\\AppData\\Local\\Temp\\pip-modern-metadata-lh4gqolj\\falkor_inference.egg-info\\PKG-INFO\n  writing dependency_links to C:\\Users\\thanh\\AppData\\Local\\Temp\\pip-modern-metadata-lh4gqolj\\falkor_inference.egg-info\\dependency_links.txt\n  writing requirements to C:\\Users\\thanh\\AppData\\Local\\Temp\\pip-modern-metadata-lh4gqolj\\falkor_inference.egg-info\\requires.txt\n  writing top-level names to C:\\Users\\thanh\\AppData\\Local\\Temp\\pip-modern-metadata-lh4gqolj\\falkor_inference.egg-info\\top_level.txt\n  writing manifest file 'C:\\Users\\thanh\\AppData\\Local\\Temp\\pip-modern-metadata-lh4gqolj\\falkor_inference.egg-info\\SOURCES.txt'\n  error: package directory 'triage' does not exist\n  [end of output]\n  \n  note: This error originates from a subprocess, and is likely not a problem with pip.\nerror: metadata-generation-failed\n\nEncountered error while generating package metadata.\n\nSee above for output.\n\nnote: This is an issue with the package mentioned above, not pip.\nhint: See above for details.\n",
+  "limitation": "Temporary extraction excludes uncommitted parallel workflow source."
+}
