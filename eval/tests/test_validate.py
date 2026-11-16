@@ -4,7 +4,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from validate import (
+from eval.validate import (
     ROOT,
     check_hashes,
     digest,
@@ -19,7 +19,7 @@ from validate import (
 class EvaluationIntegrityTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.manifest = json.loads((ROOT / "eval" / "split.json").read_text(encoding="utf-8"))
+        cls.manifest = json.loads((ROOT / "eval" / "spec" / "split.json").read_text(encoding="utf-8"))
         cls.source_root = ROOT / cls.manifest["source_root"]
         cls.findings, cls.equipment, _ = profile_sources(cls.source_root)
         cls.sections = {
@@ -32,7 +32,7 @@ class EvaluationIntegrityTests(unittest.TestCase):
         cls.cards = {
             partition: [
                 json.loads(line) for line in
-                (ROOT / "eval" / f"{partition}.jsonl").read_text(encoding="utf-8").splitlines()
+                (ROOT / "eval" / "data" / f"{partition}.jsonl").read_text(encoding="utf-8").splitlines()
             ]
             for partition in ("development", "test")
         }

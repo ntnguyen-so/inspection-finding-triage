@@ -3,16 +3,16 @@
 ## Status and scope
 
 Version 1.2 is a non-blind, AI-assisted reference for development and evaluation.
-The freeze is effective only when `eval\split.json` says `frozen` and the offline
+The freeze is effective only when `eval\spec\split.json` says `frozen` and the offline
 validator verifies its source and artifact hashes. It is not expert-certified
 ground truth, a production safety assessment, or a completed triage system.
 
-`EVALUATION_ACCEPTANCE.md` adds the A-D acceptance scenarios, output-assessment
-commands, and prototype routing/urgency constraints in v1.1. It closes the
+`03_EVALUATION_ACCEPTANCE.md` adds the A-D acceptance scenarios, output-assessment
+commands, and prototype routing/urgency constraints. It closes the
 precautionary-policy gap noted below without claiming that the system exists.
 The source package, evidence cards, and split membership are unchanged from v1.0.
 Version 1.2 completes the coverage audit with stability and reproducible-delivery
-scenarios; see the readiness section of `EVALUATION_ACCEPTANCE.md`.
+scenarios; see the readiness section of `03_EVALUATION_ACCEPTANCE.md`.
 
 This phase profiles the supplied data, identifies context dependencies, partitions
 finding IDs, and specifies evidence-based expectations. It does not choose a
@@ -20,7 +20,7 @@ provider, calibrate numeric scores, implement inference or urgency, or generate
 `tickets.json`. The intended effort for this phase is 60-90 minutes within the
 brief's 4-6 hour exercise; no claim of measured effort is made.
 
-The original review remains in `INITIAL_INVESTIGATION.md`. Its Downloads path is
+The original review remains in `01_INITIAL_INVESTIGATION.md`. Its Downloads path is
 historical; the current source of truth is the unmodified package at
 `docs\candidate-pack\candidate-pack`, relative to the repository root.
 
@@ -31,15 +31,15 @@ is used. The current manifest and validator use Windows paths; POSIX execution i
 not supported by this phase:
 
 ```powershell
-python -B eval\validate.py
-python -B -m unittest discover -s eval -p "test_*.py"
+python -B -m eval.validate
+python -B -m unittest discover -s eval\tests -p "test_*.py"
 ```
 
 The first command prints a freshly computed profile and checks the eval artifacts.
 The second exercises failures that the artifact validator must detect. Neither
 command calls a model or evaluates generated tickets. A successful artifact
 validation does not establish semantic correctness of an annotation.
-During drafting, `python -B eval\validate.py --allow-draft` explicitly permits
+During drafting, `python -B -m eval.validate --allow-draft` explicitly permits
 pre-freeze checks. The plain command must succeed to verify the final freeze.
 
 | Check | Observed result |
@@ -218,7 +218,7 @@ precautionary attention without falsely claiming a proven override. The example
 escalates F-1005 despite not supplying a deviation record. We retain this as a
 reason to document a conservative policy, not proof that all unprovided records
 are confirmed absent. The precautionary attention bands are now specified as prototype design choices
-in `EVALUATION_ACCEPTANCE.md`; they are not claims of a confirmed override or
+in `03_EVALUATION_ACCEPTANCE.md`; they are not claims of a confirmed override or
 operationally certified rules.
 
 The example's all-SCE human-review policy is defensible but is not a universal rule
@@ -235,7 +235,7 @@ an engineering choice to be implemented and documented in `DESIGN.md`.
 
 ## 5. Evidence-card format and provenance
 
-`eval\development.jsonl` and `eval\test.jsonl` contain one card per selected finding:
+`eval\data\development.jsonl` and `eval\data\test.jsonl` contain one card per selected finding:
 
 - Identity, binding group, related same-partition findings, and coverage tags.
 - Observed facts and required decision-changing evidence.

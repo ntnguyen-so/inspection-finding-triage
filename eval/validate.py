@@ -21,16 +21,16 @@ SOURCES = {
     "reference\\example_ticket.json",
 }
 ARTIFACTS = {
-    "docs\\DATA_EVALUATION_PLAN.md",
-    "docs\\EVALUATION_ACCEPTANCE.md",
-    "eval\\acceptance.json",
+    "docs\\02_DATA_EVALUATION_PLAN.md",
+    "docs\\03_EVALUATION_ACCEPTANCE.md",
+    "eval\\spec\\acceptance.json",
     "eval\\assess.py",
-    "eval\\probes.json",
-    "eval\\development.jsonl",
-    "eval\\test.jsonl",
+    "eval\\spec\\probes.json",
+    "eval\\data\\development.jsonl",
+    "eval\\data\\test.jsonl",
     "eval\\validate.py",
-    "eval\\test_validate.py",
-    "eval\\test_assess.py",
+    "eval\\tests\\test_validate.py",
+    "eval\\tests\\test_assess.py",
 }
 FINDING_FIELDS = (
     "finding_id", "reported_date", "equipment_id", "equipment_type",
@@ -383,7 +383,7 @@ def validate_probes(probes, manifest, findings, equipment, sections):
 
 
 def validate(root=ROOT, allow_draft=False):
-    manifest = json.loads((root / "eval" / "split.json").read_text(encoding="utf-8"))
+    manifest = json.loads((root / "eval" / "spec" / "split.json").read_text(encoding="utf-8"))
     require(isinstance(manifest, dict), "Manifest must be an object")
     source_root = local_path(root, manifest.get("source_root"))
     check_hashes(source_root, manifest.get("sources_sha256"), SOURCES)
@@ -394,16 +394,16 @@ def validate(root=ROOT, allow_draft=False):
     }
     group_map = validate_manifest(manifest, findings, equipment, sections)
     for partition in ("development", "test"):
-        path = root / "eval" / f"{partition}.jsonl"
+        path = root / "eval" / "data" / f"{partition}.jsonl"
         lines = path.read_text(encoding="utf-8").splitlines()
         require(all(line.strip() for line in lines), f"Blank JSONL record: {path.name}")
         cards = [json.loads(line) for line in lines]
         validate_cards(cards, partition, manifest, findings, equipment, sections, group_map)
-    spec = json.loads((root / "eval" / "acceptance.json").read_text(encoding="utf-8"))
+    spec = json.loads((root / "eval" / "spec" / "acceptance.json").read_text(encoding="utf-8"))
     scenario_count = validate_acceptance_spec(
         spec, manifest["version"], findings, equipment, sections,
     )
-    probes = json.loads((root / "eval" / "probes.json").read_text(encoding="utf-8"))
+    probes = json.loads((root / "eval" / "spec" / "probes.json").read_text(encoding="utf-8"))
     validate_probes(probes, manifest, findings, equipment, sections)
     if manifest["status"] == "frozen":
         check_hashes(root, manifest.get("artifacts_sha256"), ARTIFACTS)

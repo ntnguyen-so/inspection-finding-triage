@@ -8,11 +8,11 @@ acceptance specification and executable ticket-output assessor. The split, all
 
 The purpose is to constrain development before implementation, not to manufacture
 proof that a system which does not yet exist is correct. The acceptance scenarios
-in `eval\acceptance.json` are preregistered specifications. Their current status
+in `eval\spec\acceptance.json` are preregistered specifications. Their current status
 is `not_run_no_system`. Tests of the evaluator are not results for the future
 system. No generated ticket or model result exists in this phase.
 
-This contract supplements `DATA_EVALUATION_PLAN.md`. Where it closes an open policy
+This contract supplements `02_DATA_EVALUATION_PLAN.md`. Where it closes an open policy
 decision in that document, this version takes precedence. All references remain
 AI-assisted, provisional, non-blind, and not domain-expert-certified.
 
@@ -106,7 +106,7 @@ B01 captures actual provider-bound input and checks both relevant knowledge and
 the correct equipment comment. It also checks related findings and exclusion of
 evaluation annotations/test findings during development.
 
-B02's input and policy change are frozen in `eval\probes.json`: synthetic F-9001
+B02's input and policy change are frozen in `eval\spec\probes.json`: synthetic F-9001
 reports seat passing on a bench device, and development F-1016 is the tag-only
 negative control. A deliberately artificial test overlay assigns likelihood 6
 for matching seat-passing observations under probe-A, and 8 under probe-B.
@@ -233,7 +233,7 @@ means only the declared provisional scope, never independent assurance.
 
 ### Reviewer calibration, not a semantic oracle
 
-`eval\probes.json` includes two complete, schema-valid tickets with deliberately
+`eval\spec\probes.json` includes two complete, schema-valid tickets with deliberately
 false claims: verified healthy firewater standby, and failed relief function
 proved by an illegible certification tag. Their grounding judgments must be
 `fail`, for the cited source reasons. This tests that the actual output reviewer
@@ -254,16 +254,16 @@ review-protocol check, not an independent experiment on reviewer competence.
 From the repository root on Windows, Python 3.11+, no third-party dependencies:
 
 ```powershell
-python -B eval\validate.py
-python -B -m unittest discover -s eval -p "test_*.py"
-python -B eval\assess.py --partition development --checklist
+python -B -m eval.validate
+python -B -m unittest discover -s eval\tests -p "test_*.py"
+python -B -m eval.assess --partition development --checklist
 ```
 
 Once an actual ticket file exists:
 
 ```powershell
-python -B eval\assess.py --partition development --tickets <path-to-output>
-python -B eval\assess.py --partition development --tickets <path-to-output> --reviews <path-to-review-json>
+python -B -m eval.assess --partition development --tickets <path-to-output>
+python -B -m eval.assess --partition development --tickets <path-to-output> --reviews <path-to-review-json>
 ```
 
 The first output-assessment invocation creates a review template tied to the exact
@@ -284,7 +284,7 @@ to redefine the expectations.
 For reviewer calibration:
 
 ```powershell
-python -B eval\assess.py --partition development --calibration-reviews <path-to-calibration-json>
+python -B -m eval.assess --partition development --calibration-reviews <path-to-calibration-json>
 ```
 
 The calibration input contains `reference_version`, `reviewer` (same provenance
@@ -324,7 +324,7 @@ non-blind, AI-assisted references.
   delivery, and B01 row-order context invariance. Refactor evaluator self-tests
   to read the reference version rather than hard-coding it.
 - First actual-artifact review identified missing concrete B02 and A04 fixtures:
-  accepted and fixed in `eval\probes.json`, with a scoped calibration checker.
+  accepted and fixed in `eval\spec\probes.json`, with a scoped calibration checker.
 - Second agent cross-reviewed those criticisms and the assessor: accepted the
   artificial 6-to-8 probe only as policy conformance, not engineering truth;
   rejected an invalid `S-` ID and arbitrary +/- score tolerance.
@@ -410,9 +410,29 @@ Two agents challenged this conclusion:
   simply outside this narrow negative-control result. Supported real outputs
   still require the full three-dimensional rubric, not calibration alone.
 
-The final execution summary is `eval\results\readiness-1.2.json`. It records the
+The final execution summary is `eval\results\readiness.json`. It records the
 verified reference snapshot, current self-test result, actual calibration checks,
 and every still-unexecuted system scenario. Results are evidence artifacts, not
 additional runtime knowledge or new expert labels. The results are not part of
 the reference-manifest hash inventory; the summary binds itself to the frozen
 manifest and reviewer-input hashes. This is traceability, not a tamper-proof log.
+
+### Repository organization (layout revision 1)
+
+The numbered documents follow the actual order of work: initial investigation,
+data/split decisions, then acceptance criteria and readiness. The supplied
+candidate package is not renamed or edited. The investigation retains its exact
+user-edited content.
+
+`eval\data` holds the two finding datasets; `eval\spec` holds the single current
+reference contract and probes; `eval\tests` tests the evaluator software, not the
+triage system. `eval\results` contains observed evidence only. Two calibration
+inputs remain separate because they record distinct reviewer judgments, not two
+versions of the evaluation. The root README is the navigation/command entry point.
+
+This is a layout-only revision of reference 1.2, not another scoring baseline.
+Dataset bytes, membership, probes, source package, judgments, and scenario
+expectations are preserved. Executable paths, imports, documentation references,
+artifact fingerprints, and the readiness evidence are refreshed. The prior
+snapshot is preserved in Git; the current result records its manifest hash
+separately rather than presenting the old commands as newly executed.

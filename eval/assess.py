@@ -8,7 +8,7 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
-from validate import ROOT, nonempty_string, profile_sources, require, validate
+from eval.validate import ROOT, nonempty_string, profile_sources, require, validate
 
 
 DIMENSIONS = ("grounding", "planning", "uncertainty")
@@ -305,14 +305,14 @@ def assess(payload, expected, cards, partition, version, output_hash, review=Non
 
 def load_references(partition):
     validate()
-    manifest = read_json(ROOT / "eval" / "split.json")
+    manifest = read_json(ROOT / "eval" / "spec" / "split.json")
     findings, _, _ = profile_sources(ROOT / manifest["source_root"])
     partitions = ("development", "test") if partition == "all" else (partition,)
     selected = [identifier for name in partitions for identifier in manifest["partitions"][name]]
     cards = []
     for name in partitions:
         cards.extend(json.loads(line) for line in
-                     (ROOT / "eval" / f"{name}.jsonl").read_text(encoding="utf-8").splitlines())
+                     (ROOT / "eval" / "data" / f"{name}.jsonl").read_text(encoding="utf-8").splitlines())
     return manifest["version"], {identifier: findings[identifier] for identifier in selected}, cards
 
 
@@ -336,7 +336,7 @@ def main(argv=None):
             return 0
         if args.calibration_reviews:
             report = calibrate(
-                read_json(args.calibration_reviews), read_json(ROOT / "eval" / "probes.json"),
+                read_json(args.calibration_reviews), read_json(ROOT / "eval" / "spec" / "probes.json"),
             )
             print(json.dumps(report, indent=2))
             return {"pass": 0, "fail": 1, "needs_review": 2}[report["calibration_status"]]

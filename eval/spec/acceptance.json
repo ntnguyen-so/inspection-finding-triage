@@ -2,7 +2,7 @@
   "reference_version": "1.2",
   "status": "specification_only_no_system_results",
   "source": "docs\\candidate-pack\\candidate-pack\\README.md",
-  "design_contract": "docs\\EVALUATION_ACCEPTANCE.md",
+  "design_contract": "docs\\03_EVALUATION_ACCEPTANCE.md",
   "urgency_constraints": {
     "basis": "design",
     "formula_selected": false,
@@ -19,7 +19,7 @@
     "calibration": "prototype_policy_not_domain_expert_certified"
   },
   "review_dimensions": ["grounding", "planning", "uncertainty"],
-  "probe_fixtures": "eval\\probes.json",
+  "probe_fixtures": "eval\\spec\\probes.json",
   "execution_choices": {
     "maximum_provider_attempts_per_finding_including_sdk_retries": 2,
     "success_output": "tickets.json",
@@ -66,7 +66,7 @@
       "kind": "semantic_review",
       "basis": "domain",
       "sources": ["brief:3. Required output", "domain:Output expectations"],
-      "setup": ["Give the actual output reviewer the two frozen seeded false-claim tickets in eval\\probes.json.", "Evaluate their grounding judgments with the known-fixture calibration check.", "Include an uncertain adjacent-score judgment in real output review that cannot be resolved from available evidence."],
+      "setup": ["Give the actual output reviewer the two frozen seeded false-claim tickets in eval\\spec\\probes.json.", "Evaluate their grounding judgments with the known-fixture calibration check.", "Include an uncertain adjacent-score judgment in real output review that cannot be resolved from available evidence."],
       "pass_criteria": ["Known contradictions fail semantic review even when contract checks pass.", "Unresolved numeric judgments remain needs_review rather than being called objectively correct.", "Review explains evidence and never treats retry alone as semantic repair."],
       "evidence_required": ["Frozen mutated tickets and source evidence", "Known-fixture calibration report", "Grounding review and provenance"],
       "status": "not_run_no_system"
@@ -88,7 +88,7 @@
       "kind": "controlled_model_probe",
       "basis": "design",
       "sources": ["brief:6. Design document"],
-      "setup": ["Use the frozen synthetic F-9001 input and probe-A/probe-B overlays in eval\\probes.json, not production knowledge.", "Use F-1016 tag-only defect with valid certification as the negative control.", "Run one output for each input under each policy: four nominal requests, at most eight including the declared retries.", "Use identical model/configuration and record original/edited knowledge versions; do not modify the supplied package."],
+      "setup": ["Use the frozen synthetic F-9001 input and probe-A/probe-B overlays in eval\\spec\\probes.json, not production knowledge.", "Use F-1016 tag-only defect with valid certification as the negative control.", "Run one output for each input under each policy: four nominal requests, at most eight including the declared retries.", "Use identical model/configuration and record original/edited knowledge versions; do not modify the supplied package."],
       "pass_criteria": ["A knowledge/policy edit alone changes the declared source without orchestration or case-ID branches.", "Synthetic positive likelihood follows the deliberately artificial 6-to-8 convention, not a claimed engineering truth.", "The negative control does not receive an inapplicable functional-failure conclusion; exact control-score equality is not required.", "Unexpected or unchanged behavior is reported as a failed/inconclusive probe, not silently retuned."],
       "evidence_required": ["Synthetic fixture and expected effect declared before run", "Knowledge-only diff", "Before/after real model outputs", "Negative-control review"],
       "status": "not_run_no_system"

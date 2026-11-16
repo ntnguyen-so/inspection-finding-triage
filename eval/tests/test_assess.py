@@ -10,8 +10,8 @@ from contextlib import redirect_stdout
 from pathlib import Path
 from unittest.mock import patch
 
-from assess import assess, calibrate, contract_errors, main, read_json, review_template
-from validate import ROOT, profile_sources
+from eval.assess import assess, calibrate, contract_errors, main, read_json, review_template
+from eval.validate import ROOT, profile_sources
 
 
 class OutputAssessmentTests(unittest.TestCase):
@@ -21,11 +21,11 @@ class OutputAssessmentTests(unittest.TestCase):
         findings, _, _ = profile_sources(source)
         cls.findings = findings
         cls.expected = {"F-1005": findings["F-1005"]}
-        cls.probes = read_json(ROOT / "eval" / "probes.json")
+        cls.probes = read_json(ROOT / "eval" / "spec" / "probes.json")
         cls.version = cls.probes["reference_version"]
         cls.card = next(
             json.loads(line) for line in
-            (ROOT / "eval" / "development.jsonl").read_text(encoding="utf-8").splitlines()
+            (ROOT / "eval" / "data" / "development.jsonl").read_text(encoding="utf-8").splitlines()
             if json.loads(line)["finding_id"] == "F-1005"
         )
         cls.ticket = json.loads(
@@ -168,7 +168,7 @@ class OutputAssessmentTests(unittest.TestCase):
             fingerprint = hashlib.sha256(output.read_bytes()).hexdigest()
             args = ["--partition", "development", "--tickets", str(output)]
             reference = (self.version, self.expected, self.cards)
-            with patch("assess.load_references", return_value=reference), redirect_stdout(io.StringIO()):
+            with patch("eval.assess.load_references", return_value=reference), redirect_stdout(io.StringIO()):
                 self.assertEqual(main(args), 2)
                 review = self.complete_review()
                 review["output_sha256"] = fingerprint

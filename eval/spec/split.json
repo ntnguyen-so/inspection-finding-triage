@@ -1,7 +1,8 @@
 {
   "version": "1.2",
   "status": "frozen",
-  "revision_reason": "Final candidate-pack coverage audit: add decision stability, score-collapse diagnostics, row-order context invariance, and reproducibility/cost/delivery acceptance. Sources, cards, and split membership unchanged.",
+  "layout_revision": 1,
+  "revision_reason": "Layout-only reorganization of reference v1.2: number authored documents and group data, specifications, evaluator tests, and observed results. Sources, card bytes, split membership, scenario expectations, and reviewer judgments are unchanged; paths and execution commands are updated.",
   "reference_status": "ai_assisted_provisional_not_expert_certified",
   "test_claim": "non_blind_procedural_freeze_prior_exposure_to_all_21_findings",
   "source_root": "docs\\candidate-pack\\candidate-pack",
@@ -14,16 +15,16 @@
     "reference\\example_ticket.json": "63aa79897bf35abe1e685414b16cdeb7ee4121a61b3877b0d38ae1ddd40d4732"
   },
   "artifacts_sha256": {
-    "docs\\DATA_EVALUATION_PLAN.md": "2a5a462871fd7b0eb066aee5165fd306a1d534d68f5031e4601c6e0f9f122773",
-    "docs\\EVALUATION_ACCEPTANCE.md": "b58f89b8e694d691b0fe481a8cd5b4ee5791d221f56850b50315c8ab50548ac8",
-    "eval\\acceptance.json": "8aef59e64daf421c16a3123800777db527f357713d956fea312f6f4054f79d50",
-    "eval\\assess.py": "8daa915ab14c3a3ec20cd80327f7c37f0cb17c0128554a0b8612d39fc4013ea2",
-    "eval\\probes.json": "7f4005f8f5311b690adba6b53f8d1cbd603e477e1746d20399a542b197be374a",
-    "eval\\development.jsonl": "dd12bb1f740dc57f089ac1945103315facac0fcbcd1cdd460182dc5b79424f6e",
-    "eval\\test.jsonl": "14019fe2b41a298460ce42f0fe1385058cc0a4d24ad04e7c3e3805585a8ebf7d",
-    "eval\\validate.py": "21e3c0aeb8f26425e4bf65441a726da50233d300d61660af5a453441fd667b15",
-    "eval\\test_validate.py": "cd3a2602dc2060675350203005e76c60b3079a43b006fa2bf9df2810e86d6583",
-    "eval\\test_assess.py": "8c1281ff8ab9b939af267af0d28e08e238b5210d6ba37de71cd5d953108f64c1"
+    "docs\\02_DATA_EVALUATION_PLAN.md": "54a890a6a4234fc63c0012a1f530ec9f2494da5b96a6564e022744c54faf1304",
+    "docs\\03_EVALUATION_ACCEPTANCE.md": "ed0d6488673615857d47d396f148217e218469d2289704e3410308ea4a662e70",
+    "eval\\spec\\acceptance.json": "033d1860c3feb3493c587ee32d2b72b510f2fec3847d04dad77de0626ea2c23c",
+    "eval\\assess.py": "f518fb5c9fc8d5fa1af3b12b6211e94e5b7724ff4aa7f19295ebd351feb1d4f8",
+    "eval\\spec\\probes.json": "7f4005f8f5311b690adba6b53f8d1cbd603e477e1746d20399a542b197be374a",
+    "eval\\data\\development.jsonl": "dd12bb1f740dc57f089ac1945103315facac0fcbcd1cdd460182dc5b79424f6e",
+    "eval\\data\\test.jsonl": "14019fe2b41a298460ce42f0fe1385058cc0a4d24ad04e7c3e3805585a8ebf7d",
+    "eval\\validate.py": "77622bc3748a31bb1e3eac36d5a985bf12289a8af8052e9234758007c6e19e9b",
+    "eval\\tests\\test_validate.py": "fb987528ac2c83c50a6797cbb3c40a4eae63ea810b42bd2ba2141ed4d390bf90",
+    "eval\\tests\\test_assess.py": "93466b08bf970c5dc09c195621a08c48415c2cbf2382f065dea86c0db7b597f8"
   },
   "partitions": {
     "development": ["F-1001", "F-1003", "F-1004", "F-1005", "F-1006", "F-1007", "F-1008", "F-1009", "F-1010", "F-1012", "F-1016", "F-1017", "F-1019"],
