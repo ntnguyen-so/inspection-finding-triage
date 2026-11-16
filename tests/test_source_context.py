@@ -6,19 +6,26 @@ from pathlib import Path
 import tempfile
 import unittest
 
-from triage_knowledge.contracts import KnowledgeError, TableSource
+from triage_knowledge.contracts import KnowledgeError, TableSource, canonical_bytes, sha256
 from triage_knowledge.source import SourceDocument, extract_code
 from triage_knowledge.source_store import SourceKnowledgeStore
 from triage_knowledge.retrieval import strategy_binding
-from triage_knowledge.source_context import build_source_context
+from triage_knowledge.source_context import (SourceContext, build_source_context,
+                                             validate_source_context)
 
 
-def table(row: dict, source_id: str, kind: str) -> TableSource:
+def table(row: dict | list[dict], source_id: str, kind: str) -> TableSource:
+    rows = row if isinstance(row, list) else [row]
     stream = io.StringIO(newline="")
-    writer = csv.DictWriter(stream, fieldnames=list(row))
+    writer = csv.DictWriter(stream, fieldnames=list(rows[0]))
     writer.writeheader()
-    writer.writerow(row)
+    writer.writerows(rows)
     return TableSource.from_bytes(stream.getvalue().encode(), source_id=source_id, kind=kind)
+
+
+def rehashed(packet: dict) -> bytes:
+    body = {key: value for key, value in packet.items() if key != "context_hash"}
+    return canonical_bytes({**body, "context_hash": sha256(canonical_bytes(body))})
 
 
 class SourceContextTests(unittest.TestCase):
@@ -51,15 +58,181 @@ class SourceContextTests(unittest.TestCase):
             "reliability_score": "5", "safety_critical_element": "No", "redundancy": "None",
             "engineer_comment": "Independent comment delivery marker.",
         }, "registry", "registry_input")
+        self.policy = {"version": "fixture-policy-v1",
+                       "instructions": "Workflow-owned synthetic policy."}
 
     def build(self, **overrides):
         options = {"knowledge_version": self.version, "assessment_time": "2026-07-01T00:00:00+00:00",
                    "expected_strategy": strategy_binding(),
-                   "assessment_policy": {"version": "fixture-policy-v1",
-                                         "instructions": "Workflow-owned synthetic policy."},
+                   "assessment_policy": self.policy,
                    "max_bytes": 64_000}
         options.update(overrides)
         return build_source_context(self.store, self.findings, self.registry, **options)
+
+    def validate(self, bundle, **overrides):
+        options = {"knowledge_version": self.version, "assessment_time": "2026-07-01T00:00:00+00:00",
+                   "expected_strategy": strategy_binding(),
+                   "expected_assessment_policy": self.policy, "max_bytes": 64_000}
+        options.update(overrides)
+        return validate_source_context(bundle, self.findings, self.registry, self.store, **options)
+
+    def test_consumer_rebuilds_local_evidence_and_accepts_semantic_row_order(self):
+        frow, rrow = self.findings.rows[0], self.registry.rows[0]
+        self.findings = table([frow, {**frow, "finding_id": "F-9002", "equipment_id": "EQ-9002"}],
+                              "findings", "finding_input")
+        self.registry = table([rrow, {**rrow, "equipment_id": "EQ-9002"}],
+                              "registry", "registry_input")
+        original = self.build()
+        self.findings = table(list(reversed(self.findings.rows)), "findings", "finding_input")
+        self.registry = table(list(reversed(self.registry.rows)), "registry", "registry_input")
+        for supplied in (original, original.encoded, b" \n" + original.encoded):
+            with self.subTest(kind=type(supplied)):
+                validated = self.validate(supplied)
+                self.assertEqual(validated.encoded, original.encoded)
+                self.assertEqual(validated.evidence(), self.build().evidence())
+                self.assertNotEqual(validated.evidence()["source_manifest"],
+                                    original.evidence()["source_manifest"])
+                snapshot = validated.to_dict()
+                snapshot["payload"]["knowledge"].clear()
+                self.assertTrue(validated.to_dict()["payload"]["knowledge"])
+        forged_local_evidence = SourceContext(original.encoded, b"not trusted evidence")
+        self.assertEqual(self.validate(forged_local_evidence).evidence(), self.build().evidence())
+
+    def test_consumer_rejects_rehashed_text_comment_and_result_tampering(self):
+        original = self.build()
+        address = next(iter(original.to_dict()["payload"]["knowledge"]))
+        for change in ("knowledge", "comment", "result_hash", "index"):
+            packet = original.to_dict()
+            if change == "knowledge":
+                packet["payload"]["knowledge"][address] = "Altered source condition."
+                packet["source_index"][address] = "Altered source condition."
+            elif change == "comment":
+                packet["payload"]["registry"]["EQ-9001"]["engineer_comment"] = "Altered comment."
+                packet["source_index"]["equipment:EQ-9001:engineer_comment"] = "Altered comment."
+            elif change == "result_hash":
+                packet["knowledge_result_hash"] = "0" * 64
+            else:
+                packet["source_index"][address] = "Altered index."
+            with self.subTest(change=change), self.assertRaises(KnowledgeError) as raised:
+                self.validate(rehashed(packet))
+            self.assertEqual(raised.exception.code, "context_contract")
+        packet = original.to_dict()
+        packet["context_hash"] = "0" * 64
+        with self.assertRaises(KnowledgeError) as raised:
+            self.validate(canonical_bytes(packet))
+        self.assertEqual(raised.exception.code, "context_hash")
+
+    def test_consumer_rejects_missing_extra_identity_fields_types_and_policy(self):
+        original = self.build()
+        for change in ("missing_root", "extra_root", "missing_field", "extra_field",
+                       "missing_id", "extra_id", "ids", "type", "version", "legacy",
+                       "policy", "rubric"):
+            packet = original.to_dict()
+            if change == "missing_root":
+                del packet["source_index"]
+            elif change == "extra_root":
+                packet["rubric"] = {}
+            elif change == "missing_field":
+                del packet["payload"]["registry"]["EQ-9001"]["engineer_comment"]
+            elif change == "extra_field":
+                packet["payload"]["findings"]["F-9001"]["unexpected"] = "Not authorized."
+            elif change == "missing_id":
+                packet["payload"]["findings"].clear()
+            elif change == "extra_id":
+                packet["payload"]["findings"]["F-9999"] = {
+                    **packet["payload"]["findings"]["F-9001"], "finding_id": "F-9999"}
+            elif change == "ids":
+                packet["finding_ids"] = ["F-9999"]
+            elif change == "type":
+                packet["payload"]["registry"]["EQ-9001"]["criticality_score"] = 5
+            elif change in ("version", "legacy"):
+                packet["contract_version"] = True if change == "version" else 0
+            elif change == "policy":
+                packet["assessment_policy"]["instructions"] = "Untrusted replacement policy."
+            else:
+                packet["payload"]["knowledge"]["rubric"] = "Injected scoring instructions."
+            with self.subTest(change=change), self.assertRaises(KnowledgeError) as raised:
+                self.validate(rehashed(packet))
+            expected_code = ("schema" if change in ("missing_root", "extra_root") else
+                             "unsupported_contract" if change in ("version", "legacy") else
+                             "assessment_policy" if change == "policy" else "context_contract")
+            self.assertEqual(raised.exception.code, expected_code)
+
+    def test_consumer_checks_independent_pins_store_and_table_bindings(self):
+        original = self.build()
+        for options, code in (
+            ({"knowledge_version": "sha256-" + "0" * 64}, "unknown_or_invalid_release"),
+            ({"assessment_time": "2026-07-02T00:00:00+00:00"}, "context_contract"),
+            ({"assessment_time": "not-a-time"}, "invalid_query"),
+            ({"expected_strategy": {}}, "strategy_binding_mismatch"),
+            ({"expected_assessment_policy": {**self.policy, "extra": True}}, "assessment_policy"),
+        ):
+            with self.subTest(options=options), self.assertRaises(KnowledgeError) as raised:
+                self.validate(original, **options)
+            self.assertEqual(raised.exception.code, code)
+        original_store = self.store
+        self.store = SourceKnowledgeStore(Path(self.temporary.name) / "other-store")
+        with self.assertRaises(KnowledgeError) as raised:
+            self.validate(original)
+        self.assertEqual(raised.exception.code, "unknown_or_invalid_release")
+        self.store = original_store
+        self.registry = table({**self.registry.rows[0], "engineer_comment": "New trusted comment."},
+                              "registry", "registry_input")
+        with self.assertRaises(KnowledgeError) as raised:
+            self.validate(original)
+        self.assertEqual(raised.exception.code, "context_contract")
+        self.registry = table(self.registry.rows[0], "findings", "registry_input")
+        with self.assertRaises(KnowledgeError) as raised:
+            self.validate(original)
+        self.assertEqual(raised.exception.code, "input_binding_mismatch")
+
+    def test_consumer_bounds_and_strict_wire_format_fail_closed(self):
+        original = self.build()
+        for raw, code in ((b"\xff", "json_decode"), (b'{"x":1,"x":2}', "json_duplicate"),
+                          (b"[]", "schema"), (original.encoded.decode(), "context_contract")):
+            with self.subTest(raw=repr(raw)[:35]), self.assertRaises(KnowledgeError) as raised:
+                self.validate(raw)
+            self.assertEqual(raised.exception.code, code)
+        for limit in (False, 0, len(original.encoded) - 1):
+            with self.subTest(limit=limit), self.assertRaises(KnowledgeError) as raised:
+                self.validate(original, max_bytes=limit)
+            self.assertEqual(raised.exception.code, "context_limit")
+        self.assertEqual(self.validate(original, max_bytes=len(original.encoded)).encoded,
+                         original.encoded)
+
+    def test_consumer_cannot_reinsert_retired_text_into_new_release(self):
+        old = self.build()
+        candidate, digest = self.store.load_draft()
+        retired_id = next(item_id for item_id, item in candidate["items"].items()
+                          if "Rotor rule" in item["revision"]["text"])
+        digest = self.store.set_context_links(
+            [edge for edge in candidate["context_links"]
+             if all(edge[key].split("@")[0] != retired_id for key in ("from", "to"))],
+            expected_digest=digest)
+        digest = self.store.set_lifecycle(
+            retired_id, status="retired", reason="Synthetic withdrawal", expected_digest=digest)
+        candidate, _ = self.store.load_draft()
+        for item_id in candidate["items"]:
+            digest = self.store.review_item(
+                item_id, reviewer="Software fixture only", reason="Synthetic withdrawal review",
+                expected_digest=digest)
+        self.version = self.store.publish(
+            expected_digest=digest, author="Software fixture", reviewer="Software fixture only",
+            reason="Synthetic withdrawal release", reviewed_at="2026-07-01T00:00:00+00:00")
+        current = self.build()
+        self.assertFalse(any("Rotor rule" in text
+                             for text in current.to_dict()["payload"]["knowledge"].values()))
+        self.assertEqual(self.validate(current).encoded, current.encoded)
+        with self.assertRaises(KnowledgeError):
+            self.validate(old)
+        packet = current.to_dict()
+        for address, text in old.to_dict()["payload"]["knowledge"].items():
+            if "Rotor rule" in text:
+                packet["payload"]["knowledge"][address] = text
+                packet["source_index"][address] = text
+        with self.assertRaises(KnowledgeError) as raised:
+            self.validate(rehashed(packet))
+        self.assertEqual(raised.exception.code, "context_contract")
 
     def test_exact_provider_context_excludes_editorial_and_legacy_rubric(self):
         bundle = self.build()

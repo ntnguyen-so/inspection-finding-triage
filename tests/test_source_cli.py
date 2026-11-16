@@ -49,6 +49,35 @@ class SourceCliTests(unittest.TestCase):
             write_new_json(destination, {"replacement": True})
         self.assertEqual(destination.read_bytes(), b"previous output")
 
+    def test_status_distinguishes_pending_draft_releases_and_deployment(self):
+        source = self.root / "source.txt"
+        source.write_bytes(b"Only user-written knowledge.\n")
+        status, out, error = self.invoke("status")
+        self.assertEqual((status, error), (0, ""))
+        self.assertEqual(json.loads(out)["releases"], [])
+        self.assertIsNone(json.loads(out)["candidate_digest"])
+        self.invoke("import-source", "--source", str(source), "--name", "User source")
+        store = SourceKnowledgeStore(self.store_path)
+        candidate, digest = store.load_draft()
+        item = next(iter(candidate["items"]))
+        digest = store.review_item(item, reviewer="Software fixture",
+                                   reason="Storage test only", expected_digest=digest)
+        release = store.publish(expected_digest=digest, author="Software fixture",
+                                reviewer="Software fixture", reason="Storage test only",
+                                reviewed_at="2026-07-01T00:00:00Z")
+        status, out, error = self.invoke("status")
+        self.assertEqual((status, error), (0, ""))
+        record = json.loads(out)
+        self.assertEqual(record["releases"][0]["knowledge_version"], release)
+        self.assertEqual(record["review_counts"]["reviewed"], 1)
+        self.assertFalse(record["legacy_draft_used"])
+        self.assertIsNone(record["workflow_pin"])
+        release_path = self.store_path / "releases" / (release + ".json")
+        release_path.write_bytes(b"{}")
+        status, out, error = self.invoke("status")
+        self.assertEqual((status, out), (1, ""))
+        self.assertIn("error_class", json.loads(error))
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -12,6 +12,7 @@ _EXPORTS = {
     "strategy_binding": ("retrieval", "strategy_binding"),
     "SourceContext": ("source_context", "SourceContext"),
     "build_source_context": ("source_context", "build_source_context"),
+    "validate_source_context": ("source_context", "validate_source_context"),
 }
 for _name in (
     "ContextBundle", "ContextError", "EvaluationOverlay", "KnowledgeError",

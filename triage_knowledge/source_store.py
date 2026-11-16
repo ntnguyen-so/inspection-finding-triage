@@ -418,6 +418,18 @@ class SourceKnowledgeStore:
             candidate = self.resolve_release(release_id)["candidate"]
             return self._save(candidate)
 
+    def list_releases(self):
+        releases = []
+        for path in sorted((self.root / "releases").glob("*.json")):
+            release = self.resolve_release(path.stem)
+            releases.append({
+                "knowledge_version": path.stem,
+                "item_count": len(release["candidate"]["items"]),
+                "source_count": len(release["candidate"]["sources"]),
+                "publication": _copy(release["publication"]),
+            })
+        return releases
+
     def source_document(self, source_id):
         candidate, _ = self.load_draft()
         require(isinstance(source_id, str) and source_id in candidate["sources"],

@@ -62,6 +62,14 @@ class SourceEditorTests(unittest.TestCase):
         self.assertGreater(len(self.app.error), 0)
         self.assertEqual(self.store.load_draft()[1], before)
 
+    def test_invalid_utf8_source_is_visible_without_replacing_saved_draft(self):
+        _, digest = self.store.load_draft()
+        self.domain.write_bytes(b"\xff")
+        self.button("Import initial domain").click().run()
+        self.assertEqual(len(self.app.exception), 0)
+        self.assertTrue(any("UTF-8" in error.value for error in self.app.error))
+        self.assertEqual(self.store.load_draft()[1], digest)
+
     def test_review_publish_and_retire_require_new_approval_and_preserve_old_pin(self):
         def text_input(label):
             return next(value for value in self.app.text_input if value.label == label)

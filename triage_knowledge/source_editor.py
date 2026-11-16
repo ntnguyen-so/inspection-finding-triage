@@ -30,6 +30,17 @@ def main() -> None:
     st.caption("Workflow deployment status: unknown. An operator must separately pin a compatible release.")
     st.info("Code extraction is the default. Copilot extraction is experimental and unqualified; "
             "there is no automatic paid extraction or scoring in this editor.")
+    with st.sidebar.expander("Storage and saved releases"):
+        st.caption("Legacy knowledge\\drafts\\working.json is not read or migrated.")
+        st.code(str(store.root.resolve()), language=None)
+        try:
+            releases = store.list_releases()
+            if releases:
+                st.json(releases)
+            else:
+                st.caption("No immutable release yet. A draft cannot be used for triage.")
+        except (ValueError, OSError) as error:
+            st.error(str(error))
 
     def show_error(error: Exception) -> None:
         code = error.code if isinstance(error, KnowledgeError) else type(error).__name__
@@ -68,7 +79,7 @@ def main() -> None:
                 else:
                     store.create_draft([extraction])
                 updated()
-            except (KnowledgeError, OSError, UnicodeError) as error:
+            except (ValueError, OSError) as error:
                 show_error(error)
 
     fork_version = st.sidebar.text_input("Reviewed release to open for editing")
@@ -101,6 +112,13 @@ def main() -> None:
         return
 
     st.caption("Loaded candidate: " + digest)
+    st.dataframe([{
+        "Item": item_id,
+        "Source": candidate["sources"][entry["revision"]["source_id"]]["name"],
+        "Review": entry["review_state"],
+        "Lifecycle": entry["revision"]["status"],
+        "Text": entry["revision"]["text"][:160].replace("\n", " "),
+    } for item_id, entry in sorted(candidate["items"].items())], hide_index=True)
     inspect, relationships, publication, preview = st.tabs(
         ["Cases and edits", "Context and replacement", "Review and publish", "Active retrieval preview"])
     with inspect:

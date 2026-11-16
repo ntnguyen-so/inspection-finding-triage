@@ -22,7 +22,7 @@ def parser() -> argparse.ArgumentParser:
     intake.add_argument("--source", type=Path, required=True)
     intake.add_argument("--name", required=True)
     intake.add_argument("--source-id")
-    for name in ("check", "strategy"):
+    for name in ("check", "strategy", "status"):
         commands.add_parser(name)
     for name in ("review", "edit", "retire", "restore", "reject", "restore-intake"):
         command = commands.add_parser(name)
@@ -107,6 +107,20 @@ def main(argv: list[str] | None = None) -> int:
                 digest = store.create_draft([extraction])
             result = {"status": "pending_review", "candidate_digest": digest,
                       "source_id": document.source_id, "approved": False}
+        elif args.command == "status":
+            candidate, digest = store.load_draft() if store.draft_path.exists() else (None, None)
+            result = {
+                "contract": "source-knowledge-storage-v1", "schema_version": 3,
+                "store": str(store.root), "draft": str(store.draft_path),
+                "candidate_digest": digest,
+                "review_counts": {
+                    state: sum(item["review_state"] == state for item in candidate["items"].values())
+                    if candidate else 0 for state in ("pending", "reviewed", "rejected")
+                },
+                "releases": store.list_releases(), "workflow_pin": None,
+                "deployment_status": "unknown_requires_explicit_workflow_pin",
+                "legacy_draft_used": False,
+            }
         elif args.command == "check":
             candidate, digest = store.load_draft()
             result = {"status": "valid_draft", "candidate_digest": digest,
