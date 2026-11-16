@@ -1,0 +1,879 @@
+{
+  "candidate_outputs_used": false,
+  "construction": "Fixture authoring only: literal whole-line Scope:/Equipment: declarations outside fences in the eight unchanged synthetic sources, plus declared query input types. Source-authored scope labels ARE used; this inventory is NOT independent of source authorship. Reference access supplies only query IDs and subject_types, never rule-to-scope, atom or expected-answer assignments. No original domain or model output. Empty query type lists retain the existing missing-type sentinel. Shared all-family vocabulary exposure is NOT blind. Vocabulary coverage does NOT qualify semantic quality, field/domain knowledge or type safety: raw critical extraction grades and per-case recall must still pass.",
+  "contract": "knowledge-query-registry-fixture-v1",
+  "expected_answer_sheet_used": false,
+  "inventory": [
+    {
+      "equipment_type": "Amber-Kites",
+      "provenance": [
+        {
+          "field": "subject_types",
+          "index": 0,
+          "kind": "query_input",
+          "query_id": "dev_atlas.scoped"
+        },
+        {
+          "end": 104,
+          "field": "Scope",
+          "kind": "source_declaration",
+          "quote": "Scope: Amber-Kites\r\n",
+          "source_id": "dev_atlas",
+          "source_sha256": "35a95953d27cf67b4385a2c322fe887bb7b928876c2a0cfa5be642c827383818",
+          "start": 84
+        }
+      ]
+    },
+    {
+      "equipment_type": "Azure Tiles",
+      "provenance": [
+        {
+          "field": "subject_types",
+          "index": 0,
+          "kind": "query_input",
+          "query_id": "dev_mosaic.scoped"
+        },
+        {
+          "end": 120,
+          "field": "Equipment",
+          "kind": "source_declaration",
+          "quote": "Equipment: Azure Tiles\r\n",
+          "source_id": "dev_mosaic",
+          "source_sha256": "0852927bd7abe608ce450eb87d6e21a23137fa6394e1e5ea36140d84002c338f",
+          "start": 96
+        }
+      ]
+    },
+    {
+      "equipment_type": "Brass Desks",
+      "provenance": [
+        {
+          "end": 643,
+          "field": "Scope",
+          "kind": "source_declaration",
+          "quote": "Scope: Brass Desks\r\n",
+          "source_id": "dev_quill",
+          "source_sha256": "3a004b8eccc41b1be4bceed97313c7bd709513aa3ea4aa73a08000d7b2016094",
+          "start": 623
+        }
+      ]
+    },
+    {
+      "equipment_type": "Copper Wheels",
+      "provenance": [
+        {
+          "end": 587,
+          "field": "Equipment",
+          "kind": "source_declaration",
+          "quote": "Equipment: Copper Wheels\r\n",
+          "source_id": "eval_prism",
+          "source_sha256": "72765663cf1ff3ff2fb8cd92bbae6051dc4f10493b1df2dfe0452865068c32c1",
+          "start": 561
+        }
+      ]
+    },
+    {
+      "equipment_type": "Cork Rings",
+      "provenance": [
+        {
+          "end": 682,
+          "field": "Equipment",
+          "kind": "source_declaration",
+          "quote": "Equipment: Cork Rings\r\n",
+          "source_id": "eval_loom",
+          "source_sha256": "7c10850f21de579945f1daa3d62353b9fba505a9a78c18ea04049b6fa21c3cfc",
+          "start": 659
+        }
+      ]
+    },
+    {
+      "equipment_type": "Foam Barges",
+      "provenance": [
+        {
+          "field": "subject_types",
+          "index": 0,
+          "kind": "query_input",
+          "query_id": "eval_river.scoped"
+        }
+      ]
+    },
+    {
+      "equipment_type": "Glass-Carts",
+      "provenance": [
+        {
+          "end": 446,
+          "field": "Equipment",
+          "kind": "source_declaration",
+          "quote": "Equipment: Glass-Carts\r\n",
+          "source_id": "dev_atlas",
+          "source_sha256": "35a95953d27cf67b4385a2c322fe887bb7b928876c2a0cfa5be642c827383818",
+          "start": 422
+        }
+      ]
+    },
+    {
+      "equipment_type": "Lemon Cubes",
+      "provenance": [
+        {
+          "end": 663,
+          "field": "Scope",
+          "kind": "source_declaration",
+          "quote": "Scope: Lemon Cubes\r\n",
+          "source_id": "eval_orchard",
+          "source_sha256": "412ea94c07b410bb43a46c04e98de2acfcaca0d5641e39f9f6f8e035f893d66c",
+          "start": 643
+        }
+      ]
+    },
+    {
+      "equipment_type": "Ochre Tiles",
+      "provenance": [
+        {
+          "end": 526,
+          "field": "Scope",
+          "kind": "source_declaration",
+          "quote": "Scope: Ochre Tiles\r\n",
+          "source_id": "dev_mosaic",
+          "source_sha256": "0852927bd7abe608ce450eb87d6e21a23137fa6394e1e5ea36140d84002c338f",
+          "start": 506
+        }
+      ]
+    },
+    {
+      "equipment_type": "Paper-Beacons",
+      "provenance": [
+        {
+          "field": "subject_types",
+          "index": 0,
+          "kind": "query_input",
+          "query_id": "dev_beacon.scoped"
+        },
+        {
+          "end": 115,
+          "field": "Scope",
+          "kind": "source_declaration",
+          "quote": "Scope: Paper-Beacons\r\n",
+          "source_id": "dev_beacon",
+          "source_sha256": "58f29e3fd9c927c30c9cbc65a3c5c01961fbce9929c16118bcef9bcf395e088f",
+          "start": 93
+        }
+      ]
+    },
+    {
+      "equipment_type": "Pebble Counters",
+      "provenance": [
+        {
+          "end": 643,
+          "field": "Scope",
+          "kind": "source_declaration",
+          "quote": "Scope: Pebble Counters\r\n",
+          "source_id": "eval_river",
+          "source_sha256": "cb87dd0ce116a2813451daa873830d5b53269ac41742330b6d4baee09b61663e",
+          "start": 619
+        }
+      ]
+    },
+    {
+      "equipment_type": "Plum-Arcs",
+      "provenance": [
+        {
+          "field": "subject_types",
+          "index": 0,
+          "kind": "query_input",
+          "query_id": "eval_orchard.scoped"
+        },
+        {
+          "end": 143,
+          "field": "Equipment",
+          "kind": "source_declaration",
+          "quote": "Equipment: Plum-Arcs\r\n",
+          "source_id": "eval_orchard",
+          "source_sha256": "412ea94c07b410bb43a46c04e98de2acfcaca0d5641e39f9f6f8e035f893d66c",
+          "start": 121
+        }
+      ]
+    },
+    {
+      "equipment_type": "Prism-Gates",
+      "provenance": [
+        {
+          "end": 126,
+          "field": "Scope",
+          "kind": "source_declaration",
+          "quote": "Scope: Prism-Gates\r\n",
+          "source_id": "eval_prism",
+          "source_sha256": "72765663cf1ff3ff2fb8cd92bbae6051dc4f10493b1df2dfe0452865068c32c1",
+          "start": 106
+        },
+        {
+          "field": "subject_types",
+          "index": 0,
+          "kind": "query_input",
+          "query_id": "eval_prism.scoped"
+        }
+      ]
+    },
+    {
+      "equipment_type": "Silk Shuttles",
+      "provenance": [
+        {
+          "end": 131,
+          "field": "Scope",
+          "kind": "source_declaration",
+          "quote": "Scope: Silk Shuttles\r\n",
+          "source_id": "eval_loom",
+          "source_sha256": "7c10850f21de579945f1daa3d62353b9fba505a9a78c18ea04049b6fa21c3cfc",
+          "start": 109
+        },
+        {
+          "field": "subject_types",
+          "index": 0,
+          "kind": "query_input",
+          "query_id": "eval_loom.scoped"
+        }
+      ]
+    },
+    {
+      "equipment_type": "Tin-Moons",
+      "provenance": [
+        {
+          "end": 531,
+          "field": "Equipment",
+          "kind": "source_declaration",
+          "quote": "Equipment: Tin-Moons\r\n",
+          "source_id": "dev_beacon",
+          "source_sha256": "58f29e3fd9c927c30c9cbc65a3c5c01961fbce9929c16118bcef9bcf395e088f",
+          "start": 509
+        }
+      ]
+    },
+    {
+      "equipment_type": "Unrecognized synthetic subject",
+      "provenance": [
+        {
+          "encoding": "existing_empty_type_list_sentinel",
+          "field": "subject_types",
+          "index": null,
+          "kind": "query_input",
+          "query_id": "dev_quill.unknown"
+        },
+        {
+          "encoding": "existing_empty_type_list_sentinel",
+          "field": "subject_types",
+          "index": null,
+          "kind": "query_input",
+          "query_id": "eval_orchard.unknown"
+        }
+      ]
+    },
+    {
+      "equipment_type": "Velvet Desks",
+      "provenance": [
+        {
+          "field": "subject_types",
+          "index": 0,
+          "kind": "query_input",
+          "query_id": "dev_quill.scoped"
+        }
+      ]
+    },
+    {
+      "equipment_type": "beacon with missing type",
+      "provenance": [
+        {
+          "field": "subject_types",
+          "index": 0,
+          "kind": "query_input",
+          "query_id": "dev_beacon.unknown"
+        }
+      ]
+    },
+    {
+      "equipment_type": "cloud ferries",
+      "provenance": [
+        {
+          "field": "subject_types",
+          "index": 0,
+          "kind": "query_input",
+          "query_id": "eval_river.qualifier"
+        }
+      ]
+    },
+    {
+      "equipment_type": "folded stars",
+      "provenance": [
+        {
+          "field": "subject_types",
+          "index": 0,
+          "kind": "query_input",
+          "query_id": "dev_beacon.qualifier"
+        }
+      ]
+    },
+    {
+      "equipment_type": "parcel toy of unknown class",
+      "provenance": [
+        {
+          "field": "subject_types",
+          "index": 0,
+          "kind": "query_input",
+          "query_id": "eval_river.unknown"
+        }
+      ]
+    },
+    {
+      "equipment_type": "possibly a gate, type unconfirmed",
+      "provenance": [
+        {
+          "field": "subject_types",
+          "index": 0,
+          "kind": "query_input",
+          "query_id": "eval_prism.unknown"
+        }
+      ]
+    },
+    {
+      "equipment_type": "purple bridges",
+      "provenance": [
+        {
+          "field": "subject_types",
+          "index": 0,
+          "kind": "query_input",
+          "query_id": "eval_orchard.qualifier"
+        }
+      ]
+    },
+    {
+      "equipment_type": "sky pieces",
+      "provenance": [
+        {
+          "field": "subject_types",
+          "index": 0,
+          "kind": "query_input",
+          "query_id": "dev_mosaic.qualifier"
+        }
+      ]
+    },
+    {
+      "equipment_type": "smooth runners",
+      "provenance": [
+        {
+          "field": "subject_types",
+          "index": 0,
+          "kind": "query_input",
+          "query_id": "eval_loom.qualifier"
+        }
+      ]
+    },
+    {
+      "equipment_type": "soft counters",
+      "provenance": [
+        {
+          "field": "subject_types",
+          "index": 0,
+          "kind": "query_input",
+          "query_id": "dev_quill.qualifier"
+        }
+      ]
+    },
+    {
+      "equipment_type": "split lights",
+      "provenance": [
+        {
+          "field": "subject_types",
+          "index": 0,
+          "kind": "query_input",
+          "query_id": "eval_prism.qualifier"
+        }
+      ]
+    },
+    {
+      "equipment_type": "sunset ribbons",
+      "provenance": [
+        {
+          "field": "subject_types",
+          "index": 0,
+          "kind": "query_input",
+          "query_id": "dev_atlas.qualifier"
+        }
+      ]
+    },
+    {
+      "equipment_type": "uncertain tile family",
+      "provenance": [
+        {
+          "field": "subject_types",
+          "index": 0,
+          "kind": "query_input",
+          "query_id": "dev_mosaic.unknown"
+        }
+      ]
+    },
+    {
+      "equipment_type": "unlisted festival object",
+      "provenance": [
+        {
+          "field": "subject_types",
+          "index": 0,
+          "kind": "query_input",
+          "query_id": "dev_atlas.unknown"
+        }
+      ]
+    },
+    {
+      "equipment_type": "unresolved routing object",
+      "provenance": [
+        {
+          "field": "subject_types",
+          "index": 0,
+          "kind": "query_input",
+          "query_id": "eval_loom.unknown"
+        }
+      ]
+    }
+  ],
+  "inventory_independent_of_sources": false,
+  "production_scope_review": false,
+  "query_inputs": {
+    "dev_atlas.qualifier": {
+      "subject_types": [
+        "sunset ribbons"
+      ]
+    },
+    "dev_atlas.scoped": {
+      "subject_types": [
+        "Amber-Kites"
+      ]
+    },
+    "dev_atlas.unknown": {
+      "subject_types": [
+        "unlisted festival object"
+      ]
+    },
+    "dev_beacon.qualifier": {
+      "subject_types": [
+        "folded stars"
+      ]
+    },
+    "dev_beacon.scoped": {
+      "subject_types": [
+        "Paper-Beacons"
+      ]
+    },
+    "dev_beacon.unknown": {
+      "subject_types": [
+        "beacon with missing type"
+      ]
+    },
+    "dev_mosaic.qualifier": {
+      "subject_types": [
+        "sky pieces"
+      ]
+    },
+    "dev_mosaic.scoped": {
+      "subject_types": [
+        "Azure Tiles"
+      ]
+    },
+    "dev_mosaic.unknown": {
+      "subject_types": [
+        "uncertain tile family"
+      ]
+    },
+    "dev_quill.qualifier": {
+      "subject_types": [
+        "soft counters"
+      ]
+    },
+    "dev_quill.scoped": {
+      "subject_types": [
+        "Velvet Desks"
+      ]
+    },
+    "dev_quill.unknown": {
+      "subject_types": []
+    },
+    "eval_loom.qualifier": {
+      "subject_types": [
+        "smooth runners"
+      ]
+    },
+    "eval_loom.scoped": {
+      "subject_types": [
+        "Silk Shuttles"
+      ]
+    },
+    "eval_loom.unknown": {
+      "subject_types": [
+        "unresolved routing object"
+      ]
+    },
+    "eval_orchard.qualifier": {
+      "subject_types": [
+        "purple bridges"
+      ]
+    },
+    "eval_orchard.scoped": {
+      "subject_types": [
+        "Plum-Arcs"
+      ]
+    },
+    "eval_orchard.unknown": {
+      "subject_types": []
+    },
+    "eval_prism.qualifier": {
+      "subject_types": [
+        "split lights"
+      ]
+    },
+    "eval_prism.scoped": {
+      "subject_types": [
+        "Prism-Gates"
+      ]
+    },
+    "eval_prism.unknown": {
+      "subject_types": [
+        "possibly a gate, type unconfirmed"
+      ]
+    },
+    "eval_river.qualifier": {
+      "subject_types": [
+        "cloud ferries"
+      ]
+    },
+    "eval_river.scoped": {
+      "subject_types": [
+        "Foam Barges"
+      ]
+    },
+    "eval_river.unknown": {
+      "subject_types": [
+        "parcel toy of unknown class"
+      ]
+    }
+  },
+  "registry": {
+    "SYN-9001": {
+      "criticality_score": "5",
+      "engineer_comment": "Authorized synthetic query, not field evidence.",
+      "equipment_id": "SYN-9001",
+      "equipment_type": "Amber-Kites",
+      "redundancy": "None",
+      "reliability_score": "5",
+      "safety_critical_element": "No",
+      "service_description": "Artificial selection subject"
+    },
+    "SYN-9002": {
+      "criticality_score": "5",
+      "engineer_comment": "Authorized synthetic query, not field evidence.",
+      "equipment_id": "SYN-9002",
+      "equipment_type": "Azure Tiles",
+      "redundancy": "None",
+      "reliability_score": "5",
+      "safety_critical_element": "No",
+      "service_description": "Artificial selection subject"
+    },
+    "SYN-9003": {
+      "criticality_score": "5",
+      "engineer_comment": "Authorized synthetic query, not field evidence.",
+      "equipment_id": "SYN-9003",
+      "equipment_type": "Brass Desks",
+      "redundancy": "None",
+      "reliability_score": "5",
+      "safety_critical_element": "No",
+      "service_description": "Artificial selection subject"
+    },
+    "SYN-9004": {
+      "criticality_score": "5",
+      "engineer_comment": "Authorized synthetic query, not field evidence.",
+      "equipment_id": "SYN-9004",
+      "equipment_type": "Copper Wheels",
+      "redundancy": "None",
+      "reliability_score": "5",
+      "safety_critical_element": "No",
+      "service_description": "Artificial selection subject"
+    },
+    "SYN-9005": {
+      "criticality_score": "5",
+      "engineer_comment": "Authorized synthetic query, not field evidence.",
+      "equipment_id": "SYN-9005",
+      "equipment_type": "Cork Rings",
+      "redundancy": "None",
+      "reliability_score": "5",
+      "safety_critical_element": "No",
+      "service_description": "Artificial selection subject"
+    },
+    "SYN-9006": {
+      "criticality_score": "5",
+      "engineer_comment": "Authorized synthetic query, not field evidence.",
+      "equipment_id": "SYN-9006",
+      "equipment_type": "Foam Barges",
+      "redundancy": "None",
+      "reliability_score": "5",
+      "safety_critical_element": "No",
+      "service_description": "Artificial selection subject"
+    },
+    "SYN-9007": {
+      "criticality_score": "5",
+      "engineer_comment": "Authorized synthetic query, not field evidence.",
+      "equipment_id": "SYN-9007",
+      "equipment_type": "Glass-Carts",
+      "redundancy": "None",
+      "reliability_score": "5",
+      "safety_critical_element": "No",
+      "service_description": "Artificial selection subject"
+    },
+    "SYN-9008": {
+      "criticality_score": "5",
+      "engineer_comment": "Authorized synthetic query, not field evidence.",
+      "equipment_id": "SYN-9008",
+      "equipment_type": "Lemon Cubes",
+      "redundancy": "None",
+      "reliability_score": "5",
+      "safety_critical_element": "No",
+      "service_description": "Artificial selection subject"
+    },
+    "SYN-9009": {
+      "criticality_score": "5",
+      "engineer_comment": "Authorized synthetic query, not field evidence.",
+      "equipment_id": "SYN-9009",
+      "equipment_type": "Ochre Tiles",
+      "redundancy": "None",
+      "reliability_score": "5",
+      "safety_critical_element": "No",
+      "service_description": "Artificial selection subject"
+    },
+    "SYN-9010": {
+      "criticality_score": "5",
+      "engineer_comment": "Authorized synthetic query, not field evidence.",
+      "equipment_id": "SYN-9010",
+      "equipment_type": "Paper-Beacons",
+      "redundancy": "None",
+      "reliability_score": "5",
+      "safety_critical_element": "No",
+      "service_description": "Artificial selection subject"
+    },
+    "SYN-9011": {
+      "criticality_score": "5",
+      "engineer_comment": "Authorized synthetic query, not field evidence.",
+      "equipment_id": "SYN-9011",
+      "equipment_type": "Pebble Counters",
+      "redundancy": "None",
+      "reliability_score": "5",
+      "safety_critical_element": "No",
+      "service_description": "Artificial selection subject"
+    },
+    "SYN-9012": {
+      "criticality_score": "5",
+      "engineer_comment": "Authorized synthetic query, not field evidence.",
+      "equipment_id": "SYN-9012",
+      "equipment_type": "Plum-Arcs",
+      "redundancy": "None",
+      "reliability_score": "5",
+      "safety_critical_element": "No",
+      "service_description": "Artificial selection subject"
+    },
+    "SYN-9013": {
+      "criticality_score": "5",
+      "engineer_comment": "Authorized synthetic query, not field evidence.",
+      "equipment_id": "SYN-9013",
+      "equipment_type": "Prism-Gates",
+      "redundancy": "None",
+      "reliability_score": "5",
+      "safety_critical_element": "No",
+      "service_description": "Artificial selection subject"
+    },
+    "SYN-9014": {
+      "criticality_score": "5",
+      "engineer_comment": "Authorized synthetic query, not field evidence.",
+      "equipment_id": "SYN-9014",
+      "equipment_type": "Silk Shuttles",
+      "redundancy": "None",
+      "reliability_score": "5",
+      "safety_critical_element": "No",
+      "service_description": "Artificial selection subject"
+    },
+    "SYN-9015": {
+      "criticality_score": "5",
+      "engineer_comment": "Authorized synthetic query, not field evidence.",
+      "equipment_id": "SYN-9015",
+      "equipment_type": "Tin-Moons",
+      "redundancy": "None",
+      "reliability_score": "5",
+      "safety_critical_element": "No",
+      "service_description": "Artificial selection subject"
+    },
+    "SYN-9016": {
+      "criticality_score": "5",
+      "engineer_comment": "Authorized synthetic query, not field evidence.",
+      "equipment_id": "SYN-9016",
+      "equipment_type": "Unrecognized synthetic subject",
+      "redundancy": "None",
+      "reliability_score": "5",
+      "safety_critical_element": "No",
+      "service_description": "Artificial selection subject"
+    },
+    "SYN-9017": {
+      "criticality_score": "5",
+      "engineer_comment": "Authorized synthetic query, not field evidence.",
+      "equipment_id": "SYN-9017",
+      "equipment_type": "Velvet Desks",
+      "redundancy": "None",
+      "reliability_score": "5",
+      "safety_critical_element": "No",
+      "service_description": "Artificial selection subject"
+    },
+    "SYN-9018": {
+      "criticality_score": "5",
+      "engineer_comment": "Authorized synthetic query, not field evidence.",
+      "equipment_id": "SYN-9018",
+      "equipment_type": "beacon with missing type",
+      "redundancy": "None",
+      "reliability_score": "5",
+      "safety_critical_element": "No",
+      "service_description": "Artificial selection subject"
+    },
+    "SYN-9019": {
+      "criticality_score": "5",
+      "engineer_comment": "Authorized synthetic query, not field evidence.",
+      "equipment_id": "SYN-9019",
+      "equipment_type": "cloud ferries",
+      "redundancy": "None",
+      "reliability_score": "5",
+      "safety_critical_element": "No",
+      "service_description": "Artificial selection subject"
+    },
+    "SYN-9020": {
+      "criticality_score": "5",
+      "engineer_comment": "Authorized synthetic query, not field evidence.",
+      "equipment_id": "SYN-9020",
+      "equipment_type": "folded stars",
+      "redundancy": "None",
+      "reliability_score": "5",
+      "safety_critical_element": "No",
+      "service_description": "Artificial selection subject"
+    },
+    "SYN-9021": {
+      "criticality_score": "5",
+      "engineer_comment": "Authorized synthetic query, not field evidence.",
+      "equipment_id": "SYN-9021",
+      "equipment_type": "parcel toy of unknown class",
+      "redundancy": "None",
+      "reliability_score": "5",
+      "safety_critical_element": "No",
+      "service_description": "Artificial selection subject"
+    },
+    "SYN-9022": {
+      "criticality_score": "5",
+      "engineer_comment": "Authorized synthetic query, not field evidence.",
+      "equipment_id": "SYN-9022",
+      "equipment_type": "possibly a gate, type unconfirmed",
+      "redundancy": "None",
+      "reliability_score": "5",
+      "safety_critical_element": "No",
+      "service_description": "Artificial selection subject"
+    },
+    "SYN-9023": {
+      "criticality_score": "5",
+      "engineer_comment": "Authorized synthetic query, not field evidence.",
+      "equipment_id": "SYN-9023",
+      "equipment_type": "purple bridges",
+      "redundancy": "None",
+      "reliability_score": "5",
+      "safety_critical_element": "No",
+      "service_description": "Artificial selection subject"
+    },
+    "SYN-9024": {
+      "criticality_score": "5",
+      "engineer_comment": "Authorized synthetic query, not field evidence.",
+      "equipment_id": "SYN-9024",
+      "equipment_type": "sky pieces",
+      "redundancy": "None",
+      "reliability_score": "5",
+      "safety_critical_element": "No",
+      "service_description": "Artificial selection subject"
+    },
+    "SYN-9025": {
+      "criticality_score": "5",
+      "engineer_comment": "Authorized synthetic query, not field evidence.",
+      "equipment_id": "SYN-9025",
+      "equipment_type": "smooth runners",
+      "redundancy": "None",
+      "reliability_score": "5",
+      "safety_critical_element": "No",
+      "service_description": "Artificial selection subject"
+    },
+    "SYN-9026": {
+      "criticality_score": "5",
+      "engineer_comment": "Authorized synthetic query, not field evidence.",
+      "equipment_id": "SYN-9026",
+      "equipment_type": "soft counters",
+      "redundancy": "None",
+      "reliability_score": "5",
+      "safety_critical_element": "No",
+      "service_description": "Artificial selection subject"
+    },
+    "SYN-9027": {
+      "criticality_score": "5",
+      "engineer_comment": "Authorized synthetic query, not field evidence.",
+      "equipment_id": "SYN-9027",
+      "equipment_type": "split lights",
+      "redundancy": "None",
+      "reliability_score": "5",
+      "safety_critical_element": "No",
+      "service_description": "Artificial selection subject"
+    },
+    "SYN-9028": {
+      "criticality_score": "5",
+      "engineer_comment": "Authorized synthetic query, not field evidence.",
+      "equipment_id": "SYN-9028",
+      "equipment_type": "sunset ribbons",
+      "redundancy": "None",
+      "reliability_score": "5",
+      "safety_critical_element": "No",
+      "service_description": "Artificial selection subject"
+    },
+    "SYN-9029": {
+      "criticality_score": "5",
+      "engineer_comment": "Authorized synthetic query, not field evidence.",
+      "equipment_id": "SYN-9029",
+      "equipment_type": "uncertain tile family",
+      "redundancy": "None",
+      "reliability_score": "5",
+      "safety_critical_element": "No",
+      "service_description": "Artificial selection subject"
+    },
+    "SYN-9030": {
+      "criticality_score": "5",
+      "engineer_comment": "Authorized synthetic query, not field evidence.",
+      "equipment_id": "SYN-9030",
+      "equipment_type": "unlisted festival object",
+      "redundancy": "None",
+      "reliability_score": "5",
+      "safety_critical_element": "No",
+      "service_description": "Artificial selection subject"
+    },
+    "SYN-9031": {
+      "criticality_score": "5",
+      "engineer_comment": "Authorized synthetic query, not field evidence.",
+      "equipment_id": "SYN-9031",
+      "equipment_type": "unresolved routing object",
+      "redundancy": "None",
+      "reliability_score": "5",
+      "safety_critical_element": "No",
+      "service_description": "Artificial selection subject"
+    }
+  },
+  "registry_sha256": "e89eb28f944b15930c1ca4e4bffe4d4d7ae365caa434ec74bb5392d5eaba3d92",
+  "source_hashes": {
+    "dev_atlas": "35a95953d27cf67b4385a2c322fe887bb7b928876c2a0cfa5be642c827383818",
+    "dev_beacon": "58f29e3fd9c927c30c9cbc65a3c5c01961fbce9929c16118bcef9bcf395e088f",
+    "dev_mosaic": "0852927bd7abe608ce450eb87d6e21a23137fa6394e1e5ea36140d84002c338f",
+    "dev_quill": "3a004b8eccc41b1be4bceed97313c7bd709513aa3ea4aa73a08000d7b2016094",
+    "eval_loom": "7c10850f21de579945f1daa3d62353b9fba505a9a78c18ea04049b6fa21c3cfc",
+    "eval_orchard": "412ea94c07b410bb43a46c04e98de2acfcaca0d5641e39f9f6f8e035f893d66c",
+    "eval_prism": "72765663cf1ff3ff2fb8cd92bbae6051dc4f10493b1df2dfe0452865068c32c1",
+    "eval_river": "cb87dd0ce116a2813451daa873830d5b53269ac41742330b6d4baee09b61663e"
+  },
+  "source_scope_labels_used": true
+}

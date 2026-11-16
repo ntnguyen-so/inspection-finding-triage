@@ -9,7 +9,7 @@ from unittest.mock import patch
 from uuid import uuid4
 
 from eval import run_knowledge_package as runner
-from triage_knowledge.contracts import canonical_bytes, strict_json
+from triage_knowledge.contracts import KnowledgeError, canonical_bytes, sha256, strict_json
 from triage_knowledge.source_context import build_source_context
 
 
@@ -47,7 +47,12 @@ class KnowledgePackageTests(unittest.TestCase):
             writer.writerows(rows)
             self.paths[name].write_bytes(stream.getvalue().encode())
         self.paths["split"].write_bytes(canonical_bytes({
+            "sources_sha256": {key: sha256(self.paths[name].read_bytes())
+                               for name, key in runner.SOURCE_KEYS.items()},
             "partitions": {"development": ["F-9001", "F-9002"], "test": ["F-9003"]}}))
+        pin = patch.object(runner, "EXPECTED_SPLIT_SHA256", sha256(self.paths["split"].read_bytes()))
+        pin.start()
+        self.addCleanup(pin.stop)
         self.time = "2026-07-01T00:00:00+00:00"
         self.counts = {"all": 3, "development": 2, "test": 1}
         self.plan = runner.make_plan(self.paths, self.time, self.counts)
@@ -67,6 +72,13 @@ class KnowledgePackageTests(unittest.TestCase):
         dev = strict_json((self.output / "development-context.json").read_bytes())
         self.assertEqual(dev["finding_ids"], ["F-9001", "F-9002"])
         self.assertEqual(len(report["lifecycle"]["excluded_items"]), 4)
+        self.assertEqual(len(report["lifecycle"]["baseline_target_items"]), 6)
+        lifecycle = strict_json((self.output / "lifecycle-context.json").read_bytes())
+        self.assertNotIn(report["lifecycle"]["old_edited_address"], lifecycle["source_index"])
+        self.assertEqual(report["runtime"]["core_module_files"]["source"],
+                         str((runner.ROOT / "triage_knowledge" / "source.py").resolve()))
+        self.assertIn("revision", report["git"])
+        self.assertIn("dirty", report["git"])
         self.assertEqual(report["human_review"], "not established")
         self.assertEqual(report["system_acceptance"], "not established")
         diagnostics = {case["case"]: case["error_code"] for case in report["diagnostics"]}
@@ -105,6 +117,54 @@ class KnowledgePackageTests(unittest.TestCase):
         self.assertFalse((self.output / "all-context.json").exists())
         self.assertTrue((self.output / "report.json").exists())
 
+    def test_wrong_rejection_diagnostic_is_a_harness_failure(self):
+        original = runner.validate_source_context
+
+        def wrong_diagnostic(bundle, *args, **kwargs):
+            if type(bundle) is bytes:
+                raise KnowledgeError("invalid_query", "Deliberately wrong software-fixture diagnostic.")
+            return original(bundle, *args, **kwargs)
+
+        with patch.object(runner, "validate_source_context", side_effect=wrong_diagnostic):
+            report = runner.run_package(self.output, self.paths, self.plan)
+        self.assertEqual(report["status"], "failed")
+        self.assertEqual(report["failure"]["error_class"], "unexpected_diagnostic")
+        self.assertEqual(report["failure"]["field"], "invalid_query")
+        self.assertNotEqual(report["goals"]["tamper_rejection"], "pass")
+
+    def test_missing_new_edited_revision_fails_positive_lifecycle_check(self):
+        report = runner.run_package(self.output, self.paths, self.plan)
+        self.assertEqual(report["status"], "pass", report.get("failure"))
+        store = runner.SourceKnowledgeStore(self.output / "software-store")
+        candidate = store.resolve_release(report["lifecycle"]["release"])["candidate"]
+        edited = report["lifecycle"]["edited_item"]
+        revision = candidate["items"][edited]
+        address = f"knowledge:{edited}@{revision['revision_id']}:text"
+        packet = strict_json((self.output / "lifecycle-context.json").read_bytes())
+        del packet["payload"]["knowledge"][address]
+        del packet["source_index"][address]
+        with self.assertRaises(KnowledgeError) as raised:
+            runner._assert_revision_projection(
+                packet, candidate, {edited: revision["revision"]["text"]}, store, self.time)
+        self.assertEqual(raised.exception.code, "missing_lifecycle_target")
+
+    def test_identical_active_text_does_not_resurrect_retired_item(self):
+        duplicate = b"# Shared guidance\nIdentical active source wording.\n\n"
+        self.paths["domain"].write_bytes(duplicate * 8)
+        split = strict_json(self.paths["split"].read_bytes())
+        split["sources_sha256"][runner.SOURCE_KEYS["domain"]] = sha256(duplicate * 8)
+        self.paths["split"].write_bytes(canonical_bytes(split))
+        with patch.object(runner, "EXPECTED_SPLIT_SHA256", sha256(self.paths["split"].read_bytes())):
+            plan = runner.make_plan(self.paths, self.time, self.counts)
+            report = runner.run_package(self.output, self.paths, plan)
+        self.assertEqual(report["status"], "pass", report.get("failure"))
+        packet = strict_json((self.output / "lifecycle-context.json").read_bytes())
+        self.assertTrue(any(duplicate.decode() in text
+                            for text in packet["payload"]["knowledge"].values()))
+        for item_id in report["lifecycle"]["excluded_items"]:
+            self.assertFalse(any(key.startswith(f"knowledge:{item_id}@")
+                                 for key in packet["source_index"]))
+
     def test_row_order_semantic_change_is_a_failure_not_an_autofix(self):
         original = runner._table
 
@@ -123,11 +183,27 @@ class KnowledgePackageTests(unittest.TestCase):
         self.paths["domain"].write_bytes(self.paths["domain"].read_bytes() + b"\n")
         report = runner.run_package(self.output, self.paths, self.plan)
         self.assertEqual(report["status"], "failed")
-        self.assertEqual(report["failure"]["error_class"], "freeze_mismatch")
+        self.assertEqual(report["failure"]["error_class"], "original_integrity")
         self.assertEqual(report["goals"]["freeze_unchanged"], "failed")
         self.assertFalse((self.output / "all-context.json").exists())
         self.assertTrue((self.output / "plan.json").exists())
         self.assertTrue((self.output / "report.json").exists())
+
+    def test_source_tampering_before_new_plan_cannot_be_frozen_as_original(self):
+        for name in runner.SOURCE_KEYS:
+            path = self.paths[name]
+            original = path.read_bytes()
+            path.write_bytes(original + b"\n")
+            with self.subTest(source=name), self.assertRaises(KnowledgeError) as raised:
+                runner.make_plan(self.paths, self.time, self.counts)
+            self.assertEqual(raised.exception.code, "original_integrity")
+            path.write_bytes(original)
+        forged = strict_json(self.paths["split"].read_bytes())
+        forged["sources_sha256"][runner.SOURCE_KEYS["domain"]] = "0" * 64
+        self.paths["split"].write_bytes(canonical_bytes(forged))
+        with self.assertRaises(KnowledgeError) as raised:
+            runner.make_plan(self.paths, self.time, self.counts)
+        self.assertEqual(raised.exception.code, "split_integrity")
 
     def test_cli_plan_only_is_nonexecuting_and_execution_requires_freeze(self):
         stdout, stderr = io.StringIO(), io.StringIO()

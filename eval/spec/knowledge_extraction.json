@@ -1,6 +1,15 @@
 {
-  "version": "knowledge-extraction-reference-v1.3",
+  "version": "knowledge-extraction-reference-v1.4",
   "grader_version": "knowledge-span-grader-v1.3",
+  "query_registry_revision": {
+    "prior_snapshot": "237ff52",
+    "reason": "The runner supplied only the target equipment in each synthetic registry, contrary to document 06 section 8's unchanged selected findings plus shared registry contract. The production selector deliberately broadens if any scoped item has no equipment-type label in that registry. Therefore the single-type fixture registry made narrowing impossible for a correct multi-type index.",
+    "change": "Freeze one source-derived synthetic registry fixture before new candidate outputs: literal whole-line Scope:/Equipment: fields outside fences from the eight unchanged synthetic sources, plus declared query INPUT subject types. Retain byte/field provenance and use the identical stored registry for all 24 cases and both candidates; only finding rows select subjects. No candidate output, reference atom or expected rule-to-scope assignment authors the inventory.",
+    "comparability": "Post-observation harness-input correction, not a threshold or production-selector relaxation. Preserve v1.3 failures and execution-time hashes; rerun C0 and C1 under v1.4 rather than carrying old observations forward. The C0 source-star remains a negative usefulness baseline. All subsequent observations are exposed regression, not blind tests.",
+    "review": "Two bounded AI engineering critics confirmed the input-premise defect and challenged source-derived vocabulary as circular. Parent accepts this as a conditional fixture whose inventory contains source-declared names, NOT independent type-safety evidence, blind evaluation or field qualification. A query-only union was rejected because it omitted irrelevant secondary types; a typed-review production bypass was not implemented. Production safeguards and unregistered-mechanism/type, unknown-subject and C0-star controls remain. No real engineering rows are mixed into synthetic inputs.",
+    "limitation": "Inventory and source vocabulary share authorship. Development offline queries can see evaluation type names through this global fixture, but extraction provider requests receive only their own source, never the inventory. No field-retrieval, human-review or C1-adoption qualification follows from a conditional software pass.",
+    "unchanged": "All supplied and synthetic source bytes, reference.json bytes/hash, 24 finding subject requests, atom spans, expected labels, partition membership, repeat schedule, thresholds and production narrowing safeguards."
+  },
   "context_grader_revision": {
     "prior_snapshot": "915425f",
     "runtime_snapshot": "cab1b24",
@@ -79,6 +88,8 @@
   ],
   "reference": "eval\\data\\knowledge_extraction\\reference.json",
   "reference_sha256": "4d65b2c719af9df044fd27e907cbf682e636c95d757eca3720a342acf8e25c70",
+  "query_registry": "eval\\data\\knowledge_extraction\\registry.json",
+  "query_registry_sha256": "2adcad682e0c4b604954ef3ada0f8c6c7b84a7dc16fa5efe0ae22d59193e7ec6",
   "nominal_query_counts": {"development":12,"evaluation":12,"total":24,"efficiency":8,"evaluation_unknown":4,"original_smoke":0,"boundary_cases":0},
   "efficiency_case_ids": ["eval_prism.scoped","eval_prism.qualifier","eval_river.scoped","eval_river.qualifier","eval_orchard.scoped","eval_orchard.qualifier","eval_loom.scoped","eval_loom.qualifier"],
   "unknown_case_ids": ["eval_prism.unknown","eval_river.unknown","eval_orchard.unknown","eval_loom.unknown"],

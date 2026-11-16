@@ -23,6 +23,7 @@ from __future__ import annotations
 
 import argparse
 import asyncio
+from copy import deepcopy
 import csv
 from datetime import datetime, timezone
 import hashlib
@@ -38,6 +39,7 @@ from .knowledge_eval import (
     ROOT, Suite, assess_extraction, assess_observations, assess_retrieval,
     canonical_hash, load_suite, read_json,
 )
+from .knowledge_query_inputs import load_registry_fixture
 
 
 RESULTS = Path("eval") / "results" / "knowledge" / "extraction"
@@ -144,16 +146,26 @@ def adapt_result(result) -> dict[str, Any]:
     }
 
 
-def query_rows(subject_types: list[str]) -> dict[str, dict[str, dict[str, str]]]:
+def query_rows(
+    subject_types: list[str], *,
+    shared_registry_rows: dict[str, dict[str, str]] | None = None,
+) -> dict[str, dict[str, dict[str, str]]]:
     """Map authorized synthetic subject labels to original CSV column contracts.
 
     Missing/ambiguous type uses an explicitly unrecognized synthetic type. Scores
     are inert query-fixture priors, not rule answers or real finding assessments.
     No expected atoms, aliases, metadata or rule text is added to these rows.
+    A shared fixture supplies the same full registry to every case; findings
+    still contain only the requested subjects and join its fixed equipment IDs.
     """
-    findings, registry = {}, {}
+    findings, registry = {}, deepcopy(shared_registry_rows) if shared_registry_rows is not None else {}
     for index, subject in enumerate(subject_types or ["Unrecognized synthetic subject"], 1):
         fid, eid = f"F-{9000 + index}", f"SYN-{9000 + index}"
+        if shared_registry_rows is not None:
+            matches = [key for key, row in registry.items() if row["equipment_type"] == subject]
+            if len(matches) != 1:
+                raise ValueError("Target must join exactly one fixed registry fixture row")
+            eid = matches[0]
         findings[fid] = {
             "finding_id": fid, "reported_date": "2026-07-01", "equipment_id": eid,
             "equipment_type": subject, "inspection_type": "Routine Operator Round",
@@ -161,12 +173,13 @@ def query_rows(subject_types: list[str]) -> dict[str, dict[str, dict[str, str]]]
             "finding_description": "Artificial selector query; no actual fault is asserted.",
             "reported_by": "Synthetic Fixture", "reporter_role": "Software test",
         }
-        registry[eid] = {
-            "equipment_id": eid, "equipment_type": subject,
-            "service_description": "Artificial selection subject", "criticality_score": "5",
-            "reliability_score": "5", "safety_critical_element": "No", "redundancy": "None",
-            "engineer_comment": "Authorized synthetic query, not field evidence.",
-        }
+        if shared_registry_rows is None:
+            registry[eid] = {
+                "equipment_id": eid, "equipment_type": subject,
+                "service_description": "Artificial selection subject", "criticality_score": "5",
+                "reliability_score": "5", "safety_critical_element": "No", "redundancy": "None",
+                "engineer_comment": "Authorized synthetic query, not field evidence.",
+            }
     return {"findings": findings, "registry": registry}
 
 
@@ -278,6 +291,12 @@ def run_offline(
         raise ValueError("Synthetic review diagnostic and reviewed inputs are mutually exclusive")
     if reviewed_inputs is not None and reviewed_inputs.get("contract") != "knowledge-eval-reviewed-input-v1":
         raise ValueError("Unsupported reviewed-input contract")
+    registry_fixture = load_registry_fixture(suite)
+    registry_rows = registry_fixture["fixture"]["registry"] if registry_fixture else None
+    registry_pin = ({key: registry_fixture[key] for key in ("path", "sha256", "registry_sha256")}
+                    if registry_fixture else None)
+    if registry_fixture:
+        writer.write("query-registry-fixture.json", registry_fixture)
 
     def capture_source(name, row):
         writer.write(name, dict(row, synthetic_review_diagnostic=synthetic_review_diagnostic,
@@ -345,11 +364,12 @@ def run_offline(
         for case_id, query_spec in suite.queries.items():
             if query_spec["source_id"] not in members:
                 continue
-            query = query_rows(query_spec["subject_types"])
+            query = query_rows(query_spec["subject_types"], shared_registry_rows=registry_rows)
             binding = query_binding(query)
             observed: dict[str, Any] = {
                 "case_id": case_id, "query_context": query,
                 "authorized_input_binding": binding.to_dict(),
+                "query_registry_fixture": registry_pin,
                 "partition": partition, "result": None,
                 "assessment": {"status": "needs_review", "reason": "No genuinely reviewed release was supplied; unreviewed drafts are not published."},
                 "execution": "not_run_pending_review",
@@ -383,6 +403,7 @@ def run_offline(
         "contract": "knowledge-source-first-run-v1", "identity": identity,
         "reference_version": suite.manifest["version"], "grader_version": suite.manifest.get("grader_version"),
         "sources": _source_records(suite), "partitions": partitions,
+        "query_registry_fixture": registry_pin,
         "source_assessments": source_observations, "query_count": len(query_observations),
         "query_assessments": {key: value["assessment"] for key, value in query_observations.items()},
         "original_smoke": next(row for row in source_observations if row["source_id"] == "original_domain"),
@@ -416,6 +437,7 @@ def build_experiment(suite: Suite, identity: dict[str, Any]):
     }
     prefix = frozenset(ordered[:5])
     from .knowledge_copilot import request_record
+    registry_fixture = load_registry_fixture(suite)
     freeze = {
         "contract": "knowledge-source-first-experiment-freeze-v1",
         "identity": identity, "reference_version": suite.manifest["version"],
@@ -425,6 +447,10 @@ def build_experiment(suite: Suite, identity: dict[str, Any]):
         "model": MODEL, "reasoning_effort": "low", "timeout_seconds": 90,
         "maximum_application_attempts": 26, "maximum_attempts_per_slot": 2,
         "request_hashes": {slot: canonical_hash(request_record(request)) for slot, request in requests.items()},
+        "query_registry_fixture": (
+            {key: registry_fixture[key] for key in ("path", "sha256", "registry_sha256")}
+            if registry_fixture else None
+        ),
         "strict_http_token_usd_accounting": "unknown_not_qualified",
         "human_effort": "unexecuted", "C1_qualified": False,
     }

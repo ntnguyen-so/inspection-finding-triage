@@ -12,6 +12,7 @@ from unittest.mock import patch
 from contextlib import redirect_stdout
 
 from eval.knowledge_eval import Suite, canonical_hash, load_suite
+from eval.knowledge_query_inputs import CONSTRUCTION, author_registry
 from eval.run_knowledge import (
     ROOT, SOFTWARE_REVIEWER, _reviewed_partition, adapt_extraction, adapt_result, build_experiment, code_identity,
     collect_c0, document_for, main, make_validator, query_binding, query_rows,
@@ -29,6 +30,29 @@ class MemoryWriter:
         if key in self.values:
             raise AssertionError("Evidence overwrite attempted")
         self.values[key] = deepcopy(value)
+
+
+class QueryRegistryInputTests(unittest.TestCase):
+    def test_fixed_rows_join_targets_without_adding_subjects_and_legacy_default_is_unchanged(self):
+        fixture = author_registry(
+            {"synthetic": b"Scope: Copper widget\nEquipment: Silver widget\n"},
+            [{"case_id": "copper", "subject_types": ["Copper widget"]},
+             {"case_id": "missing", "subject_types": []}],
+        )
+        rows = fixture["registry"]
+        query = query_rows(["Copper widget"], shared_registry_rows=rows)
+        self.assertEqual(query["registry"], rows)
+        self.assertEqual(len(query["findings"]), 1)
+        finding = next(iter(query["findings"].values()))
+        self.assertEqual(finding["equipment_type"], "Copper widget")
+        self.assertEqual(rows[finding["equipment_id"]]["equipment_type"], "Copper widget")
+        query["registry"][finding["equipment_id"]]["equipment_type"] = "Changed locally"
+        self.assertNotEqual(query["registry"], rows)
+        self.assertEqual(query_rows(["Copper widget"])["registry"]["SYN-9001"]["equipment_type"], "Copper widget")
+        missing = query_rows([], shared_registry_rows=rows)
+        self.assertEqual(next(iter(missing["findings"].values()))["equipment_type"], "Unrecognized synthetic subject")
+        with self.assertRaisesRegex(ValueError, "exactly one"):
+            query_rows(["Fracture"], shared_registry_rows=rows)
 
 
 class UnreviewedStore:
@@ -137,6 +161,14 @@ class DiagnosticAdapterTests(unittest.TestCase):
         self.Store = Store
 
     def run_mocked(self, *, diagnostic, store_type=None):
+        fixture = author_registry(
+            {sid: raw for sid, raw in self.suite.sources.items() if sid != "original_domain"},
+            ({"case_id": key, "subject_types": query["subject_types"]} for key, query in self.suite.queries.items()),
+        )
+        registry_binding = {
+            "path": "mock-registry.json", "sha256": canonical_hash(fixture),
+            "registry_sha256": fixture["registry_sha256"], "construction": CONSTRUCTION, "fixture": fixture,
+        }
         def retrieve(store, query, **kwargs):
             self.tool_calls.append((store, deepcopy(query), kwargs))
             entries = {
@@ -164,6 +196,7 @@ class DiagnosticAdapterTests(unittest.TestCase):
         writer = MemoryWriter()
         with (
             patch("eval.run_knowledge.collect_c0", return_value=(deepcopy(self.rows), self.extractions)) as collect,
+            patch("eval.run_knowledge.load_registry_fixture", return_value=registry_binding),
             patch("eval.run_knowledge.importlib.import_module", side_effect=modules),
             patch("eval.run_knowledge.query_binding", side_effect=lambda q: SimpleNamespace(to_dict=lambda: deepcopy(q))),
             patch("eval.run_knowledge.assess_retrieval", return_value={"status": "pass", "recall": 1.0}) as grade,
@@ -208,6 +241,13 @@ class DiagnosticAdapterTests(unittest.TestCase):
             {call.args[1] for call in grade.call_args_list},
             set(self.suite.queries),
         )
+        for _, query, _ in self.tool_calls:
+            self.assertEqual(len(query["findings"]), 1)
+            self.assertEqual(canonical_hash(query["registry"]),
+                             report["query_registry_fixture"]["registry_sha256"])
+        for key, row in writer.values.items():
+            if key.startswith("queries"):
+                self.assertEqual(row["query_registry_fixture"], report["query_registry_fixture"])
 
     def test_default_does_not_publish_or_retrieve_and_still_includes_common_source(self):
         report, _, grade = self.run_mocked(diagnostic=False)

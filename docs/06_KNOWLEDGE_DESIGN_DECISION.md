@@ -29,6 +29,80 @@ through `llm_inference`, not a production release or a claim that every gate
 passes. Fixture/reference and execution identities must be frozen before sends;
 missing human review or unobservable accounting remains a qualification blocker.
 
+### Renewed completion phase: preregistered work
+
+The owner's subsequent request requires fixing the remaining measurable failures,
+testing the unchanged candidate package and completing the integration surface.
+This authorizes a new development experiment, not resetting the stopped
+`source-first-copilot` ledger or pretending independent human review occurred.
+All previous failures remain historical observations.
+
+The reviewed v1.4 harness correction supplies the **shared** registry required by
+section 8, rather than a different single-type registry for each synthetic query.
+Two bounded engineering critics verified that the old fixture premise made
+narrowing impossible for any multi-type index. Production's mechanism-only/
+unregistered-scope safeguard and its negative tests remain unchanged. The fixed
+registry freezes literal `Scope:`/`Equipment:` declarations outside code fences
+from the eight unchanged synthetic **sources**, plus declared query-input types.
+The query-only union omitted secondary types and was rejected; an explicit typed-
+scope production override was also rejected rather than bypassing the guard.
+Each inventory name has source-byte or input-field provenance. No candidate
+output, atom label or expected rule-to-scope assignment authors the inventory.
+Only selected findings determine subjects. Do not mix real engineering rows into
+these synthetic queries. Source/reference bytes, 24 subject requests, thresholds
+and partitions are unchanged, but query bindings, registry size and execution
+hashes change. This is a disclosed post-observation input-harness correction;
+v1.3 results are not silently regraded or made comparable.
+
+The critics' circular-vocabulary objection is accepted as a claim limitation:
+the inventory is **source-derived**, not independent of source/gold authorship.
+It measures selection conditional on a registered synthetic vocabulary, not
+proof that code can classify equipment types or that field narrowing is safe.
+Unregistered mechanism and equipment-type controls, unknown subjects and the
+C0-star negative remain mandatory. A fixed global fixture avoids tailoring it
+to a particular query/index, but exposes evaluation type names to development
+offline queries; extraction provider requests never receive that fixture.
+No new blindness, genuine editorial review or C1 qualification is claimed.
+
+The new experimental extraction profile uses Copilot `gpt-6-luna`, requested
+`medium` reasoning and a 120-second deadline, through `llm_inference`. Its source-
+only prompt explicitly explains the existing group-local literal-evidence rule,
+noncontiguous grouping and bidirectional context semantics. It must not infer
+scores, rewrite knowledge, receive reference atoms or repair output from expected
+answers. Freeze executable/source/request/registry hashes before dispatch. Retain
+the 13-slot schedule: four development sources and original smoke before four
+evaluation primaries and the four predetermined repeats. Maximum 26 application
+attempts, at most two per slot, only the existing recoverable-error allowlist;
+no semantic retry, fallback model, best-of-N or changed-profile ledger reuse.
+The first failed development/semantic gate stops the schedule. The old one-send
+ledger stays immutable.
+
+Replay actual C0 and unchanged raw C1 through isolated software-fixture review,
+release and retrieval. C0's conservative star remains a negative usefulness
+baseline. A software-review declaration cannot satisfy the independent human
+correction-benefit gate, and technical success cannot select C1 as default.
+Strict HTTP/USD accounting remains unknown unless actually exposed.
+
+Before any real-model handoff, the native bundle-2 producer/consumer and package
+runner must pass deterministic failures. Freeze the implementation before
+mechanical checks on all 21 supplied findings and 18 registry rows; capture the
+all-batch, singleton, split, reordering, lifecycle and tampering outcomes without
+triage judgments or test-card access. This is component transport evaluation,
+not the frozen system's test assessment. One optional actual provider transport
+probe is limited to the 13 development findings, the shared registry and active
+domain text, with no scoring. It has a separate persistent two-attempt ceiling
+and the same no-semantic-retry rule: maximum 28 new application attempts across
+both experiments, not 28 for each. Test descriptions never enter development
+provider context.
+
+The integration deliverable includes an independently validating native consumer,
+storage/release discovery and a source-only initial **pending** draft. Neither
+draft creation nor isolated fixture publication is real content approval.
+`knowledge\drafts\working.json` is legacy, ignored and preserved for audit; the
+new default is `knowledge\source-first` (schema 3), with immutable source blobs,
+revisions and releases. An actual engineer still reviews/publishes the source and
+the workflow owner explicitly pins a compatible release and assessment policy.
+
 ## 2. Evaluate the responsibilities separately
 
 | Stage | Question and observed artifact |
