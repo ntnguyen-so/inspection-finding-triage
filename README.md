@@ -89,9 +89,10 @@ source-faithful intake/editing, lifecycle and the module-owned callable tool.
 Workflow owns L/I interpretation and code-derived U. Code is the baseline; an
 LLM strategy needs explicit fidelity, retrieval, review-benefit and budget evidence.
 Bounded AI critique and adjudication are recorded in document 06 section 12.
-The default CLI/editor now use source-first entrypoints; no
-replacement release has been promoted. They use a separate store and never
-upgrade or publish the old numeric-band/PSV starter.
+The default CLI/editor use source-first entrypoints. The owner has now explicitly
+authorized publication of the unchanged supplied domain as a conservative C0
+integration release; see document 06 section 11.5. This neither enables C1 nor
+upgrades or publishes the old numeric-band/PSV starter.
 
 ```powershell
 .\.venv\Scripts\python.exe -m pip install -e ".[editor]"
@@ -101,9 +102,11 @@ upgrade or publish the old numeric-band/PSV starter.
 .\.venv\Scripts\python.exe -B -m triage_knowledge --store knowledge\source-first status
 ```
 
-The supplied source is already imported in the default store: eight pending
-items, no reviewed items or published release. The import command above is for
-a new store/source, not a required repeated startup step.
+The default store now has eight owner-approved items, zero pending items and one
+immutable release. The import command above is for a new store/source, not a
+required repeated startup step. Publication and current-build integration
+preflight are recorded in `eval\results\knowledge\source-owner-promotion-1`;
+`activation.integration.json` contains the exact release and reviewed pins.
 `knowledge\source-first` stores exact source blobs, immutable revisions and the
 editable schema-3 candidate; published releases are separate. The old
 `knowledge\drafts\working.json` is unused legacy, not the current knowledge base.
@@ -161,10 +164,12 @@ selections. These observations do not rebind frozen model receipts to new code.
 
 **Automated component gates pass; C1 adoption remains unqualified.** Independent
 human correction-benefit, verified USD and hidden HTTP accounting are not
-established. LLM extraction stays experimental/default-off; real source content
-still awaits engineer review. See `eval\results\knowledge\source-integration-readiness.json`
-for frozen v4 pins, actual sends and remaining gates; integration must pin its
-own delivered build. Never reset a spent ledger
+established. LLM extraction stays experimental/default-off; the separately
+owner-authorized C0 integration release does not qualify that strategy.
+See `eval\results\knowledge\source-integration-readiness.json` for the historical
+v4 pins, actual sends and remaining gates, and `source-owner-promotion-1` for the
+later actual source publication. Integration must pin its own delivered build.
+Never reset a spent ledger
 or treat software-fixture review as engineer approval.
 Document 06 section 11 distinguishes retained legacy evidence, including the
 four-send real Copilot knowledge probe:

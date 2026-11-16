@@ -1,0 +1,231 @@
+{
+  "all_eight_source_items_included": true,
+  "assessment_time": "2026-07-01T00:00:00Z",
+  "assessment_time_role": "Exercise snapshot cutoff, not publication time or an assumption of unattended degradation.",
+  "captured_at": "2026-11-16T21:24:12.716418+00:00",
+  "context_count": 24,
+  "contexts": {
+    "F-1001": {
+      "context_hash": "bb730724c003f453fd5f237b3ef9cfecf97f932204146ff2aa48cfc2ca6e2585",
+      "exact_active_knowledge": true,
+      "exact_original_findings_and_registry": true,
+      "findings": 1,
+      "serialized_bytes": 32681,
+      "status": "pass"
+    },
+    "F-1002": {
+      "context_hash": "e9bc9553c88e46e68d387b85176a9cb2ac87231bcbfc30007de333ef8fe3b133",
+      "exact_active_knowledge": true,
+      "exact_original_findings_and_registry": true,
+      "findings": 1,
+      "serialized_bytes": 32647,
+      "status": "pass"
+    },
+    "F-1003": {
+      "context_hash": "38c68257f9494eacd3c7e17e44b7c2f9cf323d0f4423f985a7d3ec4b3eecb233",
+      "exact_active_knowledge": true,
+      "exact_original_findings_and_registry": true,
+      "findings": 1,
+      "serialized_bytes": 32685,
+      "status": "pass"
+    },
+    "F-1004": {
+      "context_hash": "570c440ef81e6cee88df67b64718b22d5e71d250a319e2efd0a5bddabbc10f90",
+      "exact_active_knowledge": true,
+      "exact_original_findings_and_registry": true,
+      "findings": 1,
+      "serialized_bytes": 32791,
+      "status": "pass"
+    },
+    "F-1005": {
+      "context_hash": "a035c65c7ed971fad29b8f9a7cbe5968acd2608308087a16b8e467871561fa8a",
+      "exact_active_knowledge": true,
+      "exact_original_findings_and_registry": true,
+      "findings": 1,
+      "serialized_bytes": 32609,
+      "status": "pass"
+    },
+    "F-1006": {
+      "context_hash": "cc827837d3ff61239e83c4118c985dfb34abdb2c03805d0f4c5ebdb77b927366",
+      "exact_active_knowledge": true,
+      "exact_original_findings_and_registry": true,
+      "findings": 1,
+      "serialized_bytes": 32851,
+      "status": "pass"
+    },
+    "F-1007": {
+      "context_hash": "9de1fc1473c565d034e46acb73c13ce2a7d766b88d42ef53f1384d1f4c5e5683",
+      "exact_active_knowledge": true,
+      "exact_original_findings_and_registry": true,
+      "findings": 1,
+      "serialized_bytes": 32611,
+      "status": "pass"
+    },
+    "F-1008": {
+      "context_hash": "f21c24fa84b3240aa27d2a4f761244983e0603ec9373f1af575264d8727b4d01",
+      "exact_active_knowledge": true,
+      "exact_original_findings_and_registry": true,
+      "findings": 1,
+      "serialized_bytes": 32671,
+      "status": "pass"
+    },
+    "F-1009": {
+      "context_hash": "4917f5976a8a37c2b55af5770a8f5a2485b25bf6734ee548c3bf71b46e529d77",
+      "exact_active_knowledge": true,
+      "exact_original_findings_and_registry": true,
+      "findings": 1,
+      "serialized_bytes": 32567,
+      "status": "pass"
+    },
+    "F-1010": {
+      "context_hash": "56545ee06c64bd7e0383d01f0dade6b7a72af64ef42e3eee7560c9ce3e367856",
+      "exact_active_knowledge": true,
+      "exact_original_findings_and_registry": true,
+      "findings": 1,
+      "serialized_bytes": 32729,
+      "status": "pass"
+    },
+    "F-1011": {
+      "context_hash": "6a6ebc5dae7ad5e6d84e5cf8b36f870aaa1cc3e95b66c30ca259224967920b7d",
+      "exact_active_knowledge": true,
+      "exact_original_findings_and_registry": true,
+      "findings": 1,
+      "serialized_bytes": 32829,
+      "status": "pass"
+    },
+    "F-1012": {
+      "context_hash": "f0bb6a0b44562ae6910317b4bed72684edf5499d093b912d29758a5969156b6c",
+      "exact_active_knowledge": true,
+      "exact_original_findings_and_registry": true,
+      "findings": 1,
+      "serialized_bytes": 32759,
+      "status": "pass"
+    },
+    "F-1013": {
+      "context_hash": "28eaa2e64867eadd9a5a7b0bdb0f45debcef15e8981aedba8521d473a25f6ec5",
+      "exact_active_knowledge": true,
+      "exact_original_findings_and_registry": true,
+      "findings": 1,
+      "serialized_bytes": 32663,
+      "status": "pass"
+    },
+    "F-1014": {
+      "context_hash": "7d74f8e44b87a08b1ff90c17e4359d29381a930da285ea7fd27f9a9d6006fd5f",
+      "exact_active_knowledge": true,
+      "exact_original_findings_and_registry": true,
+      "findings": 1,
+      "serialized_bytes": 32587,
+      "status": "pass"
+    },
+    "F-1015": {
+      "context_hash": "186a8319f2c8c0ad3774ae7006b7401e1022881dcb07ebd5cc67da416bde501a",
+      "exact_active_knowledge": true,
+      "exact_original_findings_and_registry": true,
+      "findings": 1,
+      "serialized_bytes": 32497,
+      "status": "pass"
+    },
+    "F-1016": {
+      "context_hash": "5da033d93c465bca5e9733e2eead92d9ce439559832cc6c84ba00fe34c671131",
+      "exact_active_knowledge": true,
+      "exact_original_findings_and_registry": true,
+      "findings": 1,
+      "serialized_bytes": 32577,
+      "status": "pass"
+    },
+    "F-1017": {
+      "context_hash": "087603ed3b1e9190a454ad1e2e9e8b127fab9c436f995b747cdae5e4d648f890",
+      "exact_active_knowledge": true,
+      "exact_original_findings_and_registry": true,
+      "findings": 1,
+      "serialized_bytes": 32691,
+      "status": "pass"
+    },
+    "F-1018": {
+      "context_hash": "3f684cd293866883e549704c73b4056466786f3686ce8c138b4d823bed181853",
+      "exact_active_knowledge": true,
+      "exact_original_findings_and_registry": true,
+      "findings": 1,
+      "serialized_bytes": 32585,
+      "status": "pass"
+    },
+    "F-1019": {
+      "context_hash": "20840f8a0f867ef31fa33e19352d45fbd084ab1cf608738b7d5bfaed6d680faa",
+      "exact_active_knowledge": true,
+      "exact_original_findings_and_registry": true,
+      "findings": 1,
+      "serialized_bytes": 32505,
+      "status": "pass"
+    },
+    "F-1020": {
+      "context_hash": "f869d667e5e716e3fa2fc726ff7d57314d190ccdc0190af6746ca240a7b03fe7",
+      "exact_active_knowledge": true,
+      "exact_original_findings_and_registry": true,
+      "findings": 1,
+      "serialized_bytes": 32667,
+      "status": "pass"
+    },
+    "F-1021": {
+      "context_hash": "76d0ab8a811242862b3a83f3d52ff63a4c2caa071ca58702226fdcf10a576b12",
+      "exact_active_knowledge": true,
+      "exact_original_findings_and_registry": true,
+      "findings": 1,
+      "serialized_bytes": 32559,
+      "status": "pass"
+    },
+    "all": {
+      "context_hash": "7b44fd1447da51d42ff70903cf88e49844ea7a05c5dbfc6e66127c1ab23f422b",
+      "exact_active_knowledge": true,
+      "exact_original_findings_and_registry": true,
+      "findings": 21,
+      "serialized_bytes": 57001,
+      "status": "pass"
+    },
+    "development": {
+      "context_hash": "2b82f9d0f5c2865820aa9ec8f20097c8bf756183ec894521970e57b9001ec09d",
+      "exact_active_knowledge": true,
+      "exact_original_findings_and_registry": true,
+      "findings": 13,
+      "serialized_bytes": 47471,
+      "status": "pass"
+    },
+    "test": {
+      "context_hash": "3dccdc54e3e4039dc06a1dc166b996128e0fc18b2b75612aeb49d0f630c7dfca",
+      "exact_active_knowledge": true,
+      "exact_original_findings_and_registry": true,
+      "findings": 8,
+      "serialized_bytes": 40968,
+      "status": "pass"
+    }
+  },
+  "findings": 21,
+  "knowledge_version": "sha256-b215857575e443ba5fd9cb56a19f3079003cd68acb03fdf0e33ca7fbed59e097",
+  "provider_calls": 0,
+  "qualification": "Owner-authorized conservative C0 integration release, not selective-efficiency or C1 qualification.",
+  "registry_rows": 18,
+  "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+  "status": "pass",
+  "strategy": {
+    "implementation_files": {
+      "contracts.py": "19d1ace2fbf1706dcd4a0bf4b565ef96cda17947172aa0ca987289b93f8008e8",
+      "retrieval.py": "5c77502ca74a4c3b485d1ba3bab2ad22c79ab3b01a5a1ee9bd6f12dea080ec91",
+      "source.py": "d2cb494ff1088d2e262f2c924467cd126c41921ab6e8191cf0cc86c2a4033e79",
+      "source_store.py": "3673d83cdf8d5937232f77a11329080eef925d1583132ffe8a27a2abc67b98fb"
+    },
+    "implementation_sha256": "8518b3d3fb63e5b0eed0b047ac9b9a3c56a45d17efd07716ef5cac1e468efa86",
+    "parameters": {
+      "closure": "bidirectional",
+      "general": "always",
+      "lexical": "disabled",
+      "ordering": "address-ascending",
+      "overflow": "failure-only",
+      "scope": "casefold-exact",
+      "source_context": "c0-heading-source-context-v2",
+      "type_scope": "registry-type-vocabulary",
+      "unknown": "all-active",
+      "version": "source-selector-v1"
+    },
+    "parameters_sha256": "758b205aefbcec9954e67293eff9d1614c4d8a21904b5ae374ed8965232b9875",
+    "strategy": "source-selector-v1"
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "basis": "Technical source/policy compatibility reviewed by Copilot under explicit owner authorization to promote the unchanged C0 source for integration. Exact 4326 supplied bytes retained across eight reviewed items; full active context and comments verified on 24 actual-package contexts. Workflow L/I priors/definitions, code urgency corners and confirmed override versus precautionary handling remain consistent with the original notes; 105 focused tests pass. No new domain rules, C1 adoption, model-quality qualification, independent human certification or live operational approval.",
+  "checks": {
+    "code_owned_non_plain_mean_non_max_urgency": true,
+    "confirmed_overrides_not_inferred_from_missing_data": true,
+    "exact_original_source": true,
+    "full_selected_batch_and_registry": true,
+    "impact_credit_only_capable_redundancy": true,
+    "inverse_reliability_prior": true,
+    "prototype_precautions_identified_separately": true,
+    "separate_workflow_ordinal_policy": true,
+    "source_knowledge_not_c1": true
+  },
+  "knowledge_version": "sha256-b215857575e443ba5fd9cb56a19f3079003cd68acb03fdf0e33ca7fbed59e097",
+  "limitation": "Bounded AI technical compatibility review plus explicit owner publication authorization; not an independent human editorial-effort study or full workflow acceptance.",
+  "numeric_corners": [
+    {
+      "impact": 10,
+      "likelihood": 1,
+      "urgency": 8
+    },
+    {
+      "impact": 1,
+      "likelihood": 10,
+      "urgency": 4
+    },
+    {
+      "impact": 10,
+      "likelihood": 10,
+      "urgency": 10
+    },
+    {
+      "impact": 1,
+      "likelihood": 1,
+      "urgency": 1
+    },
+    {
+      "impact": 9,
+      "likelihood": 7,
+      "urgency": 9
+    },
+    {
+      "impact": 5,
+      "likelihood": 8,
+      "urgency": 6
+    }
+  ],
+  "pins": {
+    "assessment_policy_sha256": "3c73fdc793b5aa67da99753a782d1b1b0048b5fd79959bdece0b75f60df05f77",
+    "contract": "triage-activation-v1",
+    "execution_policy_sha256": "f4d539440e73529ead6ecfcc7162a879ae32137574d1c58356319f70711b0cf4",
+    "knowledge_version": "sha256-b215857575e443ba5fd9cb56a19f3079003cd68acb03fdf0e33ca7fbed59e097",
+    "retrieval_index_sha256": "420e4db9257f64d416030a1726acc7496511213b3a777e0c74f51bcfc2a39092",
+    "review": null,
+    "strategy": {
+      "implementation_files": {
+        "contracts.py": "19d1ace2fbf1706dcd4a0bf4b565ef96cda17947172aa0ca987289b93f8008e8",
+        "retrieval.py": "5c77502ca74a4c3b485d1ba3bab2ad22c79ab3b01a5a1ee9bd6f12dea080ec91",
+        "source.py": "d2cb494ff1088d2e262f2c924467cd126c41921ab6e8191cf0cc86c2a4033e79",
+        "source_store.py": "3673d83cdf8d5937232f77a11329080eef925d1583132ffe8a27a2abc67b98fb"
+      },
+      "implementation_sha256": "8518b3d3fb63e5b0eed0b047ac9b9a3c56a45d17efd07716ef5cac1e468efa86",
+      "parameters": {
+        "closure": "bidirectional",
+        "general": "always",
+        "lexical": "disabled",
+        "ordering": "address-ascending",
+        "overflow": "failure-only",
+        "scope": "casefold-exact",
+        "source_context": "c0-heading-source-context-v2",
+        "type_scope": "registry-type-vocabulary",
+        "unknown": "all-active",
+        "version": "source-selector-v1"
+      },
+      "parameters_sha256": "758b205aefbcec9954e67293eff9d1614c4d8a21904b5ae374ed8965232b9875",
+      "strategy": "source-selector-v1"
+    }
+  },
+  "reviewed_at": "2026-11-16T21:24:44.559440+00:00",
+  "reviewer": "Copilot technical compatibility review",
+  "source_authorization": "approval.json",
+  "status": "compatible_for_integration"
+}

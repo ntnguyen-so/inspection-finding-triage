@@ -1,0 +1,10 @@
+{
+  "captured_at": "2026-11-16T21:24:11.606931+00:00",
+  "cause": "The first verification probe used .bytes instead of the public dataclass field .encoded when recording serialized size. The first context was built and independently validated before this probe error.",
+  "error_class": "AttributeError",
+  "fix": "Use SourceContext.encoded; preserve all context/source assertions.",
+  "message": "'SourceContext' object has no attribute 'bytes'",
+  "production_changes": false,
+  "provider_calls": 0,
+  "status": "failed_harness"
+}

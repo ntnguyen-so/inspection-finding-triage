@@ -1,0 +1,18 @@
+{
+  "activation": "eval\\results\\knowledge\\source-owner-promotion-1\\activation.integration.json",
+  "activation_bound_to_current_shared_build": true,
+  "captured_at": "2026-11-16T21:24:44.635410+00:00",
+  "context_hash": "7b44fd1447da51d42ff70903cf88e49844ea7a05c5dbfc6e66127c1ab23f422b",
+  "findings": 21,
+  "knowledge_items": 8,
+  "knowledge_version": "sha256-b215857575e443ba5fd9cb56a19f3079003cd68acb03fdf0e33ca7fbed59e097",
+  "live_generation_started": false,
+  "native_consumer_validation": "pass",
+  "pins_must_be_reviewed_again_if_code_or_policy_changes": true,
+  "provider_calls": 0,
+  "qualification": "Integration activation only, not a waiver of remaining workflow evaluation/delivery gates.",
+  "registry_rows": 18,
+  "serialized_bytes": 57001,
+  "status": "pass",
+  "store": "knowledge\\source-first"
+}

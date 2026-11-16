@@ -29,6 +29,11 @@ through `llm_inference`, not a production release or a claim that every gate
 passes. Fixture/reference and execution identities must be frozen before sends;
 missing human review or unobservable accounting remains a qualification blocker.
 
+**Later owner-authorized publication:** section 11.5 records the subsequent
+explicit promotion request and actual unchanged C0 source release for integration.
+It supersedes earlier pending-store observations, not the failed C0 synthetic
+usefulness measurements or the remaining optional C1 qualification gates.
+
 ### Renewed completion phase: preregistered work
 
 The owner's subsequent request requires fixing the remaining measurable failures,
@@ -991,6 +996,49 @@ Each observation records its actual code hashes. The integration owner must
 freeze and pin its delivered build separately; the readiness file's v4 pins
 remain historical, not automatic authorization for the concurrently changed
 variant. Do not copy a packet's self-declared pins into trusted configuration.
+
+### 11.5 Owner-authorized unchanged C0 release for integration
+
+The owner's explicit promotion instruction at
+`2026-11-17T04:19:20.448+07:00` authorizes publishing the existing exact
+eight-item candidate `fc7c8553b13614d0416a3cb8ca500280d5cfde01a5d1043ffa410b68799bc013`.
+`eval\results\knowledge\source-owner-promotion-1\approval.json` records that
+instruction and the unchanged revision IDs. Copilot executed owner authorization;
+it did not impersonate an independent integrity engineer.
+
+The real store now has eight reviewed items, zero pending items and this release:
+
+```text
+store: knowledge\source-first
+knowledge_version: sha256-b215857575e443ba5fd9cb56a19f3079003cd68acb03fdf0e33ca7fbed59e097
+activation: eval\results\knowledge\source-owner-promotion-1\activation.integration.json
+```
+
+All 4,326 original domain bytes are covered exactly once; source text, immutable
+revision IDs, empty scope/alias metadata and conservative context links are
+unchanged. No finding descriptions, registry comments or outside sources enter
+the rule store. C0 retains all original rules rather than claiming qualified
+selective extraction. Its historical synthetic usefulness failures stay failed.
+C1 remains experimental/default-off; its independent human-benefit and unavailable
+Copilot accounting gates are not waived by this publication.
+
+The separate recorded AI technical compatibility review checks the original
+source against the current workflow's L/I definitions, inverse reliability prior,
+code-derived urgency corners, confirmed overrides and labelled precautionary
+policies. All 105 focused tests and all 24 actual-package native contexts pass.
+The actual workflow consumer accepts the reviewed integration activation with all
+21 findings, 18 registry rows and eight source items within its default 64,000-byte
+limit (57,001 bytes). No provider calls or ticket generation occurred. The first
+verification probe's `.bytes`/`.encoded` attribute mistake is retained as a harness
+failure; no production code or assertions were weakened.
+
+This activation binds the actual shared selector/workflow-policy build, including
+the integration owner's still-uncommitted native-boundary changes. It is not a
+claim that those changes were delivered by this session, that an older clean
+checkout matches these pins, or that complete workflow/model acceptance passes.
+After code/policy changes, the integration owner must repeat compatibility review
+and prepare new pins. The storage CLI intentionally reports no global workflow
+pin: activation is supplied independently for each workflow run.
 
 ## 12. Bounded review and adjudication
 

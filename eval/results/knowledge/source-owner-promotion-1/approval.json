@@ -1,0 +1,26 @@
+{
+  "approved_candidate_digest": "fc7c8553b13614d0416a3cb8ca500280d5cfde01a5d1043ffa410b68799bc013",
+  "authority": "Project owner (explicit conversation approval; executed by Copilot)",
+  "c1_enabled": false,
+  "captured_at": "2026-11-16T21:22:31.955997+00:00",
+  "contract": "source-owner-promotion-v1",
+  "git_revision": "0270037e5e3f8a43fdeffc6437b8ccce0fc4b8a9",
+  "human_expert_certification_claimed": false,
+  "instruction": "ah module nay co nen do history cua case va equipment lien quan ko? coi lai data review investigstiok di de thay thong tin do",
+  "item_revision_ids": {
+    "item-42cdf410e42da4981ff0812d1ba7037c": "sha256-a59bcd5659571efaedb7dfabedcd52be71d7b11a16252422bed95eed3b4d8582",
+    "item-54adfcd342912676dbeb55a8ed2ee100": "sha256-ce3961ec18e5121c75c01565b6357931eb4b51d21e8a975fe961ca0d7bcc0584",
+    "item-73e154e8c17d78a3f93dfe3d3874b356": "sha256-f70ef63618ed34aaaf7d14c74703ccb2812e4856ab6ec8f03b40da9de50b233b",
+    "item-755a159e23ccfabc4caf1e2faa263d81": "sha256-fc093e633e7a597adfe8845f09c84defd063f9307bd6a17196403283a6f4a966",
+    "item-9e493f0f702c0a9679600213949b69f0": "sha256-5b15f828acc9f7721c7524dbb5edfc859806af556831e8a2827f8d05200f3ae7",
+    "item-c0781817a1f4c0adcd4f0cb6ef58958a": "sha256-2c0ee0a5e02a84b8cb99c110618e6c6fa70ed7c7558d448d6e28560f9b05a4ce",
+    "item-d7ced767260f196407f7f1b20dc6412b": "sha256-2830ce7c2e6f734bec0605fc9989250187cda0e5797ddfb6aecde81043bb9ffc",
+    "item-eac29968ebd33c833e8961572cbef574": "sha256-b2053992b8832263a6d29343eac78e6e13c9f561a86b9021f58e4bf9651a106c"
+  },
+  "promotion_instruction": "kd that con pending la sao? promote di de ststem integration chay kia",
+  "promotion_instruction_time": "2026-11-17T04:19:20.448+07:00",
+  "provider_calls": 0,
+  "scope": "Owner-authorized promotion of the exact unchanged source-only C0 candidate fc7c8553b13614d0416a3cb8ca500280d5cfde01a5d1043ffa410b68799bc013 for system integration. All eight items preserve supplied domain bytes; no external sources, scoring additions or C1 adoption. This is owner authorization, not independent engineering certification.",
+  "source_bytes": 4326,
+  "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066"
+}

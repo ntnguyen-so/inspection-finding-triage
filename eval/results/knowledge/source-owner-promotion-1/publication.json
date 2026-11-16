@@ -1,0 +1,22 @@
+{
+  "approval": "eval\\results\\knowledge\\source-owner-promotion-1\\approval.json",
+  "approved_original_candidate_digest": "fc7c8553b13614d0416a3cb8ca500280d5cfde01a5d1043ffa410b68799bc013",
+  "c1_enabled": false,
+  "captured_at": "2026-11-16T21:22:32.294835+00:00",
+  "external_sources": [],
+  "extraction_profile": "c0",
+  "knowledge_version": "sha256-b215857575e443ba5fd9cb56a19f3079003cd68acb03fdf0e33ca7fbed59e097",
+  "provider_calls": 0,
+  "published_candidate_digest": "90a200fd03fed05d349b7ad261151fb8201c227840e5c534fc11e92d50d57fe3",
+  "release_path": "knowledge\\source-first\\releases\\sha256-b215857575e443ba5fd9cb56a19f3079003cd68acb03fdf0e33ca7fbed59e097.json",
+  "review_counts": {
+    "pending": 0,
+    "rejected": 0,
+    "reviewed": 8
+  },
+  "source_content_changed": false,
+  "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+  "status": "published",
+  "store": "knowledge\\source-first",
+  "workflow_activation": "Separate current-build compatibility review and pins required; source publication is now complete."
+}
