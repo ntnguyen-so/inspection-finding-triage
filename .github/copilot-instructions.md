@@ -13,3 +13,6 @@ Use `README.md` for repository navigation and verified commands. Apply the
 controlled-change and review process in `AGENTS.md` when evaluation changes are
 genuinely necessary. These instructions guide agent behavior; they do not enforce
 acceptance or certify a result.
+
+Respect the `DESIGN.md` reservation in `AGENTS.md`: the project owner will create
+that file later. Keep inference design/work in `docs\04_INFERENCE_LIBRARY.md`.

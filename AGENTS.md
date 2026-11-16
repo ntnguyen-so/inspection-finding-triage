@@ -44,11 +44,16 @@ without a concrete unresolved requirement.
 
 ## 3. Follow the phase gates
 
-1. **System Design:** create/update root `DESIGN.md` before substantial production
-   implementation. Answer brief section 6 A-D, including alternatives rejected,
-   assumptions, model/code boundaries, knowledge-maintenance surface, failure
-   policy, and AI assistance/overrides. Choose the model/provider, explicit L/I
-   rubric, urgency function, configuration and usage budget before a paid baseline.
+1. **System Design:** root `DESIGN.md` (including case variants such as `design.md`)
+   is reserved for the project owner to create later. Do not create, recreate or
+   modify it unless the owner explicitly authorizes that file. Document component
+   designs and work in the appropriate numbered document under `docs`; inference
+   design belongs in `docs\04_INFERENCE_LIBRARY.md`. This does not satisfy or waive
+   the final system-design gate: the owner-approved system design must answer brief
+   section 6 A-D, including alternatives rejected, assumptions, model/code
+   boundaries, knowledge-maintenance surface, failure policy and AI assistance/
+   overrides. Choose the model/provider, explicit L/I rubric, urgency function,
+   configuration and usage budget before a paid baseline.
 2. **Implementation and development:** build against the agreed scenarios using
    development findings. Keep a documented end-to-end command and dependency
    manifest. Exercise deterministic failure paths, then review real development
@@ -143,10 +148,11 @@ or authorized requirement change:
    checks/reviews before freezing. Never disable validation, rewrite source
    fingerprints to hide edits, or attach old results to new hashes without reruns.
 
-Specifications are preregistered snapshots, not progress trackers. Record the
-chosen architecture/formula and executed scenarios in `DESIGN.md`/results rather
-than flipping historical snapshot fields. Keep one current reference layout;
-use Git for history instead of accumulating parallel version folders.
+Specifications are preregistered snapshots, not progress trackers. Record proposed
+component architecture/formulas in the appropriate numbered design/process document
+and executed scenarios in results rather than flipping historical snapshot fields.
+Respect the reserved `DESIGN.md` ownership rule above. Keep one current reference
+layout; use Git for history instead of accumulating parallel version folders.
 
 ## 7. Use bounded, critical multi-agent review
 
@@ -165,11 +171,18 @@ multiple reviewers, independence or domain expertise that did not exist.
 
 ## 8. Keep the repository reviewable
 
+Write authored documentation, code comments, prompts, examples and generated
+planning/ticket text in English. Unicode tests should use English text with
+Unicode symbols, not another language. Preserve supplied source material and
+verbatim historical observations unchanged; do not translate recorded evidence.
+
 Preserve unrelated user edits, source/data bytes and `.gitattributes`; do not
 normalize frozen files during formatting. Keep diffs focused and dependencies
 justified. Number new authored process documents under `docs` in work order;
-keep required filenames such as root `DESIGN.md` and `tickets.json`, and maintain
-README navigation instead of duplicating documents.
+keep required delivery filenames such as `DESIGN.md` and `tickets.json` when their
+creation is authorized, and maintain README navigation instead of duplicating
+documents. A delivery requirement does not authorize creating the reserved
+`DESIGN.md` early.
 
 Commit/push only when requested, with logical changes and real history. Do not
 amend, rewrite history, force-push or change visibility without authorization.

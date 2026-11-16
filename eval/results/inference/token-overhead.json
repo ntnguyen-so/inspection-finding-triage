@@ -1,0 +1,34 @@
+{
+  "scope": "constant_input_token_overhead_investigation",
+  "baseline_ledger_sha256": "117efe20258a998f49c11232e827ce722a55bd199026544fb0dbb9e245c0e996",
+  "baseline_reservations": 13,
+  "provenance": {
+    "git_revision": "ee9eee9ac55c8b1eaaacbcd6d004ff9e6a0dc02b",
+    "worktree_status": "M .github/copilot-instructions.md\n M .gitignore\n M AGENTS.md\n M README.md\n?? .env.example\n?? docs/04_INFERENCE_LIBRARY.md\n?? docs/05_TRIAGE_WORKFLOW.md\n?? eval/results/inference/\n?? eval/results/triage/\n?? llm_inference/\n?? pyproject.toml\n?? tests/\n?? tools/",
+    "source_sha256": {
+      "llm_inference\\__init__.py": "95dc7f05b494cd3c7135bdb061453e9ddc72c45a20777dee1569fe36e8c3f6bc",
+      "llm_inference\\__main__.py": "852673b93b39db4f1327547e2bacaeb2443cc40d0d15dc672b4cab9471035f24",
+      "llm_inference\\_lifecycle.py": "b8c983e8e230e0cdfce5d329f361cdebda6dd040ab6e7774b53626eb1d97bbef",
+      "llm_inference\\azure.py": "938ecb97aed4ab89306ead68f922507b2dc8d9d6f614cb1506beca3a82fbda8c",
+      "llm_inference\\contracts.py": "4d27d144808212ab93959d01c82574ec3add767ed80b30bcb1334596e67621cc",
+      "llm_inference\\copilot.py": "49b01321cfb2d7bb635f119c36e5c1768e40ca23863357e3425fd1c5909f3417",
+      "pyproject.toml": "f45bee27c8b2f72c8a02e51ddf69f7e0ed7eb341ac7cb5888fbb820db988ee09",
+      "docs\\04_INFERENCE_LIBRARY.md": "300c61443673afa99f5d4b6fcf02e0e58158ecb7bdd66c0732af45e52b301ac5",
+      "tools\\probe_inference.py": "0675e0981c0552ea33ffc544e367fcd11f47ddd5585b15a55cb27bde2d375d46"
+    },
+    "reference_manifest_sha256": "bf708a150f0ac08a1f65f1d585f2cdde6fb6984578ea379465a066cf9a622e43",
+    "assessment_time": "2026-11-16T11:33:43.211678+00:00",
+    "knowledge_version": null,
+    "triage_policy_version": null,
+    "source_data": "public_synthetic_prompts_only_no_company_findings",
+    "diagnostic_script_sha256": "26dfdc6262e554407af0d16631e2083e82a15370e4dc4c261b8d79c9be8528a2"
+  },
+  "wire_requests": [],
+  "status": "error",
+  "error": {
+    "status": "failed",
+    "error_class": "provider_mismatch",
+    "message": "Model is not a Copilot model",
+    "receipt": {}
+  }
+}

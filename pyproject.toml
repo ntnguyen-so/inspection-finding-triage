@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools==80.9.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "falkor-inference"
+version = "0.1.0"
+description = "Text and JSON inference through Azure OpenAI and GitHub Copilot"
+requires-python = ">=3.11"
+dependencies = [
+    "github-copilot-sdk==1.0.34",
+    "jsonschema==4.26.0",
+    "openai==2.54.0",
+    "azure-identity==1.27.0",
+]
+
+[tool.setuptools]
+packages = ["llm_inference", "triage"]

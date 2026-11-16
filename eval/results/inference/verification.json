@@ -1,0 +1,147 @@
+{
+  "scope": "inference_component_verification_not_triage_system_acceptance",
+  "observed_at": "2026-11-16T11:03:55.683062+00:00",
+  "git_revision": "ee9eee9ac55c8b1eaaacbcd6d004ff9e6a0dc02b",
+  "worktree_status": "M .gitignore\n M README.md\n?? DESIGN.md\n?? docs/04_INFERENCE_LIBRARY.md\n?? eval/results/inference/\n?? llm_inference/\n?? pyproject.toml\n?? tests/\n?? tools/",
+  "python_version": "3.11.9",
+  "platform": "Windows",
+  "installed_dependencies": {
+    "annotated-types": "0.8.0",
+    "anyio": "4.16.0",
+    "attrs": "26.1.0",
+    "certifi": "2026.10.23",
+    "falkor-inference": "0.1.0",
+    "github-copilot-sdk": "1.0.34",
+    "h11": "0.16.0",
+    "httpcore": "1.0.9",
+    "httpx": "0.28.1",
+    "idna": "3.20",
+    "jsonschema": "4.26.0",
+    "jsonschema-specifications": "2025.9.1",
+    "pip": "24.0",
+    "pydantic": "2.14.3",
+    "pydantic_core": "2.50.4",
+    "python-dateutil": "4.0.0",
+    "referencing": "0.37.0",
+    "rpds-py": "2026.9.1",
+    "setuptools": "65.5.0",
+    "typing-inspection": "0.4.5",
+    "typing_extensions": "4.16.0",
+    "tzdata": "2026.6"
+  },
+  "source_sha256": {
+    "llm_inference\\__init__.py": "fe8cbddfcc810f29c066d02adfb12c2b61da35c01b84840e117bf5c48c322af6",
+    "llm_inference\\__main__.py": "966449f1b53392e9984b180116054161f74d0aaee7cf020b92261267b703b332",
+    "llm_inference\\contracts.py": "4d27d144808212ab93959d01c82574ec3add767ed80b30bcb1334596e67621cc",
+    "llm_inference\\copilot.py": "1ca7285a2da5ad4d6e78bf3ef5b58337eddedc9d3f4b538ab5147646cb9df864",
+    "tests\\test_inference.py": "dc72ba44ca52075588da1b1f1a2cf4708a968af0a554cbe32d5adcf57098ee27",
+    "tools\\probe_inference.py": "8defbb2fa23910372eee6267519245c3f6a074f43ec783902d7329d5a2515470",
+    "pyproject.toml": "5e9ebab2de4fee81c04776104ca08dea215a5cc3cf929c17b4fdc9257f94bede",
+    "README.md": "3b1368970c837c83e6d6269d4acd4d01748f9b434adf066d273921cb39f6b5ed",
+    "DESIGN.md": "7d064bc9b2c96a3dd63d2c80858f85daa2353f881ab3899820e74df75d30aed1",
+    ".gitignore": "e558ecf330b3c9303b8dcb9d65661c72311d59d921a81b003bcb47fbc68e628e",
+    "docs\\04_INFERENCE_LIBRARY.md": "1c7e633b52de5c1bad8d52d5990987e9332347238456c25df9ac209d888de233"
+  },
+  "reference_manifest_sha256": "bf708a150f0ac08a1f65f1d585f2cdde6fb6984578ea379465a066cf9a622e43",
+  "commands": [
+    {
+      "name": "inference_unit_tests",
+      "command": "C:\\Users\\thanh\\falkor_case2\\.venv\\Scripts\\python.exe -B -m unittest discover -s tests -p test_*.py",
+      "exit_code": 0,
+      "stderr": "...............................\n----------------------------------------------------------------------\nRan 31 tests in 0.688s\n\nOK\n",
+      "stdout": ""
+    },
+    {
+      "name": "evaluator_self_tests_not_system_acceptance",
+      "command": "C:\\Users\\thanh\\falkor_case2\\.venv\\Scripts\\python.exe -B -m unittest discover -s eval\\tests -p test_*.py",
+      "exit_code": 0,
+      "stderr": "....................\n----------------------------------------------------------------------\nRan 20 tests in 0.040s\n\nOK\n",
+      "stdout": ""
+    },
+    {
+      "name": "frozen_reference_integrity",
+      "command": "C:\\Users\\thanh\\falkor_case2\\.venv\\Scripts\\python.exe -B -m eval.validate",
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "{\n  \"findings\": 21,\n  \"equipment\": 18,\n  \"blank_cells\": 0,\n  \"duplicate_primary_keys\": 0,\n  \"orphan_findings\": 0,\n  \"equipment_type_mismatches\": 0,\n  \"invalid_ids_dates_scores_sce\": 0,\n  \"date_range\": [\n    \"2026-06-02\",\n    \"2026-06-22\"\n  ],\n  \"sce_counts\": {\n    \"No\": 8,\n    \"Yes\": 10\n  },\n  \"redundancy_counts\": {\n    \"None\": 11,\n    \"Yes (bypass available)\": 1,\n    \"Voted 2oo3\": 1,\n    \"Duplicated (INST-2151)\": 1,\n    \"Duplicated (INST-2150)\": 1,\n    \"N+1 (FW-8102)\": 1,\n    \"N+1 (FW-8101)\": 1,\n    \"N+1 (LB-4101)\": 1\n  },\n  \"missing_redundant_partners\": [\n    {\n      \"equipment_id\": \"LB-4102\",\n      \"partner\": \"LB-4101\"\n    }\n  ],\n  \"reference_version\": \"1.2\",\n  \"status\": \"frozen\",\n  \"acceptance_scenarios\": 17,\n  \"system_scenarios_execution\": \"not_run_no_system\",\n  \"partition_counts\": {\n    \"development\": {\n      \"cases\": 13,\n      \"groups\": 9\n    },\n    \"test\": {\n      \"cases\": 8,\n      \"groups\": 4\n    }\n  }\n}\nArtifact integrity checks passed; no ticket/model assessment was performed.\n"
+    },
+    {
+      "name": "dependency_compatibility",
+      "command": "C:\\Users\\thanh\\falkor_case2\\.venv\\Scripts\\python.exe -m pip check",
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "No broken requirements found.\n"
+    },
+    {
+      "name": "installed_package_isolated_import",
+      "command": "C:\\Users\\thanh\\falkor_case2\\.venv\\Scripts\\python.exe -I -B -c \"import llm_inference; print(\\\"Installed package import OK\\\")\"",
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "Installed package import OK\n"
+    },
+    {
+      "name": "patch_whitespace",
+      "command": "git --no-pager diff --check",
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "name": "live_cli_catalog_no_inference",
+      "command": "C:\\Users\\thanh\\falkor_case2\\.venv\\Scripts\\python.exe -B -m llm_inference --models",
+      "exit_code": 0,
+      "stderr": "",
+      "stdout_summary": {
+        "model_count": 20,
+        "selected_probe_models_present": true,
+        "configuration": {
+          "provider": "github-copilot",
+          "sdk_version": "1.0.34",
+          "runtime_version": "1.0.112",
+          "binary_sha256": "32d01e0b0100fcdeaa684fba2cc8d00b6f127ac408749ff3c1b1a6fa0b2b8698",
+          "capabilities": {
+            "text": true,
+            "system_message": "replace_requested",
+            "json_schema": "prompt_guidance_and_local_validation",
+            "conversation": "fresh_session_per_request",
+            "tools": false,
+            "streaming_api": false,
+            "native_structured_output": false,
+            "sampling_controls": false,
+            "max_output_tokens": false,
+            "reasoning_effort": "catalog_validated_when_supplied",
+            "adapter_retries": 0,
+            "internal_http_retries": "unknown",
+            "raw_provider_equivalence": false
+          }
+        }
+      },
+      "stdout_sha256": "47f47da664da9ce0e50dff9641dc02ba7929b762d45bd2c25c85df53f2fbfff8"
+    }
+  ],
+  "ledger_sha256": "e6f06dafd09b5b4ab93d4a793854f9930e52a2b0a80314151669c0745c505e03",
+  "ledger_checks": {
+    "budget_12_reserved_not_exceeded": true,
+    "all_owned_sessions_deleted": true,
+    "all_runtime_message_hashes_match_sdk_input": true,
+    "no_observed_boundary_violation": true,
+    "completed_calls_report_zero_available_tools": true,
+    "final_two_live_regressions_match_current_transport_hashes": true,
+    "original_two_json_errors_retained": true
+  },
+  "live_status_counts": {
+    "pass": 10,
+    "fail": 0,
+    "error": 2,
+    "reserved_not_completed": 0
+  },
+  "live_generation_result": "not_all_pass_two_haiku_malformed_json_errors_preserved",
+  "raw_provider_equivalence": "not_established",
+  "triage_system_acceptance": "not_run",
+  "usd_total": null,
+  "preflight_findings": [
+    "SDK empty mode requires explicit storage; isolated account home returned zero models despite gh-cli authentication. No inference was dispatched in these catalog probes.",
+    "Initial editable scaffold installed before the package existed failed isolated import. Explicit package declaration and reinstallation fixed it."
+  ],
+  "component_verification": "pass"
+}
