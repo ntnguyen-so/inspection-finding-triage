@@ -1,0 +1,10 @@
+{
+  "budget": 6,
+  "reservations": [
+    "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\copilot-integration-2\\run:F-1005:1",
+    "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\copilot-integration-2\\run:F-1005:2",
+    "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\copilot-integration-3\\run:F-1005:1",
+    "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\copilot-integration-3\\run:F-1005:2"
+  ],
+  "execution_mode": "copilot_experiment"
+}

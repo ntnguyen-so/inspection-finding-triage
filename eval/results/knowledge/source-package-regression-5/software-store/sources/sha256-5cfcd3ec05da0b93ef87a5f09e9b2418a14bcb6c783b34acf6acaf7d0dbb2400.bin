@@ -1,0 +1,14 @@
+## Output expectations
+
+Maintenance planning needs two lines: what is wrong, on what, and why it matters — readable without
+opening the inspection record, and not a restatement of the original finding text. Where the
+assessment is uncertain, that should be stated rather than resolved by picking a mid-range score.
+
+Recurring causes of loss of confidence in a triage output, in order:
+
+1. Confidently incorrect scores on safety critical equipment.
+2. Summaries that omit a detail that changes the decision — a measurement, a repeat occurrence, the
+   fact that the standby was already unavailable.
+3. The same finding scored differently on different days.
+4. Uniform mid-range scores across all findings.
+

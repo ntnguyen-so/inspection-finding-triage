@@ -1,0 +1,17 @@
+{
+  "status": "experimental_e2e_failed",
+  "cli_exit_code": 1,
+  "output_contract_valid": false,
+  "actual_native_context_delivery": true,
+  "code_stable_during_run": true,
+  "application_sends": 3,
+  "phase_send_ceiling": 52,
+  "http_attempts": null,
+  "usd_cost": null,
+  "semantic_status": "not_reviewed",
+  "output_sha256": null,
+  "elapsed_seconds": 65.85899999999674,
+  "acceptance_eligible": false,
+  "disclosure": "Isolated SOFTWARE-fixture publication/activation of unchanged supplied domain; not genuine engineer approval, qualified extraction, strict accounting or system acceptance.",
+  "phase_application_send_reservations": 3
+}

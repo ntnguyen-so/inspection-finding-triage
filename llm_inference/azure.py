@@ -59,9 +59,12 @@ def native_schema(schema: dict) -> dict:
     if schema.get("type") != "object":
         raise InferenceError("invalid_schema", "Native JSON requires a root object schema")
 
-    def check(value: dict) -> None:
+    def check(value: dict) -> dict:
         if not isinstance(value, dict):
             raise InferenceError("invalid_schema", "Native JSON does not accept boolean subschemas")
+        # Azure's documented native subset omits these; the original schema still validates locally.
+        local_only = {"uniqueItems", "minLength", "maxLength", "minimum", "maximum", "minItems", "maxItems"}
+        wire = {key: child for key, child in value.items() if key not in local_only}
         if value.get("type") == "object" or "properties" in value:
             properties = value.get("properties", {})
             if (
@@ -72,18 +75,19 @@ def native_schema(schema: dict) -> dict:
                     "invalid_schema",
                     "Native JSON requires closed objects with every property required",
                 )
-            for child in properties.values():
-                check(child)
+            wire["properties"] = {name: check(child) for name, child in properties.items()}
         if "items" in value:
-            check(value["items"])
+            wire["items"] = check(value["items"])
         for key in ("anyOf", "allOf", "oneOf"):
-            for child in value.get(key, []):
-                check(child)
+            if key in value:
+                wire[key] = [check(child) for child in value[key]]
+        if "$defs" in value:
+            wire["$defs"] = {name: check(child) for name, child in value["$defs"].items()}
+        return wire
 
-    check(schema)
     return {
         "type": "json_schema",
-        "json_schema": {"name": "inference_response", "strict": True, "schema": schema},
+        "json_schema": {"name": "inference_response", "strict": True, "schema": check(schema)},
     }
 
 
@@ -95,6 +99,52 @@ def _filtered(value: object) -> bool:
     return False
 
 
+class _WireBoundaryViolation(InferenceError):
+    def __init__(self, message: str) -> None:
+        super().__init__("boundary_violation", message)
+
+
+def _responses_text(response: object, receipt: dict) -> str:
+    receipt["response_status"] = getattr(response, "status", None)
+    receipt["refused"] = False
+    receipt["content_filter_triggered"] = _filtered(response.model_extra)
+    if receipt["content_filter_triggered"]:
+        raise InferenceError("content_filter", "Azure content filtering blocked the response")
+    if response.error is not None:
+        raise InferenceError("provider_error", "Azure response reported an error")
+    if receipt["response_status"] != "completed" or response.incomplete_details is not None:
+        raise InferenceError("incomplete_response", "Azure response did not finish normally")
+    if not isinstance(response.output, list):
+        raise InferenceError("invalid_response", "Expected Azure response output items")
+    texts = []
+    for item in response.output:
+        kind = getattr(item, "type", None)
+        if kind == "reasoning":
+            # Reasoning metadata is allowed, but never returned or copied to receipts.
+            if getattr(item, "status", None) not in {None, "completed"}:
+                raise InferenceError("incomplete_response", "Azure reasoning did not finish normally")
+            continue
+        if kind != "message":
+            raise InferenceError("boundary_violation", "Unexpected Azure operational output")
+        if getattr(item, "role", None) != "assistant":
+            raise InferenceError("invalid_response", "Expected Azure assistant output")
+        if getattr(item, "status", None) != "completed":
+            raise InferenceError("incomplete_response", "Azure message did not finish normally")
+        if not isinstance(getattr(item, "content", None), list):
+            raise InferenceError("invalid_response", "Expected Azure text content")
+        for content in item.content:
+            if getattr(content, "type", None) == "refusal":
+                receipt["refused"] = True
+                raise InferenceError("refusal", "Azure model refused the request")
+            if (
+                getattr(content, "type", None) != "output_text"
+                or not isinstance(getattr(content, "text", None), str)
+            ):
+                raise InferenceError("invalid_response", "Unexpected Azure non-text output")
+            texts.append(content.text)
+    return "".join(texts)
+
+
 class AzureOpenAIProvider:
     def __init__(
         self,
@@ -102,6 +152,7 @@ class AzureOpenAIProvider:
         *,
         api_key: str | None = None,
         auth: str = "api_key",
+        api: str = "chat_completions",
         native_json_schema: bool = False,
         max_completion_tokens: int | None = None,
         http_transport: httpx.AsyncBaseTransport | None = None,
@@ -111,6 +162,8 @@ class AzureOpenAIProvider:
         )
         if auth not in {"api_key", "entra"}:
             raise InferenceError("configuration", "Authentication must be api_key or entra")
+        if api not in {"chat_completions", "responses"}:
+            raise InferenceError("configuration", "API must be chat_completions or responses")
         if auth == "entra" and api_key is not None:
             raise InferenceError("configuration", "An API key cannot be supplied in Entra mode")
         key = api_key if api_key is not None else os.environ.get("AZURE_OPENAI_API_KEY")
@@ -125,6 +178,7 @@ class AzureOpenAIProvider:
         ):
             raise InferenceError("configuration", "Completion-token cap must be a positive integer")
         self.auth = auth
+        self.api = api
         self._api_key = key if auth == "api_key" else None
         self.native_json_schema = native_json_schema
         self.max_completion_tokens = max_completion_tokens
@@ -147,7 +201,10 @@ class AzureOpenAIProvider:
         self._http = httpx.AsyncClient(
             transport=self._transport or httpx.AsyncHTTPTransport(retries=0),
             follow_redirects=False,
-            event_hooks={"request": [self._observe_request]},
+            event_hooks={
+                "request": [self._observe_request],
+                "response": [self._observe_response],
+            },
         )
         try:
             self._client = AsyncOpenAI(
@@ -205,7 +262,10 @@ class AzureOpenAIProvider:
         return {
             "provider": "azure-openai",
             "sdk_version": importlib.metadata.version("openai"),
-            "api": "azure-openai-v1-chat-completions",
+            "api": (
+                "azure-openai-v1-responses" if self.api == "responses"
+                else "azure-openai-v1-chat-completions"
+            ),
             "endpoint_sha256": hashlib.sha256(self.base_url.encode()).hexdigest(),
             "auth": self.auth,
             "sdk_retries": 0,
@@ -220,32 +280,56 @@ class AzureOpenAIProvider:
     async def _observe_request(self, request: httpx.Request) -> None:
         receipt = self._active_receipt
         if receipt is None:
-            raise InferenceError("boundary_violation", "Unattributed Azure HTTP request")
+            raise _WireBoundaryViolation("Unattributed Azure HTTP request")
         receipt["http_dispatches_observed"] += 1
         if receipt["http_dispatches_observed"] != 1:
-            raise InferenceError("boundary_violation", "Unexpected additional HTTP dispatch")
+            raise _WireBoundaryViolation("Unexpected additional HTTP dispatch")
         if (
             request.method != "POST"
-            or str(request.url) != self.base_url + "chat/completions"
+            or str(request.url) != self.base_url + (
+                "responses" if self.api == "responses" else "chat/completions"
+            )
         ):
-            raise InferenceError("boundary_violation", "Unexpected Azure inference destination")
+            raise _WireBoundaryViolation("Unexpected Azure inference destination")
         body = strict_json(request.content.decode("utf-8"))
-        messages = body.get("messages", [])
+        if not isinstance(body, dict):
+            raise _WireBoundaryViolation("Unexpected Azure request body")
+        messages = body.get("input" if self.api == "responses" else "messages", [])
         if (
             body.get("tools") or body.get("functions")
+            or not isinstance(messages, list)
             or len(messages) != 2
+            or any(not isinstance(item, dict) for item in messages)
             or [item.get("role") for item in messages] != ["system", "user"]
+            or any(not isinstance(item.get("content"), str) for item in messages)
             or body.get("model") != receipt["requested_model"]
         ):
-            raise InferenceError("boundary_violation", "Unexpected Azure request content")
+            raise _WireBoundaryViolation("Unexpected Azure request content")
+        if self.api == "responses" and (
+            body.get("tools") != [] or body.get("tool_choice") != "none"
+            or body.get("parallel_tool_calls") is not False
+            or body.get("store") is not False or body.get("background") is not False
+            or any(key in body for key in (
+                "instructions", "conversation", "previous_response_id", "messages",
+            ))
+        ):
+            raise _WireBoundaryViolation("Unexpected Azure Responses controls")
         observed = [
             hashlib.sha256(item["content"].encode("utf-8")).hexdigest()
             for item in messages
         ]
         if observed != [receipt["system_sha256"], receipt["user_sha256"]]:
-            raise InferenceError("boundary_violation", "Azure wire messages differ from input")
+            raise _WireBoundaryViolation("Azure wire messages differ from input")
         receipt["wire_message_hashes_match"] = True
         receipt["wire_body_sha256"] = hashlib.sha256(request.content).hexdigest()
+
+    async def _observe_response(self, response: httpx.Response) -> None:
+        receipt = self._active_receipt
+        if receipt is None:
+            raise _WireBoundaryViolation("Unattributed Azure HTTP response")
+        receipt["http_status"] = response.status_code
+        body = await response.aread()
+        receipt["wire_response_sha256"] = hashlib.sha256(body).hexdigest()
 
     async def generate(self, request: InferenceRequest) -> InferenceResponse:
         system, user, validator = request.prepared()
@@ -275,44 +359,67 @@ class AzureOpenAIProvider:
             self._last_receipt = self._active_receipt = receipt
             options = {}
             if response_format is not None:
-                options["response_format"] = response_format
+                if self.api == "responses":
+                    options["text"] = {
+                        "format": {"type": "json_schema", **response_format["json_schema"]},
+                    }
+                else:
+                    options["response_format"] = response_format
             if request.reasoning_effort is not None:
-                options["reasoning_effort"] = request.reasoning_effort
+                if self.api == "responses":
+                    options["reasoning"] = {"effort": request.reasoning_effort}
+                else:
+                    options["reasoning_effort"] = request.reasoning_effort
             if self.max_completion_tokens is not None:
-                options["max_completion_tokens"] = self.max_completion_tokens
+                options[
+                    "max_output_tokens" if self.api == "responses" else "max_completion_tokens"
+                ] = self.max_completion_tokens
             started, failure = time.monotonic(), None
             try:
                 receipt["adapter_attempts"] = 1
                 async with asyncio.timeout(request.timeout_seconds):
-                    response = await self._client.chat.completions.create(
-                        model=request.model,
-                        messages=[
-                            {"role": "system", "content": system},
-                            {"role": "user", "content": user},
-                        ],
-                        n=1, stream=False, timeout=request.timeout_seconds, **options,
-                    )
+                    messages = [
+                        {"role": "system", "content": system},
+                        {"role": "user", "content": user},
+                    ]
+                    if self.api == "responses":
+                        response = await self._client.responses.create(
+                            model=request.model, input=messages,
+                            tools=[], tool_choice="none", parallel_tool_calls=False,
+                            store=False, background=False,
+                            stream=False, timeout=request.timeout_seconds, **options,
+                        )
+                    else:
+                        response = await self._client.chat.completions.create(
+                            model=request.model, messages=messages,
+                            n=1, stream=False, timeout=request.timeout_seconds, **options,
+                        )
                 receipt["observed_model"] = response.model
                 receipt["usage"] = (
-                    response.usage.model_dump(mode="json") if response.usage else None
+                    response.usage.model_dump(
+                        mode="json", exclude_unset=self.api == "responses",
+                    ) if response.usage else None
                 )
-                if len(response.choices) != 1:
-                    raise InferenceError("invalid_response", "Expected one Azure completion")
-                choice = response.choices[0]
-                receipt["finish_reason"] = choice.finish_reason
-                receipt["refused"] = bool(choice.message.refusal)
-                receipt["content_filter_triggered"] = _filtered(response.model_extra) or _filtered(
-                    choice.model_extra
-                )
-                if choice.finish_reason == "content_filter" or receipt["content_filter_triggered"]:
-                    raise InferenceError("content_filter", "Azure content filtering blocked the response")
-                if choice.message.refusal:
-                    raise InferenceError("refusal", "Azure model refused the request")
-                if choice.message.tool_calls or choice.message.function_call:
-                    raise InferenceError("boundary_violation", "Unexpected Azure tool request")
-                if choice.finish_reason != "stop":
-                    raise InferenceError("incomplete_response", "Azure completion did not finish normally")
-                text = choice.message.content
+                if self.api == "responses":
+                    text = _responses_text(response, receipt)
+                else:
+                    if len(response.choices) != 1:
+                        raise InferenceError("invalid_response", "Expected one Azure completion")
+                    choice = response.choices[0]
+                    receipt["finish_reason"] = choice.finish_reason
+                    receipt["refused"] = bool(choice.message.refusal)
+                    receipt["content_filter_triggered"] = _filtered(response.model_extra) or _filtered(
+                        choice.model_extra
+                    )
+                    if choice.finish_reason == "content_filter" or receipt["content_filter_triggered"]:
+                        raise InferenceError("content_filter", "Azure content filtering blocked the response")
+                    if choice.message.refusal:
+                        raise InferenceError("refusal", "Azure model refused the request")
+                    if choice.message.tool_calls or choice.message.function_call:
+                        raise InferenceError("boundary_violation", "Unexpected Azure tool request")
+                    if choice.finish_reason != "stop":
+                        raise InferenceError("incomplete_response", "Azure completion did not finish normally")
+                    text = choice.message.content
                 if isinstance(text, str):
                     receipt["response_sha256"] = hashlib.sha256(text.encode("utf-8")).hexdigest()
                 parsed = validate_content(text, validator)
@@ -329,8 +436,12 @@ class AzureOpenAIProvider:
                     404: "not_found", 429: "rate_limit",
                 }.get(error.status_code, "provider_error" if error.status_code >= 500 else "bad_request")
                 failure = InferenceError(code, "Azure inference returned an HTTP error")
-            except APIConnectionError:
-                failure = InferenceError("transport", "Azure inference connection failed")
+            except APIConnectionError as error:
+                # The SDK wraps event-hook failures as connection errors.
+                failure = (
+                    error.__cause__ if isinstance(error.__cause__, _WireBoundaryViolation)
+                    else InferenceError("transport", "Azure inference connection failed")
+                )
             except asyncio.CancelledError as error:
                 receipt["cancelled"] = True
                 failure = error

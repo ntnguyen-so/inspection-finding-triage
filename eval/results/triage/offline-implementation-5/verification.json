@@ -1,0 +1,804 @@
+{
+  "recorded_at": "2026-11-16T12:04:48.308966+00:00",
+  "command": [
+    "C:\\Users\\thanh\\falkor_case2\\.venv\\Scripts\\python.exe",
+    "-B",
+    "-m",
+    "tools.verify_triage",
+    "--output",
+    "eval\\results\\triage\\offline-implementation-5"
+  ],
+  "status": "offline_checks_failed",
+  "scope": "Production functions with synthetic test-only dependencies; NOT real knowledge/model acceptance.",
+  "git_revision": "69117c1a437cada93d0d4ce920c9bc862a5c9fca",
+  "dirty_worktree": true,
+  "code_stable_during_run": false,
+  "stability_scope": "Executed workflow/inference/knowledge dependencies and regression tests; not unrelated concurrent files or a whole-system freeze.",
+  "hashes_before": {
+    "pyproject.toml": "646ccb78205ac51bb3decd8021a27a3e51223456666a21f1ae26e25397de1bbf",
+    "README.md": "3bd8494925ca16874242072d44a6052eb8d7dbaa9408e66e9672c97e0b9f19ef",
+    "AGENTS.md": "05594af8c02103061b554605bc3874e52c5008316e386e4b69b31168201b804a",
+    "docs\\05_TRIAGE_WORKFLOW.md": "ddf5c90bf14161a82460d0485b70618045337f46c3625f8d66f58c7038c0125a",
+    "tools\\verify_triage.py": "cc545a4f3a2bc19ab02ced238e77a2c7393f0ffd6bce9694b36ce23ae1eddd9f",
+    "triage\\__init__.py": "46ec57da9a03501846bfcd7bf5c06e3d5c0dc305a729e044dce126cd79083272",
+    "triage\\__main__.py": "130796e5576639a46b6a7b196637bad4b0c5de503c47c5229baa04d0181aa359",
+    "triage\\assessment.py": "1d9242e61925f33a0606165841b4e652ea46fa8d06721e75eeceb91a71b86bdc",
+    "triage\\contracts.py": "55ff4a9bd3681f10bd1d7d1bb9f1c3d73f0a80b89021b30133ddff92abfdc529",
+    "triage\\inputs.py": "ca786bc28039a84d9b9d3aa909c0a861c2c610b0a91adfaadeeace23fda8fca4",
+    "triage\\policy.py": "371916671d97979a1513710d9a70519c7d408d7cf917533cbabdd1b450f31cd6",
+    "triage\\workflow.py": "f1076a45f9d2404939645c4db0d222cdaa9e7f7bdd25a43375441ad251d55216",
+    "llm_inference\\__init__.py": "95dc7f05b494cd3c7135bdb061453e9ddc72c45a20777dee1569fe36e8c3f6bc",
+    "llm_inference\\__main__.py": "852673b93b39db4f1327547e2bacaeb2443cc40d0d15dc672b4cab9471035f24",
+    "llm_inference\\_lifecycle.py": "b8c983e8e230e0cdfce5d329f361cdebda6dd040ab6e7774b53626eb1d97bbef",
+    "llm_inference\\azure.py": "938ecb97aed4ab89306ead68f922507b2dc8d9d6f614cb1506beca3a82fbda8c",
+    "llm_inference\\contracts.py": "4d27d144808212ab93959d01c82574ec3add767ed80b30bcb1334596e67621cc",
+    "llm_inference\\copilot.py": "49b01321cfb2d7bb635f119c36e5c1768e40ca23863357e3425fd1c5909f3417",
+    "tests\\__init__.py": "eba574c424b6be07219ec901f87d4434bbb39bf275fc160c189455158b3f0763",
+    "tests\\test_triage.py": "65aaa470603648ca6ea52fc043ee081fee76f8ce7a53ecb7e8aacd27ab35d06d",
+    "tests\\triage_support.py": "79ef918d535b097243eb92746e75c6fd9b776a0fe0d8b6b71fc325c2936860e2",
+    "tests\\test_inference.py": "dc72ba44ca52075588da1b1f1a2cf4708a968af0a554cbe32d5adcf57098ee27",
+    "tests\\test_azure.py": "0f4245c50c82d99f77386782d826300e12bd45e8ba171f8458aaaae92bdd173c",
+    "triage_knowledge\\__init__.py": "1c102bcadeabba0bd263660d683baccfa7439a3ffaa7ccb696007cc8063ef56c",
+    "triage_knowledge\\contracts.py": "19d1ace2fbf1706dcd4a0bf4b565ef96cda17947172aa0ca987289b93f8008e8",
+    "triage_knowledge\\knowledge.py": "6192c6c092b00f14eaf98e2f314b40f0d04562611146c861b1cbac9a7181e1d4",
+    "triage_knowledge\\context.py": "0cb4bffdf6a90c0f700ce2d3d3c77df01ab205e30ebf024a025901f7e80d2ddd",
+    "triage_knowledge\\workflow_export.py": "6c86cef82284ddf0287986ef5742a54f341f3c324f58a9cf5e0585b25a31bcbd",
+    "eval\\spec\\split.json": "bf708a150f0ac08a1f65f1d585f2cdde6fb6984578ea379465a066cf9a622e43",
+    "eval\\spec\\acceptance.json": "033d1860c3feb3493c587ee32d2b72b510f2fec3847d04dad77de0626ea2c23c"
+  },
+  "hashes_after": {
+    "pyproject.toml": "646ccb78205ac51bb3decd8021a27a3e51223456666a21f1ae26e25397de1bbf",
+    "README.md": "3bd8494925ca16874242072d44a6052eb8d7dbaa9408e66e9672c97e0b9f19ef",
+    "AGENTS.md": "05594af8c02103061b554605bc3874e52c5008316e386e4b69b31168201b804a",
+    "docs\\05_TRIAGE_WORKFLOW.md": "ddf5c90bf14161a82460d0485b70618045337f46c3625f8d66f58c7038c0125a",
+    "tools\\verify_triage.py": "cc545a4f3a2bc19ab02ced238e77a2c7393f0ffd6bce9694b36ce23ae1eddd9f",
+    "triage\\__init__.py": "46ec57da9a03501846bfcd7bf5c06e3d5c0dc305a729e044dce126cd79083272",
+    "triage\\__main__.py": "130796e5576639a46b6a7b196637bad4b0c5de503c47c5229baa04d0181aa359",
+    "triage\\assessment.py": "1d9242e61925f33a0606165841b4e652ea46fa8d06721e75eeceb91a71b86bdc",
+    "triage\\contracts.py": "55ff4a9bd3681f10bd1d7d1bb9f1c3d73f0a80b89021b30133ddff92abfdc529",
+    "triage\\inputs.py": "ca786bc28039a84d9b9d3aa909c0a861c2c610b0a91adfaadeeace23fda8fca4",
+    "triage\\policy.py": "371916671d97979a1513710d9a70519c7d408d7cf917533cbabdd1b450f31cd6",
+    "triage\\workflow.py": "f1076a45f9d2404939645c4db0d222cdaa9e7f7bdd25a43375441ad251d55216",
+    "llm_inference\\__init__.py": "95dc7f05b494cd3c7135bdb061453e9ddc72c45a20777dee1569fe36e8c3f6bc",
+    "llm_inference\\__main__.py": "852673b93b39db4f1327547e2bacaeb2443cc40d0d15dc672b4cab9471035f24",
+    "llm_inference\\_lifecycle.py": "b8c983e8e230e0cdfce5d329f361cdebda6dd040ab6e7774b53626eb1d97bbef",
+    "llm_inference\\azure.py": "938ecb97aed4ab89306ead68f922507b2dc8d9d6f614cb1506beca3a82fbda8c",
+    "llm_inference\\contracts.py": "4d27d144808212ab93959d01c82574ec3add767ed80b30bcb1334596e67621cc",
+    "llm_inference\\copilot.py": "49b01321cfb2d7bb635f119c36e5c1768e40ca23863357e3425fd1c5909f3417",
+    "tests\\__init__.py": "eba574c424b6be07219ec901f87d4434bbb39bf275fc160c189455158b3f0763",
+    "tests\\test_triage.py": "65aaa470603648ca6ea52fc043ee081fee76f8ce7a53ecb7e8aacd27ab35d06d",
+    "tests\\triage_support.py": "79ef918d535b097243eb92746e75c6fd9b776a0fe0d8b6b71fc325c2936860e2",
+    "tests\\test_inference.py": "dc72ba44ca52075588da1b1f1a2cf4708a968af0a554cbe32d5adcf57098ee27",
+    "tests\\test_azure.py": "0f4245c50c82d99f77386782d826300e12bd45e8ba171f8458aaaae92bdd173c",
+    "triage_knowledge\\__init__.py": "1c102bcadeabba0bd263660d683baccfa7439a3ffaa7ccb696007cc8063ef56c",
+    "triage_knowledge\\contracts.py": "19d1ace2fbf1706dcd4a0bf4b565ef96cda17947172aa0ca987289b93f8008e8",
+    "triage_knowledge\\knowledge.py": "f537a40b905330aba2ac4efe9af16c920f82ac50781937e4f23ea93ba72c47eb",
+    "triage_knowledge\\context.py": "28ac9f6be31ce82aeca1039d4cffbec0640b14281578a15305140e91e8a4ec2b",
+    "triage_knowledge\\workflow_export.py": "6c86cef82284ddf0287986ef5742a54f341f3c324f58a9cf5e0585b25a31bcbd",
+    "eval\\spec\\split.json": "bf708a150f0ac08a1f65f1d585f2cdde6fb6984578ea379465a066cf9a622e43",
+    "eval\\spec\\acceptance.json": "033d1860c3feb3493c587ee32d2b72b510f2fec3847d04dad77de0626ea2c23c"
+  },
+  "reference_version": "1.2",
+  "component_tests": {
+    "run": 42,
+    "failures": 0,
+    "errors": 1,
+    "skipped": 0,
+    "log": "triage-tests.txt"
+  },
+  "commands": [
+    {
+      "command": [
+        "C:\\Users\\thanh\\falkor_case2\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "unittest",
+        "tests.test_inference",
+        "tests.test_azure",
+        "-q"
+      ],
+      "exit_code": 0,
+      "log": "command-1.txt"
+    },
+    {
+      "command": [
+        "C:\\Users\\thanh\\falkor_case2\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "eval\\tests",
+        "-p",
+        "test_*.py",
+        "-q"
+      ],
+      "exit_code": 0,
+      "log": "command-2.txt"
+    },
+    {
+      "command": [
+        "C:\\Users\\thanh\\falkor_case2\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "eval.validate"
+      ],
+      "exit_code": 0,
+      "log": "command-3.txt"
+    },
+    {
+      "command": [
+        "C:\\Users\\thanh\\falkor_case2\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "eval.assess",
+        "--partition",
+        "development",
+        "--checklist"
+      ],
+      "exit_code": 0,
+      "log": "command-4.txt"
+    },
+    {
+      "command": [
+        "C:\\Users\\thanh\\falkor_case2\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-B",
+        "-c",
+        "import triage, triage_knowledge; from triage.policy import base_urgency; assert base_urgency(1,10)==8; print(triage.__file__); print(triage_knowledge.__file__)"
+      ],
+      "exit_code": 0,
+      "log": "command-5.txt"
+    }
+  ],
+  "policy_grid": {
+    "rows": "likelihood 1..10",
+    "columns": "impact 1..10",
+    "actual": [
+      [
+        1,
+        2,
+        3,
+        4,
+        4,
+        5,
+        6,
+        6,
+        7,
+        8
+      ],
+      [
+        2,
+        2,
+        3,
+        4,
+        5,
+        5,
+        6,
+        7,
+        7,
+        8
+      ],
+      [
+        2,
+        3,
+        3,
+        4,
+        5,
+        6,
+        6,
+        7,
+        8,
+        8
+      ],
+      [
+        2,
+        3,
+        4,
+        4,
+        5,
+        6,
+        7,
+        7,
+        8,
+        9
+      ],
+      [
+        3,
+        3,
+        4,
+        5,
+        5,
+        6,
+        7,
+        8,
+        8,
+        9
+      ],
+      [
+        3,
+        4,
+        4,
+        5,
+        6,
+        6,
+        7,
+        8,
+        9,
+        9
+      ],
+      [
+        3,
+        4,
+        5,
+        5,
+        6,
+        7,
+        7,
+        8,
+        9,
+        10
+      ],
+      [
+        4,
+        4,
+        5,
+        6,
+        6,
+        7,
+        8,
+        8,
+        9,
+        10
+      ],
+      [
+        4,
+        5,
+        5,
+        6,
+        7,
+        7,
+        8,
+        9,
+        9,
+        10
+      ],
+      [
+        4,
+        5,
+        6,
+        6,
+        7,
+        8,
+        8,
+        9,
+        10,
+        10
+      ]
+    ],
+    "independent_expected": "Literal hand-worked table in tests\\test_triage.py"
+  },
+  "override_state_matrix": [
+    {
+      "protection_impaired": "confirmed_true",
+      "recorded_deviation": "confirmed_true",
+      "actual_policy": {
+        "policy_version": "triage-policy-v1",
+        "base": 1,
+        "final": 1,
+        "rules": [],
+        "rationale": "triage-policy-v1: ceil(0.7*I+0.3*L), L=1, I=1, base=1, final=1.",
+        "review_required": false,
+        "review_reason": null,
+        "verification_activities": []
+      }
+    },
+    {
+      "protection_impaired": "confirmed_true",
+      "recorded_deviation": "confirmed_false",
+      "actual_policy": {
+        "policy_version": "triage-policy-v1",
+        "base": 1,
+        "final": 9,
+        "rules": [
+          {
+            "rule_id": "O-PROTECTION",
+            "kind": "confirmed_override",
+            "floor": 9,
+            "reason": "Confirmed protection impairment without recorded deviation.",
+            "sources": [
+              "finding:F-8001:finding_description"
+            ]
+          }
+        ],
+        "rationale": "triage-policy-v1: ceil(0.7*I+0.3*L), L=1, I=1, base=1, final=9. O-PROTECTION (confirmed_override): Confirmed protection impairment without recorded deviation. Sources: finding:F-8001:finding_description.",
+        "review_required": true,
+        "review_reason": "O-PROTECTION (confirmed_override): Confirmed protection impairment without recorded deviation. Sources: finding:F-8001:finding_description.",
+        "verification_activities": []
+      }
+    },
+    {
+      "protection_impaired": "confirmed_true",
+      "recorded_deviation": "suspected",
+      "actual_policy": {
+        "policy_version": "triage-policy-v1",
+        "base": 1,
+        "final": 7,
+        "rules": [
+          {
+            "rule_id": "P-SAFETY-UNKNOWN",
+            "kind": "precautionary_policy",
+            "floor": 7,
+            "reason": "Protection impaired; deviation status unverified, not confirmed absent.",
+            "sources": [
+              "finding:F-8001:finding_description"
+            ]
+          }
+        ],
+        "rationale": "triage-policy-v1: ceil(0.7*I+0.3*L), L=1, I=1, base=1, final=7. P-SAFETY-UNKNOWN (precautionary_policy): Protection impaired; deviation status unverified, not confirmed absent. Sources: finding:F-8001:finding_description.",
+        "review_required": true,
+        "review_reason": "P-SAFETY-UNKNOWN (precautionary_policy): Protection impaired; deviation status unverified, not confirmed absent. Sources: finding:F-8001:finding_description.",
+        "verification_activities": [
+          "Check deviation log."
+        ]
+      }
+    },
+    {
+      "protection_impaired": "confirmed_true",
+      "recorded_deviation": "unknown",
+      "actual_policy": {
+        "policy_version": "triage-policy-v1",
+        "base": 1,
+        "final": 7,
+        "rules": [
+          {
+            "rule_id": "P-SAFETY-UNKNOWN",
+            "kind": "precautionary_policy",
+            "floor": 7,
+            "reason": "Protection impaired; deviation status unverified, not confirmed absent.",
+            "sources": [
+              "finding:F-8001:finding_description"
+            ]
+          }
+        ],
+        "rationale": "triage-policy-v1: ceil(0.7*I+0.3*L), L=1, I=1, base=1, final=7. P-SAFETY-UNKNOWN (precautionary_policy): Protection impaired; deviation status unverified, not confirmed absent. Sources: finding:F-8001:finding_description.",
+        "review_required": true,
+        "review_reason": "P-SAFETY-UNKNOWN (precautionary_policy): Protection impaired; deviation status unverified, not confirmed absent. Sources: finding:F-8001:finding_description.",
+        "verification_activities": [
+          "Check deviation log."
+        ]
+      }
+    },
+    {
+      "protection_impaired": "confirmed_false",
+      "recorded_deviation": "confirmed_true",
+      "actual_policy": {
+        "policy_version": "triage-policy-v1",
+        "base": 1,
+        "final": 1,
+        "rules": [],
+        "rationale": "triage-policy-v1: ceil(0.7*I+0.3*L), L=1, I=1, base=1, final=1.",
+        "review_required": false,
+        "review_reason": null,
+        "verification_activities": []
+      }
+    },
+    {
+      "protection_impaired": "confirmed_false",
+      "recorded_deviation": "confirmed_false",
+      "actual_policy": {
+        "policy_version": "triage-policy-v1",
+        "base": 1,
+        "final": 1,
+        "rules": [],
+        "rationale": "triage-policy-v1: ceil(0.7*I+0.3*L), L=1, I=1, base=1, final=1.",
+        "review_required": false,
+        "review_reason": null,
+        "verification_activities": []
+      }
+    },
+    {
+      "protection_impaired": "confirmed_false",
+      "recorded_deviation": "suspected",
+      "actual_policy": {
+        "policy_version": "triage-policy-v1",
+        "base": 1,
+        "final": 1,
+        "rules": [],
+        "rationale": "triage-policy-v1: ceil(0.7*I+0.3*L), L=1, I=1, base=1, final=1.",
+        "review_required": false,
+        "review_reason": null,
+        "verification_activities": []
+      }
+    },
+    {
+      "protection_impaired": "confirmed_false",
+      "recorded_deviation": "unknown",
+      "actual_policy": {
+        "policy_version": "triage-policy-v1",
+        "base": 1,
+        "final": 1,
+        "rules": [],
+        "rationale": "triage-policy-v1: ceil(0.7*I+0.3*L), L=1, I=1, base=1, final=1.",
+        "review_required": false,
+        "review_reason": null,
+        "verification_activities": []
+      }
+    },
+    {
+      "protection_impaired": "suspected",
+      "recorded_deviation": "confirmed_true",
+      "actual_policy": {
+        "policy_version": "triage-policy-v1",
+        "base": 1,
+        "final": 1,
+        "rules": [],
+        "rationale": "triage-policy-v1: ceil(0.7*I+0.3*L), L=1, I=1, base=1, final=1.",
+        "review_required": false,
+        "review_reason": null,
+        "verification_activities": []
+      }
+    },
+    {
+      "protection_impaired": "suspected",
+      "recorded_deviation": "confirmed_false",
+      "actual_policy": {
+        "policy_version": "triage-policy-v1",
+        "base": 1,
+        "final": 1,
+        "rules": [],
+        "rationale": "triage-policy-v1: ceil(0.7*I+0.3*L), L=1, I=1, base=1, final=1.",
+        "review_required": false,
+        "review_reason": null,
+        "verification_activities": []
+      }
+    },
+    {
+      "protection_impaired": "suspected",
+      "recorded_deviation": "suspected",
+      "actual_policy": {
+        "policy_version": "triage-policy-v1",
+        "base": 1,
+        "final": 1,
+        "rules": [],
+        "rationale": "triage-policy-v1: ceil(0.7*I+0.3*L), L=1, I=1, base=1, final=1.",
+        "review_required": false,
+        "review_reason": null,
+        "verification_activities": []
+      }
+    },
+    {
+      "protection_impaired": "suspected",
+      "recorded_deviation": "unknown",
+      "actual_policy": {
+        "policy_version": "triage-policy-v1",
+        "base": 1,
+        "final": 1,
+        "rules": [],
+        "rationale": "triage-policy-v1: ceil(0.7*I+0.3*L), L=1, I=1, base=1, final=1.",
+        "review_required": false,
+        "review_reason": null,
+        "verification_activities": []
+      }
+    },
+    {
+      "protection_impaired": "unknown",
+      "recorded_deviation": "confirmed_true",
+      "actual_policy": {
+        "policy_version": "triage-policy-v1",
+        "base": 1,
+        "final": 1,
+        "rules": [],
+        "rationale": "triage-policy-v1: ceil(0.7*I+0.3*L), L=1, I=1, base=1, final=1.",
+        "review_required": false,
+        "review_reason": null,
+        "verification_activities": []
+      }
+    },
+    {
+      "protection_impaired": "unknown",
+      "recorded_deviation": "confirmed_false",
+      "actual_policy": {
+        "policy_version": "triage-policy-v1",
+        "base": 1,
+        "final": 1,
+        "rules": [],
+        "rationale": "triage-policy-v1: ceil(0.7*I+0.3*L), L=1, I=1, base=1, final=1.",
+        "review_required": false,
+        "review_reason": null,
+        "verification_activities": []
+      }
+    },
+    {
+      "protection_impaired": "unknown",
+      "recorded_deviation": "suspected",
+      "actual_policy": {
+        "policy_version": "triage-policy-v1",
+        "base": 1,
+        "final": 1,
+        "rules": [],
+        "rationale": "triage-policy-v1: ceil(0.7*I+0.3*L), L=1, I=1, base=1, final=1.",
+        "review_required": false,
+        "review_reason": null,
+        "verification_activities": []
+      }
+    },
+    {
+      "protection_impaired": "unknown",
+      "recorded_deviation": "unknown",
+      "actual_policy": {
+        "policy_version": "triage-policy-v1",
+        "base": 1,
+        "final": 1,
+        "rules": [],
+        "rationale": "triage-policy-v1: ceil(0.7*I+0.3*L), L=1, I=1, base=1, final=1.",
+        "review_required": false,
+        "review_reason": null,
+        "verification_activities": []
+      }
+    }
+  ],
+  "real_provider_dispatches": 0,
+  "live_generation_usage": null,
+  "live_generation_cost_usd": null,
+  "cost_note": "No real provider invoked; synthetic receipts do not measure model billing.",
+  "elapsed_seconds": 45.09400000004098,
+  "scenarios": {
+    "A01": {
+      "status": "failed_component_verification",
+      "system_acceptance": "not_established"
+    },
+    "A02": {
+      "status": "failed_component_verification",
+      "system_acceptance": "not_established"
+    },
+    "A03": {
+      "status": "failed_component_verification",
+      "system_acceptance": "not_established"
+    },
+    "A04": {
+      "status": "not_executed",
+      "system_acceptance": "not_established"
+    },
+    "B01": {
+      "status": "failed_component_verification",
+      "system_acceptance": "not_established"
+    },
+    "B02": {
+      "status": "not_executed",
+      "system_acceptance": "not_established"
+    },
+    "B03": {
+      "status": "not_executed",
+      "system_acceptance": "not_established"
+    },
+    "C01": {
+      "status": "failed_component_verification",
+      "system_acceptance": "not_established"
+    },
+    "C02": {
+      "status": "failed_component_verification",
+      "system_acceptance": "not_established"
+    },
+    "C03": {
+      "status": "failed_component_verification",
+      "system_acceptance": "not_established"
+    },
+    "C04": {
+      "status": "not_executed",
+      "system_acceptance": "not_established"
+    },
+    "D01": {
+      "status": "not_executed",
+      "system_acceptance": "not_established"
+    },
+    "D02": {
+      "status": "failed_component_verification",
+      "system_acceptance": "not_established"
+    },
+    "D03": {
+      "status": "not_executed",
+      "system_acceptance": "not_established"
+    },
+    "D04": {
+      "status": "not_executed",
+      "system_acceptance": "not_established"
+    },
+    "X01": {
+      "status": "not_executed",
+      "system_acceptance": "not_established"
+    },
+    "X02": {
+      "status": "not_executed",
+      "system_acceptance": "not_established"
+    }
+  },
+  "remaining_gates": [
+    "The module-owned WorkflowExport bridge is exercised; direct version-1 API integration remains deferred.",
+    "Genuine owner-approved maintained knowledge release; B01-B03 actual provider-bound/maintenance evidence.",
+    "Owner final system design and provider/model/settings/pricing/phase+review budget sign-off.",
+    "Calibrated semantic reviewer; real development generation, semantic review and X01 repeats.",
+    "Prerequisite-gated frozen test, automated all-input final tickets and delivery reproduction."
+  ],
+  "artifact_sha256": {
+    "command-1.txt": "fd655c9d1a4553a4c67bb7cfca25e31b779193b2ded9c360528b37d7df40907b",
+    "command-2.txt": "725dabd2e8b1327fc19a6e19d4ba9bb7da9abca800fbf534cc004407578a99fe",
+    "command-3.txt": "5b711c1a2c4a308dba693214dc484aca0669b7b2b731df4971234318b2bc0b10",
+    "command-4.txt": "34e331a72417b33b3f1ba221fdeb50c8be10b8a784ab1a68244e1ec2c7940339",
+    "command-5.txt": "777ae66dd16fdad79250b16341a2603c7e60a46973b7d8dc968a99f1c32948fd",
+    "synthetic-component-artifacts\\004d4a499652f79d\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\004d4a499652f79d\\registry.csv": "eedb54e25b71f75ee4306d1586c57ed300ea8ff83bd7299ccd2a22add7837b0d",
+    "synthetic-component-artifacts\\004d4a499652f79d\\run\\run.json": "350c1bee5b8032f7e2f6044d7615a9bc85f24f1661dabc6d84ce84411d82ce13",
+    "synthetic-component-artifacts\\004d4a499652f79d\\test-id.json": "9e89ca104822d53ef2541821938f1c7f8b680838e0238c6c7e7b64d7767a0927",
+    "synthetic-component-artifacts\\0493174dd57fd870\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\0493174dd57fd870\\no-receipt\\run.json": "8cd1676e393c606e9f1e0b0e21769422ec694ca0bbf67defad2a6d252b5a7246",
+    "synthetic-component-artifacts\\0493174dd57fd870\\phase-ledger.json": "aafd89b1388cf0997be46aa54090c3c227880163d69d00d34aa309034f22267d",
+    "synthetic-component-artifacts\\0493174dd57fd870\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\0493174dd57fd870\\run\\run.json": "fde4c78a4fa0f827e0514b095088291fb58a7a88e748e111deda8a1fbe5bb6b5",
+    "synthetic-component-artifacts\\0493174dd57fd870\\test-id.json": "3952b2d0054a588cd2e9fc65dd32c7601cbed409840be2d4f28ee381ead9b5e9",
+    "synthetic-component-artifacts\\0bd19cf068dd011e\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\0bd19cf068dd011e\\phase-ledger.json": "f864d3f53dceb2d4dc16b7f986c1a5de3d6fe910b929273fdfa480df5ae53515",
+    "synthetic-component-artifacts\\0bd19cf068dd011e\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\0bd19cf068dd011e\\run\\run.json": "8eefc8ee7a21cf1742ad34e2fd8c4c866a0347bb401f0c11dfd9dfaf0050db8e",
+    "synthetic-component-artifacts\\0bd19cf068dd011e\\test-id.json": "0f5f7ee8d4c0752918263421b0e3702d0fe45b51995718f947deb01631ae2d45",
+    "synthetic-component-artifacts\\0bd19cf068dd011e\\tickets.json": "8f146e28598c9abee2570635aa7bad86f33d49e471615f8151d65eeb03535ff1",
+    "synthetic-component-artifacts\\0bd19cf068dd011e\\unknown-accounting\\run.json": "8bc4e43b44f6499583cd1f4bd1f38ad6e7337fa630d947b1b650de20d1dacf76",
+    "synthetic-component-artifacts\\0efb1a6ff415fb75\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\0efb1a6ff415fb75\\phase-ledger.json": "cda6df5ec09b215006bc66e435413d25453f9e55ae479c621946c1f488716c53",
+    "synthetic-component-artifacts\\0efb1a6ff415fb75\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\0efb1a6ff415fb75\\run\\run.json": "400e30010ea2621a61ce3fe101d3b83161ff4e9732a5b15d7feef8890475a525",
+    "synthetic-component-artifacts\\0efb1a6ff415fb75\\test-id.json": "e0bd5d77c2cb8f7fd8bd2e4dbe4b99009687ac45aca81704e98b834a2f48f2e6",
+    "synthetic-component-artifacts\\0efb1a6ff415fb75\\tickets.json": "6c29ab96c3814da875f365fa2b6da6ec25644fca2c2638289be6b6ac1de75aa7",
+    "synthetic-component-artifacts\\0f415b2e6965d24d\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\0f415b2e6965d24d\\phase-ledger.json": "61a1055100b8e49dec4bda518a399f87f994125bc45f955062b0da2c2549a774",
+    "synthetic-component-artifacts\\0f415b2e6965d24d\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\0f415b2e6965d24d\\run\\run.json": "258cf157d7c2a5dbbd908184729833498c33c8ff763e34d3a58a5b5c207d0481",
+    "synthetic-component-artifacts\\0f415b2e6965d24d\\test-id.json": "9ba3cea31d9e67affdd664097e5b2a056e1c86d5e42b7dea8a8a456a72376480",
+    "synthetic-component-artifacts\\0f415b2e6965d24d\\tickets.json": "4778bc4fb59a2902b55f806b70f8f249ece3847f54c8b3f72c96b08f0aa3eb83",
+    "synthetic-component-artifacts\\131535e23dfd7ac9\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\131535e23dfd7ac9\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\131535e23dfd7ac9\\run\\keep.txt": "aaa8d3c8d74ad3e8f6b1772aa9c7e0eaa528cb42fc93599ce2f125b00d4c424c",
+    "synthetic-component-artifacts\\131535e23dfd7ac9\\test-id.json": "61c521e866af6862b49bacd232d96cfd50eb4d2b85ec35c584e289ec44a15183",
+    "synthetic-component-artifacts\\1feed62847497810\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\1feed62847497810\\registry.csv": "8a94d024ae190354aa68cf329c7c02e21620b6d5c57bcfa6270ce45497dc1e19",
+    "synthetic-component-artifacts\\1feed62847497810\\test-id.json": "6679423d2a0e20ef639234205e6d508a65e9adba0b920accc6d819df45497fb1",
+    "synthetic-component-artifacts\\24389a5819f641cf\\findings.csv": "610ead1b256299efe3f18e788559fc2c2ce3c9ce0e40d16cd5a0a78b1a3ee2b6",
+    "synthetic-component-artifacts\\24389a5819f641cf\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\24389a5819f641cf\\test-id.json": "f7899b1116dbd425b0763318b31b7bfa9797da0aa37582826a11f342ff0a4cf2",
+    "synthetic-component-artifacts\\3d146abaa1a2d389\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\3d146abaa1a2d389\\phase-ledger.json": "2ece0efebb14cc22e1cc8235d081ac7ff76a25bb1545adec31072bd747915bcb",
+    "synthetic-component-artifacts\\3d146abaa1a2d389\\registry.csv": "03c091a3a363d49e7282152766b89c9dea9f7377ddd94d2235cfdd2d8cbac8c4",
+    "synthetic-component-artifacts\\3d146abaa1a2d389\\run\\run.json": "f5b9529cb7c1032217de30b3620b73a469b5da10495854e119cb3867c8cd8af8",
+    "synthetic-component-artifacts\\3d146abaa1a2d389\\test-id.json": "a28c6e4f24955341acbd9ed13c9679951db0bc2b948b6e8612ed6d482b0cb960",
+    "synthetic-component-artifacts\\3d146abaa1a2d389\\tickets.json": "d2d0fd9e4de9498678aa1f86d32fff14ddafc1d64e25603e344ae88c7420fa13",
+    "synthetic-component-artifacts\\3dc1c16c08416161\\findings.csv": "14626d61f65019929e11a72e3df713dca84ad827018f317b612e0a5c0d4592fd",
+    "synthetic-component-artifacts\\3dc1c16c08416161\\phase-ledger.json": "d082c3777ec4108eac94fdb2d12f2ed0cf68d65b82b2fe52b469689e9e30df3b",
+    "synthetic-component-artifacts\\3dc1c16c08416161\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\3dc1c16c08416161\\run\\run.json": "35ddd79d3080356d09fd0de6ce9fae75ebd977321182a08cee9479c01fadf246",
+    "synthetic-component-artifacts\\3dc1c16c08416161\\test-id.json": "842b6a8a758ffda60b817843412cd1a944c363d943cf7926f230250e32cbd8c7",
+    "synthetic-component-artifacts\\3dc1c16c08416161\\tickets.json": "9ec428cd4725746482740e7d8c0c9988f1072bdde35e2ed8fb687126e2bc92d8",
+    "synthetic-component-artifacts\\4057ad0bfd90a8a5\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\4057ad0bfd90a8a5\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\4057ad0bfd90a8a5\\test-id.json": "17bc743c3430a45d0445c7e5a1cabfc8ce34b1be7e1cc1a9d74feed6a0bb98dd",
+    "synthetic-component-artifacts\\4345a0bdf5fd5691\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\4345a0bdf5fd5691\\phase-ledger.json": "85632c752c5244089df6d3c81ef7586b7159d6d5c442f96a817d50804a1c6eb4",
+    "synthetic-component-artifacts\\4345a0bdf5fd5691\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\4345a0bdf5fd5691\\run\\run.json": "b6b6337b150db432a578001c9694b92bb3dd6ff9f11dac206c9fadafd887d235",
+    "synthetic-component-artifacts\\4345a0bdf5fd5691\\test-id.json": "f3eb9f2da599a2702a699a4e2023bbd3ba6c9357552f7f7c22cc99cfb3a4e72f",
+    "synthetic-component-artifacts\\4345a0bdf5fd5691\\tickets.json": "d99a9e7e82237d7f1e71034abab760697ca05e3de7c8f81b6a93f66510634574",
+    "synthetic-component-artifacts\\48c3259efa273675\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\48c3259efa273675\\phase-ledger.json": "fe691436b0be90f7b194a927639da7076c9884cd236a957c097d682800921fc5",
+    "synthetic-component-artifacts\\48c3259efa273675\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\48c3259efa273675\\run\\run.json": "b7da8cb7f50982483b7f9d20e01e5389539aeace4667b43f32dfe1b782a6902e",
+    "synthetic-component-artifacts\\48c3259efa273675\\test-id.json": "296609068443a4774580f5da99c5a054d3f90be4dc2d5d2de147f077379c704b",
+    "synthetic-component-artifacts\\48c3259efa273675\\tickets.json": "cba06b5736faf67e54b07b561eae94395e774c517a7d910a54369e1263ccfbd4",
+    "synthetic-component-artifacts\\53aa3b9c0c0d8369\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\53aa3b9c0c0d8369\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\53aa3b9c0c0d8369\\test-id.json": "63b621d3503c552d66a4d5e95f88fc028b1310b9c55c06d178c635b8eac97c1f",
+    "synthetic-component-artifacts\\5579eba4936c6747\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\5579eba4936c6747\\phase-ledger.json": "efdc286f38e97a3b800833e7d32cca5678968900351d3bd4716103761941f0fb",
+    "synthetic-component-artifacts\\5579eba4936c6747\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\5579eba4936c6747\\run\\run.json": "eb7d70f2ee608761e0346b207b537335e1af76691735f3d24e49502728d59889",
+    "synthetic-component-artifacts\\5579eba4936c6747\\test-id.json": "4685472b08723dc9e9f002981f1fa049eb7200b5cd8ad35e8a10fa92775d7ebc",
+    "synthetic-component-artifacts\\5579eba4936c6747\\tickets.json": "cba06b5736faf67e54b07b561eae94395e774c517a7d910a54369e1263ccfbd4",
+    "synthetic-component-artifacts\\5593324a12e34cb6\\context.json": "6d7788939929eef7abae6a2e9e1a2cac26259860a7ff162bcdcff36d1e4dc447",
+    "synthetic-component-artifacts\\5593324a12e34cb6\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\5593324a12e34cb6\\phase-ledger.json": "c0b5f7defdeb88320887eb1fcfceeb9d9399b106f58a4cf201f6aea1d500f62c",
+    "synthetic-component-artifacts\\5593324a12e34cb6\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\5593324a12e34cb6\\run\\run.json": "9f97f608e8fa5242449a0f8616a86448a87cf91942d51c7da0cdfe72eeeb2a52",
+    "synthetic-component-artifacts\\5593324a12e34cb6\\test-id.json": "f913cad5009d66df88f3db8354e6a9d21f798966672897c1a2a21f6deefa00df",
+    "synthetic-component-artifacts\\5593324a12e34cb6\\tickets.json": "406f0429de879b30a05880d0ba458535f390c776bc802a6be83a6da2ac808ce4",
+    "synthetic-component-artifacts\\650d05522ecb93c5\\authentication\\run.json": "488e0235b2b87a26f1ac01b62628b8bb06f90d0eb6047c93cfda4d738ec73c88",
+    "synthetic-component-artifacts\\650d05522ecb93c5\\cleanup\\run.json": "31e870f6a4a37ddd788f505d70b72fe3ab1fe3c4556a2ba7606c9d08d89eb831",
+    "synthetic-component-artifacts\\650d05522ecb93c5\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\650d05522ecb93c5\\phase-ledger.json": "35e663066d69bf1175e5a2913a7bc1ec1550c10af6aea9428c70e0afcf2d653f",
+    "synthetic-component-artifacts\\650d05522ecb93c5\\refusal\\run.json": "b87abd098ecf8adec4eae29419bfceeb220f5ba0b85ae11faffb1dcc3d8efffd",
+    "synthetic-component-artifacts\\650d05522ecb93c5\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\650d05522ecb93c5\\test-id.json": "36608a0008b339b3179ddd90bbd534491121c03ad4c07fc9cb316fb8ab5a5fa3",
+    "synthetic-component-artifacts\\650d05522ecb93c5\\tickets.json": "cba06b5736faf67e54b07b561eae94395e774c517a7d910a54369e1263ccfbd4",
+    "synthetic-component-artifacts\\650d05522ecb93c5\\timeout\\run.json": "1cfa36786ad0f82da35eb06ff698a226a7d8cf428a530338e9da264a4c56b156",
+    "synthetic-component-artifacts\\650d05522ecb93c5\\transport\\run.json": "3c573ca6b788bbd3be1edc4a75026a3dc7aec91fa93a55cacb79d31135481f9e",
+    "synthetic-component-artifacts\\8cd5b7e96476ed9d\\bad-receipt\\run.json": "63e26bd13b395c61e6e480e36487f6ee58a1281bf30ffd35c9559e9c6f0823e9",
+    "synthetic-component-artifacts\\8cd5b7e96476ed9d\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\8cd5b7e96476ed9d\\phase-ledger.json": "4e8f91117951ae9008685df1044e5314c6688667bd71d7ad5afad6ebddc83e99",
+    "synthetic-component-artifacts\\8cd5b7e96476ed9d\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\8cd5b7e96476ed9d\\run\\run.json": "0dc4b7066b29a96222637b361a12f48eeca5f76856362c8f08fe01b6548d5efa",
+    "synthetic-component-artifacts\\8cd5b7e96476ed9d\\test-id.json": "6b0987d5f9e25d7185536b7c92394334648208ad4ba9979c2e8de50057de03e9",
+    "synthetic-component-artifacts\\9faf015734dcf0d8\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\9faf015734dcf0d8\\phase-ledger.json": "1b9da66b0cac194dbff4022813febb93823be7dbe83ed697eb3aa4c0f29d2d09",
+    "synthetic-component-artifacts\\9faf015734dcf0d8\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\9faf015734dcf0d8\\run\\run.json": "ff9665c6a72803e9b2b61a726f1ad7f6e2cccd2ffad2f307832d0df6bc9e929d",
+    "synthetic-component-artifacts\\9faf015734dcf0d8\\test-id.json": "d2e0f901a527d79eb265696b3ea03de98b6e6db6c193f1bc61995153cd8d6e80",
+    "synthetic-component-artifacts\\9faf015734dcf0d8\\tickets.json": "83c9bd176fd9eb928d9cfbddd71cd8b4e204e613b406ede45a59b29cf25e5385",
+    "synthetic-component-artifacts\\a49fa127cd0a8068\\findings.csv": "14626d61f65019929e11a72e3df713dca84ad827018f317b612e0a5c0d4592fd",
+    "synthetic-component-artifacts\\a49fa127cd0a8068\\phase-ledger.json": "562dc78b24fb32a4e805dcc7137a6b72f1782c3edf9e064c41569f13f5c78e8d",
+    "synthetic-component-artifacts\\a49fa127cd0a8068\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\a49fa127cd0a8068\\run\\run.json": "c59354224c138ca56b1d91d483a2070f1c818cebba73e32ee1f0a1bcd09f910b",
+    "synthetic-component-artifacts\\a49fa127cd0a8068\\test-id.json": "47a7f7225f041da43d395cbb0aafb3e800e4ad1181c783ebdb053bd5bb60fcff",
+    "synthetic-component-artifacts\\afcd9cee452dd086\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\afcd9cee452dd086\\phase-ledger.json": "d85dab1d598f51774b87c4c2146e2fb96c8dafd25ee48433834776d16cec72f6",
+    "synthetic-component-artifacts\\afcd9cee452dd086\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\afcd9cee452dd086\\run\\run.json": "dec0dfd2e6cd143285c0953f955900e132ee6cec65c255609bd6210f0bfb7914",
+    "synthetic-component-artifacts\\afcd9cee452dd086\\test-id.json": "c22623ebe3ac50646fd3fdb7db9d7909cc98b36f7571a44e87fcf8996563c061",
+    "synthetic-component-artifacts\\afcd9cee452dd086\\tickets.json": "2a1b4242bdbc5a49b0e909bccf4359e8bc5f116d001942c53e7fa89e594b79ad",
+    "synthetic-component-artifacts\\c1cba542a3215908\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\c1cba542a3215908\\phase-ledger.json": "302023827c5ea5efb1eeb6d02418a13c072e2d1dc4ef038501f967ee7e1ae0c7",
+    "synthetic-component-artifacts\\c1cba542a3215908\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\c1cba542a3215908\\run\\run.json": "33c41f7461f78fe6db4892ec19a1ebd94f48b235a02719340c398636d719e132",
+    "synthetic-component-artifacts\\c1cba542a3215908\\second\\run.json": "17245b16878bb2c0d4a4d5e68323810e504948b1d218bd67a56a8697d5548141",
+    "synthetic-component-artifacts\\c1cba542a3215908\\test-id.json": "6d7dea9875bf65e8009d1068b3ac2d59587999ab0b6986f1ba7ef7c004d99d9f",
+    "synthetic-component-artifacts\\c5229a49c64b7431\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\c5229a49c64b7431\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\c5229a49c64b7431\\test-id.json": "63f4238cf3863bc702347cfa12dd78e6b09c414c94693741d7578defd05970df",
+    "synthetic-component-artifacts\\c54e15a8a6f73761\\findings.csv": "6ffbdb2d9c0e4bd4307e21178e5061636af041a58b31ea7e5498479c0247df39",
+    "synthetic-component-artifacts\\c54e15a8a6f73761\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\c54e15a8a6f73761\\test-id.json": "1d6c948509ddcb415d8d6a295094af39507912409b302a1ec178452da76b750b",
+    "synthetic-component-artifacts\\c77ab6a8b463d27b\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\c77ab6a8b463d27b\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\c77ab6a8b463d27b\\test-id.json": "970ad81533714e29d0319a145d99f84bc98008128510ae54d8fd1f8876834ee3",
+    "synthetic-component-artifacts\\ca17ff6969e58a29\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\ca17ff6969e58a29\\phase-ledger.json": "2ad5a5730dafa3b4d298f45e3d2b4e5950e95f274bd9f0cc8d1d6a5b6fb2f9b4",
+    "synthetic-component-artifacts\\ca17ff6969e58a29\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\ca17ff6969e58a29\\run\\run.json": "02112096c60476bd362ca8ca17cb830f5f7498fe19e9da0c9aea755db872f969",
+    "synthetic-component-artifacts\\ca17ff6969e58a29\\test-id.json": "2d411d964a669a7864612c416dac3dcc77194829708e5ca3096544db747e36e5",
+    "synthetic-component-artifacts\\ca17ff6969e58a29\\tickets.json": "7fce05644a9b6986046a433b5203d50e93c26fee468e6f5affc7433923e539a2",
+    "synthetic-component-artifacts\\d05f3b4962be8f6b\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\d05f3b4962be8f6b\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\d05f3b4962be8f6b\\test-id.json": "706856dd936f827da33515b9fc35c0150e0d861c3083507288189cf8c10ed029",
+    "synthetic-component-artifacts\\d1132491fe63456e\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\d1132491fe63456e\\phase-ledger.json": "21482bb7e12ccf8d4d4c5d609e6babf4f61b142e02e52d76df72e4accee67acf",
+    "synthetic-component-artifacts\\d1132491fe63456e\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\d1132491fe63456e\\run\\run.json": "dd91d9e01a5db765761209d4f069954b05a460521a84100e405e8f203ff28435",
+    "synthetic-component-artifacts\\d1132491fe63456e\\test-id.json": "9b2278288610abd0cbd6c4c03e4c45f2fb595842ea3cc913fd9e472f1aa4bc8a",
+    "synthetic-component-artifacts\\d14e4a507bae9b87\\export.json": "6d7788939929eef7abae6a2e9e1a2cac26259860a7ff162bcdcff36d1e4dc447",
+    "synthetic-component-artifacts\\d14e4a507bae9b87\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\d14e4a507bae9b87\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\d14e4a507bae9b87\\test-id.json": "a3e6abb383e8ef66d59c81ec2ff82c57b9e6ec95210034718194d0d309d78924",
+    "synthetic-component-artifacts\\d52f02ca46b36ebe\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\d52f02ca46b36ebe\\phase-ledger.json": "5a1ec23fb2a0292d0a61cfeaef3494449b296287fa674d70efef824963e94bdc",
+    "synthetic-component-artifacts\\d52f02ca46b36ebe\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\d52f02ca46b36ebe\\run\\run.json": "7c557385bbb669baf3ac20496a5a31511c85fab3ba708841f4b6a9caf4bf1da6",
+    "synthetic-component-artifacts\\d52f02ca46b36ebe\\test-id.json": "ee11afa78405c24e392b03c3eb08f5cde458aaeddbad0b68c25f2192e512266f",
+    "synthetic-component-artifacts\\edac8fabe047520d\\findings.csv": "0d6b3a3771df922e0fe89ee5cb3f4f587db74c5012c95a215e0f571b5ce1eee3",
+    "synthetic-component-artifacts\\edac8fabe047520d\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\edac8fabe047520d\\test-id.json": "ff687a39d6edb27d16a9ef959a02f46cec7a8b83ad8eabb3c08f5f0a1760a871",
+    "synthetic-component-artifacts\\f860837b098cce1c\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\f860837b098cce1c\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\f860837b098cce1c\\test-id.json": "4853c7225b3be1591854bd42b42a86de38547e244df7b65c4f01f399d03f7f28",
+    "synthetic-component-artifacts\\f92500f3127a9fc1\\cli-absent\\process.json": "8b574a21478b8e1dcdf265f3e2030c5aed93383a0087a145df91b6da9f3598fc",
+    "synthetic-component-artifacts\\f92500f3127a9fc1\\cli-absent\\run.json": "2edf58f5882d30bd557f4d6309226535fe7bc3f26bf6c7b933369ee218eb4542",
+    "synthetic-component-artifacts\\f92500f3127a9fc1\\cli-absent\\stderr.json": "8f7dc7b40091d9f1bb26d23998630313180215553aee9520b46e90f9a1e2db65",
+    "synthetic-component-artifacts\\f92500f3127a9fc1\\cli-old\\process.json": "8b574a21478b8e1dcdf265f3e2030c5aed93383a0087a145df91b6da9f3598fc",
+    "synthetic-component-artifacts\\f92500f3127a9fc1\\cli-old\\run.json": "e48e3dfe3c9f84a2acbfe8775843904473a50af54977a6eeb8538a17c57e338a",
+    "synthetic-component-artifacts\\f92500f3127a9fc1\\cli-old\\stderr.json": "8f7dc7b40091d9f1bb26d23998630313180215553aee9520b46e90f9a1e2db65",
+    "synthetic-component-artifacts\\f92500f3127a9fc1\\config.json": "f1ccf45a65fc87d668b8a65f5156bff934214693dfba4512894073dcdff6e250",
+    "synthetic-component-artifacts\\f92500f3127a9fc1\\context.json": "6d7788939929eef7abae6a2e9e1a2cac26259860a7ff162bcdcff36d1e4dc447",
+    "synthetic-component-artifacts\\f92500f3127a9fc1\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\f92500f3127a9fc1\\phase-ledger.json": "b25671e374ce973c4f8dce6c5d61ce68e43f278a8674a39907e5629f2e02d88d",
+    "synthetic-component-artifacts\\f92500f3127a9fc1\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\f92500f3127a9fc1\\test-id.json": "ba52b6610f3db82c019ea6e3f9a84a96f39a6c5632f97c50d236d45d81def7cc",
+    "synthetic-component-artifacts\\f92500f3127a9fc1\\tickets.json": "68eda84b437a5358160d2701c9c93dcce112bff356ed04546fcda2a410878189",
+    "triage-tests.txt": "eaeb3755514ac51e0b051c977c829de1030930c698ff92ae5c3ec5c396f15e94",
+    "worktree.txt": "50fc1c811bb945983ea8effb3b4d258dd7020219e63dc58413c3dab053ea21a8"
+  }
+}

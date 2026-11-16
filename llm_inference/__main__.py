@@ -20,6 +20,7 @@ async def run(args: argparse.Namespace) -> dict:
     elif (
         args.azure_auth is not None or args.azure_native_json
         or args.azure_max_completion_tokens is not None
+        or getattr(args, "azure_api", "chat_completions") != "chat_completions"
     ):
         raise InferenceError("unsupported_control", "Azure controls require --provider azure")
     request = None
@@ -45,6 +46,7 @@ async def run(args: argparse.Namespace) -> dict:
     transport = (
         AzureOpenAIProvider(
             auth=args.azure_auth or "api_key",
+            api=getattr(args, "azure_api", "chat_completions"),
             native_json_schema=args.azure_native_json,
             max_completion_tokens=args.azure_max_completion_tokens,
         )
@@ -73,6 +75,9 @@ def main() -> int:
     group.add_argument("--request", help="JSON request path, or - for stdin")
     parser.add_argument("--executable", help="Explicit native Copilot executable")
     parser.add_argument("--azure-auth", choices=("api_key", "entra"))
+    parser.add_argument(
+        "--azure-api", choices=("chat_completions", "responses"), default="chat_completions",
+    )
     parser.add_argument("--azure-native-json", action="store_true")
     parser.add_argument("--azure-max-completion-tokens", type=int)
     args = parser.parse_args()

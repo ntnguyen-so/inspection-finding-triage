@@ -1,0 +1,1414 @@
+{
+  "accounting": {
+    "application_attempts_reserved": 3,
+    "attempts": [
+      {
+        "number": 1,
+        "outcome": {
+          "status": "success",
+          "validation": {
+            "accepted": true,
+            "assessment": {
+              "accepted_wrong_critical": false,
+              "atom_count": 5,
+              "critical_errors": {
+                "detached_scoped_context_pairs": [],
+                "disconnected_scoped_atoms": [],
+                "nonempty_incomplete_scope_atoms": [],
+                "unsupported_alias_facts": [],
+                "unsupported_scope_facts": []
+              },
+              "fidelity": "pass",
+              "group_graph": {
+                "atoms_not_whole_in_one_component": [],
+                "component_count": 3,
+                "components": [
+                  {
+                    "group_count": 1,
+                    "source_bytes": {
+                      "dev_atlas": 158
+                    },
+                    "whole_atom_ids": [
+                      "legend"
+                    ]
+                  },
+                  {
+                    "group_count": 1,
+                    "source_bytes": {
+                      "dev_atlas": 338
+                    },
+                    "whole_atom_ids": [
+                      "pause",
+                      "raise"
+                    ]
+                  },
+                  {
+                    "group_count": 1,
+                    "source_bytes": {
+                      "dev_atlas": 159
+                    },
+                    "whole_atom_ids": [
+                      "cart1",
+                      "cart2"
+                    ]
+                  }
+                ],
+                "overclosure_pair_count": 1
+              },
+              "incomplete_scope_byte_facts": [],
+              "metrics": {
+                "alias": {
+                  "expected": 1,
+                  "missing": [],
+                  "observed": 1,
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "true_positive": 1,
+                  "unsupported": []
+                },
+                "context": {
+                  "expected": 1,
+                  "missing": [],
+                  "observed": 2,
+                  "precision": 0.5,
+                  "recall": 1.0,
+                  "true_positive": 1,
+                  "unsupported": [
+                    [
+                      "cart1",
+                      "cart2"
+                    ]
+                  ]
+                },
+                "scope": {
+                  "expected": 4,
+                  "missing": [],
+                  "observed": 4,
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "true_positive": 4,
+                  "unsupported": []
+                }
+              },
+              "repair_count_basis": "Missing complete atom-level scope/alias facts and context-closure pairs; NOT observed human corrections or review benefit.",
+              "repair_counts": {
+                "alias_add": 0,
+                "context_add": 0,
+                "scope_add": 0
+              },
+              "repair_required": false,
+              "semantic": "pass",
+              "status": "pass",
+              "unresolved_alias_count": 0,
+              "unresolved_atom_count": 0
+            },
+            "observation": {
+              "groups": [
+                {
+                  "spans": [
+                    {
+                      "end": 67,
+                      "source_id": "dev_atlas",
+                      "start": 0
+                    },
+                    {
+                      "end": 69,
+                      "source_id": "dev_atlas",
+                      "start": 67
+                    },
+                    {
+                      "end": 577,
+                      "source_id": "dev_atlas",
+                      "start": 566
+                    },
+                    {
+                      "end": 655,
+                      "source_id": "dev_atlas",
+                      "start": 577
+                    }
+                  ],
+                  "text": "Atlas festival cue cards; artificial rehearsal instructions only.\r\n\r\n# General\r\nAn uncertain cue stays uncertain; a higher cue number means less brightness.\r\n"
+                },
+                {
+                  "spans": [
+                    {
+                      "end": 84,
+                      "source_id": "dev_atlas",
+                      "start": 69
+                    },
+                    {
+                      "end": 104,
+                      "source_id": "dev_atlas",
+                      "start": 84
+                    },
+                    {
+                      "end": 129,
+                      "source_id": "dev_atlas",
+                      "start": 104
+                    },
+                    {
+                      "end": 181,
+                      "source_id": "dev_atlas",
+                      "start": 129
+                    },
+                    {
+                      "end": 253,
+                      "source_id": "dev_atlas",
+                      "start": 181
+                    },
+                    {
+                      "end": 313,
+                      "source_id": "dev_atlas",
+                      "start": 253
+                    },
+                    {
+                      "end": 315,
+                      "source_id": "dev_atlas",
+                      "start": 313
+                    },
+                    {
+                      "end": 332,
+                      "source_id": "dev_atlas",
+                      "start": 315
+                    },
+                    {
+                      "end": 405,
+                      "source_id": "dev_atlas",
+                      "start": 332
+                    },
+                    {
+                      "end": 407,
+                      "source_id": "dev_atlas",
+                      "start": 405
+                    }
+                  ],
+                  "text": "# Amber-Kites\r\nScope: Amber-Kites\r\nAliases: sunset ribbons\r\nDo not raise Amber-Kites while the bell is silent.\r\nIf the bell sounds, raise one ribbon; except during the painted pause.\r\nThe painted pause below qualifies the raising instruction.\r\n\r\n# Painted pause\r\nDuring a painted pause, keep the ribbon folded even if the bell sounds.\r\n\r\n"
+                },
+                {
+                  "spans": [
+                    {
+                      "end": 422,
+                      "source_id": "dev_atlas",
+                      "start": 407
+                    },
+                    {
+                      "end": 446,
+                      "source_id": "dev_atlas",
+                      "start": 422
+                    },
+                    {
+                      "end": 505,
+                      "source_id": "dev_atlas",
+                      "start": 446
+                    },
+                    {
+                      "end": 564,
+                      "source_id": "dev_atlas",
+                      "start": 505
+                    },
+                    {
+                      "end": 566,
+                      "source_id": "dev_atlas",
+                      "start": 564
+                    }
+                  ],
+                  "text": "# Glass-Carts\r\nEquipment: Glass-Carts\r\nMove Glass-Carts only after the chalk square is complete.\r\nMove Glass-Carts only after the chalk square is complete.\r\n\r\n"
+                }
+              ],
+              "metadata": {
+                "aliases": [
+                  {
+                    "evidence": [
+                      {
+                        "end": 104,
+                        "source_id": "dev_atlas",
+                        "start": 84
+                      },
+                      {
+                        "end": 129,
+                        "source_id": "dev_atlas",
+                        "start": 104
+                      }
+                    ],
+                    "target": "Amber-Kites",
+                    "value": "sunset ribbons"
+                  }
+                ],
+                "links": [],
+                "scopes": [
+                  {
+                    "evidence": [
+                      {
+                        "end": 104,
+                        "source_id": "dev_atlas",
+                        "start": 84
+                      },
+                      {
+                        "end": 129,
+                        "source_id": "dev_atlas",
+                        "start": 104
+                      }
+                    ],
+                    "spans": [
+                      {
+                        "end": 84,
+                        "source_id": "dev_atlas",
+                        "start": 69
+                      },
+                      {
+                        "end": 104,
+                        "source_id": "dev_atlas",
+                        "start": 84
+                      },
+                      {
+                        "end": 129,
+                        "source_id": "dev_atlas",
+                        "start": 104
+                      },
+                      {
+                        "end": 181,
+                        "source_id": "dev_atlas",
+                        "start": 129
+                      },
+                      {
+                        "end": 253,
+                        "source_id": "dev_atlas",
+                        "start": 181
+                      },
+                      {
+                        "end": 313,
+                        "source_id": "dev_atlas",
+                        "start": 253
+                      },
+                      {
+                        "end": 315,
+                        "source_id": "dev_atlas",
+                        "start": 313
+                      },
+                      {
+                        "end": 332,
+                        "source_id": "dev_atlas",
+                        "start": 315
+                      },
+                      {
+                        "end": 405,
+                        "source_id": "dev_atlas",
+                        "start": 332
+                      },
+                      {
+                        "end": 407,
+                        "source_id": "dev_atlas",
+                        "start": 405
+                      }
+                    ],
+                    "value": "Amber-Kites"
+                  },
+                  {
+                    "evidence": [
+                      {
+                        "end": 446,
+                        "source_id": "dev_atlas",
+                        "start": 422
+                      }
+                    ],
+                    "spans": [
+                      {
+                        "end": 422,
+                        "source_id": "dev_atlas",
+                        "start": 407
+                      },
+                      {
+                        "end": 446,
+                        "source_id": "dev_atlas",
+                        "start": 422
+                      },
+                      {
+                        "end": 505,
+                        "source_id": "dev_atlas",
+                        "start": 446
+                      },
+                      {
+                        "end": 564,
+                        "source_id": "dev_atlas",
+                        "start": 505
+                      },
+                      {
+                        "end": 566,
+                        "source_id": "dev_atlas",
+                        "start": 564
+                      }
+                    ],
+                    "value": "Glass-Carts"
+                  }
+                ]
+              },
+              "source_id": "dev_atlas",
+              "source_sha256": "35a95953d27cf67b4385a2c322fe887bb7b928876c2a0cfa5be642c827383818",
+              "status": "accepted"
+            },
+            "source_id": "dev_atlas"
+          }
+        },
+        "request_sha256": "7dc822dc9fc1fe4d85fd006f17edb1bf0a61174c386f52b7d4ea4cabb53d5b5b",
+        "reserved_at": "2026-11-16T17:27:55.354627+00:00",
+        "slot": "dev_atlas.primary",
+        "state": "finished"
+      },
+      {
+        "number": 2,
+        "outcome": {
+          "status": "success",
+          "validation": {
+            "accepted": true,
+            "assessment": {
+              "accepted_wrong_critical": false,
+              "atom_count": 6,
+              "critical_errors": {
+                "detached_scoped_context_pairs": [],
+                "disconnected_scoped_atoms": [],
+                "nonempty_incomplete_scope_atoms": [],
+                "unsupported_alias_facts": [],
+                "unsupported_scope_facts": []
+              },
+              "fidelity": "pass",
+              "group_graph": {
+                "atoms_not_whole_in_one_component": [],
+                "component_count": 5,
+                "components": [
+                  {
+                    "group_count": 1,
+                    "source_bytes": {
+                      "dev_quill": 47
+                    },
+                    "whole_atom_ids": []
+                  },
+                  {
+                    "group_count": 1,
+                    "source_bytes": {
+                      "dev_quill": 318
+                    },
+                    "whole_atom_ids": [
+                      "file",
+                      "tray"
+                    ]
+                  },
+                  {
+                    "group_count": 1,
+                    "source_bytes": {
+                      "dev_quill": 108
+                    },
+                    "whole_atom_ids": [
+                      "legend"
+                    ]
+                  },
+                  {
+                    "group_count": 1,
+                    "source_bytes": {
+                      "dev_quill": 138
+                    },
+                    "whole_atom_ids": [
+                      "conflict"
+                    ]
+                  },
+                  {
+                    "group_count": 1,
+                    "source_bytes": {
+                      "dev_quill": 162
+                    },
+                    "whole_atom_ids": [
+                      "brass1",
+                      "brass2"
+                    ]
+                  }
+                ],
+                "overclosure_pair_count": 1
+              },
+              "incomplete_scope_byte_facts": [],
+              "metrics": {
+                "alias": {
+                  "expected": 1,
+                  "missing": [],
+                  "observed": 1,
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "true_positive": 1,
+                  "unsupported": []
+                },
+                "context": {
+                  "expected": 1,
+                  "missing": [],
+                  "observed": 2,
+                  "precision": 0.5,
+                  "recall": 1.0,
+                  "true_positive": 1,
+                  "unsupported": [
+                    [
+                      "brass1",
+                      "brass2"
+                    ]
+                  ]
+                },
+                "scope": {
+                  "expected": 4,
+                  "missing": [],
+                  "observed": 4,
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "true_positive": 4,
+                  "unsupported": []
+                }
+              },
+              "repair_count_basis": "Missing complete atom-level scope/alias facts and context-closure pairs; NOT observed human corrections or review benefit.",
+              "repair_counts": {
+                "alias_add": 0,
+                "context_add": 0,
+                "scope_add": 0
+              },
+              "repair_required": false,
+              "semantic": "pass",
+              "status": "pass",
+              "unresolved_alias_count": 0,
+              "unresolved_atom_count": 0
+            },
+            "observation": {
+              "groups": [
+                {
+                  "spans": [
+                    {
+                      "end": 47,
+                      "source_id": "dev_quill",
+                      "start": 0
+                    }
+                  ],
+                  "text": "QUILL ARCHIVE: fictional desk game transcript\r\n"
+                },
+                {
+                  "spans": [
+                    {
+                      "end": 84,
+                      "source_id": "dev_quill",
+                      "start": 47
+                    },
+                    {
+                      "end": 168,
+                      "source_id": "dev_quill",
+                      "start": 84
+                    },
+                    {
+                      "end": 224,
+                      "source_id": "dev_quill",
+                      "start": 168
+                    },
+                    {
+                      "end": 305,
+                      "source_id": "dev_quill",
+                      "start": 224
+                    },
+                    {
+                      "end": 365,
+                      "source_id": "dev_quill",
+                      "start": 305
+                    }
+                  ],
+                  "text": "Q: Which desk accepts a moon token?\r\nA: The rules in this conversation concern Velvet Desks, also called soft counters.\r\nDo not file a moon token unless its reverse is marked.\r\nException: an unmarked token may rest in the waiting tray, never in the ledger.\r\nThe waiting tray rule qualifies the preceding prohibition.\r\n"
+                },
+                {
+                  "spans": [
+                    {
+                      "end": 394,
+                      "source_id": "dev_quill",
+                      "start": 365
+                    },
+                    {
+                      "end": 473,
+                      "source_id": "dev_quill",
+                      "start": 394
+                    }
+                  ],
+                  "text": "Q: What does the dial mean?\r\nA: Higher ink stability means lower smudge likelihood, not higher likelihood.\r\n"
+                },
+                {
+                  "spans": [
+                    {
+                      "end": 505,
+                      "source_id": "dev_quill",
+                      "start": 473
+                    },
+                    {
+                      "end": 611,
+                      "source_id": "dev_quill",
+                      "start": 505
+                    }
+                  ],
+                  "text": "Q: Can a tray be called ready?\r\nA: A ready mark is reported, but another speaker calls readiness unknown; keep that conflict unresolved.\r\n"
+                },
+                {
+                  "spans": [
+                    {
+                      "end": 623,
+                      "source_id": "dev_quill",
+                      "start": 611
+                    },
+                    {
+                      "end": 643,
+                      "source_id": "dev_quill",
+                      "start": 623
+                    },
+                    {
+                      "end": 708,
+                      "source_id": "dev_quill",
+                      "start": 643
+                    },
+                    {
+                      "end": 773,
+                      "source_id": "dev_quill",
+                      "start": 708
+                    }
+                  ],
+                  "text": "OTHER DESK\r\nScope: Brass Desks\r\nLeave a brass token beside Brass Desks until the arch is drawn.\r\nLeave a brass token beside Brass Desks until the arch is drawn.\r\n"
+                }
+              ],
+              "metadata": {
+                "aliases": [
+                  {
+                    "evidence": [
+                      {
+                        "end": 168,
+                        "source_id": "dev_quill",
+                        "start": 84
+                      },
+                      {
+                        "end": 168,
+                        "source_id": "dev_quill",
+                        "start": 84
+                      }
+                    ],
+                    "target": "Velvet Desks",
+                    "value": "soft counters"
+                  }
+                ],
+                "links": [],
+                "scopes": [
+                  {
+                    "evidence": [
+                      {
+                        "end": 168,
+                        "source_id": "dev_quill",
+                        "start": 84
+                      },
+                      {
+                        "end": 168,
+                        "source_id": "dev_quill",
+                        "start": 84
+                      }
+                    ],
+                    "spans": [
+                      {
+                        "end": 84,
+                        "source_id": "dev_quill",
+                        "start": 47
+                      },
+                      {
+                        "end": 168,
+                        "source_id": "dev_quill",
+                        "start": 84
+                      },
+                      {
+                        "end": 224,
+                        "source_id": "dev_quill",
+                        "start": 168
+                      },
+                      {
+                        "end": 305,
+                        "source_id": "dev_quill",
+                        "start": 224
+                      },
+                      {
+                        "end": 365,
+                        "source_id": "dev_quill",
+                        "start": 305
+                      }
+                    ],
+                    "value": "Velvet Desks"
+                  },
+                  {
+                    "evidence": [
+                      {
+                        "end": 643,
+                        "source_id": "dev_quill",
+                        "start": 623
+                      }
+                    ],
+                    "spans": [
+                      {
+                        "end": 623,
+                        "source_id": "dev_quill",
+                        "start": 611
+                      },
+                      {
+                        "end": 643,
+                        "source_id": "dev_quill",
+                        "start": 623
+                      },
+                      {
+                        "end": 708,
+                        "source_id": "dev_quill",
+                        "start": 643
+                      },
+                      {
+                        "end": 773,
+                        "source_id": "dev_quill",
+                        "start": 708
+                      }
+                    ],
+                    "value": "Brass Desks"
+                  }
+                ]
+              },
+              "source_id": "dev_quill",
+              "source_sha256": "3a004b8eccc41b1be4bceed97313c7bd709513aa3ea4aa73a08000d7b2016094",
+              "status": "accepted"
+            },
+            "source_id": "dev_quill"
+          }
+        },
+        "request_sha256": "4be38b6e6d97cd384e6a43317982d1f383d188465c887816eb121048778c3f9d",
+        "reserved_at": "2026-11-16T17:28:06.218989+00:00",
+        "slot": "dev_quill.primary",
+        "state": "finished"
+      },
+      {
+        "number": 3,
+        "outcome": {
+          "error_class": "proposal_validation",
+          "message": "Independent source-span assessment did not pass critical/unresolved gates",
+          "status": "failed"
+        },
+        "request_sha256": "051d98b9016f3fa06a53c0c4210a85722e3e69356f41a9432edc9fefe54f3265",
+        "reserved_at": "2026-11-16T17:28:20.797844+00:00",
+        "slot": "dev_mosaic.primary",
+        "state": "finished"
+      }
+    ],
+    "http_attempts": null,
+    "maximum_application_attempts": 26,
+    "plan_sha256": "c69ce9d03379a2635b694daa8b1f917602dffab24c39972ce5c1bee4773a6985",
+    "strict_accounting_pass": false,
+    "usd_cost": null
+  },
+  "c1_qualified": false,
+  "contract": "knowledge-copilot-observation-v1",
+  "human_review_benefit": "unexecuted",
+  "results": {
+    "dev_atlas.primary": {
+      "attempt": 1,
+      "status": "success",
+      "validation": {
+        "accepted": true,
+        "assessment": {
+          "accepted_wrong_critical": false,
+          "atom_count": 5,
+          "critical_errors": {
+            "detached_scoped_context_pairs": [],
+            "disconnected_scoped_atoms": [],
+            "nonempty_incomplete_scope_atoms": [],
+            "unsupported_alias_facts": [],
+            "unsupported_scope_facts": []
+          },
+          "fidelity": "pass",
+          "group_graph": {
+            "atoms_not_whole_in_one_component": [],
+            "component_count": 3,
+            "components": [
+              {
+                "group_count": 1,
+                "source_bytes": {
+                  "dev_atlas": 158
+                },
+                "whole_atom_ids": [
+                  "legend"
+                ]
+              },
+              {
+                "group_count": 1,
+                "source_bytes": {
+                  "dev_atlas": 338
+                },
+                "whole_atom_ids": [
+                  "pause",
+                  "raise"
+                ]
+              },
+              {
+                "group_count": 1,
+                "source_bytes": {
+                  "dev_atlas": 159
+                },
+                "whole_atom_ids": [
+                  "cart1",
+                  "cart2"
+                ]
+              }
+            ],
+            "overclosure_pair_count": 1
+          },
+          "incomplete_scope_byte_facts": [],
+          "metrics": {
+            "alias": {
+              "expected": 1,
+              "missing": [],
+              "observed": 1,
+              "precision": 1.0,
+              "recall": 1.0,
+              "true_positive": 1,
+              "unsupported": []
+            },
+            "context": {
+              "expected": 1,
+              "missing": [],
+              "observed": 2,
+              "precision": 0.5,
+              "recall": 1.0,
+              "true_positive": 1,
+              "unsupported": [
+                [
+                  "cart1",
+                  "cart2"
+                ]
+              ]
+            },
+            "scope": {
+              "expected": 4,
+              "missing": [],
+              "observed": 4,
+              "precision": 1.0,
+              "recall": 1.0,
+              "true_positive": 4,
+              "unsupported": []
+            }
+          },
+          "repair_count_basis": "Missing complete atom-level scope/alias facts and context-closure pairs; NOT observed human corrections or review benefit.",
+          "repair_counts": {
+            "alias_add": 0,
+            "context_add": 0,
+            "scope_add": 0
+          },
+          "repair_required": false,
+          "semantic": "pass",
+          "status": "pass",
+          "unresolved_alias_count": 0,
+          "unresolved_atom_count": 0
+        },
+        "observation": {
+          "groups": [
+            {
+              "spans": [
+                {
+                  "end": 67,
+                  "source_id": "dev_atlas",
+                  "start": 0
+                },
+                {
+                  "end": 69,
+                  "source_id": "dev_atlas",
+                  "start": 67
+                },
+                {
+                  "end": 577,
+                  "source_id": "dev_atlas",
+                  "start": 566
+                },
+                {
+                  "end": 655,
+                  "source_id": "dev_atlas",
+                  "start": 577
+                }
+              ],
+              "text": "Atlas festival cue cards; artificial rehearsal instructions only.\r\n\r\n# General\r\nAn uncertain cue stays uncertain; a higher cue number means less brightness.\r\n"
+            },
+            {
+              "spans": [
+                {
+                  "end": 84,
+                  "source_id": "dev_atlas",
+                  "start": 69
+                },
+                {
+                  "end": 104,
+                  "source_id": "dev_atlas",
+                  "start": 84
+                },
+                {
+                  "end": 129,
+                  "source_id": "dev_atlas",
+                  "start": 104
+                },
+                {
+                  "end": 181,
+                  "source_id": "dev_atlas",
+                  "start": 129
+                },
+                {
+                  "end": 253,
+                  "source_id": "dev_atlas",
+                  "start": 181
+                },
+                {
+                  "end": 313,
+                  "source_id": "dev_atlas",
+                  "start": 253
+                },
+                {
+                  "end": 315,
+                  "source_id": "dev_atlas",
+                  "start": 313
+                },
+                {
+                  "end": 332,
+                  "source_id": "dev_atlas",
+                  "start": 315
+                },
+                {
+                  "end": 405,
+                  "source_id": "dev_atlas",
+                  "start": 332
+                },
+                {
+                  "end": 407,
+                  "source_id": "dev_atlas",
+                  "start": 405
+                }
+              ],
+              "text": "# Amber-Kites\r\nScope: Amber-Kites\r\nAliases: sunset ribbons\r\nDo not raise Amber-Kites while the bell is silent.\r\nIf the bell sounds, raise one ribbon; except during the painted pause.\r\nThe painted pause below qualifies the raising instruction.\r\n\r\n# Painted pause\r\nDuring a painted pause, keep the ribbon folded even if the bell sounds.\r\n\r\n"
+            },
+            {
+              "spans": [
+                {
+                  "end": 422,
+                  "source_id": "dev_atlas",
+                  "start": 407
+                },
+                {
+                  "end": 446,
+                  "source_id": "dev_atlas",
+                  "start": 422
+                },
+                {
+                  "end": 505,
+                  "source_id": "dev_atlas",
+                  "start": 446
+                },
+                {
+                  "end": 564,
+                  "source_id": "dev_atlas",
+                  "start": 505
+                },
+                {
+                  "end": 566,
+                  "source_id": "dev_atlas",
+                  "start": 564
+                }
+              ],
+              "text": "# Glass-Carts\r\nEquipment: Glass-Carts\r\nMove Glass-Carts only after the chalk square is complete.\r\nMove Glass-Carts only after the chalk square is complete.\r\n\r\n"
+            }
+          ],
+          "metadata": {
+            "aliases": [
+              {
+                "evidence": [
+                  {
+                    "end": 104,
+                    "source_id": "dev_atlas",
+                    "start": 84
+                  },
+                  {
+                    "end": 129,
+                    "source_id": "dev_atlas",
+                    "start": 104
+                  }
+                ],
+                "target": "Amber-Kites",
+                "value": "sunset ribbons"
+              }
+            ],
+            "links": [],
+            "scopes": [
+              {
+                "evidence": [
+                  {
+                    "end": 104,
+                    "source_id": "dev_atlas",
+                    "start": 84
+                  },
+                  {
+                    "end": 129,
+                    "source_id": "dev_atlas",
+                    "start": 104
+                  }
+                ],
+                "spans": [
+                  {
+                    "end": 84,
+                    "source_id": "dev_atlas",
+                    "start": 69
+                  },
+                  {
+                    "end": 104,
+                    "source_id": "dev_atlas",
+                    "start": 84
+                  },
+                  {
+                    "end": 129,
+                    "source_id": "dev_atlas",
+                    "start": 104
+                  },
+                  {
+                    "end": 181,
+                    "source_id": "dev_atlas",
+                    "start": 129
+                  },
+                  {
+                    "end": 253,
+                    "source_id": "dev_atlas",
+                    "start": 181
+                  },
+                  {
+                    "end": 313,
+                    "source_id": "dev_atlas",
+                    "start": 253
+                  },
+                  {
+                    "end": 315,
+                    "source_id": "dev_atlas",
+                    "start": 313
+                  },
+                  {
+                    "end": 332,
+                    "source_id": "dev_atlas",
+                    "start": 315
+                  },
+                  {
+                    "end": 405,
+                    "source_id": "dev_atlas",
+                    "start": 332
+                  },
+                  {
+                    "end": 407,
+                    "source_id": "dev_atlas",
+                    "start": 405
+                  }
+                ],
+                "value": "Amber-Kites"
+              },
+              {
+                "evidence": [
+                  {
+                    "end": 446,
+                    "source_id": "dev_atlas",
+                    "start": 422
+                  }
+                ],
+                "spans": [
+                  {
+                    "end": 422,
+                    "source_id": "dev_atlas",
+                    "start": 407
+                  },
+                  {
+                    "end": 446,
+                    "source_id": "dev_atlas",
+                    "start": 422
+                  },
+                  {
+                    "end": 505,
+                    "source_id": "dev_atlas",
+                    "start": 446
+                  },
+                  {
+                    "end": 564,
+                    "source_id": "dev_atlas",
+                    "start": 505
+                  },
+                  {
+                    "end": 566,
+                    "source_id": "dev_atlas",
+                    "start": 564
+                  }
+                ],
+                "value": "Glass-Carts"
+              }
+            ]
+          },
+          "source_id": "dev_atlas",
+          "source_sha256": "35a95953d27cf67b4385a2c322fe887bb7b928876c2a0cfa5be642c827383818",
+          "status": "accepted"
+        },
+        "source_id": "dev_atlas"
+      }
+    },
+    "dev_beacon.primary": {
+      "reason": "development_gate_failed",
+      "status": "unexecuted"
+    },
+    "dev_mosaic.primary": {
+      "attempt": 3,
+      "error_class": "proposal_validation",
+      "message": "Independent source-span assessment did not pass critical/unresolved gates",
+      "status": "failed"
+    },
+    "dev_quill.primary": {
+      "attempt": 2,
+      "status": "success",
+      "validation": {
+        "accepted": true,
+        "assessment": {
+          "accepted_wrong_critical": false,
+          "atom_count": 6,
+          "critical_errors": {
+            "detached_scoped_context_pairs": [],
+            "disconnected_scoped_atoms": [],
+            "nonempty_incomplete_scope_atoms": [],
+            "unsupported_alias_facts": [],
+            "unsupported_scope_facts": []
+          },
+          "fidelity": "pass",
+          "group_graph": {
+            "atoms_not_whole_in_one_component": [],
+            "component_count": 5,
+            "components": [
+              {
+                "group_count": 1,
+                "source_bytes": {
+                  "dev_quill": 47
+                },
+                "whole_atom_ids": []
+              },
+              {
+                "group_count": 1,
+                "source_bytes": {
+                  "dev_quill": 318
+                },
+                "whole_atom_ids": [
+                  "file",
+                  "tray"
+                ]
+              },
+              {
+                "group_count": 1,
+                "source_bytes": {
+                  "dev_quill": 108
+                },
+                "whole_atom_ids": [
+                  "legend"
+                ]
+              },
+              {
+                "group_count": 1,
+                "source_bytes": {
+                  "dev_quill": 138
+                },
+                "whole_atom_ids": [
+                  "conflict"
+                ]
+              },
+              {
+                "group_count": 1,
+                "source_bytes": {
+                  "dev_quill": 162
+                },
+                "whole_atom_ids": [
+                  "brass1",
+                  "brass2"
+                ]
+              }
+            ],
+            "overclosure_pair_count": 1
+          },
+          "incomplete_scope_byte_facts": [],
+          "metrics": {
+            "alias": {
+              "expected": 1,
+              "missing": [],
+              "observed": 1,
+              "precision": 1.0,
+              "recall": 1.0,
+              "true_positive": 1,
+              "unsupported": []
+            },
+            "context": {
+              "expected": 1,
+              "missing": [],
+              "observed": 2,
+              "precision": 0.5,
+              "recall": 1.0,
+              "true_positive": 1,
+              "unsupported": [
+                [
+                  "brass1",
+                  "brass2"
+                ]
+              ]
+            },
+            "scope": {
+              "expected": 4,
+              "missing": [],
+              "observed": 4,
+              "precision": 1.0,
+              "recall": 1.0,
+              "true_positive": 4,
+              "unsupported": []
+            }
+          },
+          "repair_count_basis": "Missing complete atom-level scope/alias facts and context-closure pairs; NOT observed human corrections or review benefit.",
+          "repair_counts": {
+            "alias_add": 0,
+            "context_add": 0,
+            "scope_add": 0
+          },
+          "repair_required": false,
+          "semantic": "pass",
+          "status": "pass",
+          "unresolved_alias_count": 0,
+          "unresolved_atom_count": 0
+        },
+        "observation": {
+          "groups": [
+            {
+              "spans": [
+                {
+                  "end": 47,
+                  "source_id": "dev_quill",
+                  "start": 0
+                }
+              ],
+              "text": "QUILL ARCHIVE: fictional desk game transcript\r\n"
+            },
+            {
+              "spans": [
+                {
+                  "end": 84,
+                  "source_id": "dev_quill",
+                  "start": 47
+                },
+                {
+                  "end": 168,
+                  "source_id": "dev_quill",
+                  "start": 84
+                },
+                {
+                  "end": 224,
+                  "source_id": "dev_quill",
+                  "start": 168
+                },
+                {
+                  "end": 305,
+                  "source_id": "dev_quill",
+                  "start": 224
+                },
+                {
+                  "end": 365,
+                  "source_id": "dev_quill",
+                  "start": 305
+                }
+              ],
+              "text": "Q: Which desk accepts a moon token?\r\nA: The rules in this conversation concern Velvet Desks, also called soft counters.\r\nDo not file a moon token unless its reverse is marked.\r\nException: an unmarked token may rest in the waiting tray, never in the ledger.\r\nThe waiting tray rule qualifies the preceding prohibition.\r\n"
+            },
+            {
+              "spans": [
+                {
+                  "end": 394,
+                  "source_id": "dev_quill",
+                  "start": 365
+                },
+                {
+                  "end": 473,
+                  "source_id": "dev_quill",
+                  "start": 394
+                }
+              ],
+              "text": "Q: What does the dial mean?\r\nA: Higher ink stability means lower smudge likelihood, not higher likelihood.\r\n"
+            },
+            {
+              "spans": [
+                {
+                  "end": 505,
+                  "source_id": "dev_quill",
+                  "start": 473
+                },
+                {
+                  "end": 611,
+                  "source_id": "dev_quill",
+                  "start": 505
+                }
+              ],
+              "text": "Q: Can a tray be called ready?\r\nA: A ready mark is reported, but another speaker calls readiness unknown; keep that conflict unresolved.\r\n"
+            },
+            {
+              "spans": [
+                {
+                  "end": 623,
+                  "source_id": "dev_quill",
+                  "start": 611
+                },
+                {
+                  "end": 643,
+                  "source_id": "dev_quill",
+                  "start": 623
+                },
+                {
+                  "end": 708,
+                  "source_id": "dev_quill",
+                  "start": 643
+                },
+                {
+                  "end": 773,
+                  "source_id": "dev_quill",
+                  "start": 708
+                }
+              ],
+              "text": "OTHER DESK\r\nScope: Brass Desks\r\nLeave a brass token beside Brass Desks until the arch is drawn.\r\nLeave a brass token beside Brass Desks until the arch is drawn.\r\n"
+            }
+          ],
+          "metadata": {
+            "aliases": [
+              {
+                "evidence": [
+                  {
+                    "end": 168,
+                    "source_id": "dev_quill",
+                    "start": 84
+                  },
+                  {
+                    "end": 168,
+                    "source_id": "dev_quill",
+                    "start": 84
+                  }
+                ],
+                "target": "Velvet Desks",
+                "value": "soft counters"
+              }
+            ],
+            "links": [],
+            "scopes": [
+              {
+                "evidence": [
+                  {
+                    "end": 168,
+                    "source_id": "dev_quill",
+                    "start": 84
+                  },
+                  {
+                    "end": 168,
+                    "source_id": "dev_quill",
+                    "start": 84
+                  }
+                ],
+                "spans": [
+                  {
+                    "end": 84,
+                    "source_id": "dev_quill",
+                    "start": 47
+                  },
+                  {
+                    "end": 168,
+                    "source_id": "dev_quill",
+                    "start": 84
+                  },
+                  {
+                    "end": 224,
+                    "source_id": "dev_quill",
+                    "start": 168
+                  },
+                  {
+                    "end": 305,
+                    "source_id": "dev_quill",
+                    "start": 224
+                  },
+                  {
+                    "end": 365,
+                    "source_id": "dev_quill",
+                    "start": 305
+                  }
+                ],
+                "value": "Velvet Desks"
+              },
+              {
+                "evidence": [
+                  {
+                    "end": 643,
+                    "source_id": "dev_quill",
+                    "start": 623
+                  }
+                ],
+                "spans": [
+                  {
+                    "end": 623,
+                    "source_id": "dev_quill",
+                    "start": 611
+                  },
+                  {
+                    "end": 643,
+                    "source_id": "dev_quill",
+                    "start": 623
+                  },
+                  {
+                    "end": 708,
+                    "source_id": "dev_quill",
+                    "start": 643
+                  },
+                  {
+                    "end": 773,
+                    "source_id": "dev_quill",
+                    "start": 708
+                  }
+                ],
+                "value": "Brass Desks"
+              }
+            ]
+          },
+          "source_id": "dev_quill",
+          "source_sha256": "3a004b8eccc41b1be4bceed97313c7bd709513aa3ea4aa73a08000d7b2016094",
+          "status": "accepted"
+        },
+        "source_id": "dev_quill"
+      }
+    },
+    "eval_loom.primary": {
+      "reason": "development_gate_failed",
+      "status": "unexecuted"
+    },
+    "eval_orchard.primary": {
+      "reason": "development_gate_failed",
+      "status": "unexecuted"
+    },
+    "eval_orchard.repeat1": {
+      "reason": "development_gate_failed",
+      "status": "unexecuted"
+    },
+    "eval_orchard.repeat2": {
+      "reason": "development_gate_failed",
+      "status": "unexecuted"
+    },
+    "eval_prism.primary": {
+      "reason": "development_gate_failed",
+      "status": "unexecuted"
+    },
+    "eval_prism.repeat1": {
+      "reason": "development_gate_failed",
+      "status": "unexecuted"
+    },
+    "eval_prism.repeat2": {
+      "reason": "development_gate_failed",
+      "status": "unexecuted"
+    },
+    "eval_river.primary": {
+      "reason": "development_gate_failed",
+      "status": "unexecuted"
+    },
+    "original_domain.primary": {
+      "reason": "development_gate_failed",
+      "status": "unexecuted"
+    }
+  },
+  "status": "experimental_observation_not_qualification"
+}

@@ -1,0 +1,335 @@
+{
+  "assessment": {
+    "accepted_wrong_critical": false,
+    "atom_count": 6,
+    "critical_errors": {
+      "detached_scoped_context_pairs": [],
+      "nonempty_incomplete_scope_atoms": [],
+      "unsupported_alias_facts": [],
+      "unsupported_scope_facts": []
+    },
+    "fidelity": "pass",
+    "metrics": {
+      "alias": {
+        "expected": 1,
+        "missing": [
+          [
+            "soft counters",
+            "velvet desks"
+          ]
+        ],
+        "observed": 0,
+        "precision": null,
+        "recall": 0.0,
+        "true_positive": 0,
+        "unsupported": []
+      },
+      "context": {
+        "expected": 1,
+        "missing": [],
+        "observed": 15,
+        "precision": 0.06666666666666667,
+        "recall": 1.0,
+        "true_positive": 1,
+        "unsupported": [
+          [
+            "brass1",
+            "brass2"
+          ],
+          [
+            "brass1",
+            "conflict"
+          ],
+          [
+            "brass1",
+            "file"
+          ],
+          [
+            "brass1",
+            "legend"
+          ],
+          [
+            "brass1",
+            "tray"
+          ],
+          [
+            "brass2",
+            "conflict"
+          ],
+          [
+            "brass2",
+            "file"
+          ],
+          [
+            "brass2",
+            "legend"
+          ],
+          [
+            "brass2",
+            "tray"
+          ],
+          [
+            "conflict",
+            "file"
+          ],
+          [
+            "conflict",
+            "legend"
+          ],
+          [
+            "conflict",
+            "tray"
+          ],
+          [
+            "file",
+            "legend"
+          ],
+          [
+            "legend",
+            "tray"
+          ]
+        ]
+      },
+      "scope": {
+        "expected": 4,
+        "missing": [
+          [
+            "brass1",
+            "brass desks"
+          ],
+          [
+            "brass2",
+            "brass desks"
+          ],
+          [
+            "file",
+            "velvet desks"
+          ],
+          [
+            "tray",
+            "velvet desks"
+          ]
+        ],
+        "observed": 0,
+        "precision": null,
+        "recall": 0.0,
+        "true_positive": 0,
+        "unsupported": []
+      }
+    },
+    "repair_count_basis": "Missing atom-level scope/alias facts and context-closure pairs; NOT observed human corrections or review benefit.",
+    "repair_counts": {
+      "alias_add": 1,
+      "context_add": 0,
+      "scope_add": 4
+    },
+    "repair_required": true,
+    "semantic": "pass",
+    "status": "pass",
+    "unresolved_alias_count": 0,
+    "unresolved_atom_count": 0
+  },
+  "human_approval_established": false,
+  "materialized_groups": [
+    {
+      "aliases": [],
+      "evidence": [],
+      "group_id": "g0001",
+      "required_with": [],
+      "scopes": [],
+      "source_id": "dev_quill",
+      "source_sha256": "3a004b8eccc41b1be4bceed97313c7bd709513aa3ea4aa73a08000d7b2016094",
+      "spans": [
+        {
+          "end": 47,
+          "start": 0
+        },
+        {
+          "end": 84,
+          "start": 47
+        },
+        {
+          "end": 168,
+          "start": 84
+        },
+        {
+          "end": 224,
+          "start": 168
+        },
+        {
+          "end": 305,
+          "start": 224
+        },
+        {
+          "end": 365,
+          "start": 305
+        },
+        {
+          "end": 394,
+          "start": 365
+        },
+        {
+          "end": 473,
+          "start": 394
+        },
+        {
+          "end": 505,
+          "start": 473
+        },
+        {
+          "end": 611,
+          "start": 505
+        },
+        {
+          "end": 623,
+          "start": 611
+        },
+        {
+          "end": 643,
+          "start": 623
+        },
+        {
+          "end": 708,
+          "start": 643
+        },
+        {
+          "end": 773,
+          "start": 708
+        }
+      ],
+      "text": "QUILL ARCHIVE: fictional desk game transcript\r\nQ: Which desk accepts a moon token?\r\nA: The rules in this conversation concern Velvet Desks, also called soft counters.\r\nDo not file a moon token unless its reverse is marked.\r\nException: an unmarked token may rest in the waiting tray, never in the ledger.\r\nThe waiting tray rule qualifies the preceding prohibition.\r\nQ: What does the dial mean?\r\nA: Higher ink stability means lower smudge likelihood, not higher likelihood.\r\nQ: Can a tray be called ready?\r\nA: A ready mark is reported, but another speaker calls readiness unknown; keep that conflict unresolved.\r\nOTHER DESK\r\nScope: Brass Desks\r\nLeave a brass token beside Brass Desks until the arch is drawn.\r\nLeave a brass token beside Brass Desks until the arch is drawn.\r\n",
+      "unit_ids": [
+        "u0001",
+        "u0002",
+        "u0003",
+        "u0004",
+        "u0005",
+        "u0006",
+        "u0007",
+        "u0008",
+        "u0009",
+        "u0010",
+        "u0011",
+        "u0012",
+        "u0013",
+        "u0014"
+      ]
+    }
+  ],
+  "observation": {
+    "groups": [
+      {
+        "spans": [
+          {
+            "end": 47,
+            "source_id": "dev_quill",
+            "start": 0
+          },
+          {
+            "end": 84,
+            "source_id": "dev_quill",
+            "start": 47
+          },
+          {
+            "end": 168,
+            "source_id": "dev_quill",
+            "start": 84
+          },
+          {
+            "end": 224,
+            "source_id": "dev_quill",
+            "start": 168
+          },
+          {
+            "end": 305,
+            "source_id": "dev_quill",
+            "start": 224
+          },
+          {
+            "end": 365,
+            "source_id": "dev_quill",
+            "start": 305
+          },
+          {
+            "end": 394,
+            "source_id": "dev_quill",
+            "start": 365
+          },
+          {
+            "end": 473,
+            "source_id": "dev_quill",
+            "start": 394
+          },
+          {
+            "end": 505,
+            "source_id": "dev_quill",
+            "start": 473
+          },
+          {
+            "end": 611,
+            "source_id": "dev_quill",
+            "start": 505
+          },
+          {
+            "end": 623,
+            "source_id": "dev_quill",
+            "start": 611
+          },
+          {
+            "end": 643,
+            "source_id": "dev_quill",
+            "start": 623
+          },
+          {
+            "end": 708,
+            "source_id": "dev_quill",
+            "start": 643
+          },
+          {
+            "end": 773,
+            "source_id": "dev_quill",
+            "start": 708
+          }
+        ],
+        "text": "QUILL ARCHIVE: fictional desk game transcript\r\nQ: Which desk accepts a moon token?\r\nA: The rules in this conversation concern Velvet Desks, also called soft counters.\r\nDo not file a moon token unless its reverse is marked.\r\nException: an unmarked token may rest in the waiting tray, never in the ledger.\r\nThe waiting tray rule qualifies the preceding prohibition.\r\nQ: What does the dial mean?\r\nA: Higher ink stability means lower smudge likelihood, not higher likelihood.\r\nQ: Can a tray be called ready?\r\nA: A ready mark is reported, but another speaker calls readiness unknown; keep that conflict unresolved.\r\nOTHER DESK\r\nScope: Brass Desks\r\nLeave a brass token beside Brass Desks until the arch is drawn.\r\nLeave a brass token beside Brass Desks until the arch is drawn.\r\n"
+      }
+    ],
+    "metadata": {
+      "aliases": [],
+      "links": [],
+      "scopes": []
+    },
+    "source_id": "dev_quill",
+    "source_sha256": "3a004b8eccc41b1be4bceed97313c7bd709513aa3ea4aa73a08000d7b2016094",
+    "status": "accepted"
+  },
+  "raw_proposal": {
+    "groups": [
+      {
+        "aliases": [],
+        "evidence": [],
+        "group_id": "g0001",
+        "required_with": [],
+        "scopes": [],
+        "unit_ids": [
+          "u0001",
+          "u0002",
+          "u0003",
+          "u0004",
+          "u0005",
+          "u0006",
+          "u0007",
+          "u0008",
+          "u0009",
+          "u0010",
+          "u0011",
+          "u0012",
+          "u0013",
+          "u0014"
+        ]
+      }
+    ]
+  },
+  "source_id": "dev_quill",
+  "synthetic_review_diagnostic": false
+}

@@ -1,0 +1,21 @@
+{
+  "provider": "github-copilot",
+  "sdk_version": "1.0.34",
+  "runtime_version": "1.0.112",
+  "binary_sha256": "32d01e0b0100fcdeaa684fba2cc8d00b6f127ac408749ff3c1b1a6fa0b2b8698",
+  "capabilities": {
+    "text": true,
+    "system_message": "replace_requested",
+    "json_schema": "prompt_guidance_and_local_validation",
+    "conversation": "fresh_session_per_request",
+    "tools": false,
+    "streaming_api": false,
+    "native_structured_output": false,
+    "sampling_controls": false,
+    "max_output_tokens": false,
+    "reasoning_effort": "catalog_validated_when_supplied",
+    "adapter_retries": 0,
+    "internal_http_retries": "unknown",
+    "raw_provider_equivalence": false
+  }
+}

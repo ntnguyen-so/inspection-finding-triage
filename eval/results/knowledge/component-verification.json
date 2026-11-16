@@ -1,0 +1,885 @@
+{
+  "observations": [
+    {
+      "id": "e0add205d7634e819348f13a38ed33b5",
+      "observed_at": "2026-11-16T12:01:00.243322+00:00",
+      "command": [
+        "C:\\Users\\thanh\\falkor_case2\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "tools.verify_knowledge",
+        "--output",
+        "eval\\results\\knowledge\\component-verification.json"
+      ],
+      "scope": "offline_knowledge_component_and_provisional_workflow_handoff_not_system_acceptance",
+      "git_revision": "acd978a0528372befc103206e2e242bf7569d71a",
+      "git_dirty": true,
+      "input_sha256": {
+        "triage_knowledge\\__init__.py": "1c102bcadeabba0bd263660d683baccfa7439a3ffaa7ccb696007cc8063ef56c",
+        "triage_knowledge\\__main__.py": "fa02dc217a12236b379934cad4355237a498168cf77a4cc2c5311f1c2861d4b9",
+        "triage_knowledge\\context.py": "0cb4bffdf6a90c0f700ce2d3d3c77df01ab205e30ebf024a025901f7e80d2ddd",
+        "triage_knowledge\\contracts.py": "19d1ace2fbf1706dcd4a0bf4b565ef96cda17947172aa0ca987289b93f8008e8",
+        "triage_knowledge\\editor.py": "6e475543135aa8f08afe478766bc26f914c0476f8a5beadd98b6f2d5c9d91ff7",
+        "triage_knowledge\\knowledge.py": "6192c6c092b00f14eaf98e2f314b40f0d04562611146c861b1cbac9a7181e1d4",
+        "triage_knowledge\\workflow_export.py": "6c86cef82284ddf0287986ef5742a54f341f3c324f58a9cf5e0585b25a31bcbd",
+        "tests\\knowledge_support.py": "c9d0fa84b67a4d26149f2839543518a49eba1218f838e87b2909bb8027220062",
+        "tests\\test_knowledge.py": "b8e5ed9f6b90cddf811370b9feb1f08c8e547772df525d3105259ae76c8fbae0",
+        "tests\\test_knowledge_context.py": "b6301d567af54df68f6ac69a20f56fee91b912240db39bab7ac32ca6059efe64",
+        "tests\\test_knowledge_editor.py": "5e1cfb845d5cc27eb92fe0c1a04c402192edeab4e1f2e8a964f511a9b43111a9",
+        "tests\\test_knowledge_workflow.py": "9c9d8bd7abcfac08248512b419c56999566d052c6c7a2fed13cdfb5b04c81281",
+        "tools\\verify_knowledge.py": "149278e16483e9cebe948867636de4d9a187b8702c63b422f8a7cd6bc6277e7e",
+        "pyproject.toml": "646ccb78205ac51bb3decd8021a27a3e51223456666a21f1ae26e25397de1bbf",
+        "docs\\06_KNOWLEDGE_CONTEXT.md": "e0082f6708fe44ed842c6e0144f82499138d888ae8a8c3e21a711494f12358e7",
+        "eval\\spec\\acceptance.json": "033d1860c3feb3493c587ee32d2b72b510f2fec3847d04dad77de0626ea2c23c",
+        "eval\\spec\\split.json": "bf708a150f0ac08a1f65f1d585f2cdde6fb6984578ea379465a066cf9a622e43"
+      },
+      "component_status": "pass",
+      "tests": {
+        "run": 30,
+        "failures": [],
+        "errors": [],
+        "skipped": [],
+        "log": "test_candidate_schema_and_source_failures_are_explicit (tests.test_knowledge.StoreTests.test_candidate_schema_and_source_failures_are_explicit) ... ok\ntest_domain_sections_preserve_bytes_and_reject_ambiguous_headings (tests.test_knowledge.StoreTests.test_domain_sections_preserve_bytes_and_reject_ambiguous_headings) ... ok\ntest_failed_atomic_save_preserves_previous_draft (tests.test_knowledge.StoreTests.test_failed_atomic_save_preserves_previous_draft) ... ok\ntest_fork_and_field_diff_preserve_existing_release (tests.test_knowledge.StoreTests.test_fork_and_field_diff_preserve_existing_release) ... ok\ntest_publication_metadata_produces_a_new_release (tests.test_knowledge.StoreTests.test_publication_metadata_produces_a_new_release) ... ok\ntest_release_identity_immutability_and_no_fallback (tests.test_knowledge.StoreTests.test_release_identity_immutability_and_no_fallback) ... ok\ntest_resolution_rejects_noncanonical_artifact_bytes (tests.test_knowledge.StoreTests.test_resolution_rejects_noncanonical_artifact_bytes) ... ok\ntest_review_is_required_and_times_are_validated (tests.test_knowledge.StoreTests.test_review_is_required_and_times_are_validated) ... ok\ntest_snapshot_and_rubric_are_detached_and_frozen (tests.test_knowledge.StoreTests.test_snapshot_and_rubric_are_detached_and_frozen) ... ok\ntest_stale_save_and_stale_review_do_not_publish (tests.test_knowledge.StoreTests.test_stale_save_and_stale_review_do_not_publish) ... ok\ntest_strict_json_and_canonical_oracle (tests.test_knowledge.StoreTests.test_strict_json_and_canonical_oracle) ... ok\ntest_supersession_is_scoped_acyclic_and_unambiguous (tests.test_knowledge.StoreTests.test_supersession_is_scoped_acyclic_and_unambiguous) ... ok\ntest_complete_source_delivery_and_exact_index_locations (tests.test_knowledge_context.ContextTests.test_complete_source_delivery_and_exact_index_locations) ... ok\ntest_csv_shape_and_role_failures (tests.test_knowledge_context.ContextTests.test_csv_shape_and_role_failures) ... ok\ntest_isolated_overlay_valid_control_and_normal_rejections (tests.test_knowledge_context.ContextTests.test_isolated_overlay_valid_control_and_normal_rejections) ... ok\ntest_missing_partner_is_a_factual_gap_not_a_failure_or_assessment (tests.test_knowledge_context.ContextTests.test_missing_partner_is_a_factual_gap_not_a_failure_or_assessment) ... ok\ntest_pinned_snapshot_and_bundle_survive_new_draft_and_release (tests.test_knowledge_context.ContextTests.test_pinned_snapshot_and_bundle_survive_new_draft_and_release) ... ok\ntest_primary_mapping_duplicates_and_cutoff_fail_visibly (tests.test_knowledge_context.ContextTests.test_primary_mapping_duplicates_and_cutoff_fail_visibly) ... ok\ntest_row_reordering_changes_only_raw_provenance (tests.test_knowledge_context.ContextTests.test_row_reordering_changes_only_raw_provenance) ... ok\ntest_semantic_canonical_projection_has_independent_exact_bytes (tests.test_knowledge_context.ContextTests.test_semantic_canonical_projection_has_independent_exact_bytes) ... ok\ntest_serializer_rejects_disguised_probe_unknown_gap_and_bad_index (tests.test_knowledge_context.ContextTests.test_serializer_rejects_disguised_probe_unknown_gap_and_bad_index) ... ok\ntest_cli_init_check_publish_and_context_with_old_output_preserved (tests.test_knowledge_editor.CliTests.test_cli_init_check_publish_and_context_with_old_output_preserved) ... ok\ntest_cli_validation_failure_is_json_and_nonzero (tests.test_knowledge_editor.CliTests.test_cli_validation_failure_is_json_and_nonzero) ... ok\ntest_headless_import_does_not_import_editor_or_inference (tests.test_knowledge_editor.CliTests.test_headless_import_does_not_import_editor_or_inference) ... ok\ntest_invalid_guidance_stays_unpublished (tests.test_knowledge_editor.EditorTests.test_invalid_guidance_stays_unpublished) ... ok\ntest_psv_form_diff_review_publish_and_explicit_fork (tests.test_knowledge_editor.EditorTests.test_psv_form_diff_review_publish_and_explicit_fork) ... ok\ntest_stale_tab_does_not_overwrite_newer_draft (tests.test_knowledge_editor.EditorTests.test_stale_tab_does_not_overwrite_newer_draft) ... ok\ntest_offline_request_delivery_and_context_failure_preserves_old_output (tests.test_knowledge_workflow.WorkflowHandoffTests.test_offline_request_delivery_and_context_failure_preserves_old_output) ... ok\ntest_real_module_export_passes_current_consumer_checks (tests.test_knowledge_workflow.WorkflowHandoffTests.test_real_module_export_passes_current_consumer_checks) ... ok\ntest_valid_isolated_control_and_mismatched_hash_rejection (tests.test_knowledge_workflow.WorkflowHandoffTests.test_valid_isolated_control_and_mismatched_hash_rejection) ... ok\n\n----------------------------------------------------------------------\nRan 30 tests in 3.270s\n\nOK\n"
+      },
+      "reference_validation": {
+        "command": [
+          "C:\\Users\\thanh\\falkor_case2\\.venv\\Scripts\\python.exe",
+          "-B",
+          "-m",
+          "eval.validate"
+        ],
+        "exit_code": 0,
+        "stdout": "{\n  \"findings\": 21,\n  \"equipment\": 18,\n  \"blank_cells\": 0,\n  \"duplicate_primary_keys\": 0,\n  \"orphan_findings\": 0,\n  \"equipment_type_mismatches\": 0,\n  \"invalid_ids_dates_scores_sce\": 0,\n  \"date_range\": [\n    \"2026-06-02\",\n    \"2026-06-22\"\n  ],\n  \"sce_counts\": {\n    \"No\": 8,\n    \"Yes\": 10\n  },\n  \"redundancy_counts\": {\n    \"None\": 11,\n    \"Yes (bypass available)\": 1,\n    \"Voted 2oo3\": 1,\n    \"Duplicated (INST-2151)\": 1,\n    \"Duplicated (INST-2150)\": 1,\n    \"N+1 (FW-8102)\": 1,\n    \"N+1 (FW-8101)\": 1,\n    \"N+1 (LB-4101)\": 1\n  },\n  \"missing_redundant_partners\": [\n    {\n      \"equipment_id\": \"LB-4102\",\n      \"partner\": \"LB-4101\"\n    }\n  ],\n  \"reference_version\": \"1.2\",\n  \"status\": \"frozen\",\n  \"acceptance_scenarios\": 17,\n  \"system_scenarios_execution\": \"not_run_no_system\",\n  \"partition_counts\": {\n    \"development\": {\n      \"cases\": 13,\n      \"groups\": 9\n    },\n    \"test\": {\n      \"cases\": 8,\n      \"groups\": 4\n    }\n  }\n}\nArtifact integrity checks passed; no ticket/model assessment was performed.\n",
+        "stderr": ""
+      },
+      "development_delivery": {
+        "scope": "offline_source_delivery_not_provider_capture_or_knowledge_influence",
+        "checks": {
+          "exact_development_membership": true,
+          "no_test_finding_membership": true,
+          "required_B01_findings_present": true,
+          "correct_primary_comments": true,
+          "complete_original_domain": true,
+          "row_reversal_semantic_hash_equal": true,
+          "row_reversal_raw_hashes_differ": true,
+          "row_reversal_source_index_equal": true,
+          "no_evaluation_source_kinds": true
+        },
+        "finding_ids": [
+          "F-1001",
+          "F-1003",
+          "F-1004",
+          "F-1005",
+          "F-1006",
+          "F-1007",
+          "F-1008",
+          "F-1009",
+          "F-1010",
+          "F-1012",
+          "F-1016",
+          "F-1017",
+          "F-1019"
+        ],
+        "assessment_time": "2026-06-22T23:59:59+00:00",
+        "knowledge_version": "sha256-acbe5e5681e2fa3a476911176796cad05568826054a327e8d84557d78b74cc4e",
+        "release_approval": "temporary_software_fixture_not_owner_or_domain_approval",
+        "context_hash": "f35846ed3f16c00882570dacdb0632c239e073f46640a1366d54ea7eefc7f40d",
+        "context_bytes": 82586,
+        "source_file_sha256": {
+          "findings_original": "4bb4b2d324b53cf8c748e25c7a511a1a5d683dc0bfba6602013da89c8256652b",
+          "registry_original": "5520713b74a28a907b7167da638dca8879849ce3d85d99e1d3ef9968fb000033"
+        },
+        "artifacts": {
+          "eval\\results\\knowledge\\component-artifacts\\e0add205d7634e819348f13a38ed33b5\\selected-development.csv": "2cc43cdac41f8ae033ea0454c83d271fe667f100eba02313f0ece7a2c2e18545",
+          "eval\\results\\knowledge\\component-artifacts\\e0add205d7634e819348f13a38ed33b5\\temporary-fixture-release.json": "b7085c74eec8ec6a72a6a70e674c9201d814f79ab062963f601162282fe1c550",
+          "eval\\results\\knowledge\\component-artifacts\\e0add205d7634e819348f13a38ed33b5\\context-v1.json": "41f1ed2b469802eecc59b7e6a00f098a5afc2a2a6c95c62dfc6d16abef46bf68",
+          "eval\\results\\knowledge\\component-artifacts\\e0add205d7634e819348f13a38ed33b5\\context-reversed-v1.json": "4790155593eb4ede6d5848d39220fded3f20a24b50cebb97f09c386132d96754",
+          "eval\\results\\knowledge\\component-artifacts\\e0add205d7634e819348f13a38ed33b5\\workflow-v0.json": "30d10f0a4ac6fa0e684e455e093d20a93aac61ebc4860689c73f653925ef6bce"
+        }
+      },
+      "scenario_status": {
+        "B01": "component_and_fake_provider_wiring_only_actual_provider_capture_pending",
+        "B02": "isolated_overlay_delivery_tested_real_model_behavior_probe_not_run",
+        "B03": "editor_path_exercised_final_owner_DESIGN_and_domain_review_pending",
+        "D02": "component_gap_and_invalid_primary_checks_only",
+        "X01": "context_snapshot_invariance_only_real_decision_stability_not_run",
+        "X02": "module_reproduction_only_final_all_21_delivery_not_run"
+      },
+      "provider_sends": 0,
+      "paid_model_eval_run": false,
+      "frozen_test_assessment_run": false,
+      "model": null,
+      "model_usage": null,
+      "model_cost": null,
+      "notes": [
+        "AppTest is an executable Streamlit form test, not a screenshot or operational approval.",
+        "Temporary test reviews and any fake-provider tickets are software fixtures, not owner-approved knowledge or triage quality evidence.",
+        "Raw-source/request artifacts remain local. No test descriptions/cards/expected answers were put in production context.",
+        "The workflow-v0 projection is provisional; the native version-1 bundle remains the authoritative source artifact.",
+        "Other sessions may change this checkout; recorded hashes are not an atomic repository freeze."
+      ]
+    },
+    {
+      "id": "64121d077f324e7095dc52f9b752b251",
+      "observed_at": "2026-11-16T12:05:23.856718+00:00",
+      "command": [
+        "C:\\Users\\thanh\\falkor_case2\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "tools.verify_knowledge",
+        "--output",
+        "eval\\results\\knowledge\\component-verification.json"
+      ],
+      "scope": "offline_knowledge_component_and_provisional_workflow_handoff_not_system_acceptance",
+      "git_revision": "69117c1a437cada93d0d4ce920c9bc862a5c9fca",
+      "git_dirty": true,
+      "input_sha256": {
+        "triage_knowledge\\__init__.py": "1c102bcadeabba0bd263660d683baccfa7439a3ffaa7ccb696007cc8063ef56c",
+        "triage_knowledge\\__main__.py": "1aa2a5a7efbad257c7f423c5fe43c5ced62b4867678cb55184e939a8c2a2fcf6",
+        "triage_knowledge\\context.py": "28ac9f6be31ce82aeca1039d4cffbec0640b14281578a15305140e91e8a4ec2b",
+        "triage_knowledge\\contracts.py": "19d1ace2fbf1706dcd4a0bf4b565ef96cda17947172aa0ca987289b93f8008e8",
+        "triage_knowledge\\editor.py": "6ac485ed42a41ea601779e06b216a551c131e3f8d3cb4044465c9a5bc942b4eb",
+        "triage_knowledge\\knowledge.py": "f537a40b905330aba2ac4efe9af16c920f82ac50781937e4f23ea93ba72c47eb",
+        "triage_knowledge\\workflow_export.py": "6c86cef82284ddf0287986ef5742a54f341f3c324f58a9cf5e0585b25a31bcbd",
+        "tests\\knowledge_support.py": "c9d0fa84b67a4d26149f2839543518a49eba1218f838e87b2909bb8027220062",
+        "tests\\test_knowledge.py": "3f680250de7f3011fa0737da2f9ba5b24ee0177b2a2af705fae57e08be995a41",
+        "tests\\test_knowledge_context.py": "882fa86bbd6e7755e86453bc9a554b6a26e8c165499b75c11bedbd669098261b",
+        "tests\\test_knowledge_editor.py": "3bfa61f56aafb1642b7f2792e35b4709158de8363f0a1f5553464269843da3f4",
+        "tests\\test_knowledge_workflow.py": "9c9d8bd7abcfac08248512b419c56999566d052c6c7a2fed13cdfb5b04c81281",
+        "tools\\verify_knowledge.py": "d384641637ec04c8fac7de01bb655c1e789f69ea5d7c7de03f5a3f0651fcddea",
+        "pyproject.toml": "646ccb78205ac51bb3decd8021a27a3e51223456666a21f1ae26e25397de1bbf",
+        "docs\\06_KNOWLEDGE_CONTEXT.md": "e0082f6708fe44ed842c6e0144f82499138d888ae8a8c3e21a711494f12358e7",
+        "eval\\spec\\acceptance.json": "033d1860c3feb3493c587ee32d2b72b510f2fec3847d04dad77de0626ea2c23c",
+        "eval\\spec\\split.json": "bf708a150f0ac08a1f65f1d585f2cdde6fb6984578ea379465a066cf9a622e43"
+      },
+      "component_status": "failed_or_incomplete",
+      "tests": {
+        "run": 34,
+        "failures": [],
+        "errors": [
+          [
+            "tests.test_knowledge_editor.EditorTests.test_invalid_draft_has_explicit_archive_recovery",
+            "Traceback (most recent call last):\n  File \"C:\\Users\\thanh\\falkor_case2\\tests\\test_knowledge_editor.py\", line 126, in test_invalid_draft_has_explicit_archive_recovery\n    self.assertTrue(self.button(\"Archive invalid draft and reset\").disabled)\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\thanh\\falkor_case2\\tests\\test_knowledge_editor.py\", line 92, in button\n    return next(value for value in self.app.button if value.label == label)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nStopIteration\n"
+          ]
+        ],
+        "skipped": [],
+        "log": "test_candidate_schema_and_source_failures_are_explicit (tests.test_knowledge.StoreTests.test_candidate_schema_and_source_failures_are_explicit) ... ok\ntest_domain_physical_location_is_not_release_identity (tests.test_knowledge.StoreTests.test_domain_physical_location_is_not_release_identity) ... ok\ntest_domain_sections_preserve_bytes_and_reject_ambiguous_headings (tests.test_knowledge.StoreTests.test_domain_sections_preserve_bytes_and_reject_ambiguous_headings) ... ok\ntest_explicit_recovery_archives_exact_invalid_bytes (tests.test_knowledge.StoreTests.test_explicit_recovery_archives_exact_invalid_bytes) ... ok\ntest_failed_atomic_save_preserves_previous_draft (tests.test_knowledge.StoreTests.test_failed_atomic_save_preserves_previous_draft) ... ok\ntest_fork_and_field_diff_preserve_existing_release (tests.test_knowledge.StoreTests.test_fork_and_field_diff_preserve_existing_release) ... ok\ntest_publication_metadata_produces_a_new_release (tests.test_knowledge.StoreTests.test_publication_metadata_produces_a_new_release) ... ok\ntest_release_identity_immutability_and_no_fallback (tests.test_knowledge.StoreTests.test_release_identity_immutability_and_no_fallback) ... ok\ntest_resolution_rejects_noncanonical_artifact_bytes (tests.test_knowledge.StoreTests.test_resolution_rejects_noncanonical_artifact_bytes) ... ok\ntest_review_is_required_and_times_are_validated (tests.test_knowledge.StoreTests.test_review_is_required_and_times_are_validated) ... ok\ntest_snapshot_and_rubric_are_detached_and_frozen (tests.test_knowledge.StoreTests.test_snapshot_and_rubric_are_detached_and_frozen) ... ok\ntest_stale_save_and_stale_review_do_not_publish (tests.test_knowledge.StoreTests.test_stale_save_and_stale_review_do_not_publish) ... ok\ntest_strict_json_and_canonical_oracle (tests.test_knowledge.StoreTests.test_strict_json_and_canonical_oracle) ... ok\ntest_supersession_is_scoped_acyclic_and_unambiguous (tests.test_knowledge.StoreTests.test_supersession_is_scoped_acyclic_and_unambiguous) ... ok\ntest_complete_source_delivery_and_exact_index_locations (tests.test_knowledge_context.ContextTests.test_complete_source_delivery_and_exact_index_locations) ... ok\ntest_csv_shape_and_role_failures (tests.test_knowledge_context.ContextTests.test_csv_shape_and_role_failures) ... ok\ntest_isolated_overlay_valid_control_and_normal_rejections (tests.test_knowledge_context.ContextTests.test_isolated_overlay_valid_control_and_normal_rejections) ... ok\ntest_missing_partner_gap_cannot_be_removed_or_duplicated_then_rehashed (tests.test_knowledge_context.ContextTests.test_missing_partner_gap_cannot_be_removed_or_duplicated_then_rehashed) ... ok\ntest_missing_partner_is_a_factual_gap_not_a_failure_or_assessment (tests.test_knowledge_context.ContextTests.test_missing_partner_is_a_factual_gap_not_a_failure_or_assessment) ... ok\ntest_pinned_snapshot_and_bundle_survive_new_draft_and_release (tests.test_knowledge_context.ContextTests.test_pinned_snapshot_and_bundle_survive_new_draft_and_release) ... ok\ntest_primary_mapping_duplicates_and_cutoff_fail_visibly (tests.test_knowledge_context.ContextTests.test_primary_mapping_duplicates_and_cutoff_fail_visibly) ... ok\ntest_row_reordering_changes_only_raw_provenance (tests.test_knowledge_context.ContextTests.test_row_reordering_changes_only_raw_provenance) ... ok\ntest_semantic_canonical_projection_has_independent_exact_bytes (tests.test_knowledge_context.ContextTests.test_semantic_canonical_projection_has_independent_exact_bytes) ... ok\ntest_serializer_rejects_disguised_probe_unknown_gap_and_bad_index (tests.test_knowledge_context.ContextTests.test_serializer_rejects_disguised_probe_unknown_gap_and_bad_index) ... ok\ntest_cli_init_check_publish_and_context_with_old_output_preserved (tests.test_knowledge_editor.CliTests.test_cli_init_check_publish_and_context_with_old_output_preserved) ... ok\ntest_cli_validation_failure_is_json_and_nonzero (tests.test_knowledge_editor.CliTests.test_cli_validation_failure_is_json_and_nonzero) ... ok\ntest_headless_import_does_not_import_editor_or_inference (tests.test_knowledge_editor.CliTests.test_headless_import_does_not_import_editor_or_inference) ... ok\ntest_invalid_draft_has_explicit_archive_recovery (tests.test_knowledge_editor.EditorTests.test_invalid_draft_has_explicit_archive_recovery) ... ERROR\ntest_invalid_guidance_stays_unpublished (tests.test_knowledge_editor.EditorTests.test_invalid_guidance_stays_unpublished) ... ok\ntest_psv_form_diff_review_publish_and_explicit_fork (tests.test_knowledge_editor.EditorTests.test_psv_form_diff_review_publish_and_explicit_fork) ... ok\ntest_stale_tab_does_not_overwrite_newer_draft (tests.test_knowledge_editor.EditorTests.test_stale_tab_does_not_overwrite_newer_draft) ... ok\ntest_offline_request_delivery_and_context_failure_preserves_old_output (tests.test_knowledge_workflow.WorkflowHandoffTests.test_offline_request_delivery_and_context_failure_preserves_old_output) ... ok\ntest_real_module_export_passes_current_consumer_checks (tests.test_knowledge_workflow.WorkflowHandoffTests.test_real_module_export_passes_current_consumer_checks) ... ok\ntest_valid_isolated_control_and_mismatched_hash_rejection (tests.test_knowledge_workflow.WorkflowHandoffTests.test_valid_isolated_control_and_mismatched_hash_rejection) ... ok\n\n======================================================================\nERROR: test_invalid_draft_has_explicit_archive_recovery (tests.test_knowledge_editor.EditorTests.test_invalid_draft_has_explicit_archive_recovery)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\thanh\\falkor_case2\\tests\\test_knowledge_editor.py\", line 126, in test_invalid_draft_has_explicit_archive_recovery\n    self.assertTrue(self.button(\"Archive invalid draft and reset\").disabled)\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\thanh\\falkor_case2\\tests\\test_knowledge_editor.py\", line 92, in button\n    return next(value for value in self.app.button if value.label == label)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nStopIteration\n\n----------------------------------------------------------------------\nRan 34 tests in 3.655s\n\nFAILED (errors=1)\n"
+      },
+      "reference_validation": {
+        "command": [
+          "C:\\Users\\thanh\\falkor_case2\\.venv\\Scripts\\python.exe",
+          "-B",
+          "-m",
+          "eval.validate"
+        ],
+        "exit_code": 0,
+        "stdout": "{\n  \"findings\": 21,\n  \"equipment\": 18,\n  \"blank_cells\": 0,\n  \"duplicate_primary_keys\": 0,\n  \"orphan_findings\": 0,\n  \"equipment_type_mismatches\": 0,\n  \"invalid_ids_dates_scores_sce\": 0,\n  \"date_range\": [\n    \"2026-06-02\",\n    \"2026-06-22\"\n  ],\n  \"sce_counts\": {\n    \"No\": 8,\n    \"Yes\": 10\n  },\n  \"redundancy_counts\": {\n    \"None\": 11,\n    \"Yes (bypass available)\": 1,\n    \"Voted 2oo3\": 1,\n    \"Duplicated (INST-2151)\": 1,\n    \"Duplicated (INST-2150)\": 1,\n    \"N+1 (FW-8102)\": 1,\n    \"N+1 (FW-8101)\": 1,\n    \"N+1 (LB-4101)\": 1\n  },\n  \"missing_redundant_partners\": [\n    {\n      \"equipment_id\": \"LB-4102\",\n      \"partner\": \"LB-4101\"\n    }\n  ],\n  \"reference_version\": \"1.2\",\n  \"status\": \"frozen\",\n  \"acceptance_scenarios\": 17,\n  \"system_scenarios_execution\": \"not_run_no_system\",\n  \"partition_counts\": {\n    \"development\": {\n      \"cases\": 13,\n      \"groups\": 9\n    },\n    \"test\": {\n      \"cases\": 8,\n      \"groups\": 4\n    }\n  }\n}\nArtifact integrity checks passed; no ticket/model assessment was performed.\n",
+        "stderr": ""
+      },
+      "development_delivery": {
+        "scope": "offline_source_delivery_not_provider_capture_or_knowledge_influence",
+        "checks": {
+          "exact_development_membership": true,
+          "no_test_finding_membership": true,
+          "required_B01_findings_present": true,
+          "correct_primary_comments": true,
+          "complete_original_domain": true,
+          "row_reversal_semantic_hash_equal": true,
+          "row_reversal_raw_hashes_differ": true,
+          "row_reversal_source_index_equal": true,
+          "no_evaluation_source_kinds": true
+        },
+        "finding_ids": [
+          "F-1001",
+          "F-1003",
+          "F-1004",
+          "F-1005",
+          "F-1006",
+          "F-1007",
+          "F-1008",
+          "F-1009",
+          "F-1010",
+          "F-1012",
+          "F-1016",
+          "F-1017",
+          "F-1019"
+        ],
+        "assessment_time": "2026-06-22T23:59:59+00:00",
+        "knowledge_version": "sha256-5af0a77a02873a706e9ca217470b9a47e127df297b0016bdf8f69bc2547309cb",
+        "release_approval": "temporary_software_fixture_not_owner_or_domain_approval",
+        "context_hash": "5e4ee79b4116a38cf37be6c8c6ec386377c77231f29d2fa6665b5b0089b868d8",
+        "context_bytes": 82586,
+        "source_file_sha256": {
+          "findings_original": "4bb4b2d324b53cf8c748e25c7a511a1a5d683dc0bfba6602013da89c8256652b",
+          "registry_original": "5520713b74a28a907b7167da638dca8879849ce3d85d99e1d3ef9968fb000033"
+        },
+        "artifacts": {
+          "eval\\results\\knowledge\\component-artifacts\\64121d077f324e7095dc52f9b752b251\\selected-development.csv": "2cc43cdac41f8ae033ea0454c83d271fe667f100eba02313f0ece7a2c2e18545",
+          "eval\\results\\knowledge\\component-artifacts\\64121d077f324e7095dc52f9b752b251\\temporary-fixture-release.json": "b3599faf313f9081b49a7b6e4e9ce98b80e610ba5f5bd03d9c7be5fd87bace76",
+          "eval\\results\\knowledge\\component-artifacts\\64121d077f324e7095dc52f9b752b251\\context-v1.json": "e78c59cb9fedceb2b0b0790ae683f355665f805ee069aef8d5aed9b673c65311",
+          "eval\\results\\knowledge\\component-artifacts\\64121d077f324e7095dc52f9b752b251\\context-reversed-v1.json": "9d45916b1c385115d7590be1672cd827cffbaa445517fbcb7f1384fb73988a2f",
+          "eval\\results\\knowledge\\component-artifacts\\64121d077f324e7095dc52f9b752b251\\workflow-v0.json": "804fb8dee228f64ffe998baaa7e746f0ba0d0b16b11f7ded5be6bfb9e0d6543a"
+        }
+      },
+      "scenario_status": {
+        "B01": "component_and_fake_provider_wiring_only_actual_provider_capture_pending",
+        "B02": "isolated_overlay_delivery_tested_real_model_behavior_probe_not_run",
+        "B03": "editor_path_exercised_final_owner_DESIGN_and_domain_review_pending",
+        "D02": "component_gap_and_invalid_primary_checks_only",
+        "X01": "context_snapshot_invariance_only_real_decision_stability_not_run",
+        "X02": "module_reproduction_only_final_all_21_delivery_not_run"
+      },
+      "provider_sends": 0,
+      "paid_model_eval_run": false,
+      "frozen_test_assessment_run": false,
+      "model": null,
+      "model_usage": null,
+      "model_cost": null,
+      "notes": [
+        "AppTest is an executable Streamlit form test, not a screenshot or operational approval.",
+        "Temporary test reviews and any fake-provider tickets are software fixtures, not owner-approved knowledge or triage quality evidence.",
+        "Raw-source/request artifacts remain local. No test descriptions/cards/expected answers were put in production context.",
+        "The workflow-v0 projection is provisional; the native version-1 bundle remains the authoritative source artifact.",
+        "Other sessions may change this checkout; recorded hashes are not an atomic repository freeze."
+      ]
+    },
+    {
+      "id": "da5a0077904647b0b1e48f93b8f0b5c0",
+      "observed_at": "2026-11-16T12:06:21.300977+00:00",
+      "command": [
+        "C:\\Users\\thanh\\falkor_case2\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "tools.verify_knowledge",
+        "--output",
+        "eval\\results\\knowledge\\component-verification.json"
+      ],
+      "scope": "offline_knowledge_component_and_provisional_workflow_handoff_not_system_acceptance",
+      "git_revision": "69117c1a437cada93d0d4ce920c9bc862a5c9fca",
+      "git_dirty": true,
+      "input_sha256": {
+        "triage_knowledge\\__init__.py": "1c102bcadeabba0bd263660d683baccfa7439a3ffaa7ccb696007cc8063ef56c",
+        "triage_knowledge\\__main__.py": "1aa2a5a7efbad257c7f423c5fe43c5ced62b4867678cb55184e939a8c2a2fcf6",
+        "triage_knowledge\\context.py": "28ac9f6be31ce82aeca1039d4cffbec0640b14281578a15305140e91e8a4ec2b",
+        "triage_knowledge\\contracts.py": "19d1ace2fbf1706dcd4a0bf4b565ef96cda17947172aa0ca987289b93f8008e8",
+        "triage_knowledge\\editor.py": "7c2259b16ec9027af63a7ac9a1840cf840728dbe53cd30436475438a859763fd",
+        "triage_knowledge\\knowledge.py": "f537a40b905330aba2ac4efe9af16c920f82ac50781937e4f23ea93ba72c47eb",
+        "triage_knowledge\\workflow_export.py": "6c86cef82284ddf0287986ef5742a54f341f3c324f58a9cf5e0585b25a31bcbd",
+        "tests\\knowledge_support.py": "c9d0fa84b67a4d26149f2839543518a49eba1218f838e87b2909bb8027220062",
+        "tests\\test_knowledge.py": "3f680250de7f3011fa0737da2f9ba5b24ee0177b2a2af705fae57e08be995a41",
+        "tests\\test_knowledge_context.py": "882fa86bbd6e7755e86453bc9a554b6a26e8c165499b75c11bedbd669098261b",
+        "tests\\test_knowledge_editor.py": "3bfa61f56aafb1642b7f2792e35b4709158de8363f0a1f5553464269843da3f4",
+        "tests\\test_knowledge_workflow.py": "9c9d8bd7abcfac08248512b419c56999566d052c6c7a2fed13cdfb5b04c81281",
+        "tools\\verify_knowledge.py": "d384641637ec04c8fac7de01bb655c1e789f69ea5d7c7de03f5a3f0651fcddea",
+        "pyproject.toml": "646ccb78205ac51bb3decd8021a27a3e51223456666a21f1ae26e25397de1bbf",
+        "docs\\06_KNOWLEDGE_CONTEXT.md": "e0082f6708fe44ed842c6e0144f82499138d888ae8a8c3e21a711494f12358e7",
+        "eval\\spec\\acceptance.json": "033d1860c3feb3493c587ee32d2b72b510f2fec3847d04dad77de0626ea2c23c",
+        "eval\\spec\\split.json": "bf708a150f0ac08a1f65f1d585f2cdde6fb6984578ea379465a066cf9a622e43"
+      },
+      "component_status": "pass",
+      "tests": {
+        "run": 34,
+        "failures": [],
+        "errors": [],
+        "skipped": [],
+        "log": "test_candidate_schema_and_source_failures_are_explicit (tests.test_knowledge.StoreTests.test_candidate_schema_and_source_failures_are_explicit) ... ok\ntest_domain_physical_location_is_not_release_identity (tests.test_knowledge.StoreTests.test_domain_physical_location_is_not_release_identity) ... ok\ntest_domain_sections_preserve_bytes_and_reject_ambiguous_headings (tests.test_knowledge.StoreTests.test_domain_sections_preserve_bytes_and_reject_ambiguous_headings) ... ok\ntest_explicit_recovery_archives_exact_invalid_bytes (tests.test_knowledge.StoreTests.test_explicit_recovery_archives_exact_invalid_bytes) ... ok\ntest_failed_atomic_save_preserves_previous_draft (tests.test_knowledge.StoreTests.test_failed_atomic_save_preserves_previous_draft) ... ok\ntest_fork_and_field_diff_preserve_existing_release (tests.test_knowledge.StoreTests.test_fork_and_field_diff_preserve_existing_release) ... ok\ntest_publication_metadata_produces_a_new_release (tests.test_knowledge.StoreTests.test_publication_metadata_produces_a_new_release) ... ok\ntest_release_identity_immutability_and_no_fallback (tests.test_knowledge.StoreTests.test_release_identity_immutability_and_no_fallback) ... ok\ntest_resolution_rejects_noncanonical_artifact_bytes (tests.test_knowledge.StoreTests.test_resolution_rejects_noncanonical_artifact_bytes) ... ok\ntest_review_is_required_and_times_are_validated (tests.test_knowledge.StoreTests.test_review_is_required_and_times_are_validated) ... ok\ntest_snapshot_and_rubric_are_detached_and_frozen (tests.test_knowledge.StoreTests.test_snapshot_and_rubric_are_detached_and_frozen) ... ok\ntest_stale_save_and_stale_review_do_not_publish (tests.test_knowledge.StoreTests.test_stale_save_and_stale_review_do_not_publish) ... ok\ntest_strict_json_and_canonical_oracle (tests.test_knowledge.StoreTests.test_strict_json_and_canonical_oracle) ... ok\ntest_supersession_is_scoped_acyclic_and_unambiguous (tests.test_knowledge.StoreTests.test_supersession_is_scoped_acyclic_and_unambiguous) ... ok\ntest_complete_source_delivery_and_exact_index_locations (tests.test_knowledge_context.ContextTests.test_complete_source_delivery_and_exact_index_locations) ... ok\ntest_csv_shape_and_role_failures (tests.test_knowledge_context.ContextTests.test_csv_shape_and_role_failures) ... ok\ntest_isolated_overlay_valid_control_and_normal_rejections (tests.test_knowledge_context.ContextTests.test_isolated_overlay_valid_control_and_normal_rejections) ... ok\ntest_missing_partner_gap_cannot_be_removed_or_duplicated_then_rehashed (tests.test_knowledge_context.ContextTests.test_missing_partner_gap_cannot_be_removed_or_duplicated_then_rehashed) ... ok\ntest_missing_partner_is_a_factual_gap_not_a_failure_or_assessment (tests.test_knowledge_context.ContextTests.test_missing_partner_is_a_factual_gap_not_a_failure_or_assessment) ... ok\ntest_pinned_snapshot_and_bundle_survive_new_draft_and_release (tests.test_knowledge_context.ContextTests.test_pinned_snapshot_and_bundle_survive_new_draft_and_release) ... ok\ntest_primary_mapping_duplicates_and_cutoff_fail_visibly (tests.test_knowledge_context.ContextTests.test_primary_mapping_duplicates_and_cutoff_fail_visibly) ... ok\ntest_row_reordering_changes_only_raw_provenance (tests.test_knowledge_context.ContextTests.test_row_reordering_changes_only_raw_provenance) ... ok\ntest_semantic_canonical_projection_has_independent_exact_bytes (tests.test_knowledge_context.ContextTests.test_semantic_canonical_projection_has_independent_exact_bytes) ... ok\ntest_serializer_rejects_disguised_probe_unknown_gap_and_bad_index (tests.test_knowledge_context.ContextTests.test_serializer_rejects_disguised_probe_unknown_gap_and_bad_index) ... ok\ntest_cli_init_check_publish_and_context_with_old_output_preserved (tests.test_knowledge_editor.CliTests.test_cli_init_check_publish_and_context_with_old_output_preserved) ... ok\ntest_cli_validation_failure_is_json_and_nonzero (tests.test_knowledge_editor.CliTests.test_cli_validation_failure_is_json_and_nonzero) ... ok\ntest_headless_import_does_not_import_editor_or_inference (tests.test_knowledge_editor.CliTests.test_headless_import_does_not_import_editor_or_inference) ... ok\ntest_invalid_draft_has_explicit_archive_recovery (tests.test_knowledge_editor.EditorTests.test_invalid_draft_has_explicit_archive_recovery) ... ok\ntest_invalid_guidance_stays_unpublished (tests.test_knowledge_editor.EditorTests.test_invalid_guidance_stays_unpublished) ... ok\ntest_psv_form_diff_review_publish_and_explicit_fork (tests.test_knowledge_editor.EditorTests.test_psv_form_diff_review_publish_and_explicit_fork) ... ok\ntest_stale_tab_does_not_overwrite_newer_draft (tests.test_knowledge_editor.EditorTests.test_stale_tab_does_not_overwrite_newer_draft) ... ok\ntest_offline_request_delivery_and_context_failure_preserves_old_output (tests.test_knowledge_workflow.WorkflowHandoffTests.test_offline_request_delivery_and_context_failure_preserves_old_output) ... ok\ntest_real_module_export_passes_current_consumer_checks (tests.test_knowledge_workflow.WorkflowHandoffTests.test_real_module_export_passes_current_consumer_checks) ... ok\ntest_valid_isolated_control_and_mismatched_hash_rejection (tests.test_knowledge_workflow.WorkflowHandoffTests.test_valid_isolated_control_and_mismatched_hash_rejection) ... ok\n\n----------------------------------------------------------------------\nRan 34 tests in 5.220s\n\nOK\n"
+      },
+      "reference_validation": {
+        "command": [
+          "C:\\Users\\thanh\\falkor_case2\\.venv\\Scripts\\python.exe",
+          "-B",
+          "-m",
+          "eval.validate"
+        ],
+        "exit_code": 0,
+        "stdout": "{\n  \"findings\": 21,\n  \"equipment\": 18,\n  \"blank_cells\": 0,\n  \"duplicate_primary_keys\": 0,\n  \"orphan_findings\": 0,\n  \"equipment_type_mismatches\": 0,\n  \"invalid_ids_dates_scores_sce\": 0,\n  \"date_range\": [\n    \"2026-06-02\",\n    \"2026-06-22\"\n  ],\n  \"sce_counts\": {\n    \"No\": 8,\n    \"Yes\": 10\n  },\n  \"redundancy_counts\": {\n    \"None\": 11,\n    \"Yes (bypass available)\": 1,\n    \"Voted 2oo3\": 1,\n    \"Duplicated (INST-2151)\": 1,\n    \"Duplicated (INST-2150)\": 1,\n    \"N+1 (FW-8102)\": 1,\n    \"N+1 (FW-8101)\": 1,\n    \"N+1 (LB-4101)\": 1\n  },\n  \"missing_redundant_partners\": [\n    {\n      \"equipment_id\": \"LB-4102\",\n      \"partner\": \"LB-4101\"\n    }\n  ],\n  \"reference_version\": \"1.2\",\n  \"status\": \"frozen\",\n  \"acceptance_scenarios\": 17,\n  \"system_scenarios_execution\": \"not_run_no_system\",\n  \"partition_counts\": {\n    \"development\": {\n      \"cases\": 13,\n      \"groups\": 9\n    },\n    \"test\": {\n      \"cases\": 8,\n      \"groups\": 4\n    }\n  }\n}\nArtifact integrity checks passed; no ticket/model assessment was performed.\n",
+        "stderr": ""
+      },
+      "development_delivery": {
+        "scope": "offline_source_delivery_not_provider_capture_or_knowledge_influence",
+        "checks": {
+          "exact_development_membership": true,
+          "no_test_finding_membership": true,
+          "required_B01_findings_present": true,
+          "correct_primary_comments": true,
+          "complete_original_domain": true,
+          "row_reversal_semantic_hash_equal": true,
+          "row_reversal_raw_hashes_differ": true,
+          "row_reversal_source_index_equal": true,
+          "no_evaluation_source_kinds": true
+        },
+        "finding_ids": [
+          "F-1001",
+          "F-1003",
+          "F-1004",
+          "F-1005",
+          "F-1006",
+          "F-1007",
+          "F-1008",
+          "F-1009",
+          "F-1010",
+          "F-1012",
+          "F-1016",
+          "F-1017",
+          "F-1019"
+        ],
+        "assessment_time": "2026-06-22T23:59:59+00:00",
+        "knowledge_version": "sha256-9e524f3148f1c208238d04eea4d875cb80b8b3ad26a121468f40573032570700",
+        "release_approval": "temporary_software_fixture_not_owner_or_domain_approval",
+        "context_hash": "f8ebd97bc3b085d6250a46890fae3570676f24d8021f2a056b84ab31f24c56d7",
+        "context_bytes": 82586,
+        "source_file_sha256": {
+          "findings_original": "4bb4b2d324b53cf8c748e25c7a511a1a5d683dc0bfba6602013da89c8256652b",
+          "registry_original": "5520713b74a28a907b7167da638dca8879849ce3d85d99e1d3ef9968fb000033"
+        },
+        "artifacts": {
+          "eval\\results\\knowledge\\component-artifacts\\da5a0077904647b0b1e48f93b8f0b5c0\\selected-development.csv": "2cc43cdac41f8ae033ea0454c83d271fe667f100eba02313f0ece7a2c2e18545",
+          "eval\\results\\knowledge\\component-artifacts\\da5a0077904647b0b1e48f93b8f0b5c0\\temporary-fixture-release.json": "de00c7f9bb33c095b2f804322deec0073318f89226f881582a97c1eaeb6e4265",
+          "eval\\results\\knowledge\\component-artifacts\\da5a0077904647b0b1e48f93b8f0b5c0\\context-v1.json": "713820e0e46110ec859c918339b95aa202c36a3ca8126d28106c6639892ff0bd",
+          "eval\\results\\knowledge\\component-artifacts\\da5a0077904647b0b1e48f93b8f0b5c0\\context-reversed-v1.json": "2fc38b77cf3e43937ae8963e6579cf52284c605e241d60c02992ca50366ed0c3",
+          "eval\\results\\knowledge\\component-artifacts\\da5a0077904647b0b1e48f93b8f0b5c0\\workflow-v0.json": "1f880717b9ba13ca2643d5e3c750e378a8ec06b18a8d5255983049b7110d40e7"
+        }
+      },
+      "scenario_status": {
+        "B01": "component_and_fake_provider_wiring_only_actual_provider_capture_pending",
+        "B02": "isolated_overlay_delivery_tested_real_model_behavior_probe_not_run",
+        "B03": "editor_path_exercised_final_owner_DESIGN_and_domain_review_pending",
+        "D02": "component_gap_and_invalid_primary_checks_only",
+        "X01": "context_snapshot_invariance_only_real_decision_stability_not_run",
+        "X02": "module_reproduction_only_final_all_21_delivery_not_run"
+      },
+      "provider_sends": 0,
+      "paid_model_eval_run": false,
+      "frozen_test_assessment_run": false,
+      "model": null,
+      "model_usage": null,
+      "model_cost": null,
+      "notes": [
+        "AppTest is an executable Streamlit form test, not a screenshot or operational approval.",
+        "Temporary test reviews and any fake-provider tickets are software fixtures, not owner-approved knowledge or triage quality evidence.",
+        "Raw-source/request artifacts remain local. No test descriptions/cards/expected answers were put in production context.",
+        "The workflow-v0 projection is provisional; the native version-1 bundle remains the authoritative source artifact.",
+        "Other sessions may change this checkout; recorded hashes are not an atomic repository freeze."
+      ]
+    },
+    {
+      "id": "b1690c9e8e9a44babfc11da21eff602e",
+      "observed_at": "2026-11-16T12:11:26.618285+00:00",
+      "command": [
+        "C:\\Users\\thanh\\falkor_case2\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "tools.verify_knowledge",
+        "--output",
+        "eval\\results\\knowledge\\component-verification.json"
+      ],
+      "scope": "offline_knowledge_component_and_provisional_workflow_handoff_not_system_acceptance",
+      "git_revision": "69117c1a437cada93d0d4ce920c9bc862a5c9fca",
+      "git_dirty": true,
+      "input_sha256": {
+        "triage_knowledge\\__init__.py": "26cb33bc2aa09e25c8a80efdac819e6114013f714cfffc7143aa8a7c68ed56ef",
+        "triage_knowledge\\__main__.py": "f3f497c226faebb39cdc439efa8eb6e48f1721e7c20e165894153617d71b3fc7",
+        "triage_knowledge\\context.py": "60fc7fcfb17576a3fdaa72f64b8c4b369bc26ba50065e9e5049b1ca6d8885e16",
+        "triage_knowledge\\contracts.py": "19d1ace2fbf1706dcd4a0bf4b565ef96cda17947172aa0ca987289b93f8008e8",
+        "triage_knowledge\\editor.py": "7c2259b16ec9027af63a7ac9a1840cf840728dbe53cd30436475438a859763fd",
+        "triage_knowledge\\knowledge.py": "49f688b1df7bd5a51762c7356cb75f4776c8842f2e8b8d587b920589fa4b2522",
+        "triage_knowledge\\workflow_export.py": "98ff2d65413cc47625d9ce712ca34c7506b61c44563eaa7de3ade0d0ebb67135",
+        "triage\\__init__.py": "46ec57da9a03501846bfcd7bf5c06e3d5c0dc305a729e044dce126cd79083272",
+        "triage\\__main__.py": "130796e5576639a46b6a7b196637bad4b0c5de503c47c5229baa04d0181aa359",
+        "triage\\assessment.py": "1d9242e61925f33a0606165841b4e652ea46fa8d06721e75eeceb91a71b86bdc",
+        "triage\\contracts.py": "55ff4a9bd3681f10bd1d7d1bb9f1c3d73f0a80b89021b30133ddff92abfdc529",
+        "triage\\inputs.py": "ca786bc28039a84d9b9d3aa909c0a861c2c610b0a91adfaadeeace23fda8fca4",
+        "triage\\policy.py": "371916671d97979a1513710d9a70519c7d408d7cf917533cbabdd1b450f31cd6",
+        "triage\\workflow.py": "f1076a45f9d2404939645c4db0d222cdaa9e7f7bdd25a43375441ad251d55216",
+        "tests\\knowledge_support.py": "c9d0fa84b67a4d26149f2839543518a49eba1218f838e87b2909bb8027220062",
+        "tests\\test_knowledge.py": "0d02e0eaef234d7ae2239d4a12b69f3f97a89990157f29a0dd59ee9aa527e06f",
+        "tests\\test_knowledge_context.py": "90cb3d07cd3aa8675770d191f005b15a50cd368145ebe667112a4e547bdd208e",
+        "tests\\test_knowledge_editor.py": "3bfa61f56aafb1642b7f2792e35b4709158de8363f0a1f5553464269843da3f4",
+        "tests\\test_knowledge_workflow.py": "bb81d5ce3c49fd4c3743d301d42aad401f3df114dcda2194aee27a3bc5d11cf5",
+        "tools\\verify_knowledge.py": "08050728ba7580f51d53c2177e5015920016c6d0a03f6724168f3729b5856d3a",
+        "tests\\triage_support.py": "79ef918d535b097243eb92746e75c6fd9b776a0fe0d8b6b71fc325c2936860e2",
+        "llm_inference\\contracts.py": "4d27d144808212ab93959d01c82574ec3add767ed80b30bcb1334596e67621cc",
+        "pyproject.toml": "646ccb78205ac51bb3decd8021a27a3e51223456666a21f1ae26e25397de1bbf",
+        "docs\\06_KNOWLEDGE_CONTEXT.md": "e0082f6708fe44ed842c6e0144f82499138d888ae8a8c3e21a711494f12358e7",
+        "eval\\spec\\acceptance.json": "033d1860c3feb3493c587ee32d2b72b510f2fec3847d04dad77de0626ea2c23c",
+        "eval\\spec\\split.json": "bf708a150f0ac08a1f65f1d585f2cdde6fb6984578ea379465a066cf9a622e43"
+      },
+      "component_status": "pass",
+      "tests": {
+        "run": 37,
+        "failures": [],
+        "errors": [],
+        "skipped": [],
+        "log": "test_candidate_schema_and_source_failures_are_explicit (tests.test_knowledge.StoreTests.test_candidate_schema_and_source_failures_are_explicit) ... ok\ntest_domain_physical_location_is_not_release_identity (tests.test_knowledge.StoreTests.test_domain_physical_location_is_not_release_identity) ... ok\ntest_domain_sections_preserve_bytes_and_reject_ambiguous_headings (tests.test_knowledge.StoreTests.test_domain_sections_preserve_bytes_and_reject_ambiguous_headings) ... ok\ntest_explicit_recovery_archives_exact_invalid_bytes (tests.test_knowledge.StoreTests.test_explicit_recovery_archives_exact_invalid_bytes) ... ok\ntest_failed_atomic_save_preserves_previous_draft (tests.test_knowledge.StoreTests.test_failed_atomic_save_preserves_previous_draft) ... ok\ntest_fork_and_field_diff_preserve_existing_release (tests.test_knowledge.StoreTests.test_fork_and_field_diff_preserve_existing_release) ... ok\ntest_publication_metadata_produces_a_new_release (tests.test_knowledge.StoreTests.test_publication_metadata_produces_a_new_release) ... ok\ntest_release_identity_immutability_and_no_fallback (tests.test_knowledge.StoreTests.test_release_identity_immutability_and_no_fallback) ... ok\ntest_resolution_rejects_noncanonical_artifact_bytes (tests.test_knowledge.StoreTests.test_resolution_rejects_noncanonical_artifact_bytes) ... ok\ntest_review_is_required_and_times_are_validated (tests.test_knowledge.StoreTests.test_review_is_required_and_times_are_validated) ... ok\ntest_snapshot_and_rubric_are_detached_and_frozen (tests.test_knowledge.StoreTests.test_snapshot_and_rubric_are_detached_and_frozen) ... ok\ntest_stale_save_and_stale_review_do_not_publish (tests.test_knowledge.StoreTests.test_stale_save_and_stale_review_do_not_publish) ... ok\ntest_strict_json_and_canonical_oracle (tests.test_knowledge.StoreTests.test_strict_json_and_canonical_oracle) ... ok\ntest_supersession_is_scoped_acyclic_and_unambiguous (tests.test_knowledge.StoreTests.test_supersession_is_scoped_acyclic_and_unambiguous) ... ok\ntest_anchored_verifier_rejects_rehashed_forged_provenance_and_knowledge (tests.test_knowledge_context.ContextTests.test_anchored_verifier_rejects_rehashed_forged_provenance_and_knowledge) ... ok\ntest_blank_evidence_and_unexpected_answer_columns_fail_before_context (tests.test_knowledge_context.ContextTests.test_blank_evidence_and_unexpected_answer_columns_fail_before_context) ... ok\ntest_complete_source_delivery_and_exact_index_locations (tests.test_knowledge_context.ContextTests.test_complete_source_delivery_and_exact_index_locations) ... ok\ntest_csv_shape_and_role_failures (tests.test_knowledge_context.ContextTests.test_csv_shape_and_role_failures) ... ok\ntest_isolated_overlay_valid_control_and_normal_rejections (tests.test_knowledge_context.ContextTests.test_isolated_overlay_valid_control_and_normal_rejections) ... ok\ntest_missing_partner_gap_cannot_be_removed_or_duplicated_then_rehashed (tests.test_knowledge_context.ContextTests.test_missing_partner_gap_cannot_be_removed_or_duplicated_then_rehashed) ... ok\ntest_missing_partner_is_a_factual_gap_not_a_failure_or_assessment (tests.test_knowledge_context.ContextTests.test_missing_partner_is_a_factual_gap_not_a_failure_or_assessment) ... ok\ntest_pinned_snapshot_and_bundle_survive_new_draft_and_release (tests.test_knowledge_context.ContextTests.test_pinned_snapshot_and_bundle_survive_new_draft_and_release) ... ok\ntest_primary_mapping_duplicates_and_cutoff_fail_visibly (tests.test_knowledge_context.ContextTests.test_primary_mapping_duplicates_and_cutoff_fail_visibly) ... ok\ntest_row_reordering_changes_only_raw_provenance (tests.test_knowledge_context.ContextTests.test_row_reordering_changes_only_raw_provenance) ... ok\ntest_semantic_canonical_projection_has_independent_exact_bytes (tests.test_knowledge_context.ContextTests.test_semantic_canonical_projection_has_independent_exact_bytes) ... ok\ntest_serializer_rejects_disguised_probe_unknown_gap_and_bad_index (tests.test_knowledge_context.ContextTests.test_serializer_rejects_disguised_probe_unknown_gap_and_bad_index) ... ok\ntest_cli_init_check_publish_and_context_with_old_output_preserved (tests.test_knowledge_editor.CliTests.test_cli_init_check_publish_and_context_with_old_output_preserved) ... ok\ntest_cli_validation_failure_is_json_and_nonzero (tests.test_knowledge_editor.CliTests.test_cli_validation_failure_is_json_and_nonzero) ... ok\ntest_headless_import_does_not_import_editor_or_inference (tests.test_knowledge_editor.CliTests.test_headless_import_does_not_import_editor_or_inference) ... ok\ntest_invalid_draft_has_explicit_archive_recovery (tests.test_knowledge_editor.EditorTests.test_invalid_draft_has_explicit_archive_recovery) ... ok\ntest_invalid_guidance_stays_unpublished (tests.test_knowledge_editor.EditorTests.test_invalid_guidance_stays_unpublished) ... ok\ntest_psv_form_diff_review_publish_and_explicit_fork (tests.test_knowledge_editor.EditorTests.test_psv_form_diff_review_publish_and_explicit_fork) ... ok\ntest_stale_tab_does_not_overwrite_newer_draft (tests.test_knowledge_editor.EditorTests.test_stale_tab_does_not_overwrite_newer_draft) ... ok\ntest_offline_request_delivery_and_context_failure_preserves_old_output (tests.test_knowledge_workflow.WorkflowHandoffTests.test_offline_request_delivery_and_context_failure_preserves_old_output) ... ok\ntest_real_module_export_passes_current_consumer_checks (tests.test_knowledge_workflow.WorkflowHandoffTests.test_real_module_export_passes_current_consumer_checks) ... ok\ntest_superseded_guidance_is_not_sent_to_fake_provider (tests.test_knowledge_workflow.WorkflowHandoffTests.test_superseded_guidance_is_not_sent_to_fake_provider) ... ok\ntest_valid_isolated_control_and_mismatched_hash_rejection (tests.test_knowledge_workflow.WorkflowHandoffTests.test_valid_isolated_control_and_mismatched_hash_rejection) ... ok\n\n----------------------------------------------------------------------\nRan 37 tests in 4.211s\n\nOK\n"
+      },
+      "reference_validation": {
+        "command": [
+          "C:\\Users\\thanh\\falkor_case2\\.venv\\Scripts\\python.exe",
+          "-B",
+          "-m",
+          "eval.validate"
+        ],
+        "exit_code": 0,
+        "stdout": "{\n  \"findings\": 21,\n  \"equipment\": 18,\n  \"blank_cells\": 0,\n  \"duplicate_primary_keys\": 0,\n  \"orphan_findings\": 0,\n  \"equipment_type_mismatches\": 0,\n  \"invalid_ids_dates_scores_sce\": 0,\n  \"date_range\": [\n    \"2026-06-02\",\n    \"2026-06-22\"\n  ],\n  \"sce_counts\": {\n    \"No\": 8,\n    \"Yes\": 10\n  },\n  \"redundancy_counts\": {\n    \"None\": 11,\n    \"Yes (bypass available)\": 1,\n    \"Voted 2oo3\": 1,\n    \"Duplicated (INST-2151)\": 1,\n    \"Duplicated (INST-2150)\": 1,\n    \"N+1 (FW-8102)\": 1,\n    \"N+1 (FW-8101)\": 1,\n    \"N+1 (LB-4101)\": 1\n  },\n  \"missing_redundant_partners\": [\n    {\n      \"equipment_id\": \"LB-4102\",\n      \"partner\": \"LB-4101\"\n    }\n  ],\n  \"reference_version\": \"1.2\",\n  \"status\": \"frozen\",\n  \"acceptance_scenarios\": 17,\n  \"system_scenarios_execution\": \"not_run_no_system\",\n  \"partition_counts\": {\n    \"development\": {\n      \"cases\": 13,\n      \"groups\": 9\n    },\n    \"test\": {\n      \"cases\": 8,\n      \"groups\": 4\n    }\n  }\n}\nArtifact integrity checks passed; no ticket/model assessment was performed.\n",
+        "stderr": ""
+      },
+      "development_delivery": {
+        "scope": "offline_source_delivery_not_provider_capture_or_knowledge_influence",
+        "checks": {
+          "exact_development_membership": true,
+          "no_test_finding_membership": true,
+          "required_B01_findings_present": true,
+          "correct_primary_comments": true,
+          "complete_original_domain": true,
+          "row_reversal_semantic_hash_equal": true,
+          "row_reversal_raw_hashes_differ": true,
+          "row_reversal_source_index_equal": true,
+          "no_evaluation_source_kinds": true
+        },
+        "finding_ids": [
+          "F-1001",
+          "F-1003",
+          "F-1004",
+          "F-1005",
+          "F-1006",
+          "F-1007",
+          "F-1008",
+          "F-1009",
+          "F-1010",
+          "F-1012",
+          "F-1016",
+          "F-1017",
+          "F-1019"
+        ],
+        "assessment_time": "2026-06-22T23:59:59+00:00",
+        "knowledge_version": "sha256-b99038127cff6975200121d80fbb30b012038365a3a3ddc38902a9f3b1ddd279",
+        "release_approval": "temporary_software_fixture_not_owner_or_domain_approval",
+        "context_hash": "61ba23d5564efb3628e6d29315902e1b2de01a7cceb71fa31bf308d8275ffef2",
+        "context_bytes": 82617,
+        "source_file_sha256": {
+          "findings_original": "4bb4b2d324b53cf8c748e25c7a511a1a5d683dc0bfba6602013da89c8256652b",
+          "registry_original": "5520713b74a28a907b7167da638dca8879849ce3d85d99e1d3ef9968fb000033"
+        },
+        "artifacts": {
+          "eval\\results\\knowledge\\component-artifacts\\b1690c9e8e9a44babfc11da21eff602e\\selected-development.csv": "2cc43cdac41f8ae033ea0454c83d271fe667f100eba02313f0ece7a2c2e18545",
+          "eval\\results\\knowledge\\component-artifacts\\b1690c9e8e9a44babfc11da21eff602e\\temporary-fixture-release.json": "5d44a1a44894c3b0d704f764ef257c792f0559d1168b4054fc6f79659e5ad703",
+          "eval\\results\\knowledge\\component-artifacts\\b1690c9e8e9a44babfc11da21eff602e\\context-v1.json": "23970ab4dca49f860f5bce6ed31252211c9b5be54e21f1bc588b3057b9ab4268",
+          "eval\\results\\knowledge\\component-artifacts\\b1690c9e8e9a44babfc11da21eff602e\\context-reversed-v1.json": "d4e6d4c5b468867778dfa67a3132cc84c40b4c46b558a79fba7af6161f60311e",
+          "eval\\results\\knowledge\\component-artifacts\\b1690c9e8e9a44babfc11da21eff602e\\workflow-v0.json": "c165bbdad18ff5c844580e3f617544abda57db925d8fa96e697cd6db37b32d50"
+        }
+      },
+      "scenario_status": {
+        "B01": "component_and_fake_provider_wiring_only_actual_provider_capture_pending",
+        "B02": "isolated_overlay_delivery_tested_real_model_behavior_probe_not_run",
+        "B03": "editor_path_exercised_final_owner_DESIGN_and_domain_review_pending",
+        "D02": "component_gap_and_invalid_primary_checks_only",
+        "X01": "context_snapshot_invariance_only_real_decision_stability_not_run",
+        "X02": "module_reproduction_only_final_all_21_delivery_not_run"
+      },
+      "provider_sends": 0,
+      "paid_model_eval_run": false,
+      "frozen_test_assessment_run": false,
+      "model": null,
+      "model_usage": null,
+      "model_cost": null,
+      "notes": [
+        "AppTest is an executable Streamlit form test, not a screenshot or operational approval.",
+        "Temporary test reviews and any fake-provider tickets are software fixtures, not owner-approved knowledge or triage quality evidence.",
+        "Raw-source/request artifacts remain local. No test descriptions/cards/expected answers were put in production context.",
+        "The workflow-v0 projection is provisional; the native version-1 bundle remains the authoritative source artifact.",
+        "Other sessions may change this checkout; recorded hashes are not an atomic repository freeze."
+      ]
+    },
+    {
+      "id": "533eb9f8168f4b2bb2bb992a84a26a51",
+      "observed_at": "2026-11-16T12:15:49.467823+00:00",
+      "command": [
+        "C:\\Users\\thanh\\falkor_case2\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "tools.verify_knowledge",
+        "--output",
+        "eval\\results\\knowledge\\component-verification.json"
+      ],
+      "scope": "offline_knowledge_component_and_provisional_workflow_handoff_not_system_acceptance",
+      "git_revision": "69117c1a437cada93d0d4ce920c9bc862a5c9fca",
+      "git_dirty": true,
+      "input_sha256": {
+        "triage_knowledge\\__init__.py": "26cb33bc2aa09e25c8a80efdac819e6114013f714cfffc7143aa8a7c68ed56ef",
+        "triage_knowledge\\__main__.py": "f3f497c226faebb39cdc439efa8eb6e48f1721e7c20e165894153617d71b3fc7",
+        "triage_knowledge\\context.py": "927f8f2f7d5995d1fafff85a0825f87c8c7a29cc4807b0da60868dd401a0b1d3",
+        "triage_knowledge\\contracts.py": "19d1ace2fbf1706dcd4a0bf4b565ef96cda17947172aa0ca987289b93f8008e8",
+        "triage_knowledge\\editor.py": "7c2259b16ec9027af63a7ac9a1840cf840728dbe53cd30436475438a859763fd",
+        "triage_knowledge\\knowledge.py": "668dc05dc66bdb235e52df1ba0f50978bd1afee156bb823c6b47ed32cd04d04d",
+        "triage_knowledge\\workflow_export.py": "98ff2d65413cc47625d9ce712ca34c7506b61c44563eaa7de3ade0d0ebb67135",
+        "triage\\__init__.py": "46ec57da9a03501846bfcd7bf5c06e3d5c0dc305a729e044dce126cd79083272",
+        "triage\\__main__.py": "c41717ffe40166b654fecd447794c410df843a039656a223906943cceca3a8bd",
+        "triage\\assessment.py": "0431ff380a030baf0a60f546474ee53f440deb7e687d2e071cdd80732b416688",
+        "triage\\contracts.py": "617852d136cb46f1e4d961c0ca1d708fca64ba77f63da603775567829c780f7d",
+        "triage\\inputs.py": "ca786bc28039a84d9b9d3aa909c0a861c2c610b0a91adfaadeeace23fda8fca4",
+        "triage\\policy.py": "ab3fa6bf202386784374eeabff2538e10d43aa003508a082849a7992e51d8958",
+        "triage\\workflow.py": "70ffa4ad6af1d04d136b19d8052cdd886b10d00277fb315a6bfe6bfc0f5f5424",
+        "tests\\knowledge_support.py": "c9d0fa84b67a4d26149f2839543518a49eba1218f838e87b2909bb8027220062",
+        "tests\\test_knowledge.py": "7e48069a619a81613feb74bc075a06fc4261a6bd8f1795d81296e670123b8c70",
+        "tests\\test_knowledge_context.py": "7fb75b7c76f16b01d047ca54dcf53da49af2ecb049f002df04a0c9090a252aba",
+        "tests\\test_knowledge_editor.py": "3bfa61f56aafb1642b7f2792e35b4709158de8363f0a1f5553464269843da3f4",
+        "tests\\test_knowledge_workflow.py": "bb81d5ce3c49fd4c3743d301d42aad401f3df114dcda2194aee27a3bc5d11cf5",
+        "tools\\verify_knowledge.py": "252aeeae1f24b34cc7281c364fb4ddd27bbc26af908a5769b163be589ab7515a",
+        "tests\\triage_support.py": "79ef918d535b097243eb92746e75c6fd9b776a0fe0d8b6b71fc325c2936860e2",
+        "tests\\test_triage.py": "fce28e44ff375165513b3180377d64a2d159d171810166fc75e5cd31b10fd512",
+        "llm_inference\\contracts.py": "4d27d144808212ab93959d01c82574ec3add767ed80b30bcb1334596e67621cc",
+        "pyproject.toml": "646ccb78205ac51bb3decd8021a27a3e51223456666a21f1ae26e25397de1bbf",
+        "docs\\06_KNOWLEDGE_CONTEXT.md": "7a10f59e1b37dcaf9a7f95256f11889e94a148574c11cff10149fb9eb5c63cd0",
+        "eval\\spec\\acceptance.json": "033d1860c3feb3493c587ee32d2b72b510f2fec3847d04dad77de0626ea2c23c",
+        "eval\\spec\\split.json": "bf708a150f0ac08a1f65f1d585f2cdde6fb6984578ea379465a066cf9a622e43"
+      },
+      "component_status": "pass",
+      "tests": {
+        "run": 39,
+        "failures": [],
+        "errors": [],
+        "skipped": [],
+        "log": "test_candidate_schema_and_source_failures_are_explicit (tests.test_knowledge.StoreTests.test_candidate_schema_and_source_failures_are_explicit) ... ok\ntest_cleanup_failure_reports_that_destination_may_already_exist (tests.test_knowledge.StoreTests.test_cleanup_failure_reports_that_destination_may_already_exist) ... ok\ntest_domain_physical_location_is_not_release_identity (tests.test_knowledge.StoreTests.test_domain_physical_location_is_not_release_identity) ... ok\ntest_domain_sections_preserve_bytes_and_reject_ambiguous_headings (tests.test_knowledge.StoreTests.test_domain_sections_preserve_bytes_and_reject_ambiguous_headings) ... ok\ntest_explicit_recovery_archives_exact_invalid_bytes (tests.test_knowledge.StoreTests.test_explicit_recovery_archives_exact_invalid_bytes) ... ok\ntest_failed_atomic_save_preserves_previous_draft (tests.test_knowledge.StoreTests.test_failed_atomic_save_preserves_previous_draft) ... ok\ntest_failure_band_declaration_must_match_the_actual_top_band (tests.test_knowledge.StoreTests.test_failure_band_declaration_must_match_the_actual_top_band) ... ok\ntest_fork_and_field_diff_preserve_existing_release (tests.test_knowledge.StoreTests.test_fork_and_field_diff_preserve_existing_release) ... ok\ntest_publication_metadata_produces_a_new_release (tests.test_knowledge.StoreTests.test_publication_metadata_produces_a_new_release) ... ok\ntest_release_identity_immutability_and_no_fallback (tests.test_knowledge.StoreTests.test_release_identity_immutability_and_no_fallback) ... ok\ntest_resolution_rejects_noncanonical_artifact_bytes (tests.test_knowledge.StoreTests.test_resolution_rejects_noncanonical_artifact_bytes) ... ok\ntest_review_is_required_and_times_are_validated (tests.test_knowledge.StoreTests.test_review_is_required_and_times_are_validated) ... ok\ntest_snapshot_and_rubric_are_detached_and_frozen (tests.test_knowledge.StoreTests.test_snapshot_and_rubric_are_detached_and_frozen) ... ok\ntest_stale_save_and_stale_review_do_not_publish (tests.test_knowledge.StoreTests.test_stale_save_and_stale_review_do_not_publish) ... ok\ntest_strict_json_and_canonical_oracle (tests.test_knowledge.StoreTests.test_strict_json_and_canonical_oracle) ... ok\ntest_supersession_is_scoped_acyclic_and_unambiguous (tests.test_knowledge.StoreTests.test_supersession_is_scoped_acyclic_and_unambiguous) ... ok\ntest_anchored_verifier_rejects_rehashed_forged_provenance_and_knowledge (tests.test_knowledge_context.ContextTests.test_anchored_verifier_rejects_rehashed_forged_provenance_and_knowledge) ... ok\ntest_blank_evidence_and_unexpected_answer_columns_fail_before_context (tests.test_knowledge_context.ContextTests.test_blank_evidence_and_unexpected_answer_columns_fail_before_context) ... ok\ntest_complete_source_delivery_and_exact_index_locations (tests.test_knowledge_context.ContextTests.test_complete_source_delivery_and_exact_index_locations) ... ok\ntest_csv_shape_and_role_failures (tests.test_knowledge_context.ContextTests.test_csv_shape_and_role_failures) ... ok\ntest_isolated_overlay_valid_control_and_normal_rejections (tests.test_knowledge_context.ContextTests.test_isolated_overlay_valid_control_and_normal_rejections) ... ok\ntest_missing_partner_gap_cannot_be_removed_or_duplicated_then_rehashed (tests.test_knowledge_context.ContextTests.test_missing_partner_gap_cannot_be_removed_or_duplicated_then_rehashed) ... ok\ntest_missing_partner_is_a_factual_gap_not_a_failure_or_assessment (tests.test_knowledge_context.ContextTests.test_missing_partner_is_a_factual_gap_not_a_failure_or_assessment) ... ok\ntest_pinned_snapshot_and_bundle_survive_new_draft_and_release (tests.test_knowledge_context.ContextTests.test_pinned_snapshot_and_bundle_survive_new_draft_and_release) ... ok\ntest_primary_mapping_duplicates_and_cutoff_fail_visibly (tests.test_knowledge_context.ContextTests.test_primary_mapping_duplicates_and_cutoff_fail_visibly) ... ok\ntest_row_reordering_changes_only_raw_provenance (tests.test_knowledge_context.ContextTests.test_row_reordering_changes_only_raw_provenance) ... ok\ntest_semantic_canonical_projection_has_independent_exact_bytes (tests.test_knowledge_context.ContextTests.test_semantic_canonical_projection_has_independent_exact_bytes) ... ok\ntest_serializer_rejects_disguised_probe_unknown_gap_and_bad_index (tests.test_knowledge_context.ContextTests.test_serializer_rejects_disguised_probe_unknown_gap_and_bad_index) ... ok\ntest_cli_init_check_publish_and_context_with_old_output_preserved (tests.test_knowledge_editor.CliTests.test_cli_init_check_publish_and_context_with_old_output_preserved) ... ok\ntest_cli_validation_failure_is_json_and_nonzero (tests.test_knowledge_editor.CliTests.test_cli_validation_failure_is_json_and_nonzero) ... ok\ntest_headless_import_does_not_import_editor_or_inference (tests.test_knowledge_editor.CliTests.test_headless_import_does_not_import_editor_or_inference) ... ok\ntest_invalid_draft_has_explicit_archive_recovery (tests.test_knowledge_editor.EditorTests.test_invalid_draft_has_explicit_archive_recovery) ... ok\ntest_invalid_guidance_stays_unpublished (tests.test_knowledge_editor.EditorTests.test_invalid_guidance_stays_unpublished) ... ok\ntest_psv_form_diff_review_publish_and_explicit_fork (tests.test_knowledge_editor.EditorTests.test_psv_form_diff_review_publish_and_explicit_fork) ... ok\ntest_stale_tab_does_not_overwrite_newer_draft (tests.test_knowledge_editor.EditorTests.test_stale_tab_does_not_overwrite_newer_draft) ... ok\ntest_offline_request_delivery_and_context_failure_preserves_old_output (tests.test_knowledge_workflow.WorkflowHandoffTests.test_offline_request_delivery_and_context_failure_preserves_old_output) ... ok\ntest_real_module_export_passes_current_consumer_checks (tests.test_knowledge_workflow.WorkflowHandoffTests.test_real_module_export_passes_current_consumer_checks) ... ok\ntest_superseded_guidance_is_not_sent_to_fake_provider (tests.test_knowledge_workflow.WorkflowHandoffTests.test_superseded_guidance_is_not_sent_to_fake_provider) ... ok\ntest_valid_isolated_control_and_mismatched_hash_rejection (tests.test_knowledge_workflow.WorkflowHandoffTests.test_valid_isolated_control_and_mismatched_hash_rejection) ... ok\n\n----------------------------------------------------------------------\nRan 39 tests in 8.055s\n\nOK\n"
+      },
+      "reference_validation": {
+        "command": [
+          "C:\\Users\\thanh\\falkor_case2\\.venv\\Scripts\\python.exe",
+          "-B",
+          "-m",
+          "eval.validate"
+        ],
+        "exit_code": 0,
+        "stdout": "{\n  \"findings\": 21,\n  \"equipment\": 18,\n  \"blank_cells\": 0,\n  \"duplicate_primary_keys\": 0,\n  \"orphan_findings\": 0,\n  \"equipment_type_mismatches\": 0,\n  \"invalid_ids_dates_scores_sce\": 0,\n  \"date_range\": [\n    \"2026-06-02\",\n    \"2026-06-22\"\n  ],\n  \"sce_counts\": {\n    \"No\": 8,\n    \"Yes\": 10\n  },\n  \"redundancy_counts\": {\n    \"None\": 11,\n    \"Yes (bypass available)\": 1,\n    \"Voted 2oo3\": 1,\n    \"Duplicated (INST-2151)\": 1,\n    \"Duplicated (INST-2150)\": 1,\n    \"N+1 (FW-8102)\": 1,\n    \"N+1 (FW-8101)\": 1,\n    \"N+1 (LB-4101)\": 1\n  },\n  \"missing_redundant_partners\": [\n    {\n      \"equipment_id\": \"LB-4102\",\n      \"partner\": \"LB-4101\"\n    }\n  ],\n  \"reference_version\": \"1.2\",\n  \"status\": \"frozen\",\n  \"acceptance_scenarios\": 17,\n  \"system_scenarios_execution\": \"not_run_no_system\",\n  \"partition_counts\": {\n    \"development\": {\n      \"cases\": 13,\n      \"groups\": 9\n    },\n    \"test\": {\n      \"cases\": 8,\n      \"groups\": 4\n    }\n  }\n}\nArtifact integrity checks passed; no ticket/model assessment was performed.\n",
+        "stderr": ""
+      },
+      "development_delivery": {
+        "scope": "offline_source_delivery_not_provider_capture_or_knowledge_influence",
+        "checks": {
+          "exact_development_membership": true,
+          "no_test_finding_membership": true,
+          "required_B01_findings_present": true,
+          "correct_primary_comments": true,
+          "complete_original_domain": true,
+          "row_reversal_semantic_hash_equal": true,
+          "row_reversal_raw_hashes_differ": true,
+          "row_reversal_source_index_equal": true,
+          "no_evaluation_source_kinds": true
+        },
+        "finding_ids": [
+          "F-1001",
+          "F-1003",
+          "F-1004",
+          "F-1005",
+          "F-1006",
+          "F-1007",
+          "F-1008",
+          "F-1009",
+          "F-1010",
+          "F-1012",
+          "F-1016",
+          "F-1017",
+          "F-1019"
+        ],
+        "assessment_time": "2026-06-22T23:59:59+00:00",
+        "knowledge_version": "sha256-ed0bf62defbbac038d7fe6f8f34d85c15b4f340ac1b705dc1e8943ebe0bc3237",
+        "release_approval": "temporary_software_fixture_not_owner_or_domain_approval",
+        "context_hash": "dccbe63f5de2b686ed016e56597da5037756ddba7bf45a5d0c8f9da5c7b99cbf",
+        "context_bytes": 82617,
+        "source_file_sha256": {
+          "findings_original": "4bb4b2d324b53cf8c748e25c7a511a1a5d683dc0bfba6602013da89c8256652b",
+          "registry_original": "5520713b74a28a907b7167da638dca8879849ce3d85d99e1d3ef9968fb000033"
+        },
+        "artifacts": {
+          "eval\\results\\knowledge\\component-artifacts\\533eb9f8168f4b2bb2bb992a84a26a51\\selected-development.csv": "2cc43cdac41f8ae033ea0454c83d271fe667f100eba02313f0ece7a2c2e18545",
+          "eval\\results\\knowledge\\component-artifacts\\533eb9f8168f4b2bb2bb992a84a26a51\\temporary-fixture-release.json": "9cbb7db94269e58d0a3f5d33f437eeb725a1726b03e4fd30ab24731dae7aa047",
+          "eval\\results\\knowledge\\component-artifacts\\533eb9f8168f4b2bb2bb992a84a26a51\\context-v1.json": "cdad72b7422d908be132bc8d33d2e7e13957a69e26adfef9359134306cc22c3b",
+          "eval\\results\\knowledge\\component-artifacts\\533eb9f8168f4b2bb2bb992a84a26a51\\context-reversed-v1.json": "2053ac08195a45c6396ceb811cc54130f7ef3302f5ea44f8ce2243fe2b4cd6b2",
+          "eval\\results\\knowledge\\component-artifacts\\533eb9f8168f4b2bb2bb992a84a26a51\\workflow-v0.json": "8b872e4116f00726e6ad601ce1a0c17e53842adae5280ae58bf4d925e0bd88ea"
+        }
+      },
+      "scenario_status": {
+        "B01": "component_and_fake_provider_wiring_only_actual_provider_capture_pending",
+        "B02": "isolated_overlay_delivery_tested_real_model_behavior_probe_not_run",
+        "B03": "editor_path_exercised_final_owner_DESIGN_and_domain_review_pending",
+        "D02": "component_gap_and_invalid_primary_checks_only",
+        "X01": "context_snapshot_invariance_only_real_decision_stability_not_run",
+        "X02": "module_reproduction_only_final_all_21_delivery_not_run"
+      },
+      "provider_sends": 0,
+      "paid_model_eval_run": false,
+      "frozen_test_assessment_run": false,
+      "model": null,
+      "model_usage": null,
+      "model_cost": null,
+      "notes": [
+        "AppTest is an executable Streamlit form test, not a screenshot or operational approval.",
+        "Temporary test reviews and any fake-provider tickets are software fixtures, not owner-approved knowledge or triage quality evidence.",
+        "Raw-source/request artifacts remain local. No test descriptions/cards/expected answers were put in production context.",
+        "The workflow-v0 projection is provisional; the native version-1 bundle remains the authoritative source artifact.",
+        "Other sessions may change this checkout; recorded hashes are not an atomic repository freeze."
+      ]
+    },
+    {
+      "id": "84a71e287f034e1685fb6c51771696df",
+      "observed_at": "2026-11-16T12:19:26.084199+00:00",
+      "command": [
+        "C:\\Users\\thanh\\falkor_case2\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "tools.verify_knowledge",
+        "--output",
+        "eval\\results\\knowledge\\component-verification.json"
+      ],
+      "scope": "offline_knowledge_component_and_provisional_workflow_handoff_not_system_acceptance",
+      "git_revision": "69117c1a437cada93d0d4ce920c9bc862a5c9fca",
+      "git_dirty": true,
+      "reference_version": "1.2",
+      "python_version": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+      "input_sha256": {
+        "triage_knowledge\\__init__.py": "26cb33bc2aa09e25c8a80efdac819e6114013f714cfffc7143aa8a7c68ed56ef",
+        "triage_knowledge\\__main__.py": "f3f497c226faebb39cdc439efa8eb6e48f1721e7c20e165894153617d71b3fc7",
+        "triage_knowledge\\context.py": "79151310c56cf19d8fdfddbb033cc5b4cd17a265096b4851fc43bdbbdb6ef7af",
+        "triage_knowledge\\contracts.py": "19d1ace2fbf1706dcd4a0bf4b565ef96cda17947172aa0ca987289b93f8008e8",
+        "triage_knowledge\\editor.py": "7c2259b16ec9027af63a7ac9a1840cf840728dbe53cd30436475438a859763fd",
+        "triage_knowledge\\knowledge.py": "668dc05dc66bdb235e52df1ba0f50978bd1afee156bb823c6b47ed32cd04d04d",
+        "triage_knowledge\\workflow_export.py": "98ff2d65413cc47625d9ce712ca34c7506b61c44563eaa7de3ade0d0ebb67135",
+        "triage\\__init__.py": "46ec57da9a03501846bfcd7bf5c06e3d5c0dc305a729e044dce126cd79083272",
+        "triage\\__main__.py": "c41717ffe40166b654fecd447794c410df843a039656a223906943cceca3a8bd",
+        "triage\\assessment.py": "0431ff380a030baf0a60f546474ee53f440deb7e687d2e071cdd80732b416688",
+        "triage\\contracts.py": "617852d136cb46f1e4d961c0ca1d708fca64ba77f63da603775567829c780f7d",
+        "triage\\inputs.py": "ca786bc28039a84d9b9d3aa909c0a861c2c610b0a91adfaadeeace23fda8fca4",
+        "triage\\policy.py": "ab3fa6bf202386784374eeabff2538e10d43aa003508a082849a7992e51d8958",
+        "triage\\workflow.py": "70ffa4ad6af1d04d136b19d8052cdd886b10d00277fb315a6bfe6bfc0f5f5424",
+        "tests\\knowledge_support.py": "c9d0fa84b67a4d26149f2839543518a49eba1218f838e87b2909bb8027220062",
+        "tests\\test_knowledge.py": "7e48069a619a81613feb74bc075a06fc4261a6bd8f1795d81296e670123b8c70",
+        "tests\\test_knowledge_context.py": "fb4988bdee9b5bdae3080547ef6189c8fb87bad3185f853e3ad6226544bde64a",
+        "tests\\test_knowledge_editor.py": "3bfa61f56aafb1642b7f2792e35b4709158de8363f0a1f5553464269843da3f4",
+        "tests\\test_knowledge_workflow.py": "bb81d5ce3c49fd4c3743d301d42aad401f3df114dcda2194aee27a3bc5d11cf5",
+        "tools\\verify_knowledge.py": "9107eaab52f5309f85be8358d61f6df3777c48f301426972eb144a13c8d265b5",
+        "tests\\triage_support.py": "79ef918d535b097243eb92746e75c6fd9b776a0fe0d8b6b71fc325c2936860e2",
+        "tests\\test_triage.py": "fce28e44ff375165513b3180377d64a2d159d171810166fc75e5cd31b10fd512",
+        "llm_inference\\contracts.py": "4d27d144808212ab93959d01c82574ec3add767ed80b30bcb1334596e67621cc",
+        "pyproject.toml": "646ccb78205ac51bb3decd8021a27a3e51223456666a21f1ae26e25397de1bbf",
+        "docs\\06_KNOWLEDGE_CONTEXT.md": "2dab90066879260c56ee33596825248ca51b90eba8daf7b9991c89d7731fe9ee",
+        "eval\\spec\\acceptance.json": "033d1860c3feb3493c587ee32d2b72b510f2fec3847d04dad77de0626ea2c23c",
+        "eval\\spec\\split.json": "bf708a150f0ac08a1f65f1d585f2cdde6fb6984578ea379465a066cf9a622e43"
+      },
+      "component_status": "pass",
+      "tests": {
+        "run": 39,
+        "failures": [],
+        "errors": [],
+        "skipped": [],
+        "log": "test_candidate_schema_and_source_failures_are_explicit (tests.test_knowledge.StoreTests.test_candidate_schema_and_source_failures_are_explicit) ... ok\ntest_cleanup_failure_reports_that_destination_may_already_exist (tests.test_knowledge.StoreTests.test_cleanup_failure_reports_that_destination_may_already_exist) ... ok\ntest_domain_physical_location_is_not_release_identity (tests.test_knowledge.StoreTests.test_domain_physical_location_is_not_release_identity) ... ok\ntest_domain_sections_preserve_bytes_and_reject_ambiguous_headings (tests.test_knowledge.StoreTests.test_domain_sections_preserve_bytes_and_reject_ambiguous_headings) ... ok\ntest_explicit_recovery_archives_exact_invalid_bytes (tests.test_knowledge.StoreTests.test_explicit_recovery_archives_exact_invalid_bytes) ... ok\ntest_failed_atomic_save_preserves_previous_draft (tests.test_knowledge.StoreTests.test_failed_atomic_save_preserves_previous_draft) ... ok\ntest_failure_band_declaration_must_match_the_actual_top_band (tests.test_knowledge.StoreTests.test_failure_band_declaration_must_match_the_actual_top_band) ... ok\ntest_fork_and_field_diff_preserve_existing_release (tests.test_knowledge.StoreTests.test_fork_and_field_diff_preserve_existing_release) ... ok\ntest_publication_metadata_produces_a_new_release (tests.test_knowledge.StoreTests.test_publication_metadata_produces_a_new_release) ... ok\ntest_release_identity_immutability_and_no_fallback (tests.test_knowledge.StoreTests.test_release_identity_immutability_and_no_fallback) ... ok\ntest_resolution_rejects_noncanonical_artifact_bytes (tests.test_knowledge.StoreTests.test_resolution_rejects_noncanonical_artifact_bytes) ... ok\ntest_review_is_required_and_times_are_validated (tests.test_knowledge.StoreTests.test_review_is_required_and_times_are_validated) ... ok\ntest_snapshot_and_rubric_are_detached_and_frozen (tests.test_knowledge.StoreTests.test_snapshot_and_rubric_are_detached_and_frozen) ... ok\ntest_stale_save_and_stale_review_do_not_publish (tests.test_knowledge.StoreTests.test_stale_save_and_stale_review_do_not_publish) ... ok\ntest_strict_json_and_canonical_oracle (tests.test_knowledge.StoreTests.test_strict_json_and_canonical_oracle) ... ok\ntest_supersession_is_scoped_acyclic_and_unambiguous (tests.test_knowledge.StoreTests.test_supersession_is_scoped_acyclic_and_unambiguous) ... ok\ntest_anchored_verifier_rejects_rehashed_forged_provenance_and_knowledge (tests.test_knowledge_context.ContextTests.test_anchored_verifier_rejects_rehashed_forged_provenance_and_knowledge) ... ok\ntest_blank_evidence_and_unexpected_answer_columns_fail_before_context (tests.test_knowledge_context.ContextTests.test_blank_evidence_and_unexpected_answer_columns_fail_before_context) ... ok\ntest_complete_source_delivery_and_exact_index_locations (tests.test_knowledge_context.ContextTests.test_complete_source_delivery_and_exact_index_locations) ... ok\ntest_csv_shape_and_role_failures (tests.test_knowledge_context.ContextTests.test_csv_shape_and_role_failures) ... ok\ntest_isolated_overlay_valid_control_and_normal_rejections (tests.test_knowledge_context.ContextTests.test_isolated_overlay_valid_control_and_normal_rejections) ... ok\ntest_missing_partner_gap_cannot_be_removed_or_duplicated_then_rehashed (tests.test_knowledge_context.ContextTests.test_missing_partner_gap_cannot_be_removed_or_duplicated_then_rehashed) ... ok\ntest_missing_partner_is_a_factual_gap_not_a_failure_or_assessment (tests.test_knowledge_context.ContextTests.test_missing_partner_is_a_factual_gap_not_a_failure_or_assessment) ... ok\ntest_pinned_snapshot_and_bundle_survive_new_draft_and_release (tests.test_knowledge_context.ContextTests.test_pinned_snapshot_and_bundle_survive_new_draft_and_release) ... ok\ntest_primary_mapping_duplicates_and_cutoff_fail_visibly (tests.test_knowledge_context.ContextTests.test_primary_mapping_duplicates_and_cutoff_fail_visibly) ... ok\ntest_row_reordering_changes_only_raw_provenance (tests.test_knowledge_context.ContextTests.test_row_reordering_changes_only_raw_provenance) ... ok\ntest_semantic_canonical_projection_has_independent_exact_bytes (tests.test_knowledge_context.ContextTests.test_semantic_canonical_projection_has_independent_exact_bytes) ... ok\ntest_serializer_rejects_disguised_probe_unknown_gap_and_bad_index (tests.test_knowledge_context.ContextTests.test_serializer_rejects_disguised_probe_unknown_gap_and_bad_index) ... ok\ntest_cli_init_check_publish_and_context_with_old_output_preserved (tests.test_knowledge_editor.CliTests.test_cli_init_check_publish_and_context_with_old_output_preserved) ... ok\ntest_cli_validation_failure_is_json_and_nonzero (tests.test_knowledge_editor.CliTests.test_cli_validation_failure_is_json_and_nonzero) ... ok\ntest_headless_import_does_not_import_editor_or_inference (tests.test_knowledge_editor.CliTests.test_headless_import_does_not_import_editor_or_inference) ... ok\ntest_invalid_draft_has_explicit_archive_recovery (tests.test_knowledge_editor.EditorTests.test_invalid_draft_has_explicit_archive_recovery) ... ok\ntest_invalid_guidance_stays_unpublished (tests.test_knowledge_editor.EditorTests.test_invalid_guidance_stays_unpublished) ... ok\ntest_psv_form_diff_review_publish_and_explicit_fork (tests.test_knowledge_editor.EditorTests.test_psv_form_diff_review_publish_and_explicit_fork) ... ok\ntest_stale_tab_does_not_overwrite_newer_draft (tests.test_knowledge_editor.EditorTests.test_stale_tab_does_not_overwrite_newer_draft) ... ok\ntest_offline_request_delivery_and_context_failure_preserves_old_output (tests.test_knowledge_workflow.WorkflowHandoffTests.test_offline_request_delivery_and_context_failure_preserves_old_output) ... ok\ntest_real_module_export_passes_current_consumer_checks (tests.test_knowledge_workflow.WorkflowHandoffTests.test_real_module_export_passes_current_consumer_checks) ... ok\ntest_superseded_guidance_is_not_sent_to_fake_provider (tests.test_knowledge_workflow.WorkflowHandoffTests.test_superseded_guidance_is_not_sent_to_fake_provider) ... ok\ntest_valid_isolated_control_and_mismatched_hash_rejection (tests.test_knowledge_workflow.WorkflowHandoffTests.test_valid_isolated_control_and_mismatched_hash_rejection) ... ok\n\n----------------------------------------------------------------------\nRan 39 tests in 5.315s\n\nOK\n"
+      },
+      "reference_validation": {
+        "command": [
+          "C:\\Users\\thanh\\falkor_case2\\.venv\\Scripts\\python.exe",
+          "-B",
+          "-m",
+          "eval.validate"
+        ],
+        "exit_code": 0,
+        "stdout": "{\n  \"findings\": 21,\n  \"equipment\": 18,\n  \"blank_cells\": 0,\n  \"duplicate_primary_keys\": 0,\n  \"orphan_findings\": 0,\n  \"equipment_type_mismatches\": 0,\n  \"invalid_ids_dates_scores_sce\": 0,\n  \"date_range\": [\n    \"2026-06-02\",\n    \"2026-06-22\"\n  ],\n  \"sce_counts\": {\n    \"No\": 8,\n    \"Yes\": 10\n  },\n  \"redundancy_counts\": {\n    \"None\": 11,\n    \"Yes (bypass available)\": 1,\n    \"Voted 2oo3\": 1,\n    \"Duplicated (INST-2151)\": 1,\n    \"Duplicated (INST-2150)\": 1,\n    \"N+1 (FW-8102)\": 1,\n    \"N+1 (FW-8101)\": 1,\n    \"N+1 (LB-4101)\": 1\n  },\n  \"missing_redundant_partners\": [\n    {\n      \"equipment_id\": \"LB-4102\",\n      \"partner\": \"LB-4101\"\n    }\n  ],\n  \"reference_version\": \"1.2\",\n  \"status\": \"frozen\",\n  \"acceptance_scenarios\": 17,\n  \"system_scenarios_execution\": \"not_run_no_system\",\n  \"partition_counts\": {\n    \"development\": {\n      \"cases\": 13,\n      \"groups\": 9\n    },\n    \"test\": {\n      \"cases\": 8,\n      \"groups\": 4\n    }\n  }\n}\nArtifact integrity checks passed; no ticket/model assessment was performed.\n",
+        "stderr": ""
+      },
+      "development_delivery": {
+        "scope": "offline_source_delivery_not_provider_capture_or_knowledge_influence",
+        "checks": {
+          "exact_development_membership": true,
+          "no_test_finding_membership": true,
+          "required_B01_findings_present": true,
+          "correct_primary_comments": true,
+          "complete_original_domain": true,
+          "row_reversal_semantic_hash_equal": true,
+          "row_reversal_raw_hashes_differ": true,
+          "row_reversal_source_index_equal": true,
+          "no_evaluation_source_kinds": true
+        },
+        "finding_ids": [
+          "F-1001",
+          "F-1003",
+          "F-1004",
+          "F-1005",
+          "F-1006",
+          "F-1007",
+          "F-1008",
+          "F-1009",
+          "F-1010",
+          "F-1012",
+          "F-1016",
+          "F-1017",
+          "F-1019"
+        ],
+        "assessment_time": "2026-06-22T23:59:59+00:00",
+        "knowledge_version": "sha256-00852b158cd8bee6397892aad24d912c47b2503c913c3b8154dd0a05fe61ba9b",
+        "release_approval": "temporary_software_fixture_not_owner_or_domain_approval",
+        "context_hash": "d285c4cb3c02e7d66bdf33ead738fa94b106343323febba1e622cf3f36fd5edf",
+        "context_bytes": 82617,
+        "source_file_sha256": {
+          "findings_original": "4bb4b2d324b53cf8c748e25c7a511a1a5d683dc0bfba6602013da89c8256652b",
+          "registry_original": "5520713b74a28a907b7167da638dca8879849ce3d85d99e1d3ef9968fb000033"
+        },
+        "artifacts": {
+          "eval\\results\\knowledge\\component-artifacts\\84a71e287f034e1685fb6c51771696df\\selected-development.csv": "2cc43cdac41f8ae033ea0454c83d271fe667f100eba02313f0ece7a2c2e18545",
+          "eval\\results\\knowledge\\component-artifacts\\84a71e287f034e1685fb6c51771696df\\temporary-fixture-release.json": "4163850fe9437347ee7851447e18bde489534db09e81169498a6648075e5cc7e",
+          "eval\\results\\knowledge\\component-artifacts\\84a71e287f034e1685fb6c51771696df\\context-v1.json": "3b8fe931941b5d4146be745e61c495d157ca27d676e0895afad6450a84dda8d2",
+          "eval\\results\\knowledge\\component-artifacts\\84a71e287f034e1685fb6c51771696df\\context-reversed-v1.json": "8d07d2c57a6044a10c2465fcd18caf70cd2e077f19f91cd0d0936737cbbd6aab",
+          "eval\\results\\knowledge\\component-artifacts\\84a71e287f034e1685fb6c51771696df\\workflow-v0.json": "d078ac06e72996dc3182350bb4c939bb999b506e1051cfeca9863bbfc06c831c"
+        }
+      },
+      "scenario_status": {
+        "B01": "component_and_fake_provider_wiring_only_actual_provider_capture_pending",
+        "B02": "isolated_overlay_delivery_tested_real_model_behavior_probe_not_run",
+        "B03": "editor_path_exercised_final_owner_DESIGN_and_domain_review_pending",
+        "D02": "component_gap_and_invalid_primary_checks_only",
+        "X01": "context_snapshot_invariance_only_real_decision_stability_not_run",
+        "X02": "module_reproduction_only_final_all_21_delivery_not_run"
+      },
+      "provider_sends": 0,
+      "paid_model_eval_run": false,
+      "frozen_test_assessment_run": false,
+      "model": null,
+      "model_usage": null,
+      "model_cost": null,
+      "notes": [
+        "AppTest is an executable Streamlit form test, not a screenshot or operational approval.",
+        "Temporary test reviews and any fake-provider tickets are software fixtures, not owner-approved knowledge or triage quality evidence.",
+        "Raw-source/request artifacts remain local. No test descriptions/cards/expected answers were put in production context.",
+        "The workflow-v0 projection is provisional; the native version-1 bundle remains the authoritative source artifact.",
+        "Other sessions may change this checkout; recorded hashes are not an atomic repository freeze."
+      ]
+    },
+    {
+      "id": "fda0968fdebd4260b56eb072bff0bdcb",
+      "observed_at": "2026-11-16T12:20:59.522056+00:00",
+      "command": [
+        "C:\\Users\\thanh\\falkor_case2\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "tools.verify_knowledge",
+        "--output",
+        "eval\\results\\knowledge\\component-verification.json"
+      ],
+      "scope": "offline_knowledge_component_and_provisional_workflow_handoff_not_system_acceptance",
+      "git_revision": "69117c1a437cada93d0d4ce920c9bc862a5c9fca",
+      "git_dirty": true,
+      "reference_version": "1.2",
+      "python_version": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+      "input_sha256": {
+        "triage_knowledge\\__init__.py": "26cb33bc2aa09e25c8a80efdac819e6114013f714cfffc7143aa8a7c68ed56ef",
+        "triage_knowledge\\__main__.py": "f3f497c226faebb39cdc439efa8eb6e48f1721e7c20e165894153617d71b3fc7",
+        "triage_knowledge\\context.py": "79151310c56cf19d8fdfddbb033cc5b4cd17a265096b4851fc43bdbbdb6ef7af",
+        "triage_knowledge\\contracts.py": "19d1ace2fbf1706dcd4a0bf4b565ef96cda17947172aa0ca987289b93f8008e8",
+        "triage_knowledge\\editor.py": "7c2259b16ec9027af63a7ac9a1840cf840728dbe53cd30436475438a859763fd",
+        "triage_knowledge\\knowledge.py": "668dc05dc66bdb235e52df1ba0f50978bd1afee156bb823c6b47ed32cd04d04d",
+        "triage_knowledge\\workflow_export.py": "98ff2d65413cc47625d9ce712ca34c7506b61c44563eaa7de3ade0d0ebb67135",
+        "triage\\__init__.py": "46ec57da9a03501846bfcd7bf5c06e3d5c0dc305a729e044dce126cd79083272",
+        "triage\\__main__.py": "c41717ffe40166b654fecd447794c410df843a039656a223906943cceca3a8bd",
+        "triage\\assessment.py": "0431ff380a030baf0a60f546474ee53f440deb7e687d2e071cdd80732b416688",
+        "triage\\contracts.py": "617852d136cb46f1e4d961c0ca1d708fca64ba77f63da603775567829c780f7d",
+        "triage\\inputs.py": "ca786bc28039a84d9b9d3aa909c0a861c2c610b0a91adfaadeeace23fda8fca4",
+        "triage\\policy.py": "ab3fa6bf202386784374eeabff2538e10d43aa003508a082849a7992e51d8958",
+        "triage\\workflow.py": "170a81fa8f297242ab894807a0b1b30f57bcbc5070792dde2ae7c3e7bcfc8722",
+        "tests\\knowledge_support.py": "c9d0fa84b67a4d26149f2839543518a49eba1218f838e87b2909bb8027220062",
+        "tests\\test_knowledge.py": "7e48069a619a81613feb74bc075a06fc4261a6bd8f1795d81296e670123b8c70",
+        "tests\\test_knowledge_context.py": "fb4988bdee9b5bdae3080547ef6189c8fb87bad3185f853e3ad6226544bde64a",
+        "tests\\test_knowledge_editor.py": "3bfa61f56aafb1642b7f2792e35b4709158de8363f0a1f5553464269843da3f4",
+        "tests\\test_knowledge_workflow.py": "bb81d5ce3c49fd4c3743d301d42aad401f3df114dcda2194aee27a3bc5d11cf5",
+        "tools\\verify_knowledge.py": "9107eaab52f5309f85be8358d61f6df3777c48f301426972eb144a13c8d265b5",
+        "tests\\triage_support.py": "79ef918d535b097243eb92746e75c6fd9b776a0fe0d8b6b71fc325c2936860e2",
+        "tests\\test_triage.py": "fce28e44ff375165513b3180377d64a2d159d171810166fc75e5cd31b10fd512",
+        "llm_inference\\contracts.py": "4d27d144808212ab93959d01c82574ec3add767ed80b30bcb1334596e67621cc",
+        "pyproject.toml": "646ccb78205ac51bb3decd8021a27a3e51223456666a21f1ae26e25397de1bbf",
+        "docs\\06_KNOWLEDGE_CONTEXT.md": "2dab90066879260c56ee33596825248ca51b90eba8daf7b9991c89d7731fe9ee",
+        "eval\\spec\\acceptance.json": "033d1860c3feb3493c587ee32d2b72b510f2fec3847d04dad77de0626ea2c23c",
+        "eval\\spec\\split.json": "bf708a150f0ac08a1f65f1d585f2cdde6fb6984578ea379465a066cf9a622e43"
+      },
+      "component_status": "pass",
+      "tests": {
+        "run": 39,
+        "failures": [],
+        "errors": [],
+        "skipped": [],
+        "log": "test_candidate_schema_and_source_failures_are_explicit (tests.test_knowledge.StoreTests.test_candidate_schema_and_source_failures_are_explicit) ... ok\ntest_cleanup_failure_reports_that_destination_may_already_exist (tests.test_knowledge.StoreTests.test_cleanup_failure_reports_that_destination_may_already_exist) ... ok\ntest_domain_physical_location_is_not_release_identity (tests.test_knowledge.StoreTests.test_domain_physical_location_is_not_release_identity) ... ok\ntest_domain_sections_preserve_bytes_and_reject_ambiguous_headings (tests.test_knowledge.StoreTests.test_domain_sections_preserve_bytes_and_reject_ambiguous_headings) ... ok\ntest_explicit_recovery_archives_exact_invalid_bytes (tests.test_knowledge.StoreTests.test_explicit_recovery_archives_exact_invalid_bytes) ... ok\ntest_failed_atomic_save_preserves_previous_draft (tests.test_knowledge.StoreTests.test_failed_atomic_save_preserves_previous_draft) ... ok\ntest_failure_band_declaration_must_match_the_actual_top_band (tests.test_knowledge.StoreTests.test_failure_band_declaration_must_match_the_actual_top_band) ... ok\ntest_fork_and_field_diff_preserve_existing_release (tests.test_knowledge.StoreTests.test_fork_and_field_diff_preserve_existing_release) ... ok\ntest_publication_metadata_produces_a_new_release (tests.test_knowledge.StoreTests.test_publication_metadata_produces_a_new_release) ... ok\ntest_release_identity_immutability_and_no_fallback (tests.test_knowledge.StoreTests.test_release_identity_immutability_and_no_fallback) ... ok\ntest_resolution_rejects_noncanonical_artifact_bytes (tests.test_knowledge.StoreTests.test_resolution_rejects_noncanonical_artifact_bytes) ... ok\ntest_review_is_required_and_times_are_validated (tests.test_knowledge.StoreTests.test_review_is_required_and_times_are_validated) ... ok\ntest_snapshot_and_rubric_are_detached_and_frozen (tests.test_knowledge.StoreTests.test_snapshot_and_rubric_are_detached_and_frozen) ... ok\ntest_stale_save_and_stale_review_do_not_publish (tests.test_knowledge.StoreTests.test_stale_save_and_stale_review_do_not_publish) ... ok\ntest_strict_json_and_canonical_oracle (tests.test_knowledge.StoreTests.test_strict_json_and_canonical_oracle) ... ok\ntest_supersession_is_scoped_acyclic_and_unambiguous (tests.test_knowledge.StoreTests.test_supersession_is_scoped_acyclic_and_unambiguous) ... ok\ntest_anchored_verifier_rejects_rehashed_forged_provenance_and_knowledge (tests.test_knowledge_context.ContextTests.test_anchored_verifier_rejects_rehashed_forged_provenance_and_knowledge) ... ok\ntest_blank_evidence_and_unexpected_answer_columns_fail_before_context (tests.test_knowledge_context.ContextTests.test_blank_evidence_and_unexpected_answer_columns_fail_before_context) ... ok\ntest_complete_source_delivery_and_exact_index_locations (tests.test_knowledge_context.ContextTests.test_complete_source_delivery_and_exact_index_locations) ... ok\ntest_csv_shape_and_role_failures (tests.test_knowledge_context.ContextTests.test_csv_shape_and_role_failures) ... ok\ntest_isolated_overlay_valid_control_and_normal_rejections (tests.test_knowledge_context.ContextTests.test_isolated_overlay_valid_control_and_normal_rejections) ... ok\ntest_missing_partner_gap_cannot_be_removed_or_duplicated_then_rehashed (tests.test_knowledge_context.ContextTests.test_missing_partner_gap_cannot_be_removed_or_duplicated_then_rehashed) ... ok\ntest_missing_partner_is_a_factual_gap_not_a_failure_or_assessment (tests.test_knowledge_context.ContextTests.test_missing_partner_is_a_factual_gap_not_a_failure_or_assessment) ... ok\ntest_pinned_snapshot_and_bundle_survive_new_draft_and_release (tests.test_knowledge_context.ContextTests.test_pinned_snapshot_and_bundle_survive_new_draft_and_release) ... ok\ntest_primary_mapping_duplicates_and_cutoff_fail_visibly (tests.test_knowledge_context.ContextTests.test_primary_mapping_duplicates_and_cutoff_fail_visibly) ... ok\ntest_row_reordering_changes_only_raw_provenance (tests.test_knowledge_context.ContextTests.test_row_reordering_changes_only_raw_provenance) ... ok\ntest_semantic_canonical_projection_has_independent_exact_bytes (tests.test_knowledge_context.ContextTests.test_semantic_canonical_projection_has_independent_exact_bytes) ... ok\ntest_serializer_rejects_disguised_probe_unknown_gap_and_bad_index (tests.test_knowledge_context.ContextTests.test_serializer_rejects_disguised_probe_unknown_gap_and_bad_index) ... ok\ntest_cli_init_check_publish_and_context_with_old_output_preserved (tests.test_knowledge_editor.CliTests.test_cli_init_check_publish_and_context_with_old_output_preserved) ... ok\ntest_cli_validation_failure_is_json_and_nonzero (tests.test_knowledge_editor.CliTests.test_cli_validation_failure_is_json_and_nonzero) ... ok\ntest_headless_import_does_not_import_editor_or_inference (tests.test_knowledge_editor.CliTests.test_headless_import_does_not_import_editor_or_inference) ... ok\ntest_invalid_draft_has_explicit_archive_recovery (tests.test_knowledge_editor.EditorTests.test_invalid_draft_has_explicit_archive_recovery) ... ok\ntest_invalid_guidance_stays_unpublished (tests.test_knowledge_editor.EditorTests.test_invalid_guidance_stays_unpublished) ... ok\ntest_psv_form_diff_review_publish_and_explicit_fork (tests.test_knowledge_editor.EditorTests.test_psv_form_diff_review_publish_and_explicit_fork) ... ok\ntest_stale_tab_does_not_overwrite_newer_draft (tests.test_knowledge_editor.EditorTests.test_stale_tab_does_not_overwrite_newer_draft) ... ok\ntest_offline_request_delivery_and_context_failure_preserves_old_output (tests.test_knowledge_workflow.WorkflowHandoffTests.test_offline_request_delivery_and_context_failure_preserves_old_output) ... ok\ntest_real_module_export_passes_current_consumer_checks (tests.test_knowledge_workflow.WorkflowHandoffTests.test_real_module_export_passes_current_consumer_checks) ... ok\ntest_superseded_guidance_is_not_sent_to_fake_provider (tests.test_knowledge_workflow.WorkflowHandoffTests.test_superseded_guidance_is_not_sent_to_fake_provider) ... ok\ntest_valid_isolated_control_and_mismatched_hash_rejection (tests.test_knowledge_workflow.WorkflowHandoffTests.test_valid_isolated_control_and_mismatched_hash_rejection) ... ok\n\n----------------------------------------------------------------------\nRan 39 tests in 6.648s\n\nOK\n"
+      },
+      "reference_validation": {
+        "command": [
+          "C:\\Users\\thanh\\falkor_case2\\.venv\\Scripts\\python.exe",
+          "-B",
+          "-m",
+          "eval.validate"
+        ],
+        "exit_code": 0,
+        "stdout": "{\n  \"findings\": 21,\n  \"equipment\": 18,\n  \"blank_cells\": 0,\n  \"duplicate_primary_keys\": 0,\n  \"orphan_findings\": 0,\n  \"equipment_type_mismatches\": 0,\n  \"invalid_ids_dates_scores_sce\": 0,\n  \"date_range\": [\n    \"2026-06-02\",\n    \"2026-06-22\"\n  ],\n  \"sce_counts\": {\n    \"No\": 8,\n    \"Yes\": 10\n  },\n  \"redundancy_counts\": {\n    \"None\": 11,\n    \"Yes (bypass available)\": 1,\n    \"Voted 2oo3\": 1,\n    \"Duplicated (INST-2151)\": 1,\n    \"Duplicated (INST-2150)\": 1,\n    \"N+1 (FW-8102)\": 1,\n    \"N+1 (FW-8101)\": 1,\n    \"N+1 (LB-4101)\": 1\n  },\n  \"missing_redundant_partners\": [\n    {\n      \"equipment_id\": \"LB-4102\",\n      \"partner\": \"LB-4101\"\n    }\n  ],\n  \"reference_version\": \"1.2\",\n  \"status\": \"frozen\",\n  \"acceptance_scenarios\": 17,\n  \"system_scenarios_execution\": \"not_run_no_system\",\n  \"partition_counts\": {\n    \"development\": {\n      \"cases\": 13,\n      \"groups\": 9\n    },\n    \"test\": {\n      \"cases\": 8,\n      \"groups\": 4\n    }\n  }\n}\nArtifact integrity checks passed; no ticket/model assessment was performed.\n",
+        "stderr": ""
+      },
+      "development_delivery": {
+        "scope": "offline_source_delivery_not_provider_capture_or_knowledge_influence",
+        "checks": {
+          "exact_development_membership": true,
+          "no_test_finding_membership": true,
+          "required_B01_findings_present": true,
+          "correct_primary_comments": true,
+          "complete_original_domain": true,
+          "row_reversal_semantic_hash_equal": true,
+          "row_reversal_raw_hashes_differ": true,
+          "row_reversal_source_index_equal": true,
+          "no_evaluation_source_kinds": true
+        },
+        "finding_ids": [
+          "F-1001",
+          "F-1003",
+          "F-1004",
+          "F-1005",
+          "F-1006",
+          "F-1007",
+          "F-1008",
+          "F-1009",
+          "F-1010",
+          "F-1012",
+          "F-1016",
+          "F-1017",
+          "F-1019"
+        ],
+        "assessment_time": "2026-06-22T23:59:59+00:00",
+        "knowledge_version": "sha256-6c1bfe348da23689f143bcef2818561683d828d273b022c5a39193af45340747",
+        "release_approval": "temporary_software_fixture_not_owner_or_domain_approval",
+        "context_hash": "b689872bf7a813cb34821faa8eb176b0fc2d8ca4733143df49571db71eb651b8",
+        "context_bytes": 82617,
+        "source_file_sha256": {
+          "findings_original": "4bb4b2d324b53cf8c748e25c7a511a1a5d683dc0bfba6602013da89c8256652b",
+          "registry_original": "5520713b74a28a907b7167da638dca8879849ce3d85d99e1d3ef9968fb000033"
+        },
+        "artifacts": {
+          "eval\\results\\knowledge\\component-artifacts\\fda0968fdebd4260b56eb072bff0bdcb\\selected-development.csv": "2cc43cdac41f8ae033ea0454c83d271fe667f100eba02313f0ece7a2c2e18545",
+          "eval\\results\\knowledge\\component-artifacts\\fda0968fdebd4260b56eb072bff0bdcb\\temporary-fixture-release.json": "7af72d6cc6d7afc5b2c83d5c301a55284a936b5d106f6d8db8b3519dcc93f722",
+          "eval\\results\\knowledge\\component-artifacts\\fda0968fdebd4260b56eb072bff0bdcb\\context-v1.json": "d476e9da0b7966e4befd9ca1282da3d4ac86198b7ba105b1ff0131b16ee0c694",
+          "eval\\results\\knowledge\\component-artifacts\\fda0968fdebd4260b56eb072bff0bdcb\\context-reversed-v1.json": "52ff023088813ac278a8fa0c8c4402dab5f37d30270f6a05a89650df2e5b3c71",
+          "eval\\results\\knowledge\\component-artifacts\\fda0968fdebd4260b56eb072bff0bdcb\\workflow-v0.json": "b8ce9a4f6475bc90ca1d21c19ae44f7f89a8a48ea3abaee7887b3605a5073492"
+        }
+      },
+      "scenario_status": {
+        "B01": "component_and_fake_provider_wiring_only_actual_provider_capture_pending",
+        "B02": "isolated_overlay_delivery_tested_real_model_behavior_probe_not_run",
+        "B03": "editor_path_exercised_final_owner_DESIGN_and_domain_review_pending",
+        "D02": "component_gap_and_invalid_primary_checks_only",
+        "X01": "context_snapshot_invariance_only_real_decision_stability_not_run",
+        "X02": "module_reproduction_only_final_all_21_delivery_not_run"
+      },
+      "provider_sends": 0,
+      "paid_model_eval_run": false,
+      "frozen_test_assessment_run": false,
+      "model": null,
+      "model_usage": null,
+      "model_cost": null,
+      "notes": [
+        "AppTest is an executable Streamlit form test, not a screenshot or operational approval.",
+        "Temporary test reviews and any fake-provider tickets are software fixtures, not owner-approved knowledge or triage quality evidence.",
+        "Raw-source/request artifacts remain local. No test descriptions/cards/expected answers were put in production context.",
+        "The workflow-v0 projection is provisional; the native version-1 bundle remains the authoritative source artifact.",
+        "Other sessions may change this checkout; recorded hashes are not an atomic repository freeze."
+      ]
+    }
+  ]
+}

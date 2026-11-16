@@ -1,0 +1,18 @@
+{
+  "reference_version":"1.2",
+  "partition":"development",
+  "output_sha256":"9c00a9acf5a4290244daaa6e250182be464ec559ca00d66c1585bd8b63460147",
+  "reviewer":{
+    "kind":"ai_only",
+    "independent_of_generation":false,
+    "label":"native-integration-author-gpt-6.1-sol",
+    "configuration":"Copilot CLI parent assistant, model ID gpt-6.1-sol; document 03 three-dimensional rubric and frozen reference 1.2. Direct generator is separately gpt-5.1-chat / observed gpt-chat-latest. Same implementation author; no independent domain expertise. Controls and expected labels visible. Parent sampling and billing unavailable."
+  },
+  "items":[
+    {"finding_id":"F-1001","dimension":"planning","verdict":"fail","reason":"Specialist diagnosis and trend assessment are now present, but the explicit same-day attention instruction from the source engineer is still omitted. Unspecified specialist scheduling is not that instruction.","evidence":[{"field":"recommended_action","quote":"Rotating equipment specialist to inspect NDE bearing vibration trend"}]},
+    {"finding_id":"F-1004","dimension":"grounding","verdict":"fail","reason":"Below-minimum thickness confirms a serious integrity-condition breach, not observed inability to retain pressure or a failed protective-service function test. The live full-pressure line is not reported leaking. This is a fact/scope contradiction, not rejection of9 solely as an uncalibrated numeric value.","evidence":[{"field":"likelihood_of_failure.rationale","quote":"Required pressure-boundary function is confirmed failed because measured wall thickness is below the stated minimum allowable"},{"field":"urgency.rationale","quote":"P-FAILED-TEST (precautionary_policy): Confirmed failed protection-function test"}]},
+    {"finding_id":"F-1008","dimension":"uncertainty","verdict":"fail","reason":"MPI detected a crack during a structural survey; it did not test the operational protective/load-bearing service and demonstrate its failure. The trace incorrectly labels this protection_test_failed confirmed_true and adds an immediate failed-test floor. Structural significance and urgent authorized assessment remain warranted, but this named factual rationale is unsupported.","evidence":[{"field":"urgency.rationale","quote":"P-FAILED-TEST (precautionary_policy): Confirmed failed protection-function test"}]},
+    {"finding_id":"F-1019","dimension":"grounding","verdict":"needs_review","reason":"The numerical impact2 versus an adjacent limited-impact band cannot be resolved from missing object mass, height and personnel exposure. No process effect does not establish a bounded injury consequence. Do not invent a numeric gold score.","evidence":[{"field":"impact_of_failure.rationale","quote":"a localized dropped-object or housekeeping issue"}]},
+    {"finding_id":"F-1019","dimension":"uncertainty","verdict":"fail","reason":"The new review flag is driven only by uncertain anomaly/deviation logging, not the actual missing personnel-exposure facts. A log check is not an exposure assessment; the source's dropped-object hazard remains insufficiently bounded or checked.","evidence":[{"field":"recommended_action","quote":"Check anomaly/deviation log"},{"field":"review_reason","quote":"Uncertain policy applicability: recorded_deviation"}]}
+  ]
+}

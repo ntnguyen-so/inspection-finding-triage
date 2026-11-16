@@ -613,6 +613,15 @@ Mechanically derive subjects from selected findings/primary equipment; other
 registry rows provide relationships, not additional target subjects. Query prose
 is data, never permission to fetch extra sources or change bindings.
 
+The module also derives `triage-input-history-v1` from that same trusted snapshot.
+It contains per-equipment finding timelines plus only mechanically evidenced case
+links: explicit N+1/duplicated tags and exact equipment-ID references in registry
+service/comment fields. Every entry points back to original finding/registry
+addresses. The projection contains no score, expected action, evaluator annotation,
+repair assumption or current-state claim. A link is context, not causation; shared
+equipment does not transfer one defect to another. Missing repair/work-order
+history remains an explicit input limitation rather than invented knowledge.
+
 Retrieve once for the selected batch, union relevant items and retain one bundle
 for every assessment/retry. The module's initial deterministic selector:
 
@@ -684,10 +693,19 @@ evidence still reach assessment unchanged. Retrieval inclusion does not assert
 the rule's factual condition has occurred.
 
 Agree the breaking handoff **before implementation**: proposed knowledge schema
-3, active-view contract `active-knowledge-v1`, result above and native bundle 2;
+3, active-view contract `active-knowledge-v1`, result above and native bundle 3;
 if a file bridge remains, use `triage-export-v1`, never counterfeit v0 fields.
 No knowledge `rubric`, failure-band compatibility shim or auto-created PSV advice.
 One mechanical context adapter assembles selected evidence and tool output.
+
+Bundle 3 adds the closed `payload.history` projection. The consumer independently
+rebuilds it from retained CSV bytes and rejects omitted, added or rewritten history
+even when the caller recomputes the context hash. The assessment request exposes
+only the target equipment timeline and explicitly linked selected-batch findings
+as `target_query_facts.history`; the complete original rows and citations remain
+the evidence authority. This change addresses B01/C04/D01/D03 context quality and
+requires new integration pins and regression evidence. It does not amend frozen
+cards, make test findings available during development or guarantee semantic use.
 
 Preserve legacy sources/dependencies/artifacts before code migration; old schema
 1/2 replay uses their old implementation, not a promise that new workflow accepts
@@ -699,8 +717,7 @@ comparability with old observations, even if raw domain bytes do not change.
 
 Coordinated triage integration adds an explicit, optional isolated-probe input
 purpose to `binding_from_tables`, `get_triage_knowledge` and `build_source_context`,
-and `expected_input_purpose` to `validate_source_context`. Normal defaults retain
-their bundle-2 layout. Only `isolated_probe` permits honestly labelled
+and `expected_input_purpose` to `validate_source_context`. Normal defaults use the same history-aware bundle-3 layout. Only `isolated_probe` permits honestly labelled
 `evaluation_input` findings; registry provenance remains unchanged. Probe
 bindings/results/contexts and local evidence carry the purpose, with semantic
 hashes covering it. Default paths reject probe declarations. Artificial probe
@@ -1182,3 +1199,18 @@ actual decisions. Current package reruns are offline with zero provider calls;
 both historical provider handoffs remain bound to their actual freezes.
 Owner continuation approval is recorded verbatim with actual capture time in
 phase provenance; the user-message timestamp is not exposed and stays unknown.
+
+History-contract review used two bounded read-only AI reviewers. Both accepted
+the source-derived chronology, selected-batch isolation, source references,
+tamper-resistant independent rebuild and explicit non-causation limits. Both
+identified and the implementation fixed two material defects before evaluation:
+run provenance still named bundle 2, and a cross-equipment link could be emitted
+when findings existed on only one endpoint. Current-state documentation/tool
+labels and stale internal bundle-2 acceptance were also updated to fail closed on
+bundle 3; genuinely historical bundle-2 observations remain unchanged. The
+second reviewer rejected the old-version path as an immediately reachable
+production bypass because the trusted consumer already required bundle 3, but
+the cleanup was accepted to remove a latent maintenance trap. Focused tests cover
+one-sided link exclusion, chronology, row-order stability, history tampering and
+target request delivery. These AI reviews are not domain certification or proof
+that a model uses the delivered history correctly.

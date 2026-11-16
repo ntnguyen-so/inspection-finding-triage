@@ -1,0 +1,18 @@
+{
+  "status": "diagnostic_failed_request_preserved",
+  "error_class": "bad_request",
+  "sends": 1,
+  "phase_reserved_sends": 10,
+  "schema_diagnostic_words": [
+    "Invalid",
+    "schema",
+    "context",
+    "anyOf",
+    "261",
+    "properties",
+    "allowed",
+    "string",
+    "true"
+  ],
+  "published_output": false
+}

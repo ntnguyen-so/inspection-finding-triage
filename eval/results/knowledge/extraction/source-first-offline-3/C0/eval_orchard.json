@@ -1,0 +1,933 @@
+{
+  "assessment": {
+    "accepted_wrong_critical": false,
+    "atom_count": 7,
+    "critical_errors": {
+      "detached_scoped_context_pairs": [],
+      "disconnected_scoped_atoms": [],
+      "nonempty_incomplete_scope_atoms": [],
+      "unsupported_alias_facts": [],
+      "unsupported_scope_facts": []
+    },
+    "fidelity": "pass",
+    "group_graph": {
+      "atoms_not_whole_in_one_component": [],
+      "component_count": 1,
+      "components": [
+        {
+          "group_count": 4,
+          "source_bytes": {
+            "eval_orchard": 751
+          },
+          "whole_atom_ids": [
+            "conflict",
+            "fold",
+            "legend",
+            "lemon1",
+            "lemon2",
+            "silver",
+            "unknown"
+          ]
+        }
+      ],
+      "overclosure_pair_count": 18
+    },
+    "incomplete_scope_byte_facts": [],
+    "metrics": {
+      "alias": {
+        "expected": 1,
+        "missing": [],
+        "observed": 1,
+        "precision": 1.0,
+        "recall": 1.0,
+        "true_positive": 1,
+        "unsupported": []
+      },
+      "context": {
+        "expected": 3,
+        "missing": [],
+        "observed": 21,
+        "precision": 0.14285714285714285,
+        "recall": 1.0,
+        "true_positive": 3,
+        "unsupported": [
+          [
+            "conflict",
+            "fold"
+          ],
+          [
+            "conflict",
+            "legend"
+          ],
+          [
+            "conflict",
+            "lemon1"
+          ],
+          [
+            "conflict",
+            "lemon2"
+          ],
+          [
+            "conflict",
+            "silver"
+          ],
+          [
+            "conflict",
+            "unknown"
+          ],
+          [
+            "fold",
+            "legend"
+          ],
+          [
+            "fold",
+            "lemon1"
+          ],
+          [
+            "fold",
+            "lemon2"
+          ],
+          [
+            "legend",
+            "lemon1"
+          ],
+          [
+            "legend",
+            "lemon2"
+          ],
+          [
+            "legend",
+            "silver"
+          ],
+          [
+            "legend",
+            "unknown"
+          ],
+          [
+            "lemon1",
+            "lemon2"
+          ],
+          [
+            "lemon1",
+            "silver"
+          ],
+          [
+            "lemon1",
+            "unknown"
+          ],
+          [
+            "lemon2",
+            "silver"
+          ],
+          [
+            "lemon2",
+            "unknown"
+          ]
+        ]
+      },
+      "scope": {
+        "expected": 5,
+        "missing": [],
+        "observed": 5,
+        "precision": 1.0,
+        "recall": 1.0,
+        "true_positive": 5,
+        "unsupported": []
+      }
+    },
+    "repair_count_basis": "Missing complete atom-level scope/alias facts and context-closure pairs; NOT observed human corrections or review benefit.",
+    "repair_counts": {
+      "alias_add": 0,
+      "context_add": 0,
+      "scope_add": 0
+    },
+    "repair_required": false,
+    "semantic": "pass",
+    "status": "pass",
+    "unresolved_alias_count": 0,
+    "unresolved_atom_count": 0
+  },
+  "human_approval_established": false,
+  "materialized_groups": [
+    {
+      "aliases": [],
+      "evidence": [
+        {
+          "quote": "# Orchard branching game\r\n",
+          "unit_id": "u0001"
+        },
+        {
+          "quote": "## Branch for plum-arcs\r\n",
+          "unit_id": "u0004"
+        },
+        {
+          "quote": "## Legend\r\n",
+          "unit_id": "u0014"
+        },
+        {
+          "quote": "## Branch for Lemon Cubes\r\n",
+          "unit_id": "u0018"
+        }
+      ],
+      "group_id": "g0001",
+      "required_with": [
+        "g0002",
+        "g0003",
+        "g0004"
+      ],
+      "scopes": [],
+      "source_id": "eval_orchard",
+      "source_sha256": "412ea94c07b410bb43a46c04e98de2acfcaca0d5641e39f9f6f8e035f893d66c",
+      "spans": [
+        {
+          "end": 26,
+          "start": 0
+        },
+        {
+          "end": 94,
+          "start": 26
+        },
+        {
+          "end": 96,
+          "start": 94
+        }
+      ],
+      "text": "# Orchard branching game\r\nThe following branches concern cardboard fruit, not living plants.\r\n\r\n",
+      "unit_ids": [
+        "u0001",
+        "u0002",
+        "u0003"
+      ]
+    },
+    {
+      "aliases": [
+        "purple bridges"
+      ],
+      "evidence": [
+        {
+          "quote": "Equipment: Plum-Arcs\r\n",
+          "unit_id": "u0005"
+        },
+        {
+          "quote": "Aliases: purple bridges\r\n",
+          "unit_id": "u0006"
+        }
+      ],
+      "group_id": "g0002",
+      "required_with": [],
+      "scopes": [
+        "Plum-Arcs"
+      ],
+      "source_id": "eval_orchard",
+      "source_sha256": "412ea94c07b410bb43a46c04e98de2acfcaca0d5641e39f9f6f8e035f893d66c",
+      "spans": [
+        {
+          "end": 121,
+          "start": 96
+        },
+        {
+          "end": 143,
+          "start": 121
+        },
+        {
+          "end": 168,
+          "start": 143
+        },
+        {
+          "end": 191,
+          "start": 168
+        },
+        {
+          "end": 242,
+          "start": 191
+        },
+        {
+          "end": 306,
+          "start": 242
+        },
+        {
+          "end": 327,
+          "start": 306
+        },
+        {
+          "end": 390,
+          "start": 327
+        },
+        {
+          "end": 457,
+          "start": 390
+        },
+        {
+          "end": 459,
+          "start": 457
+        }
+      ],
+      "text": "## Branch for plum-arcs\r\nEquipment: Plum-Arcs\r\nAliases: purple bridges\r\n- Is the token round?\r\n  - Yes: do not fold Plum-Arcs until the whistle.\r\n  - No: leave the arc undecided; the token shape is not known.\r\n- Exception branch:\r\n  - A square silver token permits folding before the whistle.\r\n  - This exception qualifies the round-token folding restriction.\r\n\r\n",
+      "unit_ids": [
+        "u0004",
+        "u0005",
+        "u0006",
+        "u0007",
+        "u0008",
+        "u0009",
+        "u0010",
+        "u0011",
+        "u0012",
+        "u0013"
+      ]
+    },
+    {
+      "aliases": [],
+      "evidence": [],
+      "group_id": "g0003",
+      "required_with": [],
+      "scopes": [],
+      "source_id": "eval_orchard",
+      "source_sha256": "412ea94c07b410bb43a46c04e98de2acfcaca0d5641e39f9f6f8e035f893d66c",
+      "spans": [
+        {
+          "end": 470,
+          "start": 459
+        },
+        {
+          "end": 524,
+          "start": 470
+        },
+        {
+          "end": 614,
+          "start": 524
+        },
+        {
+          "end": 616,
+          "start": 614
+        }
+      ],
+      "text": "## Legend\r\nHigher balance rank indicates lower tumble tendency.\r\nThe round token is also labelled square in the ledger; retain both accounts as disputed.\r\n\r\n",
+      "unit_ids": [
+        "u0014",
+        "u0015",
+        "u0016",
+        "u0017"
+      ]
+    },
+    {
+      "aliases": [],
+      "evidence": [
+        {
+          "quote": "Scope: Lemon Cubes\r\n",
+          "unit_id": "u0019"
+        }
+      ],
+      "group_id": "g0004",
+      "required_with": [],
+      "scopes": [
+        "Lemon Cubes"
+      ],
+      "source_id": "eval_orchard",
+      "source_sha256": "412ea94c07b410bb43a46c04e98de2acfcaca0d5641e39f9f6f8e035f893d66c",
+      "spans": [
+        {
+          "end": 643,
+          "start": 616
+        },
+        {
+          "end": 663,
+          "start": 643
+        },
+        {
+          "end": 707,
+          "start": 663
+        },
+        {
+          "end": 751,
+          "start": 707
+        }
+      ],
+      "text": "## Branch for Lemon Cubes\r\nScope: Lemon Cubes\r\nPlace Lemon Cubes on a paper coaster only.\r\nPlace Lemon Cubes on a paper coaster only.\r\n",
+      "unit_ids": [
+        "u0018",
+        "u0019",
+        "u0020",
+        "u0021"
+      ]
+    }
+  ],
+  "observation": {
+    "groups": [
+      {
+        "spans": [
+          {
+            "end": 26,
+            "source_id": "eval_orchard",
+            "start": 0
+          },
+          {
+            "end": 94,
+            "source_id": "eval_orchard",
+            "start": 26
+          },
+          {
+            "end": 96,
+            "source_id": "eval_orchard",
+            "start": 94
+          }
+        ],
+        "text": "# Orchard branching game\r\nThe following branches concern cardboard fruit, not living plants.\r\n\r\n"
+      },
+      {
+        "spans": [
+          {
+            "end": 121,
+            "source_id": "eval_orchard",
+            "start": 96
+          },
+          {
+            "end": 143,
+            "source_id": "eval_orchard",
+            "start": 121
+          },
+          {
+            "end": 168,
+            "source_id": "eval_orchard",
+            "start": 143
+          },
+          {
+            "end": 191,
+            "source_id": "eval_orchard",
+            "start": 168
+          },
+          {
+            "end": 242,
+            "source_id": "eval_orchard",
+            "start": 191
+          },
+          {
+            "end": 306,
+            "source_id": "eval_orchard",
+            "start": 242
+          },
+          {
+            "end": 327,
+            "source_id": "eval_orchard",
+            "start": 306
+          },
+          {
+            "end": 390,
+            "source_id": "eval_orchard",
+            "start": 327
+          },
+          {
+            "end": 457,
+            "source_id": "eval_orchard",
+            "start": 390
+          },
+          {
+            "end": 459,
+            "source_id": "eval_orchard",
+            "start": 457
+          }
+        ],
+        "text": "## Branch for plum-arcs\r\nEquipment: Plum-Arcs\r\nAliases: purple bridges\r\n- Is the token round?\r\n  - Yes: do not fold Plum-Arcs until the whistle.\r\n  - No: leave the arc undecided; the token shape is not known.\r\n- Exception branch:\r\n  - A square silver token permits folding before the whistle.\r\n  - This exception qualifies the round-token folding restriction.\r\n\r\n"
+      },
+      {
+        "spans": [
+          {
+            "end": 470,
+            "source_id": "eval_orchard",
+            "start": 459
+          },
+          {
+            "end": 524,
+            "source_id": "eval_orchard",
+            "start": 470
+          },
+          {
+            "end": 614,
+            "source_id": "eval_orchard",
+            "start": 524
+          },
+          {
+            "end": 616,
+            "source_id": "eval_orchard",
+            "start": 614
+          }
+        ],
+        "text": "## Legend\r\nHigher balance rank indicates lower tumble tendency.\r\nThe round token is also labelled square in the ledger; retain both accounts as disputed.\r\n\r\n"
+      },
+      {
+        "spans": [
+          {
+            "end": 643,
+            "source_id": "eval_orchard",
+            "start": 616
+          },
+          {
+            "end": 663,
+            "source_id": "eval_orchard",
+            "start": 643
+          },
+          {
+            "end": 707,
+            "source_id": "eval_orchard",
+            "start": 663
+          },
+          {
+            "end": 751,
+            "source_id": "eval_orchard",
+            "start": 707
+          }
+        ],
+        "text": "## Branch for Lemon Cubes\r\nScope: Lemon Cubes\r\nPlace Lemon Cubes on a paper coaster only.\r\nPlace Lemon Cubes on a paper coaster only.\r\n"
+      }
+    ],
+    "metadata": {
+      "aliases": [
+        {
+          "evidence": [
+            {
+              "end": 143,
+              "source_id": "eval_orchard",
+              "start": 121
+            },
+            {
+              "end": 168,
+              "source_id": "eval_orchard",
+              "start": 143
+            }
+          ],
+          "target": "Plum-Arcs",
+          "value": "purple bridges"
+        }
+      ],
+      "links": [
+        {
+          "evidence": [
+            {
+              "end": 26,
+              "source_id": "eval_orchard",
+              "start": 0
+            },
+            {
+              "end": 121,
+              "source_id": "eval_orchard",
+              "start": 96
+            },
+            {
+              "end": 470,
+              "source_id": "eval_orchard",
+              "start": 459
+            },
+            {
+              "end": 643,
+              "source_id": "eval_orchard",
+              "start": 616
+            }
+          ],
+          "from": [
+            {
+              "end": 26,
+              "source_id": "eval_orchard",
+              "start": 0
+            },
+            {
+              "end": 94,
+              "source_id": "eval_orchard",
+              "start": 26
+            },
+            {
+              "end": 96,
+              "source_id": "eval_orchard",
+              "start": 94
+            }
+          ],
+          "to": [
+            {
+              "end": 121,
+              "source_id": "eval_orchard",
+              "start": 96
+            },
+            {
+              "end": 143,
+              "source_id": "eval_orchard",
+              "start": 121
+            },
+            {
+              "end": 168,
+              "source_id": "eval_orchard",
+              "start": 143
+            },
+            {
+              "end": 191,
+              "source_id": "eval_orchard",
+              "start": 168
+            },
+            {
+              "end": 242,
+              "source_id": "eval_orchard",
+              "start": 191
+            },
+            {
+              "end": 306,
+              "source_id": "eval_orchard",
+              "start": 242
+            },
+            {
+              "end": 327,
+              "source_id": "eval_orchard",
+              "start": 306
+            },
+            {
+              "end": 390,
+              "source_id": "eval_orchard",
+              "start": 327
+            },
+            {
+              "end": 457,
+              "source_id": "eval_orchard",
+              "start": 390
+            },
+            {
+              "end": 459,
+              "source_id": "eval_orchard",
+              "start": 457
+            }
+          ]
+        },
+        {
+          "evidence": [
+            {
+              "end": 26,
+              "source_id": "eval_orchard",
+              "start": 0
+            },
+            {
+              "end": 121,
+              "source_id": "eval_orchard",
+              "start": 96
+            },
+            {
+              "end": 470,
+              "source_id": "eval_orchard",
+              "start": 459
+            },
+            {
+              "end": 643,
+              "source_id": "eval_orchard",
+              "start": 616
+            }
+          ],
+          "from": [
+            {
+              "end": 26,
+              "source_id": "eval_orchard",
+              "start": 0
+            },
+            {
+              "end": 94,
+              "source_id": "eval_orchard",
+              "start": 26
+            },
+            {
+              "end": 96,
+              "source_id": "eval_orchard",
+              "start": 94
+            }
+          ],
+          "to": [
+            {
+              "end": 470,
+              "source_id": "eval_orchard",
+              "start": 459
+            },
+            {
+              "end": 524,
+              "source_id": "eval_orchard",
+              "start": 470
+            },
+            {
+              "end": 614,
+              "source_id": "eval_orchard",
+              "start": 524
+            },
+            {
+              "end": 616,
+              "source_id": "eval_orchard",
+              "start": 614
+            }
+          ]
+        },
+        {
+          "evidence": [
+            {
+              "end": 26,
+              "source_id": "eval_orchard",
+              "start": 0
+            },
+            {
+              "end": 121,
+              "source_id": "eval_orchard",
+              "start": 96
+            },
+            {
+              "end": 470,
+              "source_id": "eval_orchard",
+              "start": 459
+            },
+            {
+              "end": 643,
+              "source_id": "eval_orchard",
+              "start": 616
+            }
+          ],
+          "from": [
+            {
+              "end": 26,
+              "source_id": "eval_orchard",
+              "start": 0
+            },
+            {
+              "end": 94,
+              "source_id": "eval_orchard",
+              "start": 26
+            },
+            {
+              "end": 96,
+              "source_id": "eval_orchard",
+              "start": 94
+            }
+          ],
+          "to": [
+            {
+              "end": 643,
+              "source_id": "eval_orchard",
+              "start": 616
+            },
+            {
+              "end": 663,
+              "source_id": "eval_orchard",
+              "start": 643
+            },
+            {
+              "end": 707,
+              "source_id": "eval_orchard",
+              "start": 663
+            },
+            {
+              "end": 751,
+              "source_id": "eval_orchard",
+              "start": 707
+            }
+          ]
+        }
+      ],
+      "scopes": [
+        {
+          "evidence": [
+            {
+              "end": 143,
+              "source_id": "eval_orchard",
+              "start": 121
+            },
+            {
+              "end": 168,
+              "source_id": "eval_orchard",
+              "start": 143
+            }
+          ],
+          "spans": [
+            {
+              "end": 121,
+              "source_id": "eval_orchard",
+              "start": 96
+            },
+            {
+              "end": 143,
+              "source_id": "eval_orchard",
+              "start": 121
+            },
+            {
+              "end": 168,
+              "source_id": "eval_orchard",
+              "start": 143
+            },
+            {
+              "end": 191,
+              "source_id": "eval_orchard",
+              "start": 168
+            },
+            {
+              "end": 242,
+              "source_id": "eval_orchard",
+              "start": 191
+            },
+            {
+              "end": 306,
+              "source_id": "eval_orchard",
+              "start": 242
+            },
+            {
+              "end": 327,
+              "source_id": "eval_orchard",
+              "start": 306
+            },
+            {
+              "end": 390,
+              "source_id": "eval_orchard",
+              "start": 327
+            },
+            {
+              "end": 457,
+              "source_id": "eval_orchard",
+              "start": 390
+            },
+            {
+              "end": 459,
+              "source_id": "eval_orchard",
+              "start": 457
+            }
+          ],
+          "value": "Plum-Arcs"
+        },
+        {
+          "evidence": [
+            {
+              "end": 663,
+              "source_id": "eval_orchard",
+              "start": 643
+            }
+          ],
+          "spans": [
+            {
+              "end": 643,
+              "source_id": "eval_orchard",
+              "start": 616
+            },
+            {
+              "end": 663,
+              "source_id": "eval_orchard",
+              "start": 643
+            },
+            {
+              "end": 707,
+              "source_id": "eval_orchard",
+              "start": 663
+            },
+            {
+              "end": 751,
+              "source_id": "eval_orchard",
+              "start": 707
+            }
+          ],
+          "value": "Lemon Cubes"
+        }
+      ]
+    },
+    "source_id": "eval_orchard",
+    "source_sha256": "412ea94c07b410bb43a46c04e98de2acfcaca0d5641e39f9f6f8e035f893d66c",
+    "status": "accepted"
+  },
+  "raw_proposal": {
+    "groups": [
+      {
+        "aliases": [],
+        "evidence": [
+          {
+            "quote": "# Orchard branching game\r\n",
+            "unit_id": "u0001"
+          },
+          {
+            "quote": "## Branch for plum-arcs\r\n",
+            "unit_id": "u0004"
+          },
+          {
+            "quote": "## Legend\r\n",
+            "unit_id": "u0014"
+          },
+          {
+            "quote": "## Branch for Lemon Cubes\r\n",
+            "unit_id": "u0018"
+          }
+        ],
+        "group_id": "g0001",
+        "required_with": [
+          "g0002",
+          "g0003",
+          "g0004"
+        ],
+        "scopes": [],
+        "unit_ids": [
+          "u0001",
+          "u0002",
+          "u0003"
+        ]
+      },
+      {
+        "aliases": [
+          "purple bridges"
+        ],
+        "evidence": [
+          {
+            "quote": "Equipment: Plum-Arcs\r\n",
+            "unit_id": "u0005"
+          },
+          {
+            "quote": "Aliases: purple bridges\r\n",
+            "unit_id": "u0006"
+          }
+        ],
+        "group_id": "g0002",
+        "required_with": [],
+        "scopes": [
+          "Plum-Arcs"
+        ],
+        "unit_ids": [
+          "u0004",
+          "u0005",
+          "u0006",
+          "u0007",
+          "u0008",
+          "u0009",
+          "u0010",
+          "u0011",
+          "u0012",
+          "u0013"
+        ]
+      },
+      {
+        "aliases": [],
+        "evidence": [],
+        "group_id": "g0003",
+        "required_with": [],
+        "scopes": [],
+        "unit_ids": [
+          "u0014",
+          "u0015",
+          "u0016",
+          "u0017"
+        ]
+      },
+      {
+        "aliases": [],
+        "evidence": [
+          {
+            "quote": "Scope: Lemon Cubes\r\n",
+            "unit_id": "u0019"
+          }
+        ],
+        "group_id": "g0004",
+        "required_with": [],
+        "scopes": [
+          "Lemon Cubes"
+        ],
+        "unit_ids": [
+          "u0018",
+          "u0019",
+          "u0020",
+          "u0021"
+        ]
+      }
+    ]
+  },
+  "source_id": "eval_orchard",
+  "synthetic_review_diagnostic": false
+}

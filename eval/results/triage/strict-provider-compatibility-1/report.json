@@ -1,0 +1,63 @@
+{
+  "status": "pass",
+  "response": "{\"received\":true}",
+  "receipt": {
+    "provider": "azure-openai",
+    "sdk_version": "2.54.0",
+    "api": "azure-openai-v1-chat-completions",
+    "endpoint_sha256": "cb6226ba82668364569e231474503ec9cb8feb844ed56ef936a47a03784edef7",
+    "auth": "api_key",
+    "sdk_retries": 0,
+    "http_transport_retries": 0,
+    "follow_redirects": false,
+    "schema_mode": "native",
+    "max_completion_tokens": 4096,
+    "tools": false,
+    "usd_cost": null,
+    "request_id": "2b0742b2-144d-475a-baa2-c16f99a23a12",
+    "requested_model": "gpt-5.1-chat",
+    "observed_model": "gpt-chat-latest",
+    "requested_reasoning_effort": null,
+    "started_at": "2026-11-16T18:26:29.053998+00:00",
+    "system_sha256": "5954ca6496f77aea3fe78d39cc7c283ed8bd385ba3b74302152b577d0e4666d8",
+    "user_sha256": "5d0ba6223e6ddf5948692a09cf2104b1c50ee7137f5082e1710b8e6db1fb6d88",
+    "http_dispatches_observed": 1,
+    "adapter_attempts": 1,
+    "usage": {
+      "completion_tokens": 13,
+      "prompt_tokens": 115,
+      "total_tokens": 128,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 0
+      },
+      "latency_checkpoint": {
+        "engine_tbt_ms": 15,
+        "engine_ttft_ms": 79,
+        "engine_ttlt_ms": 290,
+        "pre_inference_ms": 88,
+        "service_tbt_ms": 16,
+        "service_ttft_ms": 218,
+        "service_ttlt_ms": 428,
+        "user_visible_ttft_ms": 130
+      }
+    },
+    "cache_mode": "no_application_result_cache_backend_cache_uncontrolled",
+    "wire_message_hashes_match": true,
+    "wire_body_sha256": "752f0279325b21df08daacdd32f836a5c66153e7342e39a58e77e0cb36c67a67",
+    "finish_reason": "stop",
+    "refused": false,
+    "content_filter_triggered": false,
+    "response_sha256": "332ddb00d111581386a54b79f7f57765ffc70cf17001c124c3db983a6e7d131b",
+    "elapsed_seconds": 2.39000000001397,
+    "billing_complete": true
+  },
+  "scope": "transport/schema only, not triage quality"
+}

@@ -1,0 +1,2435 @@
+{
+  "assessment": {
+    "broadening_ok": true,
+    "case_id": "eval_orchard.scoped",
+    "conservative_expansion": true,
+    "covered_required_atoms": 13,
+    "full_active_corpus_bytes": 7306,
+    "irrelevant_baseline_bytes": 1104,
+    "irrelevant_byte_reduction": 0.0,
+    "irrelevant_returned_bytes": 1104,
+    "missing_required_atoms": [],
+    "provider_text_bytes": 7306,
+    "recall": 1.0,
+    "required_atom_count": 13,
+    "selected_source_union_bytes": 7306,
+    "status": "fail",
+    "unresolved_alias_labels": [],
+    "unresolved_required_atoms": [],
+    "usefulness_pass": false
+  },
+  "authorized_input_binding": {
+    "findings": {
+      "F-9001": {
+        "equipment_id": "SYN-9012",
+        "equipment_type": "Plum-Arcs",
+        "finding_description": "Artificial selector query; no actual fault is asserted.",
+        "finding_id": "F-9001",
+        "inspection_method": "Synthetic selector fixture",
+        "inspection_type": "Routine Operator Round",
+        "reported_by": "Synthetic Fixture",
+        "reported_date": "2026-07-01",
+        "reporter_role": "Software test"
+      }
+    },
+    "manifest": [
+      {
+        "bytes": 310,
+        "kind": "finding_input",
+        "raw_sha256": "cf5193848095272f6d5242df5ddc87879704e5fe76225e406db043d2e7eb1c55",
+        "source_id": "synthetic-findings"
+      },
+      {
+        "bytes": 3769,
+        "kind": "registry_input",
+        "raw_sha256": "20d5c9b8bfd596e6193b57d5fe7ed19472482f21497d93cd2661d414ecef2d99",
+        "source_id": "synthetic-registry"
+      }
+    ],
+    "registry": {
+      "SYN-9001": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9001",
+        "equipment_type": "Amber-Kites",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9002": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9002",
+        "equipment_type": "Azure Tiles",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9003": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9003",
+        "equipment_type": "Brass Desks",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9004": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9004",
+        "equipment_type": "Copper Wheels",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9005": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9005",
+        "equipment_type": "Cork Rings",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9006": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9006",
+        "equipment_type": "Foam Barges",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9007": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9007",
+        "equipment_type": "Glass-Carts",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9008": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9008",
+        "equipment_type": "Lemon Cubes",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9009": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9009",
+        "equipment_type": "Ochre Tiles",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9010": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9010",
+        "equipment_type": "Paper-Beacons",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9011": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9011",
+        "equipment_type": "Pebble Counters",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9012": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9012",
+        "equipment_type": "Plum-Arcs",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9013": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9013",
+        "equipment_type": "Prism-Gates",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9014": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9014",
+        "equipment_type": "Silk Shuttles",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9015": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9015",
+        "equipment_type": "Tin-Moons",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9016": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9016",
+        "equipment_type": "Unrecognized synthetic subject",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9017": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9017",
+        "equipment_type": "Velvet Desks",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9018": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9018",
+        "equipment_type": "beacon with missing type",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9019": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9019",
+        "equipment_type": "cloud ferries",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9020": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9020",
+        "equipment_type": "folded stars",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9021": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9021",
+        "equipment_type": "parcel toy of unknown class",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9022": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9022",
+        "equipment_type": "possibly a gate, type unconfirmed",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9023": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9023",
+        "equipment_type": "purple bridges",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9024": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9024",
+        "equipment_type": "sky pieces",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9025": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9025",
+        "equipment_type": "smooth runners",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9026": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9026",
+        "equipment_type": "soft counters",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9027": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9027",
+        "equipment_type": "split lights",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9028": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9028",
+        "equipment_type": "sunset ribbons",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9029": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9029",
+        "equipment_type": "uncertain tile family",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9030": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9030",
+        "equipment_type": "unlisted festival object",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9031": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9031",
+        "equipment_type": "unresolved routing object",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      }
+    }
+  },
+  "case_id": "eval_orchard.scoped",
+  "execution": "observed",
+  "human_approval_established": false,
+  "local_evidence": {
+    "authorized_input_manifest": [
+      {
+        "bytes": 310,
+        "kind": "finding_input",
+        "raw_sha256": "cf5193848095272f6d5242df5ddc87879704e5fe76225e406db043d2e7eb1c55",
+        "source_id": "synthetic-findings"
+      },
+      {
+        "bytes": 3769,
+        "kind": "registry_input",
+        "raw_sha256": "20d5c9b8bfd596e6193b57d5fe7ed19472482f21497d93cd2661d414ecef2d99",
+        "source_id": "synthetic-registry"
+      }
+    ],
+    "authorized_input_manifest_sha256": "a94b179418a6c670dcf93d4acc2e61e8a05bec553d92bf686a7685e49edf7594",
+    "conservative_expansion": true,
+    "conservative_source_context_edges": 16,
+    "context_added_item_ids": [
+      "item-2989e627b05c86bb856864b4ba320826",
+      "item-3657959f1a17e70851f3d2e424d25edb",
+      "item-55a75be555f5e1bb6868359497e5f76b",
+      "item-70e3a31707646a5a657ec26cb721754b",
+      "item-e96006448e012b89e1e61aec969f5297"
+    ],
+    "excluded_item_ids": [],
+    "expansion_reason": "conservative_source_context",
+    "selected_item_ids": [
+      "item-05d46d0960e7f74ea8f961605af835ea",
+      "item-0893e58e32b2a69af2dc01398d40734d",
+      "item-234cd908251b53a14d0ae0ead654efb1",
+      "item-2989e627b05c86bb856864b4ba320826",
+      "item-2c18fbbd35efd709730a7708d3fe3bfb",
+      "item-3657959f1a17e70851f3d2e424d25edb",
+      "item-55a75be555f5e1bb6868359497e5f76b",
+      "item-6654ef60c3a845ce7c9ad1c042d22c70",
+      "item-70e3a31707646a5a657ec26cb721754b",
+      "item-75bfb2af1b683e4c5368b00b504b2d87",
+      "item-7efae9de56d3e90defc3fd0324c03ddf",
+      "item-8724277b28d78ba818a80fdae46e1aaf",
+      "item-89d94479c6f78495658d8a1c8082c4a3",
+      "item-8f79eb9758c062995e31d11f44f79069",
+      "item-9a7b1ac8564c7e53dfa1fe6bebc14e4d",
+      "item-a716a4a9f49df46101a45a8c47f5a164",
+      "item-afed18293ce961eb704c4475330366ca",
+      "item-bfa8911e1344fb584a513710e7fb05eb",
+      "item-c9869a6dc646924114c358a37461364b",
+      "item-e96006448e012b89e1e61aec969f5297",
+      "item-fff7d661ed1a10fa7002cffb9e9c3cba"
+    ]
+  },
+  "partition": "evaluation",
+  "provider_payload": {
+    "knowledge:item-05d46d0960e7f74ea8f961605af835ea@sha256-805a8588e3e67f8ba66fd125efbeccbc11716f932e4249dd810c6508eceb0054:text": "## Legend\r\nHigher balance rank indicates lower tumble tendency.\r\nThe round token is also labelled square in the ledger; retain both accounts as disputed.\r\n\r\n",
+    "knowledge:item-0893e58e32b2a69af2dc01398d40734d@sha256-f3c2478ce801c2895e35cdd00a236654f31048ceac96b06bcf673e91a778efb6:text": "## What moves likelihood\n\nUp: a trend that is still moving; a repeat of a failure that has already occurred this period; an\nactive, unmitigated mechanism (corrosion under wet insulation is progressing now); detection by a\nmethod that only catches late-stage damage — a finding detected by ear or smell is further advanced\nthan one detected by UT.\n\nDown: design margin; a measurement inside its acceptance criterion; an item that is out of service\nand not required to be in service.\n\n",
+    "knowledge:item-234cd908251b53a14d0ae0ead654efb1@sha256-d0b8aee8afcac7bf9080985724886332c47686c2da8974d031c3b4cb7dd9e49c:text": "## The two questions\n\n**Likelihood** concerns the item itself: given what the inspection found, how likely is it to stop\nperforming its function in the near term. A hairline coating blister on a thick-walled vessel is low\nlikelihood even on a critical vessel. A bearing with a vibration trend that has not plateaued is high\nlikelihood even on a spare pump.\n\n**Impact** concerns what happens if it does fail. This depends mainly on what the equipment does and\nwhat sits behind it, not on the wording of the finding.\n\nThe common error is scoring by how severe the description sounds.\n\n",
+    "knowledge:item-2989e627b05c86bb856864b4ba320826@sha256-ec26843a6e1a7b11c0e90cdad4e0bbee1288b3862b8985d7c2c093dbf3f15d34:text": "## Copper Wheels\r\nEquipment: Copper Wheels\r\nRoll Copper Wheels only on the striped mat.\r\nRoll Copper Wheels only on the striped mat.\r\n",
+    "knowledge:item-2c18fbbd35efd709730a7708d3fe3bfb@sha256-903ab03e1efb3dc8244d8a5953d10d5ab69d5ae2b40e92b9cbd1963baef59c6f:text": "## Two recurring errors\n\n**Voted arrangements.** One detector head out of a 2oo3 group is a degradation, not a defeat. The\narrangement still functions, so impact is moderate rather than extreme. It is time-limited, because\nthe group has lost its margin and the next failure defeats it.\n\n**Redundancy is a claim, not a fact.** Check whether the redundant partner is healthy before crediting\nit. If findings exist against both legs of a redundant pair in the same batch, the pair is not\nredundant. Assessing each finding in isolation misses this.\n\n",
+    "knowledge:item-3657959f1a17e70851f3d2e424d25edb@sha256-e0187bd546eaa1b96f965f47bee851ffdae7a9e9204867f23b769ffb383ba402:text": "## Prism-Gates\r\nScope: Prism-Gates\r\nAliases: rainbow doors; split lights\r\nDo not open Prism-Gates when the violet card is face down.\r\nIf the card is face up, opening is allowed except during the hush.\r\n\r\n",
+    "knowledge:item-55a75be555f5e1bb6868359497e5f76b@sha256-11f54aba12f6476a5bc74541bba641b151864ca365845fafea0a4e604cf403ae:text": "## Branch for Lemon Cubes\r\nScope: Lemon Cubes\r\nPlace Lemon Cubes on a paper coaster only.\r\nPlace Lemon Cubes on a paper coaster only.\r\n",
+    "knowledge:item-6654ef60c3a845ce7c9ad1c042d22c70@sha256-5b37599057cc8e112ce21637429a4f86179ddc5d7ac4feccedf1a88c4569583a:text": "## Entry 07: late qualification\r\n07:00 Exception: a green tassel does not permit sending during a silent beat.\r\n07:01 The silent-beat exception qualifies the earlier sending permission.\r\n07:02 Higher thread reserve means lower snag likelihood, not higher.\r\n07:03 The drum is logged clear and possibly covered; neither account resolves the other.\r\n\r\n",
+    "knowledge:item-70e3a31707646a5a657ec26cb721754b@sha256-3ead0128d76d4605316197d68e9ed3836c6e9b594c3b9d52e730b7dc749ae509:text": "## Entry 08: Cork Rings\r\nEquipment: Cork Rings\r\n08:00 Put Cork Rings beside the marked spool.\r\n08:00 Put Cork Rings beside the marked spool.\r\n",
+    "knowledge:item-75bfb2af1b683e4c5368b00b504b2d87@sha256-3981f0e8264100841775e8c781660c754bd8d8437e5a11fe72c209d41ae09edb:text": "Letter from the pretend river-post club:\r\nOur Foam Barges are also called cloud ferries; these names refer to the same toy.\r\nFor Foam Barges, do not dispatch a parcel if the stamp is missing.\r\nDispatch with a stamp is conditional on the envelope being dry.\r\nP.S. A damp envelope may travel only inside a blue sleeve; this exception qualifies dispatch.\r\nA higher dryness rating means a lower blur tendency, not a higher one.\r\nOne note calls the sleeve blue; a second calls its colour unknown. Do not resolve the disagreement.\r\nThe club-wide bell closes all desks after the final verse.\r\n\r\nAnnex: unrelated counter game\r\nScope: Pebble Counters\r\nAliases: stone tabs\r\nKeep Pebble Counters under the woven cover until noon.\r\nKeep Pebble Counters under the woven cover until noon.\r\n",
+    "knowledge:item-7efae9de56d3e90defc3fd0324c03ddf@sha256-80de114a93d0fde97e76abf8b484d1dc0a8b1ecbd05a6410cff802b675da26b8:text": "## Registry scores\n\n`reliability_score` is 10 = highly reliable, 1 = frequent failures. It runs in the opposite direction\nto likelihood. New starters routinely invert it. `criticality_score` runs in the expected direction,\n10 = most critical.\n\nNeither is sufficient on its own. Criticality is a starting point for impact, reliability a starting\npoint for likelihood; the finding text moves both. A reliable item with a crack in it is still\ncracked.\n\n",
+    "knowledge:item-8724277b28d78ba818a80fdae46e1aaf@sha256-9cd1a06eec94ab61c09f94806d3e2c07514bbe0da011bba32ba8a6df86e4c5c9:text": "## Branch for plum-arcs\r\nEquipment: Plum-Arcs\r\nAliases: purple bridges\r\n- Is the token round?\r\n  - Yes: do not fold Plum-Arcs until the whistle.\r\n  - No: leave the arc undecided; the token shape is not known.\r\n- Exception branch:\r\n  - A square silver token permits folding before the whistle.\r\n  - This exception qualifies the round-token folding restriction.\r\n\r\n",
+    "knowledge:item-89d94479c6f78495658d8a1c8082c4a3@sha256-7d092d17031e58771702fd76c77bf2e88ddd3a0fb7f1b07859ceab6c00e0d27a:text": "## What moves impact\n\nUp: absence of redundancy; Safety Critical Elements, which exist because a major accident scenario\ndepends on them and are judged against that scenario rather than against repair cost; failures that\ndegrade a protection layer rather than causing direct loss; delayed or hidden consequences — loss of\ncorrosion inhibitor has no effect today and a substantial effect in eighteen months; escalation\npotential.\n\nDown: redundancy that is available and capable; items that can be bypassed without loss of function;\natmospheric, non-hydrocarbon, low-energy services; consequences limited to housekeeping or appearance.\n\n",
+    "knowledge:item-8f79eb9758c062995e31d11f44f79069@sha256-42185b59c6f3732373a2b0c52052dc1913b2e10ebe38ea8d0a42122c525eac77:text": "# Integrity and Reliability Notes — Bravo Platform\n\nHandover notes from the outgoing Integrity Engineer. Unedited. This is the only written record of how\nfindings are currently triaged.\n\n",
+    "knowledge:item-9a7b1ac8564c7e53dfa1fe6bebc14e4d@sha256-8dc73e241e2fa65eaa9c2ac01a12d411dc9690f96760b5b29e19c949169c6642:text": "# Orchard branching game\r\nThe following branches concern cardboard fruit, not living plants.\r\n\r\n",
+    "knowledge:item-a716a4a9f49df46101a45a8c47f5a164@sha256-3fe062a4c361f7cb96d0234c5637b023e732a8653517e03f70b9e4d49fcf19a4:text": "## Output expectations\n\nMaintenance planning needs two lines: what is wrong, on what, and why it matters — readable without\nopening the inspection record, and not a restatement of the original finding text. Where the\nassessment is uncertain, that should be stated rather than resolved by picking a mid-range score.\n\nRecurring causes of loss of confidence in a triage output, in order:\n\n1. Confidently incorrect scores on safety critical equipment.\n2. Summaries that omit a detail that changes the decision — a measurement, a repeat occurrence, the\n   fact that the standby was already unavailable.\n3. The same finding scored differently on different days.\n4. Uniform mid-range scores across all findings.\n",
+    "knowledge:item-afed18293ce961eb704c4475330366ca@sha256-029a515f91707edee091751746dcc609bd69d4cf897f41c4b8cab2a2e6d74637:text": "# Loom rehearsal log\r\nAll entries belong to an invented ribbon-routing sport.\r\n\r\n",
+    "knowledge:item-bfa8911e1344fb584a513710e7fb05eb@sha256-a01df73239a2b5ae6f4a6edecdbf3663d69dae63733c15f19b13076ed1d756d1:text": "# Prism catalogue\r\nThis is a fictional lantern-display puzzle, not equipment guidance.\r\n\r\n",
+    "knowledge:item-c9869a6dc646924114c358a37461364b@sha256-69aba44a1b18710d2644ca0f1933d56d4b0712b060fc8cfabf415e23904895d3:text": "## Urgency\n\nNot an average of likelihood and impact, and not the maximum, though the maximum is closer. A\nlow-likelihood, high-impact finding on an SCE still requires attention this week. A near-certain\nfailure of something inconsequential can wait for the next shutdown. Urgency expresses how soon a\nhuman must act.\n\n- 9–10: today\n- 7–8: this week\n- 5–6: this month\n- 3–4: next planned shutdown\n- 1–2: backlog\n\nTwo conditions override the derived value. Anything that leaves a protection layer impaired without a\nrecorded deviation is immediate, because the installation is out of compliance from the point the\nimpairment is known. The same applies to anything that reduces evacuation capacity below the POB\ncount.\n\n",
+    "knowledge:item-e96006448e012b89e1e61aec969f5297@sha256-62afd3e71173c4619e4700deac572604771ebd434dd64faa96cc3b2062100456:text": "## Entry 06: Silk Shuttles\r\nScope: Silk Shuttles\r\nAliases: smooth runners\r\n06:10 Do not send Silk Shuttles while the drum is covered.\r\n06:11 A clear drum permits sending, provided the tassel is green.\r\n\r\n",
+    "knowledge:item-fff7d661ed1a10fa7002cffb9e9c3cba@sha256-a684e02b8d7feca5be8339fe019ff3fc3c285338aa174ba437b888792b1f96fb:text": "## Hush footnote\r\nThe hush forbids opening even with a face-up card; it qualifies the opening rule.\r\nHigher steadiness means lower flicker likelihood, never higher.\r\nThe card is described as face up and as unreadable; its state remains disputed.\r\n\r\n"
+  },
+  "query_context": {
+    "findings": {
+      "F-9001": {
+        "equipment_id": "SYN-9012",
+        "equipment_type": "Plum-Arcs",
+        "finding_description": "Artificial selector query; no actual fault is asserted.",
+        "finding_id": "F-9001",
+        "inspection_method": "Synthetic selector fixture",
+        "inspection_type": "Routine Operator Round",
+        "reported_by": "Synthetic Fixture",
+        "reported_date": "2026-07-01",
+        "reporter_role": "Software test"
+      }
+    },
+    "registry": {
+      "SYN-9001": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9001",
+        "equipment_type": "Amber-Kites",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9002": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9002",
+        "equipment_type": "Azure Tiles",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9003": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9003",
+        "equipment_type": "Brass Desks",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9004": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9004",
+        "equipment_type": "Copper Wheels",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9005": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9005",
+        "equipment_type": "Cork Rings",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9006": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9006",
+        "equipment_type": "Foam Barges",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9007": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9007",
+        "equipment_type": "Glass-Carts",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9008": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9008",
+        "equipment_type": "Lemon Cubes",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9009": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9009",
+        "equipment_type": "Ochre Tiles",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9010": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9010",
+        "equipment_type": "Paper-Beacons",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9011": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9011",
+        "equipment_type": "Pebble Counters",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9012": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9012",
+        "equipment_type": "Plum-Arcs",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9013": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9013",
+        "equipment_type": "Prism-Gates",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9014": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9014",
+        "equipment_type": "Silk Shuttles",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9015": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9015",
+        "equipment_type": "Tin-Moons",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9016": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9016",
+        "equipment_type": "Unrecognized synthetic subject",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9017": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9017",
+        "equipment_type": "Velvet Desks",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9018": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9018",
+        "equipment_type": "beacon with missing type",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9019": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9019",
+        "equipment_type": "cloud ferries",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9020": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9020",
+        "equipment_type": "folded stars",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9021": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9021",
+        "equipment_type": "parcel toy of unknown class",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9022": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9022",
+        "equipment_type": "possibly a gate, type unconfirmed",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9023": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9023",
+        "equipment_type": "purple bridges",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9024": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9024",
+        "equipment_type": "sky pieces",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9025": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9025",
+        "equipment_type": "smooth runners",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9026": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9026",
+        "equipment_type": "soft counters",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9027": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9027",
+        "equipment_type": "split lights",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9028": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9028",
+        "equipment_type": "sunset ribbons",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9029": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9029",
+        "equipment_type": "uncertain tile family",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9030": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9030",
+        "equipment_type": "unlisted festival object",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9031": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9031",
+        "equipment_type": "unresolved routing object",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      }
+    }
+  },
+  "query_registry_fixture": {
+    "path": "eval\\data\\knowledge_extraction\\registry.json",
+    "registry_sha256": "e89eb28f944b15930c1ca4e4bffe4d4d7ae365caa434ec74bb5392d5eaba3d92",
+    "sha256": "2adcad682e0c4b604954ef3ada0f8c6c7b84a7dc16fa5efe0ae22d59193e7ec6"
+  },
+  "result": {
+    "assessment_time": "2026-07-01T00:00:00+00:00",
+    "content_sha256": "56ecc968d7131b9f1e7cf404e756005fd2a34fbcb8913d53eca27e26782c97e8",
+    "contract": "triage-knowledge-result-v1",
+    "entries": {
+      "knowledge:item-05d46d0960e7f74ea8f961605af835ea@sha256-805a8588e3e67f8ba66fd125efbeccbc11716f932e4249dd810c6508eceb0054:text": {
+        "aliases": [],
+        "scopes": [],
+        "source_id": "eval_orchard",
+        "source_sha256": "412ea94c07b410bb43a46c04e98de2acfcaca0d5641e39f9f6f8e035f893d66c",
+        "spans": [
+          {
+            "end": 470,
+            "start": 459
+          },
+          {
+            "end": 524,
+            "start": 470
+          },
+          {
+            "end": 614,
+            "start": 524
+          },
+          {
+            "end": 616,
+            "start": 614
+          }
+        ],
+        "text": "## Legend\r\nHigher balance rank indicates lower tumble tendency.\r\nThe round token is also labelled square in the ledger; retain both accounts as disputed.\r\n\r\n"
+      },
+      "knowledge:item-0893e58e32b2a69af2dc01398d40734d@sha256-f3c2478ce801c2895e35cdd00a236654f31048ceac96b06bcf673e91a778efb6:text": {
+        "aliases": [],
+        "scopes": [],
+        "source_id": "original_domain",
+        "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+        "spans": [
+          {
+            "end": 797,
+            "start": 772
+          },
+          {
+            "end": 798,
+            "start": 797
+          },
+          {
+            "end": 896,
+            "start": 798
+          },
+          {
+            "end": 994,
+            "start": 896
+          },
+          {
+            "end": 1096,
+            "start": 994
+          },
+          {
+            "end": 1121,
+            "start": 1096
+          },
+          {
+            "end": 1122,
+            "start": 1121
+          },
+          {
+            "end": 1221,
+            "start": 1122
+          },
+          {
+            "end": 1256,
+            "start": 1221
+          },
+          {
+            "end": 1257,
+            "start": 1256
+          }
+        ],
+        "text": "## What moves likelihood\n\nUp: a trend that is still moving; a repeat of a failure that has already occurred this period; an\nactive, unmitigated mechanism (corrosion under wet insulation is progressing now); detection by a\nmethod that only catches late-stage damage — a finding detected by ear or smell is further advanced\nthan one detected by UT.\n\nDown: design margin; a measurement inside its acceptance criterion; an item that is out of service\nand not required to be in service.\n\n"
+      },
+      "knowledge:item-234cd908251b53a14d0ae0ead654efb1@sha256-d0b8aee8afcac7bf9080985724886332c47686c2da8974d031c3b4cb7dd9e49c:text": {
+        "aliases": [],
+        "scopes": [],
+        "source_id": "original_domain",
+        "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+        "spans": [
+          {
+            "end": 210,
+            "start": 189
+          },
+          {
+            "end": 211,
+            "start": 210
+          },
+          {
+            "end": 310,
+            "start": 211
+          },
+          {
+            "end": 411,
+            "start": 310
+          },
+          {
+            "end": 513,
+            "start": 411
+          },
+          {
+            "end": 546,
+            "start": 513
+          },
+          {
+            "end": 547,
+            "start": 546
+          },
+          {
+            "end": 648,
+            "start": 547
+          },
+          {
+            "end": 704,
+            "start": 648
+          },
+          {
+            "end": 705,
+            "start": 704
+          },
+          {
+            "end": 771,
+            "start": 705
+          },
+          {
+            "end": 772,
+            "start": 771
+          }
+        ],
+        "text": "## The two questions\n\n**Likelihood** concerns the item itself: given what the inspection found, how likely is it to stop\nperforming its function in the near term. A hairline coating blister on a thick-walled vessel is low\nlikelihood even on a critical vessel. A bearing with a vibration trend that has not plateaued is high\nlikelihood even on a spare pump.\n\n**Impact** concerns what happens if it does fail. This depends mainly on what the equipment does and\nwhat sits behind it, not on the wording of the finding.\n\nThe common error is scoring by how severe the description sounds.\n\n"
+      },
+      "knowledge:item-2989e627b05c86bb856864b4ba320826@sha256-ec26843a6e1a7b11c0e90cdad4e0bbee1288b3862b8985d7c2c093dbf3f15d34:text": {
+        "aliases": [],
+        "scopes": [
+          "Copper Wheels"
+        ],
+        "source_id": "eval_prism",
+        "source_sha256": "72765663cf1ff3ff2fb8cd92bbae6051dc4f10493b1df2dfe0452865068c32c1",
+        "spans": [
+          {
+            "end": 561,
+            "start": 543
+          },
+          {
+            "end": 587,
+            "start": 561
+          },
+          {
+            "end": 632,
+            "start": 587
+          },
+          {
+            "end": 677,
+            "start": 632
+          }
+        ],
+        "text": "## Copper Wheels\r\nEquipment: Copper Wheels\r\nRoll Copper Wheels only on the striped mat.\r\nRoll Copper Wheels only on the striped mat.\r\n"
+      },
+      "knowledge:item-2c18fbbd35efd709730a7708d3fe3bfb@sha256-903ab03e1efb3dc8244d8a5953d10d5ab69d5ae2b40e92b9cbd1963baef59c6f:text": {
+        "aliases": [],
+        "scopes": [],
+        "source_id": "original_domain",
+        "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+        "spans": [
+          {
+            "end": 1918,
+            "start": 1894
+          },
+          {
+            "end": 1919,
+            "start": 1918
+          },
+          {
+            "end": 2017,
+            "start": 1919
+          },
+          {
+            "end": 2117,
+            "start": 2017
+          },
+          {
+            "end": 2180,
+            "start": 2117
+          },
+          {
+            "end": 2181,
+            "start": 2180
+          },
+          {
+            "end": 2284,
+            "start": 2181
+          },
+          {
+            "end": 2379,
+            "start": 2284
+          },
+          {
+            "end": 2439,
+            "start": 2379
+          },
+          {
+            "end": 2440,
+            "start": 2439
+          }
+        ],
+        "text": "## Two recurring errors\n\n**Voted arrangements.** One detector head out of a 2oo3 group is a degradation, not a defeat. The\narrangement still functions, so impact is moderate rather than extreme. It is time-limited, because\nthe group has lost its margin and the next failure defeats it.\n\n**Redundancy is a claim, not a fact.** Check whether the redundant partner is healthy before crediting\nit. If findings exist against both legs of a redundant pair in the same batch, the pair is not\nredundant. Assessing each finding in isolation misses this.\n\n"
+      },
+      "knowledge:item-3657959f1a17e70851f3d2e424d25edb@sha256-e0187bd546eaa1b96f965f47bee851ffdae7a9e9204867f23b769ffb383ba402:text": {
+        "aliases": [
+          "rainbow doors",
+          "split lights"
+        ],
+        "scopes": [
+          "Prism-Gates"
+        ],
+        "source_id": "eval_prism",
+        "source_sha256": "72765663cf1ff3ff2fb8cd92bbae6051dc4f10493b1df2dfe0452865068c32c1",
+        "spans": [
+          {
+            "end": 106,
+            "start": 90
+          },
+          {
+            "end": 126,
+            "start": 106
+          },
+          {
+            "end": 164,
+            "start": 126
+          },
+          {
+            "end": 224,
+            "start": 164
+          },
+          {
+            "end": 292,
+            "start": 224
+          },
+          {
+            "end": 294,
+            "start": 292
+          }
+        ],
+        "text": "## Prism-Gates\r\nScope: Prism-Gates\r\nAliases: rainbow doors; split lights\r\nDo not open Prism-Gates when the violet card is face down.\r\nIf the card is face up, opening is allowed except during the hush.\r\n\r\n"
+      },
+      "knowledge:item-55a75be555f5e1bb6868359497e5f76b@sha256-11f54aba12f6476a5bc74541bba641b151864ca365845fafea0a4e604cf403ae:text": {
+        "aliases": [],
+        "scopes": [
+          "Lemon Cubes"
+        ],
+        "source_id": "eval_orchard",
+        "source_sha256": "412ea94c07b410bb43a46c04e98de2acfcaca0d5641e39f9f6f8e035f893d66c",
+        "spans": [
+          {
+            "end": 643,
+            "start": 616
+          },
+          {
+            "end": 663,
+            "start": 643
+          },
+          {
+            "end": 707,
+            "start": 663
+          },
+          {
+            "end": 751,
+            "start": 707
+          }
+        ],
+        "text": "## Branch for Lemon Cubes\r\nScope: Lemon Cubes\r\nPlace Lemon Cubes on a paper coaster only.\r\nPlace Lemon Cubes on a paper coaster only.\r\n"
+      },
+      "knowledge:item-6654ef60c3a845ce7c9ad1c042d22c70@sha256-5b37599057cc8e112ce21637429a4f86179ddc5d7ac4feccedf1a88c4569583a:text": {
+        "aliases": [],
+        "scopes": [],
+        "source_id": "eval_loom",
+        "source_sha256": "7c10850f21de579945f1daa3d62353b9fba505a9a78c18ea04049b6fa21c3cfc",
+        "spans": [
+          {
+            "end": 318,
+            "start": 285
+          },
+          {
+            "end": 397,
+            "start": 318
+          },
+          {
+            "end": 472,
+            "start": 397
+          },
+          {
+            "end": 542,
+            "start": 472
+          },
+          {
+            "end": 632,
+            "start": 542
+          },
+          {
+            "end": 634,
+            "start": 632
+          }
+        ],
+        "text": "## Entry 07: late qualification\r\n07:00 Exception: a green tassel does not permit sending during a silent beat.\r\n07:01 The silent-beat exception qualifies the earlier sending permission.\r\n07:02 Higher thread reserve means lower snag likelihood, not higher.\r\n07:03 The drum is logged clear and possibly covered; neither account resolves the other.\r\n\r\n"
+      },
+      "knowledge:item-70e3a31707646a5a657ec26cb721754b@sha256-3ead0128d76d4605316197d68e9ed3836c6e9b594c3b9d52e730b7dc749ae509:text": {
+        "aliases": [],
+        "scopes": [
+          "Cork Rings"
+        ],
+        "source_id": "eval_loom",
+        "source_sha256": "7c10850f21de579945f1daa3d62353b9fba505a9a78c18ea04049b6fa21c3cfc",
+        "spans": [
+          {
+            "end": 659,
+            "start": 634
+          },
+          {
+            "end": 682,
+            "start": 659
+          },
+          {
+            "end": 729,
+            "start": 682
+          },
+          {
+            "end": 776,
+            "start": 729
+          }
+        ],
+        "text": "## Entry 08: Cork Rings\r\nEquipment: Cork Rings\r\n08:00 Put Cork Rings beside the marked spool.\r\n08:00 Put Cork Rings beside the marked spool.\r\n"
+      },
+      "knowledge:item-75bfb2af1b683e4c5368b00b504b2d87@sha256-3981f0e8264100841775e8c781660c754bd8d8437e5a11fe72c209d41ae09edb:text": {
+        "aliases": [],
+        "scopes": [],
+        "source_id": "eval_river",
+        "source_sha256": "cb87dd0ce116a2813451daa873830d5b53269ac41742330b6d4baee09b61663e",
+        "spans": [
+          {
+            "end": 42,
+            "start": 0
+          },
+          {
+            "end": 125,
+            "start": 42
+          },
+          {
+            "end": 193,
+            "start": 125
+          },
+          {
+            "end": 258,
+            "start": 193
+          },
+          {
+            "end": 353,
+            "start": 258
+          },
+          {
+            "end": 425,
+            "start": 353
+          },
+          {
+            "end": 526,
+            "start": 425
+          },
+          {
+            "end": 586,
+            "start": 526
+          },
+          {
+            "end": 588,
+            "start": 586
+          },
+          {
+            "end": 619,
+            "start": 588
+          },
+          {
+            "end": 643,
+            "start": 619
+          },
+          {
+            "end": 664,
+            "start": 643
+          },
+          {
+            "end": 720,
+            "start": 664
+          },
+          {
+            "end": 776,
+            "start": 720
+          }
+        ],
+        "text": "Letter from the pretend river-post club:\r\nOur Foam Barges are also called cloud ferries; these names refer to the same toy.\r\nFor Foam Barges, do not dispatch a parcel if the stamp is missing.\r\nDispatch with a stamp is conditional on the envelope being dry.\r\nP.S. A damp envelope may travel only inside a blue sleeve; this exception qualifies dispatch.\r\nA higher dryness rating means a lower blur tendency, not a higher one.\r\nOne note calls the sleeve blue; a second calls its colour unknown. Do not resolve the disagreement.\r\nThe club-wide bell closes all desks after the final verse.\r\n\r\nAnnex: unrelated counter game\r\nScope: Pebble Counters\r\nAliases: stone tabs\r\nKeep Pebble Counters under the woven cover until noon.\r\nKeep Pebble Counters under the woven cover until noon.\r\n"
+      },
+      "knowledge:item-7efae9de56d3e90defc3fd0324c03ddf@sha256-80de114a93d0fde97e76abf8b484d1dc0a8b1ecbd05a6410cff802b675da26b8:text": {
+        "aliases": [],
+        "scopes": [],
+        "source_id": "original_domain",
+        "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+        "spans": [
+          {
+            "end": 3186,
+            "start": 3167
+          },
+          {
+            "end": 3187,
+            "start": 3186
+          },
+          {
+            "end": 3289,
+            "start": 3187
+          },
+          {
+            "end": 3390,
+            "start": 3289
+          },
+          {
+            "end": 3410,
+            "start": 3390
+          },
+          {
+            "end": 3411,
+            "start": 3410
+          },
+          {
+            "end": 3512,
+            "start": 3411
+          },
+          {
+            "end": 3607,
+            "start": 3512
+          },
+          {
+            "end": 3616,
+            "start": 3607
+          },
+          {
+            "end": 3617,
+            "start": 3616
+          }
+        ],
+        "text": "## Registry scores\n\n`reliability_score` is 10 = highly reliable, 1 = frequent failures. It runs in the opposite direction\nto likelihood. New starters routinely invert it. `criticality_score` runs in the expected direction,\n10 = most critical.\n\nNeither is sufficient on its own. Criticality is a starting point for impact, reliability a starting\npoint for likelihood; the finding text moves both. A reliable item with a crack in it is still\ncracked.\n\n"
+      },
+      "knowledge:item-8724277b28d78ba818a80fdae46e1aaf@sha256-9cd1a06eec94ab61c09f94806d3e2c07514bbe0da011bba32ba8a6df86e4c5c9:text": {
+        "aliases": [
+          "purple bridges"
+        ],
+        "scopes": [
+          "Plum-Arcs"
+        ],
+        "source_id": "eval_orchard",
+        "source_sha256": "412ea94c07b410bb43a46c04e98de2acfcaca0d5641e39f9f6f8e035f893d66c",
+        "spans": [
+          {
+            "end": 121,
+            "start": 96
+          },
+          {
+            "end": 143,
+            "start": 121
+          },
+          {
+            "end": 168,
+            "start": 143
+          },
+          {
+            "end": 191,
+            "start": 168
+          },
+          {
+            "end": 242,
+            "start": 191
+          },
+          {
+            "end": 306,
+            "start": 242
+          },
+          {
+            "end": 327,
+            "start": 306
+          },
+          {
+            "end": 390,
+            "start": 327
+          },
+          {
+            "end": 457,
+            "start": 390
+          },
+          {
+            "end": 459,
+            "start": 457
+          }
+        ],
+        "text": "## Branch for plum-arcs\r\nEquipment: Plum-Arcs\r\nAliases: purple bridges\r\n- Is the token round?\r\n  - Yes: do not fold Plum-Arcs until the whistle.\r\n  - No: leave the arc undecided; the token shape is not known.\r\n- Exception branch:\r\n  - A square silver token permits folding before the whistle.\r\n  - This exception qualifies the round-token folding restriction.\r\n\r\n"
+      },
+      "knowledge:item-89d94479c6f78495658d8a1c8082c4a3@sha256-7d092d17031e58771702fd76c77bf2e88ddd3a0fb7f1b07859ceab6c00e0d27a:text": {
+        "aliases": [],
+        "scopes": [],
+        "source_id": "original_domain",
+        "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+        "spans": [
+          {
+            "end": 1278,
+            "start": 1257
+          },
+          {
+            "end": 1279,
+            "start": 1278
+          },
+          {
+            "end": 1378,
+            "start": 1279
+          },
+          {
+            "end": 1478,
+            "start": 1378
+          },
+          {
+            "end": 1581,
+            "start": 1478
+          },
+          {
+            "end": 1677,
+            "start": 1581
+          },
+          {
+            "end": 1688,
+            "start": 1677
+          },
+          {
+            "end": 1689,
+            "start": 1688
+          },
+          {
+            "end": 1790,
+            "start": 1689
+          },
+          {
+            "end": 1893,
+            "start": 1790
+          },
+          {
+            "end": 1894,
+            "start": 1893
+          }
+        ],
+        "text": "## What moves impact\n\nUp: absence of redundancy; Safety Critical Elements, which exist because a major accident scenario\ndepends on them and are judged against that scenario rather than against repair cost; failures that\ndegrade a protection layer rather than causing direct loss; delayed or hidden consequences — loss of\ncorrosion inhibitor has no effect today and a substantial effect in eighteen months; escalation\npotential.\n\nDown: redundancy that is available and capable; items that can be bypassed without loss of function;\natmospheric, non-hydrocarbon, low-energy services; consequences limited to housekeeping or appearance.\n\n"
+      },
+      "knowledge:item-8f79eb9758c062995e31d11f44f79069@sha256-42185b59c6f3732373a2b0c52052dc1913b2e10ebe38ea8d0a42122c525eac77:text": {
+        "aliases": [],
+        "scopes": [],
+        "source_id": "original_domain",
+        "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+        "spans": [
+          {
+            "end": 53,
+            "start": 0
+          },
+          {
+            "end": 54,
+            "start": 53
+          },
+          {
+            "end": 156,
+            "start": 54
+          },
+          {
+            "end": 188,
+            "start": 156
+          },
+          {
+            "end": 189,
+            "start": 188
+          }
+        ],
+        "text": "# Integrity and Reliability Notes — Bravo Platform\n\nHandover notes from the outgoing Integrity Engineer. Unedited. This is the only written record of how\nfindings are currently triaged.\n\n"
+      },
+      "knowledge:item-9a7b1ac8564c7e53dfa1fe6bebc14e4d@sha256-8dc73e241e2fa65eaa9c2ac01a12d411dc9690f96760b5b29e19c949169c6642:text": {
+        "aliases": [],
+        "scopes": [],
+        "source_id": "eval_orchard",
+        "source_sha256": "412ea94c07b410bb43a46c04e98de2acfcaca0d5641e39f9f6f8e035f893d66c",
+        "spans": [
+          {
+            "end": 26,
+            "start": 0
+          },
+          {
+            "end": 94,
+            "start": 26
+          },
+          {
+            "end": 96,
+            "start": 94
+          }
+        ],
+        "text": "# Orchard branching game\r\nThe following branches concern cardboard fruit, not living plants.\r\n\r\n"
+      },
+      "knowledge:item-a716a4a9f49df46101a45a8c47f5a164@sha256-3fe062a4c361f7cb96d0234c5637b023e732a8653517e03f70b9e4d49fcf19a4:text": {
+        "aliases": [],
+        "scopes": [],
+        "source_id": "original_domain",
+        "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+        "spans": [
+          {
+            "end": 3640,
+            "start": 3617
+          },
+          {
+            "end": 3641,
+            "start": 3640
+          },
+          {
+            "end": 3743,
+            "start": 3641
+          },
+          {
+            "end": 3836,
+            "start": 3743
+          },
+          {
+            "end": 3934,
+            "start": 3836
+          },
+          {
+            "end": 3935,
+            "start": 3934
+          },
+          {
+            "end": 4004,
+            "start": 3935
+          },
+          {
+            "end": 4005,
+            "start": 4004
+          },
+          {
+            "end": 4067,
+            "start": 4005
+          },
+          {
+            "end": 4169,
+            "start": 4067
+          },
+          {
+            "end": 4219,
+            "start": 4169
+          },
+          {
+            "end": 4277,
+            "start": 4219
+          },
+          {
+            "end": 4326,
+            "start": 4277
+          }
+        ],
+        "text": "## Output expectations\n\nMaintenance planning needs two lines: what is wrong, on what, and why it matters — readable without\nopening the inspection record, and not a restatement of the original finding text. Where the\nassessment is uncertain, that should be stated rather than resolved by picking a mid-range score.\n\nRecurring causes of loss of confidence in a triage output, in order:\n\n1. Confidently incorrect scores on safety critical equipment.\n2. Summaries that omit a detail that changes the decision — a measurement, a repeat occurrence, the\n   fact that the standby was already unavailable.\n3. The same finding scored differently on different days.\n4. Uniform mid-range scores across all findings.\n"
+      },
+      "knowledge:item-afed18293ce961eb704c4475330366ca@sha256-029a515f91707edee091751746dcc609bd69d4cf897f41c4b8cab2a2e6d74637:text": {
+        "aliases": [],
+        "scopes": [],
+        "source_id": "eval_loom",
+        "source_sha256": "7c10850f21de579945f1daa3d62353b9fba505a9a78c18ea04049b6fa21c3cfc",
+        "spans": [
+          {
+            "end": 22,
+            "start": 0
+          },
+          {
+            "end": 79,
+            "start": 22
+          },
+          {
+            "end": 81,
+            "start": 79
+          }
+        ],
+        "text": "# Loom rehearsal log\r\nAll entries belong to an invented ribbon-routing sport.\r\n\r\n"
+      },
+      "knowledge:item-bfa8911e1344fb584a513710e7fb05eb@sha256-a01df73239a2b5ae6f4a6edecdbf3663d69dae63733c15f19b13076ed1d756d1:text": {
+        "aliases": [],
+        "scopes": [],
+        "source_id": "eval_prism",
+        "source_sha256": "72765663cf1ff3ff2fb8cd92bbae6051dc4f10493b1df2dfe0452865068c32c1",
+        "spans": [
+          {
+            "end": 19,
+            "start": 0
+          },
+          {
+            "end": 88,
+            "start": 19
+          },
+          {
+            "end": 90,
+            "start": 88
+          }
+        ],
+        "text": "# Prism catalogue\r\nThis is a fictional lantern-display puzzle, not equipment guidance.\r\n\r\n"
+      },
+      "knowledge:item-c9869a6dc646924114c358a37461364b@sha256-69aba44a1b18710d2644ca0f1933d56d4b0712b060fc8cfabf415e23904895d3:text": {
+        "aliases": [],
+        "scopes": [],
+        "source_id": "original_domain",
+        "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+        "spans": [
+          {
+            "end": 2451,
+            "start": 2440
+          },
+          {
+            "end": 2452,
+            "start": 2451
+          },
+          {
+            "end": 2546,
+            "start": 2452
+          },
+          {
+            "end": 2643,
+            "start": 2546
+          },
+          {
+            "end": 2741,
+            "start": 2643
+          },
+          {
+            "end": 2757,
+            "start": 2741
+          },
+          {
+            "end": 2758,
+            "start": 2757
+          },
+          {
+            "end": 2774,
+            "start": 2758
+          },
+          {
+            "end": 2793,
+            "start": 2774
+          },
+          {
+            "end": 2813,
+            "start": 2793
+          },
+          {
+            "end": 2844,
+            "start": 2813
+          },
+          {
+            "end": 2861,
+            "start": 2844
+          },
+          {
+            "end": 2862,
+            "start": 2861
+          },
+          {
+            "end": 2964,
+            "start": 2862
+          },
+          {
+            "end": 3062,
+            "start": 2964
+          },
+          {
+            "end": 3159,
+            "start": 3062
+          },
+          {
+            "end": 3166,
+            "start": 3159
+          },
+          {
+            "end": 3167,
+            "start": 3166
+          }
+        ],
+        "text": "## Urgency\n\nNot an average of likelihood and impact, and not the maximum, though the maximum is closer. A\nlow-likelihood, high-impact finding on an SCE still requires attention this week. A near-certain\nfailure of something inconsequential can wait for the next shutdown. Urgency expresses how soon a\nhuman must act.\n\n- 9–10: today\n- 7–8: this week\n- 5–6: this month\n- 3–4: next planned shutdown\n- 1–2: backlog\n\nTwo conditions override the derived value. Anything that leaves a protection layer impaired without a\nrecorded deviation is immediate, because the installation is out of compliance from the point the\nimpairment is known. The same applies to anything that reduces evacuation capacity below the POB\ncount.\n\n"
+      },
+      "knowledge:item-e96006448e012b89e1e61aec969f5297@sha256-62afd3e71173c4619e4700deac572604771ebd434dd64faa96cc3b2062100456:text": {
+        "aliases": [
+          "smooth runners"
+        ],
+        "scopes": [
+          "Silk Shuttles"
+        ],
+        "source_id": "eval_loom",
+        "source_sha256": "7c10850f21de579945f1daa3d62353b9fba505a9a78c18ea04049b6fa21c3cfc",
+        "spans": [
+          {
+            "end": 109,
+            "start": 81
+          },
+          {
+            "end": 131,
+            "start": 109
+          },
+          {
+            "end": 156,
+            "start": 131
+          },
+          {
+            "end": 216,
+            "start": 156
+          },
+          {
+            "end": 283,
+            "start": 216
+          },
+          {
+            "end": 285,
+            "start": 283
+          }
+        ],
+        "text": "## Entry 06: Silk Shuttles\r\nScope: Silk Shuttles\r\nAliases: smooth runners\r\n06:10 Do not send Silk Shuttles while the drum is covered.\r\n06:11 A clear drum permits sending, provided the tassel is green.\r\n\r\n"
+      },
+      "knowledge:item-fff7d661ed1a10fa7002cffb9e9c3cba@sha256-a684e02b8d7feca5be8339fe019ff3fc3c285338aa174ba437b888792b1f96fb:text": {
+        "aliases": [],
+        "scopes": [],
+        "source_id": "eval_prism",
+        "source_sha256": "72765663cf1ff3ff2fb8cd92bbae6051dc4f10493b1df2dfe0452865068c32c1",
+        "spans": [
+          {
+            "end": 312,
+            "start": 294
+          },
+          {
+            "end": 395,
+            "start": 312
+          },
+          {
+            "end": 460,
+            "start": 395
+          },
+          {
+            "end": 541,
+            "start": 460
+          },
+          {
+            "end": 543,
+            "start": 541
+          }
+        ],
+        "text": "## Hush footnote\r\nThe hush forbids opening even with a face-up card; it qualifies the opening rule.\r\nHigher steadiness means lower flicker likelihood, never higher.\r\nThe card is described as face up and as unreadable; its state remains disputed.\r\n\r\n"
+      }
+    },
+    "error_code": null,
+    "knowledge_version": "sha256-82cac7a100780eea449737324f54d044b1ed5a4c4ba28e808998ee4990cd55f2",
+    "query_sha256": "51c991d8cb83225f6f9c313dced77da9b7d3d84779d1117d36a8f0ef97bd3f36",
+    "retrieval_index_sha256": "5542227902f6237409ee0052ebf046c0bced26b0e796ae9092e6dded87f94ee5",
+    "selection_mode": "conservative_expansion",
+    "source_index": {
+      "knowledge:item-05d46d0960e7f74ea8f961605af835ea@sha256-805a8588e3e67f8ba66fd125efbeccbc11716f932e4249dd810c6508eceb0054:text": {
+        "source_id": "eval_orchard",
+        "source_sha256": "412ea94c07b410bb43a46c04e98de2acfcaca0d5641e39f9f6f8e035f893d66c",
+        "spans": [
+          {
+            "end": 470,
+            "start": 459
+          },
+          {
+            "end": 524,
+            "start": 470
+          },
+          {
+            "end": 614,
+            "start": 524
+          },
+          {
+            "end": 616,
+            "start": 614
+          }
+        ]
+      },
+      "knowledge:item-0893e58e32b2a69af2dc01398d40734d@sha256-f3c2478ce801c2895e35cdd00a236654f31048ceac96b06bcf673e91a778efb6:text": {
+        "source_id": "original_domain",
+        "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+        "spans": [
+          {
+            "end": 797,
+            "start": 772
+          },
+          {
+            "end": 798,
+            "start": 797
+          },
+          {
+            "end": 896,
+            "start": 798
+          },
+          {
+            "end": 994,
+            "start": 896
+          },
+          {
+            "end": 1096,
+            "start": 994
+          },
+          {
+            "end": 1121,
+            "start": 1096
+          },
+          {
+            "end": 1122,
+            "start": 1121
+          },
+          {
+            "end": 1221,
+            "start": 1122
+          },
+          {
+            "end": 1256,
+            "start": 1221
+          },
+          {
+            "end": 1257,
+            "start": 1256
+          }
+        ]
+      },
+      "knowledge:item-234cd908251b53a14d0ae0ead654efb1@sha256-d0b8aee8afcac7bf9080985724886332c47686c2da8974d031c3b4cb7dd9e49c:text": {
+        "source_id": "original_domain",
+        "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+        "spans": [
+          {
+            "end": 210,
+            "start": 189
+          },
+          {
+            "end": 211,
+            "start": 210
+          },
+          {
+            "end": 310,
+            "start": 211
+          },
+          {
+            "end": 411,
+            "start": 310
+          },
+          {
+            "end": 513,
+            "start": 411
+          },
+          {
+            "end": 546,
+            "start": 513
+          },
+          {
+            "end": 547,
+            "start": 546
+          },
+          {
+            "end": 648,
+            "start": 547
+          },
+          {
+            "end": 704,
+            "start": 648
+          },
+          {
+            "end": 705,
+            "start": 704
+          },
+          {
+            "end": 771,
+            "start": 705
+          },
+          {
+            "end": 772,
+            "start": 771
+          }
+        ]
+      },
+      "knowledge:item-2989e627b05c86bb856864b4ba320826@sha256-ec26843a6e1a7b11c0e90cdad4e0bbee1288b3862b8985d7c2c093dbf3f15d34:text": {
+        "source_id": "eval_prism",
+        "source_sha256": "72765663cf1ff3ff2fb8cd92bbae6051dc4f10493b1df2dfe0452865068c32c1",
+        "spans": [
+          {
+            "end": 561,
+            "start": 543
+          },
+          {
+            "end": 587,
+            "start": 561
+          },
+          {
+            "end": 632,
+            "start": 587
+          },
+          {
+            "end": 677,
+            "start": 632
+          }
+        ]
+      },
+      "knowledge:item-2c18fbbd35efd709730a7708d3fe3bfb@sha256-903ab03e1efb3dc8244d8a5953d10d5ab69d5ae2b40e92b9cbd1963baef59c6f:text": {
+        "source_id": "original_domain",
+        "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+        "spans": [
+          {
+            "end": 1918,
+            "start": 1894
+          },
+          {
+            "end": 1919,
+            "start": 1918
+          },
+          {
+            "end": 2017,
+            "start": 1919
+          },
+          {
+            "end": 2117,
+            "start": 2017
+          },
+          {
+            "end": 2180,
+            "start": 2117
+          },
+          {
+            "end": 2181,
+            "start": 2180
+          },
+          {
+            "end": 2284,
+            "start": 2181
+          },
+          {
+            "end": 2379,
+            "start": 2284
+          },
+          {
+            "end": 2439,
+            "start": 2379
+          },
+          {
+            "end": 2440,
+            "start": 2439
+          }
+        ]
+      },
+      "knowledge:item-3657959f1a17e70851f3d2e424d25edb@sha256-e0187bd546eaa1b96f965f47bee851ffdae7a9e9204867f23b769ffb383ba402:text": {
+        "source_id": "eval_prism",
+        "source_sha256": "72765663cf1ff3ff2fb8cd92bbae6051dc4f10493b1df2dfe0452865068c32c1",
+        "spans": [
+          {
+            "end": 106,
+            "start": 90
+          },
+          {
+            "end": 126,
+            "start": 106
+          },
+          {
+            "end": 164,
+            "start": 126
+          },
+          {
+            "end": 224,
+            "start": 164
+          },
+          {
+            "end": 292,
+            "start": 224
+          },
+          {
+            "end": 294,
+            "start": 292
+          }
+        ]
+      },
+      "knowledge:item-55a75be555f5e1bb6868359497e5f76b@sha256-11f54aba12f6476a5bc74541bba641b151864ca365845fafea0a4e604cf403ae:text": {
+        "source_id": "eval_orchard",
+        "source_sha256": "412ea94c07b410bb43a46c04e98de2acfcaca0d5641e39f9f6f8e035f893d66c",
+        "spans": [
+          {
+            "end": 643,
+            "start": 616
+          },
+          {
+            "end": 663,
+            "start": 643
+          },
+          {
+            "end": 707,
+            "start": 663
+          },
+          {
+            "end": 751,
+            "start": 707
+          }
+        ]
+      },
+      "knowledge:item-6654ef60c3a845ce7c9ad1c042d22c70@sha256-5b37599057cc8e112ce21637429a4f86179ddc5d7ac4feccedf1a88c4569583a:text": {
+        "source_id": "eval_loom",
+        "source_sha256": "7c10850f21de579945f1daa3d62353b9fba505a9a78c18ea04049b6fa21c3cfc",
+        "spans": [
+          {
+            "end": 318,
+            "start": 285
+          },
+          {
+            "end": 397,
+            "start": 318
+          },
+          {
+            "end": 472,
+            "start": 397
+          },
+          {
+            "end": 542,
+            "start": 472
+          },
+          {
+            "end": 632,
+            "start": 542
+          },
+          {
+            "end": 634,
+            "start": 632
+          }
+        ]
+      },
+      "knowledge:item-70e3a31707646a5a657ec26cb721754b@sha256-3ead0128d76d4605316197d68e9ed3836c6e9b594c3b9d52e730b7dc749ae509:text": {
+        "source_id": "eval_loom",
+        "source_sha256": "7c10850f21de579945f1daa3d62353b9fba505a9a78c18ea04049b6fa21c3cfc",
+        "spans": [
+          {
+            "end": 659,
+            "start": 634
+          },
+          {
+            "end": 682,
+            "start": 659
+          },
+          {
+            "end": 729,
+            "start": 682
+          },
+          {
+            "end": 776,
+            "start": 729
+          }
+        ]
+      },
+      "knowledge:item-75bfb2af1b683e4c5368b00b504b2d87@sha256-3981f0e8264100841775e8c781660c754bd8d8437e5a11fe72c209d41ae09edb:text": {
+        "source_id": "eval_river",
+        "source_sha256": "cb87dd0ce116a2813451daa873830d5b53269ac41742330b6d4baee09b61663e",
+        "spans": [
+          {
+            "end": 42,
+            "start": 0
+          },
+          {
+            "end": 125,
+            "start": 42
+          },
+          {
+            "end": 193,
+            "start": 125
+          },
+          {
+            "end": 258,
+            "start": 193
+          },
+          {
+            "end": 353,
+            "start": 258
+          },
+          {
+            "end": 425,
+            "start": 353
+          },
+          {
+            "end": 526,
+            "start": 425
+          },
+          {
+            "end": 586,
+            "start": 526
+          },
+          {
+            "end": 588,
+            "start": 586
+          },
+          {
+            "end": 619,
+            "start": 588
+          },
+          {
+            "end": 643,
+            "start": 619
+          },
+          {
+            "end": 664,
+            "start": 643
+          },
+          {
+            "end": 720,
+            "start": 664
+          },
+          {
+            "end": 776,
+            "start": 720
+          }
+        ]
+      },
+      "knowledge:item-7efae9de56d3e90defc3fd0324c03ddf@sha256-80de114a93d0fde97e76abf8b484d1dc0a8b1ecbd05a6410cff802b675da26b8:text": {
+        "source_id": "original_domain",
+        "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+        "spans": [
+          {
+            "end": 3186,
+            "start": 3167
+          },
+          {
+            "end": 3187,
+            "start": 3186
+          },
+          {
+            "end": 3289,
+            "start": 3187
+          },
+          {
+            "end": 3390,
+            "start": 3289
+          },
+          {
+            "end": 3410,
+            "start": 3390
+          },
+          {
+            "end": 3411,
+            "start": 3410
+          },
+          {
+            "end": 3512,
+            "start": 3411
+          },
+          {
+            "end": 3607,
+            "start": 3512
+          },
+          {
+            "end": 3616,
+            "start": 3607
+          },
+          {
+            "end": 3617,
+            "start": 3616
+          }
+        ]
+      },
+      "knowledge:item-8724277b28d78ba818a80fdae46e1aaf@sha256-9cd1a06eec94ab61c09f94806d3e2c07514bbe0da011bba32ba8a6df86e4c5c9:text": {
+        "source_id": "eval_orchard",
+        "source_sha256": "412ea94c07b410bb43a46c04e98de2acfcaca0d5641e39f9f6f8e035f893d66c",
+        "spans": [
+          {
+            "end": 121,
+            "start": 96
+          },
+          {
+            "end": 143,
+            "start": 121
+          },
+          {
+            "end": 168,
+            "start": 143
+          },
+          {
+            "end": 191,
+            "start": 168
+          },
+          {
+            "end": 242,
+            "start": 191
+          },
+          {
+            "end": 306,
+            "start": 242
+          },
+          {
+            "end": 327,
+            "start": 306
+          },
+          {
+            "end": 390,
+            "start": 327
+          },
+          {
+            "end": 457,
+            "start": 390
+          },
+          {
+            "end": 459,
+            "start": 457
+          }
+        ]
+      },
+      "knowledge:item-89d94479c6f78495658d8a1c8082c4a3@sha256-7d092d17031e58771702fd76c77bf2e88ddd3a0fb7f1b07859ceab6c00e0d27a:text": {
+        "source_id": "original_domain",
+        "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+        "spans": [
+          {
+            "end": 1278,
+            "start": 1257
+          },
+          {
+            "end": 1279,
+            "start": 1278
+          },
+          {
+            "end": 1378,
+            "start": 1279
+          },
+          {
+            "end": 1478,
+            "start": 1378
+          },
+          {
+            "end": 1581,
+            "start": 1478
+          },
+          {
+            "end": 1677,
+            "start": 1581
+          },
+          {
+            "end": 1688,
+            "start": 1677
+          },
+          {
+            "end": 1689,
+            "start": 1688
+          },
+          {
+            "end": 1790,
+            "start": 1689
+          },
+          {
+            "end": 1893,
+            "start": 1790
+          },
+          {
+            "end": 1894,
+            "start": 1893
+          }
+        ]
+      },
+      "knowledge:item-8f79eb9758c062995e31d11f44f79069@sha256-42185b59c6f3732373a2b0c52052dc1913b2e10ebe38ea8d0a42122c525eac77:text": {
+        "source_id": "original_domain",
+        "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+        "spans": [
+          {
+            "end": 53,
+            "start": 0
+          },
+          {
+            "end": 54,
+            "start": 53
+          },
+          {
+            "end": 156,
+            "start": 54
+          },
+          {
+            "end": 188,
+            "start": 156
+          },
+          {
+            "end": 189,
+            "start": 188
+          }
+        ]
+      },
+      "knowledge:item-9a7b1ac8564c7e53dfa1fe6bebc14e4d@sha256-8dc73e241e2fa65eaa9c2ac01a12d411dc9690f96760b5b29e19c949169c6642:text": {
+        "source_id": "eval_orchard",
+        "source_sha256": "412ea94c07b410bb43a46c04e98de2acfcaca0d5641e39f9f6f8e035f893d66c",
+        "spans": [
+          {
+            "end": 26,
+            "start": 0
+          },
+          {
+            "end": 94,
+            "start": 26
+          },
+          {
+            "end": 96,
+            "start": 94
+          }
+        ]
+      },
+      "knowledge:item-a716a4a9f49df46101a45a8c47f5a164@sha256-3fe062a4c361f7cb96d0234c5637b023e732a8653517e03f70b9e4d49fcf19a4:text": {
+        "source_id": "original_domain",
+        "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+        "spans": [
+          {
+            "end": 3640,
+            "start": 3617
+          },
+          {
+            "end": 3641,
+            "start": 3640
+          },
+          {
+            "end": 3743,
+            "start": 3641
+          },
+          {
+            "end": 3836,
+            "start": 3743
+          },
+          {
+            "end": 3934,
+            "start": 3836
+          },
+          {
+            "end": 3935,
+            "start": 3934
+          },
+          {
+            "end": 4004,
+            "start": 3935
+          },
+          {
+            "end": 4005,
+            "start": 4004
+          },
+          {
+            "end": 4067,
+            "start": 4005
+          },
+          {
+            "end": 4169,
+            "start": 4067
+          },
+          {
+            "end": 4219,
+            "start": 4169
+          },
+          {
+            "end": 4277,
+            "start": 4219
+          },
+          {
+            "end": 4326,
+            "start": 4277
+          }
+        ]
+      },
+      "knowledge:item-afed18293ce961eb704c4475330366ca@sha256-029a515f91707edee091751746dcc609bd69d4cf897f41c4b8cab2a2e6d74637:text": {
+        "source_id": "eval_loom",
+        "source_sha256": "7c10850f21de579945f1daa3d62353b9fba505a9a78c18ea04049b6fa21c3cfc",
+        "spans": [
+          {
+            "end": 22,
+            "start": 0
+          },
+          {
+            "end": 79,
+            "start": 22
+          },
+          {
+            "end": 81,
+            "start": 79
+          }
+        ]
+      },
+      "knowledge:item-bfa8911e1344fb584a513710e7fb05eb@sha256-a01df73239a2b5ae6f4a6edecdbf3663d69dae63733c15f19b13076ed1d756d1:text": {
+        "source_id": "eval_prism",
+        "source_sha256": "72765663cf1ff3ff2fb8cd92bbae6051dc4f10493b1df2dfe0452865068c32c1",
+        "spans": [
+          {
+            "end": 19,
+            "start": 0
+          },
+          {
+            "end": 88,
+            "start": 19
+          },
+          {
+            "end": 90,
+            "start": 88
+          }
+        ]
+      },
+      "knowledge:item-c9869a6dc646924114c358a37461364b@sha256-69aba44a1b18710d2644ca0f1933d56d4b0712b060fc8cfabf415e23904895d3:text": {
+        "source_id": "original_domain",
+        "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+        "spans": [
+          {
+            "end": 2451,
+            "start": 2440
+          },
+          {
+            "end": 2452,
+            "start": 2451
+          },
+          {
+            "end": 2546,
+            "start": 2452
+          },
+          {
+            "end": 2643,
+            "start": 2546
+          },
+          {
+            "end": 2741,
+            "start": 2643
+          },
+          {
+            "end": 2757,
+            "start": 2741
+          },
+          {
+            "end": 2758,
+            "start": 2757
+          },
+          {
+            "end": 2774,
+            "start": 2758
+          },
+          {
+            "end": 2793,
+            "start": 2774
+          },
+          {
+            "end": 2813,
+            "start": 2793
+          },
+          {
+            "end": 2844,
+            "start": 2813
+          },
+          {
+            "end": 2861,
+            "start": 2844
+          },
+          {
+            "end": 2862,
+            "start": 2861
+          },
+          {
+            "end": 2964,
+            "start": 2862
+          },
+          {
+            "end": 3062,
+            "start": 2964
+          },
+          {
+            "end": 3159,
+            "start": 3062
+          },
+          {
+            "end": 3166,
+            "start": 3159
+          },
+          {
+            "end": 3167,
+            "start": 3166
+          }
+        ]
+      },
+      "knowledge:item-e96006448e012b89e1e61aec969f5297@sha256-62afd3e71173c4619e4700deac572604771ebd434dd64faa96cc3b2062100456:text": {
+        "source_id": "eval_loom",
+        "source_sha256": "7c10850f21de579945f1daa3d62353b9fba505a9a78c18ea04049b6fa21c3cfc",
+        "spans": [
+          {
+            "end": 109,
+            "start": 81
+          },
+          {
+            "end": 131,
+            "start": 109
+          },
+          {
+            "end": 156,
+            "start": 131
+          },
+          {
+            "end": 216,
+            "start": 156
+          },
+          {
+            "end": 283,
+            "start": 216
+          },
+          {
+            "end": 285,
+            "start": 283
+          }
+        ]
+      },
+      "knowledge:item-fff7d661ed1a10fa7002cffb9e9c3cba@sha256-a684e02b8d7feca5be8339fe019ff3fc3c285338aa174ba437b888792b1f96fb:text": {
+        "source_id": "eval_prism",
+        "source_sha256": "72765663cf1ff3ff2fb8cd92bbae6051dc4f10493b1df2dfe0452865068c32c1",
+        "spans": [
+          {
+            "end": 312,
+            "start": 294
+          },
+          {
+            "end": 395,
+            "start": 312
+          },
+          {
+            "end": 460,
+            "start": 395
+          },
+          {
+            "end": 541,
+            "start": 460
+          },
+          {
+            "end": 543,
+            "start": 541
+          }
+        ]
+      }
+    },
+    "status": "ok",
+    "strategy": {
+      "implementation_files": {
+        "contracts.py": "19d1ace2fbf1706dcd4a0bf4b565ef96cda17947172aa0ca987289b93f8008e8",
+        "retrieval.py": "c16ac02cfdf2786f66727a7b3fdf254c22f8bb6b565eab3419cd764fc7c18376",
+        "source.py": "d2cb494ff1088d2e262f2c924467cd126c41921ab6e8191cf0cc86c2a4033e79",
+        "source_store.py": "3673d83cdf8d5937232f77a11329080eef925d1583132ffe8a27a2abc67b98fb"
+      },
+      "implementation_sha256": "0fc1db87601c6f19aea9a42d840a0e4a61ba745f08c282a9beaf42f8e0a94705",
+      "parameters": {
+        "closure": "bidirectional",
+        "general": "always",
+        "lexical": "disabled",
+        "ordering": "address-ascending",
+        "overflow": "failure-only",
+        "scope": "casefold-exact",
+        "source_context": "c0-heading-source-context-v2",
+        "type_scope": "registry-type-vocabulary",
+        "unknown": "all-active",
+        "version": "source-selector-v1"
+      },
+      "parameters_sha256": "758b205aefbcec9954e67293eff9d1614c4d8a21904b5ae374ed8965232b9875",
+      "strategy": "source-selector-v1"
+    }
+  },
+  "selective_qualification": false,
+  "synthetic_review_diagnostic": true,
+  "synthetic_review_only": true
+}

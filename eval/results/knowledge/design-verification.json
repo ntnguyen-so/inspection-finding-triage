@@ -1,0 +1,94 @@
+{
+  "scope": "knowledge_context_design_documentation_not_system_acceptance",
+  "observation_date": "2026-11-16",
+  "reference_version": "1.2",
+  "git_revision_observed": "ee9eee9ac55c8b1eaaacbcd6d004ff9e6a0dc02b",
+  "git_dirty_observed": true,
+  "concurrent_work": "Other sessions are changing this checkout. Hashes identify the inspected document snapshot, not an atomic repository freeze.",
+  "authored_document_changes": [
+    "docs\\06_KNOWLEDGE_CONTEXT.md",
+    "README.md navigation entry for document 06"
+  ],
+  "input_sha256": {
+    "AGENTS.md": "38050323e2f97fecaf926c57e73917f7846d07794b63fee36129466653b65057",
+    "README.md": "577efda2b4fd6d223c732417f9f87112149ff5afeef6510f110a8f6dd087df5a",
+    "docs\\02_DATA_EVALUATION_PLAN.md": "54a890a6a4234fc63c0012a1f530ec9f2494da5b96a6564e022744c54faf1304",
+    "docs\\03_EVALUATION_ACCEPTANCE.md": "ed0d6488673615857d47d396f148217e218469d2289704e3410308ea4a662e70",
+    "docs\\04_INFERENCE_LIBRARY.md": "a71140c9be06f84963a095d3a8dee24d88ef405c6e232879e5d0c681a22eb961",
+    "docs\\05_TRIAGE_WORKFLOW.md": "50819845308feccee11c1276e525b432ae1e222e29a39df053b4894009b173b4",
+    "docs\\06_KNOWLEDGE_CONTEXT.md": "e0082f6708fe44ed842c6e0144f82499138d888ae8a8c3e21a711494f12358e7",
+    "docs\\candidate-pack\\candidate-pack\\README.md": "8b67e295e93c6eaccd0e40d3f7481cb954ca9b83432ee3f95e1ecf548ae99016",
+    "docs\\candidate-pack\\candidate-pack\\reference\\domain_knowledge.md": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+    "eval\\spec\\acceptance.json": "033d1860c3feb3493c587ee32d2b72b510f2fec3847d04dad77de0626ea2c23c",
+    "eval\\spec\\split.json": "bf708a150f0ac08a1f65f1d585f2cdde6fb6984578ea379465a066cf9a622e43",
+    "eval\\results\\readiness.json": "52896c02982ee4d9ac3fde435b9e761ba9a34c0c9402faa6f96fce156d25d301"
+  },
+  "commands": [
+    {
+      "command": "python -B -m eval.validate",
+      "exit_code": 0,
+      "observation": "Artifact integrity checks passed; reference 1.2 frozen; 17 scenarios remain not_run_no_system; no ticket/model assessment."
+    },
+    {
+      "command": "git --no-pager diff --check -- README.md",
+      "exit_code": 0,
+      "observation": "No whitespace diagnostics."
+    }
+  ],
+  "inline_documentation_check": {
+    "invocation": "PowerShell single-quoted inline Python script piped to python -B -",
+    "exit_code": 0,
+    "document_lines": 501,
+    "checks": {
+      "ascii_document": true,
+      "balanced_code_fences": true,
+      "no_trailing_whitespace": true,
+      "readme_navigation": true,
+      "consumer_bundle_fields_covered": true,
+      "purpose_and_overlay_signature": true,
+      "known_gap_contract": true,
+      "required_scenarios_mapped": true,
+      "design_only_status": true,
+      "reserved_design_absent": true,
+      "existing_contract_paths": true
+    },
+    "limitation": "Text/interface consistency checks, not executable API compatibility or production scenario execution."
+  },
+  "design_reviews": [
+    {
+      "name": "knowledge-design-review-a",
+      "agent_type": "rubber-duck",
+      "mode": "read_only",
+      "scope": "Initial document, source brief/domain, workflow handoff/rubric and B01-B03/D02/X01; did not read all workflow implementation planning.",
+      "disposition": "Recorded in document 06 section 7."
+    },
+    {
+      "name": "knowledge-design-review-b",
+      "agent_type": "rubber-duck",
+      "mode": "read_only",
+      "scope": "Cross-critique of revised document, workflow handoff/rubric, B02 and domain headings; did not read full brief/domain or other scenario bodies.",
+      "disposition": "Recorded in document 06 section 7; final clarifications directly checked, not reviewed by a third agent."
+    }
+  ],
+  "remaining_handoff": [
+    "Workflow owner confirmation of concrete immutable TableSource.",
+    "Workflow owner confirmation of typed rubric accessor and preflight compatibility diagnostic.",
+    "Implementation agreement on the module-owned canonical and full-bundle serializers."
+  ],
+  "triage_provider_sends": 0,
+  "implementation_tests_run": false,
+  "full_suite_run": false,
+  "production_implementation_created": false,
+  "frozen_test_assessment_run": false,
+  "tickets_generated": false,
+  "paid_baseline_authorized": false,
+  "system_acceptance": "not_run_no_system",
+  "reviewer_model_settings": null,
+  "reviewer_usage_cost": null,
+  "limitations": [
+    "Design and AI review do not establish knowledge influence, model quality, engineering correctness or system acceptance.",
+    "No dependency, source package, frozen evaluation or parallel workflow/inference document was edited by this task.",
+    "Root DESIGN.md remains owner-reserved and was not created.",
+    "The proposed form and review declarations do not implement authentication or independent approval enforcement."
+  ]
+}

@@ -1,0 +1,154 @@
+{
+  "scope": "Closed triage direct-development phases only; not full project/invoice cost or successful acceptance",
+  "recorded_at": "2026-11-16T19:44:18.504525+00:00",
+  "phases": [
+    {
+      "phase": "chat51",
+      "ledger": "eval\\results\\triage\\native-strict-development-ledger.json",
+      "ledger_sha256": "0b098b6ed0cc82ac31d0c021d3defaef8429c0e2499a686a39d21dd8d8cdd7de",
+      "ceiling": 52,
+      "unused_slots_not_transferred": 16,
+      "receipts": [
+        "eval\\results\\triage\\native-strict-development-1\\run\\run.json",
+        "eval\\results\\triage\\native-strict-development-2\\run\\run.json",
+        "eval\\results\\triage\\native-strict-development-3\\run\\run.json",
+        "eval\\results\\triage\\native-strict-development-4\\run\\run.json"
+      ],
+      "observed_models": [
+        "gpt-chat-latest"
+      ],
+      "actual_usage_totals": {
+        "attempts": 36,
+        "known_http_dispatches": 36,
+        "usage_known": 34,
+        "prompt_tokens": 627877,
+        "cached_tokens": 469248,
+        "completion_tokens": 42858,
+        "reasoning_tokens": 0
+      },
+      "assumed_tariff_URL": "https://developers.openai.com/api/docs/models/gpt-5.1-chat-latest",
+      "assumed_input_cached_output_USD_per_million": [
+        1.25,
+        0.125,
+        10
+      ],
+      "estimate_USD_for_known_usage_only": 0.68552225,
+      "Azure_bill_verified": false
+    },
+    {
+      "phase": "chat53",
+      "ledger": "eval\\results\\triage\\native-strict-model53\\native-strict-development-ledger.json",
+      "ledger_sha256": "7a4802329409fa027ab505b2a5b5acf7871153311fe33a9054aee0493316f1c7",
+      "ceiling": 52,
+      "unused_slots_not_transferred": 36,
+      "receipts": [
+        "eval\\results\\triage\\native-strict-model53\\development-1\\run\\run.json"
+      ],
+      "observed_models": [
+        "gpt-chat-latest"
+      ],
+      "actual_usage_totals": {
+        "attempts": 16,
+        "known_http_dispatches": 16,
+        "usage_known": 16,
+        "prompt_tokens": 300716,
+        "cached_tokens": 270720,
+        "completion_tokens": 20373,
+        "reasoning_tokens": 0
+      },
+      "assumed_tariff_URL": "https://developers.openai.com/api/docs/models/gpt-5.3-chat-latest",
+      "assumed_input_cached_output_USD_per_million": [
+        1.75,
+        0.175,
+        14
+      ],
+      "estimate_USD_for_known_usage_only": 0.38509100000000007,
+      "Azure_bill_verified": false
+    },
+    {
+      "phase": "o4",
+      "ledger": "eval\\results\\triage\\native-strict-o4\\native-strict-development-ledger.json",
+      "ledger_sha256": "58a20845c3a46aa07d61567f15434357c4dbc8c5048196c58afa8e2df4bf7c21",
+      "ceiling": 52,
+      "unused_slots_not_transferred": 33,
+      "receipts": [
+        "eval\\results\\triage\\native-strict-o4\\development-1\\run\\run.json",
+        "eval\\results\\triage\\native-strict-o4\\development-2\\run\\run.json",
+        "eval\\results\\triage\\native-strict-o4\\development-3\\run\\run.json",
+        "eval\\results\\triage\\native-strict-o4\\development-4\\run\\run.json"
+      ],
+      "observed_models": [
+        "o4-mini-2025-04-16"
+      ],
+      "actual_usage_totals": {
+        "attempts": 19,
+        "known_http_dispatches": 19,
+        "usage_known": 19,
+        "prompt_tokens": 422822,
+        "cached_tokens": 181120,
+        "completion_tokens": 94806,
+        "reasoning_tokens": 79360
+      },
+      "assumed_tariff_URL": "https://developers.openai.com/api/docs/models/o4-mini",
+      "assumed_input_cached_output_USD_per_million": [
+        1.1,
+        0.275,
+        4.4
+      ],
+      "estimate_USD_for_known_usage_only": 0.7328266000000001,
+      "Azure_bill_verified": false
+    }
+  ],
+  "compatibility": [
+    {
+      "path": "eval\\results\\triage\\strict-provider-compatibility-1\\report.json",
+      "status": "pass",
+      "http_dispatches": 1,
+      "usage": {
+        "completion_tokens": 13,
+        "prompt_tokens": 115,
+        "total_tokens": 128,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": null,
+          "cached_tokens": 0
+        },
+        "latency_checkpoint": {
+          "engine_tbt_ms": 15,
+          "engine_ttft_ms": 79,
+          "engine_ttlt_ms": 290,
+          "pre_inference_ms": 88,
+          "service_tbt_ms": 16,
+          "service_ttft_ms": 218,
+          "service_ttlt_ms": 428,
+          "user_visible_ttft_ms": 130
+        }
+      },
+      "actual_USD": null
+    },
+    {
+      "path": "eval\\results\\triage\\strict-schema-compatibility-1\\report.json",
+      "status": "schema_rejected",
+      "http_dispatches": 1,
+      "usage": null,
+      "actual_USD": null
+    }
+  ],
+  "direct_development_dispatches": 71,
+  "known_compatibility_dispatches": 2,
+  "estimate_USD_for_known_development_usage_only": 1.8034398500000002,
+  "actual_total_USD": null,
+  "limitations": [
+    "Historical public OpenAI tariffs are assumptions, not Azure account/region invoice rates; public aliases are marked retired.",
+    "Unknown failed-call usage is not zero; reasoning tokens are already part of completion totals and are not double-counted.",
+    "Twelve prior Copilot application sends have unknown hidden HTTP count and unverified USD; excluded, not free.",
+    "Parent assistant/reviewer billing, other knowledge-session experiments and future phases are excluded, not zero.",
+    "No future Responses phase has dispatched."
+  ]
+}

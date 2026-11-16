@@ -1,0 +1,119 @@
+{
+  "recorded_at": "2026-11-16T13:02:44.523746+00:00",
+  "status": "experimental_live_smoke_pass",
+  "acceptance_eligible": false,
+  "semantic_status": "not_reviewed",
+  "output_sha256": "fc6faa1868aca8e941cb3bc6482ef769298a12f580982091c5cedda82b8d209c",
+  "tickets_verified": 3,
+  "ticket_checks": [
+    {
+      "finding_id": "F-1005",
+      "summary_characters": 196,
+      "action_characters": 178,
+      "urgency_rederived": 9,
+      "required_activities_preserved": true,
+      "model_scores_unmodified": true
+    },
+    {
+      "finding_id": "F-1010",
+      "summary_characters": 220,
+      "action_characters": 145,
+      "urgency_rederived": 9,
+      "required_activities_preserved": true,
+      "model_scores_unmodified": true
+    },
+    {
+      "finding_id": "F-1012",
+      "summary_characters": 199,
+      "action_characters": 296,
+      "urgency_rederived": 9,
+      "required_activities_preserved": true,
+      "model_scores_unmodified": true
+    }
+  ],
+  "publication_receipt_verified": true,
+  "successful_observation_sends": 4,
+  "all_recorded_receipt_audits_verified": 14,
+  "observations": [
+    {
+      "directory": "copilot-integration-2",
+      "sends": 2,
+      "run_status": "failed"
+    },
+    {
+      "directory": "copilot-integration-3",
+      "sends": 2,
+      "run_status": "failed"
+    },
+    {
+      "directory": "copilot-correction-1",
+      "sends": 3,
+      "run_status": "failed"
+    },
+    {
+      "directory": "copilot-correction-2",
+      "sends": 3,
+      "run_status": "failed"
+    },
+    {
+      "directory": "copilot-correction-3",
+      "sends": 4,
+      "run_status": "ready_to_publish"
+    }
+  ],
+  "corrective_phase_reserved": 10,
+  "corrective_phase_ceiling": 12,
+  "prior_closed_phase_reserved": 4,
+  "total_sends": 14,
+  "authorized_total_ceiling": 16,
+  "corrective_phase_usage_exposed": {
+    "inputTokens": 167412,
+    "outputTokens": 33745,
+    "reasoningTokens": 17132,
+    "cacheReadTokens": 23128,
+    "cacheWriteTokens": 144254,
+    "cost": 10.0
+  },
+  "total_generation_usage_exposed": {
+    "inputTokens": 234213,
+    "outputTokens": 45097,
+    "reasoningTokens": 22080,
+    "cacheReadTokens": 29242,
+    "cacheWriteTokens": 204929,
+    "cost": 14.0
+  },
+  "usd_cost": null,
+  "http_attempts": null,
+  "cost_note": "Counters can overlap; exposed cost units are not USD. Agent-review billing is unexposed.",
+  "offline_report_sha256": "86e5bcca5cf5015addb6f0d7d21c9160b109ddfd559bb661608d1c6b16587784",
+  "offline_artifacts_verified": 317,
+  "offline_component_tests": {
+    "run": 63,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "log": "triage-tests.txt"
+  },
+  "post_live_changes_observed": {
+    "docs\\05_TRIAGE_WORKFLOW.md": {
+      "captured_sha256": "2d35918cb08ef458516293550269c42d0bd4b17e6d1a0344d0202bdfe62eb319",
+      "observed_sha256": "40598908c99568fd3f3b19e8a2970f2a1b5732b7ffd58f80e182106c2ae85806"
+    }
+  },
+  "live_workflow_and_inference_sources_match_current": true,
+  "artifact_sha256": {
+    "experiment.json": "3a06b039e040576062b695fc6baa6c67bbcd916bf6fc2b345eb82ff91e4ad334",
+    "observation.json": "9a6af096988a57579466b27a683e510be47e8bb8c9d94448371da27e365969fc",
+    "reference-validation.txt": "5b711c1a2c4a308dba693214dc484aca0669b7b2b731df4971234318b2bc0b10",
+    "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout.txt": "c65204904e4b1d3b8c07c8d68884783120b55caeadd59cf40a851b21b844169e",
+    "tickets.experimental.json": "fc6faa1868aca8e941cb3bc6482ef769298a12f580982091c5cedda82b8d209c",
+    "run\\run.json": "b3dea094c30a46ab30aef0ef7d44a8ad6a1f813cd30068efc2d9166881cd888c"
+  },
+  "limits": [
+    "Development-informed three-target integration only, not calibrated semantic acceptance.",
+    "Copilot hidden HTTP attempts, raw-endpoint compliance and USD costs remain unverified.",
+    "No X01, frozen test or all-21 final generation; human draft approval remains required.",
+    "Captured execution snapshots, not a freeze of other sessions changing the worktree."
+  ]
+}

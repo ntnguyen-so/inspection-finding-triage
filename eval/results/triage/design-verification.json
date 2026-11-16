@@ -1,0 +1,131 @@
+{
+  "scope": "workflow_design_documentation_not_system_acceptance",
+  "observed_at": "2026-11-16T11:25:50.875858+00:00",
+  "design_status": "proposed_awaiting_owner_approval",
+  "documentation_verification": "pass",
+  "git_revision": "ee9eee9ac55c8b1eaaacbcd6d004ff9e6a0dc02b",
+  "worktree_status_before_writing_record": "M .github/copilot-instructions.md\n M .gitignore\n M AGENTS.md\n M README.md\n?? .env.example\n?? docs/04_INFERENCE_LIBRARY.md\n?? docs/05_TRIAGE_WORKFLOW.md\n?? eval/results/inference/\n?? llm_inference/\n?? pyproject.toml\n?? tests/\n?? tools/",
+  "snapshot_sha256": {
+    "docs\\05_TRIAGE_WORKFLOW.md": "179f29658af6c6c0828aac776d1acad49dcdb703b23725303ef762ab96fb7154",
+    "README.md": "f55ec7e991a5379fe579dd8e6bfa286134197c8ef561a0de6948be24b3c840e5",
+    "eval\\spec\\split.json": "bf708a150f0ac08a1f65f1d585f2cdde6fb6984578ea379465a066cf9a622e43"
+  },
+  "commands": [
+    {
+      "command": "python -B -m eval.validate",
+      "exit_code": 0,
+      "scope": "frozen_reference_integrity_only",
+      "reference_version": "1.2",
+      "reference_status": "frozen",
+      "scenario_count": 17,
+      "system_scenarios_execution": "not_run_no_system"
+    },
+    {
+      "command": "python -B -m eval.assess --help",
+      "exit_code": 0,
+      "scope": "existing_assessor_interface_only"
+    },
+    {
+      "command": "python -B -m eval.assess --partition development --checklist",
+      "exit_code": 0,
+      "scope": "checklist_generation_not_output_assessment",
+      "review_dimensions": 39
+    },
+    {
+      "command": "git --no-pager diff --check -- README.md",
+      "exit_code": 0,
+      "scope": "tracked_readme_whitespace_only"
+    }
+  ],
+  "direct_document_checks": {
+    "method": "Read-only inline Python assertions; no persistent test or scratch files added.",
+    "scenario_ids_represented": 17,
+    "scenario_representation_is_not_execution_or_coverage_proof": true,
+    "markdown_code_fences_balanced": true,
+    "ascii": true,
+    "no_trailing_whitespace": true,
+    "readme_navigation_present": true,
+    "existing_contract_paths_resolve": true,
+    "reserved_root_design_absent": true
+  },
+  "reviews": {
+    "kind": "ai_only_engineering_feedback_not_domain_certification",
+    "first_reviewer": "workflow-design-review-a",
+    "cross_reviewer": "workflow-design-review-b",
+    "dispositions": "docs\\05_TRIAGE_WORKFLOW.md section 9",
+    "final_clarifications": "Author consistency checks; no third independent review claimed.",
+    "agent_model_settings_and_billing": "not_exposed"
+  },
+  "task_changes": [
+    "docs\\05_TRIAGE_WORKFLOW.md",
+    "README.md navigation row for document 05",
+    "eval\\results\\triage\\design-verification.json"
+  ],
+  "production_implementation_changed": false,
+  "source_package_or_frozen_eval_changed": false,
+  "triage_provider_sends": 0,
+  "production_scenarios_executed": [],
+  "full_test_suite_executed": false,
+  "limitations": [
+    "Documentation consistency checks are not model quality, workflow execution or acceptance evidence.",
+    "Inference development and other worktree edits belong to a concurrent increment and were not modified by this task.",
+    "Snapshot hashes identify observations at the recorded time, not verification of later concurrent edits.",
+    "Owner approval, production implementation, actual semantic review, paid triage evaluation and final delivery remain pending."
+  ],
+  "revisions": [
+    {
+      "revision_id": "knowledge-context-boundary-1",
+      "scope": "documentation_revision_not_implementation_or_system_acceptance",
+      "observed_at": "2026-11-16T11:35:32.548743+00:00",
+      "git_revision": "ee9eee9ac55c8b1eaaacbcd6d004ff9e6a0dc02b",
+      "document_sha256": "50819845308feccee11c1276e525b432ae1e222e29a39df053b4894009b173b4",
+      "reference_manifest_sha256": "bf708a150f0ac08a1f65f1d585f2cdde6fb6984578ea379465a066cf9a622e43",
+      "approval_scope": "Owner agreed separate knowledge/context dependency; concrete shared interface and remaining workflow proposals still require approval.",
+      "initial_observation_record_preserved": true,
+      "documentation_consistency": "pass",
+      "commands": [
+        {
+          "command": "python -B -m eval.validate",
+          "exit_code": 0,
+          "scope": "frozen_reference_integrity_only",
+          "reference_version": "1.2",
+          "system_scenarios_execution": "not_run_no_system"
+        }
+      ],
+      "direct_document_checks": {
+        "method": "Read-only inline Python assertions; no persistent test or scratch files added.",
+        "scenario_ids_represented": 17,
+        "ascii_code_fences_and_trailing_whitespace": "pass",
+        "readme_navigation_present": true,
+        "reserved_root_design_absent": true,
+        "inputs_module_validation_only": true,
+        "snapshot_bundle_and_source_provenance_contract_present": true,
+        "isolated_probe_positive_and_rejection_test_plans_present": true,
+        "fake_dependency_parallel_implementation_plan_present": true,
+        "documentation_assertions_are_not_executable_contract_tests": true
+      },
+      "reviews": {
+        "first_reviewer": "context-boundary-review-a",
+        "cross_reviewer": "context-boundary-review-b",
+        "kind": "ai_only_bounded_engineering_feedback",
+        "dispositions": "docs\\05_TRIAGE_WORKFLOW.md section 9: Knowledge/context boundary revision",
+        "parallel_module_compatibility_verified": false,
+        "agent_model_settings_and_billing": "not_exposed"
+      },
+      "task_changes": [
+        "docs\\05_TRIAGE_WORKFLOW.md",
+        "eval\\results\\triage\\design-verification.json appended revision observation"
+      ],
+      "triage_provider_sends": 0,
+      "production_scenarios_executed": [],
+      "production_implementation_changed": false,
+      "source_package_or_frozen_eval_changed": false,
+      "limitations": [
+        "Proposed ContextBundle interface is not an implemented or jointly confirmed module API.",
+        "No B01/B02 behavior or model quality is established by documentation checks.",
+        "The original observation remains bound to its old document hash; these results cover only the revised hash above.",
+        "Inference, knowledge implementation and unrelated concurrent worktree changes were not modified."
+      ]
+    }
+  ]
+}

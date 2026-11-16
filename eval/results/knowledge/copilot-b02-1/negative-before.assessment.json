@@ -1,0 +1,192 @@
+{
+  "status": "assessed",
+  "finding_id": "F-1016",
+  "equipment_id": "PSV-3420",
+  "summary": "PSV-3420\u2019s certification tag is illegible, but the register records recertification in March 2025. No functional failure is reported; relief-function evidence is not provided.",
+  "recommended_action": "Replace the corroded certification tag.",
+  "likelihood_of_failure": {
+    "score": 2,
+    "rationale": "This is a documentation defect, not evidence of functional failure. The valve was recertified in March 2025 and appears physically fine, though current relief-function evidence is absent.",
+    "evidence": [
+      {
+        "source_ref": "finding:F-1016:finding_description",
+        "quote": "Checked the register and the valve was recertified in March 2025 so it is in date. Physical condition of the valve looks fine."
+      },
+      {
+        "source_ref": "knowledge:psv-assessment:guidance",
+        "quote": "A documentation defect alone does not establish a functional failure."
+      }
+    ]
+  },
+  "impact_of_failure": {
+    "score": 7,
+    "rationale": "Failure of this SCE would impair overpressure protection on the compressor discharge, supporting severe potential exposure. The specific overpressure scenario and consequences are not documented, so an extreme score is unsupported.",
+    "evidence": [
+      {
+        "source_ref": "equipment:PSV-3420:service_description",
+        "quote": "Overpressure protection for compressor discharge"
+      },
+      {
+        "source_ref": "equipment:PSV-3420:safety_critical_element",
+        "quote": "Yes"
+      },
+      {
+        "source_ref": "knowledge:impact-7-8:description",
+        "quote": "Severe operational, delayed integrity or major-accident exposure considering actual protection."
+      }
+    ]
+  },
+  "facts": {
+    "required_function_failed": {
+      "applicability": "applicable",
+      "state": "unknown",
+      "reason": "The finding reports a tag defect, not a relief-function test result; functional failure is not established.",
+      "evidence": [
+        {
+          "source_ref": "finding:F-1016:finding_description",
+          "quote": "Certification tag on the compressor discharge PSV is illegible, the label has corroded."
+        }
+      ],
+      "sources_checked": [
+        "finding:F-1016:finding_description",
+        "knowledge:psv-assessment:guidance"
+      ],
+      "verification_activity": "Review relief-function test evidence"
+    },
+    "protection_impaired": {
+      "applicability": "applicable",
+      "state": "unknown",
+      "reason": "No observed passing, weeping, or other functional impairment is reported; missing evidence does not establish that protection is healthy.",
+      "evidence": [
+        {
+          "source_ref": "knowledge:psv-assessment:uncertainty_guidance",
+          "quote": "do not infer a healthy protection function or absence of a deviation from silence."
+        }
+      ],
+      "sources_checked": [
+        "finding:F-1016:finding_description",
+        "knowledge:psv-assessment:uncertainty_guidance",
+        "equipment:PSV-3420:engineer_comment"
+      ],
+      "verification_activity": "Review relief-function test evidence"
+    },
+    "recorded_deviation": {
+      "applicability": "applicable",
+      "state": "unknown",
+      "reason": "The source does not establish whether an operational deviation was recorded; silence is not evidence that none exists.",
+      "evidence": [
+        {
+          "source_ref": "knowledge:psv-assessment:uncertainty_guidance",
+          "quote": "do not infer a healthy protection function or absence of a deviation from silence."
+        }
+      ],
+      "sources_checked": [
+        "finding:F-1016:finding_description",
+        "knowledge:psv-assessment:uncertainty_guidance"
+      ],
+      "verification_activity": "Check impairment deviation records"
+    },
+    "protection_test_failed": {
+      "applicability": "applicable",
+      "state": "unknown",
+      "reason": "No relief-function test result is supplied; the recertification date alone does not state the test outcome.",
+      "evidence": [
+        {
+          "source_ref": "finding:F-1016:finding_description",
+          "quote": "the valve was recertified in March 2025 so it is in date."
+        }
+      ],
+      "sources_checked": [
+        "finding:F-1016:finding_description",
+        "knowledge:psv-assessment:evidence_requirements/0"
+      ],
+      "verification_activity": "Review relief-function test evidence"
+    },
+    "evacuation_unavailable": {
+      "applicability": "not_applicable",
+      "state": "unknown",
+      "reason": "This item provides compressor-discharge overpressure protection, not evacuation capacity.",
+      "evidence": [
+        {
+          "source_ref": "equipment:PSV-3420:service_description",
+          "quote": "Overpressure protection for compressor discharge"
+        }
+      ],
+      "sources_checked": [
+        "equipment:PSV-3420:service_description"
+      ],
+      "verification_activity": null
+    },
+    "capacity_below_pob": {
+      "applicability": "not_applicable",
+      "state": "unknown",
+      "reason": "This item provides compressor-discharge overpressure protection, not evacuation capacity.",
+      "evidence": [
+        {
+          "source_ref": "equipment:PSV-3420:service_description",
+          "quote": "Overpressure protection for compressor discharge"
+        }
+      ],
+      "sources_checked": [
+        "equipment:PSV-3420:service_description"
+      ],
+      "verification_activity": null
+    },
+    "unlogged_impairment_discovered": {
+      "applicability": "applicable",
+      "state": "unknown",
+      "reason": "No impairment discovery or logging status is stated; the tag defect alone does not establish an unlogged impairment.",
+      "evidence": [
+        {
+          "source_ref": "finding:F-1016:finding_description",
+          "quote": "Certification tag on the compressor discharge PSV is illegible, the label has corroded."
+        }
+      ],
+      "sources_checked": [
+        "finding:F-1016:finding_description",
+        "knowledge:psv-assessment:uncertainty_guidance"
+      ],
+      "verification_activity": "Review relief-function test evidence"
+    },
+    "protection_restored": {
+      "applicability": "applicable",
+      "state": "unknown",
+      "reason": "No protection impairment or restoration status is reported.",
+      "evidence": [
+        {
+          "source_ref": "finding:F-1016:finding_description",
+          "quote": "Physical condition of the valve looks fine."
+        }
+      ],
+      "sources_checked": [
+        "finding:F-1016:finding_description",
+        "knowledge:psv-assessment:uncertainty_guidance"
+      ],
+      "verification_activity": "Review relief-function test evidence"
+    }
+  },
+  "uncertainties": [
+    {
+      "material": true,
+      "safety": true,
+      "affected_decision": "protection",
+      "reason": "The finding gives no relief-function test outcome. This limits confidence in protection status and the likelihood estimate; the tag defect and in-date recertification do not establish current function.",
+      "verification_activity": "Review relief-function test evidence",
+      "evidence": [
+        {
+          "source_ref": "knowledge:psv-assessment:uncertainty_guidance",
+          "quote": "State missing evidence explicitly; do not infer a healthy protection function or absence of a deviation from silence."
+        },
+        {
+          "source_ref": "finding:F-1016:finding_description",
+          "quote": "the valve was recertified in March 2025 so it is in date."
+        }
+      ],
+      "sources_checked": [
+        "finding:F-1016:finding_description",
+        "knowledge:psv-assessment:uncertainty_guidance"
+      ]
+    }
+  ],
+  "inability_reason": null
+}

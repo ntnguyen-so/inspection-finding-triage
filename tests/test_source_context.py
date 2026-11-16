@@ -237,7 +237,7 @@ class SourceContextTests(unittest.TestCase):
     def test_exact_provider_context_excludes_editorial_and_legacy_rubric(self):
         bundle = self.build()
         context = bundle.to_dict()
-        self.assertEqual(context["contract_version"], 2)
+        self.assertEqual(context["contract_version"], 3)
         self.assertEqual(context["payload"]["registry"]["EQ-9001"]["engineer_comment"],
                          "Independent comment delivery marker.")
         self.assertEqual(context["source_index"]["equipment:EQ-9001:engineer_comment"],
@@ -247,6 +247,54 @@ class SourceContextTests(unittest.TestCase):
         self.assertNotIn("Software fixture only", bundle.encoded.decode())
         self.assertNotIn("source_manifest", context)
         self.assertEqual(bundle.evidence()["source_manifest"][0]["sha256"], self.findings.raw_sha256)
+
+    def test_history_projection_is_chronological_source_bound_and_noncausal(self):
+        frow, rrow = self.findings.rows[0], self.registry.rows[0]
+        self.findings = table([
+            {**frow, "finding_id": "F-9002", "reported_date": "2026-06-02"},
+            {**frow, "finding_id": "F-9001", "reported_date": "2026-06-01"},
+            {**frow, "finding_id": "F-9003", "reported_date": "2026-06-03",
+             "equipment_id": "EQ-9002", "equipment_type": "Rotor-B"},
+        ], "findings", "finding_input")
+        self.registry = table([
+            {**rrow, "redundancy": "N+1 (EQ-9002)"},
+            {**rrow, "equipment_id": "EQ-9002", "equipment_type": "Rotor-B",
+             "service_description": "Protection for EQ-9001", "redundancy": "N+1 (EQ-9001)"},
+        ], "registry", "registry_input")
+        history = self.build().to_dict()["payload"]["history"]
+        self.assertEqual("triage-input-history-v1", history["contract"])
+        self.assertEqual(["F-9001", "F-9002"], [
+            item["finding_id"] for item in history["equipment_timelines"]["EQ-9001"]])
+        redundancy = next(item for item in history["case_links"]
+                          if item["kind"] == "explicit_redundancy")
+        self.assertEqual(["F-9001", "F-9002", "F-9003"], redundancy["finding_ids"])
+        self.assertEqual("context_only_not_causation", redundancy["interpretation"])
+        reference = next(item for item in history["case_links"]
+                         if item["kind"] == "explicit_registry_reference")
+        self.assertEqual(["EQ-9002", "EQ-9001"], reference["direction"])
+        self.assertEqual(["equipment:EQ-9002:service_description"], reference["source_refs"])
+
+    def test_consumer_rejects_rehashed_history_tampering(self):
+        original = self.build()
+        packet = original.to_dict()
+        packet["payload"]["history"]["limitations"] = ["Invented repair history."]
+        with self.assertRaises(KnowledgeError) as raised:
+            self.validate(rehashed(packet))
+        self.assertEqual("context_contract", raised.exception.code)
+
+    def test_cross_equipment_link_requires_findings_on_both_endpoints(self):
+        frow, rrow = self.findings.rows[0], self.registry.rows[0]
+        self.findings = table([
+            frow,
+            {**frow, "finding_id": "F-9002", "reported_date": "2026-06-02"},
+        ], "findings", "finding_input")
+        self.registry = table([
+            {**rrow, "redundancy": "N+1 (EQ-9002)"},
+            {**rrow, "equipment_id": "EQ-9002", "equipment_type": "Rotor-B",
+             "redundancy": "N+1 (EQ-9001)"},
+        ], "registry", "registry_input")
+        history = self.build().to_dict()["payload"]["history"]
+        self.assertEqual([], history["case_links"])
 
     def test_full_request_size_and_missing_workflow_policy_fail(self):
         complete = self.build()

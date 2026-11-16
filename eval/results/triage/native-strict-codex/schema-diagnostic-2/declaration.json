@@ -1,0 +1,9 @@
+{
+  "purpose": "One bounded replay: the first allowlisted-word diagnostic omitted the actual schema rule. Capture only a recognized invalid-schema message after redacting known environment credentials. Not a baseline or compatibility-health reset.",
+  "maximum_sends": 1,
+  "phase_ceiling": 52,
+  "prior_reserved_sends": 10,
+  "prior_ledger_sha256": "a93a0236dfaa3d2b7d7cc141f48d34e1ffb278cab77c00dda24f734561e22860",
+  "plan_sha256": "22dc96c78087bbb60a4f808a710194aea71757e6c00aadcea47ec0b397e9278b",
+  "recorded_at": "2026-11-16T20:28:45.876228+00:00"
+}

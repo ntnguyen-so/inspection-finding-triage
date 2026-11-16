@@ -1,0 +1,888 @@
+{
+  "assessment": {
+    "accepted_wrong_critical": false,
+    "atom_count": 7,
+    "critical_errors": {
+      "detached_scoped_context_pairs": [],
+      "disconnected_scoped_atoms": [],
+      "nonempty_incomplete_scope_atoms": [],
+      "unsupported_alias_facts": [],
+      "unsupported_scope_facts": []
+    },
+    "fidelity": "pass",
+    "group_graph": {
+      "atoms_not_whole_in_one_component": [],
+      "component_count": 1,
+      "components": [
+        {
+          "group_count": 4,
+          "source_bytes": {
+            "eval_prism": 677
+          },
+          "whole_atom_ids": [
+            "conflict",
+            "hush",
+            "legend",
+            "open",
+            "permission",
+            "wheel1",
+            "wheel2"
+          ]
+        }
+      ],
+      "overclosure_pair_count": 18
+    },
+    "incomplete_scope_byte_facts": [],
+    "metrics": {
+      "alias": {
+        "expected": 2,
+        "missing": [],
+        "observed": 2,
+        "precision": 1.0,
+        "recall": 1.0,
+        "true_positive": 2,
+        "unsupported": []
+      },
+      "context": {
+        "expected": 3,
+        "missing": [],
+        "observed": 21,
+        "precision": 0.14285714285714285,
+        "recall": 1.0,
+        "true_positive": 3,
+        "unsupported": [
+          [
+            "conflict",
+            "hush"
+          ],
+          [
+            "conflict",
+            "legend"
+          ],
+          [
+            "conflict",
+            "open"
+          ],
+          [
+            "conflict",
+            "permission"
+          ],
+          [
+            "conflict",
+            "wheel1"
+          ],
+          [
+            "conflict",
+            "wheel2"
+          ],
+          [
+            "hush",
+            "legend"
+          ],
+          [
+            "hush",
+            "wheel1"
+          ],
+          [
+            "hush",
+            "wheel2"
+          ],
+          [
+            "legend",
+            "open"
+          ],
+          [
+            "legend",
+            "permission"
+          ],
+          [
+            "legend",
+            "wheel1"
+          ],
+          [
+            "legend",
+            "wheel2"
+          ],
+          [
+            "open",
+            "wheel1"
+          ],
+          [
+            "open",
+            "wheel2"
+          ],
+          [
+            "permission",
+            "wheel1"
+          ],
+          [
+            "permission",
+            "wheel2"
+          ],
+          [
+            "wheel1",
+            "wheel2"
+          ]
+        ]
+      },
+      "scope": {
+        "expected": 5,
+        "missing": [
+          [
+            "hush",
+            "prism-gates"
+          ]
+        ],
+        "observed": 4,
+        "precision": 1.0,
+        "recall": 0.8,
+        "true_positive": 4,
+        "unsupported": []
+      }
+    },
+    "repair_count_basis": "Missing complete atom-level scope/alias facts and context-closure pairs; NOT observed human corrections or review benefit.",
+    "repair_counts": {
+      "alias_add": 0,
+      "context_add": 0,
+      "scope_add": 1
+    },
+    "repair_required": true,
+    "semantic": "pass",
+    "status": "pass",
+    "unresolved_alias_count": 0,
+    "unresolved_atom_count": 0
+  },
+  "human_approval_established": false,
+  "materialized_groups": [
+    {
+      "aliases": [],
+      "evidence": [
+        {
+          "quote": "# Prism catalogue\r\n",
+          "unit_id": "u0001"
+        },
+        {
+          "quote": "## Prism-Gates\r\n",
+          "unit_id": "u0004"
+        },
+        {
+          "quote": "## Hush footnote\r\n",
+          "unit_id": "u0010"
+        },
+        {
+          "quote": "## Copper Wheels\r\n",
+          "unit_id": "u0015"
+        }
+      ],
+      "group_id": "g0001",
+      "required_with": [
+        "g0002",
+        "g0003",
+        "g0004"
+      ],
+      "scopes": [],
+      "source_id": "eval_prism",
+      "source_sha256": "72765663cf1ff3ff2fb8cd92bbae6051dc4f10493b1df2dfe0452865068c32c1",
+      "spans": [
+        {
+          "end": 19,
+          "start": 0
+        },
+        {
+          "end": 88,
+          "start": 19
+        },
+        {
+          "end": 90,
+          "start": 88
+        }
+      ],
+      "text": "# Prism catalogue\r\nThis is a fictional lantern-display puzzle, not equipment guidance.\r\n\r\n",
+      "unit_ids": [
+        "u0001",
+        "u0002",
+        "u0003"
+      ]
+    },
+    {
+      "aliases": [
+        "rainbow doors",
+        "split lights"
+      ],
+      "evidence": [
+        {
+          "quote": "Scope: Prism-Gates\r\n",
+          "unit_id": "u0005"
+        },
+        {
+          "quote": "Aliases: rainbow doors; split lights\r\n",
+          "unit_id": "u0006"
+        }
+      ],
+      "group_id": "g0002",
+      "required_with": [],
+      "scopes": [
+        "Prism-Gates"
+      ],
+      "source_id": "eval_prism",
+      "source_sha256": "72765663cf1ff3ff2fb8cd92bbae6051dc4f10493b1df2dfe0452865068c32c1",
+      "spans": [
+        {
+          "end": 106,
+          "start": 90
+        },
+        {
+          "end": 126,
+          "start": 106
+        },
+        {
+          "end": 164,
+          "start": 126
+        },
+        {
+          "end": 224,
+          "start": 164
+        },
+        {
+          "end": 292,
+          "start": 224
+        },
+        {
+          "end": 294,
+          "start": 292
+        }
+      ],
+      "text": "## Prism-Gates\r\nScope: Prism-Gates\r\nAliases: rainbow doors; split lights\r\nDo not open Prism-Gates when the violet card is face down.\r\nIf the card is face up, opening is allowed except during the hush.\r\n\r\n",
+      "unit_ids": [
+        "u0004",
+        "u0005",
+        "u0006",
+        "u0007",
+        "u0008",
+        "u0009"
+      ]
+    },
+    {
+      "aliases": [],
+      "evidence": [],
+      "group_id": "g0003",
+      "required_with": [],
+      "scopes": [],
+      "source_id": "eval_prism",
+      "source_sha256": "72765663cf1ff3ff2fb8cd92bbae6051dc4f10493b1df2dfe0452865068c32c1",
+      "spans": [
+        {
+          "end": 312,
+          "start": 294
+        },
+        {
+          "end": 395,
+          "start": 312
+        },
+        {
+          "end": 460,
+          "start": 395
+        },
+        {
+          "end": 541,
+          "start": 460
+        },
+        {
+          "end": 543,
+          "start": 541
+        }
+      ],
+      "text": "## Hush footnote\r\nThe hush forbids opening even with a face-up card; it qualifies the opening rule.\r\nHigher steadiness means lower flicker likelihood, never higher.\r\nThe card is described as face up and as unreadable; its state remains disputed.\r\n\r\n",
+      "unit_ids": [
+        "u0010",
+        "u0011",
+        "u0012",
+        "u0013",
+        "u0014"
+      ]
+    },
+    {
+      "aliases": [],
+      "evidence": [
+        {
+          "quote": "Equipment: Copper Wheels\r\n",
+          "unit_id": "u0016"
+        }
+      ],
+      "group_id": "g0004",
+      "required_with": [],
+      "scopes": [
+        "Copper Wheels"
+      ],
+      "source_id": "eval_prism",
+      "source_sha256": "72765663cf1ff3ff2fb8cd92bbae6051dc4f10493b1df2dfe0452865068c32c1",
+      "spans": [
+        {
+          "end": 561,
+          "start": 543
+        },
+        {
+          "end": 587,
+          "start": 561
+        },
+        {
+          "end": 632,
+          "start": 587
+        },
+        {
+          "end": 677,
+          "start": 632
+        }
+      ],
+      "text": "## Copper Wheels\r\nEquipment: Copper Wheels\r\nRoll Copper Wheels only on the striped mat.\r\nRoll Copper Wheels only on the striped mat.\r\n",
+      "unit_ids": [
+        "u0015",
+        "u0016",
+        "u0017",
+        "u0018"
+      ]
+    }
+  ],
+  "observation": {
+    "groups": [
+      {
+        "spans": [
+          {
+            "end": 19,
+            "source_id": "eval_prism",
+            "start": 0
+          },
+          {
+            "end": 88,
+            "source_id": "eval_prism",
+            "start": 19
+          },
+          {
+            "end": 90,
+            "source_id": "eval_prism",
+            "start": 88
+          }
+        ],
+        "text": "# Prism catalogue\r\nThis is a fictional lantern-display puzzle, not equipment guidance.\r\n\r\n"
+      },
+      {
+        "spans": [
+          {
+            "end": 106,
+            "source_id": "eval_prism",
+            "start": 90
+          },
+          {
+            "end": 126,
+            "source_id": "eval_prism",
+            "start": 106
+          },
+          {
+            "end": 164,
+            "source_id": "eval_prism",
+            "start": 126
+          },
+          {
+            "end": 224,
+            "source_id": "eval_prism",
+            "start": 164
+          },
+          {
+            "end": 292,
+            "source_id": "eval_prism",
+            "start": 224
+          },
+          {
+            "end": 294,
+            "source_id": "eval_prism",
+            "start": 292
+          }
+        ],
+        "text": "## Prism-Gates\r\nScope: Prism-Gates\r\nAliases: rainbow doors; split lights\r\nDo not open Prism-Gates when the violet card is face down.\r\nIf the card is face up, opening is allowed except during the hush.\r\n\r\n"
+      },
+      {
+        "spans": [
+          {
+            "end": 312,
+            "source_id": "eval_prism",
+            "start": 294
+          },
+          {
+            "end": 395,
+            "source_id": "eval_prism",
+            "start": 312
+          },
+          {
+            "end": 460,
+            "source_id": "eval_prism",
+            "start": 395
+          },
+          {
+            "end": 541,
+            "source_id": "eval_prism",
+            "start": 460
+          },
+          {
+            "end": 543,
+            "source_id": "eval_prism",
+            "start": 541
+          }
+        ],
+        "text": "## Hush footnote\r\nThe hush forbids opening even with a face-up card; it qualifies the opening rule.\r\nHigher steadiness means lower flicker likelihood, never higher.\r\nThe card is described as face up and as unreadable; its state remains disputed.\r\n\r\n"
+      },
+      {
+        "spans": [
+          {
+            "end": 561,
+            "source_id": "eval_prism",
+            "start": 543
+          },
+          {
+            "end": 587,
+            "source_id": "eval_prism",
+            "start": 561
+          },
+          {
+            "end": 632,
+            "source_id": "eval_prism",
+            "start": 587
+          },
+          {
+            "end": 677,
+            "source_id": "eval_prism",
+            "start": 632
+          }
+        ],
+        "text": "## Copper Wheels\r\nEquipment: Copper Wheels\r\nRoll Copper Wheels only on the striped mat.\r\nRoll Copper Wheels only on the striped mat.\r\n"
+      }
+    ],
+    "metadata": {
+      "aliases": [
+        {
+          "evidence": [
+            {
+              "end": 126,
+              "source_id": "eval_prism",
+              "start": 106
+            },
+            {
+              "end": 164,
+              "source_id": "eval_prism",
+              "start": 126
+            }
+          ],
+          "target": "Prism-Gates",
+          "value": "rainbow doors"
+        },
+        {
+          "evidence": [
+            {
+              "end": 126,
+              "source_id": "eval_prism",
+              "start": 106
+            },
+            {
+              "end": 164,
+              "source_id": "eval_prism",
+              "start": 126
+            }
+          ],
+          "target": "Prism-Gates",
+          "value": "split lights"
+        }
+      ],
+      "links": [
+        {
+          "evidence": [
+            {
+              "end": 19,
+              "source_id": "eval_prism",
+              "start": 0
+            },
+            {
+              "end": 106,
+              "source_id": "eval_prism",
+              "start": 90
+            },
+            {
+              "end": 312,
+              "source_id": "eval_prism",
+              "start": 294
+            },
+            {
+              "end": 561,
+              "source_id": "eval_prism",
+              "start": 543
+            }
+          ],
+          "from": [
+            {
+              "end": 19,
+              "source_id": "eval_prism",
+              "start": 0
+            },
+            {
+              "end": 88,
+              "source_id": "eval_prism",
+              "start": 19
+            },
+            {
+              "end": 90,
+              "source_id": "eval_prism",
+              "start": 88
+            }
+          ],
+          "to": [
+            {
+              "end": 106,
+              "source_id": "eval_prism",
+              "start": 90
+            },
+            {
+              "end": 126,
+              "source_id": "eval_prism",
+              "start": 106
+            },
+            {
+              "end": 164,
+              "source_id": "eval_prism",
+              "start": 126
+            },
+            {
+              "end": 224,
+              "source_id": "eval_prism",
+              "start": 164
+            },
+            {
+              "end": 292,
+              "source_id": "eval_prism",
+              "start": 224
+            },
+            {
+              "end": 294,
+              "source_id": "eval_prism",
+              "start": 292
+            }
+          ]
+        },
+        {
+          "evidence": [
+            {
+              "end": 19,
+              "source_id": "eval_prism",
+              "start": 0
+            },
+            {
+              "end": 106,
+              "source_id": "eval_prism",
+              "start": 90
+            },
+            {
+              "end": 312,
+              "source_id": "eval_prism",
+              "start": 294
+            },
+            {
+              "end": 561,
+              "source_id": "eval_prism",
+              "start": 543
+            }
+          ],
+          "from": [
+            {
+              "end": 19,
+              "source_id": "eval_prism",
+              "start": 0
+            },
+            {
+              "end": 88,
+              "source_id": "eval_prism",
+              "start": 19
+            },
+            {
+              "end": 90,
+              "source_id": "eval_prism",
+              "start": 88
+            }
+          ],
+          "to": [
+            {
+              "end": 312,
+              "source_id": "eval_prism",
+              "start": 294
+            },
+            {
+              "end": 395,
+              "source_id": "eval_prism",
+              "start": 312
+            },
+            {
+              "end": 460,
+              "source_id": "eval_prism",
+              "start": 395
+            },
+            {
+              "end": 541,
+              "source_id": "eval_prism",
+              "start": 460
+            },
+            {
+              "end": 543,
+              "source_id": "eval_prism",
+              "start": 541
+            }
+          ]
+        },
+        {
+          "evidence": [
+            {
+              "end": 19,
+              "source_id": "eval_prism",
+              "start": 0
+            },
+            {
+              "end": 106,
+              "source_id": "eval_prism",
+              "start": 90
+            },
+            {
+              "end": 312,
+              "source_id": "eval_prism",
+              "start": 294
+            },
+            {
+              "end": 561,
+              "source_id": "eval_prism",
+              "start": 543
+            }
+          ],
+          "from": [
+            {
+              "end": 19,
+              "source_id": "eval_prism",
+              "start": 0
+            },
+            {
+              "end": 88,
+              "source_id": "eval_prism",
+              "start": 19
+            },
+            {
+              "end": 90,
+              "source_id": "eval_prism",
+              "start": 88
+            }
+          ],
+          "to": [
+            {
+              "end": 561,
+              "source_id": "eval_prism",
+              "start": 543
+            },
+            {
+              "end": 587,
+              "source_id": "eval_prism",
+              "start": 561
+            },
+            {
+              "end": 632,
+              "source_id": "eval_prism",
+              "start": 587
+            },
+            {
+              "end": 677,
+              "source_id": "eval_prism",
+              "start": 632
+            }
+          ]
+        }
+      ],
+      "scopes": [
+        {
+          "evidence": [
+            {
+              "end": 126,
+              "source_id": "eval_prism",
+              "start": 106
+            },
+            {
+              "end": 164,
+              "source_id": "eval_prism",
+              "start": 126
+            }
+          ],
+          "spans": [
+            {
+              "end": 106,
+              "source_id": "eval_prism",
+              "start": 90
+            },
+            {
+              "end": 126,
+              "source_id": "eval_prism",
+              "start": 106
+            },
+            {
+              "end": 164,
+              "source_id": "eval_prism",
+              "start": 126
+            },
+            {
+              "end": 224,
+              "source_id": "eval_prism",
+              "start": 164
+            },
+            {
+              "end": 292,
+              "source_id": "eval_prism",
+              "start": 224
+            },
+            {
+              "end": 294,
+              "source_id": "eval_prism",
+              "start": 292
+            }
+          ],
+          "value": "Prism-Gates"
+        },
+        {
+          "evidence": [
+            {
+              "end": 587,
+              "source_id": "eval_prism",
+              "start": 561
+            }
+          ],
+          "spans": [
+            {
+              "end": 561,
+              "source_id": "eval_prism",
+              "start": 543
+            },
+            {
+              "end": 587,
+              "source_id": "eval_prism",
+              "start": 561
+            },
+            {
+              "end": 632,
+              "source_id": "eval_prism",
+              "start": 587
+            },
+            {
+              "end": 677,
+              "source_id": "eval_prism",
+              "start": 632
+            }
+          ],
+          "value": "Copper Wheels"
+        }
+      ]
+    },
+    "source_id": "eval_prism",
+    "source_sha256": "72765663cf1ff3ff2fb8cd92bbae6051dc4f10493b1df2dfe0452865068c32c1",
+    "status": "accepted"
+  },
+  "raw_proposal": {
+    "groups": [
+      {
+        "aliases": [],
+        "evidence": [
+          {
+            "quote": "# Prism catalogue\r\n",
+            "unit_id": "u0001"
+          },
+          {
+            "quote": "## Prism-Gates\r\n",
+            "unit_id": "u0004"
+          },
+          {
+            "quote": "## Hush footnote\r\n",
+            "unit_id": "u0010"
+          },
+          {
+            "quote": "## Copper Wheels\r\n",
+            "unit_id": "u0015"
+          }
+        ],
+        "group_id": "g0001",
+        "required_with": [
+          "g0002",
+          "g0003",
+          "g0004"
+        ],
+        "scopes": [],
+        "unit_ids": [
+          "u0001",
+          "u0002",
+          "u0003"
+        ]
+      },
+      {
+        "aliases": [
+          "rainbow doors",
+          "split lights"
+        ],
+        "evidence": [
+          {
+            "quote": "Scope: Prism-Gates\r\n",
+            "unit_id": "u0005"
+          },
+          {
+            "quote": "Aliases: rainbow doors; split lights\r\n",
+            "unit_id": "u0006"
+          }
+        ],
+        "group_id": "g0002",
+        "required_with": [],
+        "scopes": [
+          "Prism-Gates"
+        ],
+        "unit_ids": [
+          "u0004",
+          "u0005",
+          "u0006",
+          "u0007",
+          "u0008",
+          "u0009"
+        ]
+      },
+      {
+        "aliases": [],
+        "evidence": [],
+        "group_id": "g0003",
+        "required_with": [],
+        "scopes": [],
+        "unit_ids": [
+          "u0010",
+          "u0011",
+          "u0012",
+          "u0013",
+          "u0014"
+        ]
+      },
+      {
+        "aliases": [],
+        "evidence": [
+          {
+            "quote": "Equipment: Copper Wheels\r\n",
+            "unit_id": "u0016"
+          }
+        ],
+        "group_id": "g0004",
+        "required_with": [],
+        "scopes": [
+          "Copper Wheels"
+        ],
+        "unit_ids": [
+          "u0015",
+          "u0016",
+          "u0017",
+          "u0018"
+        ]
+      }
+    ]
+  },
+  "source_id": "eval_prism",
+  "synthetic_review_diagnostic": true
+}

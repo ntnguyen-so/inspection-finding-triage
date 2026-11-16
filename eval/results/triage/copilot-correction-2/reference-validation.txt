@@ -1,0 +1,48 @@
+{
+  "findings": 21,
+  "equipment": 18,
+  "blank_cells": 0,
+  "duplicate_primary_keys": 0,
+  "orphan_findings": 0,
+  "equipment_type_mismatches": 0,
+  "invalid_ids_dates_scores_sce": 0,
+  "date_range": [
+    "2026-06-02",
+    "2026-06-22"
+  ],
+  "sce_counts": {
+    "No": 8,
+    "Yes": 10
+  },
+  "redundancy_counts": {
+    "None": 11,
+    "Yes (bypass available)": 1,
+    "Voted 2oo3": 1,
+    "Duplicated (INST-2151)": 1,
+    "Duplicated (INST-2150)": 1,
+    "N+1 (FW-8102)": 1,
+    "N+1 (FW-8101)": 1,
+    "N+1 (LB-4101)": 1
+  },
+  "missing_redundant_partners": [
+    {
+      "equipment_id": "LB-4102",
+      "partner": "LB-4101"
+    }
+  ],
+  "reference_version": "1.2",
+  "status": "frozen",
+  "acceptance_scenarios": 17,
+  "system_scenarios_execution": "not_run_no_system",
+  "partition_counts": {
+    "development": {
+      "cases": 13,
+      "groups": 9
+    },
+    "test": {
+      "cases": 8,
+      "groups": 4
+    }
+  }
+}
+Artifact integrity checks passed; no ticket/model assessment was performed.

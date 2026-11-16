@@ -1,0 +1,888 @@
+{
+  "assessment": {
+    "accepted_wrong_critical": false,
+    "atom_count": 7,
+    "critical_errors": {
+      "detached_scoped_context_pairs": [],
+      "disconnected_scoped_atoms": [],
+      "nonempty_incomplete_scope_atoms": [],
+      "unsupported_alias_facts": [],
+      "unsupported_scope_facts": []
+    },
+    "fidelity": "pass",
+    "group_graph": {
+      "atoms_not_whole_in_one_component": [],
+      "component_count": 1,
+      "components": [
+        {
+          "group_count": 4,
+          "source_bytes": {
+            "dev_mosaic": 632
+          },
+          "whole_atom_ids": [
+            "dotted",
+            "legend",
+            "link",
+            "ochre1",
+            "ochre2",
+            "rotate",
+            "uncertain"
+          ]
+        }
+      ],
+      "overclosure_pair_count": 18
+    },
+    "incomplete_scope_byte_facts": [],
+    "metrics": {
+      "alias": {
+        "expected": 2,
+        "missing": [],
+        "observed": 2,
+        "precision": 1.0,
+        "recall": 1.0,
+        "true_positive": 2,
+        "unsupported": []
+      },
+      "context": {
+        "expected": 3,
+        "missing": [],
+        "observed": 21,
+        "precision": 0.14285714285714285,
+        "recall": 1.0,
+        "true_positive": 3,
+        "unsupported": [
+          [
+            "dotted",
+            "legend"
+          ],
+          [
+            "dotted",
+            "ochre1"
+          ],
+          [
+            "dotted",
+            "ochre2"
+          ],
+          [
+            "dotted",
+            "uncertain"
+          ],
+          [
+            "legend",
+            "link"
+          ],
+          [
+            "legend",
+            "ochre1"
+          ],
+          [
+            "legend",
+            "ochre2"
+          ],
+          [
+            "legend",
+            "rotate"
+          ],
+          [
+            "legend",
+            "uncertain"
+          ],
+          [
+            "link",
+            "ochre1"
+          ],
+          [
+            "link",
+            "ochre2"
+          ],
+          [
+            "link",
+            "uncertain"
+          ],
+          [
+            "ochre1",
+            "ochre2"
+          ],
+          [
+            "ochre1",
+            "rotate"
+          ],
+          [
+            "ochre1",
+            "uncertain"
+          ],
+          [
+            "ochre2",
+            "rotate"
+          ],
+          [
+            "ochre2",
+            "uncertain"
+          ],
+          [
+            "rotate",
+            "uncertain"
+          ]
+        ]
+      },
+      "scope": {
+        "expected": 5,
+        "missing": [
+          [
+            "link",
+            "azure tiles"
+          ]
+        ],
+        "observed": 4,
+        "precision": 1.0,
+        "recall": 0.8,
+        "true_positive": 4,
+        "unsupported": []
+      }
+    },
+    "repair_count_basis": "Missing complete atom-level scope/alias facts and context-closure pairs; NOT observed human corrections or review benefit.",
+    "repair_counts": {
+      "alias_add": 0,
+      "context_add": 0,
+      "scope_add": 1
+    },
+    "repair_required": true,
+    "semantic": "pass",
+    "status": "pass",
+    "unresolved_alias_count": 0,
+    "unresolved_atom_count": 0
+  },
+  "human_approval_established": false,
+  "materialized_groups": [
+    {
+      "aliases": [],
+      "evidence": [
+        {
+          "quote": "# Mosaic board charter\r\n",
+          "unit_id": "u0001"
+        },
+        {
+          "quote": "## Azure Tiles\r\n",
+          "unit_id": "u0004"
+        },
+        {
+          "quote": "## Scale legend\r\n",
+          "unit_id": "u0010"
+        },
+        {
+          "quote": "## Ochre Tiles\r\n",
+          "unit_id": "u0015"
+        }
+      ],
+      "group_id": "g0001",
+      "required_with": [
+        "g0002",
+        "g0003",
+        "g0004"
+      ],
+      "scopes": [],
+      "source_id": "dev_mosaic",
+      "source_sha256": "0852927bd7abe608ce450eb87d6e21a23137fa6394e1e5ea36140d84002c338f",
+      "spans": [
+        {
+          "end": 24,
+          "start": 0
+        },
+        {
+          "end": 78,
+          "start": 24
+        },
+        {
+          "end": 80,
+          "start": 78
+        }
+      ],
+      "text": "# Mosaic board charter\r\nAll instructions describe an imaginary tile contest.\r\n\r\n",
+      "unit_ids": [
+        "u0001",
+        "u0002",
+        "u0003"
+      ]
+    },
+    {
+      "aliases": [
+        "blue counters",
+        "sky pieces"
+      ],
+      "evidence": [
+        {
+          "quote": "Equipment: Azure Tiles\r\n",
+          "unit_id": "u0005"
+        },
+        {
+          "quote": "Aliases: blue counters; sky pieces\r\n",
+          "unit_id": "u0006"
+        }
+      ],
+      "group_id": "g0002",
+      "required_with": [],
+      "scopes": [
+        "Azure Tiles"
+      ],
+      "source_id": "dev_mosaic",
+      "source_sha256": "0852927bd7abe608ce450eb87d6e21a23137fa6394e1e5ea36140d84002c338f",
+      "spans": [
+        {
+          "end": 96,
+          "start": 80
+        },
+        {
+          "end": 120,
+          "start": 96
+        },
+        {
+          "end": 156,
+          "start": 120
+        },
+        {
+          "end": 206,
+          "start": 156
+        },
+        {
+          "end": 279,
+          "start": 206
+        },
+        {
+          "end": 281,
+          "start": 279
+        }
+      ],
+      "text": "## Azure Tiles\r\nEquipment: Azure Tiles\r\nAliases: blue counters; sky pieces\r\nWhen a ring is drawn, do not rotate Azure Tiles.\r\nUnless the ring is dotted, the prohibition holds through the next turn.\r\n\r\n",
+      "unit_ids": [
+        "u0004",
+        "u0005",
+        "u0006",
+        "u0007",
+        "u0008",
+        "u0009"
+      ]
+    },
+    {
+      "aliases": [],
+      "evidence": [],
+      "group_id": "g0003",
+      "required_with": [],
+      "scopes": [],
+      "source_id": "dev_mosaic",
+      "source_sha256": "0852927bd7abe608ce450eb87d6e21a23137fa6394e1e5ea36140d84002c338f",
+      "spans": [
+        {
+          "end": 298,
+          "start": 281
+        },
+        {
+          "end": 356,
+          "start": 298
+        },
+        {
+          "end": 419,
+          "start": 356
+        },
+        {
+          "end": 488,
+          "start": 419
+        },
+        {
+          "end": 490,
+          "start": 488
+        }
+      ],
+      "text": "## Scale legend\r\nA higher calmness index implies a lower wobble tendency.\r\nThe dotted-ring exception qualifies the rotation prohibition.\r\nThe observer says the ring may be dotted; this is not confirmation.\r\n\r\n",
+      "unit_ids": [
+        "u0010",
+        "u0011",
+        "u0012",
+        "u0013",
+        "u0014"
+      ]
+    },
+    {
+      "aliases": [],
+      "evidence": [
+        {
+          "quote": "Scope: Ochre Tiles\r\n",
+          "unit_id": "u0016"
+        }
+      ],
+      "group_id": "g0004",
+      "required_with": [],
+      "scopes": [
+        "Ochre Tiles"
+      ],
+      "source_id": "dev_mosaic",
+      "source_sha256": "0852927bd7abe608ce450eb87d6e21a23137fa6394e1e5ea36140d84002c338f",
+      "spans": [
+        {
+          "end": 506,
+          "start": 490
+        },
+        {
+          "end": 526,
+          "start": 506
+        },
+        {
+          "end": 579,
+          "start": 526
+        },
+        {
+          "end": 632,
+          "start": 579
+        }
+      ],
+      "text": "## Ochre Tiles\r\nScope: Ochre Tiles\r\nStack Ochre Tiles only when the paper flag is flat.\r\nStack Ochre Tiles only when the paper flag is flat.\r\n",
+      "unit_ids": [
+        "u0015",
+        "u0016",
+        "u0017",
+        "u0018"
+      ]
+    }
+  ],
+  "observation": {
+    "groups": [
+      {
+        "spans": [
+          {
+            "end": 24,
+            "source_id": "dev_mosaic",
+            "start": 0
+          },
+          {
+            "end": 78,
+            "source_id": "dev_mosaic",
+            "start": 24
+          },
+          {
+            "end": 80,
+            "source_id": "dev_mosaic",
+            "start": 78
+          }
+        ],
+        "text": "# Mosaic board charter\r\nAll instructions describe an imaginary tile contest.\r\n\r\n"
+      },
+      {
+        "spans": [
+          {
+            "end": 96,
+            "source_id": "dev_mosaic",
+            "start": 80
+          },
+          {
+            "end": 120,
+            "source_id": "dev_mosaic",
+            "start": 96
+          },
+          {
+            "end": 156,
+            "source_id": "dev_mosaic",
+            "start": 120
+          },
+          {
+            "end": 206,
+            "source_id": "dev_mosaic",
+            "start": 156
+          },
+          {
+            "end": 279,
+            "source_id": "dev_mosaic",
+            "start": 206
+          },
+          {
+            "end": 281,
+            "source_id": "dev_mosaic",
+            "start": 279
+          }
+        ],
+        "text": "## Azure Tiles\r\nEquipment: Azure Tiles\r\nAliases: blue counters; sky pieces\r\nWhen a ring is drawn, do not rotate Azure Tiles.\r\nUnless the ring is dotted, the prohibition holds through the next turn.\r\n\r\n"
+      },
+      {
+        "spans": [
+          {
+            "end": 298,
+            "source_id": "dev_mosaic",
+            "start": 281
+          },
+          {
+            "end": 356,
+            "source_id": "dev_mosaic",
+            "start": 298
+          },
+          {
+            "end": 419,
+            "source_id": "dev_mosaic",
+            "start": 356
+          },
+          {
+            "end": 488,
+            "source_id": "dev_mosaic",
+            "start": 419
+          },
+          {
+            "end": 490,
+            "source_id": "dev_mosaic",
+            "start": 488
+          }
+        ],
+        "text": "## Scale legend\r\nA higher calmness index implies a lower wobble tendency.\r\nThe dotted-ring exception qualifies the rotation prohibition.\r\nThe observer says the ring may be dotted; this is not confirmation.\r\n\r\n"
+      },
+      {
+        "spans": [
+          {
+            "end": 506,
+            "source_id": "dev_mosaic",
+            "start": 490
+          },
+          {
+            "end": 526,
+            "source_id": "dev_mosaic",
+            "start": 506
+          },
+          {
+            "end": 579,
+            "source_id": "dev_mosaic",
+            "start": 526
+          },
+          {
+            "end": 632,
+            "source_id": "dev_mosaic",
+            "start": 579
+          }
+        ],
+        "text": "## Ochre Tiles\r\nScope: Ochre Tiles\r\nStack Ochre Tiles only when the paper flag is flat.\r\nStack Ochre Tiles only when the paper flag is flat.\r\n"
+      }
+    ],
+    "metadata": {
+      "aliases": [
+        {
+          "evidence": [
+            {
+              "end": 120,
+              "source_id": "dev_mosaic",
+              "start": 96
+            },
+            {
+              "end": 156,
+              "source_id": "dev_mosaic",
+              "start": 120
+            }
+          ],
+          "target": "Azure Tiles",
+          "value": "blue counters"
+        },
+        {
+          "evidence": [
+            {
+              "end": 120,
+              "source_id": "dev_mosaic",
+              "start": 96
+            },
+            {
+              "end": 156,
+              "source_id": "dev_mosaic",
+              "start": 120
+            }
+          ],
+          "target": "Azure Tiles",
+          "value": "sky pieces"
+        }
+      ],
+      "links": [
+        {
+          "evidence": [
+            {
+              "end": 24,
+              "source_id": "dev_mosaic",
+              "start": 0
+            },
+            {
+              "end": 96,
+              "source_id": "dev_mosaic",
+              "start": 80
+            },
+            {
+              "end": 298,
+              "source_id": "dev_mosaic",
+              "start": 281
+            },
+            {
+              "end": 506,
+              "source_id": "dev_mosaic",
+              "start": 490
+            }
+          ],
+          "from": [
+            {
+              "end": 24,
+              "source_id": "dev_mosaic",
+              "start": 0
+            },
+            {
+              "end": 78,
+              "source_id": "dev_mosaic",
+              "start": 24
+            },
+            {
+              "end": 80,
+              "source_id": "dev_mosaic",
+              "start": 78
+            }
+          ],
+          "to": [
+            {
+              "end": 96,
+              "source_id": "dev_mosaic",
+              "start": 80
+            },
+            {
+              "end": 120,
+              "source_id": "dev_mosaic",
+              "start": 96
+            },
+            {
+              "end": 156,
+              "source_id": "dev_mosaic",
+              "start": 120
+            },
+            {
+              "end": 206,
+              "source_id": "dev_mosaic",
+              "start": 156
+            },
+            {
+              "end": 279,
+              "source_id": "dev_mosaic",
+              "start": 206
+            },
+            {
+              "end": 281,
+              "source_id": "dev_mosaic",
+              "start": 279
+            }
+          ]
+        },
+        {
+          "evidence": [
+            {
+              "end": 24,
+              "source_id": "dev_mosaic",
+              "start": 0
+            },
+            {
+              "end": 96,
+              "source_id": "dev_mosaic",
+              "start": 80
+            },
+            {
+              "end": 298,
+              "source_id": "dev_mosaic",
+              "start": 281
+            },
+            {
+              "end": 506,
+              "source_id": "dev_mosaic",
+              "start": 490
+            }
+          ],
+          "from": [
+            {
+              "end": 24,
+              "source_id": "dev_mosaic",
+              "start": 0
+            },
+            {
+              "end": 78,
+              "source_id": "dev_mosaic",
+              "start": 24
+            },
+            {
+              "end": 80,
+              "source_id": "dev_mosaic",
+              "start": 78
+            }
+          ],
+          "to": [
+            {
+              "end": 298,
+              "source_id": "dev_mosaic",
+              "start": 281
+            },
+            {
+              "end": 356,
+              "source_id": "dev_mosaic",
+              "start": 298
+            },
+            {
+              "end": 419,
+              "source_id": "dev_mosaic",
+              "start": 356
+            },
+            {
+              "end": 488,
+              "source_id": "dev_mosaic",
+              "start": 419
+            },
+            {
+              "end": 490,
+              "source_id": "dev_mosaic",
+              "start": 488
+            }
+          ]
+        },
+        {
+          "evidence": [
+            {
+              "end": 24,
+              "source_id": "dev_mosaic",
+              "start": 0
+            },
+            {
+              "end": 96,
+              "source_id": "dev_mosaic",
+              "start": 80
+            },
+            {
+              "end": 298,
+              "source_id": "dev_mosaic",
+              "start": 281
+            },
+            {
+              "end": 506,
+              "source_id": "dev_mosaic",
+              "start": 490
+            }
+          ],
+          "from": [
+            {
+              "end": 24,
+              "source_id": "dev_mosaic",
+              "start": 0
+            },
+            {
+              "end": 78,
+              "source_id": "dev_mosaic",
+              "start": 24
+            },
+            {
+              "end": 80,
+              "source_id": "dev_mosaic",
+              "start": 78
+            }
+          ],
+          "to": [
+            {
+              "end": 506,
+              "source_id": "dev_mosaic",
+              "start": 490
+            },
+            {
+              "end": 526,
+              "source_id": "dev_mosaic",
+              "start": 506
+            },
+            {
+              "end": 579,
+              "source_id": "dev_mosaic",
+              "start": 526
+            },
+            {
+              "end": 632,
+              "source_id": "dev_mosaic",
+              "start": 579
+            }
+          ]
+        }
+      ],
+      "scopes": [
+        {
+          "evidence": [
+            {
+              "end": 120,
+              "source_id": "dev_mosaic",
+              "start": 96
+            },
+            {
+              "end": 156,
+              "source_id": "dev_mosaic",
+              "start": 120
+            }
+          ],
+          "spans": [
+            {
+              "end": 96,
+              "source_id": "dev_mosaic",
+              "start": 80
+            },
+            {
+              "end": 120,
+              "source_id": "dev_mosaic",
+              "start": 96
+            },
+            {
+              "end": 156,
+              "source_id": "dev_mosaic",
+              "start": 120
+            },
+            {
+              "end": 206,
+              "source_id": "dev_mosaic",
+              "start": 156
+            },
+            {
+              "end": 279,
+              "source_id": "dev_mosaic",
+              "start": 206
+            },
+            {
+              "end": 281,
+              "source_id": "dev_mosaic",
+              "start": 279
+            }
+          ],
+          "value": "Azure Tiles"
+        },
+        {
+          "evidence": [
+            {
+              "end": 526,
+              "source_id": "dev_mosaic",
+              "start": 506
+            }
+          ],
+          "spans": [
+            {
+              "end": 506,
+              "source_id": "dev_mosaic",
+              "start": 490
+            },
+            {
+              "end": 526,
+              "source_id": "dev_mosaic",
+              "start": 506
+            },
+            {
+              "end": 579,
+              "source_id": "dev_mosaic",
+              "start": 526
+            },
+            {
+              "end": 632,
+              "source_id": "dev_mosaic",
+              "start": 579
+            }
+          ],
+          "value": "Ochre Tiles"
+        }
+      ]
+    },
+    "source_id": "dev_mosaic",
+    "source_sha256": "0852927bd7abe608ce450eb87d6e21a23137fa6394e1e5ea36140d84002c338f",
+    "status": "accepted"
+  },
+  "raw_proposal": {
+    "groups": [
+      {
+        "aliases": [],
+        "evidence": [
+          {
+            "quote": "# Mosaic board charter\r\n",
+            "unit_id": "u0001"
+          },
+          {
+            "quote": "## Azure Tiles\r\n",
+            "unit_id": "u0004"
+          },
+          {
+            "quote": "## Scale legend\r\n",
+            "unit_id": "u0010"
+          },
+          {
+            "quote": "## Ochre Tiles\r\n",
+            "unit_id": "u0015"
+          }
+        ],
+        "group_id": "g0001",
+        "required_with": [
+          "g0002",
+          "g0003",
+          "g0004"
+        ],
+        "scopes": [],
+        "unit_ids": [
+          "u0001",
+          "u0002",
+          "u0003"
+        ]
+      },
+      {
+        "aliases": [
+          "blue counters",
+          "sky pieces"
+        ],
+        "evidence": [
+          {
+            "quote": "Equipment: Azure Tiles\r\n",
+            "unit_id": "u0005"
+          },
+          {
+            "quote": "Aliases: blue counters; sky pieces\r\n",
+            "unit_id": "u0006"
+          }
+        ],
+        "group_id": "g0002",
+        "required_with": [],
+        "scopes": [
+          "Azure Tiles"
+        ],
+        "unit_ids": [
+          "u0004",
+          "u0005",
+          "u0006",
+          "u0007",
+          "u0008",
+          "u0009"
+        ]
+      },
+      {
+        "aliases": [],
+        "evidence": [],
+        "group_id": "g0003",
+        "required_with": [],
+        "scopes": [],
+        "unit_ids": [
+          "u0010",
+          "u0011",
+          "u0012",
+          "u0013",
+          "u0014"
+        ]
+      },
+      {
+        "aliases": [],
+        "evidence": [
+          {
+            "quote": "Scope: Ochre Tiles\r\n",
+            "unit_id": "u0016"
+          }
+        ],
+        "group_id": "g0004",
+        "required_with": [],
+        "scopes": [
+          "Ochre Tiles"
+        ],
+        "unit_ids": [
+          "u0015",
+          "u0016",
+          "u0017",
+          "u0018"
+        ]
+      }
+    ]
+  },
+  "source_id": "dev_mosaic",
+  "synthetic_review_diagnostic": true
+}

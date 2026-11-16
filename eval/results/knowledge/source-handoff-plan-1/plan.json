@@ -1,0 +1,70 @@
+{
+  "accounting": "Actual exposed usage is retained in driver receipts; unknown values stay unknown.",
+  "baseline_release": "sha256-7dd7ee169fc9db4793ea7d0836256a903129d151ac8ccacd2733c23ce1fdcac1",
+  "code_sha256": {
+    "eval\\knowledge_attempts.py": "d44c99c8cf3f6afb2c4e7c329aab992af31b337caeee3f6d7c2cde75979a9df0",
+    "eval\\knowledge_copilot.py": "ba12dbd96fb372f8a2b7160c47f1b39dcec736d475eb02031e4d9b9374a1f432",
+    "eval\\run_knowledge_handoff.py": "ccdfe8b48dfdfac2096ba1dc74d87ee4f8b93ac812e7996e2af2b694f1f91a21",
+    "eval\\run_knowledge_package.py": "3f68b4665d2f42398d3837608e0c58182e968c43fce53d9dfdb2af56e747a786",
+    "eval\\tests\\test_knowledge_handoff.py": "fc163840be2eeda1b074fd4611fdab9c3fcc900d56625c7e338f4f49e8cca0a5",
+    "eval\\tests\\test_knowledge_package.py": "dd74fafd3dd6bb8de01b301bd3dc337e1fccbbd2e2be985b8b62320c5cb53580",
+    "llm_inference\\__init__.py": "95dc7f05b494cd3c7135bdb061453e9ddc72c45a20777dee1569fe36e8c3f6bc",
+    "llm_inference\\__main__.py": "852673b93b39db4f1327547e2bacaeb2443cc40d0d15dc672b4cab9471035f24",
+    "llm_inference\\_lifecycle.py": "b8c983e8e230e0cdfce5d329f361cdebda6dd040ab6e7774b53626eb1d97bbef",
+    "llm_inference\\azure.py": "938ecb97aed4ab89306ead68f922507b2dc8d9d6f614cb1506beca3a82fbda8c",
+    "llm_inference\\contracts.py": "4d27d144808212ab93959d01c82574ec3add767ed80b30bcb1334596e67621cc",
+    "llm_inference\\copilot.py": "49b01321cfb2d7bb635f119c36e5c1768e40ca23863357e3425fd1c5909f3417",
+    "triage_knowledge\\__init__.py": "5617bb84d5b53f6725574a452a4a8b0130ec2e4321d5e92653ce754a5964d84a",
+    "triage_knowledge\\__main__.py": "68644fe2d0ec06345784a8b663eea0eeb77f2b598fc54310aeddb9c27755fd17",
+    "triage_knowledge\\context.py": "fa75c133540073923317900186a2aff2c25308aae676abaab9d928d4f613e14a",
+    "triage_knowledge\\contracts.py": "19d1ace2fbf1706dcd4a0bf4b565ef96cda17947172aa0ca987289b93f8008e8",
+    "triage_knowledge\\editor.py": "ad29cc29345f7ae4261a9b6e26efb764b9f347c4ad383f52097d67dd73568ad0",
+    "triage_knowledge\\knowledge.py": "9bcae12d5c6fb7872d704089bd032f68cc1ae3c2d9a01f25debfaa6e2f547b22",
+    "triage_knowledge\\legacy_cli.py": "c15c31637bf63658618a89e09d2cbbe4903f5aaafb6e2884f0493be0d49df45f",
+    "triage_knowledge\\legacy_editor.py": "1a14fc9b17e60459e9436469b1038e292e17cf1ec916c875be6fc30ba3842b67",
+    "triage_knowledge\\retrieval.py": "c16ac02cfdf2786f66727a7b3fdf254c22f8bb6b565eab3419cd764fc7c18376",
+    "triage_knowledge\\source.py": "28fd30529adfb85937cfdc9add0ca38556384e60561f2cf9e8d4deaeec62c255",
+    "triage_knowledge\\source_cli.py": "e34171422c006db2528578de93790ba0df73049f8e81a3b03a8eac66adc1f839",
+    "triage_knowledge\\source_context.py": "0f4492fd3b9657166b732e66a70ceb29947e92ef3109c659f14e42da436a0e33",
+    "triage_knowledge\\source_editor.py": "b50317f0b4ba09b8d0e6119f97e5f75d3090ed9be41f0b81f0d3769585f11bed",
+    "triage_knowledge\\source_store.py": "3673d83cdf8d5937232f77a11329080eef925d1583132ffe8a27a2abc67b98fb",
+    "triage_knowledge\\workflow_export.py": "98ff2d65413cc47625d9ce712ca34c7506b61c44563eaa7de3ade0d0ebb67135"
+  },
+  "combined_new_application_ceiling": 28,
+  "context_hash": "883cb9af0bc778b978b293ad8c9c92ca4cd88766328f883d1377f2e5d203c064",
+  "contract": "knowledge-development-handoff-v1",
+  "disclosure": "Transport evidence only, not causal knowledge use, triage quality, human approval or system acceptance. Source content has SOFTWARE-only fixture review.",
+  "driver_ceiling": 26,
+  "effective_ceiling": "one slot times two attempts = two",
+  "extraction_ceiling": 26,
+  "http_attempts": null,
+  "ledger": "C:\\Users\\thanh\\falkor_case2\\eval\\results\\knowledge\\extraction\\source-first-handoff.experimental-ledger.json",
+  "maximum_application_attempts": 2,
+  "model": "gpt-6-luna",
+  "package_run": "C:\\Users\\thanh\\falkor_case2\\eval\\results\\knowledge\\source-package-regression-2",
+  "package_snapshot": {
+    "development-context.json": "7a597a2335ced8f5f50b36273f34b5a80bc42f7d99463abea9881da8de0387ab",
+    "plan.json": "8249181d833243e1afb44dd9898cf3bb5f76dde745a09004a53f575943bdba44",
+    "report.json": "4eb213f80d198ae300130af3a6994bcb5b655181aa76b5ec6b73cd7ea4fa5d57"
+  },
+  "reasoning_effort": "low",
+  "request_sha256": "f6a8d1f514bb4b9ab90f4de67151587075d0a449bb6af755cd39bebf70577710",
+  "slot": "development-context.handoff",
+  "source_manifest": [
+    {
+      "kind": "finding_input",
+      "sha256": "2cc43cdac41f8ae033ea0454c83d271fe667f100eba02313f0ece7a2c2e18545",
+      "source_id": "findings"
+    },
+    {
+      "kind": "registry_input",
+      "sha256": "5520713b74a28a907b7167da638dca8879849ce3d85d99e1d3ef9968fb000033",
+      "source_id": "registry"
+    }
+  ],
+  "system_sha256": "bc59bda4c3de4154a86033515701a38b519d11b1509058524859998832cafb21",
+  "timeout_seconds": 90,
+  "token_usage": null,
+  "usd_cost": null,
+  "user_sha256": "7a597a2335ced8f5f50b36273f34b5a80bc42f7d99463abea9881da8de0387ab"
+}

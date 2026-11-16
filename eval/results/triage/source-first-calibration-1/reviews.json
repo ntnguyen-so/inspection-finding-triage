@@ -1,0 +1,35 @@
+{
+  "reference_version": "1.2",
+  "reviewer": {
+    "kind": "ai_only",
+    "independent_of_generation": false,
+    "label": "workflow-migration-author-gpt-6.1-sol",
+    "configuration": "Copilot CLI parent assistant, model ID gpt-6.1-sol; no separate judge call. Runtime sampling settings and billing unavailable. Disclosed seeded controls and expected verdicts were visible."
+  },
+  "judgments": [
+    {
+      "probe_id": "A04-FW-HEALTHY",
+      "dimension": "grounding",
+      "verdict": "fail",
+      "reason": "F-1017 records pump A at 9.2 barg against 11 barg design, without a measured flow; internal wear or a partly closed valve is suspected, not resolved. F-1003 separately records pump B's initial failed start. The domain notes require checking actual partner capability and warn that findings against both legs remove redundancy credit. Neither a successful start nor pump B's eventual rated pressure establishes a healthy full-design pump A. This is a known-fixture contradiction judgment, not certification of an alternative numeric impact.",
+      "evidence": [
+        {
+          "field": "impact_of_failure.rationale",
+          "quote": "Pump A is confirmed healthy and delivers full design pressure"
+        }
+      ]
+    },
+    {
+      "probe_id": "A04-PSV-LABEL",
+      "dimension": "grounding",
+      "verdict": "fail",
+      "reason": "F-1016 explicitly says the register confirms March 2025 recertification and that the valve is in date, with physical condition looking fine. Its observation is an illegible corroded label, not a relief-function test or demonstrated failure. The claimed proof of functional inability and consequent top-end likelihood are unsupported. All-SCE review would not make that inference valid; no exact replacement likelihood is inferred from this calibration.",
+      "evidence": [
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "The illegible certification label proves the valve cannot perform its relief function."
+        }
+      ]
+    }
+  ]
+}

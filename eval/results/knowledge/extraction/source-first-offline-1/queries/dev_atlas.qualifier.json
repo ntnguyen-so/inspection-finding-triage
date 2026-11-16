@@ -1,0 +1,78 @@
+{
+  "assessment": {
+    "reason": "No genuinely reviewed release was supplied; unreviewed drafts are not published.",
+    "status": "needs_review"
+  },
+  "authorized_input_binding": {
+    "findings": {
+      "F-9001": {
+        "equipment_id": "SYN-9001",
+        "equipment_type": "sunset ribbons",
+        "finding_description": "Artificial selector query; no actual fault is asserted.",
+        "finding_id": "F-9001",
+        "inspection_method": "Synthetic selector fixture",
+        "inspection_type": "Routine Operator Round",
+        "reported_by": "Synthetic Fixture",
+        "reported_date": "2026-07-01",
+        "reporter_role": "Software test"
+      }
+    },
+    "manifest": [
+      {
+        "bytes": 315,
+        "kind": "finding_input",
+        "raw_sha256": "7d615d88b335ee3bbef66110193010e134834c3bed942c9de445c1f3d7431262",
+        "source_id": "synthetic-findings"
+      },
+      {
+        "bytes": 253,
+        "kind": "registry_input",
+        "raw_sha256": "ca11e500bc403ca98fad04620551629ab1c2a6747e3d3a8e651b00afe541db8a",
+        "source_id": "synthetic-registry"
+      }
+    ],
+    "registry": {
+      "SYN-9001": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9001",
+        "equipment_type": "sunset ribbons",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      }
+    }
+  },
+  "case_id": "dev_atlas.qualifier",
+  "execution": "not_run_pending_review",
+  "partition": "development",
+  "query_context": {
+    "findings": {
+      "F-9001": {
+        "equipment_id": "SYN-9001",
+        "equipment_type": "sunset ribbons",
+        "finding_description": "Artificial selector query; no actual fault is asserted.",
+        "finding_id": "F-9001",
+        "inspection_method": "Synthetic selector fixture",
+        "inspection_type": "Routine Operator Round",
+        "reported_by": "Synthetic Fixture",
+        "reported_date": "2026-07-01",
+        "reporter_role": "Software test"
+      }
+    },
+    "registry": {
+      "SYN-9001": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9001",
+        "equipment_type": "sunset ribbons",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      }
+    }
+  },
+  "result": null
+}

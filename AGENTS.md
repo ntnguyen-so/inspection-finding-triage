@@ -133,6 +133,16 @@ estimated values honestly; never invent metrics, credentials, timestamps or mode
 IDs. Do not include secrets in captured requests/logs. Keep failed observations.
 No composite score or reviewer agreement can substitute for the required gates.
 
+Keep reviewable summaries, live-call accounting and relevant failure observations
+in Git; do not commit every regenerated synthetic snapshot or command log. Raw
+artifacts may be archived losslessly with their original paths, per-file hashes
+and an archive hash recorded in `eval\results\artifacts-manifest.json`. Verify
+the archive and a separate backup before pruning loose copies. Never prune an
+active run, tracked evidence, or the only copy of a failed observation. Archived
+dependencies must be restored before replay; a local ignored archive is not a
+shared or durable evidence store. See README's generated-artifact retention
+instructions. Do not blanket-ignore `eval\results`.
+
 ## 6. Change frozen evaluation only deliberately
 
 Do not edit expectations, partitions, fixtures, evaluator code or fingerprints

@@ -1,0 +1,199 @@
+{
+  "status": "assessed",
+  "finding_id": "F-1016",
+  "equipment_id": "PSV-3420",
+  "summary": "PSV-3420\u2019s certification tag is illegible, but the register records recertification in March 2025. No functional failure is reported; relief performance is not established by these records.",
+  "recommended_action": "Restore legible identification and confirm relief-function status.",
+  "likelihood_of_failure": {
+    "score": 2,
+    "rationale": "This is a documentation defect, not reported evidence of a relief-function failure; the valve was recertified in March 2025. Current functional performance remains unverified, so this score does not establish that the valve is healthy.",
+    "evidence": [
+      {
+        "source_ref": "finding:F-1016:finding_description",
+        "quote": "Checked the register and the valve was recertified in March 2025 so it is in date."
+      },
+      {
+        "source_ref": "knowledge:psv-assessment:guidance",
+        "quote": "A documentation defect alone does not establish a functional failure."
+      },
+      {
+        "source_ref": "knowledge:likelihood-1-2:description",
+        "quote": "Little supported indication of near-term function loss; assess supported margin and service state."
+      }
+    ]
+  },
+  "impact_of_failure": {
+    "score": 7,
+    "rationale": "If the overpressure protection function fails, the consequence may be severe: this is an SCE providing overpressure protection for compressor discharge. The evidence does not establish an extreme specific scenario or actual loss of protection; no redundancy is credited.",
+    "evidence": [
+      {
+        "source_ref": "equipment:PSV-3420:safety_critical_element",
+        "quote": "Yes"
+      },
+      {
+        "source_ref": "equipment:PSV-3420:service_description",
+        "quote": "Overpressure protection for compressor discharge"
+      },
+      {
+        "source_ref": "knowledge:impact-7-8:description",
+        "quote": "Severe operational, delayed integrity or major-accident exposure considering actual protection."
+      }
+    ]
+  },
+  "facts": {
+    "required_function_failed": {
+      "applicability": "applicable",
+      "state": "unknown",
+      "reason": "No relief-function test or failure is reported; tag condition and recertification alone do not establish current relief performance.",
+      "evidence": [
+        {
+          "source_ref": "finding:F-1016:finding_description",
+          "quote": "Physical condition of the valve looks fine."
+        },
+        {
+          "source_ref": "knowledge:psv-assessment:guidance",
+          "quote": "A documentation defect alone does not establish a functional failure."
+        }
+      ],
+      "sources_checked": [
+        "finding:F-1016:finding_description",
+        "knowledge:psv-assessment:guidance"
+      ],
+      "verification_activity": "Verify current relief-function status"
+    },
+    "protection_impaired": {
+      "applicability": "applicable",
+      "state": "unknown",
+      "reason": "The PSV protects against overpressure, but the records do not establish whether its function is impaired.",
+      "evidence": [
+        {
+          "source_ref": "equipment:PSV-3420:service_description",
+          "quote": "Overpressure protection for compressor discharge"
+        },
+        {
+          "source_ref": "finding:F-1016:finding_description",
+          "quote": "Physical condition of the valve looks fine."
+        }
+      ],
+      "sources_checked": [
+        "equipment:PSV-3420:service_description",
+        "finding:F-1016:finding_description"
+      ],
+      "verification_activity": "Verify current relief-function status"
+    },
+    "recorded_deviation": {
+      "applicability": "applicable",
+      "state": "unknown",
+      "reason": "No deviation status is provided; silence does not establish that no deviation exists.",
+      "evidence": [
+        {
+          "source_ref": "knowledge:psv-assessment:uncertainty_guidance",
+          "quote": "State missing evidence explicitly; do not infer a healthy protection function or absence of a deviation from silence."
+        }
+      ],
+      "sources_checked": [
+        "knowledge:psv-assessment:uncertainty_guidance"
+      ],
+      "verification_activity": "Check impairment deviation record"
+    },
+    "protection_test_failed": {
+      "applicability": "applicable",
+      "state": "unknown",
+      "reason": "No functional-test result is reported.",
+      "evidence": [
+        {
+          "source_ref": "knowledge:psv-assessment:evidence_requirements/0",
+          "quote": "Inspection observations and any stated functional-test or certification evidence."
+        }
+      ],
+      "sources_checked": [
+        "knowledge:psv-assessment:evidence_requirements/0"
+      ],
+      "verification_activity": "Check latest functional-test result"
+    },
+    "evacuation_unavailable": {
+      "applicability": "not_applicable",
+      "state": "unknown",
+      "reason": "This is a compressor-discharge PSV, not evacuation equipment; the source identifies its service as overpressure protection.",
+      "evidence": [
+        {
+          "source_ref": "equipment:PSV-3420:service_description",
+          "quote": "Overpressure protection for compressor discharge"
+        }
+      ],
+      "sources_checked": [
+        "equipment:PSV-3420:service_description"
+      ],
+      "verification_activity": null
+    },
+    "capacity_below_pob": {
+      "applicability": "not_applicable",
+      "state": "unknown",
+      "reason": "POB evacuation capacity is not the function described for this PSV; the source identifies overpressure protection.",
+      "evidence": [
+        {
+          "source_ref": "equipment:PSV-3420:service_description",
+          "quote": "Overpressure protection for compressor discharge"
+        }
+      ],
+      "sources_checked": [
+        "equipment:PSV-3420:service_description"
+      ],
+      "verification_activity": null
+    },
+    "unlogged_impairment_discovered": {
+      "applicability": "applicable",
+      "state": "unknown",
+      "reason": "The available evidence does not establish an impairment or whether any impairment was logged.",
+      "evidence": [
+        {
+          "source_ref": "knowledge:psv-assessment:uncertainty_guidance",
+          "quote": "State missing evidence explicitly; do not infer a healthy protection function or absence of a deviation from silence."
+        }
+      ],
+      "sources_checked": [
+        "knowledge:psv-assessment:uncertainty_guidance"
+      ],
+      "verification_activity": "Check impairment log and protection status"
+    },
+    "protection_restored": {
+      "applicability": "applicable",
+      "state": "unknown",
+      "reason": "No restoration or repair status is reported.",
+      "evidence": [
+        {
+          "source_ref": "finding:F-1016:finding_description",
+          "quote": "the valve was recertified in March 2025 so it is in date."
+        }
+      ],
+      "sources_checked": [
+        "finding:F-1016:finding_description"
+      ],
+      "verification_activity": "Verify current relief-function status"
+    }
+  },
+  "uncertainties": [
+    {
+      "material": true,
+      "safety": true,
+      "affected_decision": "protection",
+      "reason": "Current relief performance and impairment/deviation status are not established; verification could change the protection assessment and disposition.",
+      "verification_activity": "Verify current relief-function status",
+      "evidence": [
+        {
+          "source_ref": "knowledge:psv-assessment:uncertainty_guidance",
+          "quote": "State missing evidence explicitly; do not infer a healthy protection function or absence of a deviation from silence."
+        },
+        {
+          "source_ref": "finding:F-1016:finding_description",
+          "quote": "the valve was recertified in March 2025 so it is in date."
+        }
+      ],
+      "sources_checked": [
+        "knowledge:psv-assessment:uncertainty_guidance",
+        "finding:F-1016:finding_description"
+      ]
+    }
+  ],
+  "inability_reason": null
+}

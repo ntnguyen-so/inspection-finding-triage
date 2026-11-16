@@ -1,0 +1,884 @@
+{
+  "recorded_at": "2026-11-16T12:21:55.125364+00:00",
+  "command": [
+    "C:\\Users\\thanh\\falkor_case2\\.venv\\Scripts\\python.exe",
+    "-B",
+    "-m",
+    "tools.verify_triage",
+    "--output",
+    "eval\\results\\knowledge\\regression-implementation-3"
+  ],
+  "status": "offline_checks_failed",
+  "scope": "Production functions with synthetic test-only dependencies; NOT real knowledge/model acceptance.",
+  "git_revision": "69117c1a437cada93d0d4ce920c9bc862a5c9fca",
+  "dirty_worktree": true,
+  "code_stable_during_run": false,
+  "stability_scope": "Executed workflow/inference/knowledge dependencies and regression tests; not unrelated concurrent files or a whole-system freeze.",
+  "hashes_before": {
+    "pyproject.toml": "646ccb78205ac51bb3decd8021a27a3e51223456666a21f1ae26e25397de1bbf",
+    "README.md": "8a578f7064a69f0ae8e90d9e5ca0bf4ada80930187002ac1152b6f16e7ea2b9a",
+    "AGENTS.md": "05594af8c02103061b554605bc3874e52c5008316e386e4b69b31168201b804a",
+    "docs\\05_TRIAGE_WORKFLOW.md": "65117b849141722def859f9c570d6fb7e1831b3db1396920d7308e241eccd44b",
+    "tools\\verify_triage.py": "0c43b337a7d5d8c5afff0c686c99944145419aa6979897ef811a76437c0250b2",
+    "tools\\probe_triage.py": "914cb5f0ced3bd0742d8fe1cdb7420f65fe2e74eeb5a65eb5d256ce9440e67ce",
+    "triage\\__init__.py": "46ec57da9a03501846bfcd7bf5c06e3d5c0dc305a729e044dce126cd79083272",
+    "triage\\__main__.py": "c41717ffe40166b654fecd447794c410df843a039656a223906943cceca3a8bd",
+    "triage\\assessment.py": "0431ff380a030baf0a60f546474ee53f440deb7e687d2e071cdd80732b416688",
+    "triage\\contracts.py": "617852d136cb46f1e4d961c0ca1d708fca64ba77f63da603775567829c780f7d",
+    "triage\\inputs.py": "ca786bc28039a84d9b9d3aa909c0a861c2c610b0a91adfaadeeace23fda8fca4",
+    "triage\\policy.py": "ab3fa6bf202386784374eeabff2538e10d43aa003508a082849a7992e51d8958",
+    "triage\\workflow.py": "170a81fa8f297242ab894807a0b1b30f57bcbc5070792dde2ae7c3e7bcfc8722",
+    "llm_inference\\__init__.py": "95dc7f05b494cd3c7135bdb061453e9ddc72c45a20777dee1569fe36e8c3f6bc",
+    "llm_inference\\__main__.py": "852673b93b39db4f1327547e2bacaeb2443cc40d0d15dc672b4cab9471035f24",
+    "llm_inference\\_lifecycle.py": "b8c983e8e230e0cdfce5d329f361cdebda6dd040ab6e7774b53626eb1d97bbef",
+    "llm_inference\\azure.py": "938ecb97aed4ab89306ead68f922507b2dc8d9d6f614cb1506beca3a82fbda8c",
+    "llm_inference\\contracts.py": "4d27d144808212ab93959d01c82574ec3add767ed80b30bcb1334596e67621cc",
+    "llm_inference\\copilot.py": "49b01321cfb2d7bb635f119c36e5c1768e40ca23863357e3425fd1c5909f3417",
+    "tests\\__init__.py": "eba574c424b6be07219ec901f87d4434bbb39bf275fc160c189455158b3f0763",
+    "tests\\test_triage.py": "fce28e44ff375165513b3180377d64a2d159d171810166fc75e5cd31b10fd512",
+    "tests\\test_copilot_triage.py": "696cfb6b885031bcb6a50419a05b6545e6f1b5979cd67772b78359decde63cb3",
+    "tests\\triage_support.py": "79ef918d535b097243eb92746e75c6fd9b776a0fe0d8b6b71fc325c2936860e2",
+    "tests\\test_inference.py": "dc72ba44ca52075588da1b1f1a2cf4708a968af0a554cbe32d5adcf57098ee27",
+    "tests\\test_azure.py": "0f4245c50c82d99f77386782d826300e12bd45e8ba171f8458aaaae92bdd173c",
+    "triage_knowledge\\__init__.py": "26cb33bc2aa09e25c8a80efdac819e6114013f714cfffc7143aa8a7c68ed56ef",
+    "triage_knowledge\\contracts.py": "19d1ace2fbf1706dcd4a0bf4b565ef96cda17947172aa0ca987289b93f8008e8",
+    "triage_knowledge\\knowledge.py": "668dc05dc66bdb235e52df1ba0f50978bd1afee156bb823c6b47ed32cd04d04d",
+    "triage_knowledge\\context.py": "79151310c56cf19d8fdfddbb033cc5b4cd17a265096b4851fc43bdbbdb6ef7af",
+    "triage_knowledge\\workflow_export.py": "98ff2d65413cc47625d9ce712ca34c7506b61c44563eaa7de3ade0d0ebb67135",
+    "eval\\spec\\split.json": "bf708a150f0ac08a1f65f1d585f2cdde6fb6984578ea379465a066cf9a622e43",
+    "eval\\spec\\acceptance.json": "033d1860c3feb3493c587ee32d2b72b510f2fec3847d04dad77de0626ea2c23c"
+  },
+  "hashes_after": {
+    "pyproject.toml": "646ccb78205ac51bb3decd8021a27a3e51223456666a21f1ae26e25397de1bbf",
+    "README.md": "8a578f7064a69f0ae8e90d9e5ca0bf4ada80930187002ac1152b6f16e7ea2b9a",
+    "AGENTS.md": "05594af8c02103061b554605bc3874e52c5008316e386e4b69b31168201b804a",
+    "docs\\05_TRIAGE_WORKFLOW.md": "e46ce05d46d56df6cbd8b47fe080dde191dd8d466b675136a7cb57f53cc90b4e",
+    "tools\\verify_triage.py": "0c43b337a7d5d8c5afff0c686c99944145419aa6979897ef811a76437c0250b2",
+    "tools\\probe_triage.py": "914cb5f0ced3bd0742d8fe1cdb7420f65fe2e74eeb5a65eb5d256ce9440e67ce",
+    "triage\\__init__.py": "46ec57da9a03501846bfcd7bf5c06e3d5c0dc305a729e044dce126cd79083272",
+    "triage\\__main__.py": "c41717ffe40166b654fecd447794c410df843a039656a223906943cceca3a8bd",
+    "triage\\assessment.py": "0431ff380a030baf0a60f546474ee53f440deb7e687d2e071cdd80732b416688",
+    "triage\\contracts.py": "617852d136cb46f1e4d961c0ca1d708fca64ba77f63da603775567829c780f7d",
+    "triage\\inputs.py": "ca786bc28039a84d9b9d3aa909c0a861c2c610b0a91adfaadeeace23fda8fca4",
+    "triage\\policy.py": "ab3fa6bf202386784374eeabff2538e10d43aa003508a082849a7992e51d8958",
+    "triage\\workflow.py": "170a81fa8f297242ab894807a0b1b30f57bcbc5070792dde2ae7c3e7bcfc8722",
+    "llm_inference\\__init__.py": "95dc7f05b494cd3c7135bdb061453e9ddc72c45a20777dee1569fe36e8c3f6bc",
+    "llm_inference\\__main__.py": "852673b93b39db4f1327547e2bacaeb2443cc40d0d15dc672b4cab9471035f24",
+    "llm_inference\\_lifecycle.py": "b8c983e8e230e0cdfce5d329f361cdebda6dd040ab6e7774b53626eb1d97bbef",
+    "llm_inference\\azure.py": "938ecb97aed4ab89306ead68f922507b2dc8d9d6f614cb1506beca3a82fbda8c",
+    "llm_inference\\contracts.py": "4d27d144808212ab93959d01c82574ec3add767ed80b30bcb1334596e67621cc",
+    "llm_inference\\copilot.py": "49b01321cfb2d7bb635f119c36e5c1768e40ca23863357e3425fd1c5909f3417",
+    "tests\\__init__.py": "eba574c424b6be07219ec901f87d4434bbb39bf275fc160c189455158b3f0763",
+    "tests\\test_triage.py": "fce28e44ff375165513b3180377d64a2d159d171810166fc75e5cd31b10fd512",
+    "tests\\test_copilot_triage.py": "586c14fb25ddc8acb1648a55d1071382f4a01c9579a18daaeca0e34967ab2d72",
+    "tests\\triage_support.py": "79ef918d535b097243eb92746e75c6fd9b776a0fe0d8b6b71fc325c2936860e2",
+    "tests\\test_inference.py": "dc72ba44ca52075588da1b1f1a2cf4708a968af0a554cbe32d5adcf57098ee27",
+    "tests\\test_azure.py": "0f4245c50c82d99f77386782d826300e12bd45e8ba171f8458aaaae92bdd173c",
+    "triage_knowledge\\__init__.py": "26cb33bc2aa09e25c8a80efdac819e6114013f714cfffc7143aa8a7c68ed56ef",
+    "triage_knowledge\\contracts.py": "19d1ace2fbf1706dcd4a0bf4b565ef96cda17947172aa0ca987289b93f8008e8",
+    "triage_knowledge\\knowledge.py": "668dc05dc66bdb235e52df1ba0f50978bd1afee156bb823c6b47ed32cd04d04d",
+    "triage_knowledge\\context.py": "79151310c56cf19d8fdfddbb033cc5b4cd17a265096b4851fc43bdbbdb6ef7af",
+    "triage_knowledge\\workflow_export.py": "98ff2d65413cc47625d9ce712ca34c7506b61c44563eaa7de3ade0d0ebb67135",
+    "eval\\spec\\split.json": "bf708a150f0ac08a1f65f1d585f2cdde6fb6984578ea379465a066cf9a622e43",
+    "eval\\spec\\acceptance.json": "033d1860c3feb3493c587ee32d2b72b510f2fec3847d04dad77de0626ea2c23c"
+  },
+  "reference_version": "1.2",
+  "component_tests": {
+    "run": 51,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "log": "triage-tests.txt"
+  },
+  "commands": [
+    {
+      "command": [
+        "C:\\Users\\thanh\\falkor_case2\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "unittest",
+        "tests.test_inference",
+        "tests.test_azure",
+        "-q"
+      ],
+      "exit_code": 0,
+      "log": "command-1.txt"
+    },
+    {
+      "command": [
+        "C:\\Users\\thanh\\falkor_case2\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "eval\\tests",
+        "-p",
+        "test_*.py",
+        "-q"
+      ],
+      "exit_code": 0,
+      "log": "command-2.txt"
+    },
+    {
+      "command": [
+        "C:\\Users\\thanh\\falkor_case2\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "eval.validate"
+      ],
+      "exit_code": 0,
+      "log": "command-3.txt"
+    },
+    {
+      "command": [
+        "C:\\Users\\thanh\\falkor_case2\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "eval.assess",
+        "--partition",
+        "development",
+        "--checklist"
+      ],
+      "exit_code": 0,
+      "log": "command-4.txt"
+    },
+    {
+      "command": [
+        "C:\\Users\\thanh\\falkor_case2\\.venv\\Scripts\\python.exe",
+        "-I",
+        "-B",
+        "-c",
+        "import triage, triage_knowledge; from triage.policy import base_urgency; assert base_urgency(1,10)==8; print(triage.__file__); print(triage_knowledge.__file__)"
+      ],
+      "exit_code": 0,
+      "log": "command-5.txt"
+    }
+  ],
+  "policy_grid": {
+    "rows": "likelihood 1..10",
+    "columns": "impact 1..10",
+    "actual": [
+      [
+        1,
+        2,
+        3,
+        4,
+        4,
+        5,
+        6,
+        6,
+        7,
+        8
+      ],
+      [
+        2,
+        2,
+        3,
+        4,
+        5,
+        5,
+        6,
+        7,
+        7,
+        8
+      ],
+      [
+        2,
+        3,
+        3,
+        4,
+        5,
+        6,
+        6,
+        7,
+        8,
+        8
+      ],
+      [
+        2,
+        3,
+        4,
+        4,
+        5,
+        6,
+        7,
+        7,
+        8,
+        9
+      ],
+      [
+        3,
+        3,
+        4,
+        5,
+        5,
+        6,
+        7,
+        8,
+        8,
+        9
+      ],
+      [
+        3,
+        4,
+        4,
+        5,
+        6,
+        6,
+        7,
+        8,
+        9,
+        9
+      ],
+      [
+        3,
+        4,
+        5,
+        5,
+        6,
+        7,
+        7,
+        8,
+        9,
+        10
+      ],
+      [
+        4,
+        4,
+        5,
+        6,
+        6,
+        7,
+        8,
+        8,
+        9,
+        10
+      ],
+      [
+        4,
+        5,
+        5,
+        6,
+        7,
+        7,
+        8,
+        9,
+        9,
+        10
+      ],
+      [
+        4,
+        5,
+        6,
+        6,
+        7,
+        8,
+        8,
+        9,
+        10,
+        10
+      ]
+    ],
+    "independent_expected": "Literal hand-worked table in tests\\test_triage.py"
+  },
+  "override_state_matrix": [
+    {
+      "protection_impaired": "confirmed_true",
+      "recorded_deviation": "confirmed_true",
+      "actual_policy": {
+        "policy_version": "triage-policy-v1",
+        "base": 1,
+        "final": 1,
+        "rules": [],
+        "rationale": "triage-policy-v1: ceil(0.7*I+0.3*L), L=1, I=1, base=1, final=1.",
+        "review_required": false,
+        "review_reason": null,
+        "verification_activities": []
+      }
+    },
+    {
+      "protection_impaired": "confirmed_true",
+      "recorded_deviation": "confirmed_false",
+      "actual_policy": {
+        "policy_version": "triage-policy-v1",
+        "base": 1,
+        "final": 9,
+        "rules": [
+          {
+            "rule_id": "O-PROTECTION",
+            "kind": "confirmed_override",
+            "floor": 9,
+            "reason": "Confirmed protection impairment without recorded deviation.",
+            "sources": [
+              "finding:F-8001:finding_description"
+            ]
+          }
+        ],
+        "rationale": "triage-policy-v1: ceil(0.7*I+0.3*L), L=1, I=1, base=1, final=9. O-PROTECTION (confirmed_override): Confirmed protection impairment without recorded deviation. Sources: finding:F-8001:finding_description.",
+        "review_required": true,
+        "review_reason": "O-PROTECTION (confirmed_override): Confirmed protection impairment without recorded deviation. Sources: finding:F-8001:finding_description.",
+        "verification_activities": []
+      }
+    },
+    {
+      "protection_impaired": "confirmed_true",
+      "recorded_deviation": "suspected",
+      "actual_policy": {
+        "policy_version": "triage-policy-v1",
+        "base": 1,
+        "final": 7,
+        "rules": [
+          {
+            "rule_id": "P-SAFETY-UNKNOWN",
+            "kind": "precautionary_policy",
+            "floor": 7,
+            "reason": "Protection impaired; deviation status unverified, not confirmed absent.",
+            "sources": [
+              "finding:F-8001:finding_description"
+            ]
+          }
+        ],
+        "rationale": "triage-policy-v1: ceil(0.7*I+0.3*L), L=1, I=1, base=1, final=7. P-SAFETY-UNKNOWN (precautionary_policy): Protection impaired; deviation status unverified, not confirmed absent. Sources: finding:F-8001:finding_description.",
+        "review_required": true,
+        "review_reason": "P-SAFETY-UNKNOWN (precautionary_policy): Protection impaired; deviation status unverified, not confirmed absent. Sources: finding:F-8001:finding_description.",
+        "verification_activities": [
+          "Check deviation log."
+        ]
+      }
+    },
+    {
+      "protection_impaired": "confirmed_true",
+      "recorded_deviation": "unknown",
+      "actual_policy": {
+        "policy_version": "triage-policy-v1",
+        "base": 1,
+        "final": 7,
+        "rules": [
+          {
+            "rule_id": "P-SAFETY-UNKNOWN",
+            "kind": "precautionary_policy",
+            "floor": 7,
+            "reason": "Protection impaired; deviation status unverified, not confirmed absent.",
+            "sources": [
+              "finding:F-8001:finding_description"
+            ]
+          }
+        ],
+        "rationale": "triage-policy-v1: ceil(0.7*I+0.3*L), L=1, I=1, base=1, final=7. P-SAFETY-UNKNOWN (precautionary_policy): Protection impaired; deviation status unverified, not confirmed absent. Sources: finding:F-8001:finding_description.",
+        "review_required": true,
+        "review_reason": "P-SAFETY-UNKNOWN (precautionary_policy): Protection impaired; deviation status unverified, not confirmed absent. Sources: finding:F-8001:finding_description.",
+        "verification_activities": [
+          "Check deviation log."
+        ]
+      }
+    },
+    {
+      "protection_impaired": "confirmed_false",
+      "recorded_deviation": "confirmed_true",
+      "actual_policy": {
+        "policy_version": "triage-policy-v1",
+        "base": 1,
+        "final": 1,
+        "rules": [],
+        "rationale": "triage-policy-v1: ceil(0.7*I+0.3*L), L=1, I=1, base=1, final=1.",
+        "review_required": false,
+        "review_reason": null,
+        "verification_activities": []
+      }
+    },
+    {
+      "protection_impaired": "confirmed_false",
+      "recorded_deviation": "confirmed_false",
+      "actual_policy": {
+        "policy_version": "triage-policy-v1",
+        "base": 1,
+        "final": 1,
+        "rules": [],
+        "rationale": "triage-policy-v1: ceil(0.7*I+0.3*L), L=1, I=1, base=1, final=1.",
+        "review_required": false,
+        "review_reason": null,
+        "verification_activities": []
+      }
+    },
+    {
+      "protection_impaired": "confirmed_false",
+      "recorded_deviation": "suspected",
+      "actual_policy": {
+        "policy_version": "triage-policy-v1",
+        "base": 1,
+        "final": 1,
+        "rules": [],
+        "rationale": "triage-policy-v1: ceil(0.7*I+0.3*L), L=1, I=1, base=1, final=1.",
+        "review_required": false,
+        "review_reason": null,
+        "verification_activities": []
+      }
+    },
+    {
+      "protection_impaired": "confirmed_false",
+      "recorded_deviation": "unknown",
+      "actual_policy": {
+        "policy_version": "triage-policy-v1",
+        "base": 1,
+        "final": 1,
+        "rules": [],
+        "rationale": "triage-policy-v1: ceil(0.7*I+0.3*L), L=1, I=1, base=1, final=1.",
+        "review_required": false,
+        "review_reason": null,
+        "verification_activities": []
+      }
+    },
+    {
+      "protection_impaired": "suspected",
+      "recorded_deviation": "confirmed_true",
+      "actual_policy": {
+        "policy_version": "triage-policy-v1",
+        "base": 1,
+        "final": 1,
+        "rules": [],
+        "rationale": "triage-policy-v1: ceil(0.7*I+0.3*L), L=1, I=1, base=1, final=1.",
+        "review_required": false,
+        "review_reason": null,
+        "verification_activities": []
+      }
+    },
+    {
+      "protection_impaired": "suspected",
+      "recorded_deviation": "confirmed_false",
+      "actual_policy": {
+        "policy_version": "triage-policy-v1",
+        "base": 1,
+        "final": 1,
+        "rules": [],
+        "rationale": "triage-policy-v1: ceil(0.7*I+0.3*L), L=1, I=1, base=1, final=1.",
+        "review_required": false,
+        "review_reason": null,
+        "verification_activities": []
+      }
+    },
+    {
+      "protection_impaired": "suspected",
+      "recorded_deviation": "suspected",
+      "actual_policy": {
+        "policy_version": "triage-policy-v1",
+        "base": 1,
+        "final": 1,
+        "rules": [],
+        "rationale": "triage-policy-v1: ceil(0.7*I+0.3*L), L=1, I=1, base=1, final=1.",
+        "review_required": false,
+        "review_reason": null,
+        "verification_activities": []
+      }
+    },
+    {
+      "protection_impaired": "suspected",
+      "recorded_deviation": "unknown",
+      "actual_policy": {
+        "policy_version": "triage-policy-v1",
+        "base": 1,
+        "final": 1,
+        "rules": [],
+        "rationale": "triage-policy-v1: ceil(0.7*I+0.3*L), L=1, I=1, base=1, final=1.",
+        "review_required": false,
+        "review_reason": null,
+        "verification_activities": []
+      }
+    },
+    {
+      "protection_impaired": "unknown",
+      "recorded_deviation": "confirmed_true",
+      "actual_policy": {
+        "policy_version": "triage-policy-v1",
+        "base": 1,
+        "final": 1,
+        "rules": [],
+        "rationale": "triage-policy-v1: ceil(0.7*I+0.3*L), L=1, I=1, base=1, final=1.",
+        "review_required": false,
+        "review_reason": null,
+        "verification_activities": []
+      }
+    },
+    {
+      "protection_impaired": "unknown",
+      "recorded_deviation": "confirmed_false",
+      "actual_policy": {
+        "policy_version": "triage-policy-v1",
+        "base": 1,
+        "final": 1,
+        "rules": [],
+        "rationale": "triage-policy-v1: ceil(0.7*I+0.3*L), L=1, I=1, base=1, final=1.",
+        "review_required": false,
+        "review_reason": null,
+        "verification_activities": []
+      }
+    },
+    {
+      "protection_impaired": "unknown",
+      "recorded_deviation": "suspected",
+      "actual_policy": {
+        "policy_version": "triage-policy-v1",
+        "base": 1,
+        "final": 1,
+        "rules": [],
+        "rationale": "triage-policy-v1: ceil(0.7*I+0.3*L), L=1, I=1, base=1, final=1.",
+        "review_required": false,
+        "review_reason": null,
+        "verification_activities": []
+      }
+    },
+    {
+      "protection_impaired": "unknown",
+      "recorded_deviation": "unknown",
+      "actual_policy": {
+        "policy_version": "triage-policy-v1",
+        "base": 1,
+        "final": 1,
+        "rules": [],
+        "rationale": "triage-policy-v1: ceil(0.7*I+0.3*L), L=1, I=1, base=1, final=1.",
+        "review_required": false,
+        "review_reason": null,
+        "verification_activities": []
+      }
+    }
+  ],
+  "real_provider_dispatches": 0,
+  "live_generation_usage": null,
+  "live_generation_cost_usd": null,
+  "cost_note": "No real provider invoked; synthetic receipts do not measure model billing.",
+  "elapsed_seconds": 50.75,
+  "scenarios": {
+    "A01": {
+      "status": "failed_component_verification",
+      "system_acceptance": "not_established"
+    },
+    "A02": {
+      "status": "failed_component_verification",
+      "system_acceptance": "not_established"
+    },
+    "A03": {
+      "status": "failed_component_verification",
+      "system_acceptance": "not_established"
+    },
+    "A04": {
+      "status": "not_executed",
+      "system_acceptance": "not_established"
+    },
+    "B01": {
+      "status": "failed_component_verification",
+      "system_acceptance": "not_established"
+    },
+    "B02": {
+      "status": "not_executed",
+      "system_acceptance": "not_established"
+    },
+    "B03": {
+      "status": "not_executed",
+      "system_acceptance": "not_established"
+    },
+    "C01": {
+      "status": "failed_component_verification",
+      "system_acceptance": "not_established"
+    },
+    "C02": {
+      "status": "failed_component_verification",
+      "system_acceptance": "not_established"
+    },
+    "C03": {
+      "status": "failed_component_verification",
+      "system_acceptance": "not_established"
+    },
+    "C04": {
+      "status": "not_executed",
+      "system_acceptance": "not_established"
+    },
+    "D01": {
+      "status": "not_executed",
+      "system_acceptance": "not_established"
+    },
+    "D02": {
+      "status": "failed_component_verification",
+      "system_acceptance": "not_established"
+    },
+    "D03": {
+      "status": "not_executed",
+      "system_acceptance": "not_established"
+    },
+    "D04": {
+      "status": "not_executed",
+      "system_acceptance": "not_established"
+    },
+    "X01": {
+      "status": "not_executed",
+      "system_acceptance": "not_established"
+    },
+    "X02": {
+      "status": "not_executed",
+      "system_acceptance": "not_established"
+    }
+  },
+  "remaining_gates": [
+    "The module-owned WorkflowExport bridge is exercised; direct version-1 API integration remains deferred.",
+    "Genuine owner-approved maintained knowledge release; B01-B03 actual provider-bound/maintenance evidence.",
+    "Owner final system design and provider/model/settings/pricing/phase+review budget sign-off.",
+    "Calibrated semantic reviewer; real development generation, semantic review and X01 repeats.",
+    "Prerequisite-gated frozen test, automated all-input final tickets and delivery reproduction."
+  ],
+  "artifact_sha256": {
+    "command-1.txt": "a6036ef8106aade58f092f15b0baf3a3c4f508ca585cf715902cb46fb7f3119a",
+    "command-2.txt": "0c49b016462794a45183187e39dc2e26b7a1f925fa8cf0460ddca2ddb5871f51",
+    "command-3.txt": "5b711c1a2c4a308dba693214dc484aca0669b7b2b731df4971234318b2bc0b10",
+    "command-4.txt": "34e331a72417b33b3f1ba221fdeb50c8be10b8a784ab1a68244e1ec2c7940339",
+    "command-5.txt": "777ae66dd16fdad79250b16341a2603c7e60a46973b7d8dc968a99f1c32948fd",
+    "synthetic-component-artifacts\\004d4a499652f79d\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\004d4a499652f79d\\registry.csv": "eedb54e25b71f75ee4306d1586c57ed300ea8ff83bd7299ccd2a22add7837b0d",
+    "synthetic-component-artifacts\\004d4a499652f79d\\run\\run.json": "5bf8ef7d6ecee0aea2838de46382129ef6fa6be7e5c4a006450b6dfdccacd766",
+    "synthetic-component-artifacts\\004d4a499652f79d\\test-id.json": "9e89ca104822d53ef2541821938f1c7f8b680838e0238c6c7e7b64d7767a0927",
+    "synthetic-component-artifacts\\0493174dd57fd870\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\0493174dd57fd870\\no-receipt\\run.json": "c4388364c40d43195b1c3188ef906b2dfa00bfe4706b491653dab2d961ef81f7",
+    "synthetic-component-artifacts\\0493174dd57fd870\\phase-ledger.json": "01e76a207832e129a157e4eba391689ac2d858cde65185f4f87f390b9767cc9a",
+    "synthetic-component-artifacts\\0493174dd57fd870\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\0493174dd57fd870\\run\\run.json": "a77261998044bed091e795ca61966cde233c0bb1b28653b34eded26a624f8905",
+    "synthetic-component-artifacts\\0493174dd57fd870\\test-id.json": "3952b2d0054a588cd2e9fc65dd32c7601cbed409840be2d4f28ee381ead9b5e9",
+    "synthetic-component-artifacts\\0bd19cf068dd011e\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\0bd19cf068dd011e\\phase-ledger.json": "630c5f763ecc537bbd907749814fa16669df9faf233263ce9afb258fa8d5cb20",
+    "synthetic-component-artifacts\\0bd19cf068dd011e\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\0bd19cf068dd011e\\run\\run.json": "6e7fae5a157f08f78f73dc0aeb508897c4e6099ee4b5191908091b9ba0741242",
+    "synthetic-component-artifacts\\0bd19cf068dd011e\\test-id.json": "0f5f7ee8d4c0752918263421b0e3702d0fe45b51995718f947deb01631ae2d45",
+    "synthetic-component-artifacts\\0bd19cf068dd011e\\tickets.json": "073c722ce2f9979a73a2e442565b3c74623e7a2af4f49f4adacbc41be7f6597f",
+    "synthetic-component-artifacts\\0bd19cf068dd011e\\unknown-accounting\\run.json": "71053659323caf338b37d78f4bb8126d660e2e91e0abb845ce62b07678a72121",
+    "synthetic-component-artifacts\\0efb1a6ff415fb75\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\0efb1a6ff415fb75\\phase-ledger.json": "80a74b7e54a12fda12508d50097b592810648a255efdcc4ed78c049488d908a8",
+    "synthetic-component-artifacts\\0efb1a6ff415fb75\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\0efb1a6ff415fb75\\run\\run.json": "ed80f90f7087cbc5c79bf28d0a42c82388cae8cbf21b68e1077968cb5432bff2",
+    "synthetic-component-artifacts\\0efb1a6ff415fb75\\test-id.json": "e0bd5d77c2cb8f7fd8bd2e4dbe4b99009687ac45aca81704e98b834a2f48f2e6",
+    "synthetic-component-artifacts\\0efb1a6ff415fb75\\tickets.json": "a66702cca586e07c72cba2fb8a9c4b4031c1c0ff29af27d7b355816f0766fb42",
+    "synthetic-component-artifacts\\0f415b2e6965d24d\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\0f415b2e6965d24d\\phase-ledger.json": "42824468a66cf931dc16a2777688f1dbc3d581665d05fc90e87eba1dbd71b300",
+    "synthetic-component-artifacts\\0f415b2e6965d24d\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\0f415b2e6965d24d\\run\\run.json": "e547ad68d7e93b69afff825bfeb83b02a261ec7438b4318ee0aec76eeae0f688",
+    "synthetic-component-artifacts\\0f415b2e6965d24d\\test-id.json": "9ba3cea31d9e67affdd664097e5b2a056e1c86d5e42b7dea8a8a456a72376480",
+    "synthetic-component-artifacts\\0f415b2e6965d24d\\tickets.json": "dfc5b8bff4844876564854c966b9729bd6f3d24e0269fcbfdf4073ce44aa6475",
+    "synthetic-component-artifacts\\0f7ceb92e5a67700\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\0f7ceb92e5a67700\\phase.experimental-ledger.json": "8b6c0d3071b5f37999ab7057c23a3c9cd13edbf7d7abf4d83826c492a7e6449a",
+    "synthetic-component-artifacts\\0f7ceb92e5a67700\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\0f7ceb92e5a67700\\run\\run.json": "06c03b06ad6371f8cfdcfadedf363ddf65f0f89339a62b54405b93b6bc1aeb4d",
+    "synthetic-component-artifacts\\0f7ceb92e5a67700\\test-id.json": "7f24ac1a32535a3fcc326c7ac55ef1874ed54c7c67559f982ee1349a5250d683",
+    "synthetic-component-artifacts\\0f7ceb92e5a67700\\tickets.experimental.json": "7706f1b318e150271d61f831502e9ad0cbbcd21bc398b5d55854e444292b9878",
+    "synthetic-component-artifacts\\131535e23dfd7ac9\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\131535e23dfd7ac9\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\131535e23dfd7ac9\\run\\keep.txt": "aaa8d3c8d74ad3e8f6b1772aa9c7e0eaa528cb42fc93599ce2f125b00d4c424c",
+    "synthetic-component-artifacts\\131535e23dfd7ac9\\test-id.json": "61c521e866af6862b49bacd232d96cfd50eb4d2b85ec35c584e289ec44a15183",
+    "synthetic-component-artifacts\\1feed62847497810\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\1feed62847497810\\registry.csv": "8a94d024ae190354aa68cf329c7c02e21620b6d5c57bcfa6270ce45497dc1e19",
+    "synthetic-component-artifacts\\1feed62847497810\\test-id.json": "6679423d2a0e20ef639234205e6d508a65e9adba0b920accc6d819df45497fb1",
+    "synthetic-component-artifacts\\24389a5819f641cf\\findings.csv": "610ead1b256299efe3f18e788559fc2c2ce3c9ce0e40d16cd5a0a78b1a3ee2b6",
+    "synthetic-component-artifacts\\24389a5819f641cf\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\24389a5819f641cf\\test-id.json": "f7899b1116dbd425b0763318b31b7bfa9797da0aa37582826a11f342ff0a4cf2",
+    "synthetic-component-artifacts\\3417e9cab3aebd79\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\3417e9cab3aebd79\\phase.experimental-ledger.json": "1193184d657e169689836c70914c8c929af8ee953f744b28c9d7514ca6bbf15b",
+    "synthetic-component-artifacts\\3417e9cab3aebd79\\receipt-0\\run.json": "eb538ca043f0a584577e818fdd6b48cc54b6ae00c847df4af325d43c72f07e59",
+    "synthetic-component-artifacts\\3417e9cab3aebd79\\receipt-1\\run.json": "760e81022fc13f75a35e3409a72f5befde8679166e1ada6a957d8aa823182203",
+    "synthetic-component-artifacts\\3417e9cab3aebd79\\receipt-10\\run.json": "eeb0c08aebc9bb1932d0134c496094292dcde5d192380e07f601dcbb084bba38",
+    "synthetic-component-artifacts\\3417e9cab3aebd79\\receipt-11\\run.json": "d1056fe6ce0906b401324b7f71e813b3f78dc77ad13698566f362e24f4872d27",
+    "synthetic-component-artifacts\\3417e9cab3aebd79\\receipt-12\\run.json": "4c5b9610ac2bc7bef8014b9a92e2141aecc74a832d7fd1e1262662395dd33a80",
+    "synthetic-component-artifacts\\3417e9cab3aebd79\\receipt-13\\run.json": "d97911ea9601da99be3686fd62f4719879f163f0e3920101bbdc10dc3e45f910",
+    "synthetic-component-artifacts\\3417e9cab3aebd79\\receipt-14\\run.json": "fa3f4c2183d0538b07b721ad8fd1717b7911764e1da2636ded1ed3ae80b633f8",
+    "synthetic-component-artifacts\\3417e9cab3aebd79\\receipt-15\\run.json": "4e78c07816da0289f99097159f88ec5a6390fbed1bff2a38620d2a7012a41ef8",
+    "synthetic-component-artifacts\\3417e9cab3aebd79\\receipt-16\\run.json": "32268bae774050225d616eddd459ede5fb2339bd58ec6b6d59f83c39d4f8f273",
+    "synthetic-component-artifacts\\3417e9cab3aebd79\\receipt-17\\run.json": "e94fffcf926f8d281968fbc679eebdc6c65cf09739f33522e8ff75d6f5a09429",
+    "synthetic-component-artifacts\\3417e9cab3aebd79\\receipt-18\\run.json": "3f0138ceabbf8643eda9ca4381cb01d9fd9999b1cd97a388a329da42337113b9",
+    "synthetic-component-artifacts\\3417e9cab3aebd79\\receipt-2\\run.json": "7722faa2a4e95cf1691b60278d6d4087d8cc83a3881b8af3ef918f38581695a2",
+    "synthetic-component-artifacts\\3417e9cab3aebd79\\receipt-3\\run.json": "5e0ec2f60ed1360c092ce9d294c5aa2adb79dcbd97724e8bb1418588e101975a",
+    "synthetic-component-artifacts\\3417e9cab3aebd79\\receipt-4\\run.json": "1f70a0c945b83a8c36572b46a7cd5058be0dbc391ade772dd0d4c04da91f0d6e",
+    "synthetic-component-artifacts\\3417e9cab3aebd79\\receipt-5\\run.json": "cc1705b55dfa0c947285bcd8d6391762312217503adb4417e914e39fcc0b0d83",
+    "synthetic-component-artifacts\\3417e9cab3aebd79\\receipt-6\\run.json": "a36785d2b1674714781b996e77d9a69e268ebabc0018323410ef986d15fdc88a",
+    "synthetic-component-artifacts\\3417e9cab3aebd79\\receipt-7\\run.json": "00829ee4f7d09992bc9a783e8c429eab69ed676c670528cf87f902085e53481c",
+    "synthetic-component-artifacts\\3417e9cab3aebd79\\receipt-8\\run.json": "1d4d8dbb94557367656345f3035526c240215edba8709f7acb77002786c49570",
+    "synthetic-component-artifacts\\3417e9cab3aebd79\\receipt-9\\run.json": "dcabf08810303cb5efd383aef5e1ef6d2924e3c01cdb737da68631997650bbe4",
+    "synthetic-component-artifacts\\3417e9cab3aebd79\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\3417e9cab3aebd79\\test-id.json": "ef0968c8b6e30922452271ad1bf9265a14acf0d089a833a5195104fd99eb8224",
+    "synthetic-component-artifacts\\3d0a19b2d328f1b1\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\3d0a19b2d328f1b1\\missing-audit\\run.json": "7d1934c7761ad99ab73120014234f9b643ac3c0170f0d0f2664054a1fac81970",
+    "synthetic-component-artifacts\\3d0a19b2d328f1b1\\phase.experimental-ledger.json": "0acc609335d53687512fd3ca74427ad1baf6cfbbc842e4d082960ee2c83cb519",
+    "synthetic-component-artifacts\\3d0a19b2d328f1b1\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\3d0a19b2d328f1b1\\run\\run.json": "2535fdbea8565c816d3d06bc390e265fbf09d52093d03ae03b0dad04aa8ab019",
+    "synthetic-component-artifacts\\3d0a19b2d328f1b1\\test-id.json": "5045f2fc8de01618591e29a130e39c5ab78a1230c96f1941ea8c4c2bf7e6ebee",
+    "synthetic-component-artifacts\\3d0a19b2d328f1b1\\tickets.experimental.json": "f3181b1c8782d02dcc1597fb255ebb6440418320bcc1884f764526034ab0520e",
+    "synthetic-component-artifacts\\3d146abaa1a2d389\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\3d146abaa1a2d389\\phase-ledger.json": "46d8932ad4ec2323a3a28d6ba362cfcdcb84f8576f820987a286d67777a7ceae",
+    "synthetic-component-artifacts\\3d146abaa1a2d389\\registry.csv": "03c091a3a363d49e7282152766b89c9dea9f7377ddd94d2235cfdd2d8cbac8c4",
+    "synthetic-component-artifacts\\3d146abaa1a2d389\\run\\run.json": "a31f1f9171533fc38dde0a1b78b0e0fe1aca1dd0191115b90dc528d7cf0fabcc",
+    "synthetic-component-artifacts\\3d146abaa1a2d389\\test-id.json": "a28c6e4f24955341acbd9ed13c9679951db0bc2b948b6e8612ed6d482b0cb960",
+    "synthetic-component-artifacts\\3d146abaa1a2d389\\tickets.json": "9bec56616fa639bf43f5127b276ed6f8302737f967518772110fffbd829d8700",
+    "synthetic-component-artifacts\\3dc1c16c08416161\\findings.csv": "14626d61f65019929e11a72e3df713dca84ad827018f317b612e0a5c0d4592fd",
+    "synthetic-component-artifacts\\3dc1c16c08416161\\phase-ledger.json": "b13e516e98c05ace67262b686983a8351719acd856dbb6d7bad50434f9ef21e3",
+    "synthetic-component-artifacts\\3dc1c16c08416161\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\3dc1c16c08416161\\run\\run.json": "b80063f35b5686637c5853033668fd22879d7a7c07a9e3548e48e9f2c9ad74c7",
+    "synthetic-component-artifacts\\3dc1c16c08416161\\test-id.json": "842b6a8a758ffda60b817843412cd1a944c363d943cf7926f230250e32cbd8c7",
+    "synthetic-component-artifacts\\3dc1c16c08416161\\tickets.json": "096ac8bb9404cbaf7c8225a202646ded40fdb6746d7d1468342fded7eb6ec9f5",
+    "synthetic-component-artifacts\\4057ad0bfd90a8a5\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\4057ad0bfd90a8a5\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\4057ad0bfd90a8a5\\test-id.json": "17bc743c3430a45d0445c7e5a1cabfc8ce34b1be7e1cc1a9d74feed6a0bb98dd",
+    "synthetic-component-artifacts\\4345a0bdf5fd5691\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\4345a0bdf5fd5691\\phase-ledger.json": "5d68d0e2d201d901875bd82455caf7d8b57a99da665ee649cfd38632eeded45c",
+    "synthetic-component-artifacts\\4345a0bdf5fd5691\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\4345a0bdf5fd5691\\run\\run.json": "82d438fbb0e1b4a8346a230cb2883acacdeaaa76f62246054922b9397be3d662",
+    "synthetic-component-artifacts\\4345a0bdf5fd5691\\test-id.json": "f3eb9f2da599a2702a699a4e2023bbd3ba6c9357552f7f7c22cc99cfb3a4e72f",
+    "synthetic-component-artifacts\\4345a0bdf5fd5691\\tickets.json": "d99a9e7e82237d7f1e71034abab760697ca05e3de7c8f81b6a93f66510634574",
+    "synthetic-component-artifacts\\48c3259efa273675\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\48c3259efa273675\\phase-ledger.json": "f24ed566d3f61ed6876f9d5625f9f4df18c7c40928fc5bcfd46d11e3580d24e4",
+    "synthetic-component-artifacts\\48c3259efa273675\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\48c3259efa273675\\run\\run.json": "7943475f21dcb6424767ef79fbbb2f0b6014983a4f48b1546644dd5b535b9066",
+    "synthetic-component-artifacts\\48c3259efa273675\\test-id.json": "296609068443a4774580f5da99c5a054d3f90be4dc2d5d2de147f077379c704b",
+    "synthetic-component-artifacts\\48c3259efa273675\\tickets.json": "cba06b5736faf67e54b07b561eae94395e774c517a7d910a54369e1263ccfbd4",
+    "synthetic-component-artifacts\\53aa3b9c0c0d8369\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\53aa3b9c0c0d8369\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\53aa3b9c0c0d8369\\test-id.json": "63b621d3503c552d66a4d5e95f88fc028b1310b9c55c06d178c635b8eac97c1f",
+    "synthetic-component-artifacts\\5579eba4936c6747\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\5579eba4936c6747\\phase-ledger.json": "9e4db25184c19f352280717f1ab610ab0ab0470c1f3f919856bd8b73d1119150",
+    "synthetic-component-artifacts\\5579eba4936c6747\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\5579eba4936c6747\\run\\run.json": "0afd46e5608dcebd360320905e4cee95fc7a562e9b4bde0a8a92aae24e91eb42",
+    "synthetic-component-artifacts\\5579eba4936c6747\\test-id.json": "4685472b08723dc9e9f002981f1fa049eb7200b5cd8ad35e8a10fa92775d7ebc",
+    "synthetic-component-artifacts\\5579eba4936c6747\\tickets.json": "cba06b5736faf67e54b07b561eae94395e774c517a7d910a54369e1263ccfbd4",
+    "synthetic-component-artifacts\\5593324a12e34cb6\\context.json": "6d7788939929eef7abae6a2e9e1a2cac26259860a7ff162bcdcff36d1e4dc447",
+    "synthetic-component-artifacts\\5593324a12e34cb6\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\5593324a12e34cb6\\phase-ledger.json": "560a66ae9042e8dce26a8b1a92d02c1a8c45945395102e2a25cc17da11916b65",
+    "synthetic-component-artifacts\\5593324a12e34cb6\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\5593324a12e34cb6\\run\\run.json": "9c0c03f3642876403cc23a9c626819bf33be9bb4f162c4e6ff4f3932ccf8e5a9",
+    "synthetic-component-artifacts\\5593324a12e34cb6\\test-id.json": "f913cad5009d66df88f3db8354e6a9d21f798966672897c1a2a21f6deefa00df",
+    "synthetic-component-artifacts\\5593324a12e34cb6\\tickets.json": "a7b73d2c3f5437f5c77b261f25884ccf5736876b913bba9a4a015d19e5ba14f9",
+    "synthetic-component-artifacts\\650d05522ecb93c5\\authentication\\run.json": "c18d752d82c4c7bd01b5ed3cf8bcfd3c91231411f42ed57b07e9e8ebdb89b807",
+    "synthetic-component-artifacts\\650d05522ecb93c5\\cleanup\\run.json": "4af15d905ce9b34fb2c0042cc2cc3aa4700979a91c5a794a5dac7e6522bf7080",
+    "synthetic-component-artifacts\\650d05522ecb93c5\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\650d05522ecb93c5\\phase-ledger.json": "f359a1ed7bdf5cd3fa072935f643ad56c829ee0ac1d8fdded5fcacca4149e903",
+    "synthetic-component-artifacts\\650d05522ecb93c5\\refusal\\run.json": "b7927d711db280c38f092309a605f269757855ad0a76262f67be1af5c10e401e",
+    "synthetic-component-artifacts\\650d05522ecb93c5\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\650d05522ecb93c5\\test-id.json": "36608a0008b339b3179ddd90bbd534491121c03ad4c07fc9cb316fb8ab5a5fa3",
+    "synthetic-component-artifacts\\650d05522ecb93c5\\tickets.json": "cba06b5736faf67e54b07b561eae94395e774c517a7d910a54369e1263ccfbd4",
+    "synthetic-component-artifacts\\650d05522ecb93c5\\timeout\\run.json": "49545ee77353e42558607f142c04edfec5ab79ea053825654caf75a382c8bf08",
+    "synthetic-component-artifacts\\650d05522ecb93c5\\transport\\run.json": "597cfc8bd64448129a7273b9fe131b09951fff78fadf44ff99434903a6907b88",
+    "synthetic-component-artifacts\\83532d97c0de69b5\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\83532d97c0de69b5\\phase.experimental-ledger.json": "ce40cdc2c4779ca8223d642421d8d4c3b510cac3ab6c04327a68af2cef250bae",
+    "synthetic-component-artifacts\\83532d97c0de69b5\\registry.csv": "03c091a3a363d49e7282152766b89c9dea9f7377ddd94d2235cfdd2d8cbac8c4",
+    "synthetic-component-artifacts\\83532d97c0de69b5\\run\\run.json": "e31eeb68de48205a68d618bf1906e5a04361bb436dd7caa08bf21b84c5f6ae3a",
+    "synthetic-component-artifacts\\83532d97c0de69b5\\test-id.json": "70f44be0a6209992666b73c62113a8eae601aa768ff1cb5aae2e27c18cad662b",
+    "synthetic-component-artifacts\\83532d97c0de69b5\\tickets.experimental.json": "2f424b9e8351c16710959bc87528e6986f02cd2635cfdc43972b46ae33d5df3c",
+    "synthetic-component-artifacts\\8cd5b7e96476ed9d\\bad-receipt\\run.json": "40ed9b5a869aa67f56b034f56a7379f235221de75fae8f486507eecbc6aee36a",
+    "synthetic-component-artifacts\\8cd5b7e96476ed9d\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\8cd5b7e96476ed9d\\phase-ledger.json": "c28daa411f6883b456d77f0cdb3572852f7f53061b72afd273a2ee5dbf5785e7",
+    "synthetic-component-artifacts\\8cd5b7e96476ed9d\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\8cd5b7e96476ed9d\\run\\run.json": "57eeabee459a9eb329671e7aa99b2510e656d8a82e1dfa7bcf7d4f7a8d423c73",
+    "synthetic-component-artifacts\\8cd5b7e96476ed9d\\test-id.json": "6b0987d5f9e25d7185536b7c92394334648208ad4ba9979c2e8de50057de03e9",
+    "synthetic-component-artifacts\\9612e3224e1041e9\\catalog-0\\run.json": "bbd598746d6bb98ef427db341c876a15e862708f4070650a00693e8e88e6aa14",
+    "synthetic-component-artifacts\\9612e3224e1041e9\\catalog-1\\run.json": "36fd73b79ad66c942fefa298a8354bdbe01cd3277e2314e934d4a40459b235cf",
+    "synthetic-component-artifacts\\9612e3224e1041e9\\catalog-2\\run.json": "b99434262c0fc595b6864e8c1017b89ae6145d6dadb03347a86b8da676750e69",
+    "synthetic-component-artifacts\\9612e3224e1041e9\\catalog-3\\run.json": "b58bf559615ba80442b107cd34053c1eee7dc17f306f324569ac267ccc7b6715",
+    "synthetic-component-artifacts\\9612e3224e1041e9\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\9612e3224e1041e9\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\9612e3224e1041e9\\test-id.json": "af3945cf0a35bc76b7fc88ff9999c56e6f2390803115e8f71a8bbcffd87542cc",
+    "synthetic-component-artifacts\\9faf015734dcf0d8\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\9faf015734dcf0d8\\phase-ledger.json": "5d4d24cfc7b9180fc87778bb622f4c8c95028c632d1395cda201ef7449528493",
+    "synthetic-component-artifacts\\9faf015734dcf0d8\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\9faf015734dcf0d8\\run\\run.json": "df470fe0810ccc59a46e4f5aa3bde511c8c50065be52a12dabdcb3b832680191",
+    "synthetic-component-artifacts\\9faf015734dcf0d8\\test-id.json": "d2e0f901a527d79eb265696b3ea03de98b6e6db6c193f1bc61995153cd8d6e80",
+    "synthetic-component-artifacts\\9faf015734dcf0d8\\tickets.json": "82af610123607b4fc755375352d18df0d5e094639fe3e955606013f406ee6d02",
+    "synthetic-component-artifacts\\a49fa127cd0a8068\\findings.csv": "14626d61f65019929e11a72e3df713dca84ad827018f317b612e0a5c0d4592fd",
+    "synthetic-component-artifacts\\a49fa127cd0a8068\\phase-ledger.json": "d43ae14b9e05d046372ca09fb5956b436e2fc6de0b3495899a8630e212f3ceca",
+    "synthetic-component-artifacts\\a49fa127cd0a8068\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\a49fa127cd0a8068\\run\\run.json": "40bdeca346e635a35702ebca285f78278545f5d8916e75b7dedfdea83f895730",
+    "synthetic-component-artifacts\\a49fa127cd0a8068\\test-id.json": "47a7f7225f041da43d395cbb0aafb3e800e4ad1181c783ebdb053bd5bb60fcff",
+    "synthetic-component-artifacts\\afcd9cee452dd086\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\afcd9cee452dd086\\phase-ledger.json": "668ef9f734f2675b4c2f9313eaafa7581f87454591f1e486015922d2b403d2e6",
+    "synthetic-component-artifacts\\afcd9cee452dd086\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\afcd9cee452dd086\\run\\run.json": "67c924d02a414ff9babb7ab14ab551cd1ebcff873ac127e5a111900f15ce521c",
+    "synthetic-component-artifacts\\afcd9cee452dd086\\test-id.json": "c22623ebe3ac50646fd3fdb7db9d7909cc98b36f7571a44e87fcf8996563c061",
+    "synthetic-component-artifacts\\afcd9cee452dd086\\tickets.json": "e32cb5b69fd907d489ed5595c2f5a931647950afef725f568c6ff3acf649b0d5",
+    "synthetic-component-artifacts\\b6461f1524c8754b\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\b6461f1524c8754b\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\b6461f1524c8754b\\test-id.json": "fe9f916e2b3b0085738c51937495654c32c5911fbab21ad107500f655c2c79cc",
+    "synthetic-component-artifacts\\b6461f1524c8754b\\tickets.json": "2593c8b413246f0b49ae73c7fa5cf925eb960d1946ec48ae2f820e5b59efb301",
+    "synthetic-component-artifacts\\c1cba542a3215908\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\c1cba542a3215908\\phase-ledger.json": "4d0df184ae97ebd0d02885f43a1b4dcd4f16196fea6ec23b7d265572da943ed1",
+    "synthetic-component-artifacts\\c1cba542a3215908\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\c1cba542a3215908\\run\\run.json": "45add7a7195f09d89a6474bc99daada1bdd09d1634b485a8a30b9599c06aa40a",
+    "synthetic-component-artifacts\\c1cba542a3215908\\second\\run.json": "9a0ed7560dcada114e837fdafe450b91f6511c280e2af18c4758877b18cee956",
+    "synthetic-component-artifacts\\c1cba542a3215908\\test-id.json": "6d7dea9875bf65e8009d1068b3ac2d59587999ab0b6986f1ba7ef7c004d99d9f",
+    "synthetic-component-artifacts\\c5229a49c64b7431\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\c5229a49c64b7431\\phase-ledger.json": "d78d5540c8ff28da957cbc7340f4170fcccf83414990e26f6089d022f21a7e59",
+    "synthetic-component-artifacts\\c5229a49c64b7431\\real-module-export.json": "96c91a4b089ebfc8f58590f168c3649029349d65f0f916362e1f1be6cd9ec2e0",
+    "synthetic-component-artifacts\\c5229a49c64b7431\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\c5229a49c64b7431\\run\\run.json": "adabc01d7c6fb9102212afaa52e0f9bd86129d33ad2a1212575fceecd86603d0",
+    "synthetic-component-artifacts\\c5229a49c64b7431\\synthetic-review-store\\drafts\\working.json": "6ab008aceb1851e5da9936ce2f6bf0a257c7e8efca7a0c734d7b2af1ade00147",
+    "synthetic-component-artifacts\\c5229a49c64b7431\\synthetic-review-store\\releases\\sha256-f9de7add68a9584f979b5a34c2f41290939b5137183821d1c5b80ed3e2e54ea1.json": "7994c4630d6821ffcfb4dbf3ca91999782f590caf8f03b3129c8a83518ebe1bc",
+    "synthetic-component-artifacts\\c5229a49c64b7431\\test-id.json": "63f4238cf3863bc702347cfa12dd78e6b09c414c94693741d7578defd05970df",
+    "synthetic-component-artifacts\\c5229a49c64b7431\\tickets.json": "78a9815cf18a0e71b8b67c94ddea9289ffd9a6b11e4ce3951f77621d9fce9b10",
+    "synthetic-component-artifacts\\c54e15a8a6f73761\\findings.csv": "6ffbdb2d9c0e4bd4307e21178e5061636af041a58b31ea7e5498479c0247df39",
+    "synthetic-component-artifacts\\c54e15a8a6f73761\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\c54e15a8a6f73761\\test-id.json": "1d6c948509ddcb415d8d6a295094af39507912409b302a1ec178452da76b750b",
+    "synthetic-component-artifacts\\c77ab6a8b463d27b\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\c77ab6a8b463d27b\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\c77ab6a8b463d27b\\test-id.json": "970ad81533714e29d0319a145d99f84bc98008128510ae54d8fd1f8876834ee3",
+    "synthetic-component-artifacts\\ca17ff6969e58a29\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\ca17ff6969e58a29\\phase-ledger.json": "e0c756b1863e57b28fc8f53b76ac9406c4e64f89ebf609f9c93b04b6f012462f",
+    "synthetic-component-artifacts\\ca17ff6969e58a29\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\ca17ff6969e58a29\\run\\run.json": "e97b5a9a6897a7b3f97dc98980f2ddaa52064a1d174a7c21d52cd2ad852d248c",
+    "synthetic-component-artifacts\\ca17ff6969e58a29\\test-id.json": "2d411d964a669a7864612c416dac3dcc77194829708e5ca3096544db747e36e5",
+    "synthetic-component-artifacts\\ca17ff6969e58a29\\tickets.json": "1cbc4a3d2c0072a51c1ec296597ddb4a382e4b16c46da8806f9c69fc8ba35aaa",
+    "synthetic-component-artifacts\\d05f3b4962be8f6b\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\d05f3b4962be8f6b\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\d05f3b4962be8f6b\\test-id.json": "706856dd936f827da33515b9fc35c0150e0d861c3083507288189cf8c10ed029",
+    "synthetic-component-artifacts\\d1132491fe63456e\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\d1132491fe63456e\\phase-ledger.json": "82c77858391d90a3e778ba49872439bcab94793cfc3bfa0016a5d60d50378b03",
+    "synthetic-component-artifacts\\d1132491fe63456e\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\d1132491fe63456e\\run\\run.json": "4fcb5c003a002d2b85a4fe5fb6511b5e455bccbc46f427dbd4d22ed8bfd118db",
+    "synthetic-component-artifacts\\d1132491fe63456e\\test-id.json": "9b2278288610abd0cbd6c4c03e4c45f2fb595842ea3cc913fd9e472f1aa4bc8a",
+    "synthetic-component-artifacts\\d14e4a507bae9b87\\export.json": "6d7788939929eef7abae6a2e9e1a2cac26259860a7ff162bcdcff36d1e4dc447",
+    "synthetic-component-artifacts\\d14e4a507bae9b87\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\d14e4a507bae9b87\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\d14e4a507bae9b87\\test-id.json": "a3e6abb383e8ef66d59c81ec2ff82c57b9e6ec95210034718194d0d309d78924",
+    "synthetic-component-artifacts\\d354a41f22a0bbbf\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\d354a41f22a0bbbf\\other.json": "a3aec593be86b3f939f2dd28489215cb6ff6223a30eb0095d96e69566f3d5cdc",
+    "synthetic-component-artifacts\\d354a41f22a0bbbf\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\d354a41f22a0bbbf\\shared.json": "2a47c070e4f47001a3ef1a9e1025340d165dcf9ab378f4edd2307258f5d1ff41",
+    "synthetic-component-artifacts\\d354a41f22a0bbbf\\test-id.json": "88831953e301e8cc1168d3f61a7e6bcb239ff3696b9836d4a4c30e9e5d009c57",
+    "synthetic-component-artifacts\\d52f02ca46b36ebe\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\d52f02ca46b36ebe\\phase-ledger.json": "b007d48f0fefa25ea975ceff31c938509d2de2e18f71082d5b3a8d350cf6d2bf",
+    "synthetic-component-artifacts\\d52f02ca46b36ebe\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\d52f02ca46b36ebe\\run\\run.json": "98ff864763312662c718d6a15fb9fa7c85494557a7bdbffd1302cd79ece3acb5",
+    "synthetic-component-artifacts\\d52f02ca46b36ebe\\test-id.json": "ee11afa78405c24e392b03c3eb08f5cde458aaeddbad0b68c25f2192e512266f",
+    "synthetic-component-artifacts\\edac8fabe047520d\\findings.csv": "0d6b3a3771df922e0fe89ee5cb3f4f587db74c5012c95a215e0f571b5ce1eee3",
+    "synthetic-component-artifacts\\edac8fabe047520d\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\edac8fabe047520d\\test-id.json": "ff687a39d6edb27d16a9ef959a02f46cec7a8b83ad8eabb3c08f5f0a1760a871",
+    "synthetic-component-artifacts\\f83e7908e838b3fe\\config.json": "8f99991b9335f3da345216e3279881e251ec317aa99eb231a60fd04e5433e25d",
+    "synthetic-component-artifacts\\f83e7908e838b3fe\\context.json": "6d7788939929eef7abae6a2e9e1a2cac26259860a7ff162bcdcff36d1e4dc447",
+    "synthetic-component-artifacts\\f83e7908e838b3fe\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\f83e7908e838b3fe\\phase.experimental-ledger.json": "402e2f29b7a65dd080e8d0385f1d1fce25bb242e45160106a7ca892a05a7300d",
+    "synthetic-component-artifacts\\f83e7908e838b3fe\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\f83e7908e838b3fe\\run\\run.json": "5b3b5c0918cd64b86b4bc4065b9edf7514545c401537d37bd79203a4e6b70c58",
+    "synthetic-component-artifacts\\f83e7908e838b3fe\\test-id.json": "e9b941f9cb1f27c40590abd8a17e7bf684d9b05979a381b56bead76f97dab7b1",
+    "synthetic-component-artifacts\\f83e7908e838b3fe\\tickets.experimental.json": "add80568f5e61de526e3e67a202a21e624bebb4b2ddd8eb3527b0571f72b57ad",
+    "synthetic-component-artifacts\\f860837b098cce1c\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\f860837b098cce1c\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\f860837b098cce1c\\test-id.json": "4853c7225b3be1591854bd42b42a86de38547e244df7b65c4f01f399d03f7f28",
+    "synthetic-component-artifacts\\f92500f3127a9fc1\\cli-absent\\process.json": "8b574a21478b8e1dcdf265f3e2030c5aed93383a0087a145df91b6da9f3598fc",
+    "synthetic-component-artifacts\\f92500f3127a9fc1\\cli-absent\\run.json": "5a2c16f262349a8dd40d91064da33575679a732d1b86172a0fbc6dcbb3ea91cb",
+    "synthetic-component-artifacts\\f92500f3127a9fc1\\cli-absent\\stderr.json": "8f7dc7b40091d9f1bb26d23998630313180215553aee9520b46e90f9a1e2db65",
+    "synthetic-component-artifacts\\f92500f3127a9fc1\\cli-old\\process.json": "8b574a21478b8e1dcdf265f3e2030c5aed93383a0087a145df91b6da9f3598fc",
+    "synthetic-component-artifacts\\f92500f3127a9fc1\\cli-old\\run.json": "fd90e683ea176865a9bd3741de7d872c5ce86e36504cd38203f964e5b0c585d3",
+    "synthetic-component-artifacts\\f92500f3127a9fc1\\cli-old\\stderr.json": "8f7dc7b40091d9f1bb26d23998630313180215553aee9520b46e90f9a1e2db65",
+    "synthetic-component-artifacts\\f92500f3127a9fc1\\config.json": "1b740a9ce9840d912af7c2f7de6de977d6c14778d575fadef3d5e92e7493f280",
+    "synthetic-component-artifacts\\f92500f3127a9fc1\\context.json": "6d7788939929eef7abae6a2e9e1a2cac26259860a7ff162bcdcff36d1e4dc447",
+    "synthetic-component-artifacts\\f92500f3127a9fc1\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\f92500f3127a9fc1\\phase-ledger.json": "d44b6ffba3836e1f4bd457738206b6c023fea51375dd5b014640848fca14b13b",
+    "synthetic-component-artifacts\\f92500f3127a9fc1\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\f92500f3127a9fc1\\test-id.json": "ba52b6610f3db82c019ea6e3f9a84a96f39a6c5632f97c50d236d45d81def7cc",
+    "synthetic-component-artifacts\\f92500f3127a9fc1\\tickets.json": "68eda84b437a5358160d2701c9c93dcce112bff356ed04546fcda2a410878189",
+    "synthetic-component-artifacts\\fa92401b497ad09a\\findings.csv": "a0310666172207c5b45e26785dbb7b0b3b4e8bf4f9538b11a60d47734e390afb",
+    "synthetic-component-artifacts\\fa92401b497ad09a\\registry.csv": "2898a931c26044d3c4bf29fd695cc266b8d1df22c9c4fb2552d8a9791415a7ca",
+    "synthetic-component-artifacts\\fa92401b497ad09a\\run\\run.json": "175e382f64441e5e0a9de165ca0c9f8d33c8cd931d0024bdd92e22104b31ef56",
+    "synthetic-component-artifacts\\fa92401b497ad09a\\test-id.json": "1c9bebfee5100795cd45784b0e8245647bf3db90599da8a2efe0cc3f59ae0d77",
+    "triage-tests.txt": "eebb5600ed9e4b579d0e861c1a8ce6c3540e15882af0fecb03ff531182917912",
+    "worktree.txt": "5d302f16f97a90275336ea1367fc4f6dcd5cf61e1d82466b94498acc59fc0493"
+  }
+}

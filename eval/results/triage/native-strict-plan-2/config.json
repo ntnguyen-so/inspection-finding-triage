@@ -1,0 +1,11 @@
+{
+  "model": "gpt-5.1-chat",
+  "knowledge_version": "sha256-ce75618ee70c73f07aefacd0345a9a64fb48fa1fe78b844ed2e767a86f995f28",
+  "assessment_time": "2026-07-01T00:00:00+00:00",
+  "phase_attempt_budget": 52,
+  "attempt_ledger": "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\native-strict-development-ledger.json",
+  "max_context_bytes": 128000,
+  "timeout_seconds": 90,
+  "reasoning_effort": null,
+  "execution_mode": "strict"
+}

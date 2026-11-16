@@ -1,0 +1,82 @@
+{
+  "assessment": {
+    "reason": "No genuinely reviewed release was supplied; unreviewed drafts are not published.",
+    "status": "needs_review"
+  },
+  "authorized_input_binding": {
+    "findings": {
+      "F-9001": {
+        "equipment_id": "SYN-9001",
+        "equipment_type": "Paper-Beacons",
+        "finding_description": "Artificial selector query; no actual fault is asserted.",
+        "finding_id": "F-9001",
+        "inspection_method": "Synthetic selector fixture",
+        "inspection_type": "Routine Operator Round",
+        "reported_by": "Synthetic Fixture",
+        "reported_date": "2026-07-01",
+        "reporter_role": "Software test"
+      }
+    },
+    "manifest": [
+      {
+        "bytes": 314,
+        "kind": "finding_input",
+        "raw_sha256": "cdb91e0c3bd46c008e532df1e3d9c165a53eba9013dc2ff5f900686a7df6a8bb",
+        "source_id": "synthetic-findings"
+      },
+      {
+        "bytes": 252,
+        "kind": "registry_input",
+        "raw_sha256": "9c5407aec0ce70aa301f1cdef90a9d53037b3e9aa2d6114f2a2e8dfd59fe150d",
+        "source_id": "synthetic-registry"
+      }
+    ],
+    "registry": {
+      "SYN-9001": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9001",
+        "equipment_type": "Paper-Beacons",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      }
+    }
+  },
+  "case_id": "dev_beacon.scoped",
+  "execution": "not_run_pending_review",
+  "human_approval_established": false,
+  "partition": "development",
+  "query_context": {
+    "findings": {
+      "F-9001": {
+        "equipment_id": "SYN-9001",
+        "equipment_type": "Paper-Beacons",
+        "finding_description": "Artificial selector query; no actual fault is asserted.",
+        "finding_id": "F-9001",
+        "inspection_method": "Synthetic selector fixture",
+        "inspection_type": "Routine Operator Round",
+        "reported_by": "Synthetic Fixture",
+        "reported_date": "2026-07-01",
+        "reporter_role": "Software test"
+      }
+    },
+    "registry": {
+      "SYN-9001": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9001",
+        "equipment_type": "Paper-Beacons",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      }
+    }
+  },
+  "result": null,
+  "selective_qualification": false,
+  "synthetic_review_diagnostic": false,
+  "synthetic_review_only": false
+}

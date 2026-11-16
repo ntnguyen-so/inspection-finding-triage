@@ -98,6 +98,52 @@ class FakeClient:
 
 
 class ContractTests(unittest.TestCase):
+    def test_reference_depth_bound_is_independent_of_definition_order(self):
+        for reverse in (False, True):
+            for count, valid in ((32, True), (33, False)):
+                names = [f"d{i:03}" for i in range(count)]
+                if reverse:
+                    names.reverse()
+                definitions = {name: {"$ref": f"#/$defs/{names[i+1]}"}
+                               if i+1 < count else {"type": "string"} for i, name in enumerate(names)}
+                schema = {"$defs": definitions, "$ref": f"#/$defs/{names[0]}"}
+                request = InferenceRequest(MODEL, "System", "User", response_schema=schema)
+                with self.subTest(reverse=reverse, count=count):
+                    if valid:
+                        _, _, validator = request.prepared()
+                        self.assertEqual("ok", validate_content('"ok"', validator))
+                    else:
+                        with self.assertRaises(InferenceError) as caught:
+                            request.prepared()
+                        self.assertEqual("unsupported_control", caught.exception.code)
+
+    def test_local_definitions_validate_without_external_or_recursive_resolution(self):
+        schema = {
+            "type": "object", "$defs": {"value": {"type": "string", "minLength": 2}},
+            "properties": {"value": {"$ref": "#/$defs/value"}},
+            "required": ["value"], "additionalProperties": False,
+        }
+        _, _, validator = InferenceRequest(MODEL, "System", "User", response_schema=schema).prepared()
+        self.assertEqual({"value": "ok"}, validate_content('{"value":"ok"}', validator))
+        with self.assertRaises(InferenceError):
+            validate_content('{"value":"x"}', validator)
+        invalid = (
+            {"$ref": "https://example.com/schema"},
+            {"$ref": "#/$defs/missing"},
+            {"$defs": {"a": {"$ref": "#/$defs/a"}}},
+            {"$defs": {"a": {"$ref": "#/$defs/b"}, "b": {"$ref": "#/$defs/a"}}},
+            {**schema, "$id": "https://example.com/schema"},
+            {"$defs": {"a": {"$ref": "https://example.com/schema"}}},
+            {"$defs": {"a%2Fb": {"type": "string"}}, "$ref": "#/$defs/a%2Fb"},
+        )
+        for value in invalid:
+            with self.subTest(value=value), patch("llm_inference.contracts.Draft202012Validator") as factory:
+                with self.assertRaises(InferenceError) as caught:
+                    InferenceRequest(MODEL, "System", "User", response_schema=value).prepared()
+                self.assertEqual("unsupported_control", caught.exception.code)
+                factory.check_schema.assert_not_called()
+                factory.assert_not_called()
+
     def test_strict_json_rejects_ambiguous_values(self):
         for text in (
             '{"x":1,"x":2}', '{"x":NaN}', '{"x":Infinity}', '{"x":1e999}',

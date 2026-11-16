@@ -1,0 +1,6 @@
+{
+  "status": "failed",
+  "error_class": "repeat_contract",
+  "message": "Repeat requires a successful first run",
+  "acceptance_eligible": false
+}

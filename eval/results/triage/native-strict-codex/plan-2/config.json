@@ -1,0 +1,14 @@
+{
+  "model": "gpt-5.1-codex-max",
+  "knowledge_version": "sha256-e26629ec92910baf3b82f6b97700f87351049047d283f9e3ce79c47b541fc470",
+  "assessment_time": "2026-07-01T00:00:00+00:00",
+  "phase_attempt_budget": 52,
+  "attempt_ledger": "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\native-strict-codex\\native-strict-development-ledger.json",
+  "max_context_bytes": 128000,
+  "timeout_seconds": 180.0,
+  "reasoning_effort": "medium",
+  "execution_mode": "strict",
+  "minimum_request_interval_seconds": 30,
+  "azure_max_completion_tokens": 16384,
+  "azure_api": "responses"
+}

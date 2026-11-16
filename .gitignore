@@ -7,3 +7,11 @@ __pycache__/
 *.egg-info/
 build/
 dist/
+
+# Local raw-evidence archives and disposable synthetic test payloads.
+/.artifacts/
+/eval/results/knowledge/component-artifacts/
+/eval/results/**/synthetic-component-artifacts/
+/eval/results/**/command-*.txt
+/eval/results/**/triage-tests.txt
+/eval/results/**/worktree.txt

@@ -1,0 +1,358 @@
+{
+  "contract": "native-triage-system-integration-observation-v1",
+  "recorded_at": "2026-11-16T18:02:03.626530+00:00",
+  "status": "failed_not_release_ready",
+  "all_goals_passed": false,
+  "acceptance_eligible": false,
+  "git_revision_at_summary": "6736fc2284e611c8ba2e48a91727a69cbf50dd00",
+  "dirty_worktree": true,
+  "scope": "Actual source-first store -> retrieval -> public builder -> independent trusted-input validator -> real model -> validation -> all-or-nothing publication ATTEMPTS; not acceptance or genuine KB approval.",
+  "software": {
+    "status": "offline_checks_passed",
+    "tests": 337,
+    "breakdown": {
+      "workflow_integration": 94,
+      "inference": 48,
+      "source_first_component": 69,
+      "evaluator_self_tests": 126
+    },
+    "fingerprints_stable_during_observation": true,
+    "reference_version": "1.2",
+    "evidence": "eval\\results\\triage\\native-handoff-verification-2\\verification.json",
+    "not_system_acceptance": true
+  },
+  "actual_system_observations": [
+    {
+      "path": "eval\\results\\triage\\native-e2e-development-1",
+      "diagnostic": {
+        "run_status": "failed",
+        "finding_id": "F-1003",
+        "error_class": "assessment_evidence",
+        "message": "Finding assessment failed",
+        "attempts": 2,
+        "published_output": false,
+        "execution_mode": "copilot_experiment",
+        "acceptance_eligible": false,
+        "attempt_accounting_unit": "application_sends_http_attempts_unknown"
+      },
+      "application_sends": 3,
+      "validated_finding_ids": [
+        "F-1001"
+      ],
+      "recoverable_failures": [
+        {
+          "finding_id": "F-1003",
+          "attempt": 1,
+          "error_class": "assessment_evidence",
+          "message": "Quote/reference is not in allowed context: knowledge:item-755a159e23ccfabc4caf1e2faa263d81@sha256-fc093e633e7a597adfe8845f09c84defd063f9307bd6a17196403283a6f4a966:"
+        },
+        {
+          "finding_id": "F-1003",
+          "attempt": 2,
+          "error_class": "assessment_evidence",
+          "message": "Quote/reference is not in allowed context: equipment:FW-8102:engineer_comment"
+        }
+      ],
+      "context_hash": "3f049893a10740e202679295bf9b5b9d234b6b283b28fd9a973b9f3eed64e256",
+      "knowledge_version": "sha256-bbbf9336e1c32b157d5ea78f48a9619a8af80560af054d532664f68ae8cc9990",
+      "assessment_time": "2026-07-01T00:00:00+00:00",
+      "cache_mode": "no_application_result_cache",
+      "input_sha256": {
+        "findings": "2cc43cdac41f8ae033ea0454c83d271fe667f100eba02313f0ece7a2c2e18545",
+        "registry": "5520713b74a28a907b7167da638dca8879849ce3d85d99e1d3ef9968fb000033"
+      },
+      "provider": {
+        "provider": "github-copilot",
+        "sdk_version": "1.0.34",
+        "runtime_version": "1.0.112",
+        "binary_sha256": "32d01e0b0100fcdeaa684fba2cc8d00b6f127ac408749ff3c1b1a6fa0b2b8698",
+        "capabilities": {
+          "text": true,
+          "system_message": "replace_requested",
+          "json_schema": "prompt_guidance_and_local_validation",
+          "conversation": "fresh_session_per_request",
+          "tools": false,
+          "streaming_api": false,
+          "native_structured_output": false,
+          "sampling_controls": false,
+          "max_output_tokens": false,
+          "reasoning_effort": "catalog_validated_when_supplied",
+          "adapter_retries": 0,
+          "internal_http_retries": "unknown",
+          "raw_provider_equivalence": false
+        }
+      },
+      "code_stable_during_run": true,
+      "published_output": false,
+      "previous_output_sha256": null,
+      "output_after_failure_sha256": null,
+      "elapsed_seconds": 65.85899999999674
+    },
+    {
+      "path": "eval\\results\\triage\\native-e2e-correction-1",
+      "diagnostic": {
+        "run_status": "failed",
+        "finding_id": "F-1008",
+        "error_class": "policy_verification",
+        "message": "Finding assessment failed",
+        "attempts": 2,
+        "published_output": false,
+        "execution_mode": "copilot_experiment",
+        "acceptance_eligible": false,
+        "attempt_accounting_unit": "application_sends_http_attempts_unknown"
+      },
+      "application_sends": 9,
+      "validated_finding_ids": [
+        "F-1001",
+        "F-1003",
+        "F-1004",
+        "F-1005",
+        "F-1006",
+        "F-1007"
+      ],
+      "recoverable_failures": [
+        {
+          "finding_id": "F-1004",
+          "attempt": 1,
+          "error_class": "assessment_evidence",
+          "message": "likelihood_of_failure.evidence[2]: quote 'an active, unmitigated mechanism (corrosion under wet insulation is progressing now)' is not an exact substring of source_ref=knowledge:item-755a159e23ccfabc4caf1e2faa263d81@sha256-fc093e633e7a597adfe8845f09c84defd063f9307bd6a17196403283a6f4a966:text. Copy a short exact clause from this source only; do not join wrapped lines or relabel related-item evidence."
+        },
+        {
+          "finding_id": "F-1008",
+          "attempt": 1,
+          "error_class": "policy_verification",
+          "message": "Composed action 420/300 characters; core 60, appended 360. Shorten core action and model verification_activity fields without dropping required steps."
+        },
+        {
+          "finding_id": "F-1008",
+          "attempt": 2,
+          "error_class": "policy_verification",
+          "message": "Composed action 398/300 characters; core 46, appended 352. Shorten core action and model verification_activity fields without dropping required steps."
+        }
+      ],
+      "context_hash": "3f049893a10740e202679295bf9b5b9d234b6b283b28fd9a973b9f3eed64e256",
+      "knowledge_version": "sha256-bbbf9336e1c32b157d5ea78f48a9619a8af80560af054d532664f68ae8cc9990",
+      "assessment_time": "2026-07-01T00:00:00+00:00",
+      "cache_mode": "no_application_result_cache",
+      "input_sha256": {
+        "findings": "2cc43cdac41f8ae033ea0454c83d271fe667f100eba02313f0ece7a2c2e18545",
+        "registry": "5520713b74a28a907b7167da638dca8879849ce3d85d99e1d3ef9968fb000033"
+      },
+      "provider": {
+        "provider": "github-copilot",
+        "sdk_version": "1.0.34",
+        "runtime_version": "1.0.112",
+        "binary_sha256": "32d01e0b0100fcdeaa684fba2cc8d00b6f127ac408749ff3c1b1a6fa0b2b8698",
+        "capabilities": {
+          "text": true,
+          "system_message": "replace_requested",
+          "json_schema": "prompt_guidance_and_local_validation",
+          "conversation": "fresh_session_per_request",
+          "tools": false,
+          "streaming_api": false,
+          "native_structured_output": false,
+          "sampling_controls": false,
+          "max_output_tokens": false,
+          "reasoning_effort": "catalog_validated_when_supplied",
+          "adapter_retries": 0,
+          "internal_http_retries": "unknown",
+          "raw_provider_equivalence": false
+        }
+      },
+      "code_stable_during_run": true,
+      "published_output": false,
+      "previous_output_sha256": null,
+      "output_after_failure_sha256": null,
+      "elapsed_seconds": 161.0
+    }
+  ],
+  "accounting": {
+    "ledger": "eval\\results\\triage\\native-e2e.experimental-ledger.json",
+    "sha256": "42e4ab4301156919f4d939962b4e6d08b14f0d5590a3589b49879a1a642b3786",
+    "application_send_reservations": 12,
+    "phase_ceiling": 52,
+    "unused_slots": 40,
+    "phase_stopped_no_automatic_further_sampling": true,
+    "http_attempts": null,
+    "usd_cost": null,
+    "exposed_usage": {
+      "inputTokens": 207254,
+      "outputTokens": 23054,
+      "cacheReadTokens": 34882,
+      "cacheWriteTokens": 172336,
+      "reasoningTokens": 3797,
+      "raw_copilot_totalNanoAiu_sum": 3342142000.0,
+      "events": 12,
+      "interpretation": "Sums over exposed SDK usage events only; reasoning/cache counters may overlap other counters. NanoAiu/catalog cost fields are not USD."
+    },
+    "reviewer_and_parent_session_billing": "Unavailable; not included in provider usage and not claimed zero."
+  },
+  "provider_audit": {
+    "receipts_checked": 12,
+    "observed_models": [
+      "gpt-6-luna"
+    ],
+    "all_message_model_tool_audits_passed": true,
+    "tools_observed": 0,
+    "all_sessions_deleted": true
+  },
+  "freeze_disclosure": {
+    "initial_live_code": "Exact initial-plan executable hashes. Both actual execution records identify HEAD 6736fc2284e611c8ba2e48a91727a69cbf50dd00 with a dirty worktree; executable bytes, not HEAD alone, bind each observation.",
+    "corrective_change": "triage\\assessment.py only: generic prompt and full citation diagnostics, no validator relaxation.",
+    "live_snapshot": ".artifacts\\i1\\snapshot-manifest.json",
+    "live_snapshot_manifest_sha256": "796fad1a63c871549dba08be04c51aa2204b2fee89fbc092ed8d79df3ac577da",
+    "source_py_origin": "Exact frozen bytes from 6736fc2; shared source.py changed after the plan, so execution moved to a matching snapshot without repinning.",
+    "current_knowledge_source_sha256": "d2cb494ff1088d2e262f2c924467cd126c41921ab6e8191cf0cc86c2a4033e79",
+    "subsequent_changes_qualified_by_live_experiment": false,
+    "local_snapshot_is_durable_shared_release": false
+  },
+  "default_store_final_readonly_observation": {
+    "contract": "source-knowledge-storage-v1",
+    "schema_version": 3,
+    "store": "knowledge\\source-first",
+    "draft": "knowledge\\source-first\\draft.json",
+    "candidate_digest": "fc7c8553b13614d0416a3cb8ca500280d5cfde01a5d1043ffa410b68799bc013",
+    "review_counts": {
+      "pending": 8,
+      "reviewed": 0,
+      "rejected": 0
+    },
+    "releases": [],
+    "workflow_pin": null,
+    "deployment_status": "unknown_requires_explicit_workflow_pin",
+    "legacy_draft_used": false
+  },
+  "release_blockers": [
+    "Real-model development failed on exact citations and then mandatory action overflow; no complete batch/semantic baseline.",
+    "Native B02 isolated evaluation-input/policy-overlay contract absent; never launder fixtures as normal KB.",
+    "Real maintained knowledge has 8 pending / 0 reviewed items and no immutable release/activation.",
+    "Strict HTTP-attempt/USD accounting and raw-endpoint qualification not established by Copilot.",
+    "Owner-reserved DESIGN.md absent; no final tickets or full delivery reproduction."
+  ],
+  "no_frozen_test_or_final_generation": true,
+  "owner_design_exists": false,
+  "root_tickets_exist": false,
+  "scenarios": {
+    "A01": {
+      "status": "software_pass_final_all21_unexecuted",
+      "evidence_and_limit": "94 workflow tests include native schema/coverage validation. No real complete selected batch or final all-21 output exists.",
+      "system_acceptance_pass": false
+    },
+    "A02": {
+      "status": "software_pass_real_recovery_observed",
+      "evidence_and_limit": "Native fixture recovery passes; actual corrective F-1004 repaired an invalid quote on attempt2.",
+      "system_acceptance_pass": false
+    },
+    "A03": {
+      "status": "software_pass_real_fail_closed_observed",
+      "evidence_and_limit": "Native CLI absent/old-output failure tests pass; both real batches exited1 without publishing.",
+      "system_acceptance_pass": false
+    },
+    "A04": {
+      "status": "blocked_no_complete_native_output_review",
+      "evidence_and_limit": "Earlier known-fixture calibration is narrow AI-only/same-author evidence, not completed real-ticket semantics.",
+      "system_acceptance_pass": false
+    },
+    "B01": {
+      "status": "partial_actual_native_delivery",
+      "evidence_and_limit": "All12 sends carried validated native bundle2 with13 development rows and complete shared registry/comments. Target F-1016 was never reached; no full B01 acceptance claim.",
+      "system_acceptance_pass": false
+    },
+    "B02": {
+      "status": "blocked_native_isolated_overlay_unsupported",
+      "evidence_and_limit": "Native binding rejects evaluation_input and workflow rejects unsupported probe overlays. Legacy failure is not native evidence.",
+      "system_acceptance_pass": false
+    },
+    "B03": {
+      "status": "software_lifecycle_pass_only",
+      "evidence_and_limit": "Actual store/native tests cover reviewed replacement, retirement, expiry, old pins and no resurrection. Software-fixture approvals are not real editorial review or causal model evidence.",
+      "system_acceptance_pass": false
+    },
+    "C01": {
+      "status": "software_pass",
+      "evidence_and_limit": "All100 code urgency inputs, integer/range and independently worked values covered.",
+      "system_acceptance_pass": false
+    },
+    "C02": {
+      "status": "software_pass",
+      "evidence_and_limit": "Anchor/monotonicity and asymmetric mean/max comparisons pass in policy tests.",
+      "system_acceptance_pass": false
+    },
+    "C03": {
+      "status": "software_pass",
+      "evidence_and_limit": "Confirmed overrides, precautionary floors, four-state dependencies and review routing tested separately from model facts.",
+      "system_acceptance_pass": false
+    },
+    "C04": {
+      "status": "not_accepted_real_development_incomplete",
+      "evidence_and_limit": "F-1008 proposed multiple uncertain applicability checks and could not fit mandatory action; complete fact-assessment/semantic acceptance absent.",
+      "system_acceptance_pass": false
+    },
+    "D01": {
+      "status": "blocked_no_complete_semantic_batch",
+      "evidence_and_limit": "No complete real output to assess grounding/planning/uncertainty dimensions.",
+      "system_acceptance_pass": false
+    },
+    "D02": {
+      "status": "software_pass_real_fail_closed_observed",
+      "evidence_and_limit": "Terminal inability, bounded attempts, preserved old output and no scored fallback covered; failed actual batches published nothing.",
+      "system_acceptance_pass": false
+    },
+    "D03": {
+      "status": "not_accepted_no_semantic_batch",
+      "evidence_and_limit": "Production responsibility/limitations documented; uncertainty usefulness and score defensibility remain unaccepted.",
+      "system_acceptance_pass": false
+    },
+    "D04": {
+      "status": "boundary_observed_real_kb_unapproved",
+      "evidence_and_limit": "Independent native context validation and audited actual provider messages observed; the real 8-pending-item KB was never approved.",
+      "system_acceptance_pass": false
+    },
+    "X01": {
+      "status": "not_run_failed_baseline_rejected",
+      "evidence_and_limit": "Changed-prompt corrective run is not an X01 pair. Actual repeat guard rejected failed baseline before dispatch.",
+      "system_acceptance_pass": false
+    },
+    "X02": {
+      "status": "partial_software_repro_not_delivery",
+      "evidence_and_limit": "337 current-checkout software tests/integrity/import checks pass. No final package/system reproduction; HTTP/USD and ownerDESIGN absent.",
+      "system_acceptance_pass": false
+    }
+  },
+  "review_provenance": {
+    "kind": "ai_only",
+    "reviewers": [
+      "native-handoff-review-a",
+      "native-handoff-review-b"
+    ],
+    "dispositions": "docs\\05_TRIAGE_WORKFLOW.md section14",
+    "semantic_reviewer_calibration": "Existing source-first-calibration-1 is known-fixture-only; not relied on to accept unpublished partial batches."
+  },
+  "preservation": {
+    "candidate_pack_and_frozen_triage_reference": "Unchanged; current eval.validate passed.",
+    "default_store_digest_unchanged": true,
+    "knowledge_module_edited_by_integration": false,
+    "existing_failures_and_ledgers_retained": true,
+    "committed_or_pushed": false,
+    "old_summary_not_overwritten": true
+  },
+  "evidence_sha256": {
+    "eval\\results\\triage\\native-e2e-plan-1\\plan.json": "bd88b56eb407e7ff52da5485a4b59160f9908cc0d1f5580f03a1165c3a8d549b",
+    "eval\\results\\triage\\native-e2e-development-1\\observation.json": "06292eb6f1854a715fd0473b966d3bd31c6b45f0c3dadd5624fa7e51ab4af21c",
+    "eval\\results\\triage\\native-e2e-development-1\\run\\run.json": "acd65b5cb979c9dab6890a1ba669c49bccbb4aeaa0ea6b08b133d7b5b9712b56",
+    "eval\\results\\triage\\native-e2e-development-1\\execution.json": "3a1f534903e18141e7fe7afa75eb75d584a094331ab4406612ca661f56f2816d",
+    "eval\\results\\triage\\native-e2e-development-1\\stderr.txt": "fed23b17eb93ed689b20906e0b997c42a6d9dcd38b05c1dcad4d577c7504df51",
+    "eval\\results\\triage\\native-e2e-correction-plan-1\\plan.json": "5c94a6f03aebe7f8adfcfe8a5f2f2562ee7737e3a176746f85e413a68feb9cc6",
+    "eval\\results\\triage\\native-e2e-correction-preflight-1\\observation.json": "b44d44455dc48b34cfdc8d66829d46ce4c35dee04beeae7e2208c998c4bc46b8",
+    "eval\\results\\triage\\native-e2e-correction-1\\observation.json": "4bc7fbcfd992efc6038012aa3bcf857a96b747b634ae12381eb38145948a0c9e",
+    "eval\\results\\triage\\native-e2e-correction-1\\run\\run.json": "47a497ba9d2643fd17fbcaa4d1c48dce9ac2dbff447346845424452c61399d47",
+    "eval\\results\\triage\\native-e2e-correction-1\\execution.json": "293b658bf2b870a55bc1d4bca21f6f1fc4a9a3d71c95c1e0870eb861369ecf5d",
+    "eval\\results\\triage\\native-e2e-correction-1\\stderr.txt": "171df2c493bec60054ec5b409be187e3c6c3c2a9c27b1d2a592a0d4e2e1c62e2",
+    "eval\\results\\triage\\native-e2e-repeat-blocked-1\\observation.json": "41a2c2ff93c1c13dee1719ae659034f3ecb155c00f0bab408d474f8a29b25503",
+    "eval\\results\\triage\\native-e2e.experimental-ledger.json": "42e4ab4301156919f4d939962b4e6d08b14f0d5590a3589b49879a1a642b3786",
+    "eval\\results\\triage\\native-handoff-verification-1\\verification.json": "bec60abfa7581de41c288d4cb59e0ee9e395a3607c4e45d88e80f249837bb4c6",
+    "eval\\results\\triage\\native-handoff-verification-2\\verification.json": "04444e80b0ebc6e645b143e94afe3e17bb76d980352e9171778b47263fa3d699"
+  },
+  "current_design_sha256": "a49ab7bcf97f26b742211776affc08fbb11d258dc5db01fb72b5547d9cec6dc9",
+  "current_readme_sha256": "03c2baee31c7944d5ab97c83fb801a33ae757eb4ba894a7702a1c6f05b61f93c"
+}

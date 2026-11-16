@@ -23,6 +23,7 @@ from tools.probe_inference import provenance
 BUDGET = 20
 FIXTURE_VERSION = "english-unicode-v2"
 TOKEN_CAP = 1024
+DEFAULT_COPILOT_MODEL = "gpt-5.6-sol-fast"
 JSON_SCHEMA = {
     "type": "object",
     "properties": {
@@ -247,7 +248,7 @@ def main() -> int:
     parser.add_argument("--output", required=True)
     parser.add_argument("--azure-deployment", default=os.environ.get("AZURE_OPENAI_DEPLOYMENT"))
     parser.add_argument("--azure-auth", choices=("api_key", "entra"), default="api_key")
-    parser.add_argument("--copilot-model", default="gpt-6-sol")
+    parser.add_argument("--copilot-model", default=DEFAULT_COPILOT_MODEL)
     parser.add_argument("--azure-only", action="store_true")
     parser.add_argument("--include-native", action="store_true")
     parser.add_argument("--case", action="append", choices=list(cases()))

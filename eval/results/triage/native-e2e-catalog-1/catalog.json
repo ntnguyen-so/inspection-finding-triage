@@ -1,0 +1,1115 @@
+{
+  "configuration": {
+    "provider": "github-copilot",
+    "sdk_version": "1.0.34",
+    "runtime_version": "1.0.112",
+    "binary_sha256": "32d01e0b0100fcdeaa684fba2cc8d00b6f127ac408749ff3c1b1a6fa0b2b8698",
+    "capabilities": {
+      "text": true,
+      "system_message": "replace_requested",
+      "json_schema": "prompt_guidance_and_local_validation",
+      "conversation": "fresh_session_per_request",
+      "tools": false,
+      "streaming_api": false,
+      "native_structured_output": false,
+      "sampling_controls": false,
+      "max_output_tokens": false,
+      "reasoning_effort": "catalog_validated_when_supplied",
+      "adapter_retries": 0,
+      "internal_http_retries": "unknown",
+      "raw_provider_equivalence": false
+    }
+  },
+  "models": [
+    {
+      "id": "auto",
+      "name": "Auto",
+      "capabilities": {
+        "supports": {
+          "vision": false,
+          "reasoningEffort": false
+        },
+        "limits": {}
+      },
+      "provider": {
+        "id": "copilot",
+        "kind": "copilot",
+        "label": "GitHub Copilot"
+      }
+    },
+    {
+      "id": "claude-sonnet-5.5",
+      "name": "Claude Sonnet 5.5",
+      "capabilities": {
+        "supports": {
+          "vision": true,
+          "reasoningEffort": true
+        },
+        "limits": {
+          "max_prompt_tokens": 936000,
+          "max_output_tokens": 128000,
+          "max_context_window_tokens": 1000000,
+          "vision": {
+            "supported_media_types": [
+              "image/jpeg",
+              "image/png",
+              "image/webp",
+              "image/gif",
+              "application/pdf"
+            ],
+            "max_prompt_images": 5,
+            "max_prompt_image_size": 3145728
+          }
+        }
+      },
+      "provider": {
+        "id": "copilot",
+        "kind": "copilot",
+        "label": "GitHub Copilot"
+      },
+      "policy": {
+        "state": "enabled",
+        "terms": "Enable access to the latest Claude model from Anthropic. [Learn more about how GitHub Copilot serves Claude](https://gh.io/copilot-claude-opus)."
+      },
+      "billing": {
+        "tokenPrices": {
+          "batchSize": 1000000,
+          "cachePrice": 10.0,
+          "cacheReadPrice": 10.0,
+          "cacheWrite1hPrice": 400.0,
+          "cacheWritePrice": 250.0,
+          "contextMax": 200000,
+          "inputPrice": 200.0,
+          "longContext": {
+            "cachePrice": 10.0,
+            "cacheReadPrice": 10.0,
+            "cacheWrite1hPrice": 400.0,
+            "cacheWritePrice": 250.0,
+            "contextMax": 936000,
+            "inputPrice": 200.0,
+            "maxPromptTokens": 936000,
+            "outputPrice": 1000.0
+          },
+          "maxPromptTokens": 200000,
+          "outputPrice": 1000.0
+        }
+      },
+      "supportedReasoningEfforts": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
+    },
+    {
+      "id": "claude-sonnet-5",
+      "name": "Claude Sonnet 5",
+      "capabilities": {
+        "supports": {
+          "vision": true,
+          "reasoningEffort": true
+        },
+        "limits": {
+          "max_prompt_tokens": 936000,
+          "max_output_tokens": 64000,
+          "max_context_window_tokens": 1000000,
+          "vision": {
+            "supported_media_types": [
+              "image/jpeg",
+              "image/png",
+              "image/webp",
+              "image/gif",
+              "application/pdf"
+            ],
+            "max_prompt_images": 5,
+            "max_prompt_image_size": 3145728
+          }
+        }
+      },
+      "provider": {
+        "id": "copilot",
+        "kind": "copilot",
+        "label": "GitHub Copilot"
+      },
+      "policy": {
+        "state": "enabled",
+        "terms": "Enable access to the latest Claude model from Anthropic. [Learn more about how GitHub Copilot serves Claude](https://gh.io/copilot-claude-opus)."
+      },
+      "billing": {
+        "tokenPrices": {
+          "batchSize": 1000000,
+          "cachePrice": 20.0,
+          "cacheReadPrice": 20.0,
+          "cacheWrite1hPrice": 400.0,
+          "cacheWritePrice": 250.0,
+          "contextMax": 200000,
+          "inputPrice": 200.0,
+          "longContext": {
+            "cachePrice": 20.0,
+            "cacheReadPrice": 20.0,
+            "cacheWrite1hPrice": 400.0,
+            "cacheWritePrice": 250.0,
+            "contextMax": 936000,
+            "inputPrice": 200.0,
+            "maxPromptTokens": 936000,
+            "outputPrice": 1000.0
+          },
+          "maxPromptTokens": 200000,
+          "outputPrice": 1000.0
+        }
+      },
+      "supportedReasoningEfforts": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
+    },
+    {
+      "id": "claude-opus-5.5",
+      "name": "Claude Opus 5.5",
+      "capabilities": {
+        "supports": {
+          "vision": true,
+          "reasoningEffort": true
+        },
+        "limits": {
+          "max_prompt_tokens": 1000000,
+          "max_output_tokens": 128000,
+          "max_context_window_tokens": 1000000,
+          "vision": {
+            "supported_media_types": [
+              "image/jpeg",
+              "image/png",
+              "image/webp",
+              "image/gif",
+              "application/pdf"
+            ],
+            "max_prompt_images": 1,
+            "max_prompt_image_size": 3145728
+          }
+        }
+      },
+      "provider": {
+        "id": "copilot",
+        "kind": "copilot",
+        "label": "GitHub Copilot"
+      },
+      "policy": {
+        "state": "enabled",
+        "terms": "Enable access to the latest Claude Opus 5.5 model from Anthropic. [Learn more about how GitHub Copilot serves Claude Opus 5.5](https://gh.io/copilot-claude-opus)."
+      },
+      "billing": {
+        "tokenPrices": {
+          "batchSize": 1000000,
+          "cachePrice": 20.0,
+          "cacheReadPrice": 20.0,
+          "cacheWrite1hPrice": 800.0,
+          "cacheWritePrice": 500.0,
+          "contextMax": 200000,
+          "inputPrice": 400.0,
+          "longContext": {
+            "cachePrice": 20.0,
+            "cacheReadPrice": 20.0,
+            "cacheWrite1hPrice": 800.0,
+            "cacheWritePrice": 500.0,
+            "contextMax": 1000000,
+            "inputPrice": 400.0,
+            "maxPromptTokens": 1000000,
+            "outputPrice": 2000.0
+          },
+          "maxPromptTokens": 200000,
+          "outputPrice": 2000.0
+        }
+      },
+      "supportedReasoningEfforts": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
+    },
+    {
+      "id": "claude-haiku-5.5",
+      "name": "Claude Haiku 5.5",
+      "capabilities": {
+        "supports": {
+          "vision": true,
+          "reasoningEffort": true
+        },
+        "limits": {
+          "max_prompt_tokens": 936000,
+          "max_output_tokens": 128000,
+          "max_context_window_tokens": 1000000,
+          "vision": {
+            "supported_media_types": [
+              "image/jpeg",
+              "image/png",
+              "image/webp",
+              "image/gif",
+              "application/pdf"
+            ],
+            "max_prompt_images": 5,
+            "max_prompt_image_size": 3145728
+          }
+        }
+      },
+      "provider": {
+        "id": "copilot",
+        "kind": "copilot",
+        "label": "GitHub Copilot"
+      },
+      "policy": {
+        "state": "enabled",
+        "terms": "Enable access to the latest Claude Haiku 5.5 model from Anthropic. [Learn more about how GitHub Copilot serves Claude Haiku 5.5](https://gh.io/copilot-claude-opus)."
+      },
+      "billing": {
+        "tokenPrices": {
+          "batchSize": 1000000,
+          "cachePrice": 1.0,
+          "cacheReadPrice": 1.0,
+          "cacheWrite1hPrice": 20.0,
+          "cacheWritePrice": 12.5,
+          "contextMax": 100000,
+          "inputPrice": 10.0,
+          "longContext": {
+            "cachePrice": 5.0,
+            "cacheReadPrice": 5.0,
+            "cacheWrite1hPrice": 100.0,
+            "cacheWritePrice": 62.5,
+            "contextMax": 936000,
+            "inputPrice": 50.0,
+            "maxPromptTokens": 936000,
+            "outputPrice": 250.0
+          },
+          "maxPromptTokens": 100000,
+          "outputPrice": 50.0
+        }
+      },
+      "supportedReasoningEfforts": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
+    },
+    {
+      "id": "claude-haiku-4.5",
+      "name": "Claude Haiku 4.5",
+      "capabilities": {
+        "supports": {
+          "vision": true,
+          "reasoningEffort": false
+        },
+        "limits": {
+          "max_prompt_tokens": 136000,
+          "max_output_tokens": 64000,
+          "max_context_window_tokens": 200000,
+          "vision": {
+            "supported_media_types": [
+              "image/jpeg",
+              "image/png",
+              "image/webp",
+              "application/pdf"
+            ],
+            "max_prompt_images": 5,
+            "max_prompt_image_size": 3145728
+          }
+        }
+      },
+      "provider": {
+        "id": "copilot",
+        "kind": "copilot",
+        "label": "GitHub Copilot"
+      },
+      "policy": {
+        "state": "enabled",
+        "terms": "Enable access to the latest Claude Haiku 4.5 model from Anthropic. [Learn more about how GitHub Copilot serves Claude Haiku 4.5](https://gh.io/copilot-anthropic)."
+      },
+      "billing": {
+        "tokenPrices": {
+          "batchSize": 1000000,
+          "cachePrice": 10.0,
+          "cacheReadPrice": 10.0,
+          "cacheWritePrice": 125.0,
+          "inputPrice": 100.0,
+          "outputPrice": 500.0
+        }
+      }
+    },
+    {
+      "id": "gpt-6.1-sol",
+      "name": "GPT-6.1 Sol",
+      "capabilities": {
+        "supports": {
+          "vision": true,
+          "reasoningEffort": true
+        },
+        "limits": {
+          "max_prompt_tokens": 922000,
+          "max_output_tokens": 128000,
+          "max_context_window_tokens": 1050000,
+          "vision": {
+            "supported_media_types": [
+              "image/jpeg",
+              "image/png",
+              "image/webp",
+              "image/gif",
+              "application/pdf"
+            ],
+            "max_prompt_images": 1,
+            "max_prompt_image_size": 3145728
+          }
+        }
+      },
+      "provider": {
+        "id": "copilot",
+        "kind": "copilot",
+        "label": "GitHub Copilot"
+      },
+      "policy": {
+        "state": "enabled",
+        "terms": "Enable access to the latest GPT-6.1 Sol model from OpenAI. [Learn more about how GitHub Copilot serves GPT-6.1 Sol](https://gh.io/copilot-openai)."
+      },
+      "billing": {
+        "tokenPrices": {
+          "batchSize": 1000000,
+          "cachePrice": 10.0,
+          "cacheReadPrice": 10.0,
+          "cacheWritePrice": 250.0,
+          "contextMax": 272000,
+          "inputPrice": 200.0,
+          "longContext": {
+            "cachePrice": 20.0,
+            "cacheReadPrice": 20.0,
+            "cacheWritePrice": 500.0,
+            "contextMax": 922000,
+            "inputPrice": 400.0,
+            "maxPromptTokens": 922000,
+            "outputPrice": 1500.0
+          },
+          "maxPromptTokens": 272000,
+          "outputPrice": 1000.0
+        }
+      },
+      "supportedReasoningEfforts": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
+    },
+    {
+      "id": "gpt-6.1-terra",
+      "name": "GPT-6.1 Terra",
+      "capabilities": {
+        "supports": {
+          "vision": true,
+          "reasoningEffort": true
+        },
+        "limits": {
+          "max_prompt_tokens": 1000000,
+          "max_output_tokens": 128000,
+          "max_context_window_tokens": 1000000,
+          "vision": {
+            "supported_media_types": [
+              "image/jpeg",
+              "image/png",
+              "image/webp",
+              "image/gif",
+              "application/pdf"
+            ],
+            "max_prompt_images": 1,
+            "max_prompt_image_size": 3145728
+          }
+        }
+      },
+      "provider": {
+        "id": "copilot",
+        "kind": "copilot",
+        "label": "GitHub Copilot"
+      },
+      "billing": {
+        "tokenPrices": {
+          "batchSize": 1000000,
+          "cachePrice": 5.0,
+          "cacheReadPrice": 5.0,
+          "cacheWritePrice": 125.0,
+          "contextMax": 272000,
+          "inputPrice": 100.0,
+          "longContext": {
+            "cachePrice": 10.0,
+            "cacheReadPrice": 10.0,
+            "cacheWritePrice": 250.0,
+            "contextMax": 1000000,
+            "inputPrice": 200.0,
+            "maxPromptTokens": 1000000,
+            "outputPrice": 750.0
+          },
+          "maxPromptTokens": 272000,
+          "outputPrice": 500.0
+        }
+      },
+      "supportedReasoningEfforts": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
+    },
+    {
+      "id": "gpt-6-sol",
+      "name": "GPT-6 Sol",
+      "capabilities": {
+        "supports": {
+          "vision": true,
+          "reasoningEffort": true
+        },
+        "limits": {
+          "max_prompt_tokens": 872000,
+          "max_output_tokens": 128000,
+          "max_context_window_tokens": 1000000,
+          "vision": {
+            "supported_media_types": [
+              "image/jpeg",
+              "image/png",
+              "image/webp",
+              "image/gif",
+              "application/pdf"
+            ],
+            "max_prompt_images": 1,
+            "max_prompt_image_size": 3145728
+          }
+        }
+      },
+      "provider": {
+        "id": "copilot",
+        "kind": "copilot",
+        "label": "GitHub Copilot"
+      },
+      "policy": {
+        "state": "enabled",
+        "terms": "Enable access to the latest GPT-6 Sol model from OpenAI. [Learn more about how GitHub Copilot serves GPT-6 Sol](https://gh.io/copilot-openai)."
+      },
+      "billing": {
+        "tokenPrices": {
+          "batchSize": 1000000,
+          "cachePrice": 20.0,
+          "cacheReadPrice": 20.0,
+          "cacheWritePrice": 250.0,
+          "contextMax": 272000,
+          "inputPrice": 200.0,
+          "longContext": {
+            "cachePrice": 40.0,
+            "cacheReadPrice": 40.0,
+            "cacheWritePrice": 500.0,
+            "contextMax": 872000,
+            "inputPrice": 400.0,
+            "maxPromptTokens": 872000,
+            "outputPrice": 1500.0
+          },
+          "maxPromptTokens": 272000,
+          "outputPrice": 1000.0
+        }
+      },
+      "supportedReasoningEfforts": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
+    },
+    {
+      "id": "gpt-6-luna",
+      "name": "GPT-6 Luna",
+      "capabilities": {
+        "supports": {
+          "vision": true,
+          "reasoningEffort": true
+        },
+        "limits": {
+          "max_prompt_tokens": 872000,
+          "max_output_tokens": 128000,
+          "max_context_window_tokens": 1000000,
+          "vision": {
+            "supported_media_types": [
+              "image/jpeg",
+              "image/png",
+              "image/webp",
+              "image/gif",
+              "application/pdf"
+            ],
+            "max_prompt_images": 1,
+            "max_prompt_image_size": 3145728
+          }
+        }
+      },
+      "provider": {
+        "id": "copilot",
+        "kind": "copilot",
+        "label": "GitHub Copilot"
+      },
+      "policy": {
+        "state": "enabled",
+        "terms": "Enable access to the latest GPT-6 Luna model from OpenAI. [Learn more about how GitHub Copilot serves GPT-6 Luna](https://gh.io/copilot-openai)."
+      },
+      "billing": {
+        "tokenPrices": {
+          "batchSize": 1000000,
+          "cachePrice": 1.0,
+          "cacheReadPrice": 1.0,
+          "cacheWritePrice": 12.5,
+          "contextMax": 272000,
+          "inputPrice": 10.0,
+          "longContext": {
+            "cachePrice": 2.0,
+            "cacheReadPrice": 2.0,
+            "cacheWritePrice": 25.0,
+            "contextMax": 872000,
+            "inputPrice": 20.0,
+            "maxPromptTokens": 872000,
+            "outputPrice": 75.0
+          },
+          "maxPromptTokens": 272000,
+          "outputPrice": 50.0
+        }
+      },
+      "supportedReasoningEfforts": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
+    },
+    {
+      "id": "gpt-6-astra",
+      "name": "GPT-6 Astra",
+      "capabilities": {
+        "supports": {
+          "vision": true,
+          "reasoningEffort": true
+        },
+        "limits": {
+          "max_prompt_tokens": 1050000,
+          "max_output_tokens": 128000,
+          "max_context_window_tokens": 1050000,
+          "vision": {
+            "supported_media_types": [
+              "image/jpeg",
+              "image/png",
+              "image/webp",
+              "image/gif",
+              "application/pdf"
+            ],
+            "max_prompt_images": 1,
+            "max_prompt_image_size": 3145728
+          }
+        }
+      },
+      "provider": {
+        "id": "copilot",
+        "kind": "copilot",
+        "label": "GitHub Copilot"
+      },
+      "policy": {
+        "state": "enabled",
+        "terms": "Enable access to the latest GPT-6 Astra model from OpenAI. [Learn more about how GitHub Copilot serves GPT-6 Astra](https://gh.io/copilot-openai)."
+      },
+      "billing": {
+        "tokenPrices": {
+          "batchSize": 1000000,
+          "cachePrice": 100.0,
+          "cacheReadPrice": 100.0,
+          "cacheWritePrice": 1250.0,
+          "contextMax": 272000,
+          "inputPrice": 1000.0,
+          "longContext": {
+            "cachePrice": 200.0,
+            "cacheReadPrice": 200.0,
+            "cacheWritePrice": 2500.0,
+            "contextMax": 1050000,
+            "inputPrice": 2000.0,
+            "maxPromptTokens": 1050000,
+            "outputPrice": 7500.0
+          },
+          "maxPromptTokens": 272000,
+          "outputPrice": 5000.0
+        }
+      },
+      "supportedReasoningEfforts": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
+    },
+    {
+      "id": "gpt-5.6-sol",
+      "name": "GPT-5.6 Sol",
+      "capabilities": {
+        "supports": {
+          "vision": true,
+          "reasoningEffort": true
+        },
+        "limits": {
+          "max_prompt_tokens": 922000,
+          "max_output_tokens": 128000,
+          "max_context_window_tokens": 1050000,
+          "vision": {
+            "supported_media_types": [
+              "image/jpeg",
+              "image/png",
+              "image/webp",
+              "image/gif",
+              "application/pdf"
+            ],
+            "max_prompt_images": 1,
+            "max_prompt_image_size": 3145728
+          }
+        }
+      },
+      "provider": {
+        "id": "copilot",
+        "kind": "copilot",
+        "label": "GitHub Copilot"
+      },
+      "policy": {
+        "state": "enabled",
+        "terms": "Enable access to the latest GPT-5.6 Sol model from OpenAI. [Learn more about how GitHub Copilot serves GPT-5.6 Sol](https://gh.io/copilot-openai)."
+      },
+      "billing": {
+        "tokenPrices": {
+          "batchSize": 1000000,
+          "cachePrice": 40.0,
+          "cacheReadPrice": 40.0,
+          "cacheWritePrice": 500.0,
+          "contextMax": 272000,
+          "inputPrice": 400.0,
+          "longContext": {
+            "cachePrice": 80.0,
+            "cacheReadPrice": 80.0,
+            "cacheWritePrice": 1000.0,
+            "contextMax": 922000,
+            "inputPrice": 800.0,
+            "maxPromptTokens": 922000,
+            "outputPrice": 3000.0
+          },
+          "maxPromptTokens": 272000,
+          "outputPrice": 2000.0
+        }
+      },
+      "supportedReasoningEfforts": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
+    },
+    {
+      "id": "gpt-5.6-sol-fast",
+      "name": "GPT-5.6 Sol Fast (Internal only)",
+      "capabilities": {
+        "supports": {
+          "vision": true,
+          "reasoningEffort": true
+        },
+        "limits": {
+          "max_prompt_tokens": 922000,
+          "max_output_tokens": 128000,
+          "max_context_window_tokens": 1050000,
+          "vision": {
+            "supported_media_types": [
+              "image/jpeg",
+              "image/png",
+              "image/webp",
+              "image/gif",
+              "application/pdf"
+            ],
+            "max_prompt_images": 1,
+            "max_prompt_image_size": 3145728
+          }
+        }
+      },
+      "provider": {
+        "id": "copilot",
+        "kind": "copilot",
+        "label": "GitHub Copilot"
+      },
+      "policy": {
+        "state": "enabled",
+        "terms": "Enable access to the latest GPT-5.6 Sol Fast model from OpenAI. [Learn more about how GitHub Copilot serves GPT-5.6 Sol Fast](https://gh.io/copilot-openai)."
+      },
+      "billing": {
+        "tokenPrices": {
+          "batchSize": 1000000,
+          "cachePrice": 80.0,
+          "cacheReadPrice": 80.0,
+          "cacheWritePrice": 1000.0,
+          "contextMax": 272000,
+          "inputPrice": 800.0,
+          "longContext": {
+            "cachePrice": 160.0,
+            "cacheReadPrice": 160.0,
+            "cacheWritePrice": 2000.0,
+            "contextMax": 922000,
+            "inputPrice": 1600.0,
+            "maxPromptTokens": 922000,
+            "outputPrice": 6000.0
+          },
+          "maxPromptTokens": 272000,
+          "outputPrice": 4000.0
+        }
+      },
+      "supportedReasoningEfforts": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
+    },
+    {
+      "id": "gpt-5.6-luna",
+      "name": "GPT-5.6 Luna",
+      "capabilities": {
+        "supports": {
+          "vision": true,
+          "reasoningEffort": true
+        },
+        "limits": {
+          "max_prompt_tokens": 922000,
+          "max_output_tokens": 128000,
+          "max_context_window_tokens": 1050000,
+          "vision": {
+            "supported_media_types": [
+              "image/jpeg",
+              "image/png",
+              "image/webp",
+              "image/gif",
+              "application/pdf"
+            ],
+            "max_prompt_images": 1,
+            "max_prompt_image_size": 3145728
+          }
+        }
+      },
+      "provider": {
+        "id": "copilot",
+        "kind": "copilot",
+        "label": "GitHub Copilot"
+      },
+      "policy": {
+        "state": "enabled",
+        "terms": "Enable access to the latest GPT-5.6 Luna model from OpenAI. [Learn more about how GitHub Copilot serves GPT-5.6 Luna](https://gh.io/copilot-openai)."
+      },
+      "billing": {
+        "tokenPrices": {
+          "batchSize": 1000000,
+          "cachePrice": 2.0,
+          "cacheReadPrice": 2.0,
+          "cacheWritePrice": 25.0,
+          "contextMax": 200000,
+          "inputPrice": 20.0,
+          "longContext": {
+            "cachePrice": 4.0,
+            "cacheReadPrice": 4.0,
+            "cacheWritePrice": 50.0,
+            "contextMax": 922000,
+            "inputPrice": 40.0,
+            "maxPromptTokens": 922000,
+            "outputPrice": 180.0
+          },
+          "maxPromptTokens": 200000,
+          "outputPrice": 120.0
+        }
+      },
+      "supportedReasoningEfforts": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
+    },
+    {
+      "id": "gpt-5.3-codex",
+      "name": "GPT-5.3-Codex",
+      "capabilities": {
+        "supports": {
+          "vision": true,
+          "reasoningEffort": true
+        },
+        "limits": {
+          "max_prompt_tokens": 272000,
+          "max_output_tokens": 128000,
+          "max_context_window_tokens": 400000,
+          "vision": {
+            "supported_media_types": [
+              "image/jpeg",
+              "image/png",
+              "image/webp",
+              "image/gif",
+              "application/pdf"
+            ],
+            "max_prompt_images": 1,
+            "max_prompt_image_size": 3145728
+          }
+        }
+      },
+      "provider": {
+        "id": "copilot",
+        "kind": "copilot",
+        "label": "GitHub Copilot"
+      },
+      "billing": {
+        "tokenPrices": {
+          "batchSize": 1000000,
+          "cachePrice": 17.5,
+          "cacheReadPrice": 17.5,
+          "cacheWritePrice": 0.0,
+          "contextMax": 272000,
+          "inputPrice": 175.0,
+          "maxPromptTokens": 272000,
+          "outputPrice": 1400.0
+        }
+      },
+      "supportedReasoningEfforts": [
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ]
+    },
+    {
+      "id": "mai-code-1.1-flash",
+      "name": "MAI-Code-1.1-Flash",
+      "capabilities": {
+        "supports": {
+          "vision": true,
+          "reasoningEffort": true
+        },
+        "limits": {
+          "max_prompt_tokens": 128000,
+          "max_output_tokens": 128000,
+          "max_context_window_tokens": 256000,
+          "vision": {
+            "supported_media_types": [
+              "image/jpeg",
+              "image/png",
+              "image/webp",
+              "image/gif",
+              "application/pdf"
+            ],
+            "max_prompt_images": 1,
+            "max_prompt_image_size": 3145728
+          }
+        }
+      },
+      "provider": {
+        "id": "copilot",
+        "kind": "copilot",
+        "label": "GitHub Copilot"
+      },
+      "policy": {
+        "state": "enabled",
+        "terms": ""
+      },
+      "billing": {
+        "tokenPrices": {
+          "batchSize": 1000000,
+          "cachePrice": 2.0,
+          "cacheReadPrice": 2.0,
+          "cacheWritePrice": 25.0,
+          "contextMax": 128000,
+          "inputPrice": 20.0,
+          "maxPromptTokens": 128000,
+          "outputPrice": 120.0
+        }
+      },
+      "supportedReasoningEfforts": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    {
+      "id": "grok-4.7",
+      "name": "Grok 4.7",
+      "capabilities": {
+        "supports": {
+          "vision": true,
+          "reasoningEffort": true
+        },
+        "limits": {
+          "max_prompt_tokens": 372000,
+          "max_output_tokens": 128000,
+          "max_context_window_tokens": 500000,
+          "vision": {
+            "supported_media_types": [
+              "image/jpeg",
+              "image/png"
+            ],
+            "max_prompt_images": 1,
+            "max_prompt_image_size": 3145728
+          }
+        }
+      },
+      "provider": {
+        "id": "copilot",
+        "kind": "copilot",
+        "label": "GitHub Copilot"
+      },
+      "billing": {
+        "tokenPrices": {
+          "batchSize": 1000000,
+          "cachePrice": 50.0,
+          "cacheReadPrice": 50.0,
+          "cacheWritePrice": 0.0,
+          "contextMax": 200000,
+          "inputPrice": 200.0,
+          "longContext": {
+            "cachePrice": 100.0,
+            "cacheReadPrice": 100.0,
+            "cacheWritePrice": 0.0,
+            "contextMax": 500000,
+            "inputPrice": 400.0,
+            "maxPromptTokens": 500000,
+            "outputPrice": 1200.0
+          },
+          "maxPromptTokens": 200000,
+          "outputPrice": 600.0
+        }
+      },
+      "supportedReasoningEfforts": [
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ]
+    },
+    {
+      "id": "grok-4.6",
+      "name": "Grok 4.6",
+      "capabilities": {
+        "supports": {
+          "vision": true,
+          "reasoningEffort": true
+        },
+        "limits": {
+          "max_prompt_tokens": 372000,
+          "max_output_tokens": 128000,
+          "max_context_window_tokens": 500000,
+          "vision": {
+            "supported_media_types": [
+              "image/jpeg",
+              "image/png"
+            ],
+            "max_prompt_images": 1,
+            "max_prompt_image_size": 3145728
+          }
+        }
+      },
+      "provider": {
+        "id": "copilot",
+        "kind": "copilot",
+        "label": "GitHub Copilot"
+      },
+      "billing": {
+        "tokenPrices": {
+          "batchSize": 1000000,
+          "cachePrice": 50.0,
+          "cacheReadPrice": 50.0,
+          "cacheWritePrice": 0.0,
+          "contextMax": 200000,
+          "inputPrice": 200.0,
+          "longContext": {
+            "cachePrice": 100.0,
+            "cacheReadPrice": 100.0,
+            "cacheWritePrice": 0.0,
+            "contextMax": 500000,
+            "inputPrice": 400.0,
+            "maxPromptTokens": 500000,
+            "outputPrice": 1200.0
+          },
+          "maxPromptTokens": 200000,
+          "outputPrice": 600.0
+        }
+      },
+      "supportedReasoningEfforts": [
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ]
+    },
+    {
+      "id": "mai-code-2-flash",
+      "name": "MAI-Code-2-Flash",
+      "capabilities": {
+        "supports": {
+          "vision": true,
+          "reasoningEffort": true
+        },
+        "limits": {
+          "max_prompt_tokens": 922000,
+          "max_output_tokens": 128000,
+          "max_context_window_tokens": 1050000,
+          "vision": {
+            "supported_media_types": [
+              "image/jpeg",
+              "image/png",
+              "image/webp",
+              "image/gif",
+              "application/pdf"
+            ],
+            "max_prompt_images": 1,
+            "max_prompt_image_size": 3145728
+          }
+        }
+      },
+      "provider": {
+        "id": "copilot",
+        "kind": "copilot",
+        "label": "GitHub Copilot"
+      },
+      "policy": {
+        "state": "enabled",
+        "terms": ""
+      },
+      "billing": {
+        "tokenPrices": {
+          "batchSize": 1000000,
+          "cachePrice": 1.0,
+          "cacheReadPrice": 1.0,
+          "cacheWritePrice": 0.0,
+          "inputPrice": 10.0,
+          "outputPrice": 50.0
+        }
+      },
+      "supportedReasoningEfforts": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
+    }
+  ],
+  "generation_sends": 0,
+  "usd_cost": null
+}

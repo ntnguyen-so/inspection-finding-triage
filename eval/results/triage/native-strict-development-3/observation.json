@@ -1,0 +1,25 @@
+{
+  "status": "experimental_e2e_pass",
+  "cli_exit_code": 0,
+  "output_contract_valid": true,
+  "actual_native_context_delivery": true,
+  "code_stable_during_run": true,
+  "application_sends": 14,
+  "phase_send_ceiling": 52,
+  "http_attempts": 14,
+  "usd_cost": null,
+  "semantic_status": "not_reviewed",
+  "output_sha256": "6b345b3d5064ca202cc9d852acddf5ba7aa390256011468f0713c831cd174611",
+  "elapsed_seconds": 411.8279999999795,
+  "acceptance_eligible": false,
+  "disclosure": "Isolated SOFTWARE-fixture publication/activation of unchanged supplied domain; not genuine engineer approval, qualified extraction or system acceptance. Provider accounting is reported separately.",
+  "phase_application_send_reservations": 21,
+  "known_http_dispatches": 14,
+  "attempts_without_receipt": 0,
+  "unrecorded_reservations": 0,
+  "reservation_records_match": true,
+  "observed_models": [
+    "gpt-chat-latest"
+  ],
+  "model_tag_consistent": true
+}

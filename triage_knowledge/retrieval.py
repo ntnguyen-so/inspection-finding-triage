@@ -6,7 +6,7 @@ from datetime import date
 from pathlib import Path
 from types import MappingProxyType
 
-from .contracts import (KnowledgeError, TableSource, canonical_bytes, fields, nonblank,
+from .contracts import (KnowledgeError, TableSource, canonical_bytes, fields, identifier, nonblank,
                         require, sha256, strict_json, timestamp)
 
 
@@ -113,9 +113,15 @@ class InputBinding:
         return strict_json(self._encoded)
 
 
-def binding_from_tables(findings: TableSource, registry: TableSource):
+def binding_from_tables(findings: TableSource, registry: TableSource, *,
+                        input_purpose: str = "normal"):
+    """Bind independent CSV bytes; evaluation inputs require explicit probe purpose."""
+    require(input_purpose in ("normal", "isolated_probe"), "input_binding_mismatch",
+            "An explicit supported input purpose is required.")
+    finding_kinds = (("finding_input", "evaluation_input")
+                     if input_purpose == "isolated_probe" else ("finding_input",))
     require(isinstance(findings, TableSource) and isinstance(registry, TableSource)
-            and findings.kind == "finding_input" and registry.kind == "registry_input"
+            and findings.kind in finding_kinds and registry.kind == "registry_input"
             and findings.source_id != registry.source_id,
             "input_binding_mismatch", "Distinct authorized findings and registry tables required.")
     frows = _row_map(findings.rows, "finding_id", FINDING_FIELDS)
@@ -124,8 +130,40 @@ def binding_from_tables(findings: TableSource, registry: TableSource):
     manifest = [{"source_id": table.source_id, "kind": table.kind,
                  "raw_sha256": table.raw_sha256, "bytes": len(table.raw)}
                 for table in (findings, registry)]
-    return InputBinding(canonical_bytes({
-        "findings": frows, "registry": rrows, "manifest": manifest}))
+    body = {"findings": frows, "registry": rrows, "manifest": manifest}
+    if input_purpose == "isolated_probe":
+        body["input_purpose"] = input_purpose
+    return InputBinding(canonical_bytes(body))
+
+
+def _checked_binding(binding, input_purpose):
+    require(input_purpose in ("normal", "isolated_probe"), "input_binding_mismatch",
+            "An explicit supported input purpose is required.")
+    require(isinstance(binding, InputBinding), "input_binding_mismatch",
+            "Use an independently constructed InputBinding.")
+    names = {"findings", "registry", "manifest"}
+    if input_purpose == "isolated_probe":
+        names.add("input_purpose")
+    allowed = fields(binding.to_dict(), names, "input_binding")
+    if input_purpose == "isolated_probe":
+        require(allowed["input_purpose"] == input_purpose, "input_binding_mismatch",
+                "Input binding differs from the trusted purpose.")
+    _validate_query({"findings": allowed["findings"], "registry": allowed["registry"]})
+    manifest = allowed["manifest"]
+    require(isinstance(manifest, list) and len(manifest) == 2, "input_binding_mismatch",
+            "Distinct findings and registry manifests are required.")
+    finding_kinds = (("finding_input", "evaluation_input")
+                     if input_purpose == "isolated_probe" else ("finding_input",))
+    for entry, kinds in zip(manifest, (finding_kinds, ("registry_input",))):
+        fields(entry, {"source_id", "kind", "raw_sha256", "bytes"}, "input_manifest")
+        require(identifier(entry["source_id"]) and entry["kind"] in kinds
+                and isinstance(entry["raw_sha256"], str) and len(entry["raw_sha256"]) == 64
+                and all(char in "0123456789abcdef" for char in entry["raw_sha256"])
+                and type(entry["bytes"]) is int and entry["bytes"] > 0,
+                "input_binding_mismatch", "Invalid authorized input manifest.")
+    require(manifest[0]["source_id"] != manifest[1]["source_id"],
+            "input_binding_mismatch", "Input source IDs must be distinct.")
+    return allowed
 
 
 @dataclass(frozen=True)
@@ -166,7 +204,9 @@ def _result(base, *, status, error_code=None, entries=None, mode=None, index=Non
 
 
 def get_triage_knowledge(store, query_context, *, knowledge_version, assessment_time,
-                        expected_strategy, allowed_input_binding, max_bytes):
+                        expected_strategy, allowed_input_binding, max_bytes,
+                        input_purpose: str = "normal"):
+    """Retrieve source-faithful knowledge with purpose supplied by the trusted caller."""
     base = {"knowledge_version": knowledge_version if isinstance(knowledge_version, str) else None,
             "assessment_time": None, "query_sha256": None, "strategy": strategy_binding(),
             "retrieval_index_sha256": None}
@@ -184,13 +224,17 @@ def get_triage_knowledge(store, query_context, *, knowledge_version, assessment_
         base["query_sha256"] = sha256(canonical_bytes(query))
     except (KnowledgeError, ValueError, TypeError, UnicodeError, OverflowError) as error:
         return fail("invalid_query", str(error))
-    if not isinstance(allowed_input_binding, InputBinding):
-        return fail("input_binding_mismatch", "Use an independently constructed InputBinding.")
-    allowed = allowed_input_binding.to_dict()
+    try:
+        allowed = _checked_binding(allowed_input_binding, input_purpose)
+    except (KnowledgeError, ValueError, TypeError, KeyError, UnicodeError, RecursionError) as error:
+        return fail("input_binding_mismatch", str(error))
     if (registry != allowed["registry"]
             or any(name not in allowed["findings"] or row != allowed["findings"][name]
                    for name, row in findings.items())):
         return fail("input_binding_mismatch", "Actual query rows differ from authorized snapshots.")
+    if input_purpose == "isolated_probe":
+        base["input_purpose"] = input_purpose
+        evidence["input_purpose"] = input_purpose
     evidence["authorized_input_manifest"] = allowed["manifest"]
     evidence["authorized_input_manifest_sha256"] = sha256(canonical_bytes(allowed["manifest"]))
     if expected_strategy != base["strategy"]:

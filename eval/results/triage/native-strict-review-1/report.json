@@ -1,0 +1,190 @@
+{
+  "scope": "ticket_outputs_only_not_full_A_D_system_acceptance",
+  "reference_version": "1.2",
+  "partition": "development",
+  "output_sha256": "6b345b3d5064ca202cc9d852acddf5ba7aa390256011468f0713c831cd174611",
+  "contract": {
+    "status": "pass",
+    "errors": []
+  },
+  "semantic": {
+    "status": "fail",
+    "reviewer": {
+      "kind": "ai_only",
+      "independent_of_generation": false,
+      "label": "native-integration-author-gpt-6.1-sol",
+      "configuration": "Copilot CLI parent assistant, model ID gpt-6.1-sol; document 03 three-dimensional rubric and frozen reference 1.2. Direct generator is separately gpt-5.1-chat / observed gpt-chat-latest. Same implementation author; no independent domain expertise. Controls and expected labels visible. Parent sampling and billing unavailable."
+    },
+    "passed_dimensions": 0,
+    "applicable_dimensions": 39,
+    "failed": [
+      {
+        "finding_id": "F-1001",
+        "dimension": "planning"
+      },
+      {
+        "finding_id": "F-1003",
+        "dimension": "planning"
+      },
+      {
+        "finding_id": "F-1004",
+        "dimension": "planning"
+      },
+      {
+        "finding_id": "F-1005",
+        "dimension": "grounding"
+      },
+      {
+        "finding_id": "F-1007",
+        "dimension": "planning"
+      },
+      {
+        "finding_id": "F-1010",
+        "dimension": "planning"
+      },
+      {
+        "finding_id": "F-1016",
+        "dimension": "grounding"
+      },
+      {
+        "finding_id": "F-1019",
+        "dimension": "uncertainty"
+      }
+    ],
+    "pending": [
+      {
+        "finding_id": "F-1001",
+        "dimension": "grounding"
+      },
+      {
+        "finding_id": "F-1001",
+        "dimension": "uncertainty"
+      },
+      {
+        "finding_id": "F-1003",
+        "dimension": "grounding"
+      },
+      {
+        "finding_id": "F-1003",
+        "dimension": "uncertainty"
+      },
+      {
+        "finding_id": "F-1004",
+        "dimension": "grounding"
+      },
+      {
+        "finding_id": "F-1004",
+        "dimension": "uncertainty"
+      },
+      {
+        "finding_id": "F-1005",
+        "dimension": "planning"
+      },
+      {
+        "finding_id": "F-1005",
+        "dimension": "uncertainty"
+      },
+      {
+        "finding_id": "F-1006",
+        "dimension": "grounding"
+      },
+      {
+        "finding_id": "F-1006",
+        "dimension": "planning"
+      },
+      {
+        "finding_id": "F-1006",
+        "dimension": "uncertainty"
+      },
+      {
+        "finding_id": "F-1007",
+        "dimension": "grounding"
+      },
+      {
+        "finding_id": "F-1007",
+        "dimension": "uncertainty"
+      },
+      {
+        "finding_id": "F-1008",
+        "dimension": "grounding"
+      },
+      {
+        "finding_id": "F-1008",
+        "dimension": "planning"
+      },
+      {
+        "finding_id": "F-1008",
+        "dimension": "uncertainty"
+      },
+      {
+        "finding_id": "F-1009",
+        "dimension": "grounding"
+      },
+      {
+        "finding_id": "F-1009",
+        "dimension": "planning"
+      },
+      {
+        "finding_id": "F-1009",
+        "dimension": "uncertainty"
+      },
+      {
+        "finding_id": "F-1010",
+        "dimension": "grounding"
+      },
+      {
+        "finding_id": "F-1010",
+        "dimension": "uncertainty"
+      },
+      {
+        "finding_id": "F-1012",
+        "dimension": "grounding"
+      },
+      {
+        "finding_id": "F-1012",
+        "dimension": "planning"
+      },
+      {
+        "finding_id": "F-1012",
+        "dimension": "uncertainty"
+      },
+      {
+        "finding_id": "F-1016",
+        "dimension": "planning"
+      },
+      {
+        "finding_id": "F-1016",
+        "dimension": "uncertainty"
+      },
+      {
+        "finding_id": "F-1017",
+        "dimension": "grounding"
+      },
+      {
+        "finding_id": "F-1017",
+        "dimension": "planning"
+      },
+      {
+        "finding_id": "F-1017",
+        "dimension": "uncertainty"
+      },
+      {
+        "finding_id": "F-1019",
+        "dimension": "grounding"
+      },
+      {
+        "finding_id": "F-1019",
+        "dimension": "planning"
+      }
+    ],
+    "limitation": "Declared review agreement is not independent engineering truth or accuracy."
+  },
+  "overall": "fail",
+  "review_provenance": {
+    "kind": "ai_only",
+    "independent_of_generation": false,
+    "label": "native-integration-author-gpt-6.1-sol",
+    "configuration": "Copilot CLI parent assistant, model ID gpt-6.1-sol; document 03 three-dimensional rubric and frozen reference 1.2. Direct generator is separately gpt-5.1-chat / observed gpt-chat-latest. Same implementation author; no independent domain expertise. Controls and expected labels visible. Parent sampling and billing unavailable."
+  },
+  "system_scenario_results": "not_provided_not_implied_by_this_report"
+}

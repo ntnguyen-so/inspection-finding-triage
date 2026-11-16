@@ -1,0 +1,9 @@
+{
+  "purpose": "One bounded replay of the failed native schema to extract only allowlisted diagnostic words, not raw server errors. Not a baseline or compatibility-health reset.",
+  "maximum_sends": 1,
+  "phase_ceiling": 52,
+  "prior_reserved_sends": 9,
+  "prior_ledger_sha256": "6876f33aea37ff552c195d3438a2108c0c835304a8934a3b16eaebdf74d13192",
+  "plan_sha256": "22dc96c78087bbb60a4f808a710194aea71757e6c00aadcea47ec0b397e9278b",
+  "recorded_at": "2026-11-16T20:27:39.451415+00:00"
+}

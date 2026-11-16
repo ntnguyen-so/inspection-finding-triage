@@ -1,0 +1,82 @@
+{
+  "assessment": {
+    "reason": "No genuinely reviewed release was supplied; unreviewed drafts are not published.",
+    "status": "needs_review"
+  },
+  "authorized_input_binding": {
+    "findings": {
+      "F-9001": {
+        "equipment_id": "SYN-9001",
+        "equipment_type": "Azure Tiles",
+        "finding_description": "Artificial selector query; no actual fault is asserted.",
+        "finding_id": "F-9001",
+        "inspection_method": "Synthetic selector fixture",
+        "inspection_type": "Routine Operator Round",
+        "reported_by": "Synthetic Fixture",
+        "reported_date": "2026-07-01",
+        "reporter_role": "Software test"
+      }
+    },
+    "manifest": [
+      {
+        "bytes": 312,
+        "kind": "finding_input",
+        "raw_sha256": "3cb7953372f92261850e7a513b7862cc25cea64b4c3b5e844fd855707ba812e3",
+        "source_id": "synthetic-findings"
+      },
+      {
+        "bytes": 250,
+        "kind": "registry_input",
+        "raw_sha256": "67ab87b539f96fa6bc4fb7d20e28aea7f2e80ddc1cc71e3292fda217c4bb0ae4",
+        "source_id": "synthetic-registry"
+      }
+    ],
+    "registry": {
+      "SYN-9001": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9001",
+        "equipment_type": "Azure Tiles",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      }
+    }
+  },
+  "case_id": "dev_mosaic.scoped",
+  "execution": "not_run_pending_review",
+  "human_approval_established": false,
+  "partition": "development",
+  "query_context": {
+    "findings": {
+      "F-9001": {
+        "equipment_id": "SYN-9001",
+        "equipment_type": "Azure Tiles",
+        "finding_description": "Artificial selector query; no actual fault is asserted.",
+        "finding_id": "F-9001",
+        "inspection_method": "Synthetic selector fixture",
+        "inspection_type": "Routine Operator Round",
+        "reported_by": "Synthetic Fixture",
+        "reported_date": "2026-07-01",
+        "reporter_role": "Software test"
+      }
+    },
+    "registry": {
+      "SYN-9001": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9001",
+        "equipment_type": "Azure Tiles",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      }
+    }
+  },
+  "result": null,
+  "selective_qualification": false,
+  "synthetic_review_diagnostic": false,
+  "synthetic_review_only": false
+}

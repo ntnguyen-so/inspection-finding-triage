@@ -1,0 +1,82 @@
+{
+  "assessment": {
+    "reason": "No genuinely reviewed release was supplied; unreviewed drafts are not published.",
+    "status": "needs_review"
+  },
+  "authorized_input_binding": {
+    "findings": {
+      "F-9001": {
+        "equipment_id": "SYN-9001",
+        "equipment_type": "sky pieces",
+        "finding_description": "Artificial selector query; no actual fault is asserted.",
+        "finding_id": "F-9001",
+        "inspection_method": "Synthetic selector fixture",
+        "inspection_type": "Routine Operator Round",
+        "reported_by": "Synthetic Fixture",
+        "reported_date": "2026-07-01",
+        "reporter_role": "Software test"
+      }
+    },
+    "manifest": [
+      {
+        "bytes": 311,
+        "kind": "finding_input",
+        "raw_sha256": "bc80fd2ca2e0d95f0711412410706036b507251f9b25814dba30ce7faed3ecc2",
+        "source_id": "synthetic-findings"
+      },
+      {
+        "bytes": 249,
+        "kind": "registry_input",
+        "raw_sha256": "2a61fc3507f3a6acc63bf77014785aec77793f27da583cbcc30caaddde941305",
+        "source_id": "synthetic-registry"
+      }
+    ],
+    "registry": {
+      "SYN-9001": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9001",
+        "equipment_type": "sky pieces",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      }
+    }
+  },
+  "case_id": "dev_mosaic.qualifier",
+  "execution": "not_run_pending_review",
+  "human_approval_established": false,
+  "partition": "development",
+  "query_context": {
+    "findings": {
+      "F-9001": {
+        "equipment_id": "SYN-9001",
+        "equipment_type": "sky pieces",
+        "finding_description": "Artificial selector query; no actual fault is asserted.",
+        "finding_id": "F-9001",
+        "inspection_method": "Synthetic selector fixture",
+        "inspection_type": "Routine Operator Round",
+        "reported_by": "Synthetic Fixture",
+        "reported_date": "2026-07-01",
+        "reporter_role": "Software test"
+      }
+    },
+    "registry": {
+      "SYN-9001": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9001",
+        "equipment_type": "sky pieces",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      }
+    }
+  },
+  "result": null,
+  "selective_qualification": false,
+  "synthetic_review_diagnostic": false,
+  "synthetic_review_only": false
+}

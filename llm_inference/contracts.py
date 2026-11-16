@@ -9,10 +9,12 @@ from jsonschema import Draft202012Validator, SchemaError, ValidationError
 
 
 class InferenceError(RuntimeError):
-    def __init__(self, code: str, message: str, receipt: dict | None = None):
+    def __init__(self, code: str, message: str, receipt: dict | None = None, *,
+                 response_text: str | None = None):
         super().__init__(message)
         self.code = code
         self.receipt = receipt if receipt is not None else {}
+        self.response_text = response_text
 
     def to_dict(self) -> dict:
         return {
@@ -87,21 +89,45 @@ class InferenceRequest:
             if not isinstance(self.response_schema, dict):
                 raise InferenceError("invalid_schema", "Schema must be an object")
 
-            def no_references(value: object) -> None:
+            checked_references = {}
+            identifiers = []
+
+            def check_references(value: object, active: tuple = ()) -> int:
+                depth = 0
                 if isinstance(value, dict):
-                    if "$ref" in value or "$dynamicRef" in value:
+                    if "$dynamicRef" in value:
                         raise InferenceError(
-                            "unsupported_control", "Schema references are not supported"
+                            "unsupported_control", "Dynamic schema references are not supported"
                         )
+                    identifiers.extend(key for key in ("$id", "$anchor", "$dynamicAnchor") if key in value)
+                    if "$ref" in value:
+                        reference = value["$ref"]
+                        prefix = "#/$defs/"
+                        name = reference[len(prefix):] if isinstance(reference, str) and reference.startswith(prefix) else ""
+                        if (not name or not name.isascii()
+                                or not name.replace("_", "").replace("-", "").isalnum()
+                                or name not in schema.get("$defs", {}) or name in active or len(active) >= 32):
+                            raise InferenceError(
+                                "unsupported_control", "Only existing acyclic root $defs references are supported")
+                        if name not in checked_references:
+                            checked_references[name] = check_references(schema["$defs"][name], (*active, name))
+                        depth = 1 + checked_references[name]
+                        if len(active) + depth > 32:
+                            raise InferenceError(
+                                "unsupported_control", "Schema reference depth exceeds 32")
                     for child in value.values():
-                        no_references(child)
+                        depth = max(depth, check_references(child, active))
                 elif isinstance(value, list):
                     for child in value:
-                        no_references(child)
+                        depth = max(depth, check_references(child, active))
+                return depth
 
             try:
                 schema = strict_json(canonical(self.response_schema))
-                no_references(schema)
+                check_references(schema)
+                if checked_references and identifiers:
+                    raise InferenceError(
+                        "unsupported_control", "Referenced schemas cannot redefine identifiers or anchors")
                 if schema.get("$schema", "https://json-schema.org/draft/2020-12/schema") != (
                     "https://json-schema.org/draft/2020-12/schema"
                 ):
@@ -140,12 +166,12 @@ def validate_content(text: str, validator: Draft202012Validator | None) -> objec
     try:
         value = strict_json(text)
     except (ValueError, RecursionError) as error:
-        raise InferenceError("malformed_json", "Response is not strict JSON") from error
+        raise InferenceError("malformed_json", "Response is not strict JSON", response_text=text) from error
     try:
         validator.validate(value)
     except ValidationError as error:
         raise InferenceError(
-            "schema_violation", "Response does not conform to the response schema"
+            "schema_violation", "Response does not conform to the response schema", response_text=text,
         ) from error
     return value
 

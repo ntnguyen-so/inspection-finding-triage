@@ -1,0 +1,3632 @@
+{
+  "adapted_result": {
+    "entries": [
+      {
+        "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+        "spans": [
+          {
+            "end": 1918,
+            "source_id": "original_domain",
+            "start": 1894
+          },
+          {
+            "end": 1919,
+            "source_id": "original_domain",
+            "start": 1918
+          },
+          {
+            "end": 2017,
+            "source_id": "original_domain",
+            "start": 1919
+          },
+          {
+            "end": 2117,
+            "source_id": "original_domain",
+            "start": 2017
+          },
+          {
+            "end": 2180,
+            "source_id": "original_domain",
+            "start": 2117
+          },
+          {
+            "end": 2181,
+            "source_id": "original_domain",
+            "start": 2180
+          },
+          {
+            "end": 2284,
+            "source_id": "original_domain",
+            "start": 2181
+          },
+          {
+            "end": 2379,
+            "source_id": "original_domain",
+            "start": 2284
+          },
+          {
+            "end": 2439,
+            "source_id": "original_domain",
+            "start": 2379
+          },
+          {
+            "end": 2440,
+            "source_id": "original_domain",
+            "start": 2439
+          }
+        ],
+        "text": "## Two recurring errors\n\n**Voted arrangements.** One detector head out of a 2oo3 group is a degradation, not a defeat. The\narrangement still functions, so impact is moderate rather than extreme. It is time-limited, because\nthe group has lost its margin and the next failure defeats it.\n\n**Redundancy is a claim, not a fact.** Check whether the redundant partner is healthy before crediting\nit. If findings exist against both legs of a redundant pair in the same batch, the pair is not\nredundant. Assessing each finding in isolation misses this.\n\n"
+      },
+      {
+        "source_sha256": "58f29e3fd9c927c30c9cbc65a3c5c01961fbce9929c16118bcef9bcf395e088f",
+        "spans": [
+          {
+            "end": 75,
+            "source_id": "dev_beacon",
+            "start": 73
+          },
+          {
+            "end": 314,
+            "source_id": "dev_beacon",
+            "start": 312
+          },
+          {
+            "end": 370,
+            "source_id": "dev_beacon",
+            "start": 368
+          },
+          {
+            "end": 495,
+            "source_id": "dev_beacon",
+            "start": 493
+          }
+        ],
+        "text": "\r\n\r\n\r\n\r\n"
+      },
+      {
+        "source_sha256": "0852927bd7abe608ce450eb87d6e21a23137fa6394e1e5ea36140d84002c338f",
+        "spans": [
+          {
+            "end": 24,
+            "source_id": "dev_mosaic",
+            "start": 0
+          },
+          {
+            "end": 78,
+            "source_id": "dev_mosaic",
+            "start": 24
+          }
+        ],
+        "text": "# Mosaic board charter\r\nAll instructions describe an imaginary tile contest.\r\n"
+      },
+      {
+        "source_sha256": "3a004b8eccc41b1be4bceed97313c7bd709513aa3ea4aa73a08000d7b2016094",
+        "spans": [
+          {
+            "end": 47,
+            "source_id": "dev_quill",
+            "start": 0
+          }
+        ],
+        "text": "QUILL ARCHIVE: fictional desk game transcript\r\n"
+      },
+      {
+        "source_sha256": "58f29e3fd9c927c30c9cbc65a3c5c01961fbce9929c16118bcef9bcf395e088f",
+        "spans": [
+          {
+            "end": 93,
+            "source_id": "dev_beacon",
+            "start": 75
+          },
+          {
+            "end": 115,
+            "source_id": "dev_beacon",
+            "start": 93
+          },
+          {
+            "end": 138,
+            "source_id": "dev_beacon",
+            "start": 115
+          },
+          {
+            "end": 190,
+            "source_id": "dev_beacon",
+            "start": 138
+          },
+          {
+            "end": 254,
+            "source_id": "dev_beacon",
+            "start": 190
+          },
+          {
+            "end": 312,
+            "source_id": "dev_beacon",
+            "start": 254
+          }
+        ],
+        "text": "## Paper-Beacons\r\nScope: Paper-Beacons\r\nAliases: folded stars\r\n- If a bead is present, do not turn Paper-Beacons.\r\n  - Exception: a silver bead permits one turn after the chime.\r\n  - The silver-bead line qualifies the turn restriction.\r\n"
+      },
+      {
+        "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+        "spans": [
+          {
+            "end": 1278,
+            "source_id": "original_domain",
+            "start": 1257
+          },
+          {
+            "end": 1279,
+            "source_id": "original_domain",
+            "start": 1278
+          },
+          {
+            "end": 1378,
+            "source_id": "original_domain",
+            "start": 1279
+          },
+          {
+            "end": 1478,
+            "source_id": "original_domain",
+            "start": 1378
+          },
+          {
+            "end": 1581,
+            "source_id": "original_domain",
+            "start": 1478
+          },
+          {
+            "end": 1677,
+            "source_id": "original_domain",
+            "start": 1581
+          },
+          {
+            "end": 1688,
+            "source_id": "original_domain",
+            "start": 1677
+          },
+          {
+            "end": 1689,
+            "source_id": "original_domain",
+            "start": 1688
+          },
+          {
+            "end": 1790,
+            "source_id": "original_domain",
+            "start": 1689
+          },
+          {
+            "end": 1893,
+            "source_id": "original_domain",
+            "start": 1790
+          },
+          {
+            "end": 1894,
+            "source_id": "original_domain",
+            "start": 1893
+          }
+        ],
+        "text": "## What moves impact\n\nUp: absence of redundancy; Safety Critical Elements, which exist because a major accident scenario\ndepends on them and are judged against that scenario rather than against repair cost; failures that\ndegrade a protection layer rather than causing direct loss; delayed or hidden consequences — loss of\ncorrosion inhibitor has no effect today and a substantial effect in eighteen months; escalation\npotential.\n\nDown: redundancy that is available and capable; items that can be bypassed without loss of function;\natmospheric, non-hydrocarbon, low-energy services; consequences limited to housekeeping or appearance.\n\n"
+      },
+      {
+        "source_sha256": "0852927bd7abe608ce450eb87d6e21a23137fa6394e1e5ea36140d84002c338f",
+        "spans": [
+          {
+            "end": 80,
+            "source_id": "dev_mosaic",
+            "start": 78
+          },
+          {
+            "end": 281,
+            "source_id": "dev_mosaic",
+            "start": 279
+          },
+          {
+            "end": 490,
+            "source_id": "dev_mosaic",
+            "start": 488
+          }
+        ],
+        "text": "\r\n\r\n\r\n"
+      },
+      {
+        "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+        "spans": [
+          {
+            "end": 210,
+            "source_id": "original_domain",
+            "start": 189
+          },
+          {
+            "end": 211,
+            "source_id": "original_domain",
+            "start": 210
+          },
+          {
+            "end": 310,
+            "source_id": "original_domain",
+            "start": 211
+          },
+          {
+            "end": 411,
+            "source_id": "original_domain",
+            "start": 310
+          },
+          {
+            "end": 513,
+            "source_id": "original_domain",
+            "start": 411
+          },
+          {
+            "end": 546,
+            "source_id": "original_domain",
+            "start": 513
+          },
+          {
+            "end": 547,
+            "source_id": "original_domain",
+            "start": 546
+          },
+          {
+            "end": 648,
+            "source_id": "original_domain",
+            "start": 547
+          },
+          {
+            "end": 704,
+            "source_id": "original_domain",
+            "start": 648
+          },
+          {
+            "end": 705,
+            "source_id": "original_domain",
+            "start": 704
+          },
+          {
+            "end": 771,
+            "source_id": "original_domain",
+            "start": 705
+          },
+          {
+            "end": 772,
+            "source_id": "original_domain",
+            "start": 771
+          }
+        ],
+        "text": "## The two questions\n\n**Likelihood** concerns the item itself: given what the inspection found, how likely is it to stop\nperforming its function in the near term. A hairline coating blister on a thick-walled vessel is low\nlikelihood even on a critical vessel. A bearing with a vibration trend that has not plateaued is high\nlikelihood even on a spare pump.\n\n**Impact** concerns what happens if it does fail. This depends mainly on what the equipment does and\nwhat sits behind it, not on the wording of the finding.\n\nThe common error is scoring by how severe the description sounds.\n\n"
+      },
+      {
+        "source_sha256": "0852927bd7abe608ce450eb87d6e21a23137fa6394e1e5ea36140d84002c338f",
+        "spans": [
+          {
+            "end": 506,
+            "source_id": "dev_mosaic",
+            "start": 490
+          },
+          {
+            "end": 526,
+            "source_id": "dev_mosaic",
+            "start": 506
+          },
+          {
+            "end": 579,
+            "source_id": "dev_mosaic",
+            "start": 526
+          },
+          {
+            "end": 632,
+            "source_id": "dev_mosaic",
+            "start": 579
+          }
+        ],
+        "text": "## Ochre Tiles\r\nScope: Ochre Tiles\r\nStack Ochre Tiles only when the paper flag is flat.\r\nStack Ochre Tiles only when the paper flag is flat.\r\n"
+      },
+      {
+        "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+        "spans": [
+          {
+            "end": 2451,
+            "source_id": "original_domain",
+            "start": 2440
+          },
+          {
+            "end": 2452,
+            "source_id": "original_domain",
+            "start": 2451
+          },
+          {
+            "end": 2546,
+            "source_id": "original_domain",
+            "start": 2452
+          },
+          {
+            "end": 2643,
+            "source_id": "original_domain",
+            "start": 2546
+          },
+          {
+            "end": 2741,
+            "source_id": "original_domain",
+            "start": 2643
+          },
+          {
+            "end": 2757,
+            "source_id": "original_domain",
+            "start": 2741
+          },
+          {
+            "end": 2758,
+            "source_id": "original_domain",
+            "start": 2757
+          },
+          {
+            "end": 2774,
+            "source_id": "original_domain",
+            "start": 2758
+          },
+          {
+            "end": 2793,
+            "source_id": "original_domain",
+            "start": 2774
+          },
+          {
+            "end": 2813,
+            "source_id": "original_domain",
+            "start": 2793
+          },
+          {
+            "end": 2844,
+            "source_id": "original_domain",
+            "start": 2813
+          },
+          {
+            "end": 2861,
+            "source_id": "original_domain",
+            "start": 2844
+          },
+          {
+            "end": 2862,
+            "source_id": "original_domain",
+            "start": 2861
+          },
+          {
+            "end": 2964,
+            "source_id": "original_domain",
+            "start": 2862
+          },
+          {
+            "end": 3062,
+            "source_id": "original_domain",
+            "start": 2964
+          },
+          {
+            "end": 3159,
+            "source_id": "original_domain",
+            "start": 3062
+          },
+          {
+            "end": 3166,
+            "source_id": "original_domain",
+            "start": 3159
+          },
+          {
+            "end": 3167,
+            "source_id": "original_domain",
+            "start": 3166
+          }
+        ],
+        "text": "## Urgency\n\nNot an average of likelihood and impact, and not the maximum, though the maximum is closer. A\nlow-likelihood, high-impact finding on an SCE still requires attention this week. A near-certain\nfailure of something inconsequential can wait for the next shutdown. Urgency expresses how soon a\nhuman must act.\n\n- 9–10: today\n- 7–8: this week\n- 5–6: this month\n- 3–4: next planned shutdown\n- 1–2: backlog\n\nTwo conditions override the derived value. Anything that leaves a protection layer impaired without a\nrecorded deviation is immediate, because the installation is out of compliance from the point the\nimpairment is known. The same applies to anything that reduces evacuation capacity below the POB\ncount.\n\n"
+      },
+      {
+        "source_sha256": "58f29e3fd9c927c30c9cbc65a3c5c01961fbce9929c16118bcef9bcf395e088f",
+        "spans": [
+          {
+            "end": 509,
+            "source_id": "dev_beacon",
+            "start": 495
+          },
+          {
+            "end": 531,
+            "source_id": "dev_beacon",
+            "start": 509
+          },
+          {
+            "end": 567,
+            "source_id": "dev_beacon",
+            "start": 531
+          },
+          {
+            "end": 603,
+            "source_id": "dev_beacon",
+            "start": 567
+          }
+        ],
+        "text": "## Tin-Moons\r\nEquipment: Tin-Moons\r\nPlace Tin-Moons behind the stripe.\r\nPlace Tin-Moons behind the stripe.\r\n"
+      },
+      {
+        "source_sha256": "3a004b8eccc41b1be4bceed97313c7bd709513aa3ea4aa73a08000d7b2016094",
+        "spans": [
+          {
+            "end": 505,
+            "source_id": "dev_quill",
+            "start": 473
+          },
+          {
+            "end": 611,
+            "source_id": "dev_quill",
+            "start": 505
+          }
+        ],
+        "text": "Q: Can a tray be called ready?\r\nA: A ready mark is reported, but another speaker calls readiness unknown; keep that conflict unresolved.\r\n"
+      },
+      {
+        "source_sha256": "0852927bd7abe608ce450eb87d6e21a23137fa6394e1e5ea36140d84002c338f",
+        "spans": [
+          {
+            "end": 298,
+            "source_id": "dev_mosaic",
+            "start": 281
+          },
+          {
+            "end": 356,
+            "source_id": "dev_mosaic",
+            "start": 298
+          }
+        ],
+        "text": "## Scale legend\r\nA higher calmness index implies a lower wobble tendency.\r\n"
+      },
+      {
+        "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+        "spans": [
+          {
+            "end": 3186,
+            "source_id": "original_domain",
+            "start": 3167
+          },
+          {
+            "end": 3187,
+            "source_id": "original_domain",
+            "start": 3186
+          },
+          {
+            "end": 3289,
+            "source_id": "original_domain",
+            "start": 3187
+          },
+          {
+            "end": 3390,
+            "source_id": "original_domain",
+            "start": 3289
+          },
+          {
+            "end": 3410,
+            "source_id": "original_domain",
+            "start": 3390
+          },
+          {
+            "end": 3411,
+            "source_id": "original_domain",
+            "start": 3410
+          },
+          {
+            "end": 3512,
+            "source_id": "original_domain",
+            "start": 3411
+          },
+          {
+            "end": 3607,
+            "source_id": "original_domain",
+            "start": 3512
+          },
+          {
+            "end": 3616,
+            "source_id": "original_domain",
+            "start": 3607
+          },
+          {
+            "end": 3617,
+            "source_id": "original_domain",
+            "start": 3616
+          }
+        ],
+        "text": "## Registry scores\n\n`reliability_score` is 10 = highly reliable, 1 = frequent failures. It runs in the opposite direction\nto likelihood. New starters routinely invert it. `criticality_score` runs in the expected direction,\n10 = most critical.\n\nNeither is sufficient on its own. Criticality is a starting point for impact, reliability a starting\npoint for likelihood; the finding text moves both. A reliable item with a crack in it is still\ncracked.\n\n"
+      },
+      {
+        "source_sha256": "35a95953d27cf67b4385a2c322fe887bb7b928876c2a0cfa5be642c827383818",
+        "spans": [
+          {
+            "end": 84,
+            "source_id": "dev_atlas",
+            "start": 69
+          },
+          {
+            "end": 104,
+            "source_id": "dev_atlas",
+            "start": 84
+          },
+          {
+            "end": 129,
+            "source_id": "dev_atlas",
+            "start": 104
+          },
+          {
+            "end": 181,
+            "source_id": "dev_atlas",
+            "start": 129
+          },
+          {
+            "end": 253,
+            "source_id": "dev_atlas",
+            "start": 181
+          },
+          {
+            "end": 313,
+            "source_id": "dev_atlas",
+            "start": 253
+          },
+          {
+            "end": 315,
+            "source_id": "dev_atlas",
+            "start": 313
+          },
+          {
+            "end": 332,
+            "source_id": "dev_atlas",
+            "start": 315
+          },
+          {
+            "end": 405,
+            "source_id": "dev_atlas",
+            "start": 332
+          },
+          {
+            "end": 407,
+            "source_id": "dev_atlas",
+            "start": 405
+          }
+        ],
+        "text": "# Amber-Kites\r\nScope: Amber-Kites\r\nAliases: sunset ribbons\r\nDo not raise Amber-Kites while the bell is silent.\r\nIf the bell sounds, raise one ribbon; except during the painted pause.\r\nThe painted pause below qualifies the raising instruction.\r\n\r\n# Painted pause\r\nDuring a painted pause, keep the ribbon folded even if the bell sounds.\r\n\r\n"
+      },
+      {
+        "source_sha256": "35a95953d27cf67b4385a2c322fe887bb7b928876c2a0cfa5be642c827383818",
+        "spans": [
+          {
+            "end": 67,
+            "source_id": "dev_atlas",
+            "start": 0
+          },
+          {
+            "end": 69,
+            "source_id": "dev_atlas",
+            "start": 67
+          }
+        ],
+        "text": "Atlas festival cue cards; artificial rehearsal instructions only.\r\n\r\n"
+      },
+      {
+        "source_sha256": "58f29e3fd9c927c30c9cbc65a3c5c01961fbce9929c16118bcef9bcf395e088f",
+        "spans": [
+          {
+            "end": 493,
+            "source_id": "dev_beacon",
+            "start": 442
+          }
+        ],
+        "text": "The chime is possibly late; its state is unknown.\r\n"
+      },
+      {
+        "source_sha256": "0852927bd7abe608ce450eb87d6e21a23137fa6394e1e5ea36140d84002c338f",
+        "spans": [
+          {
+            "end": 96,
+            "source_id": "dev_mosaic",
+            "start": 80
+          },
+          {
+            "end": 120,
+            "source_id": "dev_mosaic",
+            "start": 96
+          },
+          {
+            "end": 156,
+            "source_id": "dev_mosaic",
+            "start": 120
+          },
+          {
+            "end": 206,
+            "source_id": "dev_mosaic",
+            "start": 156
+          },
+          {
+            "end": 279,
+            "source_id": "dev_mosaic",
+            "start": 206
+          },
+          {
+            "end": 419,
+            "source_id": "dev_mosaic",
+            "start": 356
+          }
+        ],
+        "text": "## Azure Tiles\r\nEquipment: Azure Tiles\r\nAliases: blue counters; sky pieces\r\nWhen a ring is drawn, do not rotate Azure Tiles.\r\nUnless the ring is dotted, the prohibition holds through the next turn.\r\nThe dotted-ring exception qualifies the rotation prohibition.\r\n"
+      },
+      {
+        "source_sha256": "58f29e3fd9c927c30c9cbc65a3c5c01961fbce9929c16118bcef9bcf395e088f",
+        "spans": [
+          {
+            "end": 393,
+            "source_id": "dev_beacon",
+            "start": 370
+          },
+          {
+            "end": 442,
+            "source_id": "dev_beacon",
+            "start": 393
+          }
+        ],
+        "text": "## Quiet instructions\r\nMore reserve marks mean less flutter, not more.\r\n"
+      },
+      {
+        "source_sha256": "0852927bd7abe608ce450eb87d6e21a23137fa6394e1e5ea36140d84002c338f",
+        "spans": [
+          {
+            "end": 488,
+            "source_id": "dev_mosaic",
+            "start": 419
+          }
+        ],
+        "text": "The observer says the ring may be dotted; this is not confirmation.\r\n"
+      },
+      {
+        "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+        "spans": [
+          {
+            "end": 3640,
+            "source_id": "original_domain",
+            "start": 3617
+          },
+          {
+            "end": 3641,
+            "source_id": "original_domain",
+            "start": 3640
+          },
+          {
+            "end": 3743,
+            "source_id": "original_domain",
+            "start": 3641
+          },
+          {
+            "end": 3836,
+            "source_id": "original_domain",
+            "start": 3743
+          },
+          {
+            "end": 3934,
+            "source_id": "original_domain",
+            "start": 3836
+          },
+          {
+            "end": 3935,
+            "source_id": "original_domain",
+            "start": 3934
+          }
+        ],
+        "text": "## Output expectations\n\nMaintenance planning needs two lines: what is wrong, on what, and why it matters — readable without\nopening the inspection record, and not a restatement of the original finding text. Where the\nassessment is uncertain, that should be stated rather than resolved by picking a mid-range score.\n\n"
+      },
+      {
+        "source_sha256": "35a95953d27cf67b4385a2c322fe887bb7b928876c2a0cfa5be642c827383818",
+        "spans": [
+          {
+            "end": 422,
+            "source_id": "dev_atlas",
+            "start": 407
+          },
+          {
+            "end": 446,
+            "source_id": "dev_atlas",
+            "start": 422
+          },
+          {
+            "end": 505,
+            "source_id": "dev_atlas",
+            "start": 446
+          },
+          {
+            "end": 564,
+            "source_id": "dev_atlas",
+            "start": 505
+          },
+          {
+            "end": 566,
+            "source_id": "dev_atlas",
+            "start": 564
+          }
+        ],
+        "text": "# Glass-Carts\r\nEquipment: Glass-Carts\r\nMove Glass-Carts only after the chalk square is complete.\r\nMove Glass-Carts only after the chalk square is complete.\r\n\r\n"
+      },
+      {
+        "source_sha256": "3a004b8eccc41b1be4bceed97313c7bd709513aa3ea4aa73a08000d7b2016094",
+        "spans": [
+          {
+            "end": 623,
+            "source_id": "dev_quill",
+            "start": 611
+          },
+          {
+            "end": 643,
+            "source_id": "dev_quill",
+            "start": 623
+          },
+          {
+            "end": 708,
+            "source_id": "dev_quill",
+            "start": 643
+          },
+          {
+            "end": 773,
+            "source_id": "dev_quill",
+            "start": 708
+          }
+        ],
+        "text": "OTHER DESK\r\nScope: Brass Desks\r\nLeave a brass token beside Brass Desks until the arch is drawn.\r\nLeave a brass token beside Brass Desks until the arch is drawn.\r\n"
+      },
+      {
+        "source_sha256": "3a004b8eccc41b1be4bceed97313c7bd709513aa3ea4aa73a08000d7b2016094",
+        "spans": [
+          {
+            "end": 84,
+            "source_id": "dev_quill",
+            "start": 47
+          },
+          {
+            "end": 168,
+            "source_id": "dev_quill",
+            "start": 84
+          },
+          {
+            "end": 224,
+            "source_id": "dev_quill",
+            "start": 168
+          },
+          {
+            "end": 305,
+            "source_id": "dev_quill",
+            "start": 224
+          },
+          {
+            "end": 365,
+            "source_id": "dev_quill",
+            "start": 305
+          }
+        ],
+        "text": "Q: Which desk accepts a moon token?\r\nA: The rules in this conversation concern Velvet Desks, also called soft counters.\r\nDo not file a moon token unless its reverse is marked.\r\nException: an unmarked token may rest in the waiting tray, never in the ledger.\r\nThe waiting tray rule qualifies the preceding prohibition.\r\n"
+      },
+      {
+        "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+        "spans": [
+          {
+            "end": 4004,
+            "source_id": "original_domain",
+            "start": 3935
+          },
+          {
+            "end": 4005,
+            "source_id": "original_domain",
+            "start": 4004
+          },
+          {
+            "end": 4067,
+            "source_id": "original_domain",
+            "start": 4005
+          },
+          {
+            "end": 4169,
+            "source_id": "original_domain",
+            "start": 4067
+          },
+          {
+            "end": 4219,
+            "source_id": "original_domain",
+            "start": 4169
+          },
+          {
+            "end": 4277,
+            "source_id": "original_domain",
+            "start": 4219
+          },
+          {
+            "end": 4326,
+            "source_id": "original_domain",
+            "start": 4277
+          }
+        ],
+        "text": "Recurring causes of loss of confidence in a triage output, in order:\n\n1. Confidently incorrect scores on safety critical equipment.\n2. Summaries that omit a detail that changes the decision — a measurement, a repeat occurrence, the\n   fact that the standby was already unavailable.\n3. The same finding scored differently on different days.\n4. Uniform mid-range scores across all findings.\n"
+      },
+      {
+        "source_sha256": "3a004b8eccc41b1be4bceed97313c7bd709513aa3ea4aa73a08000d7b2016094",
+        "spans": [
+          {
+            "end": 394,
+            "source_id": "dev_quill",
+            "start": 365
+          },
+          {
+            "end": 473,
+            "source_id": "dev_quill",
+            "start": 394
+          }
+        ],
+        "text": "Q: What does the dial mean?\r\nA: Higher ink stability means lower smudge likelihood, not higher likelihood.\r\n"
+      },
+      {
+        "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+        "spans": [
+          {
+            "end": 797,
+            "source_id": "original_domain",
+            "start": 772
+          },
+          {
+            "end": 798,
+            "source_id": "original_domain",
+            "start": 797
+          },
+          {
+            "end": 896,
+            "source_id": "original_domain",
+            "start": 798
+          },
+          {
+            "end": 994,
+            "source_id": "original_domain",
+            "start": 896
+          },
+          {
+            "end": 1096,
+            "source_id": "original_domain",
+            "start": 994
+          },
+          {
+            "end": 1121,
+            "source_id": "original_domain",
+            "start": 1096
+          },
+          {
+            "end": 1122,
+            "source_id": "original_domain",
+            "start": 1121
+          },
+          {
+            "end": 1221,
+            "source_id": "original_domain",
+            "start": 1122
+          },
+          {
+            "end": 1256,
+            "source_id": "original_domain",
+            "start": 1221
+          },
+          {
+            "end": 1257,
+            "source_id": "original_domain",
+            "start": 1256
+          }
+        ],
+        "text": "## What moves likelihood\n\nUp: a trend that is still moving; a repeat of a failure that has already occurred this period; an\nactive, unmitigated mechanism (corrosion under wet insulation is progressing now); detection by a\nmethod that only catches late-stage damage — a finding detected by ear or smell is further advanced\nthan one detected by UT.\n\nDown: design margin; a measurement inside its acceptance criterion; an item that is out of service\nand not required to be in service.\n\n"
+      },
+      {
+        "source_sha256": "58f29e3fd9c927c30c9cbc65a3c5c01961fbce9929c16118bcef9bcf395e088f",
+        "spans": [
+          {
+            "end": 31,
+            "source_id": "dev_beacon",
+            "start": 0
+          },
+          {
+            "end": 73,
+            "source_id": "dev_beacon",
+            "start": 31
+          }
+        ],
+        "text": "Beacon toy station directions\r\n1. Read the sign before choosing a step.\r\n"
+      },
+      {
+        "source_sha256": "35a95953d27cf67b4385a2c322fe887bb7b928876c2a0cfa5be642c827383818",
+        "spans": [
+          {
+            "end": 577,
+            "source_id": "dev_atlas",
+            "start": 566
+          },
+          {
+            "end": 655,
+            "source_id": "dev_atlas",
+            "start": 577
+          }
+        ],
+        "text": "# General\r\nAn uncertain cue stays uncertain; a higher cue number means less brightness.\r\n"
+      },
+      {
+        "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+        "spans": [
+          {
+            "end": 53,
+            "source_id": "original_domain",
+            "start": 0
+          },
+          {
+            "end": 54,
+            "source_id": "original_domain",
+            "start": 53
+          },
+          {
+            "end": 156,
+            "source_id": "original_domain",
+            "start": 54
+          },
+          {
+            "end": 188,
+            "source_id": "original_domain",
+            "start": 156
+          },
+          {
+            "end": 189,
+            "source_id": "original_domain",
+            "start": 188
+          }
+        ],
+        "text": "# Integrity and Reliability Notes — Bravo Platform\n\nHandover notes from the outgoing Integrity Engineer. Unedited. This is the only written record of how\nfindings are currently triaged.\n\n"
+      },
+      {
+        "source_sha256": "58f29e3fd9c927c30c9cbc65a3c5c01961fbce9929c16118bcef9bcf395e088f",
+        "spans": [
+          {
+            "end": 323,
+            "source_id": "dev_beacon",
+            "start": 314
+          },
+          {
+            "end": 340,
+            "source_id": "dev_beacon",
+            "start": 323
+          },
+          {
+            "end": 363,
+            "source_id": "dev_beacon",
+            "start": 340
+          },
+          {
+            "end": 368,
+            "source_id": "dev_beacon",
+            "start": 363
+          }
+        ],
+        "text": "```text\r\n# Not a section\r\nScope: Pretend-Scopes\r\n```\r\n"
+      }
+    ],
+    "selection_mode": "conservative_expansion",
+    "status": "ok"
+  },
+  "assessment": {
+    "broadening_ok": true,
+    "case_id": "dev_beacon.unknown",
+    "conservative_expansion": true,
+    "covered_required_atoms": 25,
+    "full_active_corpus_bytes": 6989,
+    "irrelevant_baseline_bytes": 0,
+    "irrelevant_byte_reduction": null,
+    "irrelevant_returned_bytes": 0,
+    "missing_required_atoms": [],
+    "provider_text_bytes": 6989,
+    "recall": 1.0,
+    "required_atom_count": 25,
+    "selected_source_union_bytes": 6989,
+    "status": "pass",
+    "unresolved_alias_labels": [],
+    "unresolved_required_atoms": [],
+    "usefulness_pass": true
+  },
+  "authorized_input_binding": {
+    "findings": {
+      "F-9001": {
+        "equipment_id": "SYN-9018",
+        "equipment_type": "beacon with missing type",
+        "finding_description": "Artificial selector query; no actual fault is asserted.",
+        "finding_id": "F-9001",
+        "inspection_method": "Synthetic selector fixture",
+        "inspection_type": "Routine Operator Round",
+        "reported_by": "Synthetic Fixture",
+        "reported_date": "2026-07-01",
+        "reporter_role": "Software test"
+      }
+    },
+    "manifest": [
+      {
+        "bytes": 325,
+        "kind": "finding_input",
+        "raw_sha256": "d0e3886f1ebed97d28721a38ad55b5370063ad9b1bcd8f08ac6d4be04eefb4af",
+        "source_id": "synthetic-findings"
+      },
+      {
+        "bytes": 3769,
+        "kind": "registry_input",
+        "raw_sha256": "20d5c9b8bfd596e6193b57d5fe7ed19472482f21497d93cd2661d414ecef2d99",
+        "source_id": "synthetic-registry"
+      }
+    ],
+    "registry": {
+      "SYN-9001": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9001",
+        "equipment_type": "Amber-Kites",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9002": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9002",
+        "equipment_type": "Azure Tiles",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9003": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9003",
+        "equipment_type": "Brass Desks",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9004": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9004",
+        "equipment_type": "Copper Wheels",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9005": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9005",
+        "equipment_type": "Cork Rings",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9006": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9006",
+        "equipment_type": "Foam Barges",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9007": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9007",
+        "equipment_type": "Glass-Carts",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9008": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9008",
+        "equipment_type": "Lemon Cubes",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9009": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9009",
+        "equipment_type": "Ochre Tiles",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9010": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9010",
+        "equipment_type": "Paper-Beacons",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9011": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9011",
+        "equipment_type": "Pebble Counters",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9012": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9012",
+        "equipment_type": "Plum-Arcs",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9013": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9013",
+        "equipment_type": "Prism-Gates",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9014": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9014",
+        "equipment_type": "Silk Shuttles",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9015": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9015",
+        "equipment_type": "Tin-Moons",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9016": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9016",
+        "equipment_type": "Unrecognized synthetic subject",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9017": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9017",
+        "equipment_type": "Velvet Desks",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9018": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9018",
+        "equipment_type": "beacon with missing type",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9019": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9019",
+        "equipment_type": "cloud ferries",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9020": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9020",
+        "equipment_type": "folded stars",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9021": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9021",
+        "equipment_type": "parcel toy of unknown class",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9022": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9022",
+        "equipment_type": "possibly a gate, type unconfirmed",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9023": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9023",
+        "equipment_type": "purple bridges",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9024": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9024",
+        "equipment_type": "sky pieces",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9025": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9025",
+        "equipment_type": "smooth runners",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9026": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9026",
+        "equipment_type": "soft counters",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9027": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9027",
+        "equipment_type": "split lights",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9028": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9028",
+        "equipment_type": "sunset ribbons",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9029": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9029",
+        "equipment_type": "uncertain tile family",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9030": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9030",
+        "equipment_type": "unlisted festival object",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9031": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9031",
+        "equipment_type": "unresolved routing object",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      }
+    }
+  },
+  "captures_sha256": {
+    "local_evidence": "a7203112ab915b755c80a2d308ad4dd6abb72c9cfc2aad6d9e561224c9a98a59",
+    "provider_payload": "f763b30d4f45e82172550d9360d2f6f6bffd82769b2f71b344bb31750ae2d738",
+    "result": "af9888cea77976524596b382f07b6875570ed9a3e2c7359406a6497e74bda185"
+  },
+  "case_id": "dev_beacon.unknown",
+  "human_approval_established": false,
+  "local_evidence": {
+    "authorized_input_manifest": [
+      {
+        "bytes": 325,
+        "kind": "finding_input",
+        "raw_sha256": "d0e3886f1ebed97d28721a38ad55b5370063ad9b1bcd8f08ac6d4be04eefb4af",
+        "source_id": "synthetic-findings"
+      },
+      {
+        "bytes": 3769,
+        "kind": "registry_input",
+        "raw_sha256": "20d5c9b8bfd596e6193b57d5fe7ed19472482f21497d93cd2661d414ecef2d99",
+        "source_id": "synthetic-registry"
+      }
+    ],
+    "authorized_input_manifest_sha256": "836e6bcbe26ca72854463fe644b91d143557091536d74d6509ed871133a72339",
+    "conservative_expansion": true,
+    "conservative_source_context_edges": 0,
+    "context_added_item_ids": [],
+    "excluded_item_ids": [],
+    "expansion_reason": "unrecognized_or_incomplete_type_scope",
+    "selected_item_ids": [
+      "item-0823a3fa2e845bdbc71a09642f1df19b",
+      "item-1882c0606066315b00683077ff4740d6",
+      "item-1ab895cd221df4f1a75077d545d9d3f2",
+      "item-2ba20405ab9595829a9d6977b656e3c3",
+      "item-3448fbab27528fa79383fa5d002624ee",
+      "item-372bfdeb030395956dc42f5dcd2008ea",
+      "item-38d3f7aabe9bba8e055a10a100ec02d0",
+      "item-39ed0aeb82d6361dd69f846a23b23e37",
+      "item-463bbd8d07887371f47190520912a7cf",
+      "item-5717b972a85b02a5eb1e7f13de218d66",
+      "item-68aa2954176c1dba0f7e2847d73c6e7d",
+      "item-7a5b69a02b49ba6334d3e4d506225017",
+      "item-7a72da09fb145d4a55df9b3243f50ac5",
+      "item-873552270967e65ff0466a3218945849",
+      "item-96e2a5062810f9de4eafb382fffd5b56",
+      "item-9a7943125dbae1a60e65b34a0cfc04c4",
+      "item-9de1bb763d6185e20290b10d26ae7b59",
+      "item-bc0ff3ab5d51a74f0c58c57e457b33c0",
+      "item-bc82fbbc02ef771436130a8f21efd5d5",
+      "item-c1abf744fa66f0ee364394f2135b4071",
+      "item-c331696899d2e7838c20b4976ba7a43c",
+      "item-cba7cbf96c004f15742d0210b9501897",
+      "item-d28358baa23b6319ae535f971f75f894",
+      "item-d727f446ca99939c11170beb8e66614e",
+      "item-db78896bbf588338899281b98930ce5b",
+      "item-db8dac6372188d74d917ca1f6a140944",
+      "item-e3f71ca1b193b35643d140065314098e",
+      "item-e6b6d5f26578c82f516154dc37fdc9c0",
+      "item-ecee35bfa8d8eaabe27f790420e51e1b",
+      "item-f2c56e80aac905bc37de8e647ea9d9b6",
+      "item-fd2b510b6c20330fe00a6c1dca689b95"
+    ]
+  },
+  "partition": "development",
+  "provider_payload": {
+    "knowledge:item-0823a3fa2e845bdbc71a09642f1df19b@sha256-3deb92064acc6b0334066775d27d84ff2906c446eba72091388928bac78056e5:text": "## Two recurring errors\n\n**Voted arrangements.** One detector head out of a 2oo3 group is a degradation, not a defeat. The\narrangement still functions, so impact is moderate rather than extreme. It is time-limited, because\nthe group has lost its margin and the next failure defeats it.\n\n**Redundancy is a claim, not a fact.** Check whether the redundant partner is healthy before crediting\nit. If findings exist against both legs of a redundant pair in the same batch, the pair is not\nredundant. Assessing each finding in isolation misses this.\n\n",
+    "knowledge:item-1882c0606066315b00683077ff4740d6@sha256-05ff281f16a668667cbb73de296f486125a5132ecc57a8a26fcfe559d0509b69:text": "\r\n\r\n\r\n\r\n",
+    "knowledge:item-1ab895cd221df4f1a75077d545d9d3f2@sha256-1f3a9bea7954940c496544d81d6e31becf03e6a4d8b149dd4d047c6a7bd27b4a:text": "# Mosaic board charter\r\nAll instructions describe an imaginary tile contest.\r\n",
+    "knowledge:item-2ba20405ab9595829a9d6977b656e3c3@sha256-ce3604d38efe3591250bfe1d696bab37489c9766f3dd5477ec3422851178387c:text": "QUILL ARCHIVE: fictional desk game transcript\r\n",
+    "knowledge:item-3448fbab27528fa79383fa5d002624ee@sha256-7ba8eeb2490b7f414478c555d06bf733ae33a83c377e3092688e0e88e6b8e674:text": "## Paper-Beacons\r\nScope: Paper-Beacons\r\nAliases: folded stars\r\n- If a bead is present, do not turn Paper-Beacons.\r\n  - Exception: a silver bead permits one turn after the chime.\r\n  - The silver-bead line qualifies the turn restriction.\r\n",
+    "knowledge:item-372bfdeb030395956dc42f5dcd2008ea@sha256-883dfedb2c4d8eaa341faee8fed61b6aeb634f4332330425de1b3d576d6f34b4:text": "## What moves impact\n\nUp: absence of redundancy; Safety Critical Elements, which exist because a major accident scenario\ndepends on them and are judged against that scenario rather than against repair cost; failures that\ndegrade a protection layer rather than causing direct loss; delayed or hidden consequences — loss of\ncorrosion inhibitor has no effect today and a substantial effect in eighteen months; escalation\npotential.\n\nDown: redundancy that is available and capable; items that can be bypassed without loss of function;\natmospheric, non-hydrocarbon, low-energy services; consequences limited to housekeeping or appearance.\n\n",
+    "knowledge:item-38d3f7aabe9bba8e055a10a100ec02d0@sha256-1983447ba021683899ad58b8e4e7765b4a1f153067a99ddc0146ff0695c37c86:text": "\r\n\r\n\r\n",
+    "knowledge:item-39ed0aeb82d6361dd69f846a23b23e37@sha256-78911225c3748b648d08ae1525142e3a167667ddb4676456fa1116ae8222dfc2:text": "## The two questions\n\n**Likelihood** concerns the item itself: given what the inspection found, how likely is it to stop\nperforming its function in the near term. A hairline coating blister on a thick-walled vessel is low\nlikelihood even on a critical vessel. A bearing with a vibration trend that has not plateaued is high\nlikelihood even on a spare pump.\n\n**Impact** concerns what happens if it does fail. This depends mainly on what the equipment does and\nwhat sits behind it, not on the wording of the finding.\n\nThe common error is scoring by how severe the description sounds.\n\n",
+    "knowledge:item-463bbd8d07887371f47190520912a7cf@sha256-304b8d7ceecd265cbabb392a8ec3c9096516df551ef21deed65b5cc94c6d2385:text": "## Ochre Tiles\r\nScope: Ochre Tiles\r\nStack Ochre Tiles only when the paper flag is flat.\r\nStack Ochre Tiles only when the paper flag is flat.\r\n",
+    "knowledge:item-5717b972a85b02a5eb1e7f13de218d66@sha256-3eb2b55ddbcb762e589c7d71ab5e49f008fdce1f988ce106b917f12ea465705b:text": "## Urgency\n\nNot an average of likelihood and impact, and not the maximum, though the maximum is closer. A\nlow-likelihood, high-impact finding on an SCE still requires attention this week. A near-certain\nfailure of something inconsequential can wait for the next shutdown. Urgency expresses how soon a\nhuman must act.\n\n- 9–10: today\n- 7–8: this week\n- 5–6: this month\n- 3–4: next planned shutdown\n- 1–2: backlog\n\nTwo conditions override the derived value. Anything that leaves a protection layer impaired without a\nrecorded deviation is immediate, because the installation is out of compliance from the point the\nimpairment is known. The same applies to anything that reduces evacuation capacity below the POB\ncount.\n\n",
+    "knowledge:item-68aa2954176c1dba0f7e2847d73c6e7d@sha256-35797074e419b00834357fabebb6149bba24c4d1699b2d5eb53627bc3af30775:text": "## Tin-Moons\r\nEquipment: Tin-Moons\r\nPlace Tin-Moons behind the stripe.\r\nPlace Tin-Moons behind the stripe.\r\n",
+    "knowledge:item-7a5b69a02b49ba6334d3e4d506225017@sha256-68aeb9218c28c75faf248dc0e8042b9077b4bcfb742e9df55a87303962a65ee9:text": "Q: Can a tray be called ready?\r\nA: A ready mark is reported, but another speaker calls readiness unknown; keep that conflict unresolved.\r\n",
+    "knowledge:item-7a72da09fb145d4a55df9b3243f50ac5@sha256-70f847c56eaf08ca6bfeb586a5f6822a69916cfd760675e9dfaf2f23099bf847:text": "## Scale legend\r\nA higher calmness index implies a lower wobble tendency.\r\n",
+    "knowledge:item-873552270967e65ff0466a3218945849@sha256-8b37e488e85e1923283e2e28963f5dfda33501a8bbd56896f69e067e2d48f4d0:text": "## Registry scores\n\n`reliability_score` is 10 = highly reliable, 1 = frequent failures. It runs in the opposite direction\nto likelihood. New starters routinely invert it. `criticality_score` runs in the expected direction,\n10 = most critical.\n\nNeither is sufficient on its own. Criticality is a starting point for impact, reliability a starting\npoint for likelihood; the finding text moves both. A reliable item with a crack in it is still\ncracked.\n\n",
+    "knowledge:item-96e2a5062810f9de4eafb382fffd5b56@sha256-324143d8a2e4a059623e6ba13a441f32d25e2bbad9d12da5d16106fdc74fc072:text": "# Amber-Kites\r\nScope: Amber-Kites\r\nAliases: sunset ribbons\r\nDo not raise Amber-Kites while the bell is silent.\r\nIf the bell sounds, raise one ribbon; except during the painted pause.\r\nThe painted pause below qualifies the raising instruction.\r\n\r\n# Painted pause\r\nDuring a painted pause, keep the ribbon folded even if the bell sounds.\r\n\r\n",
+    "knowledge:item-9a7943125dbae1a60e65b34a0cfc04c4@sha256-92649dd32052b1380731dcbcf2fad2a00f2f4d5c31ba91734ca06432d4de8e59:text": "Atlas festival cue cards; artificial rehearsal instructions only.\r\n\r\n",
+    "knowledge:item-9de1bb763d6185e20290b10d26ae7b59@sha256-467015530f7ce5440c4c30899538f9a2ff43facf1190e33b2fc02528e36aa988:text": "The chime is possibly late; its state is unknown.\r\n",
+    "knowledge:item-bc0ff3ab5d51a74f0c58c57e457b33c0@sha256-d7a46940e2f9a73a97f07c0f278206297fce77d1b1f950155c04c7de9475d659:text": "## Azure Tiles\r\nEquipment: Azure Tiles\r\nAliases: blue counters; sky pieces\r\nWhen a ring is drawn, do not rotate Azure Tiles.\r\nUnless the ring is dotted, the prohibition holds through the next turn.\r\nThe dotted-ring exception qualifies the rotation prohibition.\r\n",
+    "knowledge:item-bc82fbbc02ef771436130a8f21efd5d5@sha256-51cefacfeb2aea3530440cbbb3f1d2e6ea98bdcdcb89692c8af1ce647e529b43:text": "## Quiet instructions\r\nMore reserve marks mean less flutter, not more.\r\n",
+    "knowledge:item-c1abf744fa66f0ee364394f2135b4071@sha256-5ad7c87cb593a12780177fbf916fd03176f7afc1a546d11b3c15581adc2e2e68:text": "The observer says the ring may be dotted; this is not confirmation.\r\n",
+    "knowledge:item-c331696899d2e7838c20b4976ba7a43c@sha256-70789dfc93b75a61b72b4eb0c569e06e1caabcb539df09219733701e616a68f9:text": "## Output expectations\n\nMaintenance planning needs two lines: what is wrong, on what, and why it matters — readable without\nopening the inspection record, and not a restatement of the original finding text. Where the\nassessment is uncertain, that should be stated rather than resolved by picking a mid-range score.\n\n",
+    "knowledge:item-cba7cbf96c004f15742d0210b9501897@sha256-b23d08d6c930d3a0fe8e65dfb3b9bf021434982d3a9fcdc5747e61c7d83794ee:text": "# Glass-Carts\r\nEquipment: Glass-Carts\r\nMove Glass-Carts only after the chalk square is complete.\r\nMove Glass-Carts only after the chalk square is complete.\r\n\r\n",
+    "knowledge:item-d28358baa23b6319ae535f971f75f894@sha256-b28b002ab9d95f538dbbaa6057ac1d4fd8de2a029c6f9e796102718358899eed:text": "OTHER DESK\r\nScope: Brass Desks\r\nLeave a brass token beside Brass Desks until the arch is drawn.\r\nLeave a brass token beside Brass Desks until the arch is drawn.\r\n",
+    "knowledge:item-d727f446ca99939c11170beb8e66614e@sha256-9bc0a1fcdfde9a319a9b7121806eb5d73db2d7a9af7de4497088722bc7a5048a:text": "Q: Which desk accepts a moon token?\r\nA: The rules in this conversation concern Velvet Desks, also called soft counters.\r\nDo not file a moon token unless its reverse is marked.\r\nException: an unmarked token may rest in the waiting tray, never in the ledger.\r\nThe waiting tray rule qualifies the preceding prohibition.\r\n",
+    "knowledge:item-db78896bbf588338899281b98930ce5b@sha256-5cac424e53738b07ecd8eb916b4ef68773d6491b85015a9b25a52cfcb414f30e:text": "Recurring causes of loss of confidence in a triage output, in order:\n\n1. Confidently incorrect scores on safety critical equipment.\n2. Summaries that omit a detail that changes the decision — a measurement, a repeat occurrence, the\n   fact that the standby was already unavailable.\n3. The same finding scored differently on different days.\n4. Uniform mid-range scores across all findings.\n",
+    "knowledge:item-db8dac6372188d74d917ca1f6a140944@sha256-2c8d7609b252162549664718fa1e39cee51987978e4524d8e0a2a429be4866a6:text": "Q: What does the dial mean?\r\nA: Higher ink stability means lower smudge likelihood, not higher likelihood.\r\n",
+    "knowledge:item-e3f71ca1b193b35643d140065314098e@sha256-82dfaa289d6e92f75d510c776eda29c92f7c99be117ea4543db1cae3f4de9f5a:text": "## What moves likelihood\n\nUp: a trend that is still moving; a repeat of a failure that has already occurred this period; an\nactive, unmitigated mechanism (corrosion under wet insulation is progressing now); detection by a\nmethod that only catches late-stage damage — a finding detected by ear or smell is further advanced\nthan one detected by UT.\n\nDown: design margin; a measurement inside its acceptance criterion; an item that is out of service\nand not required to be in service.\n\n",
+    "knowledge:item-e6b6d5f26578c82f516154dc37fdc9c0@sha256-1eb91c14801fa7daeb7eaf9b719b788eb1bb154d6236a4e5f4430102902e6456:text": "Beacon toy station directions\r\n1. Read the sign before choosing a step.\r\n",
+    "knowledge:item-ecee35bfa8d8eaabe27f790420e51e1b@sha256-7e3d925349b9f4be0daa4cc5660c63bbcad7ba8c7a871e6d6fef2385f778adca:text": "# General\r\nAn uncertain cue stays uncertain; a higher cue number means less brightness.\r\n",
+    "knowledge:item-f2c56e80aac905bc37de8e647ea9d9b6@sha256-55a92e74f244ee09a9e5f434cffe39ced8b82aa030059a5f2d4377ecf52fc975:text": "# Integrity and Reliability Notes — Bravo Platform\n\nHandover notes from the outgoing Integrity Engineer. Unedited. This is the only written record of how\nfindings are currently triaged.\n\n",
+    "knowledge:item-fd2b510b6c20330fe00a6c1dca689b95@sha256-4fc79211ce67a9914b52194a15fe5d157baacc4fc89e721474c40fd74ebaa3e9:text": "```text\r\n# Not a section\r\nScope: Pretend-Scopes\r\n```\r\n"
+  },
+  "query_context": {
+    "findings": {
+      "F-9001": {
+        "equipment_id": "SYN-9018",
+        "equipment_type": "beacon with missing type",
+        "finding_description": "Artificial selector query; no actual fault is asserted.",
+        "finding_id": "F-9001",
+        "inspection_method": "Synthetic selector fixture",
+        "inspection_type": "Routine Operator Round",
+        "reported_by": "Synthetic Fixture",
+        "reported_date": "2026-07-01",
+        "reporter_role": "Software test"
+      }
+    },
+    "registry": {
+      "SYN-9001": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9001",
+        "equipment_type": "Amber-Kites",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9002": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9002",
+        "equipment_type": "Azure Tiles",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9003": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9003",
+        "equipment_type": "Brass Desks",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9004": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9004",
+        "equipment_type": "Copper Wheels",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9005": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9005",
+        "equipment_type": "Cork Rings",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9006": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9006",
+        "equipment_type": "Foam Barges",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9007": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9007",
+        "equipment_type": "Glass-Carts",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9008": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9008",
+        "equipment_type": "Lemon Cubes",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9009": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9009",
+        "equipment_type": "Ochre Tiles",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9010": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9010",
+        "equipment_type": "Paper-Beacons",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9011": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9011",
+        "equipment_type": "Pebble Counters",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9012": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9012",
+        "equipment_type": "Plum-Arcs",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9013": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9013",
+        "equipment_type": "Prism-Gates",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9014": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9014",
+        "equipment_type": "Silk Shuttles",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9015": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9015",
+        "equipment_type": "Tin-Moons",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9016": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9016",
+        "equipment_type": "Unrecognized synthetic subject",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9017": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9017",
+        "equipment_type": "Velvet Desks",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9018": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9018",
+        "equipment_type": "beacon with missing type",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9019": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9019",
+        "equipment_type": "cloud ferries",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9020": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9020",
+        "equipment_type": "folded stars",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9021": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9021",
+        "equipment_type": "parcel toy of unknown class",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9022": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9022",
+        "equipment_type": "possibly a gate, type unconfirmed",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9023": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9023",
+        "equipment_type": "purple bridges",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9024": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9024",
+        "equipment_type": "sky pieces",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9025": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9025",
+        "equipment_type": "smooth runners",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9026": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9026",
+        "equipment_type": "soft counters",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9027": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9027",
+        "equipment_type": "split lights",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9028": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9028",
+        "equipment_type": "sunset ribbons",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9029": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9029",
+        "equipment_type": "uncertain tile family",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9030": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9030",
+        "equipment_type": "unlisted festival object",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      },
+      "SYN-9031": {
+        "criticality_score": "5",
+        "engineer_comment": "Authorized synthetic query, not field evidence.",
+        "equipment_id": "SYN-9031",
+        "equipment_type": "unresolved routing object",
+        "redundancy": "None",
+        "reliability_score": "5",
+        "safety_critical_element": "No",
+        "service_description": "Artificial selection subject"
+      }
+    }
+  },
+  "query_registry_fixture": {
+    "path": "eval\\data\\knowledge_extraction\\registry.json",
+    "registry_sha256": "e89eb28f944b15930c1ca4e4bffe4d4d7ae365caa434ec74bb5392d5eaba3d92",
+    "sha256": "2adcad682e0c4b604954ef3ada0f8c6c7b84a7dc16fa5efe0ae22d59193e7ec6"
+  },
+  "result": {
+    "assessment_time": "2026-07-01T00:00:00+00:00",
+    "content_sha256": "1599299415c88f79404248f758a5cf1c9b8b1e3e467d7a9df7b6357a81856573",
+    "contract": "triage-knowledge-result-v1",
+    "entries": {
+      "knowledge:item-0823a3fa2e845bdbc71a09642f1df19b@sha256-3deb92064acc6b0334066775d27d84ff2906c446eba72091388928bac78056e5:text": {
+        "aliases": [],
+        "scopes": [],
+        "source_id": "original_domain",
+        "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+        "spans": [
+          {
+            "end": 1918,
+            "start": 1894
+          },
+          {
+            "end": 1919,
+            "start": 1918
+          },
+          {
+            "end": 2017,
+            "start": 1919
+          },
+          {
+            "end": 2117,
+            "start": 2017
+          },
+          {
+            "end": 2180,
+            "start": 2117
+          },
+          {
+            "end": 2181,
+            "start": 2180
+          },
+          {
+            "end": 2284,
+            "start": 2181
+          },
+          {
+            "end": 2379,
+            "start": 2284
+          },
+          {
+            "end": 2439,
+            "start": 2379
+          },
+          {
+            "end": 2440,
+            "start": 2439
+          }
+        ],
+        "text": "## Two recurring errors\n\n**Voted arrangements.** One detector head out of a 2oo3 group is a degradation, not a defeat. The\narrangement still functions, so impact is moderate rather than extreme. It is time-limited, because\nthe group has lost its margin and the next failure defeats it.\n\n**Redundancy is a claim, not a fact.** Check whether the redundant partner is healthy before crediting\nit. If findings exist against both legs of a redundant pair in the same batch, the pair is not\nredundant. Assessing each finding in isolation misses this.\n\n"
+      },
+      "knowledge:item-1882c0606066315b00683077ff4740d6@sha256-05ff281f16a668667cbb73de296f486125a5132ecc57a8a26fcfe559d0509b69:text": {
+        "aliases": [],
+        "scopes": [],
+        "source_id": "dev_beacon",
+        "source_sha256": "58f29e3fd9c927c30c9cbc65a3c5c01961fbce9929c16118bcef9bcf395e088f",
+        "spans": [
+          {
+            "end": 75,
+            "start": 73
+          },
+          {
+            "end": 314,
+            "start": 312
+          },
+          {
+            "end": 370,
+            "start": 368
+          },
+          {
+            "end": 495,
+            "start": 493
+          }
+        ],
+        "text": "\r\n\r\n\r\n\r\n"
+      },
+      "knowledge:item-1ab895cd221df4f1a75077d545d9d3f2@sha256-1f3a9bea7954940c496544d81d6e31becf03e6a4d8b149dd4d047c6a7bd27b4a:text": {
+        "aliases": [],
+        "scopes": [],
+        "source_id": "dev_mosaic",
+        "source_sha256": "0852927bd7abe608ce450eb87d6e21a23137fa6394e1e5ea36140d84002c338f",
+        "spans": [
+          {
+            "end": 24,
+            "start": 0
+          },
+          {
+            "end": 78,
+            "start": 24
+          }
+        ],
+        "text": "# Mosaic board charter\r\nAll instructions describe an imaginary tile contest.\r\n"
+      },
+      "knowledge:item-2ba20405ab9595829a9d6977b656e3c3@sha256-ce3604d38efe3591250bfe1d696bab37489c9766f3dd5477ec3422851178387c:text": {
+        "aliases": [],
+        "scopes": [],
+        "source_id": "dev_quill",
+        "source_sha256": "3a004b8eccc41b1be4bceed97313c7bd709513aa3ea4aa73a08000d7b2016094",
+        "spans": [
+          {
+            "end": 47,
+            "start": 0
+          }
+        ],
+        "text": "QUILL ARCHIVE: fictional desk game transcript\r\n"
+      },
+      "knowledge:item-3448fbab27528fa79383fa5d002624ee@sha256-7ba8eeb2490b7f414478c555d06bf733ae33a83c377e3092688e0e88e6b8e674:text": {
+        "aliases": [
+          "folded stars"
+        ],
+        "scopes": [
+          "Paper-Beacons"
+        ],
+        "source_id": "dev_beacon",
+        "source_sha256": "58f29e3fd9c927c30c9cbc65a3c5c01961fbce9929c16118bcef9bcf395e088f",
+        "spans": [
+          {
+            "end": 93,
+            "start": 75
+          },
+          {
+            "end": 115,
+            "start": 93
+          },
+          {
+            "end": 138,
+            "start": 115
+          },
+          {
+            "end": 190,
+            "start": 138
+          },
+          {
+            "end": 254,
+            "start": 190
+          },
+          {
+            "end": 312,
+            "start": 254
+          }
+        ],
+        "text": "## Paper-Beacons\r\nScope: Paper-Beacons\r\nAliases: folded stars\r\n- If a bead is present, do not turn Paper-Beacons.\r\n  - Exception: a silver bead permits one turn after the chime.\r\n  - The silver-bead line qualifies the turn restriction.\r\n"
+      },
+      "knowledge:item-372bfdeb030395956dc42f5dcd2008ea@sha256-883dfedb2c4d8eaa341faee8fed61b6aeb634f4332330425de1b3d576d6f34b4:text": {
+        "aliases": [],
+        "scopes": [],
+        "source_id": "original_domain",
+        "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+        "spans": [
+          {
+            "end": 1278,
+            "start": 1257
+          },
+          {
+            "end": 1279,
+            "start": 1278
+          },
+          {
+            "end": 1378,
+            "start": 1279
+          },
+          {
+            "end": 1478,
+            "start": 1378
+          },
+          {
+            "end": 1581,
+            "start": 1478
+          },
+          {
+            "end": 1677,
+            "start": 1581
+          },
+          {
+            "end": 1688,
+            "start": 1677
+          },
+          {
+            "end": 1689,
+            "start": 1688
+          },
+          {
+            "end": 1790,
+            "start": 1689
+          },
+          {
+            "end": 1893,
+            "start": 1790
+          },
+          {
+            "end": 1894,
+            "start": 1893
+          }
+        ],
+        "text": "## What moves impact\n\nUp: absence of redundancy; Safety Critical Elements, which exist because a major accident scenario\ndepends on them and are judged against that scenario rather than against repair cost; failures that\ndegrade a protection layer rather than causing direct loss; delayed or hidden consequences — loss of\ncorrosion inhibitor has no effect today and a substantial effect in eighteen months; escalation\npotential.\n\nDown: redundancy that is available and capable; items that can be bypassed without loss of function;\natmospheric, non-hydrocarbon, low-energy services; consequences limited to housekeeping or appearance.\n\n"
+      },
+      "knowledge:item-38d3f7aabe9bba8e055a10a100ec02d0@sha256-1983447ba021683899ad58b8e4e7765b4a1f153067a99ddc0146ff0695c37c86:text": {
+        "aliases": [],
+        "scopes": [],
+        "source_id": "dev_mosaic",
+        "source_sha256": "0852927bd7abe608ce450eb87d6e21a23137fa6394e1e5ea36140d84002c338f",
+        "spans": [
+          {
+            "end": 80,
+            "start": 78
+          },
+          {
+            "end": 281,
+            "start": 279
+          },
+          {
+            "end": 490,
+            "start": 488
+          }
+        ],
+        "text": "\r\n\r\n\r\n"
+      },
+      "knowledge:item-39ed0aeb82d6361dd69f846a23b23e37@sha256-78911225c3748b648d08ae1525142e3a167667ddb4676456fa1116ae8222dfc2:text": {
+        "aliases": [],
+        "scopes": [],
+        "source_id": "original_domain",
+        "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+        "spans": [
+          {
+            "end": 210,
+            "start": 189
+          },
+          {
+            "end": 211,
+            "start": 210
+          },
+          {
+            "end": 310,
+            "start": 211
+          },
+          {
+            "end": 411,
+            "start": 310
+          },
+          {
+            "end": 513,
+            "start": 411
+          },
+          {
+            "end": 546,
+            "start": 513
+          },
+          {
+            "end": 547,
+            "start": 546
+          },
+          {
+            "end": 648,
+            "start": 547
+          },
+          {
+            "end": 704,
+            "start": 648
+          },
+          {
+            "end": 705,
+            "start": 704
+          },
+          {
+            "end": 771,
+            "start": 705
+          },
+          {
+            "end": 772,
+            "start": 771
+          }
+        ],
+        "text": "## The two questions\n\n**Likelihood** concerns the item itself: given what the inspection found, how likely is it to stop\nperforming its function in the near term. A hairline coating blister on a thick-walled vessel is low\nlikelihood even on a critical vessel. A bearing with a vibration trend that has not plateaued is high\nlikelihood even on a spare pump.\n\n**Impact** concerns what happens if it does fail. This depends mainly on what the equipment does and\nwhat sits behind it, not on the wording of the finding.\n\nThe common error is scoring by how severe the description sounds.\n\n"
+      },
+      "knowledge:item-463bbd8d07887371f47190520912a7cf@sha256-304b8d7ceecd265cbabb392a8ec3c9096516df551ef21deed65b5cc94c6d2385:text": {
+        "aliases": [],
+        "scopes": [
+          "Ochre Tiles"
+        ],
+        "source_id": "dev_mosaic",
+        "source_sha256": "0852927bd7abe608ce450eb87d6e21a23137fa6394e1e5ea36140d84002c338f",
+        "spans": [
+          {
+            "end": 506,
+            "start": 490
+          },
+          {
+            "end": 526,
+            "start": 506
+          },
+          {
+            "end": 579,
+            "start": 526
+          },
+          {
+            "end": 632,
+            "start": 579
+          }
+        ],
+        "text": "## Ochre Tiles\r\nScope: Ochre Tiles\r\nStack Ochre Tiles only when the paper flag is flat.\r\nStack Ochre Tiles only when the paper flag is flat.\r\n"
+      },
+      "knowledge:item-5717b972a85b02a5eb1e7f13de218d66@sha256-3eb2b55ddbcb762e589c7d71ab5e49f008fdce1f988ce106b917f12ea465705b:text": {
+        "aliases": [],
+        "scopes": [],
+        "source_id": "original_domain",
+        "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+        "spans": [
+          {
+            "end": 2451,
+            "start": 2440
+          },
+          {
+            "end": 2452,
+            "start": 2451
+          },
+          {
+            "end": 2546,
+            "start": 2452
+          },
+          {
+            "end": 2643,
+            "start": 2546
+          },
+          {
+            "end": 2741,
+            "start": 2643
+          },
+          {
+            "end": 2757,
+            "start": 2741
+          },
+          {
+            "end": 2758,
+            "start": 2757
+          },
+          {
+            "end": 2774,
+            "start": 2758
+          },
+          {
+            "end": 2793,
+            "start": 2774
+          },
+          {
+            "end": 2813,
+            "start": 2793
+          },
+          {
+            "end": 2844,
+            "start": 2813
+          },
+          {
+            "end": 2861,
+            "start": 2844
+          },
+          {
+            "end": 2862,
+            "start": 2861
+          },
+          {
+            "end": 2964,
+            "start": 2862
+          },
+          {
+            "end": 3062,
+            "start": 2964
+          },
+          {
+            "end": 3159,
+            "start": 3062
+          },
+          {
+            "end": 3166,
+            "start": 3159
+          },
+          {
+            "end": 3167,
+            "start": 3166
+          }
+        ],
+        "text": "## Urgency\n\nNot an average of likelihood and impact, and not the maximum, though the maximum is closer. A\nlow-likelihood, high-impact finding on an SCE still requires attention this week. A near-certain\nfailure of something inconsequential can wait for the next shutdown. Urgency expresses how soon a\nhuman must act.\n\n- 9–10: today\n- 7–8: this week\n- 5–6: this month\n- 3–4: next planned shutdown\n- 1–2: backlog\n\nTwo conditions override the derived value. Anything that leaves a protection layer impaired without a\nrecorded deviation is immediate, because the installation is out of compliance from the point the\nimpairment is known. The same applies to anything that reduces evacuation capacity below the POB\ncount.\n\n"
+      },
+      "knowledge:item-68aa2954176c1dba0f7e2847d73c6e7d@sha256-35797074e419b00834357fabebb6149bba24c4d1699b2d5eb53627bc3af30775:text": {
+        "aliases": [],
+        "scopes": [
+          "Tin-Moons"
+        ],
+        "source_id": "dev_beacon",
+        "source_sha256": "58f29e3fd9c927c30c9cbc65a3c5c01961fbce9929c16118bcef9bcf395e088f",
+        "spans": [
+          {
+            "end": 509,
+            "start": 495
+          },
+          {
+            "end": 531,
+            "start": 509
+          },
+          {
+            "end": 567,
+            "start": 531
+          },
+          {
+            "end": 603,
+            "start": 567
+          }
+        ],
+        "text": "## Tin-Moons\r\nEquipment: Tin-Moons\r\nPlace Tin-Moons behind the stripe.\r\nPlace Tin-Moons behind the stripe.\r\n"
+      },
+      "knowledge:item-7a5b69a02b49ba6334d3e4d506225017@sha256-68aeb9218c28c75faf248dc0e8042b9077b4bcfb742e9df55a87303962a65ee9:text": {
+        "aliases": [],
+        "scopes": [],
+        "source_id": "dev_quill",
+        "source_sha256": "3a004b8eccc41b1be4bceed97313c7bd709513aa3ea4aa73a08000d7b2016094",
+        "spans": [
+          {
+            "end": 505,
+            "start": 473
+          },
+          {
+            "end": 611,
+            "start": 505
+          }
+        ],
+        "text": "Q: Can a tray be called ready?\r\nA: A ready mark is reported, but another speaker calls readiness unknown; keep that conflict unresolved.\r\n"
+      },
+      "knowledge:item-7a72da09fb145d4a55df9b3243f50ac5@sha256-70f847c56eaf08ca6bfeb586a5f6822a69916cfd760675e9dfaf2f23099bf847:text": {
+        "aliases": [],
+        "scopes": [],
+        "source_id": "dev_mosaic",
+        "source_sha256": "0852927bd7abe608ce450eb87d6e21a23137fa6394e1e5ea36140d84002c338f",
+        "spans": [
+          {
+            "end": 298,
+            "start": 281
+          },
+          {
+            "end": 356,
+            "start": 298
+          }
+        ],
+        "text": "## Scale legend\r\nA higher calmness index implies a lower wobble tendency.\r\n"
+      },
+      "knowledge:item-873552270967e65ff0466a3218945849@sha256-8b37e488e85e1923283e2e28963f5dfda33501a8bbd56896f69e067e2d48f4d0:text": {
+        "aliases": [],
+        "scopes": [],
+        "source_id": "original_domain",
+        "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+        "spans": [
+          {
+            "end": 3186,
+            "start": 3167
+          },
+          {
+            "end": 3187,
+            "start": 3186
+          },
+          {
+            "end": 3289,
+            "start": 3187
+          },
+          {
+            "end": 3390,
+            "start": 3289
+          },
+          {
+            "end": 3410,
+            "start": 3390
+          },
+          {
+            "end": 3411,
+            "start": 3410
+          },
+          {
+            "end": 3512,
+            "start": 3411
+          },
+          {
+            "end": 3607,
+            "start": 3512
+          },
+          {
+            "end": 3616,
+            "start": 3607
+          },
+          {
+            "end": 3617,
+            "start": 3616
+          }
+        ],
+        "text": "## Registry scores\n\n`reliability_score` is 10 = highly reliable, 1 = frequent failures. It runs in the opposite direction\nto likelihood. New starters routinely invert it. `criticality_score` runs in the expected direction,\n10 = most critical.\n\nNeither is sufficient on its own. Criticality is a starting point for impact, reliability a starting\npoint for likelihood; the finding text moves both. A reliable item with a crack in it is still\ncracked.\n\n"
+      },
+      "knowledge:item-96e2a5062810f9de4eafb382fffd5b56@sha256-324143d8a2e4a059623e6ba13a441f32d25e2bbad9d12da5d16106fdc74fc072:text": {
+        "aliases": [
+          "sunset ribbons"
+        ],
+        "scopes": [
+          "Amber-Kites"
+        ],
+        "source_id": "dev_atlas",
+        "source_sha256": "35a95953d27cf67b4385a2c322fe887bb7b928876c2a0cfa5be642c827383818",
+        "spans": [
+          {
+            "end": 84,
+            "start": 69
+          },
+          {
+            "end": 104,
+            "start": 84
+          },
+          {
+            "end": 129,
+            "start": 104
+          },
+          {
+            "end": 181,
+            "start": 129
+          },
+          {
+            "end": 253,
+            "start": 181
+          },
+          {
+            "end": 313,
+            "start": 253
+          },
+          {
+            "end": 315,
+            "start": 313
+          },
+          {
+            "end": 332,
+            "start": 315
+          },
+          {
+            "end": 405,
+            "start": 332
+          },
+          {
+            "end": 407,
+            "start": 405
+          }
+        ],
+        "text": "# Amber-Kites\r\nScope: Amber-Kites\r\nAliases: sunset ribbons\r\nDo not raise Amber-Kites while the bell is silent.\r\nIf the bell sounds, raise one ribbon; except during the painted pause.\r\nThe painted pause below qualifies the raising instruction.\r\n\r\n# Painted pause\r\nDuring a painted pause, keep the ribbon folded even if the bell sounds.\r\n\r\n"
+      },
+      "knowledge:item-9a7943125dbae1a60e65b34a0cfc04c4@sha256-92649dd32052b1380731dcbcf2fad2a00f2f4d5c31ba91734ca06432d4de8e59:text": {
+        "aliases": [],
+        "scopes": [],
+        "source_id": "dev_atlas",
+        "source_sha256": "35a95953d27cf67b4385a2c322fe887bb7b928876c2a0cfa5be642c827383818",
+        "spans": [
+          {
+            "end": 67,
+            "start": 0
+          },
+          {
+            "end": 69,
+            "start": 67
+          }
+        ],
+        "text": "Atlas festival cue cards; artificial rehearsal instructions only.\r\n\r\n"
+      },
+      "knowledge:item-9de1bb763d6185e20290b10d26ae7b59@sha256-467015530f7ce5440c4c30899538f9a2ff43facf1190e33b2fc02528e36aa988:text": {
+        "aliases": [],
+        "scopes": [],
+        "source_id": "dev_beacon",
+        "source_sha256": "58f29e3fd9c927c30c9cbc65a3c5c01961fbce9929c16118bcef9bcf395e088f",
+        "spans": [
+          {
+            "end": 493,
+            "start": 442
+          }
+        ],
+        "text": "The chime is possibly late; its state is unknown.\r\n"
+      },
+      "knowledge:item-bc0ff3ab5d51a74f0c58c57e457b33c0@sha256-d7a46940e2f9a73a97f07c0f278206297fce77d1b1f950155c04c7de9475d659:text": {
+        "aliases": [
+          "blue counters",
+          "sky pieces"
+        ],
+        "scopes": [
+          "Azure Tiles"
+        ],
+        "source_id": "dev_mosaic",
+        "source_sha256": "0852927bd7abe608ce450eb87d6e21a23137fa6394e1e5ea36140d84002c338f",
+        "spans": [
+          {
+            "end": 96,
+            "start": 80
+          },
+          {
+            "end": 120,
+            "start": 96
+          },
+          {
+            "end": 156,
+            "start": 120
+          },
+          {
+            "end": 206,
+            "start": 156
+          },
+          {
+            "end": 279,
+            "start": 206
+          },
+          {
+            "end": 419,
+            "start": 356
+          }
+        ],
+        "text": "## Azure Tiles\r\nEquipment: Azure Tiles\r\nAliases: blue counters; sky pieces\r\nWhen a ring is drawn, do not rotate Azure Tiles.\r\nUnless the ring is dotted, the prohibition holds through the next turn.\r\nThe dotted-ring exception qualifies the rotation prohibition.\r\n"
+      },
+      "knowledge:item-bc82fbbc02ef771436130a8f21efd5d5@sha256-51cefacfeb2aea3530440cbbb3f1d2e6ea98bdcdcb89692c8af1ce647e529b43:text": {
+        "aliases": [],
+        "scopes": [],
+        "source_id": "dev_beacon",
+        "source_sha256": "58f29e3fd9c927c30c9cbc65a3c5c01961fbce9929c16118bcef9bcf395e088f",
+        "spans": [
+          {
+            "end": 393,
+            "start": 370
+          },
+          {
+            "end": 442,
+            "start": 393
+          }
+        ],
+        "text": "## Quiet instructions\r\nMore reserve marks mean less flutter, not more.\r\n"
+      },
+      "knowledge:item-c1abf744fa66f0ee364394f2135b4071@sha256-5ad7c87cb593a12780177fbf916fd03176f7afc1a546d11b3c15581adc2e2e68:text": {
+        "aliases": [],
+        "scopes": [],
+        "source_id": "dev_mosaic",
+        "source_sha256": "0852927bd7abe608ce450eb87d6e21a23137fa6394e1e5ea36140d84002c338f",
+        "spans": [
+          {
+            "end": 488,
+            "start": 419
+          }
+        ],
+        "text": "The observer says the ring may be dotted; this is not confirmation.\r\n"
+      },
+      "knowledge:item-c331696899d2e7838c20b4976ba7a43c@sha256-70789dfc93b75a61b72b4eb0c569e06e1caabcb539df09219733701e616a68f9:text": {
+        "aliases": [],
+        "scopes": [],
+        "source_id": "original_domain",
+        "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+        "spans": [
+          {
+            "end": 3640,
+            "start": 3617
+          },
+          {
+            "end": 3641,
+            "start": 3640
+          },
+          {
+            "end": 3743,
+            "start": 3641
+          },
+          {
+            "end": 3836,
+            "start": 3743
+          },
+          {
+            "end": 3934,
+            "start": 3836
+          },
+          {
+            "end": 3935,
+            "start": 3934
+          }
+        ],
+        "text": "## Output expectations\n\nMaintenance planning needs two lines: what is wrong, on what, and why it matters — readable without\nopening the inspection record, and not a restatement of the original finding text. Where the\nassessment is uncertain, that should be stated rather than resolved by picking a mid-range score.\n\n"
+      },
+      "knowledge:item-cba7cbf96c004f15742d0210b9501897@sha256-b23d08d6c930d3a0fe8e65dfb3b9bf021434982d3a9fcdc5747e61c7d83794ee:text": {
+        "aliases": [],
+        "scopes": [
+          "Glass-Carts"
+        ],
+        "source_id": "dev_atlas",
+        "source_sha256": "35a95953d27cf67b4385a2c322fe887bb7b928876c2a0cfa5be642c827383818",
+        "spans": [
+          {
+            "end": 422,
+            "start": 407
+          },
+          {
+            "end": 446,
+            "start": 422
+          },
+          {
+            "end": 505,
+            "start": 446
+          },
+          {
+            "end": 564,
+            "start": 505
+          },
+          {
+            "end": 566,
+            "start": 564
+          }
+        ],
+        "text": "# Glass-Carts\r\nEquipment: Glass-Carts\r\nMove Glass-Carts only after the chalk square is complete.\r\nMove Glass-Carts only after the chalk square is complete.\r\n\r\n"
+      },
+      "knowledge:item-d28358baa23b6319ae535f971f75f894@sha256-b28b002ab9d95f538dbbaa6057ac1d4fd8de2a029c6f9e796102718358899eed:text": {
+        "aliases": [],
+        "scopes": [
+          "Brass Desks"
+        ],
+        "source_id": "dev_quill",
+        "source_sha256": "3a004b8eccc41b1be4bceed97313c7bd709513aa3ea4aa73a08000d7b2016094",
+        "spans": [
+          {
+            "end": 623,
+            "start": 611
+          },
+          {
+            "end": 643,
+            "start": 623
+          },
+          {
+            "end": 708,
+            "start": 643
+          },
+          {
+            "end": 773,
+            "start": 708
+          }
+        ],
+        "text": "OTHER DESK\r\nScope: Brass Desks\r\nLeave a brass token beside Brass Desks until the arch is drawn.\r\nLeave a brass token beside Brass Desks until the arch is drawn.\r\n"
+      },
+      "knowledge:item-d727f446ca99939c11170beb8e66614e@sha256-9bc0a1fcdfde9a319a9b7121806eb5d73db2d7a9af7de4497088722bc7a5048a:text": {
+        "aliases": [
+          "soft counters"
+        ],
+        "scopes": [
+          "Velvet Desks"
+        ],
+        "source_id": "dev_quill",
+        "source_sha256": "3a004b8eccc41b1be4bceed97313c7bd709513aa3ea4aa73a08000d7b2016094",
+        "spans": [
+          {
+            "end": 84,
+            "start": 47
+          },
+          {
+            "end": 168,
+            "start": 84
+          },
+          {
+            "end": 224,
+            "start": 168
+          },
+          {
+            "end": 305,
+            "start": 224
+          },
+          {
+            "end": 365,
+            "start": 305
+          }
+        ],
+        "text": "Q: Which desk accepts a moon token?\r\nA: The rules in this conversation concern Velvet Desks, also called soft counters.\r\nDo not file a moon token unless its reverse is marked.\r\nException: an unmarked token may rest in the waiting tray, never in the ledger.\r\nThe waiting tray rule qualifies the preceding prohibition.\r\n"
+      },
+      "knowledge:item-db78896bbf588338899281b98930ce5b@sha256-5cac424e53738b07ecd8eb916b4ef68773d6491b85015a9b25a52cfcb414f30e:text": {
+        "aliases": [],
+        "scopes": [],
+        "source_id": "original_domain",
+        "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+        "spans": [
+          {
+            "end": 4004,
+            "start": 3935
+          },
+          {
+            "end": 4005,
+            "start": 4004
+          },
+          {
+            "end": 4067,
+            "start": 4005
+          },
+          {
+            "end": 4169,
+            "start": 4067
+          },
+          {
+            "end": 4219,
+            "start": 4169
+          },
+          {
+            "end": 4277,
+            "start": 4219
+          },
+          {
+            "end": 4326,
+            "start": 4277
+          }
+        ],
+        "text": "Recurring causes of loss of confidence in a triage output, in order:\n\n1. Confidently incorrect scores on safety critical equipment.\n2. Summaries that omit a detail that changes the decision — a measurement, a repeat occurrence, the\n   fact that the standby was already unavailable.\n3. The same finding scored differently on different days.\n4. Uniform mid-range scores across all findings.\n"
+      },
+      "knowledge:item-db8dac6372188d74d917ca1f6a140944@sha256-2c8d7609b252162549664718fa1e39cee51987978e4524d8e0a2a429be4866a6:text": {
+        "aliases": [],
+        "scopes": [],
+        "source_id": "dev_quill",
+        "source_sha256": "3a004b8eccc41b1be4bceed97313c7bd709513aa3ea4aa73a08000d7b2016094",
+        "spans": [
+          {
+            "end": 394,
+            "start": 365
+          },
+          {
+            "end": 473,
+            "start": 394
+          }
+        ],
+        "text": "Q: What does the dial mean?\r\nA: Higher ink stability means lower smudge likelihood, not higher likelihood.\r\n"
+      },
+      "knowledge:item-e3f71ca1b193b35643d140065314098e@sha256-82dfaa289d6e92f75d510c776eda29c92f7c99be117ea4543db1cae3f4de9f5a:text": {
+        "aliases": [],
+        "scopes": [],
+        "source_id": "original_domain",
+        "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+        "spans": [
+          {
+            "end": 797,
+            "start": 772
+          },
+          {
+            "end": 798,
+            "start": 797
+          },
+          {
+            "end": 896,
+            "start": 798
+          },
+          {
+            "end": 994,
+            "start": 896
+          },
+          {
+            "end": 1096,
+            "start": 994
+          },
+          {
+            "end": 1121,
+            "start": 1096
+          },
+          {
+            "end": 1122,
+            "start": 1121
+          },
+          {
+            "end": 1221,
+            "start": 1122
+          },
+          {
+            "end": 1256,
+            "start": 1221
+          },
+          {
+            "end": 1257,
+            "start": 1256
+          }
+        ],
+        "text": "## What moves likelihood\n\nUp: a trend that is still moving; a repeat of a failure that has already occurred this period; an\nactive, unmitigated mechanism (corrosion under wet insulation is progressing now); detection by a\nmethod that only catches late-stage damage — a finding detected by ear or smell is further advanced\nthan one detected by UT.\n\nDown: design margin; a measurement inside its acceptance criterion; an item that is out of service\nand not required to be in service.\n\n"
+      },
+      "knowledge:item-e6b6d5f26578c82f516154dc37fdc9c0@sha256-1eb91c14801fa7daeb7eaf9b719b788eb1bb154d6236a4e5f4430102902e6456:text": {
+        "aliases": [],
+        "scopes": [],
+        "source_id": "dev_beacon",
+        "source_sha256": "58f29e3fd9c927c30c9cbc65a3c5c01961fbce9929c16118bcef9bcf395e088f",
+        "spans": [
+          {
+            "end": 31,
+            "start": 0
+          },
+          {
+            "end": 73,
+            "start": 31
+          }
+        ],
+        "text": "Beacon toy station directions\r\n1. Read the sign before choosing a step.\r\n"
+      },
+      "knowledge:item-ecee35bfa8d8eaabe27f790420e51e1b@sha256-7e3d925349b9f4be0daa4cc5660c63bbcad7ba8c7a871e6d6fef2385f778adca:text": {
+        "aliases": [],
+        "scopes": [],
+        "source_id": "dev_atlas",
+        "source_sha256": "35a95953d27cf67b4385a2c322fe887bb7b928876c2a0cfa5be642c827383818",
+        "spans": [
+          {
+            "end": 577,
+            "start": 566
+          },
+          {
+            "end": 655,
+            "start": 577
+          }
+        ],
+        "text": "# General\r\nAn uncertain cue stays uncertain; a higher cue number means less brightness.\r\n"
+      },
+      "knowledge:item-f2c56e80aac905bc37de8e647ea9d9b6@sha256-55a92e74f244ee09a9e5f434cffe39ced8b82aa030059a5f2d4377ecf52fc975:text": {
+        "aliases": [],
+        "scopes": [],
+        "source_id": "original_domain",
+        "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+        "spans": [
+          {
+            "end": 53,
+            "start": 0
+          },
+          {
+            "end": 54,
+            "start": 53
+          },
+          {
+            "end": 156,
+            "start": 54
+          },
+          {
+            "end": 188,
+            "start": 156
+          },
+          {
+            "end": 189,
+            "start": 188
+          }
+        ],
+        "text": "# Integrity and Reliability Notes — Bravo Platform\n\nHandover notes from the outgoing Integrity Engineer. Unedited. This is the only written record of how\nfindings are currently triaged.\n\n"
+      },
+      "knowledge:item-fd2b510b6c20330fe00a6c1dca689b95@sha256-4fc79211ce67a9914b52194a15fe5d157baacc4fc89e721474c40fd74ebaa3e9:text": {
+        "aliases": [],
+        "scopes": [],
+        "source_id": "dev_beacon",
+        "source_sha256": "58f29e3fd9c927c30c9cbc65a3c5c01961fbce9929c16118bcef9bcf395e088f",
+        "spans": [
+          {
+            "end": 323,
+            "start": 314
+          },
+          {
+            "end": 340,
+            "start": 323
+          },
+          {
+            "end": 363,
+            "start": 340
+          },
+          {
+            "end": 368,
+            "start": 363
+          }
+        ],
+        "text": "```text\r\n# Not a section\r\nScope: Pretend-Scopes\r\n```\r\n"
+      }
+    },
+    "error_code": null,
+    "knowledge_version": "sha256-d88f02b384fa4fabaf50c169914c1ec3daa82908a41be4529387c12ed41dbc01",
+    "query_sha256": "7bca57885932542a4e8e43c4432791048f910d17b840319b69dab3f45ae14379",
+    "retrieval_index_sha256": "c105e29549d54ee4628f8091937c44eeb791e0a28c17a526b3b912fa6fd9b864",
+    "selection_mode": "conservative_expansion",
+    "source_index": {
+      "knowledge:item-0823a3fa2e845bdbc71a09642f1df19b@sha256-3deb92064acc6b0334066775d27d84ff2906c446eba72091388928bac78056e5:text": {
+        "source_id": "original_domain",
+        "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+        "spans": [
+          {
+            "end": 1918,
+            "start": 1894
+          },
+          {
+            "end": 1919,
+            "start": 1918
+          },
+          {
+            "end": 2017,
+            "start": 1919
+          },
+          {
+            "end": 2117,
+            "start": 2017
+          },
+          {
+            "end": 2180,
+            "start": 2117
+          },
+          {
+            "end": 2181,
+            "start": 2180
+          },
+          {
+            "end": 2284,
+            "start": 2181
+          },
+          {
+            "end": 2379,
+            "start": 2284
+          },
+          {
+            "end": 2439,
+            "start": 2379
+          },
+          {
+            "end": 2440,
+            "start": 2439
+          }
+        ]
+      },
+      "knowledge:item-1882c0606066315b00683077ff4740d6@sha256-05ff281f16a668667cbb73de296f486125a5132ecc57a8a26fcfe559d0509b69:text": {
+        "source_id": "dev_beacon",
+        "source_sha256": "58f29e3fd9c927c30c9cbc65a3c5c01961fbce9929c16118bcef9bcf395e088f",
+        "spans": [
+          {
+            "end": 75,
+            "start": 73
+          },
+          {
+            "end": 314,
+            "start": 312
+          },
+          {
+            "end": 370,
+            "start": 368
+          },
+          {
+            "end": 495,
+            "start": 493
+          }
+        ]
+      },
+      "knowledge:item-1ab895cd221df4f1a75077d545d9d3f2@sha256-1f3a9bea7954940c496544d81d6e31becf03e6a4d8b149dd4d047c6a7bd27b4a:text": {
+        "source_id": "dev_mosaic",
+        "source_sha256": "0852927bd7abe608ce450eb87d6e21a23137fa6394e1e5ea36140d84002c338f",
+        "spans": [
+          {
+            "end": 24,
+            "start": 0
+          },
+          {
+            "end": 78,
+            "start": 24
+          }
+        ]
+      },
+      "knowledge:item-2ba20405ab9595829a9d6977b656e3c3@sha256-ce3604d38efe3591250bfe1d696bab37489c9766f3dd5477ec3422851178387c:text": {
+        "source_id": "dev_quill",
+        "source_sha256": "3a004b8eccc41b1be4bceed97313c7bd709513aa3ea4aa73a08000d7b2016094",
+        "spans": [
+          {
+            "end": 47,
+            "start": 0
+          }
+        ]
+      },
+      "knowledge:item-3448fbab27528fa79383fa5d002624ee@sha256-7ba8eeb2490b7f414478c555d06bf733ae33a83c377e3092688e0e88e6b8e674:text": {
+        "source_id": "dev_beacon",
+        "source_sha256": "58f29e3fd9c927c30c9cbc65a3c5c01961fbce9929c16118bcef9bcf395e088f",
+        "spans": [
+          {
+            "end": 93,
+            "start": 75
+          },
+          {
+            "end": 115,
+            "start": 93
+          },
+          {
+            "end": 138,
+            "start": 115
+          },
+          {
+            "end": 190,
+            "start": 138
+          },
+          {
+            "end": 254,
+            "start": 190
+          },
+          {
+            "end": 312,
+            "start": 254
+          }
+        ]
+      },
+      "knowledge:item-372bfdeb030395956dc42f5dcd2008ea@sha256-883dfedb2c4d8eaa341faee8fed61b6aeb634f4332330425de1b3d576d6f34b4:text": {
+        "source_id": "original_domain",
+        "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+        "spans": [
+          {
+            "end": 1278,
+            "start": 1257
+          },
+          {
+            "end": 1279,
+            "start": 1278
+          },
+          {
+            "end": 1378,
+            "start": 1279
+          },
+          {
+            "end": 1478,
+            "start": 1378
+          },
+          {
+            "end": 1581,
+            "start": 1478
+          },
+          {
+            "end": 1677,
+            "start": 1581
+          },
+          {
+            "end": 1688,
+            "start": 1677
+          },
+          {
+            "end": 1689,
+            "start": 1688
+          },
+          {
+            "end": 1790,
+            "start": 1689
+          },
+          {
+            "end": 1893,
+            "start": 1790
+          },
+          {
+            "end": 1894,
+            "start": 1893
+          }
+        ]
+      },
+      "knowledge:item-38d3f7aabe9bba8e055a10a100ec02d0@sha256-1983447ba021683899ad58b8e4e7765b4a1f153067a99ddc0146ff0695c37c86:text": {
+        "source_id": "dev_mosaic",
+        "source_sha256": "0852927bd7abe608ce450eb87d6e21a23137fa6394e1e5ea36140d84002c338f",
+        "spans": [
+          {
+            "end": 80,
+            "start": 78
+          },
+          {
+            "end": 281,
+            "start": 279
+          },
+          {
+            "end": 490,
+            "start": 488
+          }
+        ]
+      },
+      "knowledge:item-39ed0aeb82d6361dd69f846a23b23e37@sha256-78911225c3748b648d08ae1525142e3a167667ddb4676456fa1116ae8222dfc2:text": {
+        "source_id": "original_domain",
+        "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+        "spans": [
+          {
+            "end": 210,
+            "start": 189
+          },
+          {
+            "end": 211,
+            "start": 210
+          },
+          {
+            "end": 310,
+            "start": 211
+          },
+          {
+            "end": 411,
+            "start": 310
+          },
+          {
+            "end": 513,
+            "start": 411
+          },
+          {
+            "end": 546,
+            "start": 513
+          },
+          {
+            "end": 547,
+            "start": 546
+          },
+          {
+            "end": 648,
+            "start": 547
+          },
+          {
+            "end": 704,
+            "start": 648
+          },
+          {
+            "end": 705,
+            "start": 704
+          },
+          {
+            "end": 771,
+            "start": 705
+          },
+          {
+            "end": 772,
+            "start": 771
+          }
+        ]
+      },
+      "knowledge:item-463bbd8d07887371f47190520912a7cf@sha256-304b8d7ceecd265cbabb392a8ec3c9096516df551ef21deed65b5cc94c6d2385:text": {
+        "source_id": "dev_mosaic",
+        "source_sha256": "0852927bd7abe608ce450eb87d6e21a23137fa6394e1e5ea36140d84002c338f",
+        "spans": [
+          {
+            "end": 506,
+            "start": 490
+          },
+          {
+            "end": 526,
+            "start": 506
+          },
+          {
+            "end": 579,
+            "start": 526
+          },
+          {
+            "end": 632,
+            "start": 579
+          }
+        ]
+      },
+      "knowledge:item-5717b972a85b02a5eb1e7f13de218d66@sha256-3eb2b55ddbcb762e589c7d71ab5e49f008fdce1f988ce106b917f12ea465705b:text": {
+        "source_id": "original_domain",
+        "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+        "spans": [
+          {
+            "end": 2451,
+            "start": 2440
+          },
+          {
+            "end": 2452,
+            "start": 2451
+          },
+          {
+            "end": 2546,
+            "start": 2452
+          },
+          {
+            "end": 2643,
+            "start": 2546
+          },
+          {
+            "end": 2741,
+            "start": 2643
+          },
+          {
+            "end": 2757,
+            "start": 2741
+          },
+          {
+            "end": 2758,
+            "start": 2757
+          },
+          {
+            "end": 2774,
+            "start": 2758
+          },
+          {
+            "end": 2793,
+            "start": 2774
+          },
+          {
+            "end": 2813,
+            "start": 2793
+          },
+          {
+            "end": 2844,
+            "start": 2813
+          },
+          {
+            "end": 2861,
+            "start": 2844
+          },
+          {
+            "end": 2862,
+            "start": 2861
+          },
+          {
+            "end": 2964,
+            "start": 2862
+          },
+          {
+            "end": 3062,
+            "start": 2964
+          },
+          {
+            "end": 3159,
+            "start": 3062
+          },
+          {
+            "end": 3166,
+            "start": 3159
+          },
+          {
+            "end": 3167,
+            "start": 3166
+          }
+        ]
+      },
+      "knowledge:item-68aa2954176c1dba0f7e2847d73c6e7d@sha256-35797074e419b00834357fabebb6149bba24c4d1699b2d5eb53627bc3af30775:text": {
+        "source_id": "dev_beacon",
+        "source_sha256": "58f29e3fd9c927c30c9cbc65a3c5c01961fbce9929c16118bcef9bcf395e088f",
+        "spans": [
+          {
+            "end": 509,
+            "start": 495
+          },
+          {
+            "end": 531,
+            "start": 509
+          },
+          {
+            "end": 567,
+            "start": 531
+          },
+          {
+            "end": 603,
+            "start": 567
+          }
+        ]
+      },
+      "knowledge:item-7a5b69a02b49ba6334d3e4d506225017@sha256-68aeb9218c28c75faf248dc0e8042b9077b4bcfb742e9df55a87303962a65ee9:text": {
+        "source_id": "dev_quill",
+        "source_sha256": "3a004b8eccc41b1be4bceed97313c7bd709513aa3ea4aa73a08000d7b2016094",
+        "spans": [
+          {
+            "end": 505,
+            "start": 473
+          },
+          {
+            "end": 611,
+            "start": 505
+          }
+        ]
+      },
+      "knowledge:item-7a72da09fb145d4a55df9b3243f50ac5@sha256-70f847c56eaf08ca6bfeb586a5f6822a69916cfd760675e9dfaf2f23099bf847:text": {
+        "source_id": "dev_mosaic",
+        "source_sha256": "0852927bd7abe608ce450eb87d6e21a23137fa6394e1e5ea36140d84002c338f",
+        "spans": [
+          {
+            "end": 298,
+            "start": 281
+          },
+          {
+            "end": 356,
+            "start": 298
+          }
+        ]
+      },
+      "knowledge:item-873552270967e65ff0466a3218945849@sha256-8b37e488e85e1923283e2e28963f5dfda33501a8bbd56896f69e067e2d48f4d0:text": {
+        "source_id": "original_domain",
+        "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+        "spans": [
+          {
+            "end": 3186,
+            "start": 3167
+          },
+          {
+            "end": 3187,
+            "start": 3186
+          },
+          {
+            "end": 3289,
+            "start": 3187
+          },
+          {
+            "end": 3390,
+            "start": 3289
+          },
+          {
+            "end": 3410,
+            "start": 3390
+          },
+          {
+            "end": 3411,
+            "start": 3410
+          },
+          {
+            "end": 3512,
+            "start": 3411
+          },
+          {
+            "end": 3607,
+            "start": 3512
+          },
+          {
+            "end": 3616,
+            "start": 3607
+          },
+          {
+            "end": 3617,
+            "start": 3616
+          }
+        ]
+      },
+      "knowledge:item-96e2a5062810f9de4eafb382fffd5b56@sha256-324143d8a2e4a059623e6ba13a441f32d25e2bbad9d12da5d16106fdc74fc072:text": {
+        "source_id": "dev_atlas",
+        "source_sha256": "35a95953d27cf67b4385a2c322fe887bb7b928876c2a0cfa5be642c827383818",
+        "spans": [
+          {
+            "end": 84,
+            "start": 69
+          },
+          {
+            "end": 104,
+            "start": 84
+          },
+          {
+            "end": 129,
+            "start": 104
+          },
+          {
+            "end": 181,
+            "start": 129
+          },
+          {
+            "end": 253,
+            "start": 181
+          },
+          {
+            "end": 313,
+            "start": 253
+          },
+          {
+            "end": 315,
+            "start": 313
+          },
+          {
+            "end": 332,
+            "start": 315
+          },
+          {
+            "end": 405,
+            "start": 332
+          },
+          {
+            "end": 407,
+            "start": 405
+          }
+        ]
+      },
+      "knowledge:item-9a7943125dbae1a60e65b34a0cfc04c4@sha256-92649dd32052b1380731dcbcf2fad2a00f2f4d5c31ba91734ca06432d4de8e59:text": {
+        "source_id": "dev_atlas",
+        "source_sha256": "35a95953d27cf67b4385a2c322fe887bb7b928876c2a0cfa5be642c827383818",
+        "spans": [
+          {
+            "end": 67,
+            "start": 0
+          },
+          {
+            "end": 69,
+            "start": 67
+          }
+        ]
+      },
+      "knowledge:item-9de1bb763d6185e20290b10d26ae7b59@sha256-467015530f7ce5440c4c30899538f9a2ff43facf1190e33b2fc02528e36aa988:text": {
+        "source_id": "dev_beacon",
+        "source_sha256": "58f29e3fd9c927c30c9cbc65a3c5c01961fbce9929c16118bcef9bcf395e088f",
+        "spans": [
+          {
+            "end": 493,
+            "start": 442
+          }
+        ]
+      },
+      "knowledge:item-bc0ff3ab5d51a74f0c58c57e457b33c0@sha256-d7a46940e2f9a73a97f07c0f278206297fce77d1b1f950155c04c7de9475d659:text": {
+        "source_id": "dev_mosaic",
+        "source_sha256": "0852927bd7abe608ce450eb87d6e21a23137fa6394e1e5ea36140d84002c338f",
+        "spans": [
+          {
+            "end": 96,
+            "start": 80
+          },
+          {
+            "end": 120,
+            "start": 96
+          },
+          {
+            "end": 156,
+            "start": 120
+          },
+          {
+            "end": 206,
+            "start": 156
+          },
+          {
+            "end": 279,
+            "start": 206
+          },
+          {
+            "end": 419,
+            "start": 356
+          }
+        ]
+      },
+      "knowledge:item-bc82fbbc02ef771436130a8f21efd5d5@sha256-51cefacfeb2aea3530440cbbb3f1d2e6ea98bdcdcb89692c8af1ce647e529b43:text": {
+        "source_id": "dev_beacon",
+        "source_sha256": "58f29e3fd9c927c30c9cbc65a3c5c01961fbce9929c16118bcef9bcf395e088f",
+        "spans": [
+          {
+            "end": 393,
+            "start": 370
+          },
+          {
+            "end": 442,
+            "start": 393
+          }
+        ]
+      },
+      "knowledge:item-c1abf744fa66f0ee364394f2135b4071@sha256-5ad7c87cb593a12780177fbf916fd03176f7afc1a546d11b3c15581adc2e2e68:text": {
+        "source_id": "dev_mosaic",
+        "source_sha256": "0852927bd7abe608ce450eb87d6e21a23137fa6394e1e5ea36140d84002c338f",
+        "spans": [
+          {
+            "end": 488,
+            "start": 419
+          }
+        ]
+      },
+      "knowledge:item-c331696899d2e7838c20b4976ba7a43c@sha256-70789dfc93b75a61b72b4eb0c569e06e1caabcb539df09219733701e616a68f9:text": {
+        "source_id": "original_domain",
+        "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+        "spans": [
+          {
+            "end": 3640,
+            "start": 3617
+          },
+          {
+            "end": 3641,
+            "start": 3640
+          },
+          {
+            "end": 3743,
+            "start": 3641
+          },
+          {
+            "end": 3836,
+            "start": 3743
+          },
+          {
+            "end": 3934,
+            "start": 3836
+          },
+          {
+            "end": 3935,
+            "start": 3934
+          }
+        ]
+      },
+      "knowledge:item-cba7cbf96c004f15742d0210b9501897@sha256-b23d08d6c930d3a0fe8e65dfb3b9bf021434982d3a9fcdc5747e61c7d83794ee:text": {
+        "source_id": "dev_atlas",
+        "source_sha256": "35a95953d27cf67b4385a2c322fe887bb7b928876c2a0cfa5be642c827383818",
+        "spans": [
+          {
+            "end": 422,
+            "start": 407
+          },
+          {
+            "end": 446,
+            "start": 422
+          },
+          {
+            "end": 505,
+            "start": 446
+          },
+          {
+            "end": 564,
+            "start": 505
+          },
+          {
+            "end": 566,
+            "start": 564
+          }
+        ]
+      },
+      "knowledge:item-d28358baa23b6319ae535f971f75f894@sha256-b28b002ab9d95f538dbbaa6057ac1d4fd8de2a029c6f9e796102718358899eed:text": {
+        "source_id": "dev_quill",
+        "source_sha256": "3a004b8eccc41b1be4bceed97313c7bd709513aa3ea4aa73a08000d7b2016094",
+        "spans": [
+          {
+            "end": 623,
+            "start": 611
+          },
+          {
+            "end": 643,
+            "start": 623
+          },
+          {
+            "end": 708,
+            "start": 643
+          },
+          {
+            "end": 773,
+            "start": 708
+          }
+        ]
+      },
+      "knowledge:item-d727f446ca99939c11170beb8e66614e@sha256-9bc0a1fcdfde9a319a9b7121806eb5d73db2d7a9af7de4497088722bc7a5048a:text": {
+        "source_id": "dev_quill",
+        "source_sha256": "3a004b8eccc41b1be4bceed97313c7bd709513aa3ea4aa73a08000d7b2016094",
+        "spans": [
+          {
+            "end": 84,
+            "start": 47
+          },
+          {
+            "end": 168,
+            "start": 84
+          },
+          {
+            "end": 224,
+            "start": 168
+          },
+          {
+            "end": 305,
+            "start": 224
+          },
+          {
+            "end": 365,
+            "start": 305
+          }
+        ]
+      },
+      "knowledge:item-db78896bbf588338899281b98930ce5b@sha256-5cac424e53738b07ecd8eb916b4ef68773d6491b85015a9b25a52cfcb414f30e:text": {
+        "source_id": "original_domain",
+        "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+        "spans": [
+          {
+            "end": 4004,
+            "start": 3935
+          },
+          {
+            "end": 4005,
+            "start": 4004
+          },
+          {
+            "end": 4067,
+            "start": 4005
+          },
+          {
+            "end": 4169,
+            "start": 4067
+          },
+          {
+            "end": 4219,
+            "start": 4169
+          },
+          {
+            "end": 4277,
+            "start": 4219
+          },
+          {
+            "end": 4326,
+            "start": 4277
+          }
+        ]
+      },
+      "knowledge:item-db8dac6372188d74d917ca1f6a140944@sha256-2c8d7609b252162549664718fa1e39cee51987978e4524d8e0a2a429be4866a6:text": {
+        "source_id": "dev_quill",
+        "source_sha256": "3a004b8eccc41b1be4bceed97313c7bd709513aa3ea4aa73a08000d7b2016094",
+        "spans": [
+          {
+            "end": 394,
+            "start": 365
+          },
+          {
+            "end": 473,
+            "start": 394
+          }
+        ]
+      },
+      "knowledge:item-e3f71ca1b193b35643d140065314098e@sha256-82dfaa289d6e92f75d510c776eda29c92f7c99be117ea4543db1cae3f4de9f5a:text": {
+        "source_id": "original_domain",
+        "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+        "spans": [
+          {
+            "end": 797,
+            "start": 772
+          },
+          {
+            "end": 798,
+            "start": 797
+          },
+          {
+            "end": 896,
+            "start": 798
+          },
+          {
+            "end": 994,
+            "start": 896
+          },
+          {
+            "end": 1096,
+            "start": 994
+          },
+          {
+            "end": 1121,
+            "start": 1096
+          },
+          {
+            "end": 1122,
+            "start": 1121
+          },
+          {
+            "end": 1221,
+            "start": 1122
+          },
+          {
+            "end": 1256,
+            "start": 1221
+          },
+          {
+            "end": 1257,
+            "start": 1256
+          }
+        ]
+      },
+      "knowledge:item-e6b6d5f26578c82f516154dc37fdc9c0@sha256-1eb91c14801fa7daeb7eaf9b719b788eb1bb154d6236a4e5f4430102902e6456:text": {
+        "source_id": "dev_beacon",
+        "source_sha256": "58f29e3fd9c927c30c9cbc65a3c5c01961fbce9929c16118bcef9bcf395e088f",
+        "spans": [
+          {
+            "end": 31,
+            "start": 0
+          },
+          {
+            "end": 73,
+            "start": 31
+          }
+        ]
+      },
+      "knowledge:item-ecee35bfa8d8eaabe27f790420e51e1b@sha256-7e3d925349b9f4be0daa4cc5660c63bbcad7ba8c7a871e6d6fef2385f778adca:text": {
+        "source_id": "dev_atlas",
+        "source_sha256": "35a95953d27cf67b4385a2c322fe887bb7b928876c2a0cfa5be642c827383818",
+        "spans": [
+          {
+            "end": 577,
+            "start": 566
+          },
+          {
+            "end": 655,
+            "start": 577
+          }
+        ]
+      },
+      "knowledge:item-f2c56e80aac905bc37de8e647ea9d9b6@sha256-55a92e74f244ee09a9e5f434cffe39ced8b82aa030059a5f2d4377ecf52fc975:text": {
+        "source_id": "original_domain",
+        "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+        "spans": [
+          {
+            "end": 53,
+            "start": 0
+          },
+          {
+            "end": 54,
+            "start": 53
+          },
+          {
+            "end": 156,
+            "start": 54
+          },
+          {
+            "end": 188,
+            "start": 156
+          },
+          {
+            "end": 189,
+            "start": 188
+          }
+        ]
+      },
+      "knowledge:item-fd2b510b6c20330fe00a6c1dca689b95@sha256-4fc79211ce67a9914b52194a15fe5d157baacc4fc89e721474c40fd74ebaa3e9:text": {
+        "source_id": "dev_beacon",
+        "source_sha256": "58f29e3fd9c927c30c9cbc65a3c5c01961fbce9929c16118bcef9bcf395e088f",
+        "spans": [
+          {
+            "end": 323,
+            "start": 314
+          },
+          {
+            "end": 340,
+            "start": 323
+          },
+          {
+            "end": 363,
+            "start": 340
+          },
+          {
+            "end": 368,
+            "start": 363
+          }
+        ]
+      }
+    },
+    "status": "ok",
+    "strategy": {
+      "implementation_files": {
+        "contracts.py": "19d1ace2fbf1706dcd4a0bf4b565ef96cda17947172aa0ca987289b93f8008e8",
+        "retrieval.py": "c16ac02cfdf2786f66727a7b3fdf254c22f8bb6b565eab3419cd764fc7c18376",
+        "source.py": "d2cb494ff1088d2e262f2c924467cd126c41921ab6e8191cf0cc86c2a4033e79",
+        "source_store.py": "3673d83cdf8d5937232f77a11329080eef925d1583132ffe8a27a2abc67b98fb"
+      },
+      "implementation_sha256": "0fc1db87601c6f19aea9a42d840a0e4a61ba745f08c282a9beaf42f8e0a94705",
+      "parameters": {
+        "closure": "bidirectional",
+        "general": "always",
+        "lexical": "disabled",
+        "ordering": "address-ascending",
+        "overflow": "failure-only",
+        "scope": "casefold-exact",
+        "source_context": "c0-heading-source-context-v2",
+        "type_scope": "registry-type-vocabulary",
+        "unknown": "all-active",
+        "version": "source-selector-v1"
+      },
+      "parameters_sha256": "758b205aefbcec9954e67293eff9d1614c4d8a21904b5ae374ed8965232b9875",
+      "strategy": "source-selector-v1"
+    }
+  },
+  "selective_qualification": false,
+  "source_id": "dev_beacon",
+  "synthetic_review_only": true
+}

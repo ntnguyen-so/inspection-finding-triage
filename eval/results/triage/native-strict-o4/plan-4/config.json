@@ -1,0 +1,13 @@
+{
+  "model": "o4-mini",
+  "knowledge_version": "sha256-4b26cf50d158de3994cdf3f57d603a9562878dbcd040d553355d9b694eab0fcc",
+  "assessment_time": "2026-07-01T00:00:00+00:00",
+  "phase_attempt_budget": 52,
+  "attempt_ledger": "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\native-strict-o4\\native-strict-development-ledger.json",
+  "max_context_bytes": 128000,
+  "timeout_seconds": 180,
+  "reasoning_effort": "medium",
+  "execution_mode": "strict",
+  "minimum_request_interval_seconds": 30,
+  "azure_max_completion_tokens": 16384
+}

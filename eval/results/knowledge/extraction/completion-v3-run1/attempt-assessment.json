@@ -1,0 +1,111 @@
+{
+  "assessment": {
+    "application_attempts": 7,
+    "first_attempt_failures": 1,
+    "hidden_http_attempts": null,
+    "maximum_application_attempts": 26,
+    "note": "Application-ledger conformance only; Copilot hidden HTTP/token/USD controls remain unknown.",
+    "planned_slots": 13,
+    "recovery_attempts": 0,
+    "status": "fail",
+    "strict_accounting": "not_established",
+    "unexecuted_slots": [
+      "eval_orchard.primary",
+      "eval_loom.primary",
+      "eval_orchard.repeat1",
+      "eval_orchard.repeat2",
+      "eval_prism.repeat1",
+      "eval_prism.repeat2"
+    ],
+    "unsuccessful_or_interrupted_slots": [
+      "eval_river.primary"
+    ],
+    "usd_cost": null
+  },
+  "normalized_attempts": [
+    {
+      "attempt": 1,
+      "error_code": null,
+      "model": "gpt-6-luna",
+      "prompt_sha256": "216e438501b04963eeae35fdb4e46bef7f16dde672e075c2bc4b8541f1784b8f",
+      "provider": "copilot",
+      "schema_sha256": "3c5c33afd63c4d070df459d41fab177f12a674ef4bae5e149e4bc9348276069a",
+      "settings_sha256": "4811bb8e2db07f735560fbe5c39c97af798bc65c9e580c27b9cb3e9c2122f9dd",
+      "slot_id": "dev_atlas.primary",
+      "source_sha256": "35a95953d27cf67b4385a2c322fe887bb7b928876c2a0cfa5be642c827383818",
+      "status": "accepted"
+    },
+    {
+      "attempt": 1,
+      "error_code": null,
+      "model": "gpt-6-luna",
+      "prompt_sha256": "216e438501b04963eeae35fdb4e46bef7f16dde672e075c2bc4b8541f1784b8f",
+      "provider": "copilot",
+      "schema_sha256": "3c5c33afd63c4d070df459d41fab177f12a674ef4bae5e149e4bc9348276069a",
+      "settings_sha256": "4811bb8e2db07f735560fbe5c39c97af798bc65c9e580c27b9cb3e9c2122f9dd",
+      "slot_id": "dev_quill.primary",
+      "source_sha256": "3a004b8eccc41b1be4bceed97313c7bd709513aa3ea4aa73a08000d7b2016094",
+      "status": "accepted"
+    },
+    {
+      "attempt": 1,
+      "error_code": null,
+      "model": "gpt-6-luna",
+      "prompt_sha256": "216e438501b04963eeae35fdb4e46bef7f16dde672e075c2bc4b8541f1784b8f",
+      "provider": "copilot",
+      "schema_sha256": "3c5c33afd63c4d070df459d41fab177f12a674ef4bae5e149e4bc9348276069a",
+      "settings_sha256": "4811bb8e2db07f735560fbe5c39c97af798bc65c9e580c27b9cb3e9c2122f9dd",
+      "slot_id": "dev_mosaic.primary",
+      "source_sha256": "0852927bd7abe608ce450eb87d6e21a23137fa6394e1e5ea36140d84002c338f",
+      "status": "accepted"
+    },
+    {
+      "attempt": 1,
+      "error_code": null,
+      "model": "gpt-6-luna",
+      "prompt_sha256": "216e438501b04963eeae35fdb4e46bef7f16dde672e075c2bc4b8541f1784b8f",
+      "provider": "copilot",
+      "schema_sha256": "3c5c33afd63c4d070df459d41fab177f12a674ef4bae5e149e4bc9348276069a",
+      "settings_sha256": "4811bb8e2db07f735560fbe5c39c97af798bc65c9e580c27b9cb3e9c2122f9dd",
+      "slot_id": "dev_beacon.primary",
+      "source_sha256": "58f29e3fd9c927c30c9cbc65a3c5c01961fbce9929c16118bcef9bcf395e088f",
+      "status": "accepted"
+    },
+    {
+      "attempt": 1,
+      "error_code": null,
+      "model": "gpt-6-luna",
+      "prompt_sha256": "216e438501b04963eeae35fdb4e46bef7f16dde672e075c2bc4b8541f1784b8f",
+      "provider": "copilot",
+      "schema_sha256": "3c5c33afd63c4d070df459d41fab177f12a674ef4bae5e149e4bc9348276069a",
+      "settings_sha256": "4811bb8e2db07f735560fbe5c39c97af798bc65c9e580c27b9cb3e9c2122f9dd",
+      "slot_id": "original_domain.primary",
+      "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+      "status": "accepted"
+    },
+    {
+      "attempt": 1,
+      "error_code": null,
+      "model": "gpt-6-luna",
+      "prompt_sha256": "216e438501b04963eeae35fdb4e46bef7f16dde672e075c2bc4b8541f1784b8f",
+      "provider": "copilot",
+      "schema_sha256": "3c5c33afd63c4d070df459d41fab177f12a674ef4bae5e149e4bc9348276069a",
+      "settings_sha256": "4811bb8e2db07f735560fbe5c39c97af798bc65c9e580c27b9cb3e9c2122f9dd",
+      "slot_id": "eval_prism.primary",
+      "source_sha256": "72765663cf1ff3ff2fb8cd92bbae6051dc4f10493b1df2dfe0452865068c32c1",
+      "status": "accepted"
+    },
+    {
+      "attempt": 1,
+      "error_code": "proposal_validation",
+      "model": "gpt-6-luna",
+      "prompt_sha256": "216e438501b04963eeae35fdb4e46bef7f16dde672e075c2bc4b8541f1784b8f",
+      "provider": "copilot",
+      "schema_sha256": "3c5c33afd63c4d070df459d41fab177f12a674ef4bae5e149e4bc9348276069a",
+      "settings_sha256": "4811bb8e2db07f735560fbe5c39c97af798bc65c9e580c27b9cb3e9c2122f9dd",
+      "slot_id": "eval_river.primary",
+      "source_sha256": "cb87dd0ce116a2813451daa873830d5b53269ac41742330b6d4baee09b61663e",
+      "status": "semantic_error"
+    }
+  ]
+}

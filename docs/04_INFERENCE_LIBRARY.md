@@ -64,7 +64,9 @@ explicit native installed executable; runtime auto-download/update is not used.
 `generate` preserves plain text exactly. JSON mode adds schema guidance to the
 real system role and locally validates the unmodified final response; it does not
 strip markdown, repair JSON, call the SDK's structured-generation harness, or
-retry. Schema references are unsupported, including local references; Draft
+retry. Only existing, acyclic root `#/$defs/name` references with simple ASCII
+names are supported; remote, missing, recursive and dynamic references fail before
+dispatch. Referenced schemas cannot redefine IDs/anchors. Draft
 2020-12 is the supported dialect, with format annotations not asserted.
 
 Failures raise `InferenceError` with `code` and a sanitized `receipt`. The CLI
@@ -273,8 +275,8 @@ and lifecycle; Copilot supplies transport and inference through its agent runtim
 This increment does not implement triage or establish the brief's raw-endpoint
 compliance.
 
-Plain text and locally checked Draft 2020-12 JSON Schema are supported; schema
-references are unsupported. Malformed, duplicate-key, non-finite and schema-invalid
+Plain text and locally checked Draft 2020-12 JSON Schema are supported, including
+the bounded local definitions above. Malformed, duplicate-key, non-finite and schema-invalid
 responses fail explicitly. No score defaults, hidden model fallback, repair,
 adapter retries or ticket publication are provided. Requested/observed model,
 SDK/runtime versions, session identity, SDK-input hashes, elapsed time and exposed
@@ -385,6 +387,25 @@ usage, status and latency. Sanitize SDK errors rather than logging bodies/header
 Default JSON handling matches the Copilot subset: identical schema guidance plus
 strict local validation. An explicit Azure-native JSON Schema mode is additionally
 available for production and tested separately, never presented as Copilot parity.
+System integration later observed an Azure HTTP 400 rejecting `uniqueItems`
+(`eval\results\triage\strict-schema-compatibility-1`). Native schema projection
+therefore omits that unsupported keyword only, without mutating the caller's
+schema; the complete original schema remains the local acceptance validator.
+Duplicate values still raise `schema_violation`, with one dispatch and no hidden
+retry. When selecting the reasoning deployment, Microsoft's documented common
+Azure subset additionally required projecting length, numeric-bound and
+array-size keywords (`minLength`, `maxLength`, `minimum`, `maximum`, `minItems`,
+`maxItems`) rather than assuming every model accepts the chat deployment's richer
+subset. These remain enforced by the unchanged local schema; regression cases
+reject duplicate values, out-of-range numbers and too-short strings.
+Source: `https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/structured-outputs`.
+This does not relax the triage/evaluation contract.
+The later direct Responses deployment rejected newline-bearing string enums
+with `strict=true` (`native-strict-codex\schema-diagnostic-2`). This is observed
+provider behavior, not a local JSON Schema validity claim. Triage now offers
+exact nonblank source lines rather than multiline literal enums; source bytes
+and independent provenance checks remain unchanged. The inference adapter does
+not rewrite enum values or repair responses to conceal such a failure.
 Production callers select Azure explicitly; existing Copilot CLI behavior remains
 backward-compatible.
 
@@ -456,6 +477,19 @@ The identity must already have suitable data-plane access. No key/token acquisit
 is logged. Live checks below used an existing resource key obtained through Azure
 CLI into process-local environment only, not a file or command-line argument.
 Entra was tested with an injected credential, **not** live Azure RBAC.
+
+The Azure constructor's `api="chat_completions"` remains the default. Select
+`api="responses"` / CLI `--azure-api responses` explicitly for a Responses-only
+deployment. This is the direct inference endpoint, not an agent SDK or tool
+orchestrator. The same completion cap maps to `max_output_tokens`, and the same
+original schema validates visible final text. Native format uses the supported
+wire projection. System/user roles and the selected endpoint are checked on the
+actual HTTP request. Storage/background operation, tools, redirects and SDK/
+transport retries are disabled; incomplete/refusal/operational or non-text
+outputs fail. Normal reasoning metadata is not exposed as hidden reasoning.
+Usage retains the Responses API's input/output/details names instead of
+inventing chat counters. Mocked transport checks are not live deployment
+compatibility or triage quality; see document05 for actual phase observations.
 
 Only public Azure HTTPS resource origins and root or `/openai/v1/` paths are
 accepted. Sovereign clouds/custom gateways are outside this module's current
