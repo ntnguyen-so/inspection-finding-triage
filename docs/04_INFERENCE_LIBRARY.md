@@ -7,9 +7,7 @@ models available through GitHub Copilot CLI. It is not authorization to implemen
 all triage, run frozen test findings, or generate final tickets yet.
 
 Read first: root `AGENTS.md`, candidate brief/domain notes, documents 02/03,
-acceptance 1.2, split/fingerprints and prior readiness observations. Reference-only
-inspection of `C:\Users\thanh\falkor_case` informed the transport risks; no code is
-imported from that repository and no files there were changed.
+acceptance 1.2, split/fingerprints and prior readiness observations.
 
 Root `DESIGN.md` is reserved for the project owner to create later. The initial
 inference design notes were moved into this document and that prematurely created
@@ -138,7 +136,7 @@ observations remain in the ledger. This is not X01's preregistered triage repeat
 | Conflicting system/user instructions, GPT and Haiku | Both returned `SYSTEM_OK`; actual system/user event hashes matched supplied inputs |
 | Synthetic `AGENTS.md` canary in working directory | No canary response; runtime system content remained the supplied system prompt |
 | File-tool request, both models | Both returned `NO_TOOLS`; exposed available-tool counts were zero; no execution observed |
-| Typed nested JSON with Vietnamese text, GPT | Valid JSON and schema-conforming expected data |
+| Typed nested JSON with Unicode text, GPT | Valid JSON and schema-conforming expected data |
 | Same JSON task, Haiku | Initial failure plus diagnostic repeat failure; repeat returned markdown-fenced JSON despite instructions; correctly rejected without repair/retry |
 | Remember/forget across fresh GPT sessions | `ACK`, then `NONE`; distinct deleted session IDs, no application result cache |
 | Live 0.5-second GPT inference deadline | `timeout`, abort/interruption events, owned session deleted; no usage receipt, so its billing remains unknown |
@@ -344,12 +342,11 @@ output, tools/function calling, images, streaming API, multi-turn history, HTTP
 server, database, provider-native JSON guarantees, token ceilings, sampling controls,
 automatic repair/retry and operational actions. No X02 delivery claim follows.
 
-Copilot authored the component design and implementation with reference-only
-inspection of the earlier repository. Rejected assumptions: subscription inference
-is free; mocks prove model quality; requested model names prove backend weights;
-tool-disabled agent inference is identical to a raw provider. Two bounded AI
-reviews and dispositions are recorded in section 6, without claimed domain
-expertise or independent certification.
+Copilot authored the component design and implementation. Rejected assumptions:
+subscription inference is free; mocks prove model quality; requested model names
+prove backend weights; tool-disabled agent inference is identical to a raw
+provider. Two bounded AI reviews and dispositions are recorded in section 6,
+without claimed domain expertise or independent certification.
 
 ### Original validation budget, declared before live calls
 
@@ -500,7 +497,7 @@ in the same ledger rather than resetting it.
 | Synthetic case | Azure / Copilot observed result | Text equality |
 |---|---|---|
 | Conflicting system/user roles | Both `SYSTEM_OK` | Yes |
-| Typed JSON, Vietnamese text and boolean array | Same expected parsed object | No; JSON formatting/Unicode escaping differed |
+| Typed JSON, Unicode text and boolean array | Same expected parsed object | No; JSON formatting/Unicode escaping differed |
 | Missing balance | Both `{"balance": null}` | Yes |
 | Tool request without tools | Both `NO_TOOLS` | Yes |
 | Supply synthetic nonce | Both `ACK` | Yes |
@@ -717,17 +714,15 @@ the terminal timeline. No guessed flag or production behavior change was added.
 
 ## 10. English-only authoring and session delivery
 
-The owner requires English throughout authored project material. The earlier
-Vietnamese phrase was an artificial Unicode-transport fixture, not a production
-language instruction or candidate requirement. Active probe examples now use
-the English label `Unicode check: \u2713` (a checkmark) to retain Unicode coverage
-without non-English prose. The canonical rules now require English documentation,
-comments, prompts, examples and generated planning/ticket text.
+The project requires English throughout authored material. Active probe examples
+use the English label `Unicode check: \u2713` (a checkmark) to retain Unicode
+coverage while following the project language requirement. The canonical rules
+require English documentation, comments, prompts, examples and generated
+planning/ticket text.
 
-Recorded prompts/responses remain verbatim: translating a historical response or
-changing its expected value would corrupt the observations and their hashes.
-Sections 4/8 therefore still accurately describe the original language fixture.
-No new paid results are claimed for the replacement fixture.
+Recorded prompts, responses and expected values remain unchanged to preserve
+the observations and their hashes. Sections 4/8 summarize the historical Unicode
+checks. No new paid results are claimed for the current fixture.
 
 Both opt-in probe runners now identify new ledgers as
 `fixture_version=english-unicode-v2` and reject older ledgers before startup or
