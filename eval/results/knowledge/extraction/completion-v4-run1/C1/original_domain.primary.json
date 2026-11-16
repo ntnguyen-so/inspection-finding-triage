@@ -1,0 +1,806 @@
+{
+  "accepted": true,
+  "assessment": {
+    "accepted_wrong_critical": false,
+    "atom_count": 1,
+    "critical_errors": {
+      "detached_scoped_context_pairs": [],
+      "disconnected_scoped_atoms": [],
+      "nonempty_incomplete_scope_atoms": [],
+      "unsupported_alias_facts": [],
+      "unsupported_scope_facts": []
+    },
+    "fidelity": "pass",
+    "group_graph": {
+      "atoms_not_whole_in_one_component": [
+        "whole"
+      ],
+      "component_count": 9,
+      "components": [
+        {
+          "group_count": 1,
+          "source_bytes": {
+            "original_domain": 189
+          },
+          "whole_atom_ids": []
+        },
+        {
+          "group_count": 1,
+          "source_bytes": {
+            "original_domain": 583
+          },
+          "whole_atom_ids": []
+        },
+        {
+          "group_count": 1,
+          "source_bytes": {
+            "original_domain": 485
+          },
+          "whole_atom_ids": []
+        },
+        {
+          "group_count": 1,
+          "source_bytes": {
+            "original_domain": 637
+          },
+          "whole_atom_ids": []
+        },
+        {
+          "group_count": 1,
+          "source_bytes": {
+            "original_domain": 546
+          },
+          "whole_atom_ids": []
+        },
+        {
+          "group_count": 1,
+          "source_bytes": {
+            "original_domain": 727
+          },
+          "whole_atom_ids": []
+        },
+        {
+          "group_count": 1,
+          "source_bytes": {
+            "original_domain": 450
+          },
+          "whole_atom_ids": []
+        },
+        {
+          "group_count": 1,
+          "source_bytes": {
+            "original_domain": 318
+          },
+          "whole_atom_ids": []
+        },
+        {
+          "group_count": 1,
+          "source_bytes": {
+            "original_domain": 391
+          },
+          "whole_atom_ids": []
+        }
+      ],
+      "overclosure_pair_count": 0
+    },
+    "incomplete_scope_byte_facts": [],
+    "metrics": {
+      "alias": {
+        "expected": 0,
+        "missing": [],
+        "observed": 0,
+        "precision": null,
+        "recall": null,
+        "true_positive": 0,
+        "unsupported": []
+      },
+      "context": {
+        "expected": 0,
+        "missing": [],
+        "observed": 0,
+        "precision": null,
+        "recall": null,
+        "true_positive": 0,
+        "unsupported": []
+      },
+      "scope": {
+        "expected": 0,
+        "missing": [],
+        "observed": 0,
+        "precision": null,
+        "recall": null,
+        "true_positive": 0,
+        "unsupported": []
+      }
+    },
+    "repair_count_basis": "Missing complete atom-level scope/alias facts and context-closure pairs; NOT observed human corrections or review benefit.",
+    "repair_counts": {
+      "alias_add": 0,
+      "context_add": 0,
+      "scope_add": 0
+    },
+    "repair_required": false,
+    "semantic": "pass",
+    "status": "pass",
+    "unresolved_alias_count": 0,
+    "unresolved_atom_count": 0
+  },
+  "observation": {
+    "groups": [
+      {
+        "spans": [
+          {
+            "end": 53,
+            "source_id": "original_domain",
+            "start": 0
+          },
+          {
+            "end": 54,
+            "source_id": "original_domain",
+            "start": 53
+          },
+          {
+            "end": 156,
+            "source_id": "original_domain",
+            "start": 54
+          },
+          {
+            "end": 188,
+            "source_id": "original_domain",
+            "start": 156
+          },
+          {
+            "end": 189,
+            "source_id": "original_domain",
+            "start": 188
+          }
+        ],
+        "text": "# Integrity and Reliability Notes — Bravo Platform\n\nHandover notes from the outgoing Integrity Engineer. Unedited. This is the only written record of how\nfindings are currently triaged.\n\n"
+      },
+      {
+        "spans": [
+          {
+            "end": 210,
+            "source_id": "original_domain",
+            "start": 189
+          },
+          {
+            "end": 211,
+            "source_id": "original_domain",
+            "start": 210
+          },
+          {
+            "end": 310,
+            "source_id": "original_domain",
+            "start": 211
+          },
+          {
+            "end": 411,
+            "source_id": "original_domain",
+            "start": 310
+          },
+          {
+            "end": 513,
+            "source_id": "original_domain",
+            "start": 411
+          },
+          {
+            "end": 546,
+            "source_id": "original_domain",
+            "start": 513
+          },
+          {
+            "end": 547,
+            "source_id": "original_domain",
+            "start": 546
+          },
+          {
+            "end": 648,
+            "source_id": "original_domain",
+            "start": 547
+          },
+          {
+            "end": 704,
+            "source_id": "original_domain",
+            "start": 648
+          },
+          {
+            "end": 705,
+            "source_id": "original_domain",
+            "start": 704
+          },
+          {
+            "end": 771,
+            "source_id": "original_domain",
+            "start": 705
+          },
+          {
+            "end": 772,
+            "source_id": "original_domain",
+            "start": 771
+          }
+        ],
+        "text": "## The two questions\n\n**Likelihood** concerns the item itself: given what the inspection found, how likely is it to stop\nperforming its function in the near term. A hairline coating blister on a thick-walled vessel is low\nlikelihood even on a critical vessel. A bearing with a vibration trend that has not plateaued is high\nlikelihood even on a spare pump.\n\n**Impact** concerns what happens if it does fail. This depends mainly on what the equipment does and\nwhat sits behind it, not on the wording of the finding.\n\nThe common error is scoring by how severe the description sounds.\n\n"
+      },
+      {
+        "spans": [
+          {
+            "end": 797,
+            "source_id": "original_domain",
+            "start": 772
+          },
+          {
+            "end": 798,
+            "source_id": "original_domain",
+            "start": 797
+          },
+          {
+            "end": 896,
+            "source_id": "original_domain",
+            "start": 798
+          },
+          {
+            "end": 994,
+            "source_id": "original_domain",
+            "start": 896
+          },
+          {
+            "end": 1096,
+            "source_id": "original_domain",
+            "start": 994
+          },
+          {
+            "end": 1121,
+            "source_id": "original_domain",
+            "start": 1096
+          },
+          {
+            "end": 1122,
+            "source_id": "original_domain",
+            "start": 1121
+          },
+          {
+            "end": 1221,
+            "source_id": "original_domain",
+            "start": 1122
+          },
+          {
+            "end": 1256,
+            "source_id": "original_domain",
+            "start": 1221
+          },
+          {
+            "end": 1257,
+            "source_id": "original_domain",
+            "start": 1256
+          }
+        ],
+        "text": "## What moves likelihood\n\nUp: a trend that is still moving; a repeat of a failure that has already occurred this period; an\nactive, unmitigated mechanism (corrosion under wet insulation is progressing now); detection by a\nmethod that only catches late-stage damage — a finding detected by ear or smell is further advanced\nthan one detected by UT.\n\nDown: design margin; a measurement inside its acceptance criterion; an item that is out of service\nand not required to be in service.\n\n"
+      },
+      {
+        "spans": [
+          {
+            "end": 1278,
+            "source_id": "original_domain",
+            "start": 1257
+          },
+          {
+            "end": 1279,
+            "source_id": "original_domain",
+            "start": 1278
+          },
+          {
+            "end": 1378,
+            "source_id": "original_domain",
+            "start": 1279
+          },
+          {
+            "end": 1478,
+            "source_id": "original_domain",
+            "start": 1378
+          },
+          {
+            "end": 1581,
+            "source_id": "original_domain",
+            "start": 1478
+          },
+          {
+            "end": 1677,
+            "source_id": "original_domain",
+            "start": 1581
+          },
+          {
+            "end": 1688,
+            "source_id": "original_domain",
+            "start": 1677
+          },
+          {
+            "end": 1689,
+            "source_id": "original_domain",
+            "start": 1688
+          },
+          {
+            "end": 1790,
+            "source_id": "original_domain",
+            "start": 1689
+          },
+          {
+            "end": 1893,
+            "source_id": "original_domain",
+            "start": 1790
+          },
+          {
+            "end": 1894,
+            "source_id": "original_domain",
+            "start": 1893
+          }
+        ],
+        "text": "## What moves impact\n\nUp: absence of redundancy; Safety Critical Elements, which exist because a major accident scenario\ndepends on them and are judged against that scenario rather than against repair cost; failures that\ndegrade a protection layer rather than causing direct loss; delayed or hidden consequences — loss of\ncorrosion inhibitor has no effect today and a substantial effect in eighteen months; escalation\npotential.\n\nDown: redundancy that is available and capable; items that can be bypassed without loss of function;\natmospheric, non-hydrocarbon, low-energy services; consequences limited to housekeeping or appearance.\n\n"
+      },
+      {
+        "spans": [
+          {
+            "end": 1918,
+            "source_id": "original_domain",
+            "start": 1894
+          },
+          {
+            "end": 1919,
+            "source_id": "original_domain",
+            "start": 1918
+          },
+          {
+            "end": 2017,
+            "source_id": "original_domain",
+            "start": 1919
+          },
+          {
+            "end": 2117,
+            "source_id": "original_domain",
+            "start": 2017
+          },
+          {
+            "end": 2180,
+            "source_id": "original_domain",
+            "start": 2117
+          },
+          {
+            "end": 2181,
+            "source_id": "original_domain",
+            "start": 2180
+          },
+          {
+            "end": 2284,
+            "source_id": "original_domain",
+            "start": 2181
+          },
+          {
+            "end": 2379,
+            "source_id": "original_domain",
+            "start": 2284
+          },
+          {
+            "end": 2439,
+            "source_id": "original_domain",
+            "start": 2379
+          },
+          {
+            "end": 2440,
+            "source_id": "original_domain",
+            "start": 2439
+          }
+        ],
+        "text": "## Two recurring errors\n\n**Voted arrangements.** One detector head out of a 2oo3 group is a degradation, not a defeat. The\narrangement still functions, so impact is moderate rather than extreme. It is time-limited, because\nthe group has lost its margin and the next failure defeats it.\n\n**Redundancy is a claim, not a fact.** Check whether the redundant partner is healthy before crediting\nit. If findings exist against both legs of a redundant pair in the same batch, the pair is not\nredundant. Assessing each finding in isolation misses this.\n\n"
+      },
+      {
+        "spans": [
+          {
+            "end": 2451,
+            "source_id": "original_domain",
+            "start": 2440
+          },
+          {
+            "end": 2452,
+            "source_id": "original_domain",
+            "start": 2451
+          },
+          {
+            "end": 2546,
+            "source_id": "original_domain",
+            "start": 2452
+          },
+          {
+            "end": 2643,
+            "source_id": "original_domain",
+            "start": 2546
+          },
+          {
+            "end": 2741,
+            "source_id": "original_domain",
+            "start": 2643
+          },
+          {
+            "end": 2757,
+            "source_id": "original_domain",
+            "start": 2741
+          },
+          {
+            "end": 2758,
+            "source_id": "original_domain",
+            "start": 2757
+          },
+          {
+            "end": 2774,
+            "source_id": "original_domain",
+            "start": 2758
+          },
+          {
+            "end": 2793,
+            "source_id": "original_domain",
+            "start": 2774
+          },
+          {
+            "end": 2813,
+            "source_id": "original_domain",
+            "start": 2793
+          },
+          {
+            "end": 2844,
+            "source_id": "original_domain",
+            "start": 2813
+          },
+          {
+            "end": 2861,
+            "source_id": "original_domain",
+            "start": 2844
+          },
+          {
+            "end": 2862,
+            "source_id": "original_domain",
+            "start": 2861
+          },
+          {
+            "end": 2964,
+            "source_id": "original_domain",
+            "start": 2862
+          },
+          {
+            "end": 3062,
+            "source_id": "original_domain",
+            "start": 2964
+          },
+          {
+            "end": 3159,
+            "source_id": "original_domain",
+            "start": 3062
+          },
+          {
+            "end": 3166,
+            "source_id": "original_domain",
+            "start": 3159
+          },
+          {
+            "end": 3167,
+            "source_id": "original_domain",
+            "start": 3166
+          }
+        ],
+        "text": "## Urgency\n\nNot an average of likelihood and impact, and not the maximum, though the maximum is closer. A\nlow-likelihood, high-impact finding on an SCE still requires attention this week. A near-certain\nfailure of something inconsequential can wait for the next shutdown. Urgency expresses how soon a\nhuman must act.\n\n- 9–10: today\n- 7–8: this week\n- 5–6: this month\n- 3–4: next planned shutdown\n- 1–2: backlog\n\nTwo conditions override the derived value. Anything that leaves a protection layer impaired without a\nrecorded deviation is immediate, because the installation is out of compliance from the point the\nimpairment is known. The same applies to anything that reduces evacuation capacity below the POB\ncount.\n\n"
+      },
+      {
+        "spans": [
+          {
+            "end": 3186,
+            "source_id": "original_domain",
+            "start": 3167
+          },
+          {
+            "end": 3187,
+            "source_id": "original_domain",
+            "start": 3186
+          },
+          {
+            "end": 3289,
+            "source_id": "original_domain",
+            "start": 3187
+          },
+          {
+            "end": 3390,
+            "source_id": "original_domain",
+            "start": 3289
+          },
+          {
+            "end": 3410,
+            "source_id": "original_domain",
+            "start": 3390
+          },
+          {
+            "end": 3411,
+            "source_id": "original_domain",
+            "start": 3410
+          },
+          {
+            "end": 3512,
+            "source_id": "original_domain",
+            "start": 3411
+          },
+          {
+            "end": 3607,
+            "source_id": "original_domain",
+            "start": 3512
+          },
+          {
+            "end": 3616,
+            "source_id": "original_domain",
+            "start": 3607
+          },
+          {
+            "end": 3617,
+            "source_id": "original_domain",
+            "start": 3616
+          }
+        ],
+        "text": "## Registry scores\n\n`reliability_score` is 10 = highly reliable, 1 = frequent failures. It runs in the opposite direction\nto likelihood. New starters routinely invert it. `criticality_score` runs in the expected direction,\n10 = most critical.\n\nNeither is sufficient on its own. Criticality is a starting point for impact, reliability a starting\npoint for likelihood; the finding text moves both. A reliable item with a crack in it is still\ncracked.\n\n"
+      },
+      {
+        "spans": [
+          {
+            "end": 3640,
+            "source_id": "original_domain",
+            "start": 3617
+          },
+          {
+            "end": 3641,
+            "source_id": "original_domain",
+            "start": 3640
+          },
+          {
+            "end": 3743,
+            "source_id": "original_domain",
+            "start": 3641
+          },
+          {
+            "end": 3836,
+            "source_id": "original_domain",
+            "start": 3743
+          },
+          {
+            "end": 3934,
+            "source_id": "original_domain",
+            "start": 3836
+          },
+          {
+            "end": 3935,
+            "source_id": "original_domain",
+            "start": 3934
+          }
+        ],
+        "text": "## Output expectations\n\nMaintenance planning needs two lines: what is wrong, on what, and why it matters — readable without\nopening the inspection record, and not a restatement of the original finding text. Where the\nassessment is uncertain, that should be stated rather than resolved by picking a mid-range score.\n\n"
+      },
+      {
+        "spans": [
+          {
+            "end": 4004,
+            "source_id": "original_domain",
+            "start": 3935
+          },
+          {
+            "end": 4005,
+            "source_id": "original_domain",
+            "start": 4004
+          },
+          {
+            "end": 4067,
+            "source_id": "original_domain",
+            "start": 4005
+          },
+          {
+            "end": 4169,
+            "source_id": "original_domain",
+            "start": 4067
+          },
+          {
+            "end": 4219,
+            "source_id": "original_domain",
+            "start": 4169
+          },
+          {
+            "end": 4277,
+            "source_id": "original_domain",
+            "start": 4219
+          },
+          {
+            "end": 4326,
+            "source_id": "original_domain",
+            "start": 4277
+          }
+        ],
+        "text": "Recurring causes of loss of confidence in a triage output, in order:\n\n1. Confidently incorrect scores on safety critical equipment.\n2. Summaries that omit a detail that changes the decision — a measurement, a repeat occurrence, the\n   fact that the standby was already unavailable.\n3. The same finding scored differently on different days.\n4. Uniform mid-range scores across all findings.\n"
+      }
+    ],
+    "metadata": {
+      "aliases": [],
+      "links": [],
+      "scopes": []
+    },
+    "source_id": "original_domain",
+    "source_sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+    "status": "accepted"
+  },
+  "raw_proposal": {
+    "contract_version": 2,
+    "groups": [
+      {
+        "aliases": [],
+        "evidence": [],
+        "group_id": "provenance",
+        "required_with": [],
+        "scopes": [],
+        "unit_ids": [
+          "u0001",
+          "u0002",
+          "u0003",
+          "u0004",
+          "u0005"
+        ]
+      },
+      {
+        "aliases": [],
+        "evidence": [],
+        "group_id": "definitions",
+        "required_with": [],
+        "scopes": [],
+        "unit_ids": [
+          "u0006",
+          "u0007",
+          "u0008",
+          "u0009",
+          "u0010",
+          "u0011",
+          "u0012",
+          "u0013",
+          "u0014",
+          "u0015",
+          "u0016",
+          "u0017"
+        ]
+      },
+      {
+        "aliases": [],
+        "evidence": [],
+        "group_id": "likelihood-factors",
+        "required_with": [],
+        "scopes": [],
+        "unit_ids": [
+          "u0018",
+          "u0019",
+          "u0020",
+          "u0021",
+          "u0022",
+          "u0023",
+          "u0024",
+          "u0025",
+          "u0026",
+          "u0027"
+        ]
+      },
+      {
+        "aliases": [],
+        "evidence": [],
+        "group_id": "impact-factors",
+        "required_with": [],
+        "scopes": [],
+        "unit_ids": [
+          "u0028",
+          "u0029",
+          "u0030",
+          "u0031",
+          "u0032",
+          "u0033",
+          "u0034",
+          "u0035",
+          "u0036",
+          "u0037",
+          "u0038"
+        ]
+      },
+      {
+        "aliases": [],
+        "evidence": [],
+        "group_id": "recurring-errors",
+        "required_with": [],
+        "scopes": [],
+        "unit_ids": [
+          "u0039",
+          "u0040",
+          "u0041",
+          "u0042",
+          "u0043",
+          "u0044",
+          "u0045",
+          "u0046",
+          "u0047",
+          "u0048"
+        ]
+      },
+      {
+        "aliases": [],
+        "evidence": [],
+        "group_id": "urgency",
+        "required_with": [],
+        "scopes": [],
+        "unit_ids": [
+          "u0049",
+          "u0050",
+          "u0051",
+          "u0052",
+          "u0053",
+          "u0054",
+          "u0055",
+          "u0056",
+          "u0057",
+          "u0058",
+          "u0059",
+          "u0060",
+          "u0061",
+          "u0062",
+          "u0063",
+          "u0064",
+          "u0065",
+          "u0066"
+        ]
+      },
+      {
+        "aliases": [],
+        "evidence": [],
+        "group_id": "registry-scores",
+        "required_with": [],
+        "scopes": [],
+        "unit_ids": [
+          "u0067",
+          "u0068",
+          "u0069",
+          "u0070",
+          "u0071",
+          "u0072",
+          "u0073",
+          "u0074",
+          "u0075",
+          "u0076"
+        ]
+      },
+      {
+        "aliases": [],
+        "evidence": [],
+        "group_id": "output-expectations",
+        "required_with": [],
+        "scopes": [],
+        "unit_ids": [
+          "u0077",
+          "u0078",
+          "u0079",
+          "u0080",
+          "u0081",
+          "u0082"
+        ]
+      },
+      {
+        "aliases": [],
+        "evidence": [],
+        "group_id": "confidence-losses",
+        "required_with": [],
+        "scopes": [],
+        "unit_ids": [
+          "u0083",
+          "u0084",
+          "u0085",
+          "u0086",
+          "u0087",
+          "u0088",
+          "u0089"
+        ]
+      }
+    ]
+  },
+  "slot_id": "original_domain.primary"
+}

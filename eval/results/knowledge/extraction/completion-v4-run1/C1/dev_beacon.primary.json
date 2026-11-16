@@ -1,0 +1,495 @@
+{
+  "accepted": true,
+  "assessment": {
+    "accepted_wrong_critical": false,
+    "atom_count": 6,
+    "critical_errors": {
+      "detached_scoped_context_pairs": [],
+      "disconnected_scoped_atoms": [],
+      "nonempty_incomplete_scope_atoms": [],
+      "unsupported_alias_facts": [],
+      "unsupported_scope_facts": []
+    },
+    "fidelity": "pass",
+    "group_graph": {
+      "atoms_not_whole_in_one_component": [],
+      "component_count": 7,
+      "components": [
+        {
+          "group_count": 1,
+          "source_bytes": {
+            "dev_beacon": 73
+          },
+          "whole_atom_ids": []
+        },
+        {
+          "group_count": 1,
+          "source_bytes": {
+            "dev_beacon": 8
+          },
+          "whole_atom_ids": []
+        },
+        {
+          "group_count": 1,
+          "source_bytes": {
+            "dev_beacon": 237
+          },
+          "whole_atom_ids": [
+            "silver",
+            "turn"
+          ]
+        },
+        {
+          "group_count": 1,
+          "source_bytes": {
+            "dev_beacon": 54
+          },
+          "whole_atom_ids": []
+        },
+        {
+          "group_count": 1,
+          "source_bytes": {
+            "dev_beacon": 72
+          },
+          "whole_atom_ids": [
+            "legend"
+          ]
+        },
+        {
+          "group_count": 1,
+          "source_bytes": {
+            "dev_beacon": 51
+          },
+          "whole_atom_ids": [
+            "uncertain"
+          ]
+        },
+        {
+          "group_count": 1,
+          "source_bytes": {
+            "dev_beacon": 108
+          },
+          "whole_atom_ids": [
+            "tin1",
+            "tin2"
+          ]
+        }
+      ],
+      "overclosure_pair_count": 1
+    },
+    "incomplete_scope_byte_facts": [],
+    "metrics": {
+      "alias": {
+        "expected": 1,
+        "missing": [],
+        "observed": 1,
+        "precision": 1.0,
+        "recall": 1.0,
+        "true_positive": 1,
+        "unsupported": []
+      },
+      "context": {
+        "expected": 1,
+        "missing": [],
+        "observed": 2,
+        "precision": 0.5,
+        "recall": 1.0,
+        "true_positive": 1,
+        "unsupported": [
+          [
+            "tin1",
+            "tin2"
+          ]
+        ]
+      },
+      "scope": {
+        "expected": 4,
+        "missing": [],
+        "observed": 4,
+        "precision": 1.0,
+        "recall": 1.0,
+        "true_positive": 4,
+        "unsupported": []
+      }
+    },
+    "repair_count_basis": "Missing complete atom-level scope/alias facts and context-closure pairs; NOT observed human corrections or review benefit.",
+    "repair_counts": {
+      "alias_add": 0,
+      "context_add": 0,
+      "scope_add": 0
+    },
+    "repair_required": false,
+    "semantic": "pass",
+    "status": "pass",
+    "unresolved_alias_count": 0,
+    "unresolved_atom_count": 0
+  },
+  "observation": {
+    "groups": [
+      {
+        "spans": [
+          {
+            "end": 31,
+            "source_id": "dev_beacon",
+            "start": 0
+          },
+          {
+            "end": 73,
+            "source_id": "dev_beacon",
+            "start": 31
+          }
+        ],
+        "text": "Beacon toy station directions\r\n1. Read the sign before choosing a step.\r\n"
+      },
+      {
+        "spans": [
+          {
+            "end": 75,
+            "source_id": "dev_beacon",
+            "start": 73
+          },
+          {
+            "end": 314,
+            "source_id": "dev_beacon",
+            "start": 312
+          },
+          {
+            "end": 370,
+            "source_id": "dev_beacon",
+            "start": 368
+          },
+          {
+            "end": 495,
+            "source_id": "dev_beacon",
+            "start": 493
+          }
+        ],
+        "text": "\r\n\r\n\r\n\r\n"
+      },
+      {
+        "spans": [
+          {
+            "end": 93,
+            "source_id": "dev_beacon",
+            "start": 75
+          },
+          {
+            "end": 115,
+            "source_id": "dev_beacon",
+            "start": 93
+          },
+          {
+            "end": 138,
+            "source_id": "dev_beacon",
+            "start": 115
+          },
+          {
+            "end": 190,
+            "source_id": "dev_beacon",
+            "start": 138
+          },
+          {
+            "end": 254,
+            "source_id": "dev_beacon",
+            "start": 190
+          },
+          {
+            "end": 312,
+            "source_id": "dev_beacon",
+            "start": 254
+          }
+        ],
+        "text": "## Paper-Beacons\r\nScope: Paper-Beacons\r\nAliases: folded stars\r\n- If a bead is present, do not turn Paper-Beacons.\r\n  - Exception: a silver bead permits one turn after the chime.\r\n  - The silver-bead line qualifies the turn restriction.\r\n"
+      },
+      {
+        "spans": [
+          {
+            "end": 323,
+            "source_id": "dev_beacon",
+            "start": 314
+          },
+          {
+            "end": 340,
+            "source_id": "dev_beacon",
+            "start": 323
+          },
+          {
+            "end": 363,
+            "source_id": "dev_beacon",
+            "start": 340
+          },
+          {
+            "end": 368,
+            "source_id": "dev_beacon",
+            "start": 363
+          }
+        ],
+        "text": "```text\r\n# Not a section\r\nScope: Pretend-Scopes\r\n```\r\n"
+      },
+      {
+        "spans": [
+          {
+            "end": 393,
+            "source_id": "dev_beacon",
+            "start": 370
+          },
+          {
+            "end": 442,
+            "source_id": "dev_beacon",
+            "start": 393
+          }
+        ],
+        "text": "## Quiet instructions\r\nMore reserve marks mean less flutter, not more.\r\n"
+      },
+      {
+        "spans": [
+          {
+            "end": 493,
+            "source_id": "dev_beacon",
+            "start": 442
+          }
+        ],
+        "text": "The chime is possibly late; its state is unknown.\r\n"
+      },
+      {
+        "spans": [
+          {
+            "end": 509,
+            "source_id": "dev_beacon",
+            "start": 495
+          },
+          {
+            "end": 531,
+            "source_id": "dev_beacon",
+            "start": 509
+          },
+          {
+            "end": 567,
+            "source_id": "dev_beacon",
+            "start": 531
+          },
+          {
+            "end": 603,
+            "source_id": "dev_beacon",
+            "start": 567
+          }
+        ],
+        "text": "## Tin-Moons\r\nEquipment: Tin-Moons\r\nPlace Tin-Moons behind the stripe.\r\nPlace Tin-Moons behind the stripe.\r\n"
+      }
+    ],
+    "metadata": {
+      "aliases": [
+        {
+          "evidence": [
+            {
+              "end": 115,
+              "source_id": "dev_beacon",
+              "start": 93
+            },
+            {
+              "end": 138,
+              "source_id": "dev_beacon",
+              "start": 115
+            }
+          ],
+          "target": "Paper-Beacons",
+          "value": "folded stars"
+        }
+      ],
+      "links": [],
+      "scopes": [
+        {
+          "evidence": [
+            {
+              "end": 115,
+              "source_id": "dev_beacon",
+              "start": 93
+            },
+            {
+              "end": 138,
+              "source_id": "dev_beacon",
+              "start": 115
+            }
+          ],
+          "spans": [
+            {
+              "end": 93,
+              "source_id": "dev_beacon",
+              "start": 75
+            },
+            {
+              "end": 115,
+              "source_id": "dev_beacon",
+              "start": 93
+            },
+            {
+              "end": 138,
+              "source_id": "dev_beacon",
+              "start": 115
+            },
+            {
+              "end": 190,
+              "source_id": "dev_beacon",
+              "start": 138
+            },
+            {
+              "end": 254,
+              "source_id": "dev_beacon",
+              "start": 190
+            },
+            {
+              "end": 312,
+              "source_id": "dev_beacon",
+              "start": 254
+            }
+          ],
+          "value": "Paper-Beacons"
+        },
+        {
+          "evidence": [
+            {
+              "end": 531,
+              "source_id": "dev_beacon",
+              "start": 509
+            }
+          ],
+          "spans": [
+            {
+              "end": 509,
+              "source_id": "dev_beacon",
+              "start": 495
+            },
+            {
+              "end": 531,
+              "source_id": "dev_beacon",
+              "start": 509
+            },
+            {
+              "end": 567,
+              "source_id": "dev_beacon",
+              "start": 531
+            },
+            {
+              "end": 603,
+              "source_id": "dev_beacon",
+              "start": 567
+            }
+          ],
+          "value": "Tin-Moons"
+        }
+      ]
+    },
+    "source_id": "dev_beacon",
+    "source_sha256": "58f29e3fd9c927c30c9cbc65a3c5c01961fbce9929c16118bcef9bcf395e088f",
+    "status": "accepted"
+  },
+  "raw_proposal": {
+    "contract_version": 2,
+    "groups": [
+      {
+        "aliases": [],
+        "evidence": [],
+        "group_id": "general-directions",
+        "required_with": [],
+        "scopes": [],
+        "unit_ids": [
+          "u0001",
+          "u0002"
+        ]
+      },
+      {
+        "aliases": [
+          "folded stars"
+        ],
+        "evidence": [
+          {
+            "unit_id": "u0005"
+          },
+          {
+            "unit_id": "u0006"
+          }
+        ],
+        "group_id": "paper-beacons-rule",
+        "required_with": [],
+        "scopes": [
+          "Paper-Beacons"
+        ],
+        "unit_ids": [
+          "u0004",
+          "u0005",
+          "u0006",
+          "u0007",
+          "u0008",
+          "u0009"
+        ]
+      },
+      {
+        "aliases": [],
+        "evidence": [],
+        "group_id": "mock-metadata",
+        "required_with": [],
+        "scopes": [],
+        "unit_ids": [
+          "u0011",
+          "u0012",
+          "u0013",
+          "u0014"
+        ]
+      },
+      {
+        "aliases": [],
+        "evidence": [],
+        "group_id": "quiet-observation",
+        "required_with": [],
+        "scopes": [],
+        "unit_ids": [
+          "u0016",
+          "u0017"
+        ]
+      },
+      {
+        "aliases": [],
+        "evidence": [],
+        "group_id": "unknown-chime-state",
+        "required_with": [],
+        "scopes": [],
+        "unit_ids": [
+          "u0018"
+        ]
+      },
+      {
+        "aliases": [],
+        "evidence": [
+          {
+            "unit_id": "u0021"
+          }
+        ],
+        "group_id": "tin-moons-rule",
+        "required_with": [],
+        "scopes": [
+          "Tin-Moons"
+        ],
+        "unit_ids": [
+          "u0020",
+          "u0021",
+          "u0022",
+          "u0023"
+        ]
+      },
+      {
+        "aliases": [],
+        "evidence": [],
+        "group_id": "blank-lines",
+        "required_with": [],
+        "scopes": [],
+        "unit_ids": [
+          "u0003",
+          "u0010",
+          "u0015",
+          "u0019"
+        ]
+      }
+    ]
+  },
+  "slot_id": "dev_beacon.primary"
+}

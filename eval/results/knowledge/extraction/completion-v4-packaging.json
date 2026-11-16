@@ -1,0 +1,34 @@
+{
+  "status": "pass",
+  "revision": "037e939802c5dc4d12292275b9120bc00083323b",
+  "started_at": "2026-11-16T18:12:13.337894+00:00",
+  "completed_at": "2026-11-16T18:12:22.674651+00:00",
+  "source": "Committed inference/knowledge package inputs; parallel uncommitted workflow manifest excluded",
+  "wheel_sha256": "bc45160b81d8f120df4c9b683fe4af94692389ff1754e5dbf41b73b4d809c20e",
+  "commands": [
+    {
+      "argv": [
+        "C:\\Users\\thanh\\falkor_case2\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pip",
+        "wheel",
+        "--disable-pip-version-check",
+        "--no-deps",
+        "--wheel-dir",
+        "C:\\Users\\thanh\\falkor_case2\\.knowledge-package-6p90l47b\\dist",
+        "C:\\Users\\thanh\\falkor_case2\\.knowledge-package-6p90l47b\\snapshot"
+      ],
+      "returncode": 0,
+      "stdout": "Processing c:\\users\\thanh\\falkor_case2\\.knowledge-package-6p90l47b\\snapshot\n  Installing build dependencies: started\n  Installing build dependencies: finished with status 'done'\n  Getting requirements to build wheel: started\n  Getting requirements to build wheel: finished with status 'done'\n  Preparing metadata (pyproject.toml): started\n  Preparing metadata (pyproject.toml): finished with status 'done'\nBuilding wheels for collected packages: falkor-inference\n  Building wheel for falkor-inference (pyproject.toml): started\n  Building wheel for falkor-inference (pyproject.toml): finished with status 'done'\n  Created wheel for falkor-inference: filename=falkor_inference-0.1.0-py3-none-any.whl size=67749 sha256=bc45160b81d8f120df4c9b683fe4af94692389ff1754e5dbf41b73b4d809c20e\n  Stored in directory: C:\\Users\\thanh\\AppData\\Local\\Temp\\pip-ephem-wheel-cache-ezisveqc\\wheels\\7f\\bd\\66\\2d8d8ab56b3cad72192e2071b183b4e65483355183e9ed063b\nSuccessfully built falkor-inference\n",
+      "stderr": ""
+    },
+    {
+      "command": "isolated wheel import and proposal-contract verification",
+      "returncode": 0,
+      "stdout": "Isolated native API and unit-evidence request imports passed; no inference\n",
+      "stderr": ""
+    }
+  ],
+  "shared_environment_modified": false,
+  "provider_calls": 0
+}

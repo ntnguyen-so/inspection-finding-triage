@@ -1,0 +1,15 @@
+{
+  "status": "pass",
+  "captured_at": "2026-11-16T18:13:20.763839+00:00",
+  "query_count": 24,
+  "provider_calls": 0,
+  "immutable_only": true,
+  "copied_directories": [
+    "sources",
+    "revisions",
+    "releases"
+  ],
+  "draft_present": false,
+  "exact_result_payload_evidence_and_grade": true,
+  "scope": "Retained immutable C1 fixture dependencies suffice for exact offline replay; not approval or new model-performance measurement"
+}

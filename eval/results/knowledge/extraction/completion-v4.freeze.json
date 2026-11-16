@@ -1,0 +1,362 @@
+{
+  "freeze": {
+    "contract": "knowledge-completion-freeze-v4",
+    "profile": {
+      "version": "source-first-completion-v4",
+      "provider": "copilot",
+      "model": "gpt-6-luna",
+      "reasoning_effort": "medium",
+      "timeout_seconds": 120,
+      "fallback": false
+    },
+    "code_identity": {
+      "revision": null,
+      "dirty_status": null,
+      "provenance_limitation": "Git was not invoked; current executable bytes are pinned.",
+      "files_sha256": {
+        "eval\\assess.py": "f518fb5c9fc8d5fa1af3b12b6211e94e5b7724ff4aa7f19295ebd351feb1d4f8",
+        "eval\\knowledge_attempts.py": "d44c99c8cf3f6afb2c4e7c329aab992af31b337caeee3f6d7c2cde75979a9df0",
+        "eval\\knowledge_copilot.py": "8c3e09ebebb3b8ef084c3005819c11e300e0d8190a65d69bc3a9d34c04afe192",
+        "eval\\knowledge_eval.py": "043dd254bbc6dda16625bf64d6c33cd4d8a66f512ce51255a4b90b3152acccad",
+        "eval\\knowledge_query_inputs.py": "0979d4d1d6543a27dba2166f27c96f6d010e84863f1c53319cac8f8390583663",
+        "eval\\run_knowledge.py": "65c0dde0f3f05a65a4e2400b5575fd6afb3caf7668d301d1f3000040112e49c7",
+        "eval\\run_knowledge_completion.py": "9a91b349df0faa96ead3ea505cf24c58f1fd6b749185ae5c1e874679fc421a6c",
+        "eval\\run_knowledge_handoff.py": "105777870c804f8168cf6240a19df17a9c6f30b71f3f4d97a27d7aa24a8931e3",
+        "eval\\run_knowledge_package.py": "3f68b4665d2f42398d3837608e0c58182e968c43fce53d9dfdb2af56e747a786",
+        "eval\\tests\\test_assess.py": "93466b08bf970c5dc09c195621a08c48415c2cbf2382f065dea86c0db7b597f8",
+        "eval\\tests\\test_knowledge_attempts.py": "1ecdcdc5cbccc4440b6075b448d045f0af222a227967c74c369905fe9f94cd27",
+        "eval\\tests\\test_knowledge_completion.py": "8e0f937152131ebc90e2822218b7d08501c51b4198225e72d4ed27b382eba024",
+        "eval\\tests\\test_knowledge_copilot.py": "3c11c7bf60a098773e6b5851886b13779631e4d148820d0ef6d2f2a457e0a52c",
+        "eval\\tests\\test_knowledge_eval.py": "e9508e9c9643a1b76571e8d9722a416f1f95bfa237de5a63d730908eac592db4",
+        "eval\\tests\\test_knowledge_handoff.py": "a438b0303697ae688c31807e020fcf79dfa50ad8e847f91b18babd69b315302e",
+        "eval\\tests\\test_knowledge_package.py": "dd74fafd3dd6bb8de01b301bd3dc337e1fccbbd2e2be985b8b62320c5cb53580",
+        "eval\\tests\\test_knowledge_query_inputs.py": "890254b447e3b9cb349bdb36fdfdf79f389a29159474e31d13632acf150f1e9b",
+        "eval\\tests\\test_run_knowledge.py": "95bbfbfcfb8e9ad63f79ea5df7079cf0cae3cb054f1049345d1075d6ff12ac71",
+        "eval\\tests\\test_validate.py": "fb987528ac2c83c50a6797cbb3c40a4eae63ea810b42bd2ba2141ed4d390bf90",
+        "eval\\validate.py": "77622bc3748a31bb1e3eac36d5a985bf12289a8af8052e9234758007c6e19e9b",
+        "triage_knowledge\\__init__.py": "5617bb84d5b53f6725574a452a4a8b0130ec2e4321d5e92653ce754a5964d84a",
+        "triage_knowledge\\__main__.py": "68644fe2d0ec06345784a8b663eea0eeb77f2b598fc54310aeddb9c27755fd17",
+        "triage_knowledge\\context.py": "fa75c133540073923317900186a2aff2c25308aae676abaab9d928d4f613e14a",
+        "triage_knowledge\\contracts.py": "19d1ace2fbf1706dcd4a0bf4b565ef96cda17947172aa0ca987289b93f8008e8",
+        "triage_knowledge\\editor.py": "ad29cc29345f7ae4261a9b6e26efb764b9f347c4ad383f52097d67dd73568ad0",
+        "triage_knowledge\\knowledge.py": "9bcae12d5c6fb7872d704089bd032f68cc1ae3c2d9a01f25debfaa6e2f547b22",
+        "triage_knowledge\\legacy_cli.py": "c15c31637bf63658618a89e09d2cbbe4903f5aaafb6e2884f0493be0d49df45f",
+        "triage_knowledge\\legacy_editor.py": "1a14fc9b17e60459e9436469b1038e292e17cf1ec916c875be6fc30ba3842b67",
+        "triage_knowledge\\retrieval.py": "c16ac02cfdf2786f66727a7b3fdf254c22f8bb6b565eab3419cd764fc7c18376",
+        "triage_knowledge\\source.py": "d2cb494ff1088d2e262f2c924467cd126c41921ab6e8191cf0cc86c2a4033e79",
+        "triage_knowledge\\source_cli.py": "e34171422c006db2528578de93790ba0df73049f8e81a3b03a8eac66adc1f839",
+        "triage_knowledge\\source_context.py": "0f4492fd3b9657166b732e66a70ceb29947e92ef3109c659f14e42da436a0e33",
+        "triage_knowledge\\source_editor.py": "6460267b46903b1feb3e23061be8b7e16bf65cd577b374c791a1843f9f6199d7",
+        "triage_knowledge\\source_store.py": "3673d83cdf8d5937232f77a11329080eef925d1583132ffe8a27a2abc67b98fb",
+        "triage_knowledge\\workflow_export.py": "98ff2d65413cc47625d9ce712ca34c7506b61c44563eaa7de3ade0d0ebb67135",
+        "llm_inference\\__init__.py": "95dc7f05b494cd3c7135bdb061453e9ddc72c45a20777dee1569fe36e8c3f6bc",
+        "llm_inference\\__main__.py": "852673b93b39db4f1327547e2bacaeb2443cc40d0d15dc672b4cab9471035f24",
+        "llm_inference\\_lifecycle.py": "b8c983e8e230e0cdfce5d329f361cdebda6dd040ab6e7774b53626eb1d97bbef",
+        "llm_inference\\azure.py": "938ecb97aed4ab89306ead68f922507b2dc8d9d6f614cb1506beca3a82fbda8c",
+        "llm_inference\\contracts.py": "4d27d144808212ab93959d01c82574ec3add767ed80b30bcb1334596e67621cc",
+        "llm_inference\\copilot.py": "49b01321cfb2d7bb635f119c36e5c1768e40ca23863357e3425fd1c5909f3417"
+      },
+      "code_sha256": "e5256c0ca0abaeb6bd80417ab9d7bc53b413f56df5c5230522910e247314697a"
+    },
+    "reference_version": "knowledge-extraction-reference-v1.4",
+    "grader_version": "knowledge-span-grader-v1.3",
+    "manifest_sha256": "01f42c604a46b6e573ed1cc4069ce7c6edc5010cb05c2f69d51ef88f6f9219ce",
+    "reference_sha256": "4d65b2c719af9df044fd27e907cbf682e636c95d757eca3720a342acf8e25c70",
+    "source_hashes": {
+      "dev_atlas": "35a95953d27cf67b4385a2c322fe887bb7b928876c2a0cfa5be642c827383818",
+      "dev_quill": "3a004b8eccc41b1be4bceed97313c7bd709513aa3ea4aa73a08000d7b2016094",
+      "dev_mosaic": "0852927bd7abe608ce450eb87d6e21a23137fa6394e1e5ea36140d84002c338f",
+      "dev_beacon": "58f29e3fd9c927c30c9cbc65a3c5c01961fbce9929c16118bcef9bcf395e088f",
+      "eval_prism": "72765663cf1ff3ff2fb8cd92bbae6051dc4f10493b1df2dfe0452865068c32c1",
+      "eval_river": "cb87dd0ce116a2813451daa873830d5b53269ac41742330b6d4baee09b61663e",
+      "eval_orchard": "412ea94c07b410bb43a46c04e98de2acfcaca0d5641e39f9f6f8e035f893d66c",
+      "eval_loom": "7c10850f21de579945f1daa3d62353b9fba505a9a78c18ea04049b6fa21c3cfc",
+      "original_domain": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066"
+    },
+    "source_paths": {
+      "dev_atlas": "eval\\data\\knowledge_extraction\\dev_atlas.md",
+      "dev_quill": "eval\\data\\knowledge_extraction\\dev_quill.txt",
+      "dev_mosaic": "eval\\data\\knowledge_extraction\\dev_mosaic.md",
+      "dev_beacon": "eval\\data\\knowledge_extraction\\dev_beacon.md",
+      "eval_prism": "eval\\data\\knowledge_extraction\\eval_prism.md",
+      "eval_river": "eval\\data\\knowledge_extraction\\eval_river.txt",
+      "eval_orchard": "eval\\data\\knowledge_extraction\\eval_orchard.md",
+      "eval_loom": "eval\\data\\knowledge_extraction\\eval_loom.md",
+      "original_domain": "docs\\candidate-pack\\candidate-pack\\reference\\domain_knowledge.md"
+    },
+    "reference_path": "eval\\data\\knowledge_extraction\\reference.json",
+    "schedule": [
+      "dev_atlas.primary",
+      "dev_quill.primary",
+      "dev_mosaic.primary",
+      "dev_beacon.primary",
+      "original_domain.primary",
+      "eval_prism.primary",
+      "eval_river.primary",
+      "eval_orchard.primary",
+      "eval_loom.primary",
+      "eval_orchard.repeat1",
+      "eval_orchard.repeat2",
+      "eval_prism.repeat1",
+      "eval_prism.repeat2"
+    ],
+    "development_and_original_prefix": [
+      "dev_atlas.primary",
+      "dev_quill.primary",
+      "dev_mosaic.primary",
+      "dev_beacon.primary",
+      "original_domain.primary"
+    ],
+    "driver_development_slots": [
+      "dev_atlas.primary",
+      "dev_beacon.primary",
+      "dev_mosaic.primary",
+      "dev_quill.primary",
+      "eval_loom.primary",
+      "eval_orchard.primary",
+      "eval_orchard.repeat1",
+      "eval_orchard.repeat2",
+      "eval_prism.primary",
+      "eval_prism.repeat1",
+      "eval_prism.repeat2",
+      "eval_river.primary",
+      "original_domain.primary"
+    ],
+    "driver_stop_policy": "All slots fail-stop; driver field is NOT a partition declaration.",
+    "repeat_source_ids": [
+      "eval_orchard",
+      "eval_prism"
+    ],
+    "request_hashes": {
+      "dev_atlas.primary": "00a614d2b73e7d2bc919ecda3ca312742bf5f15e1e8dbe619062728292eb6e26",
+      "dev_quill.primary": "3d5ac3ae4aeb589c00a94f348f6a38e06775e7f559b488771ddcb2358993d8c5",
+      "dev_mosaic.primary": "bfd2b1006221e2e55fd82eb7a526ab4a2e195543d63d864b66d2895ed1271ca6",
+      "dev_beacon.primary": "4121586558805c4d82628df0e687c93f76cca6b509f5831c8855fc991f885bb8",
+      "original_domain.primary": "f3b9079af74463cf3e0facc1c1c5d6d1ed8668007e5c5fcb53e190f81cc8fac1",
+      "eval_prism.primary": "138adace8e463eeb913690be4810cd6a34098220ddc97f2b123473f437e15406",
+      "eval_river.primary": "a477ff9b363e0712042f1ca2699b9f1d05a56fefbc5dc63f1264f2d62834c7bf",
+      "eval_orchard.primary": "dfe759635686da67e2c4980f9c5ec0488643b24beee56830c42e03cde7fcc614",
+      "eval_loom.primary": "e366804e242b4560e73f9b665cc0880b8f2af8cef6505ca9280db1e5dcddda7e",
+      "eval_orchard.repeat1": "dfe759635686da67e2c4980f9c5ec0488643b24beee56830c42e03cde7fcc614",
+      "eval_orchard.repeat2": "dfe759635686da67e2c4980f9c5ec0488643b24beee56830c42e03cde7fcc614",
+      "eval_prism.repeat1": "138adace8e463eeb913690be4810cd6a34098220ddc97f2b123473f437e15406",
+      "eval_prism.repeat2": "138adace8e463eeb913690be4810cd6a34098220ddc97f2b123473f437e15406"
+    },
+    "query_input_policy": "Unchanged frozen subjects; identical fixed source-literal/input registry for all C0/C1 queries.",
+    "query_registry_fixture": {
+      "path": "eval\\data\\knowledge_extraction\\registry.json",
+      "sha256": "2adcad682e0c4b604954ef3ada0f8c6c7b84a7dc16fa5efe0ae22d59193e7ec6",
+      "registry_sha256": "e89eb28f944b15930c1ca4e4bffe4d4d7ae365caa434ec74bb5392d5eaba3d92"
+    },
+    "registry_construction": "Fixture authoring only: literal whole-line Scope:/Equipment: declarations outside fences in the eight unchanged synthetic sources, plus declared query input types. Source-authored scope labels ARE used; this inventory is NOT independent of source authorship. Reference access supplies only query IDs and subject_types, never rule-to-scope, atom or expected-answer assignments. No original domain or model output. Empty query type lists retain the existing missing-type sentinel. Shared all-family vocabulary exposure is NOT blind. Vocabulary coverage does NOT qualify semantic quality, field/domain knowledge or type safety: raw critical extraction grades and per-case recall must still pass.",
+    "dispatch_readiness": {
+      "status": "ready_explicit_cli_authorization",
+      "note": "New explicit paid v4 approval and this exact reviewed freeze are required; v3 approval does not carry forward. --freeze and --allow-inference are both required."
+    },
+    "prior_extraction_accounting": {
+      "ledgers": [
+        {
+          "path": "eval\\results\\knowledge\\extraction\\source-first-copilot.experimental-ledger.json",
+          "sha256": "54661f7f6ad43c033c0e2e8d88580d6752481f4f575a576d1fa79c5701288013",
+          "application_attempts_reserved": 1,
+          "spent_states": [
+            {
+              "number": 1,
+              "slot": "dev_atlas.primary",
+              "state": "finished",
+              "request_sha256": "d90808857165672153411799c84192371d569543292f4324d4e65ca7e68aab10",
+              "status": "failed",
+              "error_class": "proposal_validation"
+            }
+          ]
+        },
+        {
+          "path": "eval\\results\\knowledge\\extraction\\source-first-completion.experimental-ledger.json",
+          "sha256": "8571b76952da79e71e9a0edd0cbe67b9c6efb4eadeee22f0742eba5f88dc3c4e",
+          "application_attempts_reserved": 3,
+          "spent_states": [
+            {
+              "number": 1,
+              "slot": "dev_atlas.primary",
+              "state": "finished",
+              "request_sha256": "7dc822dc9fc1fe4d85fd006f17edb1bf0a61174c386f52b7d4ea4cabb53d5b5b",
+              "status": "success",
+              "error_class": null
+            },
+            {
+              "number": 2,
+              "slot": "dev_quill.primary",
+              "state": "finished",
+              "request_sha256": "4be38b6e6d97cd384e6a43317982d1f383d188465c887816eb121048778c3f9d",
+              "status": "success",
+              "error_class": null
+            },
+            {
+              "number": 3,
+              "slot": "dev_mosaic.primary",
+              "state": "finished",
+              "request_sha256": "051d98b9016f3fa06a53c0c4210a85722e3e69356f41a9432edc9fefe54f3265",
+              "status": "failed",
+              "error_class": "proposal_validation"
+            }
+          ]
+        },
+        {
+          "path": "eval\\results\\knowledge\\extraction\\source-first-completion-v3.experimental-ledger.json",
+          "sha256": "fd655040b007b4c1704c1f432957ecde0cb56bcd605aabaec330e317c7443768",
+          "application_attempts_reserved": 7,
+          "spent_states": [
+            {
+              "number": 1,
+              "slot": "dev_atlas.primary",
+              "state": "finished",
+              "request_sha256": "6c621aa8d8aa0ab943e6fde5bd5b1de24f6dd634e250fe2ca510a41ad0f51ade",
+              "status": "success",
+              "error_class": null
+            },
+            {
+              "number": 2,
+              "slot": "dev_quill.primary",
+              "state": "finished",
+              "request_sha256": "afd12a458fb658f95319af0cbbd37faa5b478cf4c5c095fc1f0e32c7cf68d21a",
+              "status": "success",
+              "error_class": null
+            },
+            {
+              "number": 3,
+              "slot": "dev_mosaic.primary",
+              "state": "finished",
+              "request_sha256": "68798c22408f6dffcef6c256a5291609caeeb6e7e568a05931ad350b74e13ebc",
+              "status": "success",
+              "error_class": null
+            },
+            {
+              "number": 4,
+              "slot": "dev_beacon.primary",
+              "state": "finished",
+              "request_sha256": "cfc6bd677bcd27dea05639b71eeb3fd718ea94c1d187c52b2b77b247420027f5",
+              "status": "success",
+              "error_class": null
+            },
+            {
+              "number": 5,
+              "slot": "original_domain.primary",
+              "state": "finished",
+              "request_sha256": "843a65e091530d1b492ad1f92f0c1ba4a1cd039f6d1c79fd32fe88ff11064ff3",
+              "status": "success",
+              "error_class": null
+            },
+            {
+              "number": 6,
+              "slot": "eval_prism.primary",
+              "state": "finished",
+              "request_sha256": "3ff38880b988f78fd51489d45d1081dd07d2601bdc647319d3ee0dbdf0bcb22f",
+              "status": "success",
+              "error_class": null
+            },
+            {
+              "number": 7,
+              "slot": "eval_river.primary",
+              "state": "finished",
+              "request_sha256": "70af2fccbd83b6fd4dc59238189706c4e81507e95c9d84fe33844d686958a945",
+              "status": "failed",
+              "error_class": "proposal_validation"
+            }
+          ]
+        }
+      ],
+      "application_attempts_reserved": 11
+    },
+    "revision_disclosure": "TEST-INFORMED non-blind REGRESSION after v3 stopped on a held-out STRUCTURAL exact-quoted-evidence validation failure. The proposed source-only format revision uses evidence unit IDs and code-materialized exact unit text, not semantic metadata repair or held-out answers. All thirteen v4 slots are fresh requests; no earlier accepted outputs are reused. All prior ledgers and observations remain unchanged. This does not authorize paid v4 dispatch or any v5, qualify C1, or renew the exhausted two-send handoff budget.",
+    "cumulative_budget_scope": "Original extraction + completion v2 + v3 + v4 only; historical B02 and the exhausted separate two-send handoff cohort are not extraction attempts.",
+    "maximum_cumulative_application_attempts": 26,
+    "maximum_application_attempts": 15,
+    "maximum_attempts_per_slot": 2,
+    "recoverable_codes": [
+      "malformed_json",
+      "schema_violation",
+      "timeout",
+      "transport"
+    ],
+    "semantic_retry_allowed": false,
+    "assessment_time": "2026-07-01T00:00:00+00:00",
+    "ledger": "eval\\results\\knowledge\\extraction\\source-first-completion-v4.experimental-ledger.json",
+    "review_disclosure": "SOFTWARE-ONLY fixture review of ALL unchanged raw C1 groups. Not genuine editorial review, human approval, engineering approval or review-effort evidence. No expected labels repair proposals. Published releases are isolated experimental fixtures, not production adoption.",
+    "exposure": "AI-authored and AI-exposed synthetic reference, not independently blind or human certified. Evaluation source labels must not enter production or development tuning.",
+    "study_kind": "non_blind_regression_not_new_blind_test",
+    "C0_role": "Unchanged raw C0 negative selection baseline; not a positive selection gate.",
+    "prior_experiment": {
+      "ledger": "eval\\results\\knowledge\\extraction\\source-first-copilot.experimental-ledger.json",
+      "changed_or_resumed": false,
+      "reported_application_sends": 1,
+      "reported_unexecuted_slots": 12,
+      "reported_result": "invalid_local_proof_development_proposal",
+      "provenance": "Prior observation supplied in authorization; not regraded here."
+    },
+    "existing_runner_pending_exit": 2,
+    "integration_strategy": {
+      "selectable": "C1 experimental source-first selector",
+      "selected": false
+    },
+    "human_effort": "unexecuted",
+    "usd_cost": null,
+    "C1_qualified": false
+  },
+  "ledger_plan": {
+    "phase": "source-first-completion-v4-c1a0cf078f9692f8bd92916c83443e53a17c7f8c4df78713077bfb6063c89f26",
+    "slots": {
+      "dev_atlas.primary": "00a614d2b73e7d2bc919ecda3ca312742bf5f15e1e8dbe619062728292eb6e26",
+      "dev_quill.primary": "3d5ac3ae4aeb589c00a94f348f6a38e06775e7f559b488771ddcb2358993d8c5",
+      "dev_mosaic.primary": "bfd2b1006221e2e55fd82eb7a526ab4a2e195543d63d864b66d2895ed1271ca6",
+      "dev_beacon.primary": "4121586558805c4d82628df0e687c93f76cca6b509f5831c8855fc991f885bb8",
+      "original_domain.primary": "f3b9079af74463cf3e0facc1c1c5d6d1ed8668007e5c5fcb53e190f81cc8fac1",
+      "eval_prism.primary": "138adace8e463eeb913690be4810cd6a34098220ddc97f2b123473f437e15406",
+      "eval_river.primary": "a477ff9b363e0712042f1ca2699b9f1d05a56fefbc5dc63f1264f2d62834c7bf",
+      "eval_orchard.primary": "dfe759635686da67e2c4980f9c5ec0488643b24beee56830c42e03cde7fcc614",
+      "eval_loom.primary": "e366804e242b4560e73f9b665cc0880b8f2af8cef6505ca9280db1e5dcddda7e",
+      "eval_orchard.repeat1": "dfe759635686da67e2c4980f9c5ec0488643b24beee56830c42e03cde7fcc614",
+      "eval_orchard.repeat2": "dfe759635686da67e2c4980f9c5ec0488643b24beee56830c42e03cde7fcc614",
+      "eval_prism.repeat1": "138adace8e463eeb913690be4810cd6a34098220ddc97f2b123473f437e15406",
+      "eval_prism.repeat2": "138adace8e463eeb913690be4810cd6a34098220ddc97f2b123473f437e15406"
+    },
+    "maximum_attempts": 15,
+    "per_slot_attempts": 2,
+    "schedule": [
+      "dev_atlas.primary",
+      "dev_quill.primary",
+      "dev_mosaic.primary",
+      "dev_beacon.primary",
+      "original_domain.primary",
+      "eval_prism.primary",
+      "eval_river.primary",
+      "eval_orchard.primary",
+      "eval_loom.primary",
+      "eval_orchard.repeat1",
+      "eval_orchard.repeat2",
+      "eval_prism.repeat1",
+      "eval_prism.repeat2"
+    ],
+    "development_slots": [
+      "dev_atlas.primary",
+      "dev_beacon.primary",
+      "dev_mosaic.primary",
+      "dev_quill.primary",
+      "eval_loom.primary",
+      "eval_orchard.primary",
+      "eval_orchard.repeat1",
+      "eval_orchard.repeat2",
+      "eval_prism.primary",
+      "eval_prism.repeat1",
+      "eval_prism.repeat2",
+      "eval_river.primary",
+      "original_domain.primary"
+    ],
+    "recoverable_codes": [
+      "malformed_json",
+      "schema_violation",
+      "timeout",
+      "transport"
+    ]
+  },
+  "dispatch": false
+}

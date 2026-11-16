@@ -1,0 +1,23 @@
+{
+  "captured_at": "2026-11-16T18:03:23.514912+00:00",
+  "git_revision": "037e939802c5dc4d12292275b9120bc00083323b",
+  "dirty_status": " M .gitignore\n M AGENTS.md\n M README.md\n M pyproject.toml\n",
+  "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+  "executable": "C:\\Users\\thanh\\falkor_case2\\.venv\\Scripts\\python.exe",
+  "packages": {
+    "github-copilot-sdk": "1.0.34",
+    "streamlit": "1.51.0",
+    "jsonschema": "4.26.0"
+  },
+  "freeze_sha256": "a50bd25546c27131726d2b64c0834de58396642360663057610666737dd8243e",
+  "phase": "source-first-completion-v4-c1a0cf078f9692f8bd92916c83443e53a17c7f8c4df78713077bfb6063c89f26",
+  "owner_authorization": {
+    "quote": "cho phep het. lam cho toi khi nao tat ca deu green. toi approve dung dung lai va hoi gi het",
+    "message_timestamp": null,
+    "timestamp_limitation": "Conversation timestamp not exposed; captured_at is actual recording time, not an invented message timestamp.",
+    "interpretation": "Owner explicitly approved continuation including v4 after the separate authorization request; this frozen phase retains 15 remaining application attempts, not unlimited sends."
+  },
+  "scope": "Pre-dispatch provenance for test-informed regression; not an inference result",
+  "usd_cost": null,
+  "hidden_http_attempts": null
+}

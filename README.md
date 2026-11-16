@@ -146,15 +146,26 @@ influence or triage quality. The two handoff sends exhausted their cumulative
 ceiling; historical `source-handoff-1` stays bound to its original freeze.
 The source-first code baseline preserves all required atoms but historically
 fails selective usefulness; it remains a disclosed conservative baseline.
-The latest completed extraction experiment, `extraction\completion-v3-run1`,
-passed all four development sources, the original source and one evaluation
-source, then stopped at send seven on invalid copied evidence; six slots were
-unexecuted. **Not all evaluation goals pass; nothing is promoted.**
-The reviewed v4 correction replaces model-copied quotes with unit references and
-code-expanded evidence, without changing semantic grading. Its authorization,
-non-blind disclosure and cumulative budgets are recorded in document 06;
-LLM extraction remains experimental and off by default. Never reset a spent
-ledger or treat software-fixture review as engineer approval.
+`extraction\completion-v4-run1` passes all automated C1 gates: 13/13 source/repeat
+slots on first attempts, 24/24 retrieval cases with full required-atom recall,
+and 8/8 usefulness cases (78.65%-100% irrelevant-byte reduction, 20% required).
+298 committed-root/evaluator software tests and the isolated wheel check pass.
+The source-unit evidence format uses code-expanded citations, not model-copied
+quotes; old failed profiles remain failed. This is disclosed non-blind synthetic
+regression conditional on its registered vocabulary, not field qualification.
+Exact offline replay of all 24 cases passes using retained immutable releases
+without drafts or provider calls; see document 06 section 11.4.
+Separate zero-provider checks of concurrent integration edits also pass: 298
+software tests, the actual-package mechanical goals and all 24 captured
+selections. These observations do not rebind frozen model receipts to new code.
+
+**Automated component gates pass; C1 adoption remains unqualified.** Independent
+human correction-benefit, verified USD and hidden HTTP accounting are not
+established. LLM extraction stays experimental/default-off; real source content
+still awaits engineer review. See `eval\results\knowledge\source-integration-readiness.json`
+for frozen v4 pins, actual sends and remaining gates; integration must pin its
+own delivered build. Never reset a spent ledger
+or treat software-fixture review as engineer approval.
 Document 06 section 11 distinguishes retained legacy evidence, including the
 four-send real Copilot knowledge probe:
 both synthetic positives were unassessable, so knowledge influence remains

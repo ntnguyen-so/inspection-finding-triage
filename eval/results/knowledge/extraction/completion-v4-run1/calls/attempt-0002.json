@@ -1,0 +1,574 @@
+{
+  "number": 2,
+  "parsed": {
+    "contract_version": 2,
+    "groups": [
+      {
+        "aliases": [],
+        "evidence": [],
+        "group_id": "archive-title",
+        "required_with": [],
+        "scopes": [],
+        "unit_ids": [
+          "u0001"
+        ]
+      },
+      {
+        "aliases": [
+          "soft counters"
+        ],
+        "evidence": [
+          {
+            "unit_id": "u0003"
+          }
+        ],
+        "group_id": "velvet-desk-token-rule",
+        "required_with": [],
+        "scopes": [
+          "Velvet Desks"
+        ],
+        "unit_ids": [
+          "u0002",
+          "u0003",
+          "u0004",
+          "u0005",
+          "u0006"
+        ]
+      },
+      {
+        "aliases": [],
+        "evidence": [],
+        "group_id": "ink-stability-observation",
+        "required_with": [],
+        "scopes": [],
+        "unit_ids": [
+          "u0007",
+          "u0008"
+        ]
+      },
+      {
+        "aliases": [],
+        "evidence": [],
+        "group_id": "readiness-conflict",
+        "required_with": [],
+        "scopes": [],
+        "unit_ids": [
+          "u0009",
+          "u0010"
+        ]
+      },
+      {
+        "aliases": [],
+        "evidence": [
+          {
+            "unit_id": "u0012"
+          }
+        ],
+        "group_id": "brass-desk-token-rule",
+        "required_with": [],
+        "scopes": [
+          "Brass Desks"
+        ],
+        "unit_ids": [
+          "u0011",
+          "u0012",
+          "u0013",
+          "u0014"
+        ]
+      }
+    ]
+  },
+  "receipt": {
+    "accounting_checkpoint": {
+      "providerModelMetrics": [
+        {
+          "metrics": {
+            "aiCreditsStatus": "complete",
+            "requests": {
+              "cost": 1.0,
+              "count": 1
+            },
+            "tokenDetails": {
+              "cache_read": {
+                "tokenCount": 0
+              },
+              "cache_write": {
+                "tokenCount": 1369
+              },
+              "input": {
+                "tokenCount": 3
+              },
+              "output": {
+                "tokenCount": 936
+              }
+            },
+            "totalNanoAiu": 63942500.0,
+            "usage": {
+              "cacheReadTokens": 0,
+              "cacheWriteTokens": 1369,
+              "inputTokens": 1372,
+              "outputTokens": 936,
+              "reasoningTokens": 697
+            }
+          },
+          "modelDisplayName": "GPT-6 Luna",
+          "modelId": "gpt-6-luna",
+          "provider": {
+            "id": "copilot",
+            "kind": "copilot",
+            "label": "GitHub Copilot"
+          }
+        }
+      ],
+      "totalNanoAiu": 63942500.0,
+      "totalPremiumRequests": 1.0
+    },
+    "adapter_attempts": 1,
+    "binary_sha256": "32d01e0b0100fcdeaa684fba2cc8d00b6f127ac408749ff3c1b1a6fa0b2b8698",
+    "boundary_violation": null,
+    "cache_mode": "no_application_result_cache_backend_cache_uncontrolled",
+    "capabilities": {
+      "adapter_retries": 0,
+      "conversation": "fresh_session_per_request",
+      "internal_http_retries": "unknown",
+      "json_schema": "prompt_guidance_and_local_validation",
+      "max_output_tokens": false,
+      "native_structured_output": false,
+      "raw_provider_equivalence": false,
+      "reasoning_effort": "catalog_validated_when_supplied",
+      "sampling_controls": false,
+      "streaming_api": false,
+      "system_message": "replace_requested",
+      "text": true,
+      "tools": false
+    },
+    "dispatched": true,
+    "elapsed_seconds": 12.844000000040978,
+    "event_counts": {
+      "assistant.idle": 1,
+      "assistant.message": 2,
+      "assistant.reasoning": 2,
+      "assistant.turn_end": 1,
+      "assistant.turn_start": 1,
+      "assistant.usage": 1,
+      "commands.changed": 3,
+      "model.call_final_result": 1,
+      "model.call_finished": 1,
+      "model.call_start": 1,
+      "model.captured_assignment_context": 1,
+      "model.message": 2,
+      "model.messages_snapshot": 1,
+      "model.model_call_started": 1,
+      "model.model_call_success": 1,
+      "model.response": 2,
+      "model.telemetry": 1,
+      "model.turn_ended": 1,
+      "model.turn_started": 1,
+      "pending_messages.modified": 2,
+      "session.idle": 1,
+      "session.info": 1,
+      "session.managed_settings_resolved": 1,
+      "session.mcp_servers_loaded": 1,
+      "session.skills_loaded": 1,
+      "session.start": 1,
+      "session.tools_updated": 2,
+      "session.usage_checkpoint": 1,
+      "session.usage_info": 1,
+      "system.message": 1,
+      "user.message": 1
+    },
+    "http_attempts": null,
+    "inference_calls_observed": 1,
+    "message_audit": [
+      {
+        "content_sha256": "01e39156beeda2564e57a596f0aa6f04c92c6b5ac6fd6f557c3776c4092b80ad",
+        "kind": "user.message",
+        "matches_sdk_input": true,
+        "role": null
+      },
+      {
+        "content_sha256": "e861fbe2ea7c0e6bd5bef5e7a5c9b1850f77d4e9b6a603ede23ec758ee486ce9",
+        "kind": "system.message",
+        "matches_sdk_input": true,
+        "role": "system"
+      }
+    ],
+    "observed_model": "gpt-6-luna",
+    "provider": "github-copilot",
+    "requested_model": "gpt-6-luna",
+    "requested_reasoning_effort": "medium",
+    "response_sha256": "4b37c2a6e197b276e13755927507478404322b91e51a81f1449796291db5b19e",
+    "runtime_version": "1.0.112",
+    "sdk_version": "1.0.34",
+    "session_deleted": true,
+    "session_id": "12c35141-d852-4642-bfc9-8dbc36094ee2",
+    "started_at": "2026-11-16T18:03:52.014685+00:00",
+    "system_sha256": "e861fbe2ea7c0e6bd5bef5e7a5c9b1850f77d4e9b6a603ede23ec758ee486ce9",
+    "tool_counts_observed": [
+      0
+    ],
+    "usage": [
+      {
+        "availableToolCount": 0,
+        "cacheReadTokens": 0,
+        "cacheWriteTokens": 1369,
+        "copilotUsage": {
+          "tokenDetails": [
+            {
+              "batchSize": 1000000,
+              "costPerBatch": 10000000000,
+              "model": "gpt-6-luna",
+              "tokenCount": 3,
+              "tokenType": "input"
+            },
+            {
+              "batchSize": 1000000,
+              "costPerBatch": 1000000000,
+              "model": "gpt-6-luna",
+              "tokenCount": 0,
+              "tokenType": "cache_read"
+            },
+            {
+              "batchSize": 1000000,
+              "costPerBatch": 12500000000,
+              "model": "gpt-6-luna",
+              "tokenCount": 1369,
+              "tokenType": "cache_write"
+            },
+            {
+              "batchSize": 1000000,
+              "costPerBatch": 50000000000,
+              "model": "gpt-6-luna",
+              "tokenCount": 936,
+              "tokenType": "output"
+            }
+          ],
+          "totalNanoAiu": 63942500.0
+        },
+        "cost": 1.0,
+        "finishReason": "stop",
+        "inputTokens": 1372,
+        "isByok": false,
+        "model": "gpt-6-luna",
+        "outputTokens": 936,
+        "provider": {
+          "id": "copilot",
+          "kind": "copilot",
+          "label": "GitHub Copilot"
+        },
+        "reasoningEffort": "medium",
+        "reasoningTokens": 697,
+        "responseModel": "gpt-6-luna"
+      }
+    ],
+    "usd_cost": null,
+    "user_sha256": "01e39156beeda2564e57a596f0aa6f04c92c6b5ac6fd6f557c3776c4092b80ad"
+  },
+  "request_sha256": "3d5ac3ae4aeb589c00a94f348f6a38e06775e7f559b488771ddcb2358993d8c5",
+  "response_text": "{\"contract_version\":2,\"groups\":[{\"group_id\":\"archive-title\",\"unit_ids\":[\"u0001\"],\"scopes\":[],\"aliases\":[],\"evidence\":[],\"required_with\":[]},{\"group_id\":\"velvet-desk-token-rule\",\"unit_ids\":[\"u0002\",\"u0003\",\"u0004\",\"u0005\",\"u0006\"],\"scopes\":[\"Velvet Desks\"],\"aliases\":[\"soft counters\"],\"evidence\":[{\"unit_id\":\"u0003\"}],\"required_with\":[]},{\"group_id\":\"ink-stability-observation\",\"unit_ids\":[\"u0007\",\"u0008\"],\"scopes\":[],\"aliases\":[],\"evidence\":[],\"required_with\":[]},{\"group_id\":\"readiness-conflict\",\"unit_ids\":[\"u0009\",\"u0010\"],\"scopes\":[],\"aliases\":[],\"evidence\":[],\"required_with\":[]},{\"group_id\":\"brass-desk-token-rule\",\"unit_ids\":[\"u0011\",\"u0012\",\"u0013\",\"u0014\"],\"scopes\":[\"Brass Desks\"],\"aliases\":[],\"evidence\":[{\"unit_id\":\"u0012\"}],\"required_with\":[]}]}",
+  "slot": "dev_quill.primary",
+  "status": "success",
+  "validation": {
+    "accepted": true,
+    "assessment": {
+      "accepted_wrong_critical": false,
+      "atom_count": 6,
+      "critical_errors": {
+        "detached_scoped_context_pairs": [],
+        "disconnected_scoped_atoms": [],
+        "nonempty_incomplete_scope_atoms": [],
+        "unsupported_alias_facts": [],
+        "unsupported_scope_facts": []
+      },
+      "fidelity": "pass",
+      "group_graph": {
+        "atoms_not_whole_in_one_component": [],
+        "component_count": 5,
+        "components": [
+          {
+            "group_count": 1,
+            "source_bytes": {
+              "dev_quill": 47
+            },
+            "whole_atom_ids": []
+          },
+          {
+            "group_count": 1,
+            "source_bytes": {
+              "dev_quill": 318
+            },
+            "whole_atom_ids": [
+              "file",
+              "tray"
+            ]
+          },
+          {
+            "group_count": 1,
+            "source_bytes": {
+              "dev_quill": 108
+            },
+            "whole_atom_ids": [
+              "legend"
+            ]
+          },
+          {
+            "group_count": 1,
+            "source_bytes": {
+              "dev_quill": 138
+            },
+            "whole_atom_ids": [
+              "conflict"
+            ]
+          },
+          {
+            "group_count": 1,
+            "source_bytes": {
+              "dev_quill": 162
+            },
+            "whole_atom_ids": [
+              "brass1",
+              "brass2"
+            ]
+          }
+        ],
+        "overclosure_pair_count": 1
+      },
+      "incomplete_scope_byte_facts": [],
+      "metrics": {
+        "alias": {
+          "expected": 1,
+          "missing": [],
+          "observed": 1,
+          "precision": 1.0,
+          "recall": 1.0,
+          "true_positive": 1,
+          "unsupported": []
+        },
+        "context": {
+          "expected": 1,
+          "missing": [],
+          "observed": 2,
+          "precision": 0.5,
+          "recall": 1.0,
+          "true_positive": 1,
+          "unsupported": [
+            [
+              "brass1",
+              "brass2"
+            ]
+          ]
+        },
+        "scope": {
+          "expected": 4,
+          "missing": [],
+          "observed": 4,
+          "precision": 1.0,
+          "recall": 1.0,
+          "true_positive": 4,
+          "unsupported": []
+        }
+      },
+      "repair_count_basis": "Missing complete atom-level scope/alias facts and context-closure pairs; NOT observed human corrections or review benefit.",
+      "repair_counts": {
+        "alias_add": 0,
+        "context_add": 0,
+        "scope_add": 0
+      },
+      "repair_required": false,
+      "semantic": "pass",
+      "status": "pass",
+      "unresolved_alias_count": 0,
+      "unresolved_atom_count": 0
+    },
+    "observation": {
+      "groups": [
+        {
+          "spans": [
+            {
+              "end": 47,
+              "source_id": "dev_quill",
+              "start": 0
+            }
+          ],
+          "text": "QUILL ARCHIVE: fictional desk game transcript\r\n"
+        },
+        {
+          "spans": [
+            {
+              "end": 84,
+              "source_id": "dev_quill",
+              "start": 47
+            },
+            {
+              "end": 168,
+              "source_id": "dev_quill",
+              "start": 84
+            },
+            {
+              "end": 224,
+              "source_id": "dev_quill",
+              "start": 168
+            },
+            {
+              "end": 305,
+              "source_id": "dev_quill",
+              "start": 224
+            },
+            {
+              "end": 365,
+              "source_id": "dev_quill",
+              "start": 305
+            }
+          ],
+          "text": "Q: Which desk accepts a moon token?\r\nA: The rules in this conversation concern Velvet Desks, also called soft counters.\r\nDo not file a moon token unless its reverse is marked.\r\nException: an unmarked token may rest in the waiting tray, never in the ledger.\r\nThe waiting tray rule qualifies the preceding prohibition.\r\n"
+        },
+        {
+          "spans": [
+            {
+              "end": 394,
+              "source_id": "dev_quill",
+              "start": 365
+            },
+            {
+              "end": 473,
+              "source_id": "dev_quill",
+              "start": 394
+            }
+          ],
+          "text": "Q: What does the dial mean?\r\nA: Higher ink stability means lower smudge likelihood, not higher likelihood.\r\n"
+        },
+        {
+          "spans": [
+            {
+              "end": 505,
+              "source_id": "dev_quill",
+              "start": 473
+            },
+            {
+              "end": 611,
+              "source_id": "dev_quill",
+              "start": 505
+            }
+          ],
+          "text": "Q: Can a tray be called ready?\r\nA: A ready mark is reported, but another speaker calls readiness unknown; keep that conflict unresolved.\r\n"
+        },
+        {
+          "spans": [
+            {
+              "end": 623,
+              "source_id": "dev_quill",
+              "start": 611
+            },
+            {
+              "end": 643,
+              "source_id": "dev_quill",
+              "start": 623
+            },
+            {
+              "end": 708,
+              "source_id": "dev_quill",
+              "start": 643
+            },
+            {
+              "end": 773,
+              "source_id": "dev_quill",
+              "start": 708
+            }
+          ],
+          "text": "OTHER DESK\r\nScope: Brass Desks\r\nLeave a brass token beside Brass Desks until the arch is drawn.\r\nLeave a brass token beside Brass Desks until the arch is drawn.\r\n"
+        }
+      ],
+      "metadata": {
+        "aliases": [
+          {
+            "evidence": [
+              {
+                "end": 168,
+                "source_id": "dev_quill",
+                "start": 84
+              }
+            ],
+            "target": "Velvet Desks",
+            "value": "soft counters"
+          }
+        ],
+        "links": [],
+        "scopes": [
+          {
+            "evidence": [
+              {
+                "end": 168,
+                "source_id": "dev_quill",
+                "start": 84
+              }
+            ],
+            "spans": [
+              {
+                "end": 84,
+                "source_id": "dev_quill",
+                "start": 47
+              },
+              {
+                "end": 168,
+                "source_id": "dev_quill",
+                "start": 84
+              },
+              {
+                "end": 224,
+                "source_id": "dev_quill",
+                "start": 168
+              },
+              {
+                "end": 305,
+                "source_id": "dev_quill",
+                "start": 224
+              },
+              {
+                "end": 365,
+                "source_id": "dev_quill",
+                "start": 305
+              }
+            ],
+            "value": "Velvet Desks"
+          },
+          {
+            "evidence": [
+              {
+                "end": 643,
+                "source_id": "dev_quill",
+                "start": 623
+              }
+            ],
+            "spans": [
+              {
+                "end": 623,
+                "source_id": "dev_quill",
+                "start": 611
+              },
+              {
+                "end": 643,
+                "source_id": "dev_quill",
+                "start": 623
+              },
+              {
+                "end": 708,
+                "source_id": "dev_quill",
+                "start": 643
+              },
+              {
+                "end": 773,
+                "source_id": "dev_quill",
+                "start": 708
+              }
+            ],
+            "value": "Brass Desks"
+          }
+        ]
+      },
+      "source_id": "dev_quill",
+      "source_sha256": "3a004b8eccc41b1be4bceed97313c7bd709513aa3ea4aa73a08000d7b2016094",
+      "status": "accepted"
+    },
+    "source_id": "dev_quill"
+  }
+}

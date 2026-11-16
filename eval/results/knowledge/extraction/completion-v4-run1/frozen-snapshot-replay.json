@@ -1,0 +1,23 @@
+{
+  "status": "fail",
+  "captured_at": "2026-11-16T18:19:02.815869+00:00",
+  "frozen_code_revision": "037e939802c5dc4d12292275b9120bc00083323b",
+  "clean_committed_snapshot": true,
+  "provider_calls": 0,
+  "command": "Exact document 06 section 11.4 replay in frozen committed code plus retained immutable dependencies",
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"C:\\Users\\thanh\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\pathlib.py\", line 871, in __new__\n    self = cls._from_parts(args)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\thanh\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\pathlib.py\", line 509, in _from_parts\n    drv, root, parts = self._parse_args(args)\n                       ^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\thanh\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\pathlib.py\", line 493, in _parse_args\n    a = os.fspath(a)\n        ^^^^^^^^^^^^\nTypeError: expected str, bytes or os.PathLike object, not NoneType\n",
+  "concurrent_worktree_changes": {
+    "triage_knowledge\\retrieval.py": {
+      "frozen": "c16ac02cfdf2786f66727a7b3fdf254c22f8bb6b565eab3419cd764fc7c18376",
+      "current": "5c77502ca74a4c3b485d1ba3bab2ad22c79ab3b01a5a1ee9bd6f12dea080ec91"
+    },
+    "triage_knowledge\\source_context.py": {
+      "frozen": "0f4492fd3b9657166b732e66a70ceb29947e92ef3109c659f14e42da436a0e33",
+      "current": "586827113c394afd99efe71f5e6601d7bedbf7ef3945aea16c905a0a3052df1c"
+    }
+  },
+  "shared_worktree_replay": "Correctly rejected freeze mismatch; integration edits preserved, not reverted, staged or rebound",
+  "scope": "Frozen v4 evidence, not acceptance of concurrent integration changes"
+}

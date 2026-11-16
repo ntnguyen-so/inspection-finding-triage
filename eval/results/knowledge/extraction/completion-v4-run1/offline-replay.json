@@ -1,0 +1,131 @@
+{
+  "contract": "knowledge-captured-release-replay-v1",
+  "captured_at": "2026-11-16T18:10:36.430593+00:00",
+  "status": "pass",
+  "provider_calls": 0,
+  "actual_captured_model_outputs_reused_without_repair": true,
+  "queries": {
+    "dev_atlas.qualifier": {
+      "status": "pass",
+      "exact_result_payload_evidence": true,
+      "grade": "pass"
+    },
+    "dev_atlas.scoped": {
+      "status": "pass",
+      "exact_result_payload_evidence": true,
+      "grade": "pass"
+    },
+    "dev_atlas.unknown": {
+      "status": "pass",
+      "exact_result_payload_evidence": true,
+      "grade": "pass"
+    },
+    "dev_beacon.qualifier": {
+      "status": "pass",
+      "exact_result_payload_evidence": true,
+      "grade": "pass"
+    },
+    "dev_beacon.scoped": {
+      "status": "pass",
+      "exact_result_payload_evidence": true,
+      "grade": "pass"
+    },
+    "dev_beacon.unknown": {
+      "status": "pass",
+      "exact_result_payload_evidence": true,
+      "grade": "pass"
+    },
+    "dev_mosaic.qualifier": {
+      "status": "pass",
+      "exact_result_payload_evidence": true,
+      "grade": "pass"
+    },
+    "dev_mosaic.scoped": {
+      "status": "pass",
+      "exact_result_payload_evidence": true,
+      "grade": "pass"
+    },
+    "dev_mosaic.unknown": {
+      "status": "pass",
+      "exact_result_payload_evidence": true,
+      "grade": "pass"
+    },
+    "dev_quill.qualifier": {
+      "status": "pass",
+      "exact_result_payload_evidence": true,
+      "grade": "pass"
+    },
+    "dev_quill.scoped": {
+      "status": "pass",
+      "exact_result_payload_evidence": true,
+      "grade": "pass"
+    },
+    "dev_quill.unknown": {
+      "status": "pass",
+      "exact_result_payload_evidence": true,
+      "grade": "pass"
+    },
+    "eval_loom.qualifier": {
+      "status": "pass",
+      "exact_result_payload_evidence": true,
+      "grade": "pass"
+    },
+    "eval_loom.scoped": {
+      "status": "pass",
+      "exact_result_payload_evidence": true,
+      "grade": "pass"
+    },
+    "eval_loom.unknown": {
+      "status": "pass",
+      "exact_result_payload_evidence": true,
+      "grade": "pass"
+    },
+    "eval_orchard.qualifier": {
+      "status": "pass",
+      "exact_result_payload_evidence": true,
+      "grade": "pass"
+    },
+    "eval_orchard.scoped": {
+      "status": "pass",
+      "exact_result_payload_evidence": true,
+      "grade": "pass"
+    },
+    "eval_orchard.unknown": {
+      "status": "pass",
+      "exact_result_payload_evidence": true,
+      "grade": "pass"
+    },
+    "eval_prism.qualifier": {
+      "status": "pass",
+      "exact_result_payload_evidence": true,
+      "grade": "pass"
+    },
+    "eval_prism.scoped": {
+      "status": "pass",
+      "exact_result_payload_evidence": true,
+      "grade": "pass"
+    },
+    "eval_prism.unknown": {
+      "status": "pass",
+      "exact_result_payload_evidence": true,
+      "grade": "pass"
+    },
+    "eval_river.qualifier": {
+      "status": "pass",
+      "exact_result_payload_evidence": true,
+      "grade": "pass"
+    },
+    "eval_river.scoped": {
+      "status": "pass",
+      "exact_result_payload_evidence": true,
+      "grade": "pass"
+    },
+    "eval_river.unknown": {
+      "status": "pass",
+      "exact_result_payload_evidence": true,
+      "grade": "pass"
+    }
+  },
+  "query_count": 24,
+  "scope": "Exact frozen synthetic software-fixture replay, not human content approval or fresh model performance"
+}

@@ -1,0 +1,240 @@
+{
+  "contract": "knowledge-integration-readiness-v2",
+  "captured_at": "2026-11-16T18:14:20.766313+00:00",
+  "automated_component_status": "pass",
+  "full_qualification_status": "not_all_goals_established",
+  "software": {
+    "status": "pass",
+    "tests": 298
+  },
+  "actual_candidate_pack": {
+    "status": "pass",
+    "findings": 21,
+    "registry_rows": 18,
+    "goals": {
+      "batch_and_single_contexts": "pass",
+      "fail_closed": "pass",
+      "freeze_unchanged": "pass",
+      "lifecycle": "pass",
+      "pending_blocked": "pass",
+      "row_order_and_repeat": "pass",
+      "source_coverage": "pass",
+      "tamper_rejection": "pass"
+    },
+    "provider_calls": 0
+  },
+  "copilot_extraction": {
+    "status": "pass",
+    "run": "extraction\\completion-v4-run1",
+    "fresh_slots": 13,
+    "recoveries": 0,
+    "queries": 24,
+    "efficiency_cases": 8,
+    "minimum_irrelevant_byte_reduction": 0.7865168539325843,
+    "median_irrelevant_byte_reduction": 0.7965633835103538,
+    "comparison": "Code-expanded unit evidence; test-informed non-blind synthetic regression conditional on fixed registered vocabulary, not field or human qualification"
+  },
+  "offline_replay": {
+    "status": "pass",
+    "captured_at": "2026-11-16T18:13:20.763839+00:00",
+    "query_count": 24,
+    "provider_calls": 0,
+    "immutable_only": true,
+    "copied_directories": [
+      "sources",
+      "revisions",
+      "releases"
+    ],
+    "draft_present": false,
+    "exact_result_payload_evidence_and_grade": true,
+    "scope": "Retained immutable C1 fixture dependencies suffice for exact offline replay; not approval or new model-performance measurement"
+  },
+  "packaging": {
+    "status": "pass",
+    "revision": "037e939802c5dc4d12292275b9120bc00083323b",
+    "wheel_sha256": "bc45160b81d8f120df4c9b683fe4af94692389ff1754e5dbf41b73b4d809c20e"
+  },
+  "native_interface": {
+    "bundle_contract": 2,
+    "store_schema": 3,
+    "proposal_contract": 2,
+    "strategy": {
+      "strategy": "source-selector-v1",
+      "implementation_sha256": "0fc1db87601c6f19aea9a42d840a0e4a61ba745f08c282a9beaf42f8e0a94705",
+      "implementation_files": {
+        "retrieval.py": "c16ac02cfdf2786f66727a7b3fdf254c22f8bb6b565eab3419cd764fc7c18376",
+        "source_store.py": "3673d83cdf8d5937232f77a11329080eef925d1583132ffe8a27a2abc67b98fb",
+        "source.py": "d2cb494ff1088d2e262f2c924467cd126c41921ab6e8191cf0cc86c2a4033e79",
+        "contracts.py": "19d1ace2fbf1706dcd4a0bf4b565ef96cda17947172aa0ca987289b93f8008e8"
+      },
+      "parameters": {
+        "closure": "bidirectional",
+        "general": "always",
+        "lexical": "disabled",
+        "ordering": "address-ascending",
+        "overflow": "failure-only",
+        "scope": "casefold-exact",
+        "source_context": "c0-heading-source-context-v2",
+        "type_scope": "registry-type-vocabulary",
+        "unknown": "all-active",
+        "version": "source-selector-v1"
+      },
+      "parameters_sha256": "758b205aefbcec9954e67293eff9d1614c4d8a21904b5ae374ed8965232b9875"
+    },
+    "handoff": "Two actual passes at their recorded prior revisions; never rebound to the current source hash."
+  },
+  "default_store": {
+    "candidate_digest": "fc7c8553b13614d0416a3cb8ca500280d5cfde01a5d1043ffa410b68799bc013",
+    "pending_items": 8,
+    "reviewed_items": 0,
+    "releases": [],
+    "source_only": true,
+    "workflow_activation": "Separate explicit workflow pin required; not inferred."
+  },
+  "application_accounting": {
+    "extraction": 24,
+    "extraction_ceiling": 26,
+    "handoff": 2,
+    "handoff_ceiling": 2,
+    "combined": 26,
+    "combined_ceiling": 28,
+    "phases": [
+      {
+        "phase": "original-extraction",
+        "ledger": "eval\\results\\knowledge\\extraction\\source-first-copilot.experimental-ledger.json",
+        "ledger_sha256": "54661f7f6ad43c033c0e2e8d88580d6752481f4f575a576d1fa79c5701288013",
+        "application_attempts_reserved": 1,
+        "response_receipts": 1,
+        "observed_sdk_inferences": 1,
+        "observed_models": [
+          "gpt-6-luna"
+        ],
+        "exposed_token_counters": {
+          "inputTokens": 956,
+          "outputTokens": 955,
+          "reasoningTokens": 592,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 0
+        },
+        "provider_elapsed_seconds_sum": 11.98399999999674,
+        "http_attempts": null,
+        "usd_cost": null
+      },
+      {
+        "phase": "completion-v2",
+        "ledger": "eval\\results\\knowledge\\extraction\\source-first-completion.experimental-ledger.json",
+        "ledger_sha256": "8571b76952da79e71e9a0edd0cbe67b9c6efb4eadeee22f0742eba5f88dc3c4e",
+        "application_attempts_reserved": 3,
+        "response_receipts": 3,
+        "observed_sdk_inferences": 3,
+        "observed_models": [
+          "gpt-6-luna"
+        ],
+        "exposed_token_counters": {
+          "inputTokens": 3763,
+          "outputTokens": 2935,
+          "reasoningTokens": 2231,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 3754
+        },
+        "provider_elapsed_seconds_sum": 37.76600000000326,
+        "http_attempts": null,
+        "usd_cost": null
+      },
+      {
+        "phase": "completion-v3",
+        "ledger": "eval\\results\\knowledge\\extraction\\source-first-completion-v3.experimental-ledger.json",
+        "ledger_sha256": "fd655040b007b4c1704c1f432957ecde0cb56bcd605aabaec330e317c7443768",
+        "application_attempts_reserved": 7,
+        "response_receipts": 7,
+        "observed_sdk_inferences": 7,
+        "observed_models": [
+          "gpt-6-luna"
+        ],
+        "exposed_token_counters": {
+          "inputTokens": 11753,
+          "outputTokens": 11529,
+          "reasoningTokens": 9127,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 11732
+        },
+        "provider_elapsed_seconds_sum": 144.4539999999688,
+        "http_attempts": null,
+        "usd_cost": null
+      },
+      {
+        "phase": "completion-v4",
+        "ledger": "eval\\results\\knowledge\\extraction\\source-first-completion-v4.experimental-ledger.json",
+        "ledger_sha256": "1e5ea1ee379a4cfa4b4a1f695f4815224e021edf9e1cacd7b091e2e63bc41889",
+        "application_attempts_reserved": 13,
+        "response_receipts": 13,
+        "observed_sdk_inferences": 13,
+        "observed_models": [
+          "gpt-6-luna"
+        ],
+        "exposed_token_counters": {
+          "inputTokens": 21075,
+          "outputTokens": 16665,
+          "reasoningTokens": 12857,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 21036
+        },
+        "provider_elapsed_seconds_sum": 230.43699999991804,
+        "http_attempts": null,
+        "usd_cost": null
+      },
+      {
+        "phase": "handoff-v1",
+        "ledger": "eval\\results\\knowledge\\extraction\\source-first-handoff.experimental-ledger.json",
+        "ledger_sha256": "da8fbb4f14827423e45275fdedca91df5502e0811c641abd5739f52abf06d81b",
+        "application_attempts_reserved": 1,
+        "response_receipts": 1,
+        "observed_sdk_inferences": 1,
+        "observed_models": [
+          "gpt-6-luna"
+        ],
+        "exposed_token_counters": {
+          "inputTokens": 11816,
+          "outputTokens": 21,
+          "reasoningTokens": 10,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 11813
+        },
+        "provider_elapsed_seconds_sum": 3.219000000040978,
+        "http_attempts": null,
+        "usd_cost": null
+      },
+      {
+        "phase": "handoff-v2",
+        "ledger": "eval\\results\\knowledge\\extraction\\source-first-handoff-v2.experimental-ledger.json",
+        "ledger_sha256": "c5f0632b76ca239cf6277c2e9064efa3cba0c09b7c0b33d1ed3554a5dc298eba",
+        "application_attempts_reserved": 1,
+        "response_receipts": 1,
+        "observed_sdk_inferences": 1,
+        "observed_models": [
+          "gpt-6-luna"
+        ],
+        "exposed_token_counters": {
+          "inputTokens": 11821,
+          "outputTokens": 9,
+          "reasoningTokens": 0,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 11818
+        },
+        "provider_elapsed_seconds_sum": 3.1089999999967404,
+        "http_attempts": null,
+        "usd_cost": null
+      }
+    ],
+    "scope": "Retained four-send B02 downstream experiment is outside this cohort and remains historical real cost. These are not whole-project totals or USD estimates."
+  },
+  "qualification_blockers": {
+    "independent_human_correction_benefit": "unexecuted; AI/software declarations and broad owner authorization are not measured independent human benefit",
+    "strict_hidden_http_accounting": "not exposed by Copilot",
+    "verified_usd_cost": null
+  },
+  "C1_qualified": false,
+  "C1_default_enabled": false,
+  "system_acceptance": "Not established by component checks. Integration session owns downstream acceptance.",
+  "legacy_default_draft_used": false
+}

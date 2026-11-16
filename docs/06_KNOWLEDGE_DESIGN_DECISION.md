@@ -692,6 +692,17 @@ some of it has been withdrawn; archive access is local audit, not model context.
 Changing extraction/index/prompt/provider context invalidates automatic
 comparability with old observations, even if raw domain bytes do not change.
 
+Coordinated triage integration adds an explicit, optional isolated-probe input
+purpose to `binding_from_tables`, `get_triage_knowledge` and `build_source_context`,
+and `expected_input_purpose` to `validate_source_context`. Normal defaults retain
+their bundle-2 layout. Only `isolated_probe` permits honestly labelled
+`evaluation_input` findings; registry provenance remains unchanged. Probe
+bindings/results/contexts and local evidence carry the purpose, with semantic
+hashes covering it. Default paths reject probe declarations. Artificial probe
+rules remain separately workflow-owned assessment policy, never source knowledge.
+This bounded addition changes executable strategy hashes and requires explicit
+new pins; old component observations still belong to their original hashes.
+
 ## 10. Decision summary and implementation gates
 
 | Decision | Rationale / rejected alternative |
@@ -736,8 +747,9 @@ not a pure domain extraction; its hash was
 The original domain hash is
 `5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066`.
 Those old additions do not qualify as newly supplied user knowledge.
-No replacement-model quality, selective recall, human-review savings, new
-calibration or promotion is established by this document.
+That legacy material establishes no replacement-model quality, selective recall,
+human-review savings, calibration or promotion. New component observations are
+listed separately below.
 
 ### 11.1 Source-first implementation evidence
 
@@ -871,6 +883,114 @@ end-to-end acceptance remain the integration session's responsibility. The
 owner received an API/storage/evidence handoff with the remaining failures
 explicit. Changing the extraction prompt changes strategy identity: rerun
 applicable mechanical/transport observations under new freezes, not old receipts.
+
+### 11.4 V4 automated success and exact offline replay
+
+The approved `extraction\completion-v4-run1` passes all eleven programmatic
+checks under the frozen format-2 implementation (`037e939`), reference v1.4 and
+unchanged grader v1.3. All thirteen source/repeat slots pass on their first
+attempt: nine primaries, including the original domain, and four predetermined
+repeats. All 24 actual retrievals pass with required-atom recall 1.0. All eight
+usefulness cases exceed the unchanged 20% threshold: 78.65%-100% reduction,
+median 79.66%. No expected metadata repairs a proposal.
+
+These are source-location/citation and critical scope/context checks under
+code-expanded evidence, not proof of model verbatim-copy skill or engineering
+truth. The comparison remains test-informed, non-blind, AI-assisted synthetic
+regression, conditional on the disclosed registered vocabulary. C0 remains a
+failed-usefulness negative baseline. The older semantic and literal-copy
+failures stay failed under their original identities.
+
+The four extraction histories total 24 reserved application sends
+(1 + 3 + 7 + 13), below 26. The two handoff sends bring the declared combined
+cohort to 26/28; no recovery send was needed in v4. The retained B02 experiment
+is separate historical cost, not free/reset headroom. Exposed tokens/latency
+and ledger hashes are summarized in
+`eval\results\knowledge\source-integration-readiness.json`. USD and hidden HTTP
+remain unknown. Independent human correction-benefit is unexecuted, so
+**C1 is unqualified/default-off**, not silently adopted after technical success.
+The actual default store still has eight pending source-exact items; no real
+release or engineering review is fabricated.
+
+`offline-replay.json` and `immutable-replay.json` reproduce all 24 exact result,
+provider-payload, local-evidence and grade objects with zero provider calls.
+The second replay copies only immutable `sources`, `revisions` and `releases`;
+no draft is needed. Retain those two successful C1 fixture dependency sets and
+the single selector capture, not every regenerated C0/draft snapshot.
+They are isolated software fixtures, not production knowledge.
+
+From the repository root at this frozen code, this read-only replay command
+checks the captured release outputs without buying another inference run:
+
+```powershell
+@'
+import json
+from pathlib import Path
+from eval import run_knowledge as runner, run_knowledge_completion as experiment
+from eval.knowledge_eval import load_suite, assess_retrieval
+from eval.knowledge_query_inputs import load_registry_fixture
+from triage_knowledge import SourceKnowledgeStore, get_triage_knowledge, strategy_binding
+
+root = Path(r"eval\results\knowledge\extraction\completion-v4-run1")
+freeze = json.loads((root / "freeze.json").read_bytes())
+experiment.verify_freeze(freeze)
+observed = json.loads((root / "selector-observation.json").read_bytes())
+suite = load_suite()
+registry = load_registry_fixture(suite)["fixture"]["registry"]
+for case_id, row in observed["queries"].items():
+    pin = observed["partitions"][row["partition"]]
+    store = SourceKnowledgeStore(root / "software-fixture-stores" / row["partition"],
+                                 experimental_profile=pin["experimental_profile"])
+    query = runner.query_rows(suite.queries[case_id]["subject_types"],
+                              shared_registry_rows=registry)
+    assert query == row["query_context"]
+    result = get_triage_knowledge(
+        store, query, knowledge_version=pin["release_id"],
+        assessment_time=freeze["assessment_time"], expected_strategy=strategy_binding(),
+        allowed_input_binding=runner.query_binding(query), max_bytes=64000)
+    assert result.to_dict() == row["result"]
+    assert result.provider_payload() == row["provider_payload"]
+    assert result.evidence == row["local_evidence"]
+    assert assess_retrieval(suite, case_id, runner.adapt_result(result)) == row["assessment"]
+assert len(observed["queries"]) == 24
+experiment.verify_freeze(freeze)
+print("24 exact offline replays passed; provider calls: 0")
+'@ | .\.venv\Scripts\python.exe -B -
+```
+
+Changing the frozen code/source/reference correctly invalidates this exact replay;
+use the recorded revision rather than rebinding its results to another build.
+The final committed-snapshot wheel build/import passes independently. Neither
+packaging nor these component results replace downstream system acceptance.
+
+`frozen-snapshot-replay-2.json` also confirms this exact documented command in
+an isolated committed `037e939` snapshot with only immutable fixture dependencies.
+The first snapshot probe is retained as a failed harness observation: its extra
+import-origin guard incorrectly assumed the namespace package `eval` had a
+non-null `__file__`. The corrected guard checks a concrete module; no production
+code, replay assertion or frozen expectation was weakened.
+
+After the live v4 study, the parallel integration session changed
+`triage_knowledge\retrieval.py` and `triage_knowledge\source_context.py` to add
+trusted input-purpose bindings and manifest validation. Those shared-worktree
+edits are preserved, not staged or delivered by the knowledge session. They
+correctly invalidate exact v4 replay's executable-byte check. Separate observed
+normal-path compatibility checks pass without rebinding the frozen study:
+
+- `source-integration-concurrent-software.json`: all 298 committed-root/evaluator
+  tests pass, with executable bytes unchanged during the check.
+- `source-package-regression-5\report.json`: all eight mechanical goals pass on
+  all 21 supplied findings and 18 registry rows, with zero provider calls.
+- `source-integration-concurrent-replay.json`: all 24 captured query contexts,
+  provider payloads, local evidence and independent grades remain identical.
+  Result comparison excludes only the legitimately changed strategy binding and
+  its derived result hash. All 13 extraction request fingerprints are unchanged;
+  this is zero-provider compatibility evidence, not fresh model performance.
+
+Each observation records its actual code hashes. The integration owner must
+freeze and pin its delivered build separately; the readiness file's v4 pins
+remain historical, not automatic authorization for the concurrently changed
+variant. Do not copy a packet's self-declared pins into trusted configuration.
 
 ## 12. Bounded review and adjudication
 

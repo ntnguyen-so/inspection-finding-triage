@@ -1,0 +1,625 @@
+{
+  "number": 9,
+  "parsed": {
+    "contract_version": 2,
+    "groups": [
+      {
+        "aliases": [],
+        "evidence": [],
+        "group_id": "document-framing",
+        "required_with": [],
+        "scopes": [],
+        "unit_ids": [
+          "u0001",
+          "u0002",
+          "u0003"
+        ]
+      },
+      {
+        "aliases": [
+          "smooth runners"
+        ],
+        "evidence": [
+          {
+            "unit_id": "u0005"
+          },
+          {
+            "unit_id": "u0006"
+          }
+        ],
+        "group_id": "silk-shuttle-rules",
+        "required_with": [],
+        "scopes": [
+          "Silk Shuttles"
+        ],
+        "unit_ids": [
+          "u0004",
+          "u0005",
+          "u0006",
+          "u0007",
+          "u0008",
+          "u0009",
+          "u0010",
+          "u0011",
+          "u0012"
+        ]
+      },
+      {
+        "aliases": [],
+        "evidence": [],
+        "group_id": "unscoped-observations",
+        "required_with": [],
+        "scopes": [],
+        "unit_ids": [
+          "u0013",
+          "u0014"
+        ]
+      },
+      {
+        "aliases": [],
+        "evidence": [
+          {
+            "unit_id": "u0017"
+          }
+        ],
+        "group_id": "cork-ring-instruction",
+        "required_with": [],
+        "scopes": [
+          "Cork Rings"
+        ],
+        "unit_ids": [
+          "u0015",
+          "u0016",
+          "u0017",
+          "u0018",
+          "u0019"
+        ]
+      }
+    ]
+  },
+  "receipt": {
+    "accounting_checkpoint": {
+      "providerModelMetrics": [
+        {
+          "metrics": {
+            "aiCreditsStatus": "complete",
+            "requests": {
+              "cost": 1.0,
+              "count": 1
+            },
+            "tokenDetails": {
+              "cache_read": {
+                "tokenCount": 0
+              },
+              "cache_write": {
+                "tokenCount": 1479
+              },
+              "input": {
+                "tokenCount": 3
+              },
+              "output": {
+                "tokenCount": 1462
+              }
+            },
+            "totalNanoAiu": 91617500.0,
+            "usage": {
+              "cacheReadTokens": 0,
+              "cacheWriteTokens": 1479,
+              "inputTokens": 1482,
+              "outputTokens": 1462,
+              "reasoningTokens": 1222
+            }
+          },
+          "modelDisplayName": "GPT-6 Luna",
+          "modelId": "gpt-6-luna",
+          "provider": {
+            "id": "copilot",
+            "kind": "copilot",
+            "label": "GitHub Copilot"
+          }
+        }
+      ],
+      "totalNanoAiu": 91617500.0,
+      "totalPremiumRequests": 1.0
+    },
+    "adapter_attempts": 1,
+    "binary_sha256": "32d01e0b0100fcdeaa684fba2cc8d00b6f127ac408749ff3c1b1a6fa0b2b8698",
+    "boundary_violation": null,
+    "cache_mode": "no_application_result_cache_backend_cache_uncontrolled",
+    "capabilities": {
+      "adapter_retries": 0,
+      "conversation": "fresh_session_per_request",
+      "internal_http_retries": "unknown",
+      "json_schema": "prompt_guidance_and_local_validation",
+      "max_output_tokens": false,
+      "native_structured_output": false,
+      "raw_provider_equivalence": false,
+      "reasoning_effort": "catalog_validated_when_supplied",
+      "sampling_controls": false,
+      "streaming_api": false,
+      "system_message": "replace_requested",
+      "text": true,
+      "tools": false
+    },
+    "dispatched": true,
+    "elapsed_seconds": 22.23499999998603,
+    "event_counts": {
+      "assistant.idle": 1,
+      "assistant.message": 3,
+      "assistant.reasoning": 3,
+      "assistant.turn_end": 1,
+      "assistant.turn_start": 1,
+      "assistant.usage": 1,
+      "commands.changed": 3,
+      "model.call_final_result": 1,
+      "model.call_finished": 1,
+      "model.call_start": 1,
+      "model.captured_assignment_context": 1,
+      "model.message": 3,
+      "model.messages_snapshot": 1,
+      "model.model_call_started": 1,
+      "model.model_call_success": 1,
+      "model.response": 3,
+      "model.telemetry": 1,
+      "model.turn_ended": 1,
+      "model.turn_started": 1,
+      "pending_messages.modified": 2,
+      "session.idle": 1,
+      "session.info": 1,
+      "session.managed_settings_resolved": 1,
+      "session.mcp_servers_loaded": 1,
+      "session.skills_loaded": 1,
+      "session.start": 1,
+      "session.tools_updated": 2,
+      "session.usage_checkpoint": 1,
+      "session.usage_info": 1,
+      "system.message": 1,
+      "user.message": 1
+    },
+    "http_attempts": null,
+    "inference_calls_observed": 1,
+    "message_audit": [
+      {
+        "content_sha256": "fd6724d203eef4866a9029b6f977a7cae9c00dd5ab72350110e7c017fcc70653",
+        "kind": "user.message",
+        "matches_sdk_input": true,
+        "role": null
+      },
+      {
+        "content_sha256": "e861fbe2ea7c0e6bd5bef5e7a5c9b1850f77d4e9b6a603ede23ec758ee486ce9",
+        "kind": "system.message",
+        "matches_sdk_input": true,
+        "role": "system"
+      }
+    ],
+    "observed_model": "gpt-6-luna",
+    "provider": "github-copilot",
+    "requested_model": "gpt-6-luna",
+    "requested_reasoning_effort": "medium",
+    "response_sha256": "0ba9577994805e1f5c499f03cec16355569944e58cc118431f9ef8418c893ac8",
+    "runtime_version": "1.0.112",
+    "sdk_version": "1.0.34",
+    "session_deleted": true,
+    "session_id": "9822cb8e-1c12-4cc3-a101-00da5a1e9d2e",
+    "started_at": "2026-11-16T18:06:13.672114+00:00",
+    "system_sha256": "e861fbe2ea7c0e6bd5bef5e7a5c9b1850f77d4e9b6a603ede23ec758ee486ce9",
+    "tool_counts_observed": [
+      0
+    ],
+    "usage": [
+      {
+        "availableToolCount": 0,
+        "cacheReadTokens": 0,
+        "cacheWriteTokens": 1479,
+        "copilotUsage": {
+          "tokenDetails": [
+            {
+              "batchSize": 1000000,
+              "costPerBatch": 10000000000,
+              "model": "gpt-6-luna",
+              "tokenCount": 3,
+              "tokenType": "input"
+            },
+            {
+              "batchSize": 1000000,
+              "costPerBatch": 1000000000,
+              "model": "gpt-6-luna",
+              "tokenCount": 0,
+              "tokenType": "cache_read"
+            },
+            {
+              "batchSize": 1000000,
+              "costPerBatch": 12500000000,
+              "model": "gpt-6-luna",
+              "tokenCount": 1479,
+              "tokenType": "cache_write"
+            },
+            {
+              "batchSize": 1000000,
+              "costPerBatch": 50000000000,
+              "model": "gpt-6-luna",
+              "tokenCount": 1462,
+              "tokenType": "output"
+            }
+          ],
+          "totalNanoAiu": 91617500.0
+        },
+        "cost": 1.0,
+        "finishReason": "stop",
+        "inputTokens": 1482,
+        "isByok": false,
+        "model": "gpt-6-luna",
+        "outputTokens": 1462,
+        "provider": {
+          "id": "copilot",
+          "kind": "copilot",
+          "label": "GitHub Copilot"
+        },
+        "reasoningEffort": "medium",
+        "reasoningTokens": 1222,
+        "responseModel": "gpt-6-luna"
+      }
+    ],
+    "usd_cost": null,
+    "user_sha256": "fd6724d203eef4866a9029b6f977a7cae9c00dd5ab72350110e7c017fcc70653"
+  },
+  "request_sha256": "e366804e242b4560e73f9b665cc0880b8f2af8cef6505ca9280db1e5dcddda7e",
+  "response_text": "{\"contract_version\":2,\"groups\":[{\"group_id\":\"document-framing\",\"unit_ids\":[\"u0001\",\"u0002\",\"u0003\"],\"scopes\":[],\"aliases\":[],\"evidence\":[],\"required_with\":[]},{\"group_id\":\"silk-shuttle-rules\",\"unit_ids\":[\"u0004\",\"u0005\",\"u0006\",\"u0007\",\"u0008\",\"u0009\",\"u0010\",\"u0011\",\"u0012\"],\"scopes\":[\"Silk Shuttles\"],\"aliases\":[\"smooth runners\"],\"evidence\":[{\"unit_id\":\"u0005\"},{\"unit_id\":\"u0006\"}],\"required_with\":[]},{\"group_id\":\"unscoped-observations\",\"unit_ids\":[\"u0013\",\"u0014\"],\"scopes\":[],\"aliases\":[],\"evidence\":[],\"required_with\":[]},{\"group_id\":\"cork-ring-instruction\",\"unit_ids\":[\"u0015\",\"u0016\",\"u0017\",\"u0018\",\"u0019\"],\"scopes\":[\"Cork Rings\"],\"aliases\":[],\"evidence\":[{\"unit_id\":\"u0017\"}],\"required_with\":[]}]}",
+  "slot": "eval_loom.primary",
+  "status": "success",
+  "validation": {
+    "accepted": true,
+    "assessment": {
+      "accepted_wrong_critical": false,
+      "atom_count": 7,
+      "critical_errors": {
+        "detached_scoped_context_pairs": [],
+        "disconnected_scoped_atoms": [],
+        "nonempty_incomplete_scope_atoms": [],
+        "unsupported_alias_facts": [],
+        "unsupported_scope_facts": []
+      },
+      "fidelity": "pass",
+      "group_graph": {
+        "atoms_not_whole_in_one_component": [],
+        "component_count": 4,
+        "components": [
+          {
+            "group_count": 1,
+            "source_bytes": {
+              "eval_loom": 81
+            },
+            "whole_atom_ids": []
+          },
+          {
+            "group_count": 1,
+            "source_bytes": {
+              "eval_loom": 391
+            },
+            "whole_atom_ids": [
+              "permission",
+              "send",
+              "silent"
+            ]
+          },
+          {
+            "group_count": 1,
+            "source_bytes": {
+              "eval_loom": 160
+            },
+            "whole_atom_ids": [
+              "conflict",
+              "legend"
+            ]
+          },
+          {
+            "group_count": 1,
+            "source_bytes": {
+              "eval_loom": 144
+            },
+            "whole_atom_ids": [
+              "cork1",
+              "cork2"
+            ]
+          }
+        ],
+        "overclosure_pair_count": 2
+      },
+      "incomplete_scope_byte_facts": [],
+      "metrics": {
+        "alias": {
+          "expected": 1,
+          "missing": [],
+          "observed": 1,
+          "precision": 1.0,
+          "recall": 1.0,
+          "true_positive": 1,
+          "unsupported": []
+        },
+        "context": {
+          "expected": 3,
+          "missing": [],
+          "observed": 5,
+          "precision": 0.6,
+          "recall": 1.0,
+          "true_positive": 3,
+          "unsupported": [
+            [
+              "conflict",
+              "legend"
+            ],
+            [
+              "cork1",
+              "cork2"
+            ]
+          ]
+        },
+        "scope": {
+          "expected": 5,
+          "missing": [],
+          "observed": 5,
+          "precision": 1.0,
+          "recall": 1.0,
+          "true_positive": 5,
+          "unsupported": []
+        }
+      },
+      "repair_count_basis": "Missing complete atom-level scope/alias facts and context-closure pairs; NOT observed human corrections or review benefit.",
+      "repair_counts": {
+        "alias_add": 0,
+        "context_add": 0,
+        "scope_add": 0
+      },
+      "repair_required": false,
+      "semantic": "pass",
+      "status": "pass",
+      "unresolved_alias_count": 0,
+      "unresolved_atom_count": 0
+    },
+    "observation": {
+      "groups": [
+        {
+          "spans": [
+            {
+              "end": 22,
+              "source_id": "eval_loom",
+              "start": 0
+            },
+            {
+              "end": 79,
+              "source_id": "eval_loom",
+              "start": 22
+            },
+            {
+              "end": 81,
+              "source_id": "eval_loom",
+              "start": 79
+            }
+          ],
+          "text": "# Loom rehearsal log\r\nAll entries belong to an invented ribbon-routing sport.\r\n\r\n"
+        },
+        {
+          "spans": [
+            {
+              "end": 109,
+              "source_id": "eval_loom",
+              "start": 81
+            },
+            {
+              "end": 131,
+              "source_id": "eval_loom",
+              "start": 109
+            },
+            {
+              "end": 156,
+              "source_id": "eval_loom",
+              "start": 131
+            },
+            {
+              "end": 216,
+              "source_id": "eval_loom",
+              "start": 156
+            },
+            {
+              "end": 283,
+              "source_id": "eval_loom",
+              "start": 216
+            },
+            {
+              "end": 285,
+              "source_id": "eval_loom",
+              "start": 283
+            },
+            {
+              "end": 318,
+              "source_id": "eval_loom",
+              "start": 285
+            },
+            {
+              "end": 397,
+              "source_id": "eval_loom",
+              "start": 318
+            },
+            {
+              "end": 472,
+              "source_id": "eval_loom",
+              "start": 397
+            }
+          ],
+          "text": "## Entry 06: Silk Shuttles\r\nScope: Silk Shuttles\r\nAliases: smooth runners\r\n06:10 Do not send Silk Shuttles while the drum is covered.\r\n06:11 A clear drum permits sending, provided the tassel is green.\r\n\r\n## Entry 07: late qualification\r\n07:00 Exception: a green tassel does not permit sending during a silent beat.\r\n07:01 The silent-beat exception qualifies the earlier sending permission.\r\n"
+        },
+        {
+          "spans": [
+            {
+              "end": 542,
+              "source_id": "eval_loom",
+              "start": 472
+            },
+            {
+              "end": 632,
+              "source_id": "eval_loom",
+              "start": 542
+            }
+          ],
+          "text": "07:02 Higher thread reserve means lower snag likelihood, not higher.\r\n07:03 The drum is logged clear and possibly covered; neither account resolves the other.\r\n"
+        },
+        {
+          "spans": [
+            {
+              "end": 634,
+              "source_id": "eval_loom",
+              "start": 632
+            },
+            {
+              "end": 659,
+              "source_id": "eval_loom",
+              "start": 634
+            },
+            {
+              "end": 682,
+              "source_id": "eval_loom",
+              "start": 659
+            },
+            {
+              "end": 729,
+              "source_id": "eval_loom",
+              "start": 682
+            },
+            {
+              "end": 776,
+              "source_id": "eval_loom",
+              "start": 729
+            }
+          ],
+          "text": "\r\n## Entry 08: Cork Rings\r\nEquipment: Cork Rings\r\n08:00 Put Cork Rings beside the marked spool.\r\n08:00 Put Cork Rings beside the marked spool.\r\n"
+        }
+      ],
+      "metadata": {
+        "aliases": [
+          {
+            "evidence": [
+              {
+                "end": 131,
+                "source_id": "eval_loom",
+                "start": 109
+              },
+              {
+                "end": 156,
+                "source_id": "eval_loom",
+                "start": 131
+              }
+            ],
+            "target": "Silk Shuttles",
+            "value": "smooth runners"
+          }
+        ],
+        "links": [],
+        "scopes": [
+          {
+            "evidence": [
+              {
+                "end": 131,
+                "source_id": "eval_loom",
+                "start": 109
+              },
+              {
+                "end": 156,
+                "source_id": "eval_loom",
+                "start": 131
+              }
+            ],
+            "spans": [
+              {
+                "end": 109,
+                "source_id": "eval_loom",
+                "start": 81
+              },
+              {
+                "end": 131,
+                "source_id": "eval_loom",
+                "start": 109
+              },
+              {
+                "end": 156,
+                "source_id": "eval_loom",
+                "start": 131
+              },
+              {
+                "end": 216,
+                "source_id": "eval_loom",
+                "start": 156
+              },
+              {
+                "end": 283,
+                "source_id": "eval_loom",
+                "start": 216
+              },
+              {
+                "end": 285,
+                "source_id": "eval_loom",
+                "start": 283
+              },
+              {
+                "end": 318,
+                "source_id": "eval_loom",
+                "start": 285
+              },
+              {
+                "end": 397,
+                "source_id": "eval_loom",
+                "start": 318
+              },
+              {
+                "end": 472,
+                "source_id": "eval_loom",
+                "start": 397
+              }
+            ],
+            "value": "Silk Shuttles"
+          },
+          {
+            "evidence": [
+              {
+                "end": 682,
+                "source_id": "eval_loom",
+                "start": 659
+              }
+            ],
+            "spans": [
+              {
+                "end": 634,
+                "source_id": "eval_loom",
+                "start": 632
+              },
+              {
+                "end": 659,
+                "source_id": "eval_loom",
+                "start": 634
+              },
+              {
+                "end": 682,
+                "source_id": "eval_loom",
+                "start": 659
+              },
+              {
+                "end": 729,
+                "source_id": "eval_loom",
+                "start": 682
+              },
+              {
+                "end": 776,
+                "source_id": "eval_loom",
+                "start": 729
+              }
+            ],
+            "value": "Cork Rings"
+          }
+        ]
+      },
+      "source_id": "eval_loom",
+      "source_sha256": "7c10850f21de579945f1daa3d62353b9fba505a9a78c18ea04049b6fa21c3cfc",
+      "status": "accepted"
+    },
+    "source_id": "eval_loom"
+  }
+}

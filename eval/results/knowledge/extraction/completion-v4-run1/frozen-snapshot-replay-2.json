@@ -1,0 +1,13 @@
+{
+  "status": "pass",
+  "captured_at": "2026-11-16T18:19:29.805411+00:00",
+  "frozen_code_revision": "037e939802c5dc4d12292275b9120bc00083323b",
+  "clean_committed_snapshot": true,
+  "provider_calls": 0,
+  "command": "Exact document 06 section 11.4 replay; imported submodule verified from clean committed snapshot",
+  "returncode": 0,
+  "stdout": "24 exact offline replays passed; provider calls: 0\n",
+  "stderr": "",
+  "previous_probe_failure": "The first snapshot probe incorrectly assumed namespace package eval.__file__ was non-null; preserved separately. The documented replay itself contains no such assumption.",
+  "scope": "Frozen v4 evidence, not acceptance of concurrent integration changes"
+}
