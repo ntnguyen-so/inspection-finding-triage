@@ -1,18 +1,34 @@
 {
-  "version": "knowledge-extraction-reference-v1",
+  "version": "knowledge-extraction-reference-v1.2",
+  "grader_version": "knowledge-span-grader-v1.1",
+  "controlled_revision": {
+    "prior_snapshot": "4cdd46e",
+    "reason": "Bounded cross-critique found a grader classification defect: safe empty/general metadata omissions were all classified as accepted-wrong critical, contradicting document 07's C0 fallback and separate human-repair gate.",
+    "change": "Missing scopes/aliases and missing context with both endpoints general are repair diagnostics. Actual unsupported/nonempty incomplete scope, unsupported aliases, and detached required context with a scoped endpoint remain critical. Compare labels casefolded while retaining case-exact source evidence. Undefined metadata precision/recall is null.",
+    "comparability": "Grader classification correction, not extraction improvement. No candidate outputs or paid observations had been seen. Carry no prior candidate observations forward as rerun evidence.",
+    "unchanged": "Source bytes/hashes, reference.json bytes/hash, atom spans, expected query labels, partitions, thresholds and original smoke are unchanged.",
+    "review_limit": "Parent reports bounded cross-critique and accepted criterion; this note does not claim independent human/domain review."
+  },
+  "baseline_refinement": {
+    "prior_snapshot": "4cdd46e",
+    "prior_observation": "eval\\results\\knowledge\\extraction\\source-first-offline-1\\observation.json",
+    "reason": "Development observations found late declarations restricting unheaded preambles, semicolon aliases treated as one literal, and unmodelled cross-section qualifications.",
+    "change": "Respect heading-only scope boundaries and the specified semicolon grammar. Add explicit conservative same-source context co-return edges; these are not asserted engineering dependencies and may prevent useful narrowing until editorial review.",
+    "comparability": "Post-observation, evaluation-exposed implementation refinement, not a fresh blind comparison. Thresholds, query expectations, atom/reference/source bytes and partition membership remain unchanged."
+  },
   "status": "frozen_component_reference_not_system_acceptance",
-  "freeze_order": ["unitizer_and_C0_rules", "source_families_and_partitions", "source_bytes_and_atoms", "hash_sorted_repeat_selection", "candidate_outputs_not_yet_observed"],
+  "freeze_order": ["unitizer_and_initial_C0_rules", "source_families_and_partitions", "source_bytes_and_atoms", "hash_sorted_repeat_selection", "disclosed_C0_output_exposure", "development_informed_C0_refinement"],
   "authority": "docs\\07_KNOWLEDGE_DESIGN_DECISION.md",
   "triage_reference_version": "1.2",
   "scenario_support": ["B01", "B02", "B03", "A04", "C04", "D04", "X01", "X02"],
   "scenario_limits": "B03 is the actual maintenance/edit path, not isolation. Isolation supports B01/D04 and component gates. B02 requires the separate downstream change experiment.",
   "exposure": "AI-authored and AI-exposed synthetic reference, not independently blind or human certified. Evaluation source labels must not enter production or development tuning.",
   "baseline": {
-    "version": "c0-line-heading-literal-v1",
+    "version": "c0-heading-source-context-v2",
     "unitizer": "Validate UTF-8 strictly; bytes.splitlines(keepends=True), without decoding/re-encoding or stripping BOM/CRLF. Consecutive IDs u0001, u0002, ... in byte order. Empty input is rejected.",
     "groups": "Preamble then Markdown ATX heading sections; headings inside fenced code are ordinary text. Opening fence is at most three spaces followed by at least three backticks or tildes; matching closing fence uses the same character with at least the opening length. A heading begins a group and belongs to that group. No source-specific branches.",
-    "metadata": "Outside fences only, an entire stripped line Scope: <literal> or Equipment: <literal> declares one literal scope for its heading group. Aliases: <literal>[; <literal>...] declares source-literal aliases for the single scope in that group. Leading UTF-8 BOM is ignored only for grammar recognition, never removed from bytes. Empty, conflicting or ambiguous declarations stay general/unresolved. No inferred synonyms, prose scopes or links; other groups are general.",
-    "matching": "Unicode casefold exact type/alias match; lexical maximal Unicode letter/digit tokens may add only. Required context closes bidirectionally. Unknown subject, unreviewed scope or no scoped match broadens to all eligible. Shared selector for C0/C1."
+    "metadata": "Outside fences only, an entire stripped line Scope: <literal> or Equipment: <literal> declares one literal scope for its heading group, never for an unheaded preamble. Aliases: <literal>[; <literal>...] declares source-literal aliases for the single scope in that group. Leading UTF-8 BOM is ignored only for grammar recognition, never removed from bytes. Empty, conflicting or ambiguous declarations stay general/unresolved. No inferred synonyms or prose scopes. Conservative same-source star edges co-return context with endpoint-byte evidence; they do not assert inferred engineering dependencies.",
+    "matching": "Unicode casefold exact type/alias match; lexical additions disabled in the initial pinned strategy. Required context closes bidirectionally. Unknown subject, unreviewed scope or no scoped match broadens to all eligible. Conservative source-context co-return is disclosed as conservative_expansion, not selective qualification. Shared selector for C0/C1."
   },
   "thresholds": {
     "required_atom_recall": 1.0,
@@ -28,7 +44,7 @@
     "maximum_attempts_per_slot": 2,
     "additional_repeats_per_chosen_source": 2,
     "repeat_selection": "First two evaluation source IDs after sorting by (sha256, source_id), frozen before candidate outputs.",
-    "retry_allowed": ["transport_timeout", "transport_unavailable", "malformed_json", "structural_validation"],
+    "retry_allowed": ["timeout", "transport", "malformed_json", "schema_violation"],
     "semantic_retry_allowed": false,
     "copilot_strict_hidden_attempt_accounting": "unknown_not_qualified",
     "independent_human_review": "unexecuted",

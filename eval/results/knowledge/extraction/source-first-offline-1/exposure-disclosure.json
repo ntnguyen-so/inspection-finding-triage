@@ -1,0 +1,22 @@
+{
+  "scope": "component_evaluation_provenance",
+  "first_persisted_run": "source-first-offline-1",
+  "earlier_execution": {
+    "reported_by": "knowledge-eval-first AI implementation agent",
+    "command_or_function": "collect_c0(load_suite())",
+    "count_per_source_reported": 5,
+    "sources": "All eight synthetic sources and original shared smoke",
+    "cause": "Two adapter tests executed collection in two interpreter invocations, followed by one in-memory inspection.",
+    "complete_raw_proposals_and_per_execution_hashes": "not_retained",
+    "paid_model_calls": 0,
+    "limitation": "Actual evaluation-partition C0 outputs were observed before the complete runtime freeze. Missing historical raw evidence cannot be reconstructed or claimed."
+  },
+  "first_persisted_failures": {
+    "development": ["dev_atlas", "dev_quill", "dev_mosaic"],
+    "evaluation": ["eval_prism", "eval_river", "eval_loom"],
+    "original_domain": "pass"
+  },
+  "subsequent_work": "Development-informed and evaluation-exposed regression, never relabelled as a new blind comparison.",
+  "preservation": "The original observation, proposals and recorded run identity remain unchanged. Later code/grader runs require separate result paths and their own hashes.",
+  "source_and_reference_policy": "No synthetic source, expected query, frozen triage reference or supplied candidate-pack bytes are changed to hide these failures."
+}

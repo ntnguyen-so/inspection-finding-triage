@@ -1,0 +1,40 @@
+{
+  "assessment_time": "2026-07-01T00:00:00+00:00",
+  "code": {
+    "code_sha256": "2ba3108bdcad7c92913112608d8e62254f1e2192307502182c0f8393489d5f4e",
+    "dirty_status": "M .gitignore\n M AGENTS.md\n M README.md\n M docs/07_KNOWLEDGE_DESIGN_DECISION.md\n M eval/knowledge_eval.py\n M eval/spec/knowledge_extraction.json\n M eval/tests/test_knowledge_eval.py\n M pyproject.toml\n?? docs/05_TRIAGE_WORKFLOW.md\n?? docs/06_KNOWLEDGE_CONTEXT.md\n?? eval/results/artifacts-manifest.json\n?? eval/results/knowledge/\n?? eval/results/triage/\n?? eval/run_knowledge.py\n?? eval/tests/test_run_knowledge.py\n?? knowledge/\n?? tests/__init__.py\n?? tests/knowledge_support.py\n?? tests/test_copilot_triage.py\n?? tests/test_knowledge.py\n?? tests/test_knowledge_context.py\n?? tests/test_knowledge_editor.py\n?? tests/test_knowledge_lifecycle.py\n?? tests/test_knowledge_probe.py\n?? tests/test_knowledge_workflow.py\n?? tests/test_source_cli.py\n?? tests/test_source_context.py\n?? tests/test_source_editor.py\n?? tests/test_source_knowledge.py\n?? tests/test_triage.py\n?? tests/triage_support.py\n?? tools/probe_knowledge.py\n?? tools/probe_triage.py\n?? tools/verify_knowledge.py\n?? tools/verify_triage.py\n?? triage/\n?? triage_knowledge/",
+    "files_sha256": {
+      "eval\\assess.py": "f518fb5c9fc8d5fa1af3b12b6211e94e5b7724ff4aa7f19295ebd351feb1d4f8",
+      "eval\\knowledge_attempts.py": "d44c99c8cf3f6afb2c4e7c329aab992af31b337caeee3f6d7c2cde75979a9df0",
+      "eval\\knowledge_copilot.py": "ba12dbd96fb372f8a2b7160c47f1b39dcec736d475eb02031e4d9b9374a1f432",
+      "eval\\knowledge_eval.py": "75ae64b761b0ffcfee83a0033a011a042190eb5636c927383e04b230b7e58d22",
+      "eval\\run_knowledge.py": "3f734d95482ccbcbb67092a511b0eee58340003062f83cb0d28a8987d8f5e11a",
+      "eval\\validate.py": "77622bc3748a31bb1e3eac36d5a985bf12289a8af8052e9234758007c6e19e9b",
+      "llm_inference\\__init__.py": "95dc7f05b494cd3c7135bdb061453e9ddc72c45a20777dee1569fe36e8c3f6bc",
+      "llm_inference\\__main__.py": "852673b93b39db4f1327547e2bacaeb2443cc40d0d15dc672b4cab9471035f24",
+      "llm_inference\\_lifecycle.py": "b8c983e8e230e0cdfce5d329f361cdebda6dd040ab6e7774b53626eb1d97bbef",
+      "llm_inference\\azure.py": "938ecb97aed4ab89306ead68f922507b2dc8d9d6f614cb1506beca3a82fbda8c",
+      "llm_inference\\contracts.py": "4d27d144808212ab93959d01c82574ec3add767ed80b30bcb1334596e67621cc",
+      "llm_inference\\copilot.py": "49b01321cfb2d7bb635f119c36e5c1768e40ca23863357e3425fd1c5909f3417",
+      "triage_knowledge\\__init__.py": "24df74ac087273eef600a6d04fd41f260631366fd535c6fe928aed0fd950fc09",
+      "triage_knowledge\\__main__.py": "68644fe2d0ec06345784a8b663eea0eeb77f2b598fc54310aeddb9c27755fd17",
+      "triage_knowledge\\context.py": "fa75c133540073923317900186a2aff2c25308aae676abaab9d928d4f613e14a",
+      "triage_knowledge\\contracts.py": "19d1ace2fbf1706dcd4a0bf4b565ef96cda17947172aa0ca987289b93f8008e8",
+      "triage_knowledge\\editor.py": "ad29cc29345f7ae4261a9b6e26efb764b9f347c4ad383f52097d67dd73568ad0",
+      "triage_knowledge\\knowledge.py": "9bcae12d5c6fb7872d704089bd032f68cc1ae3c2d9a01f25debfaa6e2f547b22",
+      "triage_knowledge\\legacy_cli.py": "c15c31637bf63658618a89e09d2cbbe4903f5aaafb6e2884f0493be0d49df45f",
+      "triage_knowledge\\legacy_editor.py": "1a14fc9b17e60459e9436469b1038e292e17cf1ec916c875be6fc30ba3842b67",
+      "triage_knowledge\\retrieval.py": "c16ac02cfdf2786f66727a7b3fdf254c22f8bb6b565eab3419cd764fc7c18376",
+      "triage_knowledge\\source.py": "6a5cd74f1bebd6349fb49c9d8f57d0e12c55fc2ac89ba49b13fb4581afdbf525",
+      "triage_knowledge\\source_cli.py": "c1ed761371dd82b913a636403cf222cefd727222b4c0c7e28d4c0ed7bc9d0ba3",
+      "triage_knowledge\\source_context.py": "24eb759e5602fc27a0049c42342f71ecc1d433e4cc5b513bb0ae73e805595268",
+      "triage_knowledge\\source_editor.py": "370b58a535ff69506e665df722c608263f8427479874a7c4de6bc0c538183aa5",
+      "triage_knowledge\\source_store.py": "cfd7c049b23248b9554adda18f648ace631ac1de79d754f466fd1c5d58f78c84",
+      "triage_knowledge\\workflow_export.py": "98ff2d65413cc47625d9ce712ca34c7506b61c44563eaa7de3ade0d0ebb67135"
+    },
+    "revision": "4cdd46e36071479e9f5c8a194d8f555deaea5932"
+  },
+  "exposure": "AI-authored and AI-exposed synthetic reference, not independently blind or human certified. Evaluation source labels must not enter production or development tuning.",
+  "run_id": "c5315488-9861-4370-94c8-34fdbf4c47ec",
+  "started_at": "2026-11-16T16:19:12.461539+00:00"
+}

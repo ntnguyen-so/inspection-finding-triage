@@ -143,16 +143,85 @@ class KnowledgeGraderTests(unittest.TestCase):
         value["metadata"]["aliases"][0]["value"] = "invented synonym"
         self.assertEqual(assess_extraction(self.suite, value)["status"], "fail")
 
-    def test_unsupported_restrictive_scope_and_missing_scope(self):
-        for mode in ("remove", "reverse"):
-            value = proposal(self.suite, "eval_prism")
-            if mode == "remove":
-                value["metadata"]["scopes"].pop(0)
-            else:
-                value["metadata"]["scopes"][0]["value"] = "Copper Wheels"
-            report = assess_extraction(self.suite, value)
-            self.assertEqual(report["semantic"], "fail")
-            self.assertTrue(report["accepted_wrong_critical"])
+    def test_empty_scope_omission_is_repair_not_unsupported_restriction(self):
+        value = proposal(self.suite, "eval_prism")
+        value["metadata"]["scopes"].pop(0)
+        report = assess_extraction(self.suite, value)
+        self.assertEqual(report["semantic"], "pass")
+        self.assertFalse(report["accepted_wrong_critical"])
+        self.assertTrue(report["repair_required"])
+        self.assertEqual(report["repair_counts"]["scope_add"], 1)
+        value["metadata"]["scopes"][0]["value"] = "Copper Wheels"
+        report = assess_extraction(self.suite, value)
+        self.assertEqual(report["semantic"], "fail")
+        self.assertTrue(report["accepted_wrong_critical"])
+
+    def test_empty_metadata_and_both_general_context_are_safe_repair_diagnostics(self):
+        value = proposal(self.suite, "eval_prism")
+        value["metadata"] = {"scopes": [], "aliases": [], "links": []}
+        report = assess_extraction(self.suite, value)
+        self.assertEqual(report["status"], "pass")
+        self.assertFalse(report["accepted_wrong_critical"])
+        self.assertEqual(report["repair_counts"], {"scope_add": 5, "alias_add": 2, "context_add": 3})
+        self.assertIsNone(report["metrics"]["scope"]["precision"])
+        self.assertEqual(report["metrics"]["scope"]["recall"], 0)
+        # A scoped endpoint can now be lost independently of its unlinked exception.
+        original = proposal(self.suite, "eval_prism")
+        value["metadata"]["scopes"] = original["metadata"]["scopes"][:1]
+        self.assertTrue(assess_extraction(self.suite, value)["accepted_wrong_critical"])
+
+    def test_nonempty_partial_scope_is_critical_even_without_unsupported_assignment(self):
+        reference = deepcopy(self.suite.reference)
+        source = next(s for s in reference["sources"] if s["source_id"] == "eval_prism")
+        source["atoms"][0]["scopes"].append("Copper Wheels")
+        suite = replace(self.suite, reference=reference)
+        report = assess_extraction(suite, proposal(self.suite, "eval_prism"))
+        self.assertEqual(report["metrics"]["scope"]["unsupported"], [])
+        self.assertIn("open", report["critical_errors"]["nonempty_incomplete_scope_atoms"])
+        self.assertEqual(report["status"], "fail")
+
+    def test_omitted_alias_is_diagnostic_and_casefold_does_not_rewrite_evidence(self):
+        value = proposal(self.suite, "eval_prism")
+        value["metadata"]["aliases"].pop()
+        report = assess_extraction(self.suite, value)
+        self.assertEqual(report["semantic"], "pass")
+        self.assertEqual(report["repair_counts"]["alias_add"], 1)
+        reference = deepcopy(self.suite.reference)
+        source = next(s for s in reference["sources"] if s["source_id"] == "eval_prism")
+        for atom in source["atoms"]:
+            atom["scopes"] = [s.upper() for s in atom["scopes"]]
+        for alias in source["aliases"]:
+            alias["value"] = alias["value"].upper()
+            alias["target"] = alias["target"].upper()
+        suite = replace(self.suite, reference=reference)
+        self.assertEqual(assess_extraction(suite, proposal(self.suite, "eval_prism"))["status"], "pass")
+        value = proposal(self.suite, "eval_prism")
+        value["metadata"]["scopes"][0]["value"] = "PRISM-GATES"
+        # It compares equal semantically but is not a literal in the cited source.
+        self.assertEqual(assess_extraction(self.suite, value)["status"], "fail")
+
+    def test_empty_inventory_precision_and_recall_are_undefined_not_perfect(self):
+        report = assess_extraction(self.suite, proposal(self.suite, "original_domain"))
+        self.assertEqual(report["status"], "pass")
+        for metric in report["metrics"].values():
+            self.assertEqual(metric["expected"], 0)
+            self.assertEqual(metric["observed"], 0)
+            self.assertIsNone(metric["precision"])
+            self.assertIsNone(metric["recall"])
+
+    def test_unresolved_alias_retained_in_metrics_and_query_totals(self):
+        reference = deepcopy(self.suite.reference)
+        source = next(s for s in reference["sources"] if s["source_id"] == "eval_prism")
+        source["aliases"][0]["judgment"] = "needs_review"
+        suite = replace(self.suite, reference=reference)
+        report = assess_extraction(suite, proposal(suite, "eval_prism"))
+        self.assertEqual(report["status"], "needs_review")
+        self.assertEqual(report["metrics"]["alias"]["expected"], 2)
+        self.assertEqual(report["unresolved_alias_count"], 1)
+        for case_id in ("eval_prism.scoped", "eval_prism.unknown"):
+            result = assess_retrieval(suite, case_id, perfect_retrieval(suite, case_id))
+            self.assertEqual(result["status"], "needs_review")
+            self.assertEqual(result["recall"], 1)
 
     def test_extraction_partition_must_account_for_bytes_exactly_once(self):
         for mutation in ("duplicate", "omit", "invent", "bad_hash", "bad_span", "boolean_offset"):
@@ -363,7 +432,7 @@ class KnowledgeGraderTests(unittest.TestCase):
         ]
         self.assertEqual(assess_repeats(self.suite, primaries, [])["status"], "needs_review")
         self.assertEqual(assess_repeats(self.suite, primaries, repeats)["status"], "pass")
-        repeats[0]["proposal"]["metadata"]["scopes"].pop()
+        repeats[0]["proposal"]["metadata"]["scopes"][0]["value"] = "Lemon Cubes"
         self.assertEqual(assess_repeats(self.suite, primaries, repeats)["status"], "fail")
 
     def test_attempt_budget_has_no_semantic_retry_or_hidden_accounting_pass(self):

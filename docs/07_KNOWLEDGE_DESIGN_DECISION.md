@@ -5,8 +5,9 @@
 This is the **single current design decision** for the replacement knowledge
 module. It consolidates the owner's source-fidelity, editing, active-knowledge,
 relevant-retrieval and evaluation requirements. Document 06 is a superseded-design
-pointer, not another specification. Existing code remains legacy; this document
-does not claim implementation, evaluation success, content approval or activation.
+pointer, not another specification. The source-first implementation is separate
+from explicitly named legacy replay surfaces. Implementation does not imply
+evaluation success, content approval or workflow activation.
 Root `DESIGN.md` remains reserved for the project owner.
 
 Authority: the supplied candidate brief/domain, then documents 02/03 and frozen
@@ -46,10 +47,10 @@ separately. Never present repaired proposals as unassisted model accuracy.
 ## 3. Evaluation data and independent expectations
 
 Use the existing test runner and JSON evidence conventions, not a new evaluation
-platform. Proposed component manifest: `eval\spec\knowledge_extraction.json`;
+platform. Component manifest: `eval\spec\knowledge_extraction.json`;
 fixtures under `eval\data\knowledge_extraction`; observations under
-`eval\results\knowledge\extraction\<run-id>`. These are planned files, not existing
-commands/artifacts or amendments to the frozen triage reference.
+`eval\results\knowledge\extraction\<run-id>`. These component artifacts do not
+amend the frozen triage reference.
 
 ### 3.1 Corpus and split
 
@@ -87,9 +88,11 @@ Development uses its four-source index plus the common original domain; evaluati
 uses only its four-source index plus that same common source. Never combine both
 synthetic partitions into an index during development.
 
-The evaluation sources and labels are unavailable for development tuning. They
-are exposed only after code, extraction prompt/model/configuration and selector
-are frozen. Since an AI-assisted fixture author may already know the material,
+The intended gate keeps evaluation sources and labels unavailable for development
+tuning until code, extraction prompt/model/configuration and selector are frozen.
+The actual pre-freeze exposure and consequent non-blind regression limitation are
+disclosed in section 12; this run cannot satisfy that intended untouched gate.
+Since an AI-assisted fixture author may already know the material,
 record actual exposure; do not claim independent or statistically blind gold.
 Any post-evaluation fix is disclosed and subsequent work is regression, not a
 fresh blind test.
@@ -261,6 +264,14 @@ the fixture set; no fixture-specific parser patches. Both use identical selector
 parameters. Labels with plurals/hyphens or source-written aliases must appear in
 the evaluation roster; count conservative expansion honestly rather than fitting
 fixtures only to convenient exact-label matching.
+Development-informed C0 policy v2 keeps unheaded preambles general and splits
+aliases on semicolons. Since code does not infer cross-section semantics, it
+explicitly co-returns same-source groups conservatively with source-byte endpoint
+evidence. Such edges assert retrieval containment, not new engineering rules.
+Over-closure is measured and may fail useful selection; human review must remove
+unnecessary coupling before claiming efficient scoped retrieval. There is no
+per-source-ID answer branch. Lexical additions are disabled in the initial pinned
+selector; enabling them later needs a strategy change and affected checks.
 
 Use identical source bytes, code validators, lifecycle, selector, query cases and
 reference for C0/C1. Change only extraction strategy. Separate **raw proposal
@@ -332,6 +343,15 @@ experimental observations. Pin catalog-enabled `gpt-6-luna`, reasoning `low`,
 maximum 26 reserved application sends, at most two per slot. This does not impose
 an enforceable USD or hidden-HTTP ceiling: both remain unknown and strict-cost/
 attempt qualification cannot pass. It does not reuse the spent B02 ledger.
+The experimental driver freezes its schedule, development prefix and retry-code
+allowlist in the ledger as well as request fingerprints. Only provider-level
+`timeout`, `transport`, `malformed_json` and `schema_violation` recover;
+source-reference/proposal failures are final. Successful response text is
+persisted before source validation, so a grader bug cannot discard paid output.
+For malformed/schema-invalid responses the current inference adapter exposes
+only the error/receipt, not raw invalid text; record that absence explicitly,
+never reconstruct an alleged raw response. Interrupted reservations remain
+spent and can be inspected without resending.
 
 Fixtures/manifests are frozen before either candidate's evaluation outputs are
 seen. The proposed component manifest is separate from unchanged triage reference
@@ -453,7 +473,8 @@ for every assessment/retry. The module's initial deterministic selector:
 2. Include all general/unclassified active context, definitions and qualifications.
 3. Include all reviewed equipment-type/alias scope matches for every subject.
    Unicode case-folded exact labels determine scope; source lexical whole-word
-   matches may add items, never remove a matching scope or infer an actual fault.
+   matches are disabled in the initial strategy. Any future lexical additions may
+   add items, never remove a matching scope or infer an actual fault.
 4. Close `required_with` context groups in both directions, including exceptions
    to an included general rule. Missing/inactive required context fails; do not
    revive it. Review uncertain/unlinked qualifications as general.
@@ -605,11 +626,41 @@ judge or further review workflow is introduced.
 
 Consolidation removes obsolete schema-1/2/rubric-first design prescriptions from
 document 06; legacy runtime and historical observations remain unchanged.
-This decision is ready to guide the next implementation, not evidence that its
-unmaterialized evaluation has passed.
+This decision guides the source-first implementation; neither the design nor
+review agreement proves the component or downstream system gates have passed.
 
 Implementation-contract review accepted separate release-bound context edges to
 avoid circular revision hashes, independent byte-span grading, isolated legacy
 replay and explicit Copilot accounting limits. It also requires distinguishing
 software fixture review from genuine editorial review: a passing deterministic
 selector fixture cannot certify editorial quality or all system goals.
+
+The preregistered component snapshot is preserved in commit `4cdd46e`. Before
+paid calls, bounded cross-review found and corrected a grader bug: safe empty/
+general metadata omissions were being treated as critical false assertions.
+Component reference/grader v1.1 preserves all source/reference/query bytes while
+separating repair diagnostics from unsupported or unsafe restrictive assertions.
+This changes grading, not candidate quality; prior reports are not relabelled.
+
+The adapter author then disclosed five unpersisted all-source C0 executions
+during adapter development/tests. Those outputs exposed the evaluation partition
+before complete runtime freeze; complete historical proposal/hash records are
+unavailable. The first persisted observation, `source-first-offline-1`, retains
+six source failures and separate exposure disclosure. Subsequent comparisons are
+evaluation-exposed regression, not newly blind evaluation. Development-only
+failure inspection guides implementation repairs; no frozen source/answer is
+edited to conceal a failure.
+
+Implementation review and sequential cross-critique accepted two reproduced
+defects: valid whitespace-only source passages must survive context assembly;
+intake rejection must not withdraw a previously published logical item after an
+amendment. Review also exposed implicit restoration through rejected-item edits,
+metadata/lifecycle changes and replacement operations. These paths now require
+explicit restoration, with focused regression tests. Published membership is
+proved from validated immutable releases, not unreliable revision ancestry or a
+mutable flag. Initial unpublished intake remains rejectable after correction.
+The proposed additional baseline marker was not adopted: existing immutable
+release membership covers both forked and same-draft publications without
+changing historical release hashes. Explicit restore on active content remains
+a reviewed reset, not automatic activation. The cross-critic did not inspect
+retrieval and ran no tests; these were bounded AI reviews, not certification.

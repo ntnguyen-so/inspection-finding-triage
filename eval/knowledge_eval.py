@@ -239,8 +239,8 @@ def _diagnostic(expected: set[Any], actual: set[Any]) -> dict[str, Any]:
     return {
         "expected": len(expected), "observed": len(actual),
         "true_positive": len(expected & actual),
-        "precision": len(expected & actual) / len(actual) if actual else 1.0,
-        "recall": len(expected & actual) / len(expected) if expected else 1.0,
+        "precision": len(expected & actual) / len(actual) if actual else None,
+        "recall": len(expected & actual) / len(expected) if expected else None,
         "missing": sorted(expected - actual), "unsupported": sorted(actual - expected),
     }
 
@@ -266,9 +266,12 @@ def _closure_pairs(edges: Iterable[tuple[str, str]]) -> set[tuple[str, str]]:
 def assess_extraction(suite: Suite, proposal: dict[str, Any]) -> dict[str, Any]:
     """Grade exact partition/text and atom-normalized metadata, independent of groups.
 
-    Missing source-declared scopes/links are reported as semantic failures, not
-    silently "repaired" to general. Co-located context and transitive linked
-    context are equivalent; excess context closure is a separate diagnostic.
+    Empty scope is the declared conservative general fallback, not an accepted
+    wrong restrictive claim. Missing metadata stays visible as repair diagnostics;
+    it is never filled into the proposal. Nonempty partial/unsupported scope,
+    unsupported aliases and missing context with a scoped endpoint are critical.
+    Retrieval completeness/usefulness and actual human work remain separate gates.
+    Co-location and linked context closure are equivalent.
     """
     report: dict[str, Any] = {"status": "fail", "fidelity": "fail", "semantic": "not_run", "accepted_wrong_critical": False}
     try:
@@ -312,7 +315,7 @@ def assess_extraction(suite: Suite, proposal: dict[str, Any]) -> dict[str, Any]:
                 if not isinstance(literal, str) or not literal or not any(literal in text for text in texts):
                     raise ValueError("metadata literal missing from source evidence")
 
-        expected_scopes = {(key, scope) for key, atom in atoms.items() for scope in atom["scopes"]}
+        expected_scopes = {(key, scope.casefold()) for key, atom in atoms.items() for scope in atom["scopes"]}
         actual_scopes: set[tuple[str, str]] = set()
         for record in metadata["scopes"]:
             if set(record) != {"value", "spans", "evidence"}:
@@ -321,14 +324,14 @@ def assess_extraction(suite: Suite, proposal: dict[str, Any]) -> dict[str, Any]:
             affected = ids(_spans(suite, record["spans"], {sid}))
             if not affected:
                 raise ValueError("scope does not cover a labelled atom")
-            actual_scopes.update((key, record["value"]) for key in affected)
-        expected_aliases = {(alias["value"], alias["target"]) for alias in source["aliases"]}
+            actual_scopes.update((key, record["value"].casefold()) for key in affected)
+        expected_aliases = {(alias["value"].casefold(), alias["target"].casefold()) for alias in source["aliases"]}
         actual_aliases = set()
         for record in metadata["aliases"]:
             if set(record) != {"value", "target", "evidence"}:
                 raise ValueError("invalid alias fields")
             evidence(record, [record["value"], record["target"]])
-            actual_aliases.add((record["value"], record["target"]))
+            actual_aliases.add((record["value"].casefold(), record["target"].casefold()))
         expected_links = _closure_pairs((key, other) for key, atom in atoms.items() for other in atom["requires"])
         edges: list[tuple[str, str]] = []
         for group in groups:
@@ -349,13 +352,41 @@ def assess_extraction(suite: Suite, proposal: dict[str, Any]) -> dict[str, Any]:
             "alias": _diagnostic(expected_aliases, actual_aliases),
             "context": _diagnostic(expected_links, actual_links),
         }
-        semantic_fail = expected_scopes != actual_scopes or expected_aliases != actual_aliases or not expected_links <= actual_links
-        pending = any(a.get("judgment") == "needs_review" for a in atoms.values())
+        scoped_atoms = {key for key, _ in actual_scopes}
+        partial_scope_atoms = {
+            key for key in scoped_atoms
+            if {value for atom, value in actual_scopes if atom == key}
+            != {value for atom, value in expected_scopes if atom == key}
+        }
+        detached_scoped_context = {
+            pair for pair in expected_links - actual_links if set(pair) & scoped_atoms
+        }
+        semantic_fail = bool(
+            actual_scopes - expected_scopes or partial_scope_atoms
+            or actual_aliases - expected_aliases or detached_scoped_context
+        )
+        repairs = {
+            "scope_add": len(expected_scopes - actual_scopes),
+            "alias_add": len(expected_aliases - actual_aliases),
+            "context_add": len(expected_links - actual_links),
+        }
+        report["repair_required"] = any(repairs.values())
+        report["repair_counts"] = repairs
+        report["repair_count_basis"] = "Missing atom-level scope/alias facts and context-closure pairs; NOT observed human corrections or review benefit."
+        report["critical_errors"] = {
+            "unsupported_scope_facts": sorted(actual_scopes - expected_scopes),
+            "nonempty_incomplete_scope_atoms": sorted(partial_scope_atoms),
+            "unsupported_alias_facts": sorted(actual_aliases - expected_aliases),
+            "detached_scoped_context_pairs": sorted(detached_scoped_context),
+        }
+        unresolved_aliases = sum(a.get("judgment") == "needs_review" for a in source["aliases"])
+        pending = any(a.get("judgment") == "needs_review" for a in atoms.values()) or bool(unresolved_aliases)
         report["semantic"] = "fail" if semantic_fail else "needs_review" if pending else "pass"
         report["status"] = report["semantic"]
         report["accepted_wrong_critical"] = semantic_fail
         report["atom_count"] = len(atoms)
         report["unresolved_atom_count"] = sum(a.get("judgment") == "needs_review" for a in atoms.values())
+        report["unresolved_alias_count"] = unresolved_aliases
     except (ValueError, KeyError, TypeError, UnicodeError) as error:
         report["error"] = str(error)
         report["status"] = "fail"
@@ -401,14 +432,22 @@ def assess_retrieval(suite: Suite, case_id: str, result: dict[str, Any]) -> dict
     """Grade atom-union recall and manually interpretable scoped-byte reduction."""
     expected = case_expectation(suite, case_id)
     required, irrelevant = expected["required"], expected["irrelevant"]
-    report: dict[str, Any] = {"case_id": case_id, "status": "fail", "required_atom_count": len(required)}
+    unresolved_aliases = [
+        f"{source['source_id']}:{alias['value']}"
+        for source in suite.reference["sources"] if source["source_id"] in expected["sources"]
+        for alias in source["aliases"] if alias.get("judgment") == "needs_review"
+    ]
+    report: dict[str, Any] = {
+        "case_id": case_id, "status": "fail", "required_atom_count": len(required),
+        "unresolved_alias_labels": unresolved_aliases,
+    }
     try:
         if result.get("status") == "unavailable":
             if set(result) != {"status", "error_code", "entries"} or result["entries"] != []:
                 raise ValueError("unavailable result must contain no partial usable entries")
             allowed = expected["query"]["kind"] == "unknown" and result["error_code"] == "knowledge_gap"
             unresolved = [key for key in required if suite.atoms[key].get("judgment") == "needs_review"]
-            report.update(status="fail" if not allowed else "needs_review" if unresolved else "pass",
+            report.update(status="fail" if not allowed else "needs_review" if unresolved or unresolved_aliases else "pass",
                           handling="explicit_inability", recall=None, unresolved_required_atoms=unresolved)
             return report
         if set(result) != {"status", "selection_mode", "entries"} or result["status"] != "ok":
@@ -439,7 +478,7 @@ def assess_retrieval(suite: Suite, case_id: str, result: dict[str, Any]) -> dict
             b_bytes += interval_bytes(baseline)
             r_bytes += overlap_bytes(baseline, returned)
             selected_bytes += interval_bytes(returned)
-        recall = hits / len(required) if required else 1.0
+        recall = hits / len(required) if required else None
         reduction = 1 - r_bytes / b_bytes if b_bytes else None
         unknown = expected["query"]["kind"] == "unknown"
         broadening_ok = not unknown or (
@@ -448,7 +487,7 @@ def assess_retrieval(suite: Suite, case_id: str, result: dict[str, Any]) -> dict
         )
         efficiency = case_id in suite.manifest["efficiency_case_ids"]
         useful = not efficiency or (b_bytes > 0 and reduction >= suite.manifest["thresholds"]["each_scoped_irrelevant_byte_reduction"])
-        pending = any(atoms[key].get("judgment") == "needs_review" for key in required)
+        pending = any(atoms[key].get("judgment") == "needs_review" for key in required) or bool(unresolved_aliases)
         passed = recall == 1.0 and broadening_ok and useful
         report.update(
             status="fail" if not passed else "needs_review" if pending else "pass",
