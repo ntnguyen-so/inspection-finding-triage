@@ -260,6 +260,27 @@ unverified: verify current control alignment, reconcile the impairment/deviation
 record, and close only after a witnessed passing function test. This is a
 test-informed change; it is not an untouched frozen-test result.
 
+A later Copilot `gpt-6.1-sol` experimental all-21 run generated 21 drafts in 21
+application sends and received 62/63 calibrated AI-only semantic dimensions.
+F-1015 planning omitted comparison of the cleaned local gauge indication against
+the reported independent transmitter/reference. The generic planning contract
+now requires that comparison for local readability/visibility defects while
+preserving the distinction between impaired observation and process-function
+failure. This is another disclosed test-informed correction, not a finding-ID
+branch or an untouched test result.
+The failed artifact is retained at
+`eval\results\triage\copilot-gpt61-policy-v5-all21`.
+
+A separate Copilot `gpt-6-sol` experimental all-21 run recorded the prior
+prompt hash, generated 21 drafts in 27 application sends and received a
+provisional 63/63 AI-only review. `triage\assessment.py` changed while that run
+was active, so its recorded prompt state and output are retained at
+`eval\results\triage\copilot-gpt6-policy-v5-all21` but are not claimed as
+current-code evidence. The revised F-1015 guidance has only a disclosed one-case
+spot check at `eval\results\triage\copilot-gpt61-f1015-guidance`; F-1015 is no
+longer held out, and no development-partition case independently exercises this
+new rule.
+
 The final run permits at most 42 direct requests (21 findings, at most two
 attempts each), with SDK/HTTP retries disabled and explicit token accounting.
 Before the policy-v5 v7 final run, retained final-phase attempts and preflights

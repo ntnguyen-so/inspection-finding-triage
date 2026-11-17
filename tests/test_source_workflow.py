@@ -160,6 +160,7 @@ class SourceWorkflowTests(Artifacts, unittest.TestCase):
         self.assertIn("should fit 280 characters", provider.requests[0].system)
         self.assertIn("as fixed", provider.requests[0].system)
         self.assertIn("never paraphrase a fixed activity", provider.requests[0].system)
+        self.assertIn("compare the restored local indication", provider.requests[0].system)
         self.assertEqual(
             [
                 CAPACITY_COMPARISON_ACTIVITY,

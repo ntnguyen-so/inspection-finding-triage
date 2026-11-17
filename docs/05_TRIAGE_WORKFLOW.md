@@ -2166,3 +2166,22 @@ Activation `config\triage-activation-v5.json` pins the unchanged reviewed
 knowledge release and the new execution-policy bytes. The wire-schema ordering
 and usage-accounting hardening in the same version are implementation changes,
 not new knowledge or evaluator input.
+
+The subsequent Copilot `gpt-6.1-sol` experimental all-21 observation produced
+21 drafts in 21 sends but received 62/63 calibrated AI-only dimensions. Its
+single F-1015 planning failure omitted comparison of restored local gauge
+readability against the reported independent transmitter/reference. Generic
+prompt guidance now requires restoration plus that independent comparison for
+local visibility/readability defects, without turning a visibility defect into
+confirmed process-function failure. The failed artifact remains retained and
+the correction is disclosed as test-informed.
+The 62/63 artifact is retained at
+`eval\results\triage\copilot-gpt61-policy-v5-all21`. A parallel
+`gpt-6-sol` experiment recorded the pre-correction prompt hash, required 27
+sends and received 63/63 provisional AI-only review, but source changed while
+it was running. Its recorded prompt state and output remain at
+`eval\results\triage\copilot-gpt6-policy-v5-all21`; it is not current-code or
+acceptance evidence. The revised prompt has only a retained one-case F-1015
+spot check at `eval\results\triage\copilot-gpt61-f1015-guidance`. This case is
+therefore no longer held out, and no development-partition case independently
+tests the new guidance.
