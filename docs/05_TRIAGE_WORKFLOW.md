@@ -2135,3 +2135,34 @@ consumer validation passes for13 development and21 serialization-only inputs.
 Payload, source index, assessment policy, membership and time match the software
 development fixture; release/hash provenance differs and remains explicit.
 No real-release live generation or system acceptance follows from that equality.
+
+### Test-informed direct-Azure delivery correction: policy v5
+
+The first version-bound direct-Azure `gpt-5.6-sol` all-21 run published 21
+deterministically valid drafts in 24 requests. Calibrated AI-only ticket review
+was non-green at 60/63: F-1010 grounding and F-1020 planning failed, while
+F-1009 grounding remained `needs_review`. The output, reviews and report are
+retained under `eval\results\triage\direct-azure-final-sol-v5`; they are not an
+untouched or passing test result.
+
+A disclosed medium-reasoning preflight corrected the F-1010 wording and retained
+an acceptable, uncertainty-bounded F-1009 impact rationale. F-1020 still failed
+to make the complete restoration-control sequence explicit. `triage-policy-v5`
+therefore leaves likelihood, impact, the urgency formula and every v4 floor
+unchanged, but code-owns three ordered activities whenever an unlogged protection
+impairment is confirmed and restoration is false or unverified:
+
+1. verify current protection-control alignment;
+2. reconcile the impairment/deviation record; and
+3. witness the function test and close the impairment only after a pass.
+
+The model sees the exact conditional strings before generation, while code
+appends applicable strings, preserves their order and includes them in bounded
+repair arithmetic. The 280-character value remains a repair target; 300 remains
+the hard output limit. Fixed/model ownership is explicit, SDK/HTTP retries stay
+disabled, and the total two-attempt-per-finding limit is unchanged. This generic
+rule contains no finding-ID branch and makes no claim that restoration occurred.
+Activation `config\triage-activation-v5.json` pins the unchanged reviewed
+knowledge release and the new execution-policy bytes. The wire-schema ordering
+and usage-accounting hardening in the same version are implementation changes,
+not new knowledge or evaluator input.

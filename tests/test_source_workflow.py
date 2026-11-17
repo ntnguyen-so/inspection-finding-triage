@@ -20,7 +20,10 @@ from triage.__main__ import main
 from triage.assessment_policy import ASSESSMENT_POLICY_SHA256, assessment_policy
 from triage.contracts import TriageError, digest
 from triage.inputs import EQUIPMENT_FIELDS, FINDING_FIELDS, read_inputs
-from triage.policy import CAPACITY_COMPARISON_ACTIVITY, SAME_DAY_ATTENTION_ACTIVITY
+from triage.policy import (
+    CAPACITY_COMPARISON_ACTIVITY, CONTROL_ALIGNMENT_ACTIVITY, IMPAIRMENT_RECORD_ACTIVITY,
+    RESTORATION_CLOSURE_ACTIVITY, SAME_DAY_ATTENTION_ACTIVITY,
+)
 from triage.source_context import IsolatedProbeContext, NativeContext, activation_candidate
 from triage.workflow import run_workflow
 from triage_knowledge.contracts import KnowledgeError, canonical_bytes
@@ -146,9 +149,11 @@ class SourceWorkflowTests(Artifacts, unittest.TestCase):
                       provider.requests[0].system)
         self.assertIn("never repeat those checks in the core",
                       provider.requests[0].system)
-        self.assertIn("validation_message combined limit for the core plus all",
+        self.assertIn("retry_action_budget gives a proportional core_max_chars",
                       provider.requests[0].system)
-        self.assertIn("appended_verification_activities",
+        self.assertIn("fixed_appended_verification_activities",
+                      provider.requests[0].system)
+        self.assertIn("model_appended_verification_activities",
                       provider.requests[0].system)
         self.assertIn("only when its exact string is already among",
                       provider.requests[0].system)
@@ -156,7 +161,13 @@ class SourceWorkflowTests(Artifacts, unittest.TestCase):
         self.assertIn("as fixed", provider.requests[0].system)
         self.assertIn("never paraphrase a fixed activity", provider.requests[0].system)
         self.assertEqual(
-            [CAPACITY_COMPARISON_ACTIVITY, SAME_DAY_ATTENTION_ACTIVITY],
+            [
+                CAPACITY_COMPARISON_ACTIVITY,
+                SAME_DAY_ATTENTION_ACTIVITY,
+                CONTROL_ALIGNMENT_ACTIVITY,
+                IMPAIRMENT_RECORD_ACTIVITY,
+                RESTORATION_CLOSURE_ACTIVITY,
+            ],
             message["possible_policy_activities"],
         )
         history = message["target_query_facts"]["history"]
@@ -165,6 +176,16 @@ class SourceWorkflowTests(Artifacts, unittest.TestCase):
         self.assertEqual("F-8002", next(iter(history["related_findings"])))
         self.assertIn("not repair completion", history["limitations"][0])
         self.assertNotIn("score", canonical(history))
+
+    def test_provider_bound_request_contains_no_evaluator_material(self):
+        marker = "FROZEN_EVALUATOR_SECRET_EXPECTED_ANSWER"
+        provider = FakeProvider()
+        with patch.dict("sys.modules", {"eval": type("Evaluator", (), {"marker": marker})()}):
+            self.run_one(provider, "evaluator-isolation")
+        bound = provider.requests[0].system + provider.requests[0].user
+        self.assertNotIn(marker, bound)
+        self.assertNotIn("evidence_card", bound)
+        self.assertNotIn("expected_probe", bound)
 
     def test_native_timing_is_resolved_routed_and_retained_without_score_repair(self):
         rows = list(self.inputs.data["registry"].values())

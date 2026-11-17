@@ -20,9 +20,10 @@ from triage.assessment import (
 from triage.contracts import TriageError, digest
 from triage.inputs import ExportedContext, FINDING_FIELDS, read_inputs, validate_context
 from triage.policy import (
-    CAPACITY_COMPARISON_ACTIVITY, SAME_DAY_ATTENTION_ACTIVITY, base_urgency, derive_policy,
+    CAPACITY_COMPARISON_ACTIVITY, CONTROL_ALIGNMENT_ACTIVITY, IMPAIRMENT_RECORD_ACTIVITY,
+    RESTORATION_CLOSURE_ACTIVITY, SAME_DAY_ATTENTION_ACTIVITY, base_urgency, derive_policy,
 )
-from triage.workflow import compose_action, run_workflow, validate_output
+from triage.workflow import action_retry_budget, compose_action, run_workflow, validate_output
 from tests.triage_support import (
     Artifacts, CUTOFF, FixtureContext, FakeProvider, QUOTE, REFERENCE, assessment,
     facts, native_response, receipt, source_files, write_csv,
@@ -149,6 +150,28 @@ class RequestSchemaTests(unittest.TestCase):
             self.assertFalse(validator.is_valid(changed))
         self.assertEqual(original, SCHEMA)
 
+    def test_native_schema_orders_evidence_before_planning_text_without_opening_objects(self):
+        schema = request_schema(
+            {"contract_version": 3, "source_index": {REFERENCE: QUOTE}},
+            "F-8001", "PMP-8001",
+        )
+        self.assertEqual(
+            ["same_day_attention", "assessment", "citation_catalog_sha256"],
+            list(schema["properties"]),
+        )
+        assessed = schema["properties"]["assessment"]["anyOf"][0]
+        names = list(assessed["properties"])
+        self.assertLess(names.index("likelihood_of_failure"), names.index("summary"))
+        self.assertLess(names.index("impact_of_failure"), names.index("summary"))
+        self.assertLess(names.index("facts"), names.index("summary"))
+        self.assertLess(names.index("uncertainties"), names.index("summary"))
+        self.assertLess(names.index("summary"), names.index("recommended_action"))
+        for branch in schema["properties"]["assessment"]["anyOf"]:
+            self.assertFalse(branch["additionalProperties"])
+            self.assertEqual(set(branch["properties"]), set(branch["required"]))
+        self.assertFalse(schema["additionalProperties"])
+        self.assertEqual(set(schema["properties"]), set(schema["required"]))
+
     def test_native_fact_branches_preserve_applicability_state_contract(self):
         schema = request_schema({"source_index": {REFERENCE: QUOTE}}, "F-8001", "PMP-8001")
         validator = Draft202012Validator(schema)
@@ -186,33 +209,102 @@ class RequestSchemaTests(unittest.TestCase):
 
 
 class ActionCompositionTests(unittest.TestCase):
-    def test_f1012_like_many_check_overflow_has_exact_actionable_budget(self):
+    def test_f1002_like_many_check_overflow_has_exact_actionable_budget(self):
         from triage.workflow import action_overflow_message
         fixed = [
-            "Verify availability and capability of LB-4101.",
             CAPACITY_COMPARISON_ACTIVITY,
+            SAME_DAY_ATTENTION_ACTIVITY,
         ]
         model = [
-            "Check approved impairment/deviation record.",
-            "Verify class recertification and craft status.",
+            "Check approved impairment and deviation records.",
+            "Leak-test the passing PSV and confirm correction.",
+            "Verify set-pressure certification and relief readiness.",
         ]
         composition = compose_action(
-            "Marine/class overhaul release gear; verify specified force, smooth release and recertification.",
+            "Authorized inspector to assess PSV-1310 passing below set pressure and correct the defect.",
             [*fixed, *model],
+            fixed,
         )
         original = deepcopy(composition)
-        message = action_overflow_message(composition, fixed)
+        message, budget = action_overflow_message(composition)
         fixed_chars = sum(len(activity) + 1 for activity in fixed)
-        variable_chars = len(composition["model_core"]) + sum(len(activity) + 1 for activity in model)
-        self.assertIn(f"2 fixed checks consume {fixed_chars} characters", message)
-        self.assertIn("Retry safety target is <= 280 combined characters", message)
-        self.assertIn(f"core plus 2 model checks must be <= {280 - fixed_chars}", message)
-        self.assertIn(f"currently {variable_chars}", message)
-        self.assertIn("preserving every activity", message)
-        self.assertIn("Omit only an exact duplicate string", message)
-        self.assertIn("retain required inspection and retest activity", message)
+        self.assertEqual(fixed_chars, budget["fixed_appended_chars_with_separators"])
+        self.assertEqual(3, budget["model_check_count"])
+        self.assertEqual(20, budget["safety_margin_chars"])
+        self.assertEqual(
+            280,
+            fixed_chars + budget["model_separator_chars"]
+            + budget["core_max_chars"]
+            + budget["model_check_count"] * budget["model_check_max_chars"],
+        )
+        self.assertGreaterEqual(budget["core_max_chars"],
+                                len(composition["model_core"]) / 2)
+        self.assertIn(f"Proportional core cap {budget['core_max_chars']}", message)
+        self.assertIn("uniform model-check cap", message)
+        self.assertIn("code-owned and must remain exact", message)
+        self.assertIn("preserve every activity", message)
         self.assertEqual(original, composition)
         self.assertLessEqual(len(message), 500)
+
+    def test_retry_budget_arithmetic_is_exact_for_zero_through_eight_model_checks(self):
+        fixed = ["Verify fixed policy condition."]
+        for count in range(9):
+            with self.subTest(count=count):
+                model = [f"Verify model condition {number}." for number in range(count)]
+                composition = compose_action("Correct the defect.", [*fixed, *model], fixed)
+                budget = action_retry_budget(composition)
+                self.assertEqual(count, budget["model_check_count"])
+                self.assertEqual(count == 0, budget["model_check_max_chars"] == 0)
+                if count:
+                    self.assertGreater(budget["model_check_max_chars"], 0)
+                self.assertEqual(
+                    budget["safety_target_chars"],
+                    budget["fixed_appended_chars_with_separators"]
+                    + budget["model_separator_chars"] + budget["core_max_chars"]
+                    + count * budget["model_check_max_chars"],
+                )
+                self.assertGreaterEqual(
+                    budget["hard_limit_chars"] - budget["safety_target_chars"], 20)
+
+    def test_retry_budget_is_stable_when_model_checks_are_reordered(self):
+        fixed = ["Verify fixed policy condition."]
+        model = [
+            "Check short condition.",
+            "Verify a substantially longer model-authored condition and purpose.",
+            "Retest medium condition after correction.",
+        ]
+        first = action_retry_budget(compose_action("Repair the release gear.", [*fixed, *model], fixed))
+        second = action_retry_budget(compose_action(
+            "Repair the release gear.", [*fixed, *reversed(model)], fixed))
+        self.assertEqual(first, second)
+        self.assertIsInstance(first["model_check_max_chars"], int)
+
+    def test_fixed_and_model_appended_checks_are_separated_without_rewriting(self):
+        fixed = ["Obtain source-required attention today."]
+        model = ["Verify relief capacity.", "Check deviation record."]
+        result = compose_action("Inspect PSV-1310.", [model[0], fixed[0], model[1]], fixed)
+        self.assertEqual(fixed, result["fixed_appended_activities"])
+        self.assertEqual(model, result["model_appended_activities"])
+        self.assertIn(fixed[0], result["composed"])
+
+    def test_model_authored_text_matching_a_fixed_literal_stays_model_owned(self):
+        decision = derive_policy(
+            2, 3, facts(), [{
+                "material": True, "safety": True, "affected_decision": "disposition",
+                "reason": "Synthetic model-owned timing check.",
+                "verification_activity": SAME_DAY_ATTENTION_ACTIVITY,
+                "evidence": [], "sources_checked": [REFERENCE],
+            }],
+            sce=False, gaps=[], same_day_attention=[],
+        )
+        self.assertIn(SAME_DAY_ATTENTION_ACTIVITY, decision["verification_activities"])
+        self.assertNotIn(SAME_DAY_ATTENTION_ACTIVITY, decision["fixed_verification_activities"])
+        result = compose_action(
+            "Inspect the condition.", decision["verification_activities"],
+            decision["fixed_verification_activities"],
+        )
+        self.assertEqual([SAME_DAY_ATTENTION_ACTIVITY],
+                         result["model_appended_activities"])
 
     def test_only_exact_duplicate_activities_are_omitted_without_rewriting_source_text(self):
         core = "Repair the seal; Verify capability."
@@ -228,14 +320,12 @@ class ActionCompositionTests(unittest.TestCase):
         self.assertEqual("Inspect.", compose_action("Inspect.", [])["composed"])
 
     def test_impossible_fixed_only_overflow_fails_visibly(self):
-        from triage.workflow import action_overflow_message
         fixed = ["Verify fixed condition A: " + "A" * 140,
                  "Verify fixed condition B: " + "B" * 140]
-        composition = compose_action("Inspect.", fixed)
         with self.assertRaises(TriageError) as caught:
-            action_overflow_message(composition, fixed)
+            action_retry_budget(compose_action("Inspect.", fixed, fixed))
         self.assertEqual("policy_verification_impossible", caught.exception.code)
-        self.assertIn("cannot preserve all required fixed activities", str(caught.exception))
+        self.assertIn("no nonempty action core", str(caught.exception))
 
     def test_paraphrases_do_not_suppress_exact_obligations(self):
         result = compose_action("Verify capability; record the test.", ["Verify capability.", "Record the test."])
@@ -331,7 +421,17 @@ class PolicyTests(unittest.TestCase):
             values = facts()
             values["unlogged_impairment_discovered"]["state"] = "confirmed_true"
             values["protection_restored"].update(state=restored, verification_activity="Verify restoration.")
-            self.assertEqual(1 if restored == "confirmed_true" else 9, self.derive(values)["final"])
+            result = self.derive(values)
+            self.assertEqual(1 if restored == "confirmed_true" else 9, result["final"])
+            fixed = result["fixed_verification_activities"]
+            if restored == "confirmed_true":
+                self.assertEqual([], fixed)
+            else:
+                self.assertEqual([
+                    CONTROL_ALIGNMENT_ACTIVITY,
+                    IMPAIRMENT_RECORD_ACTIVITY,
+                    RESTORATION_CLOSURE_ACTIVITY,
+                ], fixed)
 
     def test_uncertain_dependents_cannot_bypass_immediate_precautions(self):
         for trigger, dependent, rule in (
@@ -904,6 +1004,84 @@ class WorkflowTests(Artifacts, unittest.TestCase):
         self.assertEqual(["Verify partner capability."],
                          report["attempts"][0]["action_composition"]["appended_activities"])
 
+    def test_unlogged_impairment_appends_ordered_code_owned_restoration_sequence(self):
+        value = assessment()
+        value["recommended_action"] = (
+            "Investigate unauthorized isolation and correct defects under fire-protection authority."
+        )
+        evidence = [{"source_ref": REFERENCE, "quote": QUOTE}]
+        value["facts"]["protection_impaired"].update(state="confirmed_true", evidence=evidence)
+        value["facts"]["recorded_deviation"].update(state="confirmed_false", evidence=evidence)
+        value["facts"]["unlogged_impairment_discovered"].update(
+            state="confirmed_true", evidence=evidence)
+        value["facts"]["protection_restored"].update(
+            state="unknown",
+            verification_activity=RESTORATION_CLOSURE_ACTIVITY,
+        )
+        provider = FakeProvider([value])
+        self.run_one(provider)
+        request = strict_json(provider.requests[0].user)
+        for activity in (
+            CONTROL_ALIGNMENT_ACTIVITY,
+            IMPAIRMENT_RECORD_ACTIVITY,
+            RESTORATION_CLOSURE_ACTIVITY,
+        ):
+            self.assertIn(activity, request["possible_policy_activities"])
+        action = strict_json(self.output.read_text())["tickets"][0]["recommended_action"]
+        positions = [
+            action.index(CONTROL_ALIGNMENT_ACTIVITY),
+            action.index(IMPAIRMENT_RECORD_ACTIVITY),
+            action.index(RESTORATION_CLOSURE_ACTIVITY),
+        ]
+        self.assertEqual(sorted(positions), positions)
+        self.assertLessEqual(len(action), 300)
+
+    def test_unlogged_impairment_overflow_repairs_without_dropping_restoration_sequence(self):
+        evidence = [{"source_ref": REFERENCE, "quote": QUOTE}]
+        first = assessment()
+        first["recommended_action"] = (
+            "Investigate the unauthorized protection isolation, inspect all affected components, "
+            "correct defects under fire-protection authority, and document the authorized disposition."
+        )
+        first["facts"]["protection_impaired"].update(state="confirmed_true", evidence=evidence)
+        first["facts"]["recorded_deviation"].update(state="confirmed_false", evidence=evidence)
+        first["facts"]["unlogged_impairment_discovered"].update(
+            state="confirmed_true", evidence=evidence)
+        first["facts"]["protection_restored"].update(
+            state="unknown",
+            verification_activity=RESTORATION_CLOSURE_ACTIVITY,
+        )
+        checks = (
+            "Inspect north-quadrant nozzles.",
+            "Trace isolation duration and authority.",
+        )
+        first["uncertainties"] = [{
+            "material": True,
+            "safety": True,
+            "affected_decision": decision,
+            "reason": f"Restoration check {number}.",
+            "verification_activity": activity,
+            "evidence": [],
+            "sources_checked": [REFERENCE],
+        } for number, (decision, activity) in enumerate(
+            zip(("protection", "disposition"), checks), start=1)]
+        repaired = deepcopy(first)
+        repaired["recommended_action"] = "Correct the unauthorized isolation under fire-protection authority."
+        provider = FakeProvider([first, repaired])
+        self.run_one(provider)
+        self.assertEqual(2, len(provider.requests))
+        retry = strict_json(provider.requests[1].user)
+        self.assertEqual([
+            CONTROL_ALIGNMENT_ACTIVITY,
+            IMPAIRMENT_RECORD_ACTIVITY,
+            RESTORATION_CLOSURE_ACTIVITY,
+        ], retry["fixed_appended_verification_activities"])
+        action = strict_json(self.output.read_text())["tickets"][0]["recommended_action"]
+        for activity in (*checks, CONTROL_ALIGNMENT_ACTIVITY, IMPAIRMENT_RECORD_ACTIVITY,
+                         RESTORATION_CLOSURE_ACTIVITY):
+            self.assertIn(activity, action)
+        self.assertLessEqual(len(action), 300)
+
     def test_whitespace_variant_activities_publish_without_false_missing_failure(self):
         value = assessment()
         value["uncertainties"] = [{
@@ -933,15 +1111,98 @@ class WorkflowTests(Artifacts, unittest.TestCase):
         self.run_one(provider)
         self.assertEqual(2, len(provider.requests))
         feedback = strict_json(provider.requests[1].user)["validation_message"]
-        self.assertIn("Retry safety target is <= 280 combined characters", feedback)
-        self.assertIn("core plus 1 model checks must be <= 280", feedback)
-        self.assertIn("Shorten core action", feedback)
+        self.assertIn("Retry target <= 280", feedback)
+        self.assertIn("uniform model-check cap", feedback)
+        self.assertIn("Shorten each model check", feedback)
         self.assertLessEqual(len(feedback), 500)
         retry = strict_json(provider.requests[1].user)
         self.assertEqual(["Verify partner capability."],
-                         retry["appended_verification_activities"])
+                         retry["model_appended_verification_activities"])
+        self.assertEqual([], retry["fixed_appended_verification_activities"])
+        self.assertEqual(20, retry["retry_action_budget"]["safety_margin_chars"])
         ticket = strict_json(self.output.read_text())["tickets"][0]
         self.assertEqual("Inspect the surface. Verify partner capability.", ticket["recommended_action"])
+
+    def test_f1002_like_fixed_and_multi_check_overflow_repairs_with_exact_budget(self):
+        self.inputs = source_files(self.root, sce=True, redundancy="N+1 (PSV-1311)")
+        gap = {"kind": "tagged_partner_not_in_registry", "subject_equipment_id": "PMP-8001",
+               "partner_equipment_id": "PSV-1311", "finding_ids": ["F-8001"],
+               "source_refs": ["equipment:PMP-8001:redundancy"]}
+        self.source = FixtureContext(self.inputs, gaps=[gap])
+        first = assessment()
+        checks = (
+            "Verify relief capacity and set-pressure operation.",
+            "Check approved impairment and deviation records.",
+            "Confirm personnel exposure and overpressure scenario.",
+        )
+        first["recommended_action"] = "Authorized inspector assess passing PSV and correct defect. " + "x" * 150
+        first["uncertainties"] = [{
+            "material": True, "safety": True, "affected_decision": decision,
+            "reason": f"Required check {number}.", "verification_activity": activity,
+            "evidence": [], "sources_checked": [REFERENCE],
+        } for number, (decision, activity) in enumerate(zip(
+            ("protection", "disposition", "impact"), checks), start=1)]
+        repaired = deepcopy(first)
+        repaired["recommended_action"] = "Inspect and correct the passing PSV."
+        repaired_checks = ("Verify relief capacity.", "Check deviation record.", "Confirm exposure.")
+        for uncertainty, activity in zip(repaired["uncertainties"], repaired_checks):
+            uncertainty["verification_activity"] = activity
+        provider = FakeProvider([first, repaired])
+        self.run_one(provider)
+        retry = strict_json(provider.requests[1].user)
+        fixed = "Verify availability and capability of PSV-1311."
+        self.assertEqual([fixed], retry["fixed_appended_verification_activities"])
+        self.assertEqual(list(checks), retry["model_appended_verification_activities"])
+        budget = retry["retry_action_budget"]
+        self.assertEqual(3, budget["model_check_count"])
+        self.assertGreaterEqual(budget["core_max_chars"], len(first["recommended_action"]) / 2)
+        self.assertEqual(
+            280,
+            budget["fixed_appended_chars_with_separators"]
+            + budget["model_separator_chars"] + budget["core_max_chars"]
+            + budget["model_check_count"] * budget["model_check_max_chars"],
+        )
+        action = strict_json(self.output.read_text())["tickets"][0]["recommended_action"]
+        self.assertIn(fixed, action)
+        for activity in repaired_checks:
+            self.assertIn(activity, action)
+        self.assertLessEqual(len(action), 280)
+
+    def test_f1012_like_repair_with_rebalanced_fields_is_not_falsely_rejected(self):
+        first = assessment()
+        first["recommended_action"] = (
+            "Marine and class specialists overhaul release gear, correct defects, and document acceptance. "
+            + "x" * 80
+        )
+        first_checks = (
+            "Inspect and test release gear through full travel under the specified proof load, then document results.",
+            "Verify class recertification and craft readiness after correction before return to service.",
+        )
+        first["uncertainties"] = [{
+            "material": True, "safety": True, "affected_decision": decision,
+            "reason": f"Release-gear check {number}.", "verification_activity": activity,
+            "evidence": [], "sources_checked": [REFERENCE],
+        } for number, (decision, activity) in enumerate(
+            zip(("protection", "disposition"), first_checks), start=1)]
+        repaired = deepcopy(first)
+        repaired["recommended_action"] = (
+            "Marine/class overhaul release gear and correct the defective mechanism before return."
+        )
+        repaired_checks = (
+            "Inspect and proof-load the full release path; record force, travel, smooth operation and acceptance.",
+            "Verify class sign-off.",
+        )
+        for uncertainty, activity in zip(repaired["uncertainties"], repaired_checks):
+            uncertainty["verification_activity"] = activity
+        provider = FakeProvider([first, repaired])
+        self.run_one(provider)
+        retry = strict_json(provider.requests[1].user)
+        cap = retry["retry_action_budget"]["model_check_max_chars"]
+        self.assertGreater(len(repaired_checks[0]), cap)
+        action = strict_json(self.output.read_text())["tickets"][0]["recommended_action"]
+        self.assertLessEqual(len(action), 280)
+        for activity in repaired_checks:
+            self.assertIn(activity, action)
 
     def test_impossible_fixed_gap_fails_before_paid_dispatch(self):
         partner = "X" * 290 + "-8999"

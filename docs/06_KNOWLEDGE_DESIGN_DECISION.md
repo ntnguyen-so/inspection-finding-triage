@@ -1382,3 +1382,17 @@ supersedes that temporary policy state while retaining this historical
 observation. Summary guidance still requires a
 source-supplied operational, interruption or personnel consequence path of the
 assessed failure when condition/criterion wording alone would be a paraphrase.
+
+The later direct-Azure all-21 delivery observation was structurally valid but
+received 60/63 calibrated AI-only semantic dimensions. Its F-1020 planning
+failure exposed a model/code boundary issue rather than a missing knowledge
+item: the source context already preserved the chained-closed valve, missing
+impairment entry, reopened state, earlier delivery failure and unknown
+restoration. Adding a finding-specific knowledge answer would violate this
+decision. The disclosed test-informed correction is instead
+`triage-policy-v5`, which retains the unchanged source-first release and v4
+scoring while code-owning ordered current-alignment, record-reconciliation and
+passing-function-test closure activities for any confirmed unlogged protection
+impairment whose restoration is false or unverified. Activation v5 changes only
+the execution-policy pin; the knowledge version, retrieval strategy/index and
+assessment-policy hashes remain unchanged.

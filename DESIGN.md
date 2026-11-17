@@ -17,7 +17,7 @@ The final delivery uses:
   registry/redundancy links;
 - the direct Azure deployment `triage-final-sol-20260709` with native JSON
   Schema; and
-- `triage-policy-v4`, with a fixed assessment time and bounded attempt ledger.
+- `triage-policy-v5`, with a fixed assessment time and bounded attempt ledger.
 
 ## A. Structured output
 
@@ -246,14 +246,36 @@ This deployment uses the selected chat-completions strict-schema path. The
 provider remains direct Azure with no tools, fallback or orchestration layer;
 the earlier reasoning-model failures had separate structural or semantic causes.
 
+The first direct `gpt-5.6-sol` all-21 run published 21 structurally valid drafts
+in 24 requests, but calibrated AI-only review was non-green at 60/63: F-1010
+grounding and F-1020 planning failed, and F-1009 grounding needed review. This
+observation is retained at
+`eval\results\triage\direct-azure-final-sol-v5` and is not relabelled as final
+acceptance. A disclosed medium-reasoning preflight resolved the F-1010 issue and
+showed F-1009's impact rationale was permitted but still omitted part of
+F-1020's required restoration-control sequence. `triage-policy-v5` therefore
+keeps v4 scoring unchanged while code-owning the generic sequence for any
+confirmed unlogged protection impairment whose restoration is false or
+unverified: verify current control alignment, reconcile the impairment/deviation
+record, and close only after a witnessed passing function test. This is a
+test-informed change; it is not an untouched frozen-test result.
+
 The final run permits at most 42 direct requests (21 findings, at most two
 attempts each), with SDK/HTTP retries disabled and explicit token accounting.
-Before that run, retained final-phase attempts and preflights consumed 45 direct
+Before the policy-v5 final run, retained final-phase attempts and preflights
+consumed 75 direct
 requests across separate disclosed ledgers; no ledger was reset to relabel an
 old phase as untouched.
 USD cost depends on the Azure deployment tariff and is reported as unknown unless
 a sourced rate is available; request/token usage is retained so reproduction
 cost can be estimated without claiming subscription credits are free.
+
+The first policy-v5 medium-reasoning preflight failed closed before producing
+F-1011 because all 4096 completion tokens were consumed by reasoning and Azure
+returned `finish_reason=length`; no draft text or output was published. The
+final configuration therefore provides 8192 completion-token headroom. This
+does not add retries or alter the two-attempt application budget; any non-`stop`
+finish reason still fails visibly.
 
 ## Run
 
@@ -272,10 +294,10 @@ Set `AZURE_OPENAI_ENDPOINT` and `AZURE_OPENAI_API_KEY`, then run:
   --findings docs\candidate-pack\candidate-pack\data\inspection_findings.csv `
   --registry docs\candidate-pack\candidate-pack\data\equipment_registry.csv `
   --knowledge-store knowledge\source-first `
-  --activation config\triage-activation-v4.json `
+  --activation config\triage-activation-v5.json `
   --config config\final-run.json `
   --output tickets.json `
-  --evidence .delivery-state\final-run-sol-v5 `
+  --evidence .delivery-state\final-run-sol-v6 `
   --allow-inference
 ```
 

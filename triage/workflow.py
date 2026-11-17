@@ -21,8 +21,9 @@ from .assessment import (
 from .contracts import TriageError, digest, nonblank, require, score, timestamp
 from .inputs import ContextExport, ExportedContext, Inputs, validate_context, validate_rows
 from .policy import (
-    CAPACITY_COMPARISON_ACTIVITY, POLICY_VERSION, SAME_DAY_ATTENTION_ACTIVITY,
-    derive_policy, gap_verification_activity,
+    CAPACITY_COMPARISON_ACTIVITY, CONTROL_ALIGNMENT_ACTIVITY, IMPAIRMENT_RECORD_ACTIVITY,
+    POLICY_VERSION, RESTORATION_CLOSURE_ACTIVITY, SAME_DAY_ATTENTION_ACTIVITY, derive_policy,
+    gap_verification_activity,
 )
 from .source_context import IsolatedProbeContext, NativeContext
 
@@ -33,6 +34,7 @@ RECOVERABLE = {
 
 ACTION_MAX_CHARS = 300
 ACTION_TARGET_CHARS = 280
+ACTION_SAFETY_CHARS = ACTION_MAX_CHARS - ACTION_TARGET_CHARS
 
 
 class AccountedProvider(InferenceProvider, Protocol):
@@ -91,43 +93,74 @@ def _distinct_actions(activities: list[str]) -> list[str]:
     return list(dict.fromkeys(activities))
 
 
-def compose_action(core: str, activities: list[str]) -> dict:
+def compose_action(core: str, activities: list[str],
+                   fixed_activities: list[str] | None = None) -> dict:
     required = _distinct_actions(activities)
     appended = [activity for activity in required if activity not in core]
+    fixed = set(fixed_activities or [])
+    appended_fixed = [activity for activity in appended if activity in fixed]
+    appended_model = [activity for activity in appended if activity not in fixed]
     parts = [core, *appended]
     return {"model_core": core, "required_activities": required,
-            "appended_activities": appended, "composed": " ".join(parts)}
+            "appended_activities": appended,
+            "fixed_appended_activities": appended_fixed,
+            "model_appended_activities": appended_model,
+            "composed": " ".join(parts)}
 
 
 def require_fixed_actions_fit(fixed_activities: list[str]) -> None:
-    fixed_text = " ".join(_distinct_actions(fixed_activities))
-    require(len(fixed_text) <= ACTION_MAX_CHARS, "policy_verification_impossible",
-            f"Fixed verification activities require {len(fixed_text)}/{ACTION_MAX_CHARS} characters; "
-            "cannot preserve all required fixed activities in recommended_action.")
+    fixed = _distinct_actions(fixed_activities)
+    fixed_chars = sum(len(activity) + 1 for activity in fixed)
+    require(fixed_chars + 1 <= ACTION_TARGET_CHARS, "policy_verification_impossible",
+            f"Fixed verification activities consume {fixed_chars} characters including separators; "
+            f"no nonempty action core can fit the {ACTION_TARGET_CHARS}-character safety target "
+            f"({ACTION_SAFETY_CHARS} characters below the {ACTION_MAX_CHARS} hard limit).")
 
 
-def action_overflow_message(composition: dict, fixed_activities: list[str] | None = None) -> str:
-    appended = composition["appended_activities"]
-    fixed = set(fixed_activities or [])
-    required_fixed = [activity for activity in composition["required_activities"]
-                      if activity in fixed]
-    require_fixed_actions_fit(required_fixed)
-    appended_fixed = [activity for activity in appended if activity in fixed]
-    appended_model = [activity for activity in appended if activity not in fixed]
-    fixed_chars = sum(len(activity) + 1 for activity in appended_fixed)
-    variable_chars = len(composition["model_core"]) + sum(
-        len(activity) + 1 for activity in appended_model)
-    variable_budget = ACTION_TARGET_CHARS - fixed_chars
+def action_retry_budget(composition: dict) -> dict:
+    fixed = composition["fixed_appended_activities"]
+    model = composition["model_appended_activities"]
+    require_fixed_actions_fit(fixed)
+    fixed_chars = sum(len(activity) + 1 for activity in fixed)
+    text_budget = ACTION_TARGET_CHARS - fixed_chars - len(model)
+    require(text_budget >= len(model) + 1, "policy_verification_impossible",
+            "Fixed activities and required separators leave no nonempty retry fields.")
+    if model:
+        current_text = len(composition["model_core"]) + sum(map(len, model))
+        require(current_text > 0, "policy_verification_impossible",
+                "Current action has no text to allocate proportionally.")
+        core_cap = max(1, text_budget * len(composition["model_core"]) // current_text)
+        core_cap = min(core_cap, text_budget - len(model))
+        model_cap, remainder = divmod(text_budget - core_cap, len(model))
+        core_cap += remainder
+    else:
+        core_cap, model_cap = text_budget, 0
+    return {
+        "hard_limit_chars": ACTION_MAX_CHARS,
+        "safety_target_chars": ACTION_TARGET_CHARS,
+        "safety_margin_chars": ACTION_SAFETY_CHARS,
+        "fixed_appended_chars_with_separators": fixed_chars,
+        "model_check_count": len(model),
+        "model_separator_chars": len(model),
+        "current_core_chars": len(composition["model_core"]),
+        "current_model_check_chars": sum(map(len, model)),
+        "core_max_chars": core_cap,
+        "model_check_max_chars": model_cap,
+    }
+
+
+def action_overflow_message(composition: dict) -> tuple[str, dict]:
+    budget = action_retry_budget(composition)
+    model = composition["model_appended_activities"]
     return (
         f"Composed action {len(composition['composed'])}/{ACTION_MAX_CHARS}. "
-        f"Retry safety target is <= {ACTION_TARGET_CHARS} combined characters. "
-        f"{len(appended_fixed)} fixed checks consume {fixed_chars} characters including separators; "
-        f"core plus {len(appended_model)} model checks must be <= {variable_budget} "
-        f"(currently {variable_chars}). Reuse fixed checks unchanged. "
-        "Shorten core action and model checks while preserving every activity's object and purpose. "
-        "Omit only an exact duplicate string already appended; retain required inspection and retest activity. "
-        "never drop a required step or change applicability without source evidence."
-    )
+        f"Retry target <= {ACTION_TARGET_CHARS}, leaving {ACTION_SAFETY_CHARS} safety characters. "
+        f"Proportional core cap {budget['core_max_chars']}; uniform model-check cap "
+        f"{budget['model_check_max_chars']} for {len(model)} editable checks. "
+        "Fixed appended checks are code-owned and must remain exact. "
+        "Shorten each model check without dropping its object or purpose; preserve every activity. "
+        "Do not copy appended checks into the core."
+    ), budget
 
 
 def validate_output(payload: dict, findings: dict) -> None:
@@ -399,7 +432,9 @@ async def run_workflow(
                 gaps = [g for g in context_gaps if active in g["finding_ids"]]
                 attempts, feedback = 0, None
                 feedback_detail, previous_draft = None, None
-                retry_activities: list[str] = []
+                retry_fixed_activities: list[str] = []
+                retry_model_activities: list[str] = []
+                retry_action_budget: dict | None = None
                 fixed_activities = [
                     *[gap_verification_activity(gap) for gap in gaps],
                     CAPACITY_COMPARISON_ACTIVITY,
@@ -414,9 +449,14 @@ async def run_workflow(
                                           possible_policy_activities=[
                                               CAPACITY_COMPARISON_ACTIVITY,
                                               SAME_DAY_ATTENTION_ACTIVITY,
+                                              CONTROL_ALIGNMENT_ACTIVITY,
+                                              IMPAIRMENT_RECORD_ACTIVITY,
+                                              RESTORATION_CLOSURE_ACTIVITY,
                                           ],
                                           feedback_detail=feedback_detail, previous_draft=previous_draft,
-                                          appended_activities=retry_activities)
+                                          fixed_appended_activities=retry_fixed_activities,
+                                          model_appended_activities=retry_model_activities,
+                                          retry_action_budget=retry_action_budget)
                     system, user, _ = request.prepared()
                     if last_dispatch is not None and config.minimum_request_interval_seconds > 0:
                         await asyncio.sleep(max(0, config.minimum_request_interval_seconds
@@ -463,13 +503,22 @@ async def run_workflow(
                             sce=data["registry"][finding["equipment_id"]]["safety_critical_element"] == "Yes",
                             gaps=gaps, same_day_attention=attention,
                         )
-                        composition = compose_action(assessment["recommended_action"],
-                                                     decision["verification_activities"])
+                        composition = compose_action(
+                            assessment["recommended_action"],
+                            decision["verification_activities"],
+                            decision["fixed_verification_activities"],
+                        )
                         entry["action_composition"] = composition
-                        retry_activities = composition["appended_activities"]
                         action = composition["composed"]
-                        require(len(action) <= ACTION_MAX_CHARS, "policy_verification",
-                                action_overflow_message(composition, fixed_activities))
+                        if len(action) > ACTION_MAX_CHARS:
+                            feedback_message, retry_action_budget = action_overflow_message(composition)
+                            retry_fixed_activities = composition["fixed_appended_activities"]
+                            retry_model_activities = composition["model_appended_activities"]
+                            raise TriageError("policy_verification", feedback_message)
+                        if feedback == "policy_verification" and retry_action_budget is not None:
+                            require(len(action) <= ACTION_MAX_CHARS, "policy_verification",
+                                    f"Repaired action is {len(action)}/{ACTION_MAX_CHARS} characters; "
+                                    "no truncation or required-activity dropping is permitted.")
                         missing = [activity for activity in decision["verification_activities"]
                                    if activity not in action]
                         require(not missing, "policy_verification",

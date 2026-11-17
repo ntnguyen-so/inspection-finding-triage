@@ -66,6 +66,18 @@ class InferenceRequest:
     reasoning_effort: str | None = None
     timeout_seconds: float = 90
 
+    def authored_response_schema(self) -> dict | None:
+        if self.response_schema is None:
+            return None
+        if not isinstance(self.response_schema, dict):
+            raise InferenceError("invalid_schema", "Schema must be an object")
+        try:
+            return strict_json(json.dumps(
+                self.response_schema, ensure_ascii=True, allow_nan=False,
+            ))
+        except (ValueError, TypeError, RecursionError) as error:
+            raise InferenceError("invalid_schema", "Invalid response schema") from error
+
     def prepared(self) -> tuple[str, str, Draft202012Validator | None]:
         for name in ("model", "system", "user"):
             value = getattr(self, name)
@@ -86,8 +98,7 @@ class InferenceRequest:
             raise InferenceError("invalid_request", "reasoning_effort must be text")
         system, user, validator = self.system, self.user, None
         if self.response_schema is not None:
-            if not isinstance(self.response_schema, dict):
-                raise InferenceError("invalid_schema", "Schema must be an object")
+            authored_schema = self.authored_response_schema()
 
             checked_references = {}
             identifiers = []
@@ -123,7 +134,7 @@ class InferenceRequest:
                 return depth
 
             try:
-                schema = strict_json(canonical(self.response_schema))
+                schema = strict_json(canonical(authored_schema))
                 check_references(schema)
                 if checked_references and identifiers:
                     raise InferenceError(

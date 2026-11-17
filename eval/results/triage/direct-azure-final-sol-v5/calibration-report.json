@@ -1,0 +1,14 @@
+{
+  "scope": "known_fixture_conformance",
+  "reference_version": "1.2",
+  "review_provenance": {
+    "kind": "ai_only",
+    "independent_of_generation": true,
+    "label": "copilot-separate-semantic-review-2026-11-17",
+    "configuration": "Separate AI-only reviewer invocation that did not participate in ticket generation. The same reviewer provenance is used for calibration and all-21 review. Seeded fixtures are disclosed; this is not independent domain truth, domain-expert certification, or full system acceptance."
+  },
+  "calibration_status": "pass",
+  "wrong_fixture_judgments": [],
+  "pending": [],
+  "limitation": "Checks these seeded contradictions only; not arbitrary semantic truth or a system result."
+}

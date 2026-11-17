@@ -44,8 +44,6 @@ SCORE = closed({"score": {"type": "integer", "minimum": 1, "maximum": 10},
 SCHEMA = closed({
     "status": {"enum": ["assessed", "unassessable"]},
     "finding_id": text(), "equipment_id": text(),
-    "summary": text(nullable=True, limit=300),
-    "recommended_action": text(nullable=True, limit=300),
     "likelihood_of_failure": {"anyOf": [SCORE, {"type": "null"}]},
     "impact_of_failure": {"anyOf": [SCORE, {"type": "null"}]},
     "facts": {"anyOf": [closed({name: FACT for name in FACT_NAMES}), {"type": "null"}]},
@@ -58,6 +56,8 @@ SCHEMA = closed({
         "evidence": EVIDENCE,
         "sources_checked": {"type": "array", "items": text(), "minItems": 1, "uniqueItems": True},
     })},
+    "summary": text(nullable=True, limit=300),
+    "recommended_action": text(nullable=True, limit=300),
     "inability_reason": text(nullable=True),
 })
 VALIDATOR = Draft202012Validator(SCHEMA)
@@ -202,6 +202,9 @@ SYSTEM = (
     "possible_policy_activities lists exact conditional strings that code appends only when their "
     "policy condition applies. When applicable, reuse the exact listed string as the corresponding "
     "fact verification_activity so composition deduplicates it; otherwise do not include it. "
+    "When unlogged_impairment_discovered is confirmed and protection_restored is false or unverified, "
+    "the possible activities for current control alignment, impairment/deviation reconciliation, and "
+    "witnessed function testing before closure all apply in their listed order. Reuse those exact strings. "
     "Reuse exactly the SAME concise verification_activity string wherever the same check appears "
     "in facts, uncertainties or code-supplied requirements; independent paraphrases are not deduplicated. "
     "Aim <=45 characters per model-authored verification activity only when the remaining budget allows. "
@@ -222,10 +225,13 @@ SYSTEM = (
     "budget across the core plus all distinct model-written checks. When many checks apply, "
     "shorten the core and model-written checks while "
     "preserving each activity's object and purpose; never paraphrase a fixed activity. "
-    "On an action-overflow repair, the validation_message combined limit for the core plus all "
-    "model-authored checks is authoritative and retains the general 280-character composed target. "
+    "On an action-overflow repair, retry_action_budget gives a proportional core_max_chars and one "
+    "uniform model_check_max_chars planning cap whose exact arithmetic retains the 280-character "
+    "composed target. The total target is authoritative: caps may be rebalanced without dropping checks. "
+    "fixed_appended_verification_activities are code-owned immutable strings; "
+    "model_appended_verification_activities are prior model-authored checks that remain editable. "
     "Return a minimal correction/disposition sentence, but omit an inspection or retest activity "
-    "only when its exact string is already among appended_verification_activities. "
+    "only when its exact string is already among the applicable appended activity lists. "
     "If required L/I cannot be supported, use status=unassessable, explain inability_reason, "
     "and set summary, recommended_action, both scores and facts to null. "
     "Otherwise inability_reason=null. Do not repair uncertainty with default middle scores."
@@ -363,7 +369,7 @@ def request_schema(context: dict, finding_id: str, equipment_id: str) -> dict:
         schema["properties"][name] = schema["properties"][name]["anyOf"][0]
     schema["properties"]["likelihood_of_failure"]["anyOf"] = pairs
     envelope = closed({
-        "assessment": {"anyOf": [schema, unable]}, "same_day_attention": attention,
+        "same_day_attention": attention, "assessment": {"anyOf": [schema, unable]},
         "citation_catalog_sha256": {"type": "string", "enum": [digest(canonical(catalog).encode())]},
     })
     envelope["$defs"] = definitions
@@ -413,12 +419,16 @@ def request_for(model: str, context_text: str, finding_id: str, equipment_id: st
                 required_activities: list[str] | None = None, *,
                 possible_policy_activities: list[str] | None = None,
                 feedback_detail: str | None = None, previous_draft: str | None = None,
-                appended_activities: list[str] | None = None) -> InferenceRequest:
+                fixed_appended_activities: list[str] | None = None,
+                model_appended_activities: list[str] | None = None,
+                retry_action_budget: dict | None = None) -> InferenceRequest:
     context = strict_json(context_text)
     message = {"context": context, "target_finding_id": finding_id,
                "primary_equipment_id": equipment_id, "validation_error": feedback,
                "validation_message": feedback_detail, "previous_assessment": previous_draft,
-               "appended_verification_activities": appended_activities or [],
+               "fixed_appended_verification_activities": fixed_appended_activities or [],
+               "model_appended_verification_activities": model_appended_activities or [],
+               "retry_action_budget": retry_action_budget,
                "required_verification_activities": required_activities or [],
                "possible_policy_activities": possible_policy_activities or []}
     if context.get("contract_version") == 3:

@@ -336,7 +336,7 @@ class AzureOpenAIProvider:
         if request.reasoning_effort not in {None, "none", "minimal", "low", "medium", "high", "xhigh"}:
             raise InferenceError("unsupported_control", "Unsupported Azure reasoning effort")
         response_format = (
-            native_schema(validator.schema)
+            native_schema(request.authored_response_schema())
             if self.native_json_schema and validator is not None else None
         )
         async with self._lock:

@@ -3,9 +3,12 @@ from __future__ import annotations
 from .assessment import SAME_DAY_VALIDATOR, validate_facts
 from .contracts import nonblank, require, score
 
-POLICY_VERSION = "triage-policy-v4"
+POLICY_VERSION = "triage-policy-v5"
 CAPACITY_COMPARISON_ACTIVITY = "Verify current POB against certified available evacuation capacity."
 SAME_DAY_ATTENTION_ACTIVITY = "Obtain source-required attention today."
+CONTROL_ALIGNMENT_ACTIVITY = "Verify current protection control alignment."
+IMPAIRMENT_RECORD_ACTIVITY = "Reconcile impairment/deviation record."
+RESTORATION_CLOSURE_ACTIVITY = "Witness function test; close impairment only after pass."
 
 
 def gap_verification_activity(gap: dict) -> str:
@@ -22,7 +25,7 @@ def derive_policy(likelihood: int, impact: int, facts: dict, uncertainties: list
     validate_facts(facts)
     require(type(sce) is bool and isinstance(uncertainties, list) and isinstance(gaps, list),
             "policy_contract", "Invalid policy input")
-    rules, activities = [], []
+    rules, activities, fixed_activities = [], [], []
     attention = [] if same_day_attention is None else same_day_attention
     require(SAME_DAY_VALIDATOR.is_valid(attention)
             and all(nonblank(item["reason"]) for item in attention),
@@ -37,12 +40,14 @@ def derive_policy(likelihood: int, impact: int, facts: dict, uncertainties: list
         return fact["applicability"] != "not_applicable" and fact["state"] in {"unknown", "suspected"}
 
     def add(identifier: str, kind: str, floor: int, reason: str, sources: list,
-            activity: str | None = None) -> None:
+            activity: str | None = None, *, fixed: bool = False) -> None:
         rules.append({"rule_id": identifier, "kind": kind, "floor": floor,
                       "reason": reason, "sources": sources})
         if activity is not None:
             require(nonblank(activity), "policy_verification", "Specific verification required")
             activities.append(activity)
+            if fixed:
+                fixed_activities.append(activity)
 
     def refs(*names: str) -> list:
         return sorted({ref for name in names for ref in facts[name].get("sources_checked", [])}
@@ -76,10 +81,18 @@ def derive_policy(likelihood: int, impact: int, facts: dict, uncertainties: list
         require(facts["capacity_below_pob"].get("verification_activity") is not None,
                 "policy_verification", "Capacity verification activity required")
         activities.append(CAPACITY_COMPARISON_ACTIVITY)
+        fixed_activities.append(CAPACITY_COMPARISON_ACTIVITY)
     if state("unlogged_impairment_discovered") == "confirmed_true" and (
         state("protection_restored") == "confirmed_false" or unverified("protection_restored")
     ):
         uncertain = unverified("protection_restored")
+        for activity in (
+            CONTROL_ALIGNMENT_ACTIVITY,
+            IMPAIRMENT_RECORD_ACTIVITY,
+            RESTORATION_CLOSURE_ACTIVITY,
+        ):
+            activities.append(activity)
+            fixed_activities.append(activity)
         add("P-RESTORATION", "precautionary_policy", 9,
             "Unlogged impairment discovered; restored protection not verified.",
             refs("unlogged_impairment_discovered", "protection_restored"),
@@ -91,7 +104,7 @@ def derive_policy(likelihood: int, impact: int, facts: dict, uncertainties: list
                               for citation in item[name]})
         add("S-SOURCE-TODAY", "source_directed_attention", 9,
                 "Explicit source-directed same-day attention: " + item["reason"], sources,
-                SAME_DAY_ATTENTION_ACTIVITY)
+                SAME_DAY_ATTENTION_ACTIVITY, fixed=True)
     impairment = state("protection_impaired")
     deviation = state("recorded_deviation")
     if impairment in {"confirmed_true", "suspected"} and deviation in {"unknown", "suspected"}:
@@ -130,7 +143,7 @@ def derive_policy(likelihood: int, impact: int, facts: dict, uncertainties: list
                 "policy_gap", "Unsupported context gap")
         add("P-SAFETY-UNKNOWN" if sce else "R-MATERIAL", "precautionary_policy" if sce else "review",
             7 if sce else 1, f"Partner {gap['partner_equipment_id']} has no registry record.",
-            gap["source_refs"], gap_verification_activity(gap))
+            gap["source_refs"], gap_verification_activity(gap), fixed=True)
     if sce and impact >= 8:
         add("P-SCE-HIGH-IMPACT", "precautionary_policy", 7,
             f"Registry SCE finding assessed at I={impact} requires attention at least this week.", [])
@@ -147,5 +160,6 @@ def derive_policy(likelihood: int, impact: int, facts: dict, uncertainties: list
         "rationale": f"{POLICY_VERSION}: ceil(0.7*I+0.3*L), L={likelihood}, I={impact}, base={base}, final={final}. {details}".strip(),
         "review_required": bool(rules),
         "review_reason": details if rules else None,
-        "verification_activities": sorted(set(activities)),
+        "verification_activities": list(dict.fromkeys(activities)),
+        "fixed_verification_activities": list(dict.fromkeys(fixed_activities)),
     }

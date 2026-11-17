@@ -216,6 +216,39 @@ class AzureTests(unittest.IsolatedAsyncioTestCase):
         self.assertTrue(schema["properties"]["uniqueItems"]["uniqueItems"])
         self.assertEqual(3, len(bodies))
 
+    async def test_native_wire_preserves_authored_property_order_but_local_schema_is_canonical(self):
+        schema = {
+            "type": "object",
+            "properties": {
+                "score": {"type": "integer"},
+                "facts": {"type": "string", "minLength": 3, "maxLength": 5},
+                "summary": {"type": "string", "maxLength": 8},
+            },
+            "required": ["score", "facts", "summary"],
+            "additionalProperties": False,
+        }
+        bodies = []
+
+        def handler(req):
+            bodies.append(json.loads(req.content))
+            return httpx.Response(
+                200, json=completion('{"score":1,"facts":"ok","summary":"short"}'))
+
+        inference_request = request(response_schema=schema)
+        _, _, validator = inference_request.prepared()
+        self.assertEqual(["facts", "score", "summary"],
+                         list(validator.schema["properties"]))
+        async with provider(handler, native_json_schema=True) as azure:
+            with self.assertRaises(InferenceError) as caught:
+                await azure.generate(inference_request)
+        self.assertEqual("schema_violation", caught.exception.code)
+        wire = bodies[0]["response_format"]["json_schema"]["schema"]
+        self.assertEqual(["score", "facts", "summary"], list(wire["properties"]))
+        self.assertNotIn("minLength", wire["properties"]["facts"])
+        self.assertNotIn("maxLength", wire["properties"]["facts"])
+        self.assertNotIn("maxLength", wire["properties"]["summary"])
+        self.assertEqual(3, schema["properties"]["facts"]["minLength"])
+
     async def test_no_retry_and_no_secret_in_error_receipts(self):
         for status, expected in (
             (401, "authentication"), (403, "permission_denied"), (404, "not_found"),
