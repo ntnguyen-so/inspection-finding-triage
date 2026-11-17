@@ -25,10 +25,17 @@ The shortest reviewer path is:
    maintenance surface.
 5. `eval\results\README.md` for curated evidence and honest failed observations.
 
-**Current delivery status:** implementation and evaluator suites pass, but the
-final all-21 provider run and semantic review must complete before this repository
-can claim submission-ready `tickets.json`. Experimental Copilot runs are labelled
-non-acceptance-eligible and are never presented as Azure-equivalent evidence.
+**Current delivery status:** implementation, evaluator suites and clean-checkout
+reproduction pass. The current-code Copilot output also passes its calibrated
+AI-only semantic review, but a final eligible provider run must still generate
+root `tickets.json` before the repository can claim literal submission readiness.
+Experimental Copilot runs are labelled non-acceptance-eligible and are never
+presented as Azure-equivalent evidence.
+
+The latest current-code Copilot experiment at revision `235bdd1` generated all
+21 tickets in 25 application sends and received 63/63 calibrated AI-only
+dimensions. It demonstrates current prompt/policy conformance but remains
+non-acceptance-eligible and does not create root `tickets.json`.
 
 ## Executable evidence for the design answers
 
@@ -49,9 +56,11 @@ python -B -m eval.validate
 ```
 
 The latest observed results were 276 production tests passed, 126 evaluator
-tests passed, and frozen-reference validation passed. These checks prove the
-implemented contracts; they do not substitute for the pending all-21 semantic
-review.
+tests passed, and frozen-reference validation passed from a detached clean
+checkout with its own Python 3.11 environment. The observation is retained at
+`eval\results\reproducibility\clean-235bdd1.json`. These checks prove the
+implemented contracts; they do not substitute for an acceptance-eligible
+all-21 provider run.
 
 ## Evaluation evidence
 

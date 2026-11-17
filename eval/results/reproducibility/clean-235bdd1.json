@@ -1,0 +1,39 @@
+{
+  "observed_at": "2026-11-17T11:10:10.1827950+07:00",
+  "repository_revision": "235bdd1d57d87cfb7c4669adf6a7b56aa50011a9",
+  "checkout": {
+    "kind": "detached_clean_worktree",
+    "path": "C:\\falkor-x02-235bdd1",
+    "python": "3.11.9",
+    "isolated_virtual_environment": true,
+    "editable_install_from_checkout": true
+  },
+  "commands": [
+    ".\\.venv\\Scripts\\python.exe -B -m unittest discover -s tests -p \"test_*.py\"",
+    ".\\.venv\\Scripts\\python.exe -B -m unittest discover -s eval\\tests -p \"test_*.py\"",
+    ".\\.venv\\Scripts\\python.exe -B -m eval.validate"
+  ],
+  "results": {
+    "production_tests": {
+      "status": "pass",
+      "run": 276,
+      "skipped": 4,
+      "skip_reason": "environment-dependent provider checks"
+    },
+    "evaluator_tests": {
+      "status": "pass",
+      "run": 126
+    },
+    "reference_validation": {
+      "status": "pass",
+      "findings": 21,
+      "equipment": 18,
+      "reference_version": "1.2"
+    }
+  },
+  "scope": "Clean-checkout deterministic reproducibility only. No live provider inference, semantic ticket review, or final tickets.json publication was performed.",
+  "notes": [
+    "The first diagnostic checkout used an unnecessarily deep nested path and exceeded the Windows legacy path limit in synthetic fixture paths.",
+    "The short-path clean checkout completed without a source-store code change."
+  ]
+}

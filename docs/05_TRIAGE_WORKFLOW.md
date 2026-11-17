@@ -2185,3 +2185,20 @@ acceptance evidence. The revised prompt has only a retained one-case F-1015
 spot check at `eval\results\triage\copilot-gpt61-f1015-guidance`. This case is
 therefore no longer held out, and no development-partition case independently
 tests the new guidance.
+
+The following current-code Copilot `gpt-6-sol` experiment was run from clean
+committed revision `235bdd1`. It generated all 21 tickets in 25 application
+sends and received 63/63 calibrated AI-only dimensions with zero pending
+judgments. Evidence is retained at
+`eval\results\triage\copilot-gpt6-current-all21`. This closes the disclosed
+test-informed regression only for the experimental Copilot path; it does not
+provide strict HTTP retry/cost accounting, direct-provider acceptance or final
+`tickets.json` publication.
+
+Revision `235bdd1` was also reproduced from a detached clean checkout with its
+own Python 3.11 virtual environment. The production suite passed 276 tests with
+four environment-dependent skips, the evaluator suite passed 126 tests, and
+reference validation passed. The observation at
+`eval\results\reproducibility\clean-235bdd1.json` closes the deterministic
+clean-checkout portion of X02. It does not claim live-provider reproduction,
+strict Copilot HTTP/cost accounting or final delivery publication.

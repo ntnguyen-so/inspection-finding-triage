@@ -23,6 +23,11 @@ bodies and synthetic payloads are retained in the verified archive recorded in
 - `triage/copilot-gpt61-f1015-guidance/` retains the one-case, test-informed
   spot check for the revised visibility/readability planning guidance. It is not
   an all-21 result; F-1015 is no longer held out.
+- `triage/copilot-gpt6-current-all21/` is the current committed-code Copilot
+  experimental all-21 observation at revision `235bdd1`: 21 validated tickets
+  in 25 application sends and 63/63 calibrated AI-only dimensions. It remains
+  non-acceptance-eligible because Copilot does not expose strict HTTP retry or
+  cost accounting and cannot publish final `tickets.json`.
 - `triage/policy-v4-composite-21/` is a provisional AI-reviewed composite of
   separately generated partitions. It is regression evidence, not one final
   inference or domain-expert certification.
@@ -38,8 +43,8 @@ bodies and synthetic payloads are retained in the verified archive recorded in
 | C: urgency | `triage/native-v2-regression-2/report.json`, production tests | Code-owned formula and policy checks |
 | D: limits and deferral | `triage/native-v2-fault-evidence-1/report.json`, `triage/native-handoff-system-summary.json` | Failure routing and historical integration limitations |
 | X01: stability | `triage/policy-v4-final-phase-2/x01-review.json`, `triage/final-regression-phase-4/x01-review.json`, `triage/history-policy-v3-phase/x01-review.json` | Stable and failed comparisons retained explicitly |
-| X02: reproducibility | `triage/native-v2-package-1/report.json`, `inference/delivery-verification.json` | Package and provider-component evidence; not final all-21 reproduction |
-| Output quality | `triage/direct-azure-final-sol-v5/assessment-report.json`, `triage/copilot-gpt61-policy-v5-all21/`, `triage/copilot-gpt6-policy-v5-all21/`, `triage/copilot-gpt61-f1015-guidance/` | Direct run failed 60/63; Copilot experiments are 62/63 and pre-correction 63/63; current guidance has only a one-case spot check |
+| X02: reproducibility | `reproducibility/clean-235bdd1.json`, `triage/native-v2-package-1/report.json`, `inference/delivery-verification.json` | Current revision passes 276 production tests, 126 evaluator tests and reference validation in an isolated clean checkout; no live-provider reproduction |
+| Output quality | `triage/direct-azure-final-sol-v5/assessment-report.json`, `triage/copilot-gpt61-policy-v5-all21/`, `triage/copilot-gpt6-policy-v5-all21/`, `triage/copilot-gpt61-f1015-guidance/`, `triage/copilot-gpt6-current-all21/` | Direct run failed 60/63; historical Copilot experiments are disclosed; current committed-code Copilot experiment is 63/63 but non-eligible |
 | Reviewer calibration | `calibration/`, `triage/source-first-calibration-1/report.json` | Known-fixture calibration only |
 
 `readiness.json` is the original pre-implementation readiness record and must not

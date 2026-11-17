@@ -281,6 +281,21 @@ spot check at `eval\results\triage\copilot-gpt61-f1015-guidance`; F-1015 is no
 longer held out, and no development-partition case independently exercises this
 new rule.
 
+The current committed-code Copilot `gpt-6-sol` experiment at revision `235bdd1`
+then generated 21 tickets in 25 application sends and received 63/63 calibrated
+AI-only dimensions with no pending judgments. The exact artifact, reviews,
+prompt hash and limitations are retained at
+`eval\results\triage\copilot-gpt6-current-all21`. It is still explicitly
+non-acceptance-eligible: Copilot does not expose strict HTTP retry/cost
+accounting and the workflow prevents it from publishing root `tickets.json`.
+
+The same revision was installed into an isolated Python 3.11 environment in a
+detached clean checkout. All 276 production tests passed (four
+environment-dependent skips), all 126 evaluator tests passed, and
+`python -B -m eval.validate` passed. The exact commands and scope are retained
+at `eval\results\reproducibility\clean-235bdd1.json`; this establishes
+deterministic clean-checkout reproducibility, not live-provider acceptance.
+
 The final run permits at most 42 direct requests (21 findings, at most two
 attempts each), with SDK/HTTP retries disabled and explicit token accounting.
 Before the policy-v5 v7 final run, retained final-phase attempts and preflights

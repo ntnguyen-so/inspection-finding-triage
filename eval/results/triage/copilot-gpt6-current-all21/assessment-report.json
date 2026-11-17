@@ -1,0 +1,28 @@
+{
+  "scope": "ticket_outputs_only_not_full_A_D_system_acceptance",
+  "reference_version": "1.2",
+  "partition": "all",
+  "output_sha256": "2c6b2a0d85e0462ebe589eadeb3522b078e4c364b9472220ec5ad1e944037381",
+  "contract": {
+    "status": "pass",
+    "errors": []
+  },
+  "semantic": {
+    "status": "provisional_pass",
+    "reviewer": {
+      "kind": "ai_only",
+      "independent_of_generation": true
+    },
+    "passed_dimensions": 63,
+    "applicable_dimensions": 63,
+    "failed": [],
+    "pending": [],
+    "limitation": "Declared review agreement is not independent engineering truth or accuracy."
+  },
+  "overall": "provisional_pass",
+  "review_provenance": {
+    "kind": "ai_only",
+    "independent_of_generation": true
+  },
+  "system_scenario_results": "not_provided_not_implied_by_this_report"
+}
