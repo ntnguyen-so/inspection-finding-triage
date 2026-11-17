@@ -56,9 +56,8 @@ no significant issues; this is storage housekeeping, not system acceptance.
 | 05 | `docs\05_TRIAGE_WORKFLOW.md` | Owner-approved component design; deterministic workflow implementation, offline evidence and remaining integration/eval gates |
 | 06 | `docs\06_KNOWLEDGE_DESIGN_DECISION.md` | Current knowledge Design Decision: extraction/retrieval evaluation, code-versus-LLM gates, source-first editing and workflow tool contract |
 
-`DESIGN.md` is reserved for the project owner to create later. Inference design,
-deferred system-design notes and implementation evidence are in document 04;
-they are not the approved final system design.
+The owner-authorized final system design is in root `DESIGN.md`. Detailed
+inference design and implementation evidence remain in document 04.
 
 ## Inference library
 
