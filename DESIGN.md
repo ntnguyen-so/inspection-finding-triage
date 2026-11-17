@@ -262,8 +262,8 @@ test-informed change; it is not an untouched frozen-test result.
 
 The final run permits at most 42 direct requests (21 findings, at most two
 attempts each), with SDK/HTTP retries disabled and explicit token accounting.
-Before the policy-v5 final run, retained final-phase attempts and preflights
-consumed 75 direct
+Before the policy-v5 v7 final run, retained final-phase attempts and preflights
+consumed 95 direct
 requests across separate disclosed ledgers; no ledger was reset to relabel an
 old phase as untouched.
 USD cost depends on the Azure deployment tariff and is reported as unknown unless
@@ -276,6 +276,13 @@ returned `finish_reason=length`; no draft text or output was published. The
 final configuration therefore provides 8192 completion-token headroom. This
 does not add retries or alter the two-attempt application budget; any non-`stop`
 finish reason still fails visibly.
+
+The first all-21 policy-v5 phase validated 19 findings, then Azure exceeded the
+120-second deadline on F-1020; dispatch outcome was recorded as unknown, F-1021
+was not attempted, and no output was published. The v7 phase changes only the
+provider deadline to 180 seconds and uses a fresh ledger/evidence directory.
+It does not retry the ambiguous dispatch inside the old phase or change model,
+reasoning effort, prompt, knowledge, policy or ticket requirements.
 
 ## Run
 
@@ -297,7 +304,7 @@ Set `AZURE_OPENAI_ENDPOINT` and `AZURE_OPENAI_API_KEY`, then run:
   --activation config\triage-activation-v5.json `
   --config config\final-run.json `
   --output tickets.json `
-  --evidence .delivery-state\final-run-sol-v6 `
+  --evidence .delivery-state\final-run-sol-v7 `
   --allow-inference
 ```
 
