@@ -190,11 +190,14 @@ class ActionCompositionTests(unittest.TestCase):
         from triage.workflow import action_overflow_message
         composition = compose_action("A" * 46, [f"{number} " + "B" * 42 for number in range(8)])
         original = deepcopy(composition)
-        message = action_overflow_message(composition)
+        fixed = composition["appended_activities"][:2]
+        message = action_overflow_message(composition, fixed)
         self.assertIn("8 appended checks", message)
-        self.assertIn("30 characters per check", message)
-        self.assertIn("not just the core", message)
-        self.assertIn("Preserve all required steps", message)
+        self.assertIn("consume 360 characters", message)
+        self.assertIn("core <= 0", message)
+        self.assertIn("2 code-supplied checks are fixed", message)
+        self.assertIn("reuse unchanged", message)
+        self.assertIn("Keep every required step", message)
         self.assertEqual(original, composition)
         self.assertLessEqual(len(message), 500)
 

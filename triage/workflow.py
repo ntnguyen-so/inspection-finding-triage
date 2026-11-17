@@ -94,16 +94,20 @@ def compose_action(core: str, activities: list[str]) -> dict:
             "appended_activities": appended, "composed": " ".join(parts)}
 
 
-def action_overflow_message(composition: dict) -> str:
+def action_overflow_message(composition: dict, fixed_activities: list[str] | None = None) -> str:
     core = len(composition["model_core"])
-    count = len(composition["appended_activities"])
-    budget = max(0, (300 - core - count) // count) if count else 0
+    appended = composition["appended_activities"]
+    fixed = set(fixed_activities or [])
+    fixed_count = sum(activity in fixed for activity in appended)
+    appended_chars = sum(len(activity) + 1 for activity in appended)
+    target_core = max(0, 280 - appended_chars)
     return (
         f"Composed action {len(composition['composed'])}/300 characters; core {core}, "
-        f"{count} appended checks. Keeping this core leaves about {budget} characters per check. "
-        "Shorten core action and model verification_activity clauses, not just the core; reuse exact "
-        "strings for the same check. Preserve all required steps. Correct applicability "
-        "only when original source evidence supports it; never drop genuine uncertainty."
+        f"{len(appended)} appended checks consume {appended_chars} characters including spaces. "
+        f"Target <=280; unchanged checks require core <= {target_core}. "
+        f"{fixed_count} code-supplied checks are fixed; reuse unchanged. "
+        "Shorten core action first, then only model-written checks while preserving purpose. "
+        "Keep every required step. Change applicability only with source evidence; never drop uncertainty."
     )
 
 
@@ -371,6 +375,11 @@ async def run_workflow(
                 gaps = [g for g in context_gaps if active in g["finding_ids"]]
                 attempts, feedback = 0, None
                 feedback_detail, previous_draft = None, None
+                fixed_activities = [
+                    *[gap_verification_activity(gap) for gap in gaps],
+                    CAPACITY_COMPARISON_ACTIVITY,
+                    SAME_DAY_ATTENTION_ACTIVITY,
+                ]
                 while attempts < 2:
                     require(len(report[entries_key]) < config.phase_attempt_budget,
                             "attempt_budget", "Phase attempt budget exhausted")
@@ -433,7 +442,7 @@ async def run_workflow(
                         entry["action_composition"] = composition
                         action = composition["composed"]
                         require(len(action) <= 300, "policy_verification",
-                                action_overflow_message(composition))
+                                action_overflow_message(composition, fixed_activities))
                         missing = [activity for activity in decision["verification_activities"]
                                    if activity not in action]
                         require(not missing, "policy_verification",

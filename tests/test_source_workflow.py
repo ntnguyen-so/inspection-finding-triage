@@ -142,6 +142,9 @@ class SourceWorkflowTests(Artifacts, unittest.TestCase):
         self.assertIn("do not infer unstated", provider.requests[0].system)
         self.assertIn("operational, interruption or personnel consequence",
                       provider.requests[0].system)
+        self.assertIn("should fit 280 characters", provider.requests[0].system)
+        self.assertIn("as fixed", provider.requests[0].system)
+        self.assertIn("never paraphrase a fixed activity", provider.requests[0].system)
         self.assertEqual(
             [CAPACITY_COMPARISON_ACTIVITY, SAME_DAY_ATTENTION_ACTIVITY],
             message["possible_policy_activities"],
