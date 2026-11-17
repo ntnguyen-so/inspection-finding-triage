@@ -1,0 +1,30 @@
+{
+  "command": [
+    "C:\\Users\\thanh\\falkor_case2\\.venv\\Scripts\\python.exe",
+    "-B",
+    "-m",
+    "triage",
+    "--provider",
+    "copilot",
+    "--findings",
+    "C:\\Users\\thanh\\falkor_case2\\.delivery-state\\x01-gpt61-plan\\selected.csv",
+    "--registry",
+    "C:\\Users\\thanh\\falkor_case2\\.delivery-state\\x01-gpt61-plan\\registry.csv",
+    "--knowledge-store",
+    "C:\\Users\\thanh\\falkor_case2\\.delivery-state\\x01-gpt61-plan\\software-store",
+    "--activation",
+    "C:\\Users\\thanh\\falkor_case2\\.delivery-state\\x01-gpt61-plan\\activation.json",
+    "--config",
+    "C:\\Users\\thanh\\falkor_case2\\.delivery-state\\x01-gpt61-plan\\config.json",
+    "--output",
+    "C:\\Users\\thanh\\falkor_case2\\.delivery-state\\x01-gpt61-run1\\tickets.experimental.json",
+    "--evidence",
+    "C:\\Users\\thanh\\falkor_case2\\.delivery-state\\x01-gpt61-run1\\run",
+    "--allow-inference"
+  ],
+  "recorded_at": "2026-11-17T04:17:22.159275+00:00",
+  "git_revision": "4debebaf26e8d67ef27e03e638ea50ce7206458a",
+  "dirty_worktree": " M README.md\n M docs/01_INITIAL_INVESTIGATION.md\n M docs/02_DATA_EVALUATION_PLAN.md\n M docs/03_EVALUATION_ACCEPTANCE.md\n M docs/04_INFERENCE_LIBRARY.md\n M docs/05_TRIAGE_WORKFLOW.md\n M docs/06_KNOWLEDGE_DESIGN_DECISION.md\n",
+  "disclosure": "Isolated SOFTWARE-fixture publication/activation of unchanged supplied domain; not genuine engineer approval, qualified extraction or system acceptance. Provider accounting is reported separately.",
+  "phase_reservations_before_dispatch": 0
+}

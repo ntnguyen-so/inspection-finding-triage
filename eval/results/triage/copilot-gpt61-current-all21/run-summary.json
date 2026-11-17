@@ -1,0 +1,115 @@
+{
+  "schema": "copilot-gpt61-current-all21-summary-v1",
+  "status": "retained_failed_experiment",
+  "model": "gpt-6.1-sol",
+  "execution_mode": "copilot_experiment",
+  "acceptance_eligible": false,
+  "first_run": {
+    "started_at": "2026-11-17T04:36:15.649288+00:00",
+    "raw_local_path": ".delivery-state\\copilot-gpt61-current-all21\\run\\run.json",
+    "raw_bytes": 3210265,
+    "raw_sha256": "55d3f421184fd0a3d02537c5505628ad6633a953c56700e855d1ede54b6c9053",
+    "run_status": "failed",
+    "published_output": false,
+    "application_sends": 15,
+    "failures": [
+      {
+        "finding_id": "F-1015",
+        "attempt": 1,
+        "error_class": "boundary_violation"
+      }
+    ],
+    "outcome": "failed at F-1015 before complete batch"
+  },
+  "retry": {
+    "started_at": "2026-11-17T04:45:08.393519+00:00",
+    "raw_local_path": ".delivery-state\\copilot-gpt61-current-all21-retry\\run\\run.json",
+    "raw_bytes": 4859163,
+    "raw_sha256": "38a04a5f608187a82b49e9e2b570b907df59c448bb8957bbf2d7d06c3334b708",
+    "run_status": "ready_to_publish",
+    "raw_record_published_output": false,
+    "application_sends": 23,
+    "failures": [
+      {
+        "finding_id": "F-1004",
+        "attempt": 1,
+        "error_class": "malformed_json"
+      },
+      {
+        "finding_id": "F-1006",
+        "attempt": 1,
+        "error_class": "malformed_json"
+      }
+    ],
+    "tickets": 21,
+    "retained_output": "tickets.experimental.json",
+    "retained_output_bytes": 86158,
+    "retained_output_sha256": "22e1f7fd8f6230a411705bc1426ec74fa619446bce2bfd5fcc6b7118fb276fc5",
+    "root_tickets_published": false
+  },
+  "attempt_accounting": {
+    "budget": 42,
+    "reservations": 38,
+    "remaining": 4,
+    "ledger": "attempt-ledger.json",
+    "ledger_sha256": "7461cade8da5dd0f20313955b6fae93f8b414f07cc49550acb99aaeee681064a"
+  },
+  "semantic_reviews": [
+    {
+      "review": "a",
+      "assessment_report": "assessment-report-a.json",
+      "assessment_report_sha256": "3e9e5c566325ed7963c3bbe3c5ee5cce3450a850142a4bc2b1c19da80fd63f86",
+      "overall": "fail",
+      "passed_dimensions": 60,
+      "applicable_dimensions": 63,
+      "failed": [
+        {
+          "finding_id": "F-1005",
+          "dimension": "planning"
+        },
+        {
+          "finding_id": "F-1015",
+          "dimension": "planning"
+        }
+      ],
+      "pending": [
+        {
+          "finding_id": "F-1021",
+          "dimension": "grounding"
+        }
+      ],
+      "output_sha256": "22e1f7fd8f6230a411705bc1426ec74fa619446bce2bfd5fcc6b7118fb276fc5"
+    },
+    {
+      "review": "b",
+      "assessment_report": "assessment-report-b.json",
+      "assessment_report_sha256": "620c9d9524d7d44d38e15ca6cbd08661d92570686f3c21df7cf73bc82984e42b",
+      "overall": "fail",
+      "passed_dimensions": 60,
+      "applicable_dimensions": 63,
+      "failed": [
+        {
+          "finding_id": "F-1005",
+          "dimension": "planning"
+        },
+        {
+          "finding_id": "F-1009",
+          "dimension": "uncertainty"
+        },
+        {
+          "finding_id": "F-1015",
+          "dimension": "planning"
+        }
+      ],
+      "pending": [],
+      "output_sha256": "22e1f7fd8f6230a411705bc1426ec74fa619446bce2bfd5fcc6b7118fb276fc5"
+    }
+  ],
+  "interpretation": [
+    "The first current-code gpt-6.1 all-21 attempt failed before completion.",
+    "The retry produced 21 contract-valid experimental tickets after two malformed-JSON repairs.",
+    "Two separately executed calibrated AI-only reviews each scored 60/63 and failed, with overlapping planning failures on F-1005 and F-1015.",
+    "This weakens the earlier gpt-6 63/63 result and must not be presented as reproducible model quality.",
+    "No root tickets.json was published; no human or domain-expert approval is claimed."
+  ]
+}

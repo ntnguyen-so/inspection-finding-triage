@@ -1,0 +1,40 @@
+{
+  "scope": "ticket_outputs_only_not_full_A_D_system_acceptance",
+  "reference_version": "1.2",
+  "partition": "development",
+  "output_sha256": "7c512b76d2ed52336d2df26f408eea7e579dd20adf3b3bb9c2ca8681ce5aa00e",
+  "contract": {
+    "status": "pass",
+    "errors": []
+  },
+  "semantic": {
+    "status": "provisional_pass",
+    "reviewer": {
+      "kind": "ai_only",
+      "independent_of_generation": true,
+      "provider": "GitHub Copilot",
+      "model": "not_exposed",
+      "reasoning_effort": "not_exposed",
+      "domain_expert_claimed": false,
+      "role": "separate_semantic_reviewer",
+      "configuration": "AI-only evidence-bound review performed separately from ticket generation. The underlying reviewer model and reasoning settings were not exposed. Applied frozen reference 1.2 development cards and the three-dimension rubric. No human or domain-expert review is claimed."
+    },
+    "passed_dimensions": 39,
+    "applicable_dimensions": 39,
+    "failed": [],
+    "pending": [],
+    "limitation": "Declared review agreement is not independent engineering truth or accuracy."
+  },
+  "overall": "provisional_pass",
+  "review_provenance": {
+    "kind": "ai_only",
+    "independent_of_generation": true,
+    "provider": "GitHub Copilot",
+    "model": "not_exposed",
+    "reasoning_effort": "not_exposed",
+    "domain_expert_claimed": false,
+    "role": "separate_semantic_reviewer",
+    "configuration": "AI-only evidence-bound review performed separately from ticket generation. The underlying reviewer model and reasoning settings were not exposed. Applied frozen reference 1.2 development cards and the three-dimension rubric. No human or domain-expert review is claimed."
+  },
+  "system_scenario_results": "not_provided_not_implied_by_this_report"
+}

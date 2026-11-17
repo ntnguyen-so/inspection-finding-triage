@@ -1,0 +1,18 @@
+{
+  "scope": "known_fixture_conformance",
+  "reference_version": "1.2",
+  "review_provenance": {
+    "kind": "ai_only",
+    "independent_of_generation": true,
+    "provider": "GitHub Copilot",
+    "model": "not_exposed",
+    "reasoning_effort": "not_exposed",
+    "domain_expert_claimed": false,
+    "role": "independent_semantic_reviewer",
+    "configuration": "AI-only evidence-bound review performed independently of ticket generation. The reviewer model and reasoning settings were not exposed. No domain expertise is claimed."
+  },
+  "calibration_status": "pass",
+  "wrong_fixture_judgments": [],
+  "pending": [],
+  "limitation": "Checks these seeded contradictions only; not arbitrary semantic truth or a system result."
+}

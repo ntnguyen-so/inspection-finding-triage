@@ -1,0 +1,45 @@
+{
+  "scope": "ticket_outputs_only_not_full_A_D_system_acceptance",
+  "reference_version": "1.2",
+  "partition": "development",
+  "output_sha256": "f10dc64810831c4135cd44bf14b4bc5dbe7d4742f9948370abb6fb3db6f0103a",
+  "contract": {
+    "status": "pass",
+    "errors": []
+  },
+  "semantic": {
+    "status": "needs_review",
+    "reviewer": {
+      "kind": "ai_only",
+      "independent_of_generation": true,
+      "provider": "GitHub Copilot",
+      "model": "not_exposed",
+      "reasoning_effort": "not_exposed",
+      "domain_expert_claimed": false,
+      "role": "separate_semantic_reviewer",
+      "configuration": "AI-only evidence-bound semantic review performed independently of ticket generation against the frozen development cards and supplied source evidence. The reviewer is not a domain expert; score calibration is provisional and unresolved adjacent-score choices remain needs_review."
+    },
+    "passed_dimensions": 38,
+    "applicable_dimensions": 39,
+    "failed": [],
+    "pending": [
+      {
+        "finding_id": "F-1006",
+        "dimension": "grounding"
+      }
+    ],
+    "limitation": "Declared review agreement is not independent engineering truth or accuracy."
+  },
+  "overall": "needs_review",
+  "review_provenance": {
+    "kind": "ai_only",
+    "independent_of_generation": true,
+    "provider": "GitHub Copilot",
+    "model": "not_exposed",
+    "reasoning_effort": "not_exposed",
+    "domain_expert_claimed": false,
+    "role": "separate_semantic_reviewer",
+    "configuration": "AI-only evidence-bound semantic review performed independently of ticket generation against the frozen development cards and supplied source evidence. The reviewer is not a domain expert; score calibration is provisional and unresolved adjacent-score choices remain needs_review."
+  },
+  "system_scenario_results": "not_provided_not_implied_by_this_report"
+}

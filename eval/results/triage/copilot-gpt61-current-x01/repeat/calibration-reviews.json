@@ -1,0 +1,36 @@
+{
+  "reference_version": "1.2",
+  "reviewer": {
+    "kind": "ai_only",
+    "independent_of_generation": true,
+    "domain_expert_claimed": false,
+    "label": "x01-gpt61-repeat-semantic-review",
+    "configuration": "AI-only evidence-bound review in a separate evaluator task after generation. The reviewer model identifier and sampling settings were not exposed. No human or domain-expert review is claimed; the disclosed seeded contradictions and expected calibration verdicts were visible."
+  },
+  "judgments": [
+    {
+      "probe_id": "A04-FW-HEALTHY",
+      "dimension": "grounding",
+      "verdict": "fail",
+      "reason": "The paired evidence says FW-8101 produced 9.2 barg against 11 barg design and flow was not measured, while FW-8102 failed its first start before recovering on retry. The domain rule requires checking actual partner capability before crediting redundancy. The seeded ticket therefore invents a confirmed healthy, full-design standby and healthy N+1 protection.",
+      "evidence": [
+        {
+          "field": "impact_of_failure.rationale",
+          "quote": "Pump A is confirmed healthy and delivers full design pressure, so the pair retains healthy N+1 redundancy."
+        }
+      ]
+    },
+    {
+      "probe_id": "A04-PSV-LABEL",
+      "dimension": "grounding",
+      "verdict": "fail",
+      "reason": "F-1016 explicitly records March 2025 recertification as in date and describes only an illegible label with satisfactory physical condition. No failed relief-function test or inability to relieve is established, so the seeded rationale falsely treats a documentation defect as proof of functional failure.",
+      "evidence": [
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "The illegible certification label proves the valve cannot perform its relief function."
+        }
+      ]
+    }
+  ]
+}

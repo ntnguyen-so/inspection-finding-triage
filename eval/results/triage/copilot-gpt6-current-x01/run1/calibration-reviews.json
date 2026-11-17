@@ -1,0 +1,47 @@
+{
+  "reference_version": "1.2",
+  "reviewer": {
+    "kind": "ai_only",
+    "independent_of_generation": true,
+    "provider": "GitHub Copilot",
+    "model": "not_exposed",
+    "reasoning_effort": "not_exposed",
+    "domain_expert_claimed": false,
+    "role": "separate_semantic_reviewer",
+    "configuration": "AI-only evidence-bound review performed independently of ticket generation against disclosed frozen cards and source evidence. No domain-expert status is claimed; known-fixture calibration establishes only rejection of the seeded contradictions."
+  },
+  "judgments": [
+    {
+      "probe_id": "A04-FW-HEALTHY",
+      "dimension": "grounding",
+      "verdict": "fail",
+      "reason": "The ticket falsely claims a confirmed healthy full-design standby and preserved N+1 protection. F-1017 instead records 9.2 barg against 11 barg with flow unmeasured, so full backup capability is not established.",
+      "evidence": [
+        {
+          "field": "summary",
+          "quote": "pump A is confirmed healthy, preserving full N+1 protection"
+        },
+        {
+          "field": "impact_of_failure.rationale",
+          "quote": "Pump A is confirmed healthy and delivers full design pressure"
+        }
+      ]
+    },
+    {
+      "probe_id": "A04-PSV-LABEL",
+      "dimension": "grounding",
+      "verdict": "fail",
+      "reason": "The ticket converts an illegible certification label into confirmed inability to relieve. F-1016 explicitly says certification is in date and provides no failed functional test or physical valve defect.",
+      "evidence": [
+        {
+          "field": "summary",
+          "quote": "confirmed unable to relieve overpressure because its certification label is illegible"
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "The illegible certification label proves the valve cannot perform its relief function."
+        }
+      ]
+    }
+  ]
+}

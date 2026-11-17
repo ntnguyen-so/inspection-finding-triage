@@ -1,0 +1,54 @@
+{
+  "scope": "ticket_outputs_only_not_full_A_D_system_acceptance",
+  "reference_version": "1.2",
+  "partition": "all",
+  "output_sha256": "22e1f7fd8f6230a411705bc1426ec74fa619446bce2bfd5fcc6b7118fb276fc5",
+  "contract": {
+    "status": "pass",
+    "errors": []
+  },
+  "semantic": {
+    "status": "fail",
+    "reviewer": {
+      "kind": "ai_only",
+      "independent_of_generation": true,
+      "provider": "GitHub Copilot",
+      "model": "not_exposed",
+      "reasoning_effort": "not_exposed",
+      "domain_expert_claimed": false,
+      "role": "separate_semantic_reviewer",
+      "configuration": "AI-only evidence-bound review performed separately from ticket generation against frozen reference 1.2 cards and the exact output hash. The underlying reviewer model and reasoning settings were not exposed. No human or domain-expert review is claimed."
+    },
+    "passed_dimensions": 60,
+    "applicable_dimensions": 63,
+    "failed": [
+      {
+        "finding_id": "F-1005",
+        "dimension": "planning"
+      },
+      {
+        "finding_id": "F-1015",
+        "dimension": "planning"
+      }
+    ],
+    "pending": [
+      {
+        "finding_id": "F-1021",
+        "dimension": "grounding"
+      }
+    ],
+    "limitation": "Declared review agreement is not independent engineering truth or accuracy."
+  },
+  "overall": "fail",
+  "review_provenance": {
+    "kind": "ai_only",
+    "independent_of_generation": true,
+    "provider": "GitHub Copilot",
+    "model": "not_exposed",
+    "reasoning_effort": "not_exposed",
+    "domain_expert_claimed": false,
+    "role": "separate_semantic_reviewer",
+    "configuration": "AI-only evidence-bound review performed separately from ticket generation against frozen reference 1.2 cards and the exact output hash. The underlying reviewer model and reasoning settings were not exposed. No human or domain-expert review is claimed."
+  },
+  "system_scenario_results": "not_provided_not_implied_by_this_report"
+}

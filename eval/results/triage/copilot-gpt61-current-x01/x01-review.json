@@ -1,0 +1,203 @@
+{
+  "scope": "X01 decision-stability review of one preregistered development repeat",
+  "reference_version": "1.2",
+  "scenario": "X01",
+  "result": "provisional_pass",
+  "result_reason": "All three observed numeric changes are impact-only adjacent-score drift supported by the available evidence. No likelihood or urgency score changed, no urgency time band or review gate changed, no unsupported or forbidden claim was introduced, and the sole rule-set change is the expected removal of the I>=8 high-impact attention rule when F-1009 moved from I=8 to I=7. Both exact-output semantic assessments passed 39/39. The result remains provisional because the references and reviewer are AI-only and provider-side cache behavior was not controlled.",
+  "artifacts": {
+    "first": {
+      "tickets_path": ".delivery-state\\x01-gpt61-run1\\tickets.experimental.json",
+      "tickets_sha256": "7c512b76d2ed52336d2df26f408eea7e579dd20adf3b3bb9c2ca8681ce5aa00e",
+      "assessment_path": ".delivery-state\\x01-gpt61-run1\\assessment-report.json",
+      "assessment_sha256": "6192927f12dd9843fe25ffaba1ceb0d3d3d4d585d5f5f72a7d4e34afce3a8ade",
+      "assessment_overall": "provisional_pass",
+      "semantic_dimensions_passed": 39,
+      "semantic_dimensions_applicable": 39,
+      "semantic_failed": 0,
+      "semantic_pending": 0,
+      "plan_sha256": "f0ebce8f39207e59692e87d0b07f9afe04a40667bbf06471f79cac2585ed4411",
+      "execution_sha256": "e197123a7d78268f794752651b4bcd5290e68c0f946dd86212e9e711ca5f65e4",
+      "observation_sha256": "1e5d37d1e7e376ecb771d5f9661f2af148ff9848a0d70022d68e3af0f9ae5fb1",
+      "run_evidence_sha256": "31e7d38e62b4ee02b9347b927a6fd6b2b30a9d78c06b6f450bc3fbc8a2aaf4f0"
+    },
+    "repeat": {
+      "tickets_path": ".delivery-state\\x01-gpt61-repeat\\tickets.experimental.json",
+      "tickets_sha256": "ff717a9b3c297e3d02f8c48ec5add743c15a6324f20a9330949e7f6322b25dc5",
+      "assessment_path": ".delivery-state\\x01-gpt61-repeat\\assessment-report.json",
+      "assessment_sha256": "4d765090df9f8f0e977b54066a1e9c9a754a88aed0b852cc46c911c7e4da9c2e",
+      "assessment_overall": "provisional_pass",
+      "semantic_dimensions_passed": 39,
+      "semantic_dimensions_applicable": 39,
+      "semantic_failed": 0,
+      "semantic_pending": 0,
+      "plan_sha256": "f0ebce8f39207e59692e87d0b07f9afe04a40667bbf06471f79cac2585ed4411",
+      "execution_sha256": "e92e9fb9d109f0103fc856adde18b674ebe2924fd9b1d2035cc70cf4233eb1a3",
+      "observation_sha256": "ea107ad0196500d5329ef579e11846ac7c7fb735cc5a913abfb119e92f3f587e",
+      "run_evidence_sha256": "77530e072da2d192e312f8e79260e0950ff1b550c0b676ceba6b8ed34b78c089"
+    }
+  },
+  "fixed_configuration_evidence": {
+    "same_plan_bytes": true,
+    "same_plan_sha256": "f0ebce8f39207e59692e87d0b07f9afe04a40667bbf06471f79cac2585ed4411",
+    "git_revision": "4debebaf26e8d67ef27e03e638ea50ce7206458a",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "medium",
+    "assessment_time": "2026-07-01T00:00:00+00:00",
+    "knowledge_version": "sha256-7db4f154e374f5248a51d840e30c44a66b6d313fb50e49fd59c4f6fb61d5c3a9",
+    "planned_context_hash": "c91d0509f7c7e3689a14b0a27e8a4a24be7eabfd3a0a0ffd81d2b11d31f8bd36",
+    "planned_context_bytes": 50278,
+    "selected_findings_sha256": "2cc43cdac41f8ae033ea0454c83d271fe667f100eba02313f0ece7a2c2e18545",
+    "registry_sha256": "5520713b74a28a907b7167da638dca8879849ce3d85d99e1d3ef9968fb000033",
+    "activation_sha256": "6c1af30ec3d5f421c7829c324ecac8ad73e0ae527440e57dd3a680a65df8cc2e",
+    "config_sha256": "ac89cda188b1a88c9e19e1a36d6e813a4898dd483ab55bb4c5bd3559d1a97c40",
+    "source_hash_inventory_equal": true,
+    "code_stable_during_each_run": true,
+    "application_sends": {
+      "first": 13,
+      "repeat": 13
+    },
+    "cache_mode": "no_application_result_cache_backend_cache_uncontrolled",
+    "application_result_cache_bypassed": true,
+    "provider_backend_cache_controlled": false,
+    "provider_backend_cache_observation": "The first run recorded no cache-read tokens; the repeat recorded backend cache-read tokens. This is provider-side context caching, not application result reuse, but it prevents a claim that all cache behavior was controlled.",
+    "dirty_worktree_disclosure": "Both executions used the same recorded revision, plan, source hashes and configuration hashes. Their dirty-worktree strings differ for unrelated documentation state, so this is not presented as a clean-checkout comparison."
+  },
+  "counts": {
+    "findings_compared": 13,
+    "score_values_compared": 39,
+    "likelihood_changes": 0,
+    "impact_changes": 3,
+    "urgency_changes": 0,
+    "total_numeric_changes": 3,
+    "urgency_band_changes": 0,
+    "review_flag_changes": 0,
+    "policy_rule_set_changes": 1,
+    "forbidden_claim_regressions": 0,
+    "semantic_dimensions_passed_across_both_outputs": 78,
+    "semantic_dimensions_failed_across_both_outputs": 0,
+    "semantic_dimensions_pending_across_both_outputs": 0
+  },
+  "score_comparison": [
+    {"finding_id": "F-1001", "likelihood": {"first": 7, "repeat": 7, "drift": 0}, "impact": {"first": 8, "repeat": 8, "drift": 0}, "urgency": {"first": 9, "repeat": 9, "drift": 0}, "urgency_band": {"first": "today", "repeat": "today"}, "review_required": {"first": true, "repeat": true}},
+    {"finding_id": "F-1003", "likelihood": {"first": 9, "repeat": 9, "drift": 0}, "impact": {"first": 8, "repeat": 8, "drift": 0}, "urgency": {"first": 9, "repeat": 9, "drift": 0}, "urgency_band": {"first": "today", "repeat": "today"}, "review_required": {"first": true, "repeat": true}},
+    {"finding_id": "F-1004", "likelihood": {"first": 8, "repeat": 8, "drift": 0}, "impact": {"first": 8, "repeat": 8, "drift": 0}, "urgency": {"first": 8, "repeat": 8, "drift": 0}, "urgency_band": {"first": "this_week", "repeat": "this_week"}, "review_required": {"first": true, "repeat": true}},
+    {"finding_id": "F-1005", "likelihood": {"first": 10, "repeat": 10, "drift": 0}, "impact": {"first": 6, "repeat": 6, "drift": 0}, "urgency": {"first": 9, "repeat": 9, "drift": 0}, "urgency_band": {"first": "today", "repeat": "today"}, "review_required": {"first": true, "repeat": true}},
+    {"finding_id": "F-1006", "likelihood": {"first": 4, "repeat": 4, "drift": 0}, "impact": {"first": 7, "repeat": 7, "drift": 0}, "urgency": {"first": 7, "repeat": 7, "drift": 0}, "urgency_band": {"first": "this_week", "repeat": "this_week"}, "review_required": {"first": true, "repeat": true}},
+    {"finding_id": "F-1007", "likelihood": {"first": 9, "repeat": 9, "drift": 0}, "impact": {"first": 7, "repeat": 7, "drift": 0}, "urgency": {"first": 8, "repeat": 8, "drift": 0}, "urgency_band": {"first": "this_week", "repeat": "this_week"}, "review_required": {"first": true, "repeat": true}},
+    {"finding_id": "F-1008", "likelihood": {"first": 6, "repeat": 6, "drift": 0}, "impact": {"first": 8, "repeat": 8, "drift": 0}, "urgency": {"first": 8, "repeat": 8, "drift": 0}, "urgency_band": {"first": "this_week", "repeat": "this_week"}, "review_required": {"first": true, "repeat": true}},
+    {"finding_id": "F-1009", "likelihood": {"first": 2, "repeat": 2, "drift": 0}, "impact": {"first": 8, "repeat": 7, "drift": -1}, "urgency": {"first": 7, "repeat": 7, "drift": 0}, "urgency_band": {"first": "this_week", "repeat": "this_week"}, "review_required": {"first": true, "repeat": true}},
+    {"finding_id": "F-1010", "likelihood": {"first": 9, "repeat": 9, "drift": 0}, "impact": {"first": 9, "repeat": 8, "drift": -1}, "urgency": {"first": 9, "repeat": 9, "drift": 0}, "urgency_band": {"first": "today", "repeat": "today"}, "review_required": {"first": true, "repeat": true}},
+    {"finding_id": "F-1012", "likelihood": {"first": 9, "repeat": 9, "drift": 0}, "impact": {"first": 8, "repeat": 8, "drift": 0}, "urgency": {"first": 9, "repeat": 9, "drift": 0}, "urgency_band": {"first": "today", "repeat": "today"}, "review_required": {"first": true, "repeat": true}},
+    {"finding_id": "F-1016", "likelihood": {"first": 2, "repeat": 2, "drift": 0}, "impact": {"first": 8, "repeat": 8, "drift": 0}, "urgency": {"first": 7, "repeat": 7, "drift": 0}, "urgency_band": {"first": "this_week", "repeat": "this_week"}, "review_required": {"first": true, "repeat": true}},
+    {"finding_id": "F-1017", "likelihood": {"first": 6, "repeat": 6, "drift": 0}, "impact": {"first": 8, "repeat": 8, "drift": 0}, "urgency": {"first": 8, "repeat": 8, "drift": 0}, "urgency_band": {"first": "this_week", "repeat": "this_week"}, "review_required": {"first": true, "repeat": true}},
+    {"finding_id": "F-1019", "likelihood": {"first": 7, "repeat": 7, "drift": 0}, "impact": {"first": 5, "repeat": 6, "drift": 1}, "urgency": {"first": 7, "repeat": 7, "drift": 0}, "urgency_band": {"first": "this_week", "repeat": "this_week"}, "review_required": {"first": true, "repeat": true}}
+  ],
+  "drift_adjudications": [
+    {
+      "finding_id": "F-1009",
+      "dimension": "impact",
+      "first": 8,
+      "repeat": 7,
+      "verdict": "supported_nonblocking",
+      "reason": "The card prescribes no exact impact score. Both outputs assess the consequence of hypothetical primary structural-support failure as severe, keep the coating finding separate from the B4 crack, and avoid claiming measured steel loss or collapse. The repeat's I=7 is defensible because supported loads and personnel exposure remain unspecified and it avoids an extreme consequence claim.",
+      "decision_stability": "Urgency remains 7 in the this-week band and review_required remains true. The first run had base urgency 7 at L=2/I=8; the repeat has base 6 at L=2/I=7 and is raised to 7 by the material safety-uncertainty policy.",
+      "policy_disposition": "P-SCE-HIGH-IMPACT is correctly absent in the repeat because its declared trigger is SCE with I>=8. P-SAFETY-UNKNOWN and R-SCE remain, so the human review gate and precautionary weekly attention are preserved.",
+      "forbidden_claims": "Neither output transfers the B4 crack to this finding or claims quantified section loss, collapse, or confirmed structural failure. Both exact-output grounding reviews passed."
+    },
+    {
+      "finding_id": "F-1010",
+      "dimension": "impact",
+      "first": 9,
+      "repeat": 8,
+      "verdict": "supported_nonblocking",
+      "reason": "Both scores are defensible adjacent judgments for a nonredundant temporary-refuge protection failure with a severe major-accident consequence path. The repeat explicitly retains hydrocarbon-inhalation exposure while withholding a more specific extreme consequence because occupancy, exposure magnitude and compensating controls are unknown. No exact numeric gold distinguishes 8 from 9.",
+      "decision_stability": "Urgency remains 9 in the today band and review_required remains true. P-FAILED-TEST still independently requires immediate human attention; P-SAFETY-UNKNOWN, P-SCE-HIGH-IMPACT and R-SCE all remain.",
+      "policy_disposition": "The complete rule set is unchanged. The urgency formula still yields base 9 at L=9/I=8, so no policy outcome changes.",
+      "forbidden_claims": "Both outputs preserve 27 Pa versus 50 Pa, keep damper/door causes suspected, and do not claim a confirmed root cause, restored protection or known missing deviation. Both exact-output grounding reviews passed."
+    },
+    {
+      "finding_id": "F-1019",
+      "dimension": "impact",
+      "first": 5,
+      "repeat": 6,
+      "verdict": "supported_nonblocking",
+      "reason": "Both outputs treat loose wind-flapping cladding as a material dropped-object injury hazard rather than housekeeping, while explicitly withholding severe or extreme consequences because mass, height and personnel exposure are unknown. The adjacent 5-to-6 choice is unresolved by the frozen evidence and neither value introduces a new consequence path.",
+      "decision_stability": "Urgency remains 7 in the this-week band and review_required remains true. The first base urgency was 6 and the repeat base urgency is 7; both final values are 7 under the same P-SAFETY-UNKNOWN disposition.",
+      "policy_disposition": "The rule set remains P-SAFETY-UNKNOWN only.",
+      "forbidden_claims": "Both outputs keep the cladding mechanism separate from bearing vibration, honor the explicit no-process-concern statement, and do not claim a hydrocarbon leak, compressor failure or cosmetic-only consequence. Both exact-output grounding reviews passed."
+    }
+  ],
+  "policy_rule_comparison": {
+    "unchanged_findings": [
+      "F-1001",
+      "F-1003",
+      "F-1004",
+      "F-1005",
+      "F-1006",
+      "F-1007",
+      "F-1008",
+      "F-1010",
+      "F-1012",
+      "F-1016",
+      "F-1017",
+      "F-1019"
+    ],
+    "changed_findings": [
+      {
+        "finding_id": "F-1009",
+        "first_rules": ["P-SAFETY-UNKNOWN", "P-SCE-HIGH-IMPACT", "R-SCE"],
+        "repeat_rules": ["P-SAFETY-UNKNOWN", "R-SCE"],
+        "adjudication": "expected_nonblocking_threshold_effect"
+      }
+    ],
+    "review_gate_summary": "All 13 tickets retain review_required=true. Every R-SCE disposition present in the first output remains in the repeat; no confirmed override or immediate-action rule was lost."
+  },
+  "forbidden_claim_review": {
+    "new_unsupported_or_forbidden_claims": [],
+    "adjudication": "pass",
+    "basis": [
+      "Both output-hash-bound assessment reports passed all 13 grounding dimensions with zero failures or pending judgments.",
+      "The three drift tickets were compared directly against their frozen cards: F-1009 does not inherit the B4 crack or invent section loss; F-1010 does not invent a root cause, restored protection or deviation absence; F-1019 does not transfer compressor/process consequences or erase dropped-object risk.",
+      "Wording differences on the ten score-identical tickets did not change their L/I/U decisions, urgency bands, review flags or rule sets, and both completed semantic reports found no forbidden claim."
+    ]
+  },
+  "score_distributions": {
+    "first": {
+      "likelihood": {"2": 2, "4": 1, "6": 2, "7": 2, "8": 1, "9": 4, "10": 1},
+      "impact": {"5": 1, "6": 1, "7": 2, "8": 8, "9": 1},
+      "urgency": {"7": 4, "8": 4, "9": 5}
+    },
+    "repeat": {
+      "likelihood": {"2": 2, "4": 1, "6": 2, "7": 2, "8": 1, "9": 4, "10": 1},
+      "impact": {"6": 2, "7": 3, "8": 8},
+      "urgency": {"7": 4, "8": 4, "9": 5}
+    },
+    "uniform_middle_score_collapse": false,
+    "distribution_comment": "Likelihood and urgency distributions are identical. Impact remains concentrated at 7-8 because this development set contains many safety/protection and severe-consequence cases, but the outputs are not uniform and the three adjacent changes are explicitly adjudicated rather than rewarded as artificial diversity."
+  },
+  "x01_criteria_adjudication": {
+    "compare_scores_bands_review_rules_and_claims": "pass",
+    "unsupported_claim_or_changed_band_or_review_gate": "none_observed",
+    "numeric_drift_reported_and_reviewed": "pass",
+    "distribution_reviewed_without_invented_tolerance": "pass",
+    "stopping_rule": "This is the single preregistered repeat. No further sampling is used to seek agreement."
+  },
+  "limitations": [
+    "This is AI-only review against AI-assisted, provisional, non-blind reference cards; it is not domain-expert certification or independent engineering truth.",
+    "Two provisional semantic passes do not prove deterministic model behavior or future stability.",
+    "The application result cache was bypassed, but provider backend caching was uncontrolled and the repeat recorded backend cache reads.",
+    "HTTP-attempt and USD-cost evidence are unavailable for these Copilot experimental runs; both observations state acceptance_eligible=false.",
+    "The comparison covers one fixed-config development repeat only, not the frozen test partition, all-21 delivery, or the other A-D/X02 system scenarios.",
+    "The execution records disclose unrelated dirty documentation and are not clean-checkout evidence, although the recorded revision, plan, source inventory, context, model and configuration hashes match."
+  ],
+  "reviewer_provenance": {
+    "kind": "ai_only",
+    "independent_of_generation": true,
+    "provider": "GitHub Copilot",
+    "model": "not_exposed",
+    "reasoning_effort": "not_exposed",
+    "domain_expert_claimed": false,
+    "role": "separate_X01_adjudicator",
+    "configuration": "AI-only evidence-bound comparison performed after both generations and their separate semantic assessments. The reviewer did not generate either ticket output. The underlying reviewer model and sampling settings were not exposed."
+  }
+}
