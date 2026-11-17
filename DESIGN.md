@@ -15,7 +15,7 @@ The final delivery uses:
   `reference/domain_knowledge.md`;
 - equipment comments plus deterministic same-equipment history and explicit
   registry/redundancy links;
-- the direct Azure deployment `triage-final-chat-20261007` with native JSON
+- the direct Azure deployment `triage-final-sol-20260709` with native JSON
   Schema; and
 - `triage-policy-v4`, with a fixed assessment time and bounded attempt ledger.
 
@@ -170,9 +170,9 @@ orchestration framework and is not selected by the final command.
 - Registry links and comments are authoritative inputs but still require
   evidence-aware interpretation.
 - Likelihood, impact and urgency are ordinal 1–10 rankings, not probabilities.
-- The final Azure deployment `triage-final-chat-20261007` is available to the
+- The final Azure deployment `triage-final-sol-20260709` is available to the
   reproducing reviewer and is explicitly bound to account-visible model
-  `gpt-chat-latest`, version `2026-10-07`. Secrets
+  `gpt-5.6-sol`, version `2026-07-09`. Secrets
   are supplied through the environment and never committed.
 - The local filesystem supports atomic replacement and one writer per output.
 
@@ -213,8 +213,8 @@ and failed closed before producing a ticket. I therefore created the dedicated
 version-bound `triage-final-chat-20261007` deployment at 250k tokens/minute,
 without changing model family or application logic. It supports the required
 native schema, has no agent/tool layer, and offers a lower-complexity reproducible
-path than the failed Responses/reasoning alternatives. The committed config
-also enforces 20-second request pacing.
+path than the earlier failed configurations. The committed config also enforces
+20-second request pacing.
 
 The first run on the dedicated deployment progressed through 11 findings and
 then failed closed on F-1012 because the composed action was 301 characters
@@ -232,8 +232,25 @@ whitespace-normalized/deduplicated, repair requests receive the actual appended
 checks and a 15-character safety margin, and impossible fixed-only compositions
 fail visibly. Required steps and the hard 300-character limit remain unchanged.
 
+A subsequent chat-model phase still missed the composed-action budget by four
+characters on F-1002. Because repeated prompt-only tuning was no longer a robust
+delivery strategy, the final configuration uses the version-bound direct Azure
+`gpt-5.6-sol` deployment at the same 250k-token/minute capacity. This is the
+related model family to the `gpt-5.6-sol-fast` Copilot regressions, but those
+results are not treated as evidence for this distinct final model. A same-model,
+API, effort, token-cap and pacing native-schema preflight validated F-1001 after
+one composition repair (the first action was 350/300 characters). A separate
+preflight of the three prior overflow cases F-1002, F-1007 and F-1012 validated
+all three on their first attempts, with final actions within the hard limit.
+This deployment uses the selected chat-completions strict-schema path. The
+provider remains direct Azure with no tools, fallback or orchestration layer;
+the earlier reasoning-model failures had separate structural or semantic causes.
+
 The final run permits at most 42 direct requests (21 findings, at most two
 attempts each), with SDK/HTTP retries disabled and explicit token accounting.
+Before that run, retained final-phase attempts and preflights consumed 45 direct
+requests across separate disclosed ledgers; no ledger was reset to relabel an
+old phase as untouched.
 USD cost depends on the Azure deployment tariff and is reported as unknown unless
 a sourced rate is available; request/token usage is retained so reproduction
 cost can be estimated without claiming subscription credits are free.
@@ -258,7 +275,7 @@ Set `AZURE_OPENAI_ENDPOINT` and `AZURE_OPENAI_API_KEY`, then run:
   --activation config\triage-activation-v4.json `
   --config config\final-run.json `
   --output tickets.json `
-  --evidence .delivery-state\final-run `
+  --evidence .delivery-state\final-run-sol-v5 `
   --allow-inference
 ```
 
