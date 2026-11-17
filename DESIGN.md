@@ -15,7 +15,8 @@ The final delivery uses:
   `reference/domain_knowledge.md`;
 - equipment comments plus deterministic same-equipment history and explicit
   registry/redundancy links;
-- the direct Azure deployment name `gpt-5.3-chat` with native JSON Schema; and
+- the direct Azure deployment `triage-final-chat-20261007` with native JSON
+  Schema; and
 - `triage-policy-v4`, with a fixed assessment time and bounded attempt ledger.
 
 ## A. Structured output
@@ -169,9 +170,9 @@ orchestration framework and is not selected by the final command.
 - Registry links and comments are authoritative inputs but still require
   evidence-aware interpretation.
 - Likelihood, impact and urgency are ordinal 1–10 rankings, not probabilities.
-- The final Azure deployment name `gpt-5.3-chat` is available to the reproducing
-  reviewer. It currently resolves to the account-visible alias
-  `gpt-chat-latest`; backend weights are not version-pinned. Secrets
+- The final Azure deployment `triage-final-chat-20261007` is available to the
+  reproducing reviewer and is explicitly bound to account-visible model
+  `gpt-chat-latest`, version `2026-10-07`. Secrets
   are supplied through the environment and never committed.
 - The local filesystem supports atomic replacement and one writer per output.
 
@@ -206,12 +207,14 @@ Earlier direct-Azure development experiments were also retained. `o4-mini` and
 semantic review. An earlier `gpt-5.3-chat` development run needed evidence-repair
 retries for F-1001/F-1005/F-1019 and then failed review on F-1012 grounding and
 F-1019 uncertainty. That run used an older knowledge release and pre-v4 policy,
-so it is not reused as final evidence. I selected `gpt-5.3-chat` for final
-delivery because it is an existing responsive direct-chat deployment that
-supports the required native schema, has no agent/tool layer, and offers a
-lower-complexity reproducible path than the failed Responses/reasoning
-alternatives. A current exact-config one-finding preflight succeeded before the
-all-21 run.
+so it is not reused as final evidence. The first final attempt used that
+deployment but its 50k-token/minute limit was lower than the full-batch request
+and failed closed before producing a ticket. I therefore created the dedicated
+version-bound `triage-final-chat-20261007` deployment at 250k tokens/minute,
+without changing model family or application logic. It supports the required
+native schema, has no agent/tool layer, and offers a lower-complexity reproducible
+path than the failed Responses/reasoning alternatives. The committed config
+also enforces 20-second request pacing.
 
 The final run permits at most 42 direct requests (21 findings, at most two
 attempts each), with SDK/HTTP retries disabled and explicit token accounting.

@@ -1,14 +1,14 @@
 {
-  "model": "gpt-5.3-chat",
+  "model": "triage-final-chat-20261007",
   "knowledge_version": "sha256-b215857575e443ba5fd9cb56a19f3079003cd68acb03fdf0e33ca7fbed59e097",
   "assessment_time": "2026-07-01T00:00:00+00:00",
   "phase_attempt_budget": 42,
-  "attempt_ledger": ".delivery-state\\native-final-ledger.json",
+  "attempt_ledger": ".delivery-state\\native-final-ledger-v2.json",
   "max_context_bytes": 128000,
   "timeout_seconds": 120,
   "reasoning_effort": null,
   "execution_mode": "strict",
-  "minimum_request_interval_seconds": 0,
+  "minimum_request_interval_seconds": 20,
   "azure_max_completion_tokens": 4096,
   "azure_api": "chat_completions"
 }
