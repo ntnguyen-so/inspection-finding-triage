@@ -1,0 +1,24 @@
+{
+  "observed_at": "2026-11-17T10:43:00+07:00",
+  "artifact": "tickets.experimental.json",
+  "output_sha256": "6a4798ff7831baeba0cdb10a04da795df478d2fa5b115d93e693c3c7990000e4",
+  "tickets": 1,
+  "finding_ids": [
+    "F-1015"
+  ],
+  "run_class": "copilot_experiment_test_informed_spot_check",
+  "acceptance_eligible": false,
+  "application_inference": {
+    "provider": "copilot",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "medium",
+    "sends": 1
+  },
+  "prompt_identity": {
+    "assessment_implementation_sha256": "2605dd2eef9369b991ddf2726a4c11cc8f3618f55132e3bce4a057cae074601e",
+    "repository_revision": "52568f9a205892de47f5e309f553d398b846b9e5",
+    "dirty_code": true
+  },
+  "observed_action": "Clean and inspect the gauge glass using the approved maintenance procedure; restore clear local readability and compare the indicated level with the transmitter.",
+  "limitation": "Disclosed test-informed one-case spot check only. No calibrated semantic report or current-prompt all-21 run; F-1015 is no longer held out."
+}

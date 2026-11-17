@@ -1,49 +1,91 @@
 # Inspection Finding Triage
 
-Evaluation-first candidate exercise, now with reusable Azure OpenAI and Copilot
-text/JSON inference adapters and a code-controlled triage workflow. The primary
-workflow now consumes source-first knowledge through native bundle 3 with
-separate workflow scoring policy and explicit activation pins. The earlier
-three-ticket Copilot smoke used the legacy interface; it does not qualify this
-migration. Full semantic evaluation, strict acceptance and final delivery remain gated.
+A small, fail-closed Python pipeline that converts 21 inspection findings into
+human-approval maintenance-ticket drafts. The model assesses evidence-grounded
+likelihood, impact, uncertainty and planning text; code owns identity, schema,
+coverage, urgency, escalation, retry accounting and atomic publication.
 
-## Generated test artifacts
+## What this submission demonstrates
 
-Commit test code, fixtures, frozen evaluation specifications and curated evidence,
-not every generated payload. `eval\results\artifacts-manifest.json` records local
-archive locations, SHA-256 hashes, retained evidence and pruning outcomes.
-Existing inference observations, calibration, paid-call records, summaries and
-failure observations remain unchanged.
+| Falkor assessment area | Design shown here |
+|---|---|
+| Model/code boundary | The model proposes L/I and planning text. Deterministic code validates evidence and derives urgency; it never asks the model for the final urgency score. |
+| Maintainable domain knowledge | Supplied rules and engineer comments enter a source-faithful, versioned context with exact provenance. A future PSV rule is changed through reviewed knowledge publication, not prompt surgery or finding-ID branches. |
+| Defensible output quality | Summaries retain decision-changing facts; rationales cite supplied evidence; real redundancy, delayed consequences, unknowns and human-review needs remain explicit. |
+| Engineering judgment | The design rejects unnecessary frameworks, vector infrastructure and autonomous action. It uses bounded retries, visible failure and no partial publication. |
 
-Bulky synthetic snapshots from completed runs are archived under ignored
-`.artifacts\evidence`; a hash-verified second copy is kept outside the checkout
-at the backup path recorded in the manifest. Routine offline command logs remain
-local but ignored. These local copies are **not uploaded, committed or a durable
-shared backup**; transfer a verified archive to an approved evidence store before
-discarding either copy or relying on another machine to reproduce the run.
-`git clean -fdx` would remove the in-checkout copy.
+The shortest reviewer path is:
+
+1. `DESIGN.md` for the required A-D decisions, trade-offs and limitations.
+2. `tickets.json` for the system-generated deliverable when a final eligible run
+   has completed.
+3. `triage\workflow.py`, `triage\policy.py` and `triage\assessment.py` for the
+   model/code boundary.
+4. `knowledge\source-first` and `docs\06_KNOWLEDGE_DESIGN_DECISION.md` for the
+   maintenance surface.
+5. `eval\results\README.md` for curated evidence and honest failed observations.
+
+**Current delivery status:** implementation and evaluator suites pass, but the
+final all-21 provider run and semantic review must complete before this repository
+can claim submission-ready `tickets.json`. Experimental Copilot runs are labelled
+non-acceptance-eligible and are never presented as Azure-equivalent evidence.
+
+## Executable evidence for the design answers
+
+| DESIGN question | Executable checks | Retained evidence |
+|---|---|---|
+| A. Structured output and failure | `tests.test_triage.RequestSchemaTests`, `WorkflowTests.test_one_recovery_and_same_pinned_context`, `test_batch_not_partially_published`, `test_atomic_replace_failure_preserves_old_output_and_cleans_temp`; `tests.test_azure` verifies native schema and zero SDK/HTTP retry | `eval\results\triage\native-v2-fault-evidence-1\report.json` |
+| B. Domain knowledge and maintenance | `tests.test_source_knowledge`, `tests.test_source_context`; history chronology, exact-source delivery, tamper rejection and evaluator-context exclusion are exercised directly | `eval\results\knowledge\source-integration-readiness.json`, `eval\results\knowledge\source-owner-promotion-1` |
+| C. Code-owned urgency | `tests.test_triage.PolicyTests` covers corner values, confirmed overrides, precautionary floors, monotonicity and unchanged L/I | `eval\results\triage\native-v2-regression-2\report.json` |
+| D. Limits and deferral | `test_native_unassessable_projection_does_not_create_scores`, `test_unassessable_fails_without_forced_scores`, transport/refusal/timeout and budget tests | `eval\results\triage\native-handoff-system-summary.json` |
+| Output quality | Exact-output semantic review is hash-bound and requires quoted evidence from each ticket | `eval\results\triage\direct-azure-final-sol-v5\assessment-report.json` currently records the disclosed 60/63 failure |
+
+Run the current deterministic evidence:
+
+```powershell
+python -B -m unittest discover -s tests -p "test_*.py"
+python -B -m unittest discover -s eval\tests -p "test_*.py"
+python -B -m eval.validate
+```
+
+The latest observed results were 276 production tests passed, 126 evaluator
+tests passed, and frozen-reference validation passed. These checks prove the
+implemented contracts; they do not substitute for the pending all-21 semantic
+review.
+
+## Evaluation evidence
+
+The reviewer-facing evidence set is indexed in `eval\results\README.md`.
+Historical raw runs, intermediate plans, duplicated stores and synthetic
+payloads were removed from HEAD after a lossless archive of all 2,412 tracked
+result files was created and independently verified at two local paths.
+`eval\results\artifacts-manifest.json` records archive hashes, the embedded
+per-file inventory and the retained evidence set at curation time. Later
+observations are indexed in `eval\results\README.md`.
+
+The archive copies are **not uploaded or a durable shared backup**. Transfer one
+verified copy to an approved evidence store before discarding either local copy.
+`git clean -fdx` would remove the in-checkout archive.
 
 To inspect a run whose raw dependencies were archived, first check its archive
 hash and extract to a **new staging directory**, not over current run files:
 
 ```powershell
 $manifest = Get-Content eval\results\artifacts-manifest.json -Raw | ConvertFrom-Json
-$archive = $manifest.archives | Where-Object area -eq knowledge
+$archive = $manifest.archives | Where-Object scope -eq full_pre_curation_eval_results
 if ((Get-FileHash -LiteralPath $archive.local_path -Algorithm SHA256).Hash.ToLowerInvariant() -ne $archive.sha256) { throw "Archive hash mismatch" }
-Expand-Archive -LiteralPath $archive.local_path -DestinationPath .artifacts\restore\knowledge
-python -B -c "import hashlib,json; from pathlib import Path; r=Path(r'.artifacts\restore\knowledge'); m=json.loads((r/'__archive_manifest__.json').read_text('utf-8')); assert all((r/x['path']).stat().st_size==x['bytes'] and hashlib.sha256((r/x['path']).read_bytes()).hexdigest()==x['sha256'] for x in m['files']); print('Extracted contents verified')"
+Expand-Archive -LiteralPath $archive.local_path -DestinationPath .artifacts\restore\eval-results
+python -B -c "import hashlib,json; from pathlib import Path; r=Path(r'.artifacts\restore\eval-results'); m=json.loads((r/'__archive_manifest__.json').read_text('utf-8')); assert all((r/x['path']).stat().st_size==x['bytes'] and hashlib.sha256((r/x['path']).read_bytes()).hexdigest()==x['sha256'] for x in m['files']); print('Extracted contents verified')"
 ```
 
 Verify every extracted member against the embedded inventory, then restore only
-the required absent payload directories to the manifest's `original_root`.
+the required absent payloads to their recorded repository-relative paths.
 Never overwrite changed reports or reset live-call budget ledgers. Archive
 availability is required to reproduce the original raw-artifact hashes; retained
 summaries alone do not prove that the original checks pass on current code.
 
-Two bounded read-only AI reviews informed this cleanup: terminal-report linkage,
-per-file checks, a verified second copy and a pre-deletion recovery journal were
-accepted. Command logs were retained rather than deleted. The cross-review found
-no significant issues; this is storage housekeeping, not system acceptance.
+The curation changes reviewer navigation and repository size only. It does not
+upgrade any historical observation or establish system acceptance.
 
 ## Read the work in order
 

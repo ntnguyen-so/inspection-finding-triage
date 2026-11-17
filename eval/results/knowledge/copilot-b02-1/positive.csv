@@ -1,2 +1,0 @@
-finding_id,reported_date,equipment_id,equipment_type,inspection_type,inspection_method,finding_description,reported_by,reporter_role
-F-9001,2026-06-22,PSV-9001,Pressure Safety Valve,Function Test,Synthetic Bench Observation,"On an isolated synthetic bench test, outlet seat passing was observed below the valve set pressure. No lifting or capacity test was performed.",Synthetic reporter,Synthetic fixture role

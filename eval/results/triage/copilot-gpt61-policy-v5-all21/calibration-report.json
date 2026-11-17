@@ -1,0 +1,16 @@
+{
+  "scope": "known_fixture_conformance",
+  "reference_version": "1.2",
+  "review_provenance": {
+    "kind": "ai_only",
+    "independent_of_generation": true,
+    "provider": "copilot",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "medium",
+    "role": "separate_semantic_reviewer"
+  },
+  "calibration_status": "pass",
+  "wrong_fixture_judgments": [],
+  "pending": [],
+  "limitation": "Checks these seeded contradictions only; not arbitrary semantic truth or a system result."
+}

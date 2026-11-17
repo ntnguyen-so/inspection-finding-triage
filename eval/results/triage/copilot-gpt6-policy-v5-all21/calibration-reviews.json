@@ -1,0 +1,41 @@
+{
+  "reference_version": "1.2",
+  "reviewer": {
+    "kind": "ai_only",
+    "independent_of_generation": true
+  },
+  "judgments": [
+    {
+      "probe_id": "A04-FW-HEALTHY",
+      "dimension": "grounding",
+      "verdict": "fail",
+      "reason": "The ticket invents a healthy, full-design standby. The frozen paired finding says FW-8101 produced 9.2 barg against 11 barg design and did not measure flow, so its required backup capability is unverified.",
+      "evidence": [
+        {
+          "field": "summary",
+          "quote": "pump A is confirmed healthy, preserving full N+1 protection"
+        },
+        {
+          "field": "impact_of_failure.rationale",
+          "quote": "Pump A is confirmed healthy and delivers full design pressure"
+        }
+      ]
+    },
+    {
+      "probe_id": "A04-PSV-LABEL",
+      "dimension": "grounding",
+      "verdict": "fail",
+      "reason": "The ticket converts an illegible label into proven loss of relief function. The frozen source says certification is in date and physical condition looks fine; no functional failure is established.",
+      "evidence": [
+        {
+          "field": "summary",
+          "quote": "confirmed unable to relieve overpressure because its certification label is illegible"
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "The illegible certification label proves the valve cannot perform its relief function."
+        }
+      ]
+    }
+  ]
+}

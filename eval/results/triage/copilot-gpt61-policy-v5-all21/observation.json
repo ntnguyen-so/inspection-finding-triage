@@ -1,0 +1,51 @@
+{
+  "observed_at": "2026-11-17T10:39:09.945+07:00",
+  "artifact": "tickets.experimental.json",
+  "output_sha256": "4221e62554a0cf08e11d5ad6d3486e6ea34a6ee43fe0f634a266dd7be0ac416f",
+  "tickets": 21,
+  "run_class": "copilot_experiment",
+  "acceptance_eligible": false,
+  "application_inference": {
+    "provider": "copilot",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "medium",
+    "sends": 21
+  },
+  "prompt_identity": {
+    "assessment_implementation_sha256": "fa67aa0ef956f9c0042edf30b66957cfdae6422d2c6c676c24d8d3f08af01873",
+    "repository_revision": "52568f9a205892de47f5e309f553d398b846b9e5",
+    "dirty_code": false
+  },
+  "semantic_reviewer": {
+    "kind": "ai_only",
+    "independent_of_generation": true,
+    "provider": "copilot",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "medium",
+    "domain_expert_claimed": false
+  },
+  "calibration": {
+    "status": "pass",
+    "wrong_fixture_judgments": [],
+    "pending": []
+  },
+  "semantic_result": {
+    "status": "fail",
+    "passed_dimensions": 62,
+    "applicable_dimensions": 63,
+    "failed": [
+      {
+        "finding_id": "F-1015",
+        "dimension": "planning"
+      }
+    ],
+    "pending": []
+  },
+  "commands": [
+    "Copy-Item -LiteralPath .delivery-state\\copilot-gpt61-policy-v5-all21\\tickets.experimental.json -Destination eval\\results\\triage\\copilot-gpt61-policy-v5-all21\\tickets.experimental.json",
+    "Get-FileHash -Algorithm SHA256 eval\\results\\triage\\copilot-gpt61-policy-v5-all21\\tickets.experimental.json",
+    "python -B -m eval.assess --partition development --calibration-reviews eval\\results\\triage\\copilot-gpt61-policy-v5-all21\\calibration-reviews.json",
+    "python -B -m eval.assess --partition all --tickets eval\\results\\triage\\copilot-gpt61-policy-v5-all21\\tickets.experimental.json --reviews eval\\results\\triage\\copilot-gpt61-policy-v5-all21\\reviews.json"
+  ],
+  "limitation": "AI-only semantic review used the same model in a separate session; independence means separate generation/review contexts, not independent methodology or domain expertise. It is not full A-D system acceptance."
+}

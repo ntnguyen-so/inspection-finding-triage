@@ -1,9 +1,0 @@
-{
-  "status": "final_all_21_experimental_generated",
-  "cli_exit_code": 0,
-  "tickets_generated": 21,
-  "application_sends": 21,
-  "output_sha256": "4e2930530f5b41ff4ece0f4ee97a7556ece72af65c522452f90a6257216ac35f",
-  "semantic_status": "not_reviewed",
-  "acceptance_eligible": false
-}

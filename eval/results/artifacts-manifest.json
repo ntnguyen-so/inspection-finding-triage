@@ -1,1172 +1,1756 @@
 {
-  "schema_version": 1,
-  "scope": "lossless_local_test_artifact_cleanup_not_system_acceptance",
-  "created_at": "2026-11-16T15:29:00.989361+00:00",
+  "schema_version": 2,
+  "scope": "reviewer_facing_eval_results_curation_not_system_acceptance",
+  "created_at": "2026-11-17T03:27:16.265135+00:00",
   "status": "complete",
-  "script_sha256": "b35e92e4663e828130239eb9f27c300c370951284ea1561fde352b32d211690b",
-  "script_path": ".artifacts\\evidence\\20261116T152900Z\\archive_test_artifacts.py",
-  "backup_directory": "C:\\Users\\thanh\\.copilot\\artifact-backups\\falkor_case2\\20261116T152900Z",
-  "local_archives_committed": false,
-  "shared_or_durable_backup_established": false,
-  "prune_policy": "Only untracked, stale, terminal-report-linked synthetic payloads with matching original hashes; all reports, command logs, live calls and failed observations stay loose",
+  "source_git_revision": "3997d00d021ca4754e9a0c46800e087ad426f6d6",
+  "curation": {
+    "pre_curation_tracked_files": 2412,
+    "pre_curation_uncompressed_bytes": 108364294,
+    "removed_from_head_files": 2077,
+    "retained_in_head_files_including_manifest": 336,
+    "retained_bytes_excluding_manifest": 4925702,
+    "policy": "Keep requirement-linked evidence, live-call ledgers/accounting, output-bound provenance, calibration, compact failure/run summaries, and execution/reservation records; archive bulky raw and superseded payloads losslessly.",
+    "final_system_acceptance": "not_established",
+    "ignored_files_archived_and_removed": 2329,
+    "ignored_bytes_archived_and_removed": 21919030
+  },
   "archives": [
     {
-      "area": "knowledge",
-      "original_root": "eval\\results\\knowledge",
+      "scope": "historical_knowledge_payloads",
       "local_path": ".artifacts\\evidence\\20261116T152900Z\\knowledge.zip",
       "backup_path": "C:\\Users\\thanh\\.copilot\\artifact-backups\\falkor_case2\\20261116T152900Z\\knowledge.zip",
       "sha256": "42426d6d1a86e1c7d0b55be49dc5ed82c9245b52a8b328fabd9471c919bfa20e",
       "bytes": 2577919,
       "file_count": 1066,
-      "uncompressed_bytes": 13069281,
-      "inventory_member": "__archive_manifest__.json",
       "both_copies_verified": true,
-      "pruned_files": 997,
-      "pruned_bytes": 11317742,
-      "remaining_loose_files": 69
+      "inventory_member": "__archive_manifest__.json"
     },
     {
-      "area": "triage",
-      "original_root": "eval\\results\\triage",
+      "scope": "historical_triage_payloads",
       "local_path": ".artifacts\\evidence\\20261116T152900Z\\triage.zip",
       "backup_path": "C:\\Users\\thanh\\.copilot\\artifact-backups\\falkor_case2\\20261116T152900Z\\triage.zip",
       "sha256": "a3048b4bfd24ee0d95fff940281fce781ac6c8e54c5dd45a67e3cbca68edb415",
       "bytes": 3452255,
       "file_count": 2085,
-      "uncompressed_bytes": 16443093,
-      "inventory_member": "__archive_manifest__.json",
       "both_copies_verified": true,
-      "pruned_files": 1950,
-      "pruned_bytes": 13325187,
-      "remaining_loose_files": 135
+      "inventory_member": "__archive_manifest__.json"
     },
     {
-      "area": "triage",
-      "cycle": "20261116T215256Z",
-      "original_root": "eval/results/triage",
+      "scope": "historical_triage_payloads",
       "local_path": ".artifacts\\evidence\\20261116T215256Z\\triage-pruned.zip",
       "backup_path": "C:\\Users\\thanh\\.copilot\\artifact-backups\\falkor_case2\\20261116T215256Z\\triage-pruned.zip",
       "sha256": "39be55b1cf251888793f124324853549274f1e583c347c1bbac5f571a26e8fb9",
       "bytes": 8975234,
       "file_count": 4901,
-      "uncompressed_bytes": 34214824,
-      "inventory_member": "__archive_manifest__.json",
       "both_copies_verified": true,
-      "pruned_files": 4901,
-      "pruned_bytes": 34214824
+      "inventory_member": "__archive_manifest__.json"
+    },
+    {
+      "scope": "full_pre_curation_eval_results",
+      "local_path": ".artifacts\\evidence\\20261117T031300Z\\eval-results-full.zip",
+      "backup_path": "C:\\Users\\thanh\\.copilot\\artifact-backups\\falkor_case2\\20261117T031300Z\\eval-results-full.zip",
+      "sha256": "502aa9b414fd47fb1892651b8b147af322b5ca03d5e18bddb2eea40effa57d9f",
+      "bytes": 20900833,
+      "file_count": 2412,
+      "uncompressed_bytes": 108364294,
+      "git_revision": "3997d00d021ca4754e9a0c46800e087ad426f6d6",
+      "both_copies_verified": true,
+      "inventory_member": "__archive_manifest__.json"
+    },
+    {
+      "scope": "ignored_eval_results_cleanup",
+      "created_at": "2026-11-17T03:26:48.960141+00:00",
+      "local_path": ".artifacts\\evidence\\20261117T032648Z\\eval-results-ignored.zip",
+      "backup_path": "C:\\Users\\thanh\\.copilot\\artifact-backups\\falkor_case2\\20261117T032648Z\\eval-results-ignored.zip",
+      "sha256": "07f8dc1bbfd2c9fd5342462343d8e13d0da3cbefa11d08596649fe4b65af9100",
+      "bytes": 5736260,
+      "file_count": 2329,
+      "uncompressed_bytes": 21919030,
+      "both_copies_verified": true,
+      "inventory_member": "__archive_manifest__.json"
     }
   ],
   "retained_evidence": [
     {
+      "path": "eval\\results\\README.md",
+      "bytes": 3719,
+      "sha256": "110525eaf86817c215e70233afc0e6953832820237eb87b4905aba75d33bcc74"
+    },
+    {
+      "path": "eval\\results\\calibration\\reviewer-a.json",
+      "bytes": 1474,
+      "sha256": "99bdbf0adb88e88bd99772e85b99ee9cfa920624965514e5fca063e39916d0f0"
+    },
+    {
+      "path": "eval\\results\\calibration\\reviewer-b.json",
+      "bytes": 1828,
+      "sha256": "22a51802d2992f70719aaccd875f05f57246a17b8e4a76195e2550860132d366"
+    },
+    {
+      "path": "eval\\results\\inference\\azure-comparison.json",
+      "bytes": 117056,
+      "sha256": "537b6f48b273998e4c7e53d6f77b3a077e18b50100d28b29f47b75183998da8e"
+    },
+    {
+      "path": "eval\\results\\inference\\azure-verification.json",
+      "bytes": 15546,
+      "sha256": "f9cb23580cfde1e745f64b203d3a8f37e3bbc16378d64401f7acc00edd067845"
+    },
+    {
+      "path": "eval\\results\\inference\\delivery-verification.json",
+      "bytes": 7401,
+      "sha256": "ac5449c4300ef8297bcc551818a62440df47603397caa6ea32f514e7c6718386"
+    },
+    {
+      "path": "eval\\results\\inference\\live-probes.json",
+      "bytes": 106224,
+      "sha256": "e6f06dafd09b5b4ab93d4a793854f9930e52a2b0a80314151669c0745c505e03"
+    },
+    {
+      "path": "eval\\results\\inference\\token-overhead-azure.json",
+      "bytes": 12449,
+      "sha256": "e0f21d3c9812aa55db58f13998ed6821bb4cea5f069dc97536ef9b6b6af30b89"
+    },
+    {
+      "path": "eval\\results\\inference\\token-overhead-verification-initial.json",
+      "bytes": 3760,
+      "sha256": "42e5f20e01318a5872a74929a4a603e298a27340c76fed196f47e104bbfa2349"
+    },
+    {
+      "path": "eval\\results\\inference\\token-overhead-verification.json",
+      "bytes": 19905,
+      "sha256": "2b6e6a1120b07666f98904c240f3b227186e8c71fb60f23e2f3745abc483d15c"
+    },
+    {
+      "path": "eval\\results\\inference\\token-overhead-wire.json",
+      "bytes": 9195,
+      "sha256": "92c2fd83d04842be09b4a9f6d735b7e686244196423a04710d47ced253b3db43"
+    },
+    {
+      "path": "eval\\results\\inference\\token-overhead.json",
+      "bytes": 2148,
+      "sha256": "91b8159ce3735ca57ceeedd8f5918db949e971c1bdc7d4e71cf938c6522f35af"
+    },
+    {
+      "path": "eval\\results\\inference\\verification.json",
+      "bytes": 7716,
+      "sha256": "688738c0de30eeb6ab2ebc5bf11379e0a904b928697709de815b750df2a13f6c"
+    },
+    {
       "path": "eval\\results\\knowledge\\component-verification.json",
-      "sha256": "ea88d8e3863bdc78d6fb3872c23d6dad525145999c860170f5b1813c1f29bedf",
-      "bytes": 100650
-    },
-    {
-      "path": "eval\\results\\knowledge\\copilot-b02-1\\experiment-knowledge\\drafts\\working.json",
-      "sha256": "915b5962a05cd95fe1ec03f5aba1c072d209d5124aa95064a6fdc406c1313325",
-      "bytes": 3402
-    },
-    {
-      "path": "eval\\results\\knowledge\\copilot-b02-1\\experiment-knowledge\\releases\\sha256-4ce233606ae0874192c998ee1c368b3bfc9c6ab21e2b97f1aeedd125250aef84.json",
-      "sha256": "be2b84f4ddb9c97818ed366e4758d01b8f2bd403f460b2664160384abb7359fb",
-      "bytes": 3881
+      "bytes": 100650,
+      "sha256": "ea88d8e3863bdc78d6fb3872c23d6dad525145999c860170f5b1813c1f29bedf"
     },
     {
       "path": "eval\\results\\knowledge\\copilot-b02-1\\negative-after.assessment.json",
-      "sha256": "2cce4abdd4ae1d922ba262b64bb2ca7f32a4efef0a7d3efddb06bcf00f357240",
-      "bytes": 8025
-    },
-    {
-      "path": "eval\\results\\knowledge\\copilot-b02-1\\negative-after.export.json",
-      "sha256": "39888d5e908809a4b37ba59b207b0eb0c8c39cff507dc342592d34a94dd572c3",
-      "bytes": 90551
-    },
-    {
-      "path": "eval\\results\\knowledge\\copilot-b02-1\\negative-after.native.json",
-      "sha256": "17d883c4ecaf7c5af06843dae6718d4a68872515bcc7e4360232f50b3a88f2a6",
-      "bytes": 85783
-    },
-    {
-      "path": "eval\\results\\knowledge\\copilot-b02-1\\negative-after.request.json",
-      "sha256": "64c5a6907b022d17d75a2b6b686b01f03e900154da7fd29f3f655a45443209f0",
-      "bytes": 87280
-    },
-    {
-      "path": "eval\\results\\knowledge\\copilot-b02-1\\negative-after.response.txt",
-      "sha256": "44c02543d1ee73a3356006d9b8b48d08c3ca5e1b23653c63581d83cb7631e0d7",
-      "bytes": 6442
+      "bytes": 8025,
+      "sha256": "2cce4abdd4ae1d922ba262b64bb2ca7f32a4efef0a7d3efddb06bcf00f357240"
     },
     {
       "path": "eval\\results\\knowledge\\copilot-b02-1\\negative-after.result.json",
-      "sha256": "9cd40312f9257fe2ae3230a43f1e38ed07340e9bf84cadb951f0aff378fed335",
-      "bytes": 5871
+      "bytes": 5871,
+      "sha256": "9cd40312f9257fe2ae3230a43f1e38ed07340e9bf84cadb951f0aff378fed335"
     },
     {
       "path": "eval\\results\\knowledge\\copilot-b02-1\\negative-before.assessment.json",
-      "sha256": "6edb87fb292d1e912094d2a6ca534554a2fb08ab2ffb24f3c4a08b88ae0bd3f6",
-      "bytes": 7762
-    },
-    {
-      "path": "eval\\results\\knowledge\\copilot-b02-1\\negative-before.export.json",
-      "sha256": "baa9acfc0f2a93a443b8a8125caf1cb4faf0dafe6b82a2f05fad152df712e37f",
-      "bytes": 90556
-    },
-    {
-      "path": "eval\\results\\knowledge\\copilot-b02-1\\negative-before.native.json",
-      "sha256": "d77136c8ff8faad8c351f9ace5684c7f0915aab2a1312938dbd7a5546d34e9c5",
-      "bytes": 85792
-    },
-    {
-      "path": "eval\\results\\knowledge\\copilot-b02-1\\negative-before.request.json",
-      "sha256": "44868e5bbf4fd9c9672c2cec1ee74dade64a39ebe59c527b296c547866b95ffd",
-      "bytes": 87284
-    },
-    {
-      "path": "eval\\results\\knowledge\\copilot-b02-1\\negative-before.response.txt",
-      "sha256": "6da96efcf14975bdfb2678e5bb3817c61fcc0dd228ed09c2fb03b48e540065da",
-      "bytes": 6252
+      "bytes": 7762,
+      "sha256": "6edb87fb292d1e912094d2a6ca534554a2fb08ab2ffb24f3c4a08b88ae0bd3f6"
     },
     {
       "path": "eval\\results\\knowledge\\copilot-b02-1\\negative-before.result.json",
-      "sha256": "24788fd387b6820df2782d8440aea7c1ebae54128eeeae5fd54cb633966f4aae",
-      "bytes": 5871
-    },
-    {
-      "path": "eval\\results\\knowledge\\copilot-b02-1\\negative.csv",
-      "sha256": "2cc43cdac41f8ae033ea0454c83d271fe667f100eba02313f0ece7a2c2e18545",
-      "bytes": 4967
+      "bytes": 5871,
+      "sha256": "24788fd387b6820df2782d8440aea7c1ebae54128eeeae5fd54cb633966f4aae"
     },
     {
       "path": "eval\\results\\knowledge\\copilot-b02-1\\observation.json",
-      "sha256": "40452a87bc006470b4839651ac098aabc0981b3b7d9180bfab2f652c846c543d",
-      "bytes": 27795
-    },
-    {
-      "path": "eval\\results\\knowledge\\copilot-b02-1\\plan.json",
-      "sha256": "0da1db68bc2db216028cd6d9402728b0ca5f7b0b34b24155cb707d815407d11f",
-      "bytes": 9397
-    },
-    {
-      "path": "eval\\results\\knowledge\\copilot-b02-1\\positive-after.export.json",
-      "sha256": "80641a546bd27d61ed34ebca60936b8cd43af01bcf65243adc55b0830e60924e",
-      "bytes": 75384
-    },
-    {
-      "path": "eval\\results\\knowledge\\copilot-b02-1\\positive-after.native.json",
-      "sha256": "8d1760cdf66372806a633a50bc3b4a0157f464f086422ae9749299e6724bb023",
-      "bytes": 60477
-    },
-    {
-      "path": "eval\\results\\knowledge\\copilot-b02-1\\positive-after.request.json",
-      "sha256": "9fbb59497267b40b337fcc6e9a891bfe531d2e11207c9e013651d171484aa77b",
-      "bytes": 70716
-    },
-    {
-      "path": "eval\\results\\knowledge\\copilot-b02-1\\positive-after.response.txt",
-      "sha256": "4c26daa55cab09551a45333fbdc0d99de8e4a89b9e0ad39977bb16be368664a4",
-      "bytes": 530
+      "bytes": 27795,
+      "sha256": "40452a87bc006470b4839651ac098aabc0981b3b7d9180bfab2f652c846c543d"
     },
     {
       "path": "eval\\results\\knowledge\\copilot-b02-1\\positive-after.result.json",
-      "sha256": "85d7b6d64966457f63af1f3b094758647b3f44ef21a423638c408e66ba08e642",
-      "bytes": 5973
-    },
-    {
-      "path": "eval\\results\\knowledge\\copilot-b02-1\\positive-before.export.json",
-      "sha256": "a4fdb430c35468b89f69bb1b6f496311df5e5106359dbe3aa1cbae6f93b17daa",
-      "bytes": 75389
-    },
-    {
-      "path": "eval\\results\\knowledge\\copilot-b02-1\\positive-before.native.json",
-      "sha256": "27659b9ff76c0d5c8673693bfe7d9c341c1b2d3946fddc2f1f6f87bb4a41ebce",
-      "bytes": 60486
-    },
-    {
-      "path": "eval\\results\\knowledge\\copilot-b02-1\\positive-before.request.json",
-      "sha256": "d273196ef9550cb6b2c26ad045f9f16adf790e4e2a2bc349b509cb7a917fe176",
-      "bytes": 70720
-    },
-    {
-      "path": "eval\\results\\knowledge\\copilot-b02-1\\positive-before.response.txt",
-      "sha256": "4a83f2c09e7c8b8702a0493b049260c1f09cc1d0639e892000c20e02b66b99b6",
-      "bytes": 580
+      "bytes": 5973,
+      "sha256": "85d7b6d64966457f63af1f3b094758647b3f44ef21a423638c408e66ba08e642"
     },
     {
       "path": "eval\\results\\knowledge\\copilot-b02-1\\positive-before.result.json",
-      "sha256": "cc78a6facdcf1cca073df0b5b3dc03f07ea61ab0fb7453da88678ef13dd64987",
-      "bytes": 5960
-    },
-    {
-      "path": "eval\\results\\knowledge\\copilot-b02-1\\positive.csv",
-      "sha256": "6df563e35a6067d6a45ec07e9314bc33d87615173ff9e6ddc7cf6f8fa71d6d49",
-      "bytes": 413
+      "bytes": 5960,
+      "sha256": "cc78a6facdcf1cca073df0b5b3dc03f07ea61ab0fb7453da88678ef13dd64987"
     },
     {
       "path": "eval\\results\\knowledge\\copilot-b02-1\\provider-configuration.json",
-      "sha256": "08c4d05e18535cb6af86aa38c5b74ea373fd9dd21e6e889e972de71d00ee46dc",
-      "bytes": 689
-    },
-    {
-      "path": "eval\\results\\knowledge\\copilot-b02-1\\reference-validation.json",
-      "sha256": "b2489b09849e0d9deccd1325712ab8c0fd25e9bdf2f5c25f9d4d60b45e7d0423",
-      "bytes": 1186
-    },
-    {
-      "path": "eval\\results\\knowledge\\copilot-b02-1\\registry.csv",
-      "sha256": "43217a483b9ff1da80d7604b9860c0a6ac33817cb949e852234291b7b63bf0b8",
-      "bytes": 5121
+      "bytes": 689,
+      "sha256": "08c4d05e18535cb6af86aa38c5b74ea373fd9dd21e6e889e972de71d00ee46dc"
     },
     {
       "path": "eval\\results\\knowledge\\copilot-b02.experimental-ledger.json",
-      "sha256": "e67f25490750adbd0ad0697252b8834b9cd2a62c7e346232bd95faef2188a31d",
-      "bytes": 622
-    },
-    {
-      "path": "eval\\results\\knowledge\\copilot-knowledge-catalog-1\\catalog.json",
-      "sha256": "aa9350786b131d5f5b92356db79364c293012ef02265a707794449dfc593591a",
-      "bytes": 31769
+      "bytes": 622,
+      "sha256": "e67f25490750adbd0ad0697252b8834b9cd2a62c7e346232bd95faef2188a31d"
     },
     {
       "path": "eval\\results\\knowledge\\design-verification.json",
-      "sha256": "e55328ccbf83cbce9c294b722e80fbf785253ac16dba984703d3e5791837829f",
-      "bytes": 4898
+      "bytes": 4898,
+      "sha256": "e55328ccbf83cbce9c294b722e80fbf785253ac16dba984703d3e5791837829f"
     },
     {
-      "path": "eval\\results\\knowledge\\lifecycle-regression-1\\command-1.txt",
-      "sha256": "eed10b31db5657cb90d3d92a91769c4b10ed177f50836f8cd4df13add05061bc",
-      "bytes": 829
+      "path": "eval\\results\\knowledge\\extraction\\completion-v2-run1\\attempt-assessment.json",
+      "bytes": 2509,
+      "sha256": "ef46fcba28a98efe20004a58ac28a2e32c5fd6a304fcc289a2c13d4edadfcb99"
     },
     {
-      "path": "eval\\results\\knowledge\\lifecycle-regression-1\\command-2.txt",
-      "sha256": "ec2c5f1267afaa1878f42eade302db8bebb2b78d4a2ea61d532ba99ae901fd46",
-      "bytes": 102
+      "path": "eval\\results\\knowledge\\extraction\\completion-v2-run1\\calls\\observation.json",
+      "bytes": 45616,
+      "sha256": "f9d25907207f2a1a266fb4e2d25f6bb6ea9eaa4e099dac3aed75cf205bd54726"
     },
     {
-      "path": "eval\\results\\knowledge\\lifecycle-regression-1\\command-3.txt",
-      "sha256": "5b711c1a2c4a308dba693214dc484aca0669b7b2b731df4971234318b2bc0b10",
-      "bytes": 1051
+      "path": "eval\\results\\knowledge\\extraction\\completion-v2.provenance.json",
+      "bytes": 8497,
+      "sha256": "237fee84fce4e0ba15caa8cca5ca61dbd16ffb4eb25ec60ce5e2041a2eae3382"
     },
     {
-      "path": "eval\\results\\knowledge\\lifecycle-regression-1\\command-4.txt",
-      "sha256": "34e331a72417b33b3f1ba221fdeb50c8be10b8a784ab1a68244e1ec2c7940339",
-      "bytes": 43817
+      "path": "eval\\results\\knowledge\\extraction\\completion-v3-run1\\attempt-assessment.json",
+      "bytes": 4593,
+      "sha256": "d673ea8edcbd617130071128e8830f3a84022f0140857f4c151fe16facc1f0d4"
     },
     {
-      "path": "eval\\results\\knowledge\\lifecycle-regression-1\\command-5.txt",
-      "sha256": "777ae66dd16fdad79250b16341a2603c7e60a46973b7d8dc968a99f1c32948fd",
-      "bytes": 106
+      "path": "eval\\results\\knowledge\\extraction\\completion-v3.provenance.json",
+      "bytes": 742,
+      "sha256": "c406e34e2eb78ba326c4d98117918658555849c2ca77a972d6de18dd226afeb1"
     },
     {
-      "path": "eval\\results\\knowledge\\lifecycle-regression-1\\triage-tests.txt",
-      "sha256": "61cfc1c1c5a529befaef4651714f6ae0ab3155a89ee2e0caca7a5866f3e06cdf",
-      "bytes": 9186
+      "path": "eval\\results\\knowledge\\extraction\\completion-v4-packaging.json",
+      "bytes": 2184,
+      "sha256": "b1d63617995d5f64bc75878d84782175ff1389bd63e9d3b7a80d53c370a967a9"
+    },
+    {
+      "path": "eval\\results\\knowledge\\extraction\\completion-v4-run1\\attempt-assessment.json",
+      "bytes": 7661,
+      "sha256": "e751edf7c7c41a8f91234e22206f1b79f848742f4f95a62880b521029ae6c339"
+    },
+    {
+      "path": "eval\\results\\knowledge\\extraction\\completion-v4-run1\\frozen-snapshot-replay-2.json",
+      "bytes": 719,
+      "sha256": "796cbad783341d68bbf363d7654f705e51577047e03f3728c590de11c24ac13a"
+    },
+    {
+      "path": "eval\\results\\knowledge\\extraction\\completion-v4-run1\\frozen-snapshot-replay.json",
+      "bytes": 1779,
+      "sha256": "420cb256816e8039081c29d9f1de875b33b628a16c734a604f766cb817d51d52"
+    },
+    {
+      "path": "eval\\results\\knowledge\\extraction\\completion-v4-run1\\immutable-replay.json",
+      "bytes": 457,
+      "sha256": "e3763ab4c4805712a1d45b7d6153d8d10fee48529250d93e7ecae419f5ef4c19"
+    },
+    {
+      "path": "eval\\results\\knowledge\\extraction\\completion-v4-run1\\offline-replay.json",
+      "bytes": 3532,
+      "sha256": "c7546a09ba47c2ad7f070380e42351b9916553b52b82ab7c532fd0aa5d181525"
+    },
+    {
+      "path": "eval\\results\\knowledge\\extraction\\completion-v4-software.json",
+      "bytes": 8387,
+      "sha256": "d82d03e68cb100ebfcf6c3ba6a4522db2add9255ed17a39d96bc66ed95536164"
+    },
+    {
+      "path": "eval\\results\\knowledge\\extraction\\completion-v4.provenance.json",
+      "bytes": 1358,
+      "sha256": "7830de413b5bda3de7ec14247197b2ebc3ebcc66fab6f198c87a11b8c8fbc7b1"
+    },
+    {
+      "path": "eval\\results\\knowledge\\extraction\\source-first-completion-v3.experimental-ledger.json",
+      "bytes": 86966,
+      "sha256": "fd655040b007b4c1704c1f432957ecde0cb56bcd605aabaec330e317c7443768"
+    },
+    {
+      "path": "eval\\results\\knowledge\\extraction\\source-first-completion-v4.experimental-ledger.json",
+      "bytes": 173248,
+      "sha256": "1e5ea1ee379a4cfa4b4a1f695f4815224e021edf9e1cacd7b091e2e63bc41889"
+    },
+    {
+      "path": "eval\\results\\knowledge\\extraction\\source-first-completion.experimental-ledger.json",
+      "bytes": 24848,
+      "sha256": "8571b76952da79e71e9a0edd0cbe67b9c6efb4eadeee22f0742eba5f88dc3c4e"
+    },
+    {
+      "path": "eval\\results\\knowledge\\extraction\\source-first-copilot-1\\run\\calls\\observation.json",
+      "bytes": 2429,
+      "sha256": "162c045a75df96a020d4f8ea7a8931c946516658028ff68c3f8e910000946ade"
+    },
+    {
+      "path": "eval\\results\\knowledge\\extraction\\source-first-copilot.experimental-ledger.json",
+      "bytes": 2715,
+      "sha256": "54661f7f6ad43c033c0e2e8d88580d6752481f4f575a576d1fa79c5701288013"
+    },
+    {
+      "path": "eval\\results\\knowledge\\extraction\\source-first-handoff-v2.experimental-ledger.json",
+      "bytes": 1124,
+      "sha256": "c5f0632b76ca239cf6277c2e9064efa3cba0c09b7c0b33d1ed3554a5dc298eba"
+    },
+    {
+      "path": "eval\\results\\knowledge\\extraction\\source-first-handoff.experimental-ledger.json",
+      "bytes": 1110,
+      "sha256": "da8fbb4f14827423e45275fdedca91df5502e0811c641abd5739f52abf06d81b"
+    },
+    {
+      "path": "eval\\results\\knowledge\\extraction\\source-first-verification-1\\delivery-checks.json",
+      "bytes": 525,
+      "sha256": "d9b30d11b1119b00b52b92273b001694b587e665db156ef49c8de8736c35374a"
+    },
+    {
+      "path": "eval\\results\\knowledge\\extraction\\source-first-verification-1\\readiness.json",
+      "bytes": 10130,
+      "sha256": "60e2a7b0af32f2751a45d2764fbf935636ef7bb8d405ce02da28a1df13fa452e"
     },
     {
       "path": "eval\\results\\knowledge\\lifecycle-regression-1\\verification.json",
-      "sha256": "19ca39c99923185cedf54220db01c4b4700b52ab4636590459c33f7c0d535310",
-      "bytes": 65374
-    },
-    {
-      "path": "eval\\results\\knowledge\\lifecycle-regression-1\\worktree.txt",
-      "sha256": "880d5f8a60dcc705bd61878c75fbbbeed5fb75ff9542b1d33e68fe46c7c76b36",
-      "bytes": 595
+      "bytes": 65374,
+      "sha256": "19ca39c99923185cedf54220db01c4b4700b52ab4636590459c33f7c0d535310"
     },
     {
       "path": "eval\\results\\knowledge\\lifecycle-verification.json",
-      "sha256": "5f297251be78f6ab0a20d7b50ac9ca1933c4ba1254a7827a5637d62583b5b7ce",
-      "bytes": 47289
+      "bytes": 47289,
+      "sha256": "5f297251be78f6ab0a20d7b50ac9ca1933c4ba1254a7827a5637d62583b5b7ce"
     },
     {
       "path": "eval\\results\\knowledge\\live-probe-driver-verification.json",
-      "sha256": "16e1c4d14f9871d7ea33af187b270fb6843b6d1af3cd182e7feaa1098a0165b1",
-      "bytes": 81791
-    },
-    {
-      "path": "eval\\results\\knowledge\\regression-implementation-1\\command-1.txt",
-      "sha256": "fdef52e2675b948e1afc20c2eda7acfb7ac246fed442f2df2b9ed868a2d1c9e9",
-      "bytes": 829
-    },
-    {
-      "path": "eval\\results\\knowledge\\regression-implementation-1\\command-2.txt",
-      "sha256": "d70c10cfe0c6e05ebf2ac2a882b18004a7383b665d6cf4e5353b2023b18ce983",
-      "bytes": 102
-    },
-    {
-      "path": "eval\\results\\knowledge\\regression-implementation-1\\command-3.txt",
-      "sha256": "5b711c1a2c4a308dba693214dc484aca0669b7b2b731df4971234318b2bc0b10",
-      "bytes": 1051
-    },
-    {
-      "path": "eval\\results\\knowledge\\regression-implementation-1\\command-4.txt",
-      "sha256": "34e331a72417b33b3f1ba221fdeb50c8be10b8a784ab1a68244e1ec2c7940339",
-      "bytes": 43817
-    },
-    {
-      "path": "eval\\results\\knowledge\\regression-implementation-1\\command-5.txt",
-      "sha256": "777ae66dd16fdad79250b16341a2603c7e60a46973b7d8dc968a99f1c32948fd",
-      "bytes": 106
-    },
-    {
-      "path": "eval\\results\\knowledge\\regression-implementation-1\\triage-tests.txt",
-      "sha256": "a5f9acc1b28ef1e0c1044b78f66169db243fbfbe1df7c6dc4c9a1d99ed8019c1",
-      "bytes": 6377
+      "bytes": 81791,
+      "sha256": "16e1c4d14f9871d7ea33af187b270fb6843b6d1af3cd182e7feaa1098a0165b1"
     },
     {
       "path": "eval\\results\\knowledge\\regression-implementation-1\\verification.json",
-      "sha256": "e2a9c8bf41c1c5a64177d893a8a08889ecb8715d53af98c764bae8399f4ddfb0",
-      "bytes": 47523
-    },
-    {
-      "path": "eval\\results\\knowledge\\regression-implementation-1\\worktree.txt",
-      "sha256": "0c820c494bbf6eb995a795f3249a4dc23db2a9639e79d5f6d46bd6aee36f125b",
-      "bytes": 524
-    },
-    {
-      "path": "eval\\results\\knowledge\\regression-implementation-2\\command-1.txt",
-      "sha256": "ab9f47eb8a0ddc6901ff601b482d75d3632199918420935f53d184dd63e95fc8",
-      "bytes": 829
-    },
-    {
-      "path": "eval\\results\\knowledge\\regression-implementation-2\\command-2.txt",
-      "sha256": "3b5cc0cd59dc7bac107af1bdaa632efa28866861e471d22b7ed15d04203f5f89",
-      "bytes": 102
-    },
-    {
-      "path": "eval\\results\\knowledge\\regression-implementation-2\\command-3.txt",
-      "sha256": "5b711c1a2c4a308dba693214dc484aca0669b7b2b731df4971234318b2bc0b10",
-      "bytes": 1051
-    },
-    {
-      "path": "eval\\results\\knowledge\\regression-implementation-2\\command-4.txt",
-      "sha256": "34e331a72417b33b3f1ba221fdeb50c8be10b8a784ab1a68244e1ec2c7940339",
-      "bytes": 43817
-    },
-    {
-      "path": "eval\\results\\knowledge\\regression-implementation-2\\command-5.txt",
-      "sha256": "777ae66dd16fdad79250b16341a2603c7e60a46973b7d8dc968a99f1c32948fd",
-      "bytes": 106
-    },
-    {
-      "path": "eval\\results\\knowledge\\regression-implementation-2\\triage-tests.txt",
-      "sha256": "fcbdb1a875997706f7f3c9e60ee66cf8bddd7b10aa4285afb242362e8ec6da75",
-      "bytes": 6377
+      "bytes": 47523,
+      "sha256": "e2a9c8bf41c1c5a64177d893a8a08889ecb8715d53af98c764bae8399f4ddfb0"
     },
     {
       "path": "eval\\results\\knowledge\\regression-implementation-2\\verification.json",
-      "sha256": "369b5bf58d0cf68b720c2dc81fff459f19086b3c37652a2f45dce95bcb0dac9f",
-      "bytes": 47460
-    },
-    {
-      "path": "eval\\results\\knowledge\\regression-implementation-2\\worktree.txt",
-      "sha256": "5d302f16f97a90275336ea1367fc4f6dcd5cf61e1d82466b94498acc59fc0493",
-      "bytes": 557
-    },
-    {
-      "path": "eval\\results\\knowledge\\regression-implementation-3\\command-1.txt",
-      "sha256": "a6036ef8106aade58f092f15b0baf3a3c4f508ca585cf715902cb46fb7f3119a",
-      "bytes": 829
-    },
-    {
-      "path": "eval\\results\\knowledge\\regression-implementation-3\\command-2.txt",
-      "sha256": "0c49b016462794a45183187e39dc2e26b7a1f925fa8cf0460ddca2ddb5871f51",
-      "bytes": 102
-    },
-    {
-      "path": "eval\\results\\knowledge\\regression-implementation-3\\command-3.txt",
-      "sha256": "5b711c1a2c4a308dba693214dc484aca0669b7b2b731df4971234318b2bc0b10",
-      "bytes": 1051
-    },
-    {
-      "path": "eval\\results\\knowledge\\regression-implementation-3\\command-4.txt",
-      "sha256": "34e331a72417b33b3f1ba221fdeb50c8be10b8a784ab1a68244e1ec2c7940339",
-      "bytes": 43817
-    },
-    {
-      "path": "eval\\results\\knowledge\\regression-implementation-3\\command-5.txt",
-      "sha256": "777ae66dd16fdad79250b16341a2603c7e60a46973b7d8dc968a99f1c32948fd",
-      "bytes": 106
-    },
-    {
-      "path": "eval\\results\\knowledge\\regression-implementation-3\\triage-tests.txt",
-      "sha256": "eebb5600ed9e4b579d0e861c1a8ce6c3540e15882af0fecb03ff531182917912",
-      "bytes": 7993
+      "bytes": 47460,
+      "sha256": "369b5bf58d0cf68b720c2dc81fff459f19086b3c37652a2f45dce95bcb0dac9f"
     },
     {
       "path": "eval\\results\\knowledge\\regression-implementation-3\\verification.json",
-      "sha256": "0c2c0f55e44a49a4b64d29eca6ba2a4458ceb8ece79354218e33b263594156e2",
-      "bytes": 57842
+      "bytes": 57842,
+      "sha256": "0c2c0f55e44a49a4b64d29eca6ba2a4458ceb8ece79354218e33b263594156e2"
     },
     {
-      "path": "eval\\results\\knowledge\\regression-implementation-3\\worktree.txt",
-      "sha256": "5d302f16f97a90275336ea1367fc4f6dcd5cf61e1d82466b94498acc59fc0493",
-      "bytes": 557
+      "path": "eval\\results\\knowledge\\source-handoff-1\\calls\\observation.json",
+      "bytes": 1110,
+      "sha256": "d482eee2aabaf94ee20d823f5def884fa4a9ee7fb9d52a105caa4e1fa9a5e05d"
+    },
+    {
+      "path": "eval\\results\\knowledge\\source-handoff-1\\report.json",
+      "bytes": 1480,
+      "sha256": "0afeedadbb2cd4cdbba7592e3ba9e80dd41366425bf29536fccc8f1d4c2120e2"
+    },
+    {
+      "path": "eval\\results\\knowledge\\source-handoff-2\\calls\\observation.json",
+      "bytes": 1115,
+      "sha256": "60200b61ebbfdfa6c730791c09eefee008328107164943756e1b4d4cbab10bec"
+    },
+    {
+      "path": "eval\\results\\knowledge\\source-handoff-2\\report.json",
+      "bytes": 1831,
+      "sha256": "f8eac92cbe1087119870914ec8a8c20976488cf6990a63f3cb5f894af5f99159"
+    },
+    {
+      "path": "eval\\results\\knowledge\\source-integration-concurrent-replay.json",
+      "bytes": 12412,
+      "sha256": "aace423f1f1c0f57ec70f8d23d373feb5f21ddcb291972d3e813de23ff8b01ea"
+    },
+    {
+      "path": "eval\\results\\knowledge\\source-integration-concurrent-software.json",
+      "bytes": 8034,
+      "sha256": "cce5bd702901e311e27e8165c78ee31db4efaff23328d6caf56274c2c0d219da"
+    },
+    {
+      "path": "eval\\results\\knowledge\\source-integration-readiness.json",
+      "bytes": 9084,
+      "sha256": "ac75a4c9c7c0f76182a83a1fe2ded10e9ac593653d790a8a879d98ff6ba2a1a3"
+    },
+    {
+      "path": "eval\\results\\knowledge\\source-owner-promotion-1\\activation.integration.json",
+      "bytes": 2290,
+      "sha256": "f28cf239d28367b67e54e98f91e282e4605036febe93b5707d45b35ec3e0ae1b"
+    },
+    {
+      "path": "eval\\results\\knowledge\\source-owner-promotion-1\\approval.json",
+      "bytes": 2203,
+      "sha256": "42a18a3730825adeb2de24d0f7ae40767ba435526a837a633e00456aa7d22973"
+    },
+    {
+      "path": "eval\\results\\knowledge\\source-owner-promotion-1\\candidate-pack-verification-attempt-1.json",
+      "bytes": 533,
+      "sha256": "2efbe576c654da353580e12d1f7f25e344d0ca6d8fd6770b4095b357265cd317"
+    },
+    {
+      "path": "eval\\results\\knowledge\\source-owner-promotion-1\\candidate-pack-verification.json",
+      "bytes": 8460,
+      "sha256": "735f20ea34f4aff690710a353f7263e8fa5374bb3e8e8ed4f232e9a6c2941b98"
+    },
+    {
+      "path": "eval\\results\\knowledge\\source-owner-promotion-1\\compatibility-review.json",
+      "bytes": 3558,
+      "sha256": "a58bd184796d6b8acb1c9fb4c15a9864a2d569e5eb300038db6e78b883769b13"
+    },
+    {
+      "path": "eval\\results\\knowledge\\source-owner-promotion-1\\integration-preflight.json",
+      "bytes": 820,
+      "sha256": "44cd69421be03b051fd122af44951ed000800628fd672ad4e65d1c7012dd8215"
+    },
+    {
+      "path": "eval\\results\\knowledge\\source-owner-promotion-1\\publication.json",
+      "bytes": 1073,
+      "sha256": "c1906cf60a1925a03dc0457bbc4bb29af78af5b95c003257be7f24ab59ca81f0"
+    },
+    {
+      "path": "eval\\results\\knowledge\\source-owner-promotion-1\\software-verification.json",
+      "bytes": 3872,
+      "sha256": "86157875d381fe1b7760932b316277e3732f257a554c4c007f3f3772c341c60f"
+    },
+    {
+      "path": "eval\\results\\knowledge\\source-package-regression-1\\report.json",
+      "bytes": 39474,
+      "sha256": "f6d464be5f18ec1397c956ec4a85d85c4b0e007f823d5bd62cf4d2f92a586366"
+    },
+    {
+      "path": "eval\\results\\knowledge\\source-package-regression-2\\report.json",
+      "bytes": 40697,
+      "sha256": "4eb213f80d198ae300130af3a6994bcb5b655181aa76b5ec6b73cd7ea4fa5d57"
+    },
+    {
+      "path": "eval\\results\\knowledge\\source-package-regression-3\\report.json",
+      "bytes": 40697,
+      "sha256": "31f570fdecc54c6fed38ffceff586e4fc2d8a7e9f0f91288403041e4ba4b1351"
+    },
+    {
+      "path": "eval\\results\\knowledge\\source-package-regression-4\\report.json",
+      "bytes": 40697,
+      "sha256": "63ba4b08b0b78d667c3a1166ff34bbae427b6a52745885f4aacc701f887e1bcc"
+    },
+    {
+      "path": "eval\\results\\knowledge\\source-package-regression-5\\report.json",
+      "bytes": 40697,
+      "sha256": "a849e01227631d90a7cfd3267c4ca8eff2946577b7cf76918b44f316b96b6729"
+    },
+    {
+      "path": "eval\\results\\readiness.json",
+      "bytes": 4355,
+      "sha256": "52896c02982ee4d9ac3fde435b9e761ba9a34c0c9402faa6f96fce156d25d301"
     },
     {
       "path": "eval\\results\\triage\\copilot-catalog-1\\catalog.json",
-      "sha256": "aa9350786b131d5f5b92356db79364c293012ef02265a707794449dfc593591a",
-      "bytes": 31769
-    },
-    {
-      "path": "eval\\results\\triage\\copilot-correction-1\\config.json",
-      "sha256": "275eb7c451e583810a87534c12e08e384fd3ad0d664ba379719dd46d8a5dd8be",
-      "bytes": 463
-    },
-    {
-      "path": "eval\\results\\triage\\copilot-correction-1\\context.json",
-      "sha256": "4cf01081f960269e18a3c2de8e9316f2350c98b50d439e345877f425a0d16b38",
-      "bytes": 75368
-    },
-    {
-      "path": "eval\\results\\triage\\copilot-correction-1\\experiment-knowledge\\drafts\\working.json",
-      "sha256": "915b5962a05cd95fe1ec03f5aba1c072d209d5124aa95064a6fdc406c1313325",
-      "bytes": 3402
-    },
-    {
-      "path": "eval\\results\\triage\\copilot-correction-1\\experiment-knowledge\\releases\\sha256-43594d435097a10d03ebd7ce7211c89b782d42bca0bf629ecb2b750c32c71bbe.json",
-      "sha256": "f4f4a4dd21ddefb7501a8f9e73c8ec74c800726f279f88ab62fccf2629d3ffb1",
-      "bytes": 3887
-    },
-    {
-      "path": "eval\\results\\triage\\copilot-correction-1\\experiment.json",
-      "sha256": "45df82af2a10393fa47488e5aa8a5cf8013993f9811c200e70448e1b92b18d00",
-      "bytes": 5550
+      "bytes": 31769,
+      "sha256": "aa9350786b131d5f5b92356db79364c293012ef02265a707794449dfc593591a"
     },
     {
       "path": "eval\\results\\triage\\copilot-correction-1\\observation.json",
-      "sha256": "497b566c3fafafbe5b1ec9b37573788220c8f4473d94a2662f5d3e6b58cda4d6",
-      "bytes": 21611
+      "bytes": 21611,
+      "sha256": "497b566c3fafafbe5b1ec9b37573788220c8f4473d94a2662f5d3e6b58cda4d6"
     },
     {
       "path": "eval\\results\\triage\\copilot-correction-1\\phase.experimental-ledger.json",
-      "sha256": "2e155f5872e1a9aa9aef845860bfc300033e88db4a8a209238e7c7819701613c",
-      "bytes": 1055
-    },
-    {
-      "path": "eval\\results\\triage\\copilot-correction-1\\reference-validation.txt",
-      "sha256": "5b711c1a2c4a308dba693214dc484aca0669b7b2b731df4971234318b2bc0b10",
-      "bytes": 1051
-    },
-    {
-      "path": "eval\\results\\triage\\copilot-correction-1\\registry.csv",
-      "sha256": "5520713b74a28a907b7167da638dca8879849ce3d85d99e1d3ef9968fb000033",
-      "bytes": 4906
-    },
-    {
-      "path": "eval\\results\\triage\\copilot-correction-1\\run\\run.json",
-      "sha256": "24ebb6b4aa6521512f8ccedcb1ae7a8ad5c6f123435c910489efc0dfc86a454a",
-      "bytes": 338890
-    },
-    {
-      "path": "eval\\results\\triage\\copilot-correction-1\\selected.csv",
-      "sha256": "0f61d0a56cb8ef2eb8e0d2288c785da6529512852833cd7d0194b11da216e0f4",
-      "bytes": 1291
-    },
-    {
-      "path": "eval\\results\\triage\\copilot-correction-1\\stderr.txt",
-      "sha256": "d03d8d712a72dd7b16836567108d75fe8e74149f1fe1e504646ece3d045f0568",
-      "bytes": 303
-    },
-    {
-      "path": "eval\\results\\triage\\copilot-correction-1\\stdout.txt",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "bytes": 0
-    },
-    {
-      "path": "eval\\results\\triage\\copilot-correction-2\\experiment.json",
-      "sha256": "b79236b12cfc70eae58c4b43a11d2a36501addac9d008bd8454acc9e5233e9c6",
-      "bytes": 6058
+      "bytes": 1055,
+      "sha256": "2e155f5872e1a9aa9aef845860bfc300033e88db4a8a209238e7c7819701613c"
     },
     {
       "path": "eval\\results\\triage\\copilot-correction-2\\observation.json",
-      "sha256": "886e0d4d4f8b77c4f07b7096e662b6178e683719376314535465ad78b4c75fa1",
-      "bytes": 21599
-    },
-    {
-      "path": "eval\\results\\triage\\copilot-correction-2\\reference-validation.txt",
-      "sha256": "5b711c1a2c4a308dba693214dc484aca0669b7b2b731df4971234318b2bc0b10",
-      "bytes": 1051
-    },
-    {
-      "path": "eval\\results\\triage\\copilot-correction-2\\run\\run.json",
-      "sha256": "2c2d77740d9bd618ea28a9347f0b4c2ec5d319a5cb805d9bdec46e6fab6d8252",
-      "bytes": 346692
-    },
-    {
-      "path": "eval\\results\\triage\\copilot-correction-2\\stderr.txt",
-      "sha256": "edc7ce9f424b4b3cc139afa07f9edfb50bab815a93c8715544a0c17df877debd",
-      "bytes": 310
-    },
-    {
-      "path": "eval\\results\\triage\\copilot-correction-2\\stdout.txt",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "bytes": 0
-    },
-    {
-      "path": "eval\\results\\triage\\copilot-correction-3\\experiment.json",
-      "sha256": "3a06b039e040576062b695fc6baa6c67bbcd916bf6fc2b345eb82ff91e4ad334",
-      "bytes": 6077
+      "bytes": 21599,
+      "sha256": "886e0d4d4f8b77c4f07b7096e662b6178e683719376314535465ad78b4c75fa1"
     },
     {
       "path": "eval\\results\\triage\\copilot-correction-3\\observation.json",
-      "sha256": "9a6af096988a57579466b27a683e510be47e8bb8c9d94448371da27e365969fc",
-      "bytes": 27795
-    },
-    {
-      "path": "eval\\results\\triage\\copilot-correction-3\\reference-validation.txt",
-      "sha256": "5b711c1a2c4a308dba693214dc484aca0669b7b2b731df4971234318b2bc0b10",
-      "bytes": 1051
-    },
-    {
-      "path": "eval\\results\\triage\\copilot-correction-3\\run\\run.json",
-      "sha256": "b3dea094c30a46ab30aef0ef7d44a8ad6a1f813cd30068efc2d9166881cd888c",
-      "bytes": 479109
-    },
-    {
-      "path": "eval\\results\\triage\\copilot-correction-3\\stderr.txt",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "bytes": 0
-    },
-    {
-      "path": "eval\\results\\triage\\copilot-correction-3\\stdout.txt",
-      "sha256": "c65204904e4b1d3b8c07c8d68884783120b55caeadd59cf40a851b21b844169e",
-      "bytes": 456
+      "bytes": 27795,
+      "sha256": "9a6af096988a57579466b27a683e510be47e8bb8c9d94448371da27e365969fc"
     },
     {
       "path": "eval\\results\\triage\\copilot-correction-3\\tickets.experimental.json",
-      "sha256": "fc6faa1868aca8e941cb3bc6482ef769298a12f580982091c5cedda82b8d209c",
-      "bytes": 12685
+      "bytes": 12685,
+      "sha256": "fc6faa1868aca8e941cb3bc6482ef769298a12f580982091c5cedda82b8d209c"
     },
     {
       "path": "eval\\results\\triage\\copilot-correction-3\\verification.json",
-      "sha256": "e7f2c8c11dbdb835049c68bb56b5226d3c20f17efed804b25962a5d9bcd88efb",
-      "bytes": 4026
-    },
-    {
-      "path": "eval\\results\\triage\\copilot-integration-1\\experiment-knowledge\\drafts\\working.json",
-      "sha256": "6ab008aceb1851e5da9936ce2f6bf0a257c7e8efca7a0c734d7b2af1ade00147",
-      "bytes": 3300
-    },
-    {
-      "path": "eval\\results\\triage\\copilot-integration-1\\experiment-knowledge\\releases\\sha256-ef2056a840668b56cfd6ffe83632bcfd37dfd24739830ca6940b2ee92f2ac0de.json",
-      "sha256": "708b817129fc57f1b7778655a8b8f359a6066dcc1da5ea754fd9292140e13424",
-      "bytes": 3785
+      "bytes": 4026,
+      "sha256": "e7f2c8c11dbdb835049c68bb56b5226d3c20f17efed804b25962a5d9bcd88efb"
     },
     {
       "path": "eval\\results\\triage\\copilot-integration-1\\observation.json",
-      "sha256": "d300107e8f78a00f4734cce92b44369d2bbd51390c5afa00e755868a4185bdb7",
-      "bytes": 218
-    },
-    {
-      "path": "eval\\results\\triage\\copilot-integration-1\\reference-validation.txt",
-      "sha256": "5b711c1a2c4a308dba693214dc484aca0669b7b2b731df4971234318b2bc0b10",
-      "bytes": 1051
-    },
-    {
-      "path": "eval\\results\\triage\\copilot-integration-1\\registry.csv",
-      "sha256": "5520713b74a28a907b7167da638dca8879849ce3d85d99e1d3ef9968fb000033",
-      "bytes": 4906
-    },
-    {
-      "path": "eval\\results\\triage\\copilot-integration-1\\selected.csv",
-      "sha256": "0f61d0a56cb8ef2eb8e0d2288c785da6529512852833cd7d0194b11da216e0f4",
-      "bytes": 1291
-    },
-    {
-      "path": "eval\\results\\triage\\copilot-integration-2\\config.json",
-      "sha256": "52ad89b69a7711e8edee140d69d85bde0892201d1e5405d4cec653b5ae231ae7",
-      "bytes": 463
-    },
-    {
-      "path": "eval\\results\\triage\\copilot-integration-2\\context.json",
-      "sha256": "d5913573ae634efee067051032d631b93f8e52a7ac00f2cee385c5f13463882b",
-      "bytes": 76623
-    },
-    {
-      "path": "eval\\results\\triage\\copilot-integration-2\\experiment-knowledge\\drafts\\working.json",
-      "sha256": "6ab008aceb1851e5da9936ce2f6bf0a257c7e8efca7a0c734d7b2af1ade00147",
-      "bytes": 3300
-    },
-    {
-      "path": "eval\\results\\triage\\copilot-integration-2\\experiment-knowledge\\releases\\sha256-5f8c784290b9eea517646c53fe7bcf74b01e39749a47312b6c7a06911c8ec36a.json",
-      "sha256": "31ae61315d158667da7577c2bb4b2f63356041bcffad4113526c1cd47399ee05",
-      "bytes": 3785
-    },
-    {
-      "path": "eval\\results\\triage\\copilot-integration-2\\experiment.json",
-      "sha256": "42cfef9167bf800769e4b709ed418236e5355c8af1350510257d63c300b1ddb9",
-      "bytes": 5307
+      "bytes": 218,
+      "sha256": "d300107e8f78a00f4734cce92b44369d2bbd51390c5afa00e755868a4185bdb7"
     },
     {
       "path": "eval\\results\\triage\\copilot-integration-2\\observation.json",
-      "sha256": "1cdb576ce5b0ae530ad0632cf6a500de965e3e93633790b50457fc4eecc749dd",
-      "bytes": 15445
+      "bytes": 15445,
+      "sha256": "1cdb576ce5b0ae530ad0632cf6a500de965e3e93633790b50457fc4eecc749dd"
     },
     {
       "path": "eval\\results\\triage\\copilot-integration-2\\phase.experimental-ledger.json",
-      "sha256": "35edf18c8880f6c8195b4bbcec11c1a2016c0b4e4028e02718168a94300ef70e",
-      "bytes": 476
-    },
-    {
-      "path": "eval\\results\\triage\\copilot-integration-2\\reference-validation.txt",
-      "sha256": "5b711c1a2c4a308dba693214dc484aca0669b7b2b731df4971234318b2bc0b10",
-      "bytes": 1051
-    },
-    {
-      "path": "eval\\results\\triage\\copilot-integration-2\\registry.csv",
-      "sha256": "5520713b74a28a907b7167da638dca8879849ce3d85d99e1d3ef9968fb000033",
-      "bytes": 4906
-    },
-    {
-      "path": "eval\\results\\triage\\copilot-integration-2\\run\\run.json",
-      "sha256": "e0792dc5708b6f17e9a84eb948079caa51a4dfde096a7245621fded62e96aeae",
-      "bytes": 235950
-    },
-    {
-      "path": "eval\\results\\triage\\copilot-integration-2\\selected.csv",
-      "sha256": "0f61d0a56cb8ef2eb8e0d2288c785da6529512852833cd7d0194b11da216e0f4",
-      "bytes": 1291
-    },
-    {
-      "path": "eval\\results\\triage\\copilot-integration-2\\stderr.txt",
-      "sha256": "5eea4200e93d4d22eff30a8c602773614a91cfb63697adfbd43491737a72d50d",
-      "bytes": 304
-    },
-    {
-      "path": "eval\\results\\triage\\copilot-integration-2\\stdout.txt",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "bytes": 0
-    },
-    {
-      "path": "eval\\results\\triage\\copilot-integration-3\\experiment.json",
-      "sha256": "51087258284a503a4a9b05ae31dd961d9070e8ec5e544cacf5555d1fe9b4b6de",
-      "bytes": 5758
+      "bytes": 476,
+      "sha256": "35edf18c8880f6c8195b4bbcec11c1a2016c0b4e4028e02718168a94300ef70e"
     },
     {
       "path": "eval\\results\\triage\\copilot-integration-3\\observation.json",
-      "sha256": "e0b4dd141b3befe17274d8418c8f530c9b390b726ad5664e4619539351d54117",
-      "bytes": 15499
-    },
-    {
-      "path": "eval\\results\\triage\\copilot-integration-3\\reference-validation.txt",
-      "sha256": "5b711c1a2c4a308dba693214dc484aca0669b7b2b731df4971234318b2bc0b10",
-      "bytes": 1051
-    },
-    {
-      "path": "eval\\results\\triage\\copilot-integration-3\\run\\run.json",
-      "sha256": "8bc241fbcbbb299f880909555e8f681a297b1fbb99a8a3270a1f1b957b8fc66d",
-      "bytes": 247518
-    },
-    {
-      "path": "eval\\results\\triage\\copilot-integration-3\\stderr.txt",
-      "sha256": "b1de30aa2483ce4260feeee0d79ffcd86108c426846132e9027c8d6e783db55d",
-      "bytes": 310
-    },
-    {
-      "path": "eval\\results\\triage\\copilot-integration-3\\stdout.txt",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "bytes": 0
+      "bytes": 15499,
+      "sha256": "e0b4dd141b3befe17274d8418c8f530c9b390b726ad5664e4619539351d54117"
     },
     {
       "path": "eval\\results\\triage\\design-verification.json",
-      "sha256": "eb403c8d949922ac6da2223c52eedf239960f6e12b4d4a75867e6fa6b101a0c1",
-      "bytes": 6422
+      "bytes": 6422,
+      "sha256": "eb403c8d949922ac6da2223c52eedf239960f6e12b4d4a75867e6fa6b101a0c1"
     },
     {
-      "path": "eval\\results\\triage\\offline-copilot-1\\command-1.txt",
-      "sha256": "a0eb3f4e0a11eedb93d368e2bac9236aae9159939d30c3319a64f47dc7411047",
-      "bytes": 829
+      "path": "eval\\results\\triage\\direct-azure-final-sol-v5\\assessment-report.json",
+      "bytes": 1812,
+      "sha256": "dc559654aeedc5acf8868575fdfdf2065a61e327219f1038ad8ab6ae272369c7"
     },
     {
-      "path": "eval\\results\\triage\\offline-copilot-1\\command-2.txt",
-      "sha256": "6dc7e6afe6758b9e6c8f537048e365d8c26d55e5bb4d98ed0aa15a43de7d546e",
-      "bytes": 102
+      "path": "eval\\results\\triage\\direct-azure-final-sol-v5\\calibration-report.json",
+      "bytes": 734,
+      "sha256": "867248d781c0f7b4cc9c273926dcd72113f943bb0583fd509b6b1b9983fabcdb"
     },
     {
-      "path": "eval\\results\\triage\\offline-copilot-1\\command-3.txt",
-      "sha256": "5b711c1a2c4a308dba693214dc484aca0669b7b2b731df4971234318b2bc0b10",
-      "bytes": 1051
+      "path": "eval\\results\\triage\\direct-azure-final-sol-v5\\calibration-reviews.json",
+      "bytes": 1901,
+      "sha256": "f69bc7d9d7e973217f9bd209cbcbaf310bd728ca36b24808378d9d0dbb522ae2"
     },
     {
-      "path": "eval\\results\\triage\\offline-copilot-1\\command-4.txt",
-      "sha256": "34e331a72417b33b3f1ba221fdeb50c8be10b8a784ab1a68244e1ec2c7940339",
-      "bytes": 43817
+      "path": "eval\\results\\triage\\direct-azure-final-sol-v5\\reviews.json",
+      "bytes": 58123,
+      "sha256": "150acfbe1385e694c670a10faf0b86fcfe01d362b76599a9b2ef4df6112d0485"
     },
     {
-      "path": "eval\\results\\triage\\offline-copilot-1\\command-5.txt",
-      "sha256": "777ae66dd16fdad79250b16341a2603c7e60a46973b7d8dc968a99f1c32948fd",
-      "bytes": 106
+      "path": "eval\\results\\triage\\direct-azure-final-sol-v5\\tickets.json",
+      "bytes": 72733,
+      "sha256": "de3b319d1651ec20502500750f99be887841028163d0b129e6db9a659bff43e4"
     },
     {
-      "path": "eval\\results\\triage\\offline-copilot-1\\triage-tests.txt",
-      "sha256": "23a3d119f8fd4f4d7035d59f7793f9c590f5d062e536f5a26ec7499a6e86adbe",
-      "bytes": 9186
+      "path": "eval\\results\\triage\\final-all-21-phase\\execution.json",
+      "bytes": 2528,
+      "sha256": "435a01220e04701ebaa52b815cbc16d2745b5d692b8ce28a2c209df51bbd9b79"
+    },
+    {
+      "path": "eval\\results\\triage\\final-all-21-phase\\native-final-all21.experimental-ledger.json",
+      "bytes": 2080,
+      "sha256": "9b9c02cc79d28a15133cd5fc7510ff22633914d5a58b4f3111ab2933aad53d0d"
+    },
+    {
+      "path": "eval\\results\\triage\\final-all-21-phase\\observation.json",
+      "bytes": 539,
+      "sha256": "8d98be86f4cd71a88129e1229973dd9b6fe6c6db6925a1aa232083f716fc7f95"
+    },
+    {
+      "path": "eval\\results\\triage\\final-all-21-phase\\tickets.experimental.json",
+      "bytes": 61421,
+      "sha256": "4e2930530f5b41ff4ece0f4ee97a7556ece72af65c522452f90a6257216ac35f"
+    },
+    {
+      "path": "eval\\results\\triage\\final-composite-21\\assessment-report.json",
+      "bytes": 1369,
+      "sha256": "5685bff20da71a2f15ef326196ee24346c61ac937c9c2fcf205cee27faaa48ca"
+    },
+    {
+      "path": "eval\\results\\triage\\final-composite-21\\provenance.json",
+      "bytes": 892,
+      "sha256": "c25eab5e1d3cc51c2daec880ce638611ea8e827c138cc4e8d13d4c60faf8fe2e"
+    },
+    {
+      "path": "eval\\results\\triage\\final-composite-21\\reviews.json",
+      "bytes": 49544,
+      "sha256": "7fc6fe056467dda86701885df8d30b9c0510fb76476d186f919814fe0366ace9"
+    },
+    {
+      "path": "eval\\results\\triage\\final-composite-21\\tickets.experimental.json",
+      "bytes": 63475,
+      "sha256": "fbf19ea7fb5c76b87fa299ad645c6454f896557d737ac20689525a9f7950a26d"
+    },
+    {
+      "path": "eval\\results\\triage\\final-regression-phase-2\\development-1\\execution.json",
+      "bytes": 2552,
+      "sha256": "ebb7ce3f5d6647743f483fd40f587a36e344fa30c0e4fcdc0cb8275b61ef9981"
+    },
+    {
+      "path": "eval\\results\\triage\\final-regression-phase-2\\development-1\\observation.json",
+      "bytes": 746,
+      "sha256": "58e226531035be26bf4b9dccf3a1a986390dc56e3b4f803ffe72214cf0ec09c2"
+    },
+    {
+      "path": "eval\\results\\triage\\final-regression-phase-2\\native-e2e.experimental-ledger.json",
+      "bytes": 1709,
+      "sha256": "9af2ef4b377415486c5fc79c89ce0b914e9579b55265a6c3ea0275fa3d1c0f3b"
+    },
+    {
+      "path": "eval\\results\\triage\\final-regression-phase-2\\plan-1\\development-reserved.json",
+      "bytes": 170,
+      "sha256": "a4260d742f03b1d3daca5d9a6ac52ae7276fd81d2f1f374d62b30d5a3efadb04"
+    },
+    {
+      "path": "eval\\results\\triage\\final-regression-phase-3\\development-1\\execution.json",
+      "bytes": 2602,
+      "sha256": "108743cf6ca34993811ab01c61f0e3d05179fe28cfeb76b49e1e09dbe777dd00"
+    },
+    {
+      "path": "eval\\results\\triage\\final-regression-phase-3\\development-1\\observation.json",
+      "bytes": 746,
+      "sha256": "798c911f5dda36027760db3635a9cc7749fe9a70b0c5ec12f8c9ff2f2d9c0103"
+    },
+    {
+      "path": "eval\\results\\triage\\final-regression-phase-3\\native-e2e.experimental-ledger.json",
+      "bytes": 1593,
+      "sha256": "638d6a96fce86b82851c7dbb07d3a8052fced612a2101eba09695b2a3219de2a"
+    },
+    {
+      "path": "eval\\results\\triage\\final-regression-phase-3\\plan-1\\development-reserved.json",
+      "bytes": 170,
+      "sha256": "3a48d696d1f208dd4c1383162bc1cfc8b5aa43f062f496dfbbffb75cdfb1c663"
+    },
+    {
+      "path": "eval\\results\\triage\\final-regression-phase-4\\development-1\\assessment-report.json",
+      "bytes": 1669,
+      "sha256": "caded9a5a4ebfb27e873947ba2b4b433ab81145b077ac67da1ed41326d1ee744"
+    },
+    {
+      "path": "eval\\results\\triage\\final-regression-phase-4\\development-1\\execution.json",
+      "bytes": 2652,
+      "sha256": "78be380c7477b97e2668ad9c2138c357b4570c7a78fb36fb0becfaa79dcb4d42"
+    },
+    {
+      "path": "eval\\results\\triage\\final-regression-phase-4\\development-1\\observation.json",
+      "bytes": 746,
+      "sha256": "743c6b3255134dec5dc2b886cf266cfe4a173470c7f4fb915160cee5e6232336"
+    },
+    {
+      "path": "eval\\results\\triage\\final-regression-phase-4\\development-1\\reviews.json",
+      "bytes": 31082,
+      "sha256": "fd08057c032734fd21371748e0d452c4fccd49d693fe5486e4400f54448bc3a5"
+    },
+    {
+      "path": "eval\\results\\triage\\final-regression-phase-4\\native-e2e.experimental-ledger.json",
+      "bytes": 3263,
+      "sha256": "782fe99ac1cedace9e684ddf9ca4455670f101db670b97bd7d3a388288b82cd9"
+    },
+    {
+      "path": "eval\\results\\triage\\final-regression-phase-4\\plan-1\\development-reserved.json",
+      "bytes": 170,
+      "sha256": "2a430b1358a63e7cc8b336b0d1e4de6b04f3019d6c33b5dd2af36631dabaaacb"
+    },
+    {
+      "path": "eval\\results\\triage\\final-regression-phase-4\\plan-1\\repeat-reserved.json",
+      "bytes": 165,
+      "sha256": "83d5c2a962e580e4b91046b1b6b167d8d4645dc95b71f947e9cad588fc4e5ff1"
+    },
+    {
+      "path": "eval\\results\\triage\\final-regression-phase-4\\repeat-1\\execution.json",
+      "bytes": 2784,
+      "sha256": "e56a120aacf9a17b6a37b2d70f561b756bda51b1d7ead0cf91c745ade647965b"
+    },
+    {
+      "path": "eval\\results\\triage\\final-regression-phase-4\\repeat-1\\observation.json",
+      "bytes": 746,
+      "sha256": "3b7cff5f675a3f23f1a1b1cc6e2ea366ad8efbe84af3aeecdd6efbde79f6b792"
+    },
+    {
+      "path": "eval\\results\\triage\\final-regression-phase-4\\x01-review.json",
+      "bytes": 2514,
+      "sha256": "283f0bde056b4afcaaa66800130db7bafb5e2b934ba9a5806c6497165f389ef8"
+    },
+    {
+      "path": "eval\\results\\triage\\final-regression-phase\\development-1\\execution.json",
+      "bytes": 2488,
+      "sha256": "8865313a260c8954a08b88da8b230299d76060307dba6b2362e4a7c4b8904c37"
+    },
+    {
+      "path": "eval\\results\\triage\\final-regression-phase\\development-1\\observation.json",
+      "bytes": 836,
+      "sha256": "42ec6b02c0022f76142e5d59a31e78de04a42e8f1a0c625756d6205663b1950a"
+    },
+    {
+      "path": "eval\\results\\triage\\final-regression-phase\\native-e2e.experimental-ledger.json",
+      "bytes": 883,
+      "sha256": "0e20e80427bd65facb50ee8a4f8d82ccb258312dccb9237fcb805d225af03577"
+    },
+    {
+      "path": "eval\\results\\triage\\final-regression-phase\\plan-1\\development-reserved.json",
+      "bytes": 168,
+      "sha256": "a9d1471b6b0d10ae36c932f6d2f961ed6148682f240d397e7a453e508e08917a"
+    },
+    {
+      "path": "eval\\results\\triage\\final-test-regression-phase\\native-final-test-regression.experimental-ledger.json",
+      "bytes": 1069,
+      "sha256": "8093f04bf030d692f70cd93ae046de33f9817414ea65add41648a4d6dd5b0641"
+    },
+    {
+      "path": "eval\\results\\triage\\final-test-regression-phase\\test-regression-1\\assessment-report.json",
+      "bytes": 1402,
+      "sha256": "1fad4919d070231d1a5c31440fb0211535062399eefed6cd6743e8e4f01ee1d5"
+    },
+    {
+      "path": "eval\\results\\triage\\final-test-regression-phase\\test-regression-1\\execution.json",
+      "bytes": 2627,
+      "sha256": "61dc7a1238da623f997c3b2923be5eed9a70d6501de1e1d5d53ce5a4755e655b"
+    },
+    {
+      "path": "eval\\results\\triage\\final-test-regression-phase\\test-regression-1\\observation.json",
+      "bytes": 722,
+      "sha256": "9b9750f4ed0683adf5d6ddac740344f8a2e525e47c728ddf0f999fc567133345"
+    },
+    {
+      "path": "eval\\results\\triage\\final-test-regression-phase\\test-regression-1\\reviews.json",
+      "bytes": 19152,
+      "sha256": "b2d4ece8d87366eb318a1b5bb35ae9aaa4ccc025062d16bcf2fc387c5d231e56"
+    },
+    {
+      "path": "eval\\results\\triage\\history-bundle3-phase\\development-1\\execution.json",
+      "bytes": 1898,
+      "sha256": "10ee639e9d398002c02eb322b43ffef099489cfcb897d66e5adbe1842780a634"
+    },
+    {
+      "path": "eval\\results\\triage\\history-bundle3-phase\\development-1\\observation.json",
+      "bytes": 674,
+      "sha256": "934fb317f0fb081acc38ce740bb6971d33c7b9c03144e4873f6d4341a3e901d1"
+    },
+    {
+      "path": "eval\\results\\triage\\history-bundle3-phase\\development-2\\assessment-report.json",
+      "bytes": 1643,
+      "sha256": "1a51dc5f0ef9a72581c3db51891b97d91246fffde547288da46671d1e943c1cd"
+    },
+    {
+      "path": "eval\\results\\triage\\history-bundle3-phase\\development-2\\execution.json",
+      "bytes": 1971,
+      "sha256": "f566a12d7c850fa9343589dabf70734f06b88d6e484857b6041d05965e13f94d"
+    },
+    {
+      "path": "eval\\results\\triage\\history-bundle3-phase\\development-2\\observation.json",
+      "bytes": 745,
+      "sha256": "b7e06e5dd35db4d928136e9c238875e58b725bbc8da3c86b74c40ff61e4ec65b"
+    },
+    {
+      "path": "eval\\results\\triage\\history-bundle3-phase\\development-2\\reviews.json",
+      "bytes": 16253,
+      "sha256": "b6fe6e98a834009dd9828035ace8709f4188d2a3fa7f17a82137427dc492b04d"
+    },
+    {
+      "path": "eval\\results\\triage\\history-bundle3-phase\\development-3\\execution.json",
+      "bytes": 1971,
+      "sha256": "692a853c28ea4bf9f459531dccdf5e0ec24ed09af1c3cb3f06e4e51930a4838d"
+    },
+    {
+      "path": "eval\\results\\triage\\history-bundle3-phase\\development-3\\observation.json",
+      "bytes": 745,
+      "sha256": "6a5111f40fd62d98af1a3e6b5857a7941cf7b2fe085002e040306ba16d3a0d3e"
+    },
+    {
+      "path": "eval\\results\\triage\\history-bundle3-phase\\native-e2e.experimental-ledger.json",
+      "bytes": 5052,
+      "sha256": "5a84b577aaa4cac8735ec806bb71cbce09d8e14fe919418b3d670825577f9f57"
+    },
+    {
+      "path": "eval\\results\\triage\\history-bundle3-phase\\plan-1\\development-reserved.json",
+      "bytes": 167,
+      "sha256": "ed97569b1511176a43584ba2351b4f0166927e53ba0a2adb2c658dc8ab66e367"
+    },
+    {
+      "path": "eval\\results\\triage\\history-bundle3-phase\\plan-2\\development-reserved.json",
+      "bytes": 167,
+      "sha256": "45cafc07e6808b5a840db054e894712b984f277dd7ba6f16cdd50bba748ae972"
+    },
+    {
+      "path": "eval\\results\\triage\\history-bundle3-phase\\plan-2\\repeat-reserved.json",
+      "bytes": 162,
+      "sha256": "5f290ec8b54294be93d76fd299e916bff989b0b2e2f112a60d9fa8ff9c8a00b2"
+    },
+    {
+      "path": "eval\\results\\triage\\history-bundle3-phase\\plan-3\\development-reserved.json",
+      "bytes": 167,
+      "sha256": "fdc9d7229f3a3dee02c39c4358024b302020b08047e6a88eafd801d31bd49590"
+    },
+    {
+      "path": "eval\\results\\triage\\history-bundle3-phase\\repeat-1\\execution.json",
+      "bytes": 1961,
+      "sha256": "e3211a0019c8a834a849ab90b27ed917f0f8b7b7b3ca2d0fb66f27ca6cb0fc02"
+    },
+    {
+      "path": "eval\\results\\triage\\history-bundle3-phase\\reviewer-calibration\\report.json",
+      "bytes": 717,
+      "sha256": "493a4c13164d4d3e2b8a5032b82dff158b18f1b36681397644e64a0a6dd475b0"
+    },
+    {
+      "path": "eval\\results\\triage\\history-bundle3-phase\\reviewer-calibration\\reviews.json",
+      "bytes": 1471,
+      "sha256": "bde2b01b2886ec95d8f4178625e375e9c041564317b414bc3bb5a66a4c5a9842"
+    },
+    {
+      "path": "eval\\results\\triage\\history-context-1\\verification.json",
+      "bytes": 195467,
+      "sha256": "5aa0ce7ec1db5ee84f131a9f9e92b0cb0ada8b8b447147c116b3e5ba157a0e5e"
+    },
+    {
+      "path": "eval\\results\\triage\\history-context-2\\verification.json",
+      "bytes": 195531,
+      "sha256": "dfa0371d0055cc477eee4adb2fbe98ed64d492db843f9caeb8cc1a7bac03fddf"
+    },
+    {
+      "path": "eval\\results\\triage\\history-copilot-development-1\\execution.json",
+      "bytes": 10991,
+      "sha256": "b0b5db4de4905f249da30c286fcdfe2b1ab1c5e07b829d2cfdc52665062fb44d"
+    },
+    {
+      "path": "eval\\results\\triage\\history-copilot-development-1\\observation.json",
+      "bytes": 837,
+      "sha256": "d17d60a54544101c794f2386c9e02febe527b7d9bd424ff5b06cdb1ac2abc81b"
+    },
+    {
+      "path": "eval\\results\\triage\\history-copilot-development-2\\execution.json",
+      "bytes": 10991,
+      "sha256": "280635c98aef6dc3f761817d659e9469449e993bc622d2aeb99ed25185387305"
+    },
+    {
+      "path": "eval\\results\\triage\\history-copilot-development-2\\observation.json",
+      "bytes": 672,
+      "sha256": "4c97b69c938a5963b53ba9cfcc7507e6e17883fcccc8e7d731b30571f3cb7e30"
+    },
+    {
+      "path": "eval\\results\\triage\\history-copilot-development-3\\execution.json",
+      "bytes": 1558,
+      "sha256": "1370241ee20a5602b1c7be995b62576ec949d6c71626a1e4cba0ae26ddec8346"
+    },
+    {
+      "path": "eval\\results\\triage\\history-copilot-development-3\\observation.json",
+      "bytes": 687,
+      "sha256": "95790d07ae3713a074fcf1592f50b3f4269c7e557c94d642bf83a5c7b2def418"
+    },
+    {
+      "path": "eval\\results\\triage\\history-copilot-development-4\\execution.json",
+      "bytes": 2559,
+      "sha256": "890f1aba376689b5130841a3677d068343fd5a9e6027d2aa4250aa901298f6fe"
+    },
+    {
+      "path": "eval\\results\\triage\\history-copilot-development-4\\observation.json",
+      "bytes": 686,
+      "sha256": "8c872a7369f7a960f8fae6529340058e2d5473933aa1c7939cc48d18dc5e4306"
+    },
+    {
+      "path": "eval\\results\\triage\\history-copilot-plan-1\\development-reserved.json",
+      "bytes": 160,
+      "sha256": "ea17905ff877ce30f8fec7b7783dc42e6106427c0dae1d6c93002535b15e849f"
+    },
+    {
+      "path": "eval\\results\\triage\\history-copilot-plan-2\\development-reserved.json",
+      "bytes": 160,
+      "sha256": "6714334f7ccf65e6748bea7ba9c7cafff76737483ed08931171f31692bec728e"
+    },
+    {
+      "path": "eval\\results\\triage\\history-copilot-plan-3\\development-reserved.json",
+      "bytes": 160,
+      "sha256": "4c384a49a68ecd5ad0b8b0f884a84d5473a6aff0161cf49e5d85c5333a4006d5"
+    },
+    {
+      "path": "eval\\results\\triage\\history-copilot-plan-4\\development-reserved.json",
+      "bytes": 160,
+      "sha256": "594f7d05f8875ecdd751378368635092ac0e7ff25ac5059fb6b93548df831933"
+    },
+    {
+      "path": "eval\\results\\triage\\history-final-development-phase\\development-1\\execution.json",
+      "bytes": 2146,
+      "sha256": "ca5e087a2e026dd2a396038b4be10a5e4238f52bdf70c9657796b0544e7271d6"
+    },
+    {
+      "path": "eval\\results\\triage\\history-final-development-phase\\development-1\\observation.json",
+      "bytes": 746,
+      "sha256": "2b7ba6a25cf96b308017749500715413dc4bc04ddd9070922935e5f12f53eb32"
+    },
+    {
+      "path": "eval\\results\\triage\\history-final-development-phase\\native-e2e.experimental-ledger.json",
+      "bytes": 1684,
+      "sha256": "afa9eb625b7879f077e463ceb6ccacebc095be443c6a761abac881870ee5d0ce"
+    },
+    {
+      "path": "eval\\results\\triage\\history-final-development-phase\\plan-1\\development-reserved.json",
+      "bytes": 177,
+      "sha256": "d66b3b1ac734eadbaf83ef80c19b62e69529f21c9ccac6c5b6b239bbcea31de1"
+    },
+    {
+      "path": "eval\\results\\triage\\history-grounding-phase\\development-1\\execution.json",
+      "bytes": 2033,
+      "sha256": "4023d5b23b65a6d3af1612361d2df8af547d7aabde70d9daf5e54f086cb30df8"
+    },
+    {
+      "path": "eval\\results\\triage\\history-grounding-phase\\development-1\\observation.json",
+      "bytes": 734,
+      "sha256": "951ed7a6ed1717574a9bec4a29c01d906a06707e9b16a5f8adea816ac45e3e14"
+    },
+    {
+      "path": "eval\\results\\triage\\history-grounding-phase\\knowledge-probe-1\\report.json",
+      "bytes": 2498,
+      "sha256": "ce4c4ebd1396c098af4d46c73ade058df6598337533f7696c3f8932a3f3345ea"
+    },
+    {
+      "path": "eval\\results\\triage\\history-grounding-phase\\knowledge-probe-plan\\execution-reserved.json",
+      "bytes": 119,
+      "sha256": "5756775997218c5bd2fb12a2ec54b70ab3258b8d4a43b221295896c68cfbf25c"
+    },
+    {
+      "path": "eval\\results\\triage\\history-grounding-phase\\native-b02.experimental-ledger.json",
+      "bytes": 606,
+      "sha256": "2a660c0ac6c35f563a542ecd9542ec708a949937d9d197cc2256589b45dea6e2"
+    },
+    {
+      "path": "eval\\results\\triage\\history-grounding-phase\\native-e2e.experimental-ledger.json",
+      "bytes": 1580,
+      "sha256": "5c8fa6106b53cf35c71ff805dc5dc34e14e5cb39960fb5a9485c2cfc57f0d948"
+    },
+    {
+      "path": "eval\\results\\triage\\history-grounding-phase\\plan-1\\development-reserved.json",
+      "bytes": 169,
+      "sha256": "4b670f7e9a76eb855c75b85cbce00aef549e1186d6c4c86c8a97793b849438de"
+    },
+    {
+      "path": "eval\\results\\triage\\history-policy-v3-phase\\development-1\\assessment-report.json",
+      "bytes": 1647,
+      "sha256": "1c7810b6df00e48004414ea2fa5a80c15e645aeb2e4ea50d6286c853f3987f79"
+    },
+    {
+      "path": "eval\\results\\triage\\history-policy-v3-phase\\development-1\\execution.json",
+      "bytes": 2216,
+      "sha256": "a21cd2921a6b0dd3c02b5ac9afe6f20b9642a7a24526e2540d017e8ed5d74bee"
+    },
+    {
+      "path": "eval\\results\\triage\\history-policy-v3-phase\\development-1\\observation.json",
+      "bytes": 746,
+      "sha256": "509e9f1bb8236122e81273353582931e3d4d0a79190afdabe0208b6c10bb4a6e"
+    },
+    {
+      "path": "eval\\results\\triage\\history-policy-v3-phase\\development-1\\reviews.json",
+      "bytes": 31402,
+      "sha256": "14dfdc153d475e9bd73588259e74815510f7fb1a608204988189e89f347c4703"
+    },
+    {
+      "path": "eval\\results\\triage\\history-policy-v3-phase\\native-e2e.experimental-ledger.json",
+      "bytes": 3350,
+      "sha256": "3dbcd3cc4a2f0341adf5bb1fef8c6424d112af2df92cb5be65bb5febb8b10cf1"
+    },
+    {
+      "path": "eval\\results\\triage\\history-policy-v3-phase\\plan-1\\development-reserved.json",
+      "bytes": 169,
+      "sha256": "2ad2c98341802bb25adbb2377978dbcba09e07257816ab6417066223dee4c080"
+    },
+    {
+      "path": "eval\\results\\triage\\history-policy-v3-phase\\plan-1\\repeat-reserved.json",
+      "bytes": 164,
+      "sha256": "93da5792e90cc3ae6c628f2906d9e72c17b2c4a0b71c9a56c696ec478a22f9e3"
+    },
+    {
+      "path": "eval\\results\\triage\\history-policy-v3-phase\\repeat-1\\assessment-report.json",
+      "bytes": 1655,
+      "sha256": "2d2340f3d82a8834a910c7adec3f3562fa2efd6a84a55fc0241c3bf75935f5b8"
+    },
+    {
+      "path": "eval\\results\\triage\\history-policy-v3-phase\\repeat-1\\execution.json",
+      "bytes": 2207,
+      "sha256": "4a7da3456619ce0cb937b2eb914c6c185aef27afa42aff86030fc1d242b3bf24"
+    },
+    {
+      "path": "eval\\results\\triage\\history-policy-v3-phase\\repeat-1\\observation.json",
+      "bytes": 746,
+      "sha256": "7a2b69562f710b6f5ed1fa714a26a938befb8ce7e11134acee322178f7d429af"
+    },
+    {
+      "path": "eval\\results\\triage\\history-policy-v3-phase\\repeat-1\\reviews.json",
+      "bytes": 31337,
+      "sha256": "0c7543cbcef3d7c8a9769723912b1a833aada298d08fc53a052ae201044fea9c"
+    },
+    {
+      "path": "eval\\results\\triage\\history-policy-v3-phase\\x01-review.json",
+      "bytes": 6041,
+      "sha256": "1241c10bee2a8c6464757831a3303b8283507c2db6717c40b9dd0e2c75df7720"
+    },
+    {
+      "path": "eval\\results\\triage\\history-policy-v3-test-phase\\native-test.experimental-ledger.json",
+      "bytes": 989,
+      "sha256": "c9e8ceb9c72c86a6a1caa79f7341ac81b8d0585c653f2b985073fb5d88695563"
+    },
+    {
+      "path": "eval\\results\\triage\\history-policy-v3-test-phase\\test-1\\assessment-report.json",
+      "bytes": 1610,
+      "sha256": "4ca1c049c99fec0a430978443dade9a50230e4edfaad1d6032afe0e3d2d3565f"
+    },
+    {
+      "path": "eval\\results\\triage\\history-policy-v3-test-phase\\test-1\\execution.json",
+      "bytes": 2147,
+      "sha256": "119852ce1c1e831ae0099f992d8073386b9e9b630b1e3e729ead9915a1ab7a5f"
+    },
+    {
+      "path": "eval\\results\\triage\\history-policy-v3-test-phase\\test-1\\observation.json",
+      "bytes": 647,
+      "sha256": "3e97e0a48890d38d294f4b115072ed05bceaf38664266dade8f72d2d4eddcdc9"
+    },
+    {
+      "path": "eval\\results\\triage\\history-policy-v3-test-phase\\test-1\\reviews.json",
+      "bytes": 20154,
+      "sha256": "f6456a2de75668f192f7ca21c856c080e04956f991b0db4230d6e7fefe21134c"
+    },
+    {
+      "path": "eval\\results\\triage\\native-e2e-correction-1\\execution.json",
+      "bytes": 9150,
+      "sha256": "293b658bf2b870a55bc1d4bca21f6f1fc4a9a3d71c95c1e0870eb861369ecf5d"
+    },
+    {
+      "path": "eval\\results\\triage\\native-e2e-correction-1\\observation.json",
+      "bytes": 648,
+      "sha256": "4bc7fbcfd992efc6038012aa3bcf857a96b747b634ae12381eb38145948a0c9e"
+    },
+    {
+      "path": "eval\\results\\triage\\native-e2e-correction-plan-1\\execution-reserved.json",
+      "bytes": 335,
+      "sha256": "3d8c2a1ba85b7a7b4ad32d06f7754a51d9b0f1ac16c29925e2609edbb608a345"
+    },
+    {
+      "path": "eval\\results\\triage\\native-e2e-correction-preflight-1\\observation.json",
+      "bytes": 516,
+      "sha256": "b44d44455dc48b34cfdc8d66829d46ce4c35dee04beeae7e2208c998c4bc46b8"
+    },
+    {
+      "path": "eval\\results\\triage\\native-e2e-development-1\\execution.json",
+      "bytes": 8297,
+      "sha256": "3a1f534903e18141e7fe7afa75eb75d584a094331ab4406612ca661f56f2816d"
+    },
+    {
+      "path": "eval\\results\\triage\\native-e2e-development-1\\observation.json",
+      "bytes": 659,
+      "sha256": "06292eb6f1854a715fd0473b966d3bd31c6b45f0c3dadd5624fa7e51ab4af21c"
+    },
+    {
+      "path": "eval\\results\\triage\\native-e2e-plan-1\\correction-reserved.json",
+      "bytes": 283,
+      "sha256": "7fc81283b4d9d7ccdeb5769d6f59e86266ee39b5f6163364351c41494a374e00"
+    },
+    {
+      "path": "eval\\results\\triage\\native-e2e-plan-1\\development-reserved.json",
+      "bytes": 155,
+      "sha256": "9a1d989ce5510f0356b2789a0651815a470fd7ad2d478670fa6910bf53c91b5e"
+    },
+    {
+      "path": "eval\\results\\triage\\native-e2e-plan-1\\plan.json",
+      "bytes": 5537,
+      "sha256": "bd88b56eb407e7ff52da5485a4b59160f9908cc0d1f5580f03a1165c3a8d549b"
+    },
+    {
+      "path": "eval\\results\\triage\\native-e2e-repeat-blocked-1\\observation.json",
+      "bytes": 148,
+      "sha256": "41a2c2ff93c1c13dee1719ae659034f3ecb155c00f0bab408d474f8a29b25503"
+    },
+    {
+      "path": "eval\\results\\triage\\native-e2e.experimental-ledger.json",
+      "bytes": 4150,
+      "sha256": "272865363739eea9f062fd947beaf1d9f4541c7542272d9b5d84781c25b6e512"
+    },
+    {
+      "path": "eval\\results\\triage\\native-handoff-system-summary.json",
+      "bytes": 18175,
+      "sha256": "6bc877f7f66cb3ecb3bc4560fb486494f8a91b6e76bac248681c1331ac315269"
+    },
+    {
+      "path": "eval\\results\\triage\\native-handoff-verification-1\\verification.json",
+      "bytes": 141658,
+      "sha256": "bec60abfa7581de41c288d4cb59e0ee9e395a3607c4e45d88e80f249837bb4c6"
+    },
+    {
+      "path": "eval\\results\\triage\\native-handoff-verification-2\\verification.json",
+      "bytes": 142072,
+      "sha256": "04444e80b0ebc6e645b143e94afe3e17bb76d980352e9171778b47263fa3d699"
+    },
+    {
+      "path": "eval\\results\\triage\\native-joint-regression-1\\report.json",
+      "bytes": 6514,
+      "sha256": "ddcbc655f367add2212cf009400977241c9dc6847d28d24a176cbb7cb46a4c1a"
+    },
+    {
+      "path": "eval\\results\\triage\\native-joint-regression-2\\report.json",
+      "bytes": 5688,
+      "sha256": "db94f3a83f8f973ba56f64c48939145d2c959e8b960d9636286ce939d4bc737e"
+    },
+    {
+      "path": "eval\\results\\triage\\native-live-accounting-1\\report.json",
+      "bytes": 5766,
+      "sha256": "cea39445bf4a92e8402201ceef06565d8c344355bc953e17ad6f4151614c4da3"
+    },
+    {
+      "path": "eval\\results\\triage\\native-owner-activation-v2\\activation.integration.json",
+      "bytes": 2229,
+      "sha256": "cd607c0b26740444ef239c1b1d134cd0b82cf3b03252f90af3452b3eccaea630"
+    },
+    {
+      "path": "eval\\results\\triage\\native-owner-activation-v2\\review.json",
+      "bytes": 2076,
+      "sha256": "e7287ea95cbf7ac51eb7e317898f2b54f9e33e2e07f1f8abb4475f46965d40c7"
+    },
+    {
+      "path": "eval\\results\\triage\\native-package-2\\report.json",
+      "bytes": 6014,
+      "sha256": "cdb46fbf0817272a80050e4e436b9382671e530d1c2780f32113d4f75ba5c5c7"
+    },
+    {
+      "path": "eval\\results\\triage\\native-responses-regression-1\\report.json",
+      "bytes": 6526,
+      "sha256": "a7854c123270d9726b75804b10466486ad70e4ddc930b23ea005f1ecf8cc7b35"
+    },
+    {
+      "path": "eval\\results\\triage\\native-responses-regression-2\\report.json",
+      "bytes": 6526,
+      "sha256": "e951755fcae8414d4ae677ecc459691c483ca9e89e6147d9cec57b3687f87836"
+    },
+    {
+      "path": "eval\\results\\triage\\native-responses-regression-3\\report.json",
+      "bytes": 6526,
+      "sha256": "8f34ccb6a24da4b7143507c319f2bba1c4dfe9860ab9f24c53421d07b66da081"
+    },
+    {
+      "path": "eval\\results\\triage\\native-responses-regression-4\\report.json",
+      "bytes": 6526,
+      "sha256": "e9ec10c51adc75da6d902f87690cf2c237d36f6f53cf06efb7d2063238c45177"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-calibration-1\\report.json",
+      "bytes": 775,
+      "sha256": "4ee1a9ee7d3c2db195c3e85e7eec565da0adccc1c79db28266d8372be47f3d81"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-calibration-1\\reviews.json",
+      "bytes": 1990,
+      "sha256": "a60f352911e180ea527991aa0a65ac44c1bac351a02d9a24df99f0b252b8525a"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-codex\\development-1\\execution.json",
+      "bytes": 11824,
+      "sha256": "f7fa0d2a70c0ad64b69904b7f50109869637a6aa9734f1556e108f8c0345483f"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-codex\\development-1\\observation.json",
+      "bytes": 906,
+      "sha256": "1957a9bdb707f62c01b2f4e320aa8f4a189f76711275d41625a6157deb4dc42b"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-codex\\development-2\\execution.json",
+      "bytes": 11824,
+      "sha256": "cf66375ae9f4986a15415f8e4839f9e57129352a44a101a8f77efc23f35bfe97"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-codex\\development-2\\observation.json",
+      "bytes": 906,
+      "sha256": "b7054e4df3fffc67101e2dbff8e640def8be806944945cec358c78c2f7189325"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-codex\\development-3\\execution.json",
+      "bytes": 11824,
+      "sha256": "15c1fe8257d76423146143ee16731795cc5e911c58ed0fab9443b3e17783570a"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-codex\\development-3\\observation.json",
+      "bytes": 876,
+      "sha256": "b4a837dbd3ba12ba172cf992aac49bdd58fb85c7cd7b0449ded7d24b82f3a9ef"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-codex\\development-4\\execution.json",
+      "bytes": 11825,
+      "sha256": "2f6f213c3fcfb2d996520660f4047e5e78939297eae362ced1c5482f311d691d"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-codex\\development-4\\observation.json",
+      "bytes": 968,
+      "sha256": "d0c37e726b7c86a1a3be9c81e32a92649cf7dae9b6175d4d4ea7fc7594995cd4"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-codex\\development-5\\execution.json",
+      "bytes": 11971,
+      "sha256": "7d921090be5d84e57df24fdf6e3673aeedd58c794ec09f04b228bd6e3b29066d"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-codex\\history-development-1\\execution.json",
+      "bytes": 11080,
+      "sha256": "068da38391b95b9ac7e510157efafabc90470c5808538a7de0233fd5b88043e2"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-codex\\history-development-1\\observation.json",
+      "bytes": 879,
+      "sha256": "07e8ecf800ef608b5c2d15272b3b8c341aeed3cd9d746d273e7fbba9ca1dedd6"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-codex\\history-plan-1\\development-reserved.json",
+      "bytes": 173,
+      "sha256": "c581646a8afe38e3801719fbe6f1e106bd4152a536c8dc507bce90ebda533c5a"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-codex\\native-strict-development-ledger.json",
+      "bytes": 3718,
+      "sha256": "afc74975d75e919a7e26926baa52383993ab9de40c7a02951ef10099fff53f6b"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-codex\\plan-3\\development-reserved.json",
+      "bytes": 165,
+      "sha256": "5b1538813e62e766606bfcdb715bcb4d7ad2c63974ea7711407df124d6ce9eb7"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-codex\\plan-4\\development-reserved.json",
+      "bytes": 165,
+      "sha256": "0049387e9a11057da99c12460ad20374a54fe774cb4f92634d5a6cc8d8469e49"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-codex\\plan-5\\development-reserved.json",
+      "bytes": 165,
+      "sha256": "6db64ba47757308c01be450a31f5a13ec4e5e43fcbfa9a1210672d67b7e51b65"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-codex\\plan-6\\development-reserved.json",
+      "bytes": 165,
+      "sha256": "8dbe9f9fc50059683d6d31a89b76e7e109149d634022f8018766d9ec432e647c"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-codex\\plan-7\\development-reserved.json",
+      "bytes": 165,
+      "sha256": "db05cccb6cb30520d82d267410fc40236303bf0dffe05c98f32997a64b101e13"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-codex\\review-1\\report.json",
+      "bytes": 2959,
+      "sha256": "50f3928fce2f64bd3e84e00deb56ccecce5f973820f9c20fbee3084ae0e614ea"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-codex\\review-1\\reviews.json",
+      "bytes": 13967,
+      "sha256": "847ad06095249a4d66c4d1ebcc4b108facdbd2287f63a38087a9a5d6e44b0684"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-codex\\schema-diagnostic-1\\report.json",
+      "bytes": 339,
+      "sha256": "ff0cbb4b6c2796cd4863db185f9380e8ecebb2c9a1f6014cd5d46f8cfc8d377a"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-codex\\schema-diagnostic-2\\report.json",
+      "bytes": 388,
+      "sha256": "0ddd83aaab7f32ff6b84c6a18182dd5c4e1274a4140c19952a9955c2038c41bd"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-development-1\\execution.json",
+      "bytes": 11566,
+      "sha256": "ae9f9bfa071b0c1c96e286b20b8fb26500c2621d2d989f5bdef88dbc9f69dcf4"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-development-1\\observation.json",
+      "bytes": 865,
+      "sha256": "3de3d8814b58c4db164a27aa848d083950e4f5d2ce006d706f2d2c80dc7b9b37"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-development-2\\execution.json",
+      "bytes": 11668,
+      "sha256": "8b2b1d76f2ee7ecc02a5b5351a936e90099075b4939f01a4b95782f5ed6b1703"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-development-2\\observation.json",
+      "bytes": 903,
+      "sha256": "f32236202504d18e5109e9f2fb92f0d669674976726a756302537b0ccf1f7e34"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-development-3\\execution.json",
+      "bytes": 11668,
+      "sha256": "4a188779d8e7ac160ac6c915345e3bd2226ea582825d6f9b80a09e0496c451d2"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-development-3\\observation.json",
+      "bytes": 966,
+      "sha256": "14d2649a219d5ef0b135f526d286f9f4c9c4dedb7f72759bc7c25d406fa68229"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-development-4\\execution.json",
+      "bytes": 11669,
+      "sha256": "b72968e3c075f3ddfe0252bb8dfd449f7ba4501cb4ee181fd22cda9ed866064d"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-development-4\\observation.json",
+      "bytes": 967,
+      "sha256": "a95d50196eaeb1ea0baa740990443e6ce99af2b13f133c2004fa4c3c4c3dcc9d"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-development-ledger.json",
+      "bytes": 3787,
+      "sha256": "0b098b6ed0cc82ac31d0c021d3defaef8429c0e2499a686a39d21dd8d8cdd7de"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-model53\\calibration\\report.json",
+      "bytes": 784,
+      "sha256": "e69d2ffa0147c09be2e3e2d822bf2babc17cf5ff13d2f2526f99fac01f6e4c17"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-model53\\calibration\\reviews.json",
+      "bytes": 1690,
+      "sha256": "493f7f85d686a78d4ff910099c1bc6eded1ac154d6da9f568f7d8310e824b549"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-model53\\development-1\\execution.json",
+      "bytes": 11731,
+      "sha256": "c7b559ba5c0155bb69682de70476b2dc8edad560113ec9f1fdaf03ac17217d32"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-model53\\development-1\\observation.json",
+      "bytes": 967,
+      "sha256": "112a8a429b6f3b889e3f9d9f94537bbd5fa4052c245d29e44943ab2d9da8adb1"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-model53\\native-strict-development-ledger.json",
+      "bytes": 1851,
+      "sha256": "7a4802329409fa027ab505b2a5b5acf7871153311fe33a9054aee0493316f1c7"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-model53\\plan-1\\development-reserved.json",
+      "bytes": 167,
+      "sha256": "90033083c502062947fe2a7db94668c31624f9e0c95b8a52cf278d048c405c18"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-model53\\review-1\\report.json",
+      "bytes": 5029,
+      "sha256": "263c774af5ca6b9af7b0520986ab414607c3d6539c799973f23c56cf53145b28"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-model53\\review-1\\reviews.json",
+      "bytes": 2200,
+      "sha256": "733d06e18fd1efc5ec046a55157cda52d9fe2e5e91083962ddf636dcd55551f0"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-o4\\development-1\\execution.json",
+      "bytes": 11696,
+      "sha256": "cf24b92fbd22596b2dda7b19c5ddb35d6bd25e6a6a0b59f303827b2ce6112c6b"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-o4\\development-1\\observation.json",
+      "bytes": 906,
+      "sha256": "eb1825668e7929c571004c21d312302b6c8c21383ac623b1114383be0a328dc2"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-o4\\development-2\\execution.json",
+      "bytes": 11696,
+      "sha256": "5970f02c72d44d044da1b0d4255a042f3ecb7e928eb69ebd236cd347879df20c"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-o4\\development-2\\observation.json",
+      "bytes": 906,
+      "sha256": "5e0eda4cf5e291cb9af89058dfc513c87c05b347f5bfe1a8226ea86f3f6f441d"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-o4\\development-3\\execution.json",
+      "bytes": 11696,
+      "sha256": "ab1d6cb7fe3764ca4207b8dd971f5b5fce7e63c093181b5348830f1339113bcd"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-o4\\development-3\\observation.json",
+      "bytes": 906,
+      "sha256": "f8b7efc62d821a0b6f03197a6172ead723d8359d9c4731a3ad9ec9c78aac41ba"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-o4\\development-4\\execution.json",
+      "bytes": 11767,
+      "sha256": "d4d068ff229c5118979c3d4008fa1b052a9bd1e3a7f40a19bb4b02e56604a481"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-o4\\development-4\\observation.json",
+      "bytes": 910,
+      "sha256": "468934c531b59ebcf2469c1f368c4b4fc20c7c8fca3ddd54642a0fda299be6d1"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-o4\\native-strict-development-ledger.json",
+      "bytes": 2095,
+      "sha256": "58a20845c3a46aa07d61567f15434357c4dbc8c5048196c58afa8e2df4bf7c21"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-o4\\plan-1\\development-reserved.json",
+      "bytes": 162,
+      "sha256": "787813248f3d9e5c92081abb30d4b98075dfe80886b531cf60140a24d429cd89"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-o4\\plan-2\\development-reserved.json",
+      "bytes": 162,
+      "sha256": "939d6a1ef273f87913f64de44537714b7849c5958b8f40a9380898d1348f0ee5"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-o4\\plan-3\\development-reserved.json",
+      "bytes": 162,
+      "sha256": "10adee1600f46f041b3468c1dd77586ed7cc15a2d2e24298da335f81c93295ae"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-o4\\plan-4\\development-reserved.json",
+      "bytes": 162,
+      "sha256": "260e8d19cc47a87f4b52f90cc3988f41a56fea2944874f5385fa40db8fd4fe6c"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-plan-1\\development-reserved.json",
+      "bytes": 158,
+      "sha256": "25f2f37c0a604898c9eb3c51bf5513fe61e8655a4c2f9e83a65b86a93990fc7a"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-plan-2\\development-reserved.json",
+      "bytes": 158,
+      "sha256": "98ae67bf0484f34cec59ef8d1fb824cbaa3ec2623f76b2afa32c00897779b806"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-plan-3\\development-reserved.json",
+      "bytes": 158,
+      "sha256": "6414db3f67e5833ca74c2cb813fccf4984b1ba7b6bc3989e65fc7c19d207bab8"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-plan-4\\development-reserved.json",
+      "bytes": 158,
+      "sha256": "0a7231792ab6479b13298d924b89df90c248d6abf85165fceddcd40cbbb9b624"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-regression-2\\report.json",
+      "bytes": 6559,
+      "sha256": "aa0190c9f653e35870e30b718095f260caa4dba1e4644ce36ee44815a144a1ba"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-regression-3\\report.json",
+      "bytes": 6735,
+      "sha256": "c86234f188d243a4ce1844d8581d3a2a7cb2bc7f4237f204ae3dd7812e0a654c"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-review-1\\report.json",
+      "bytes": 5011,
+      "sha256": "d98f2d8dd34820770826c0bde8a29bb16592ebc03fd0a4de1e4b41decd6f239e"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-review-1\\reviews.json",
+      "bytes": 5122,
+      "sha256": "82519b65da57a10f9598055e75d605ff13e365927be78883b471bd96a6f4c9d1"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-review-2\\report.json",
+      "bytes": 5011,
+      "sha256": "880128e2945b91735bf44940f436b87d0c1ea7feaf48f6139a2b7370f55e4a3a"
+    },
+    {
+      "path": "eval\\results\\triage\\native-strict-review-2\\reviews.json",
+      "bytes": 3310,
+      "sha256": "7da446321eb5ebe7d46053501de3ca9c2adf121b817d10801ed2526537431f65"
+    },
+    {
+      "path": "eval\\results\\triage\\native-v2-fault-evidence-1\\report.json",
+      "bytes": 45551,
+      "sha256": "e30a682713e3eaf4279b3c6cc697f8d89dea9ec6f1e5747dabe207d047584343"
+    },
+    {
+      "path": "eval\\results\\triage\\native-v2-package-1\\report.json",
+      "bytes": 7751,
+      "sha256": "6d47a646f4ead9e61fafbdeaaf77ebb4b03634f78b86502ef886a75139588583"
+    },
+    {
+      "path": "eval\\results\\triage\\native-v2-regression-1\\report.json",
+      "bytes": 912,
+      "sha256": "c591605574b8ce57ce45af45cfbb50c0247fd849cce2e50c6068ebf41771ad50"
+    },
+    {
+      "path": "eval\\results\\triage\\native-v2-regression-2\\report.json",
+      "bytes": 10458,
+      "sha256": "e970a972c40713fe9656a88b5fb4eb8f52c2c039363f64fd2df574e1dac2a64d"
     },
     {
       "path": "eval\\results\\triage\\offline-copilot-1\\verification.json",
-      "sha256": "7f86644f5635ae8827d27f1bf77398c9d3c18cf1fa904078dfa33b1e9001b17b",
-      "bytes": 65366
-    },
-    {
-      "path": "eval\\results\\triage\\offline-copilot-1\\worktree.txt",
-      "sha256": "880d5f8a60dcc705bd61878c75fbbbeed5fb75ff9542b1d33e68fe46c7c76b36",
-      "bytes": 595
-    },
-    {
-      "path": "eval\\results\\triage\\offline-fix-1\\command-1.txt",
-      "sha256": "9f267c4b6fbd6423b4cb6488f72e1b901aa55cc0bfee15e653bce1328529e8e5",
-      "bytes": 829
-    },
-    {
-      "path": "eval\\results\\triage\\offline-fix-1\\command-2.txt",
-      "sha256": "b7caca01ca4a2f30fd41d5c4d4a4a34cb134077b807a5a2b35c60848863a481b",
-      "bytes": 102
-    },
-    {
-      "path": "eval\\results\\triage\\offline-fix-1\\command-3.txt",
-      "sha256": "5b711c1a2c4a308dba693214dc484aca0669b7b2b731df4971234318b2bc0b10",
-      "bytes": 1051
-    },
-    {
-      "path": "eval\\results\\triage\\offline-fix-1\\command-4.txt",
-      "sha256": "34e331a72417b33b3f1ba221fdeb50c8be10b8a784ab1a68244e1ec2c7940339",
-      "bytes": 43817
-    },
-    {
-      "path": "eval\\results\\triage\\offline-fix-1\\command-5.txt",
-      "sha256": "777ae66dd16fdad79250b16341a2603c7e60a46973b7d8dc968a99f1c32948fd",
-      "bytes": 106
-    },
-    {
-      "path": "eval\\results\\triage\\offline-fix-1\\triage-tests.txt",
-      "sha256": "3bda0fb55dabab3b62c339b64a60aeaf8d85259f3d493b2c0b5647adafa0724f",
-      "bytes": 10151
+      "bytes": 65366,
+      "sha256": "7f86644f5635ae8827d27f1bf77398c9d3c18cf1fa904078dfa33b1e9001b17b"
     },
     {
       "path": "eval\\results\\triage\\offline-fix-1\\verification.json",
-      "sha256": "7ec06785df91ac036eda3630734f7958c5a629492ac383a7755b7f391701ff60",
-      "bytes": 67118
-    },
-    {
-      "path": "eval\\results\\triage\\offline-fix-1\\worktree.txt",
-      "sha256": "fdc330c88f5a842261b63547ed824c9409a5b6085f07e57b32c601683ce533b8",
-      "bytes": 658
-    },
-    {
-      "path": "eval\\results\\triage\\offline-fix-2\\command-1.txt",
-      "sha256": "f6f5b956df630876cb3c819e709b0b43af682906078eb01609a57a8026faff00",
-      "bytes": 829
-    },
-    {
-      "path": "eval\\results\\triage\\offline-fix-2\\command-2.txt",
-      "sha256": "d5531b37b11a6ab6476eec392d10ecb5f230c2022258e97a77e4e60d7fcc87ed",
-      "bytes": 102
-    },
-    {
-      "path": "eval\\results\\triage\\offline-fix-2\\command-3.txt",
-      "sha256": "5b711c1a2c4a308dba693214dc484aca0669b7b2b731df4971234318b2bc0b10",
-      "bytes": 1051
-    },
-    {
-      "path": "eval\\results\\triage\\offline-fix-2\\command-4.txt",
-      "sha256": "34e331a72417b33b3f1ba221fdeb50c8be10b8a784ab1a68244e1ec2c7940339",
-      "bytes": 43817
-    },
-    {
-      "path": "eval\\results\\triage\\offline-fix-2\\command-5.txt",
-      "sha256": "777ae66dd16fdad79250b16341a2603c7e60a46973b7d8dc968a99f1c32948fd",
-      "bytes": 106
-    },
-    {
-      "path": "eval\\results\\triage\\offline-fix-2\\triage-tests.txt",
-      "sha256": "a2f8a37dcd8682ac7159894bed5dfea9771a9ff604f00d7744b2010b6f7f5a9d",
-      "bytes": 10151
+      "bytes": 67118,
+      "sha256": "7ec06785df91ac036eda3630734f7958c5a629492ac383a7755b7f391701ff60"
     },
     {
       "path": "eval\\results\\triage\\offline-fix-2\\verification.json",
-      "sha256": "86e5bcca5cf5015addb6f0d7d21c9160b109ddfd559bb661608d1c6b16587784",
-      "bytes": 67181
-    },
-    {
-      "path": "eval\\results\\triage\\offline-fix-2\\worktree.txt",
-      "sha256": "fdc330c88f5a842261b63547ed824c9409a5b6085f07e57b32c601683ce533b8",
-      "bytes": 658
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-1\\command-1.txt",
-      "sha256": "96d0f76edf5b485569c14e695ee25f9f3a1817ec9141221ba424d77c1336d555",
-      "bytes": 829
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-1\\command-2.txt",
-      "sha256": "ed072085b13cf13ba096b8580dd3cb0e234e25341bd767b6b5512914ffe8ada4",
-      "bytes": 102
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-1\\command-3.txt",
-      "sha256": "5b711c1a2c4a308dba693214dc484aca0669b7b2b731df4971234318b2bc0b10",
-      "bytes": 1051
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-1\\command-4.txt",
-      "sha256": "34e331a72417b33b3f1ba221fdeb50c8be10b8a784ab1a68244e1ec2c7940339",
-      "bytes": 43817
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-1\\command-5.txt",
-      "sha256": "7425ea9646fa78b31b6136c31a9dbdc8d474bc4d6b4e553741155820eeada8d6",
-      "bytes": 48
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-1\\triage-tests.txt",
-      "sha256": "395ce56bc45ee937a3d94f59c82a7fd76e72010b156023e809779e408d544e84",
-      "bytes": 5475
+      "bytes": 67181,
+      "sha256": "86e5bcca5cf5015addb6f0d7d21c9160b109ddfd559bb661608d1c6b16587784"
     },
     {
       "path": "eval\\results\\triage\\offline-implementation-1\\verification.json",
-      "sha256": "9e330f78bec30acdb8b582acedc2427918bb94eed94a2e872a9338e40dbcd741",
-      "bytes": 44247
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-1\\worktree.txt",
-      "sha256": "22fb0b73549298ee4d5be09f8d116f9d8b529ab402124ec70b10f888727f63bd",
-      "bytes": 286
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-2\\command-1.txt",
-      "sha256": "e9c7f885c9ce64d61e931a42831b8bbad828301650e3495a25ccca4c6fb8db93",
-      "bytes": 829
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-2\\command-2.txt",
-      "sha256": "80bd20a421d16754e34bb44f0272933f8c4e6a91c7fbae25bc9cf0f08933de77",
-      "bytes": 102
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-2\\command-3.txt",
-      "sha256": "5b711c1a2c4a308dba693214dc484aca0669b7b2b731df4971234318b2bc0b10",
-      "bytes": 1051
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-2\\command-4.txt",
-      "sha256": "34e331a72417b33b3f1ba221fdeb50c8be10b8a784ab1a68244e1ec2c7940339",
-      "bytes": 43817
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-2\\command-5.txt",
-      "sha256": "7425ea9646fa78b31b6136c31a9dbdc8d474bc4d6b4e553741155820eeada8d6",
-      "bytes": 48
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-2\\triage-tests.txt",
-      "sha256": "9f07161be154a34af11fa5756f2f2fbf6deaaa891a7d37c5f55c19248c500214",
-      "bytes": 5867
+      "bytes": 44247,
+      "sha256": "9e330f78bec30acdb8b582acedc2427918bb94eed94a2e872a9338e40dbcd741"
     },
     {
       "path": "eval\\results\\triage\\offline-implementation-2\\verification.json",
-      "sha256": "142d022b56ab6f8e8449b5afe42a5b724be36836608d75534c7a06ed44aca669",
-      "bytes": 46549
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-2\\worktree.txt",
-      "sha256": "22fb0b73549298ee4d5be09f8d116f9d8b529ab402124ec70b10f888727f63bd",
-      "bytes": 286
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-3\\command-1.txt",
-      "sha256": "75016cbc326991db8d32c184d3f4d6a0ef35bc186a6f38b0926a03b7266d6c83",
-      "bytes": 829
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-3\\command-2.txt",
-      "sha256": "09d9fcce2e3c521422077049308e6c734f63773530a3d145ebfdfb76728d00fd",
-      "bytes": 102
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-3\\command-3.txt",
-      "sha256": "5b711c1a2c4a308dba693214dc484aca0669b7b2b731df4971234318b2bc0b10",
-      "bytes": 1051
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-3\\command-4.txt",
-      "sha256": "34e331a72417b33b3f1ba221fdeb50c8be10b8a784ab1a68244e1ec2c7940339",
-      "bytes": 43817
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-3\\command-5.txt",
-      "sha256": "7425ea9646fa78b31b6136c31a9dbdc8d474bc4d6b4e553741155820eeada8d6",
-      "bytes": 48
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-3\\triage-tests.txt",
-      "sha256": "d5ed162f37100962afe44e742b1215984661750020a01c5afb24f5bb18636028",
-      "bytes": 6173
+      "bytes": 46549,
+      "sha256": "142d022b56ab6f8e8449b5afe42a5b724be36836608d75534c7a06ed44aca669"
     },
     {
       "path": "eval\\results\\triage\\offline-implementation-3\\verification.json",
-      "sha256": "b20db4a2581d6b1d3e6bdee9613053dcfe01d3ed1ab7cd81a108337b653918ac",
-      "bytes": 50397
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-3\\worktree.txt",
-      "sha256": "22fb0b73549298ee4d5be09f8d116f9d8b529ab402124ec70b10f888727f63bd",
-      "bytes": 286
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-4\\command-1.txt",
-      "sha256": "215a2284730814af426b94e6c468fc863baa7baf6e6051cb92f369bf566a5540",
-      "bytes": 829
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-4\\command-2.txt",
-      "sha256": "12f3dd0779f00c13dc9145ebcccee1d1108b851a7196a2834a8076ac82927f6e",
-      "bytes": 102
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-4\\command-3.txt",
-      "sha256": "5b711c1a2c4a308dba693214dc484aca0669b7b2b731df4971234318b2bc0b10",
-      "bytes": 1051
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-4\\command-4.txt",
-      "sha256": "34e331a72417b33b3f1ba221fdeb50c8be10b8a784ab1a68244e1ec2c7940339",
-      "bytes": 43817
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-4\\command-5.txt",
-      "sha256": "777ae66dd16fdad79250b16341a2603c7e60a46973b7d8dc968a99f1c32948fd",
-      "bytes": 106
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-4\\triage-tests.txt",
-      "sha256": "f40cd71aa8fc9356b30657d724eae285cf554fbb3190b46ab4d8057b78bb1850",
-      "bytes": 8221
+      "bytes": 50397,
+      "sha256": "b20db4a2581d6b1d3e6bdee9613053dcfe01d3ed1ab7cd81a108337b653918ac"
     },
     {
       "path": "eval\\results\\triage\\offline-implementation-4\\verification.json",
-      "sha256": "102cb9ac832e41791532a4789077fd550166f5de8ca16f254f0ee107549f8288",
-      "bytes": 53069
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-4\\worktree.txt",
-      "sha256": "ba721a7b7aa1782c540cf1d3a9c66e870bfd5526bcb056c4654d608243639b78",
-      "bytes": 516
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-5\\command-1.txt",
-      "sha256": "fd655c9d1a4553a4c67bb7cfca25e31b779193b2ded9c360528b37d7df40907b",
-      "bytes": 829
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-5\\command-2.txt",
-      "sha256": "725dabd2e8b1327fc19a6e19d4ba9bb7da9abca800fbf534cc004407578a99fe",
-      "bytes": 102
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-5\\command-3.txt",
-      "sha256": "5b711c1a2c4a308dba693214dc484aca0669b7b2b731df4971234318b2bc0b10",
-      "bytes": 1051
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-5\\command-4.txt",
-      "sha256": "34e331a72417b33b3f1ba221fdeb50c8be10b8a784ab1a68244e1ec2c7940339",
-      "bytes": 43817
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-5\\command-5.txt",
-      "sha256": "777ae66dd16fdad79250b16341a2603c7e60a46973b7d8dc968a99f1c32948fd",
-      "bytes": 106
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-5\\triage-tests.txt",
-      "sha256": "eaeb3755514ac51e0b051c977c829de1030930c698ff92ae5c3ec5c396f15e94",
-      "bytes": 7985
+      "bytes": 53069,
+      "sha256": "102cb9ac832e41791532a4789077fd550166f5de8ca16f254f0ee107549f8288"
     },
     {
       "path": "eval\\results\\triage\\offline-implementation-5\\verification.json",
-      "sha256": "80d36b478d06afd4bd95ea14de2988e69d8aa3699b5ddb17663c0c808c0e2901",
-      "bytes": 46479
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-5\\worktree.txt",
-      "sha256": "50fc1c811bb945983ea8effb3b4d258dd7020219e63dc58413c3dab053ea21a8",
-      "bytes": 483
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-6\\command-1.txt",
-      "sha256": "a231df3b84a17a3a02423cd60e1b049cf5476a4adcbfd800a20720ba65b5c3e1",
-      "bytes": 829
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-6\\command-2.txt",
-      "sha256": "674263fb485b3cba3e85abb7fc73e7930842eaa008748566c3401b6f061532c3",
-      "bytes": 102
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-6\\command-3.txt",
-      "sha256": "5b711c1a2c4a308dba693214dc484aca0669b7b2b731df4971234318b2bc0b10",
-      "bytes": 1051
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-6\\command-4.txt",
-      "sha256": "34e331a72417b33b3f1ba221fdeb50c8be10b8a784ab1a68244e1ec2c7940339",
-      "bytes": 43817
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-6\\command-5.txt",
-      "sha256": "777ae66dd16fdad79250b16341a2603c7e60a46973b7d8dc968a99f1c32948fd",
-      "bytes": 106
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-6\\triage-tests.txt",
-      "sha256": "c0cb1f35f6eed207f75673b233655a15f85f6e97442f20afa23ed88d14fc4666",
-      "bytes": 7503
+      "bytes": 46479,
+      "sha256": "80d36b478d06afd4bd95ea14de2988e69d8aa3699b5ddb17663c0c808c0e2901"
     },
     {
       "path": "eval\\results\\triage\\offline-implementation-6\\verification.json",
-      "sha256": "a3bbcb2271cfe64b868b53d00b2137d18d531ab2e1be00b938408f99bcf1059e",
-      "bytes": 46478
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-6\\worktree.txt",
-      "sha256": "50fc1c811bb945983ea8effb3b4d258dd7020219e63dc58413c3dab053ea21a8",
-      "bytes": 483
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-7\\command-1.txt",
-      "sha256": "75b0c2c667ea405fccffe1181dbceda6d9354ce6cd2d0d28721cf84706ed2e1d",
-      "bytes": 829
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-7\\command-2.txt",
-      "sha256": "ddb6244ff03265116f888aa4cca05a3f36d65b25e46ffa0bbf6e34da157ee5f0",
-      "bytes": 102
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-7\\command-3.txt",
-      "sha256": "5b711c1a2c4a308dba693214dc484aca0669b7b2b731df4971234318b2bc0b10",
-      "bytes": 1051
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-7\\command-4.txt",
-      "sha256": "34e331a72417b33b3f1ba221fdeb50c8be10b8a784ab1a68244e1ec2c7940339",
-      "bytes": 43817
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-7\\command-5.txt",
-      "sha256": "777ae66dd16fdad79250b16341a2603c7e60a46973b7d8dc968a99f1c32948fd",
-      "bytes": 106
-    },
-    {
-      "path": "eval\\results\\triage\\offline-implementation-7\\triage-tests.txt",
-      "sha256": "e37ad2c61f25ac102d217d5274e0b6f5f9c1f581a95ef86e6cf541ecea000f57",
-      "bytes": 6377
+      "bytes": 46478,
+      "sha256": "a3bbcb2271cfe64b868b53d00b2137d18d531ab2e1be00b938408f99bcf1059e"
     },
     {
       "path": "eval\\results\\triage\\offline-implementation-7\\verification.json",
-      "sha256": "09799fd9442b647fe20c4e3fbe2993aa0357427f3b5a0db9d43e77ec229cd631",
-      "bytes": 47517
+      "bytes": 47517,
+      "sha256": "09799fd9442b647fe20c4e3fbe2993aa0357427f3b5a0db9d43e77ec229cd631"
     },
     {
-      "path": "eval\\results\\triage\\offline-implementation-7\\worktree.txt",
-      "sha256": "50fc1c811bb945983ea8effb3b4d258dd7020219e63dc58413c3dab053ea21a8",
-      "bytes": 483
+      "path": "eval\\results\\triage\\policy-v4-composite-21\\assessment-report.json",
+      "bytes": 1381,
+      "sha256": "50510c8df997ac7f22acb10baae0d045aa41c0be7eecdc405df86028af0cdfb6"
+    },
+    {
+      "path": "eval\\results\\triage\\policy-v4-composite-21\\provenance.json",
+      "bytes": 794,
+      "sha256": "4972ae0175a806dcc73a87a8f5c4ff26427519e9a20c14450c3c40ee365246ce"
+    },
+    {
+      "path": "eval\\results\\triage\\policy-v4-composite-21\\reviews.json",
+      "bytes": 47018,
+      "sha256": "277543a0f1ebdcdb626590a180d5be22e4df62cd9e489d691f663bab0c4e48d6"
+    },
+    {
+      "path": "eval\\results\\triage\\policy-v4-composite-21\\tickets.experimental.json",
+      "bytes": 64414,
+      "sha256": "ae1a0018981d93075f340fa5818ab73c453d3004fe79181922d8693adb588b2b"
+    },
+    {
+      "path": "eval\\results\\triage\\policy-v4-final-phase-2\\development-1\\assessment-report.json",
+      "bytes": 1745,
+      "sha256": "6d3d965c476dee64da2d9b845a262dc8b8c562b1bdac77fd031a266bd46d72b6"
+    },
+    {
+      "path": "eval\\results\\triage\\policy-v4-final-phase-2\\development-1\\execution.json",
+      "bytes": 2882,
+      "sha256": "59b9da7e105dfca3d745f855144abb88a519d88bed9db3835570d6eb5d220752"
+    },
+    {
+      "path": "eval\\results\\triage\\policy-v4-final-phase-2\\development-1\\observation.json",
+      "bytes": 746,
+      "sha256": "e5f2daf99f897e08a567da04f7ed15bfdca294136831f4275a88fa0e0570e7fa"
+    },
+    {
+      "path": "eval\\results\\triage\\policy-v4-final-phase-2\\development-1\\reviews.json",
+      "bytes": 31624,
+      "sha256": "74a9ef2d1aae6984d18613f04c4c7abe18336e73b59ffb8e1606b3ef37a84781"
+    },
+    {
+      "path": "eval\\results\\triage\\policy-v4-final-phase-2\\native-e2e.experimental-ledger.json",
+      "bytes": 3010,
+      "sha256": "2555eca349e330c7f641d0819521a7346c43c3e66de5631606fbffbbb6f40247"
+    },
+    {
+      "path": "eval\\results\\triage\\policy-v4-final-phase-2\\plan-1\\development-reserved.json",
+      "bytes": 169,
+      "sha256": "f08a473c06cfd8eb499667101df1c1380f1e7d7f115f3c571117115de05c1cd3"
+    },
+    {
+      "path": "eval\\results\\triage\\policy-v4-final-phase-2\\plan-1\\repeat-reserved.json",
+      "bytes": 164,
+      "sha256": "94697d65e553097a23bd6050910d91612f283b8c780d1d75f1d3490691bca279"
+    },
+    {
+      "path": "eval\\results\\triage\\policy-v4-final-phase-2\\repeat-1\\assessment-report.json",
+      "bytes": 1809,
+      "sha256": "97355d2500190983a8fc6aa29f4e845094d7f67738f738c0d8af3c99ee2dc444"
+    },
+    {
+      "path": "eval\\results\\triage\\policy-v4-final-phase-2\\repeat-1\\execution.json",
+      "bytes": 2873,
+      "sha256": "24e28b18c5ee6cbb6c263fe931f2f1675470b4b491ead825de17f108e4561616"
+    },
+    {
+      "path": "eval\\results\\triage\\policy-v4-final-phase-2\\repeat-1\\observation.json",
+      "bytes": 746,
+      "sha256": "222e6d18de413f544d5107dbb8929f6471cbf79fe80334819a81db14b5fb7823"
+    },
+    {
+      "path": "eval\\results\\triage\\policy-v4-final-phase-2\\repeat-1\\reviews.json",
+      "bytes": 32289,
+      "sha256": "f05980d2b61074c1c8063e81af7d664a40a5c6d6b21d8a2b3ca1f57c54bc8d7c"
+    },
+    {
+      "path": "eval\\results\\triage\\policy-v4-final-phase-2\\x01-review.json",
+      "bytes": 14214,
+      "sha256": "0a2a3c0bb1c031a6b0e68777c43c43fe62b7e7d16635a22c742c8a48f5d76d2b"
+    },
+    {
+      "path": "eval\\results\\triage\\policy-v4-final-phase\\development-1\\execution.json",
+      "bytes": 2819,
+      "sha256": "507f3e3060b127c5fdd1a40594cc43ff7ca6b1ef7fc74d87f8e83350f3d4912d"
+    },
+    {
+      "path": "eval\\results\\triage\\policy-v4-final-phase\\development-1\\observation.json",
+      "bytes": 749,
+      "sha256": "41de247213994c11e4eac5ccb37d1a8d4871d74f58510659d8b5906b3aeb3346"
+    },
+    {
+      "path": "eval\\results\\triage\\policy-v4-final-phase\\development-2\\observation.json",
+      "bytes": 175,
+      "sha256": "deaef5f4441eee50fc487907237ea3d0ab9bc5d41f0c9531686a0dc6bcfd2667"
+    },
+    {
+      "path": "eval\\results\\triage\\policy-v4-final-phase\\native-e2e.experimental-ledger.json",
+      "bytes": 1554,
+      "sha256": "46f8704437e42b51046f89815981ddf3631165b076ffade61893f02d2085e641"
+    },
+    {
+      "path": "eval\\results\\triage\\policy-v4-final-phase\\plan-1\\development-reserved.json",
+      "bytes": 167,
+      "sha256": "9cfe2129a403a16e433b80d9d1ea904c7d47b52428f5b429e3412a428ff1da14"
+    },
+    {
+      "path": "eval\\results\\triage\\policy-v4-test-regression-phase\\native-test-regression.experimental-ledger.json",
+      "bytes": 1101,
+      "sha256": "de32217458f18225889098390dcfa2da324d84ff7a94487260c4465e9394b66d"
+    },
+    {
+      "path": "eval\\results\\triage\\policy-v4-test-regression-phase\\test-regression-1\\assessment-report.json",
+      "bytes": 1740,
+      "sha256": "6227618edebe191ee0e7438379416fcbcb0d4c108851285dac7997393f32c328"
+    },
+    {
+      "path": "eval\\results\\triage\\policy-v4-test-regression-phase\\test-regression-1\\reviews.json",
+      "bytes": 16285,
+      "sha256": "4a08d24c42fc12037eb8201c8b350049a6bc835d42d0d41b6c68854045a9674a"
     },
     {
       "path": "eval\\results\\triage\\postrun-provenance.json",
-      "sha256": "008f2c9c35d4b4b7f54caeee202be0727266e3517b3c9b778cd713920509f5ab",
-      "bytes": 6341
-    }
-  ],
-  "skipped_pruning": [],
-  "planned_prune_count": 2947,
-  "deletion_journal": "C:\\Users\\thanh\\.copilot\\artifact-backups\\falkor_case2\\20261116T152900Z\\pruning-journal.jsonl",
-  "finished_at": "2026-11-16T15:29:32.453227+00:00",
-  "deleted_payload_files": 2947,
-  "verification": {
-    "checked_at": "2026-11-16T15:31:06.363163+00:00",
-    "status": "pass",
-    "checks": {
-      "pruning_completed_without_skips": true,
-      "every_retained_file_unchanged": true,
-      "every_deletion_was_journalled": true,
-      "knowledge_two_identical_archives": true,
-      "knowledge_zip_crc": true,
-      "knowledge_member_inventory": true,
-      "knowledge_all_deletions_recoverable": true,
-      "triage_two_identical_archives": true,
-      "triage_zip_crc": true,
-      "triage_member_inventory": true,
-      "triage_all_deletions_recoverable": true,
-      "original_evidence_count_preserved_in_archives": true,
-      "ignore_.artifacts\\evidence\\future\\knowledge.zip": true,
-      "ignore_eval\\results\\knowledge\\component-artifacts\\future\\context.json": true,
-      "ignore_eval\\results\\triage\\future\\synthetic-component-artifacts\\sample.json": true,
-      "ignore_eval\\results\\knowledge\\future\\command-1.txt": true,
-      "ignore_eval\\results\\triage\\future\\triage-tests.txt": true,
-      "ignore_eval\\results\\triage\\future\\worktree.txt": true,
-      "ignore_eval\\results\\artifacts-manifest.json": true,
-      "ignore_eval\\results\\knowledge\\component-verification.json": true,
-      "ignore_eval\\results\\knowledge\\copilot-b02.experimental-ledger.json": true,
-      "ignore_eval\\results\\knowledge\\copilot-b02-1\\observation.json": true,
-      "ignore_eval\\results\\triage\\offline-fix-2\\verification.json": true,
-      "ignore_eval\\results\\triage\\copilot-correction-3\\run\\run.json": true,
-      "ignore_eval\\results\\calibration\\reviewer-a.json": true,
-      "ignore_eval\\results\\inference\\azure-comparison.json": true,
-      "ignore_eval\\spec\\acceptance.json": true,
-      "reference_integrity_and_whitespace": true,
-      "tracked_evidence_and_frozen_source_unchanged": true
+      "bytes": 6341,
+      "sha256": "008f2c9c35d4b4b7f54caeee202be0727266e3517b3c9b778cd713920509f5ab"
     },
-    "commands": [
-      {
-        "command": ".\\.venv\\Scripts\\python.exe -B -m eval.validate",
-        "exit_code": 0,
-        "stdout": "{\n  \"findings\": 21,\n  \"equipment\": 18,\n  \"blank_cells\": 0,\n  \"duplicate_primary_keys\": 0,\n  \"orphan_findings\": 0,\n  \"equipment_type_mismatches\": 0,\n  \"invalid_ids_dates_scores_sce\": 0,\n  \"date_range\": [\n    \"2026-06-02\",\n    \"2026-06-22\"\n  ],\n  \"sce_counts\": {\n    \"No\": 8,\n    \"Yes\": 10\n  },\n  \"redundancy_counts\": {\n    \"None\": 11,\n    \"Yes (bypass available)\": 1,\n    \"Voted 2oo3\": 1,\n    \"Duplicated (INST-2151)\": 1,\n    \"Duplicated (INST-2150)\": 1,\n    \"N+1 (FW-8102)\": 1,\n    \"N+1 (FW-8101)\": 1,\n    \"N+1 (LB-4101)\": 1\n  },\n  \"missing_redundant_partners\": [\n    {\n      \"equipment_id\": \"LB-4102\",\n      \"partner\": \"LB-4101\"\n    }\n  ],\n  \"reference_version\": \"1.2\",\n  \"status\": \"frozen\",\n  \"acceptance_scenarios\": 17,\n  \"system_scenarios_execution\": \"not_run_no_system\",\n  \"partition_counts\": {\n    \"development\": {\n      \"cases\": 13,\n      \"groups\": 9\n    },\n    \"test\": {\n      \"cases\": 8,\n      \"groups\": 4\n    }\n  }\n}\nArtifact integrity checks passed; no ticket/model assessment was performed.\n",
-        "stderr": ""
-      },
-      {
-        "command": "git --no-pager diff --check -- .gitignore AGENTS.md README.md",
-        "exit_code": 0,
-        "stdout": "",
-        "stderr": ""
-      }
-    ],
-    "new_provider_calls": 0
-  },
-  "reviews": {
-    "first": "artifact-retention-review: accepted terminal-report/hash linkage, two verified copies, atomic recovery journal, reparse protection and anchored ignores; command logs were kept, not pruned",
-    "second": "artifact-cleanup-cross-review: no significant issues reported; bounded read-only AI feedback, not independent assurance"
-  },
-  "cleanup_runs": [
     {
-      "cycle": "20261116T215256Z",
-      "status": "complete",
-      "created_at": "2026-11-16T21:52:56.090138+00:00",
-      "finished_at": "2026-11-16T21:53:36.475062+00:00",
-      "policy": "Only untracked synthetic payloads older than 15 minutes with a terminal offline verification and matching recorded SHA-256",
-      "archive_sha256": "39be55b1cf251888793f124324853549274f1e583c347c1bbac5f571a26e8fb9",
-      "archive_file_count": 4901,
-      "deleted_payload_files": 4901,
-      "deleted_payload_bytes": 34214824,
-      "skipped_pruning": [],
-      "deletion_journal": "C:\\Users\\thanh\\.copilot\\artifact-backups\\falkor_case2\\20261116T215256Z\\pruning-journal.jsonl",
-      "script_path": ".artifacts\\evidence\\20261116T215256Z\\prune_verified_synthetic.py",
-      "script_sha256": "ddcd0463321d66b37ba1f35299483775920ee9a1a0385db98aa9d883cc270a78"
+      "path": "eval\\results\\triage\\renewed-verification-1\\verification.json",
+      "bytes": 163582,
+      "sha256": "9dac6043c2c3b930fb8ce7de34c6933a60d37faa18b8548f812b79d2af6624a4"
+    },
+    {
+      "path": "eval\\results\\triage\\source-first-calibration-1\\report.json",
+      "bytes": 637,
+      "sha256": "5425da6d9ffee2bbe8fd8b83c33754f30e9e20e953145c9c0732503fd569fc60"
+    },
+    {
+      "path": "eval\\results\\triage\\source-first-calibration-1\\reviews.json",
+      "bytes": 2072,
+      "sha256": "b5222e34a93e91ff9e782772f71698c89480a14cf11ecf8ec28b24590a93da96"
+    },
+    {
+      "path": "eval\\results\\triage\\source-first-migration-1\\verification.json",
+      "bytes": 109024,
+      "sha256": "d6c71d2fd7b17a069b5286823c4a6aeadda3c688ed45cf8b4cdc483f8d00eb08"
+    },
+    {
+      "path": "eval\\results\\triage\\source-first-migration-2\\verification.json",
+      "bytes": 109025,
+      "sha256": "315cb030d0ff93e339063471fda54b967c524e8c13b0025777be70f1c7769fd0"
+    },
+    {
+      "path": "eval\\results\\triage\\source-first-migration-summary.json",
+      "bytes": 9369,
+      "sha256": "5d221a4bdd734e18a73ded3beb3610c84e2f5da56fa9fdc3dea07065f46b5757"
+    },
+    {
+      "path": "eval\\results\\triage\\source-first-snapshot-verification-1\\verification.json",
+      "bytes": 109310,
+      "sha256": "4dcd82f4633355a6f489e68a1a7f8d1151d637982b573e11ea67968f2cce18c9"
+    },
+    {
+      "path": "eval\\results\\triage\\source-first-snapshot-verification-2\\verification.json",
+      "bytes": 109374,
+      "sha256": "9b767a0178cfa7b53b868e334d9921f2ee435128fcc440a5d66225902250d051"
+    },
+    {
+      "path": "eval\\results\\triage\\strict-full-regression-1\\report.json",
+      "bytes": 4839,
+      "sha256": "a72838412baa74cf6b5c132dd3fdd7cbed5333b87ab43394bc27e38b1615e18b"
+    },
+    {
+      "path": "eval\\results\\triage\\strict-offline-verification-1\\verification.json",
+      "bytes": 176083,
+      "sha256": "c6e5457cff884e7bdf2c82d8f2e3a99bae3a520b9fb8eb87f33ff3f0bb1d7758"
+    },
+    {
+      "path": "eval\\results\\triage\\strict-package-verification-1\\report.json",
+      "bytes": 4900,
+      "sha256": "c63d3f03efcad763b937a1ac2c470d71c7c46926dd0260ce3dbca60169e058e9"
+    },
+    {
+      "path": "eval\\results\\triage\\strict-provider-compatibility-1\\report.json",
+      "bytes": 2256,
+      "sha256": "f38c50e7c9bfc2a2a48fc49f8686ba3c21831bdd6f221278a203ed93a5d44837"
+    },
+    {
+      "path": "eval\\results\\triage\\strict-provider-compatibility-ledger.json",
+      "bytes": 244,
+      "sha256": "b786ae46dcda2e0e64215bdcee052f8cc8beb1466d6026ea4e3a0d1474443614"
+    },
+    {
+      "path": "eval\\results\\triage\\strict-schema-compatibility-1\\report.json",
+      "bytes": 1631,
+      "sha256": "80e24f948375fa6ae12678208d635df5f1711fa0da10f5e63e4fe1821e1fb1f4"
+    },
+    {
+      "path": "eval\\results\\triage\\summary-retention-regression-phase\\development-1\\execution.json",
+      "bytes": 2524,
+      "sha256": "ab74d21db5bcb5bb7b0846bf9f1a8c68700bff79d64b9e90ba209689f35b5974"
+    },
+    {
+      "path": "eval\\results\\triage\\summary-retention-regression-phase\\development-1\\observation.json",
+      "bytes": 746,
+      "sha256": "7a2448e104423d36961e1094010059c57ab6bd3fecd773c54f9444de8ec89048"
+    },
+    {
+      "path": "eval\\results\\triage\\summary-retention-regression-phase\\native-e2e.experimental-ledger.json",
+      "bytes": 1723,
+      "sha256": "ad2802372f41a2dfae244a400805a92de31b61240a68cfc40bfad514bb267749"
+    },
+    {
+      "path": "eval\\results\\triage\\summary-retention-regression-phase\\plan-1\\development-reserved.json",
+      "bytes": 180,
+      "sha256": "ed930219236034b0b4044c001967556d202ed3239831c00cd74bfb495d1e2b33"
+    },
+    {
+      "path": "eval\\results\\triage\\test-informed-regression-phase\\development-1\\execution.json",
+      "bytes": 2375,
+      "sha256": "d67bdb4773c025943fae05fd1aae8c630199cdade23a55c633e72362cbd97f77"
+    },
+    {
+      "path": "eval\\results\\triage\\test-informed-regression-phase\\development-1\\observation.json",
+      "bytes": 735,
+      "sha256": "e4dbd9b1252babdf5603c68c8c16642264d65a391fff00c8ce7f3ae22d123878"
+    },
+    {
+      "path": "eval\\results\\triage\\test-informed-regression-phase\\native-e2e.experimental-ledger.json",
+      "bytes": 1671,
+      "sha256": "67bf3ae6820f2c1b8f6e5736f58d1f0adf54375cac5fa073b848c0dbc56eda56"
+    },
+    {
+      "path": "eval\\results\\triage\\test-informed-regression-phase\\plan-1\\development-reserved.json",
+      "bytes": 176,
+      "sha256": "8bd66ee2cb008e4990347914413cb95122b4677c2116dabd806f5ecd1e1ca4ab"
+    },
+    {
+      "path": "eval\\results\\triage\\test-informed-regression-test-phase\\native-test-regression.experimental-ledger.json",
+      "bytes": 1264,
+      "sha256": "0ddb7f6264e2dd4a9e96b97000631617377923887999269692a66f79ef54991d"
+    },
+    {
+      "path": "eval\\results\\triage\\test-informed-regression-test-phase\\test-regression-1\\execution.json",
+      "bytes": 2372,
+      "sha256": "21f794a1144b800ae4f0e6434393cc19b3d5b05a7a88549aba8db6a71e7ceb0f"
+    },
+    {
+      "path": "eval\\results\\triage\\test-informed-regression-test-phase\\test-regression-1\\observation.json",
+      "bytes": 717,
+      "sha256": "5b6b17080c01eacb2670f7c001540907983aacd76aaa3df07c1c1ca55f5369a8"
     }
   ],
-  "latest_cleanup": {
-    "cycle": "20261116T215256Z",
-    "status": "complete",
-    "created_at": "2026-11-16T21:52:56.090138+00:00",
-    "finished_at": "2026-11-16T21:53:36.475062+00:00",
-    "policy": "Only untracked synthetic payloads older than 15 minutes with a terminal offline verification and matching recorded SHA-256",
-    "archive_sha256": "39be55b1cf251888793f124324853549274f1e583c347c1bbac5f571a26e8fb9",
-    "archive_file_count": 4901,
-    "deleted_payload_files": 4901,
-    "deleted_payload_bytes": 34214824,
-    "skipped_pruning": [],
-    "deletion_journal": "C:\\Users\\thanh\\.copilot\\artifact-backups\\falkor_case2\\20261116T215256Z\\pruning-journal.jsonl",
-    "script_path": ".artifacts\\evidence\\20261116T215256Z\\prune_verified_synthetic.py",
-    "script_sha256": "ddcd0463321d66b37ba1f35299483775920ee9a1a0385db98aa9d883cc270a78"
-  }
+  "archive_limitations": [
+    "Local and backup copies are on the same machine and are not a durable shared evidence service.",
+    "Archived observations remain bound to their original code, configuration and ledgers.",
+    "Restoring raw artifacts does not convert historical checks into current system acceptance."
+  ]
 }
