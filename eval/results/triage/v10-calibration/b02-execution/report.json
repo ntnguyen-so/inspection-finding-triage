@@ -1,0 +1,76 @@
+{
+  "status": "four_conditions_completed_review_pending",
+  "positive_policy_response_observed": true,
+  "conditions": {
+    "positive-before": {
+      "status": "draft_generated",
+      "receipt": {
+        "run_status": "experimental_draft_generated",
+        "published_output": true,
+        "output": "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\v10-calibration\\b02-execution\\positive-before.experimental.json",
+        "output_sha256": "cd67f9b534a9693f13d55fdea72e914c62efe1b55a9576e9e4775af494c8395b",
+        "tickets_generated": 1,
+        "semantic_status": "not_reviewed",
+        "acceptance_eligible": false,
+        "execution_mode": "copilot_experiment",
+        "http_attempts": null,
+        "application_send_count": 1
+      },
+      "observed_likelihood": 6,
+      "observed_impact": 3
+    },
+    "positive-after": {
+      "status": "draft_generated",
+      "receipt": {
+        "run_status": "experimental_draft_generated",
+        "published_output": true,
+        "output": "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\v10-calibration\\b02-execution\\positive-after.experimental.json",
+        "output_sha256": "9957e364fdcf59ec0166347f9cd09e739a347b6427028969874ca2c24b0be2da",
+        "tickets_generated": 1,
+        "semantic_status": "not_reviewed",
+        "acceptance_eligible": false,
+        "execution_mode": "copilot_experiment",
+        "http_attempts": null,
+        "application_send_count": 1
+      },
+      "observed_likelihood": 8,
+      "observed_impact": 3
+    },
+    "negative-before": {
+      "status": "draft_generated",
+      "receipt": {
+        "run_status": "experimental_draft_generated",
+        "published_output": true,
+        "output": "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\v10-calibration\\b02-execution\\negative-before.experimental.json",
+        "output_sha256": "09f7ea4cceb48cf098fc167ab5557ed852e5e7d182599aa8ac341491938960cc",
+        "tickets_generated": 1,
+        "semantic_status": "not_reviewed",
+        "acceptance_eligible": false,
+        "execution_mode": "copilot_experiment",
+        "http_attempts": null,
+        "application_send_count": 1
+      }
+    },
+    "negative-after": {
+      "status": "draft_generated",
+      "receipt": {
+        "run_status": "experimental_draft_generated",
+        "published_output": true,
+        "output": "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\v10-calibration\\b02-execution\\negative-after.experimental.json",
+        "output_sha256": "d9b67ad8ef9c4ec067efc1e8afe11fa5e3f4ceb882c4314e66b1c4079161835d",
+        "tickets_generated": 1,
+        "semantic_status": "not_reviewed",
+        "acceptance_eligible": false,
+        "execution_mode": "copilot_experiment",
+        "http_attempts": null,
+        "application_send_count": 1
+      }
+    }
+  },
+  "negative_semantic_status": "pending_calibrated_review",
+  "code_stable_during_run": true,
+  "phase_reservations": 4,
+  "acceptance_eligible": false,
+  "http_attempts": null,
+  "usd_cost": null
+}

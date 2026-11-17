@@ -3,7 +3,7 @@ from __future__ import annotations
 from .assessment import SAME_DAY_VALIDATOR, validate_facts
 from .contracts import nonblank, require, score
 
-POLICY_VERSION = "triage-policy-v8"
+POLICY_VERSION = "triage-policy-v11"
 CAPACITY_COMPARISON_ACTIVITY = "Verify current POB against certified available evacuation capacity."
 SAME_DAY_ATTENTION_ACTIVITY = "Obtain source-required attention today."
 CONTROL_ALIGNMENT_ACTIVITY = "Verify current protection control alignment."
@@ -155,11 +155,12 @@ def derive_policy(likelihood: int, impact: int, facts: dict, uncertainties: list
         f"{x['rule_id']} ({x['kind']}): {x['reason']} Sources: {', '.join(x['sources']) or 'registry SCE flag'}."
         for x in rules
     )
+    review_required = bool(rules)
     return {
         "policy_version": POLICY_VERSION, "base": base, "final": final, "rules": rules,
         "rationale": f"{POLICY_VERSION}: ceil(0.7*I+0.3*L), L={likelihood}, I={impact}, base={base}, final={final}. {details}".strip(),
-        "review_required": bool(rules),
-        "review_reason": details if rules else None,
+        "review_required": review_required,
+        "review_reason": details if review_required else None,
         "verification_activities": list(dict.fromkeys(activities)),
         "fixed_verification_activities": list(dict.fromkeys(fixed_activities)),
     }

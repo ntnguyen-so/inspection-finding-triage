@@ -1,0 +1,27 @@
+{
+  "generated_at": "2026-11-17T09:11:06.088614+00:00",
+  "tickets_generated": 1,
+  "tickets": [
+    {
+      "ticket_id": "TKT-9001",
+      "finding_id": "F-9001",
+      "equipment_id": "PSV-9001",
+      "summary": "PSV-9001 passed at the outlet seat below set pressure on an isolated synthetic bench; relief lifting and capacity remain untested, with no installed plant protection dependency.",
+      "recommended_action": "Have the responsible valve engineer approve bench criteria and disposition; inspect the seat, correct passing and verify seat tightness against approved criteria. Verify lifting and capacity to approved criteria.",
+      "likelihood_of_failure": {
+        "score": 6,
+        "rationale": "Observed seat passing below set pressure satisfies assessment_policy's isolated-experiment rule PROBE-PSV-SEAT-PASSING, which specifies 6. This is a synthetic diagnostic score, not a calibrated engineering likelihood or evidence of failed lifting or relief capacity."
+      },
+      "impact_of_failure": {
+        "score": 3,
+        "rationale": "Assessment_policy's isolated-experiment rule specifies impact 3 for this observed condition. This is a testing-only convention, not an engineering consequence rating: the device is an isolated synthetic fixture with no installed plant protection dependency."
+      },
+      "urgency": {
+        "score": 4,
+        "rationale": "triage-policy-v10: ceil((5*I+2*L+3*sqrt(I*L))/10), L=6, I=3, base=4, final=4. R-MATERIAL (review): The sole observation is dated 2026-06-22; no subsequent correction or test is supplied. Lifting, capacity and acceptance criteria remain unverified. These limit engineering disposition, although the synthetic probe scores are fixed. Sources: finding:F-9001:reported_date, finding:F-9001:finding_description, equipment:PSV-9001:engineer_comment."
+      },
+      "review_required": true,
+      "review_reason": "R-MATERIAL (review): The sole observation is dated 2026-06-22; no subsequent correction or test is supplied. Lifting, capacity and acceptance criteria remain unverified. These limit engineering disposition, although the synthetic probe scores are fixed. Sources: finding:F-9001:reported_date, finding:F-9001:finding_description, equipment:PSV-9001:engineer_comment."
+    }
+  ]
+}

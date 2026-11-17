@@ -1,0 +1,124 @@
+{
+  "schema": "triage-delivery-summary-v1",
+  "recorded_at": "2026-11-17T08:01:50.279252+00:00",
+  "artifact": {
+    "path": "tickets.json",
+    "sha256": "b564e22df26166de4218a525d003128e948c9f0aa51d7c73ae914d5c5897b9ed",
+    "bytes": 86099,
+    "tickets_generated": 21,
+    "finding_ids": [
+      "F-1001",
+      "F-1002",
+      "F-1003",
+      "F-1004",
+      "F-1005",
+      "F-1006",
+      "F-1007",
+      "F-1008",
+      "F-1009",
+      "F-1010",
+      "F-1011",
+      "F-1012",
+      "F-1013",
+      "F-1014",
+      "F-1015",
+      "F-1016",
+      "F-1017",
+      "F-1018",
+      "F-1019",
+      "F-1020",
+      "F-1021"
+    ],
+    "review_required_count": 20,
+    "urgency_counts": {
+      "1": 0,
+      "2": 0,
+      "3": 1,
+      "4": 0,
+      "5": 1,
+      "6": 0,
+      "7": 4,
+      "8": 8,
+      "9": 6,
+      "10": 1
+    }
+  },
+  "generation_receipt": {
+    "run_status": "draft_generated",
+    "published_output": true,
+    "output": "C:\\Users\\thanh\\falkor_case2\\tickets.json",
+    "output_sha256": "b564e22df26166de4218a525d003128e948c9f0aa51d7c73ae914d5c5897b9ed",
+    "tickets_generated": 21,
+    "semantic_status": "not_reviewed",
+    "delivery_eligible": true,
+    "acceptance_eligible": false,
+    "execution_mode": "copilot_delivery",
+    "http_attempts": null,
+    "application_send_count": 21
+  },
+  "assessment": {
+    "scope": "ticket_outputs_only_not_full_A_D_system_acceptance",
+    "contract": {
+      "status": "pass",
+      "errors": []
+    },
+    "semantic_status": "needs_review",
+    "passed_dimensions": 61,
+    "applicable_dimensions": 63,
+    "pending": [
+      {
+        "finding_id": "F-1010",
+        "dimension": "grounding"
+      },
+      {
+        "finding_id": "F-1019",
+        "dimension": "grounding"
+      }
+    ],
+    "reviewer": {
+      "kind": "ai_only",
+      "provider": "GitHub Copilot CLI",
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "high",
+      "role": "primary_semantic_reviewer",
+      "domain_expert_claimed": false,
+      "independent_of_generation": true
+    }
+  },
+  "evidence_qualifications": {
+    "human_approval": "required_outside_generation",
+    "acceptance_eligible": false,
+    "provider_attempts": null,
+    "usd_cost": null,
+    "run_json_is_prepublication_snapshot": true,
+    "console_receipt_records_publication": true,
+    "declared_workflow_sha256": "2622aba13538da51303ae60fda1191c6f10920c8ebc5d474d317095f2b0749eb",
+    "current_workflow_sha256": "3079ffda4de989546be838ae5217495652aa7992e0b4cac176aef209c666530f",
+    "activation_sha256_matches_declaration": true,
+    "activation_provenance_status": "invalid_for_freeze_as_documented",
+    "current_worktree_workflow_sha256": "dcd1362b99c143f5bcc50281974ed706ca3cc6471d276ff8848ad1812f0fbd4a",
+    "head_workflow_sha256": "3079ffda4de989546be838ae5217495652aa7992e0b4cac176aef209c666530f",
+    "generating_bytes_match_current_worktree": false,
+    "generating_bytes_committed_at_recording": false,
+    "clean_checkout_reproduced": false,
+    "post_generation_change": "Status-only correction: failed Copilot delivery runs no longer carry delivery_eligible in run.json. Assessment, policy and generated ticket bytes are unchanged."
+  },
+  "status": "generated_contract_valid_61_of_63_provisional_not_domain_certified",
+  "cost_latency": {
+    "wall_clock_seconds": 635.640000000014,
+    "median_send_seconds": 29.45299999997951,
+    "maximum_send_seconds": 37.35899999999674,
+    "usage_receipt_totals": {
+      "inputTokens": 983821,
+      "outputTokens": 40200,
+      "cacheReadTokens": 244719,
+      "cacheWriteTokens": 739039,
+      "reasoningTokens": 7291,
+      "cost": 21.0
+    },
+    "actual_usd_cost": null,
+    "illustrative_openai_api_estimate_usd": 2.37,
+    "estimate_status": "assumption_not_actual_copilot_charge",
+    "pricing_source": "https://developers.openai.com/api/docs/pricing"
+  }
+}

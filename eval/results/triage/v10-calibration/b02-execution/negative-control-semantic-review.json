@@ -1,0 +1,162 @@
+{
+  "schema": "b02-negative-control-semantic-review-v1",
+  "reference_version": "1.3",
+  "scope": "B02 synthetic-passing-rule applicability, not full ticket or system certification",
+  "reviewer": {
+    "kind": "ai_only",
+    "provider": "GitHub Copilot CLI",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "high",
+    "role": "primary_semantic_reviewer",
+    "independent_of_generation": true,
+    "domain_expert_claimed": false
+  },
+  "calibration": {
+    "reviews": "eval\\results\\triage\\v8-reliability\\primary-calibration-reviews.json",
+    "retained_report": "eval\\results\\triage\\v8-reliability\\primary-calibration-report.json",
+    "revalidated_status": "pass",
+    "limitation": "Seeded-contradiction conformance only; not domain certification."
+  },
+  "source_basis": [
+    {
+      "source": "eval\\spec\\probes.json",
+      "field": "b02.policies.before.text and b02.policies.after.text",
+      "quote": "Do not apply to tag-only defects without passing evidence.",
+      "interpretation": "Observed seat passing below set pressure is required for either isolated synthetic rule; the PSV equipment type alone is insufficient."
+    },
+    {
+      "source": "eval\\spec\\probes.json",
+      "field": "b02.expected.negative_control",
+      "quote": "Still recognizes in-date certification and a tag-only observation; does not infer a failed relief function or apply the passing rule. Exact control-score equality is not required."
+    },
+    {
+      "source": "docs\\candidate-pack\\candidate-pack\\data\\inspection_findings.csv",
+      "finding_id": "F-1016",
+      "field": "finding_description",
+      "quote": "Certification tag on the compressor discharge PSV is illegible, the label has corroded. Checked the register and the valve was recertified in March 2025 so it is in date. Physical condition of the valve looks fine."
+    },
+    {
+      "source": "docs\\candidate-pack\\candidate-pack\\reference\\domain_knowledge.md",
+      "section": "The two questions",
+      "quote": "**Impact** concerns what happens if it does fail.",
+      "interpretation": "Conditional relief-loss impact does not assert an existing failed valve. In-date certification and visual appearance also do not independently certify all functional capability."
+    },
+    {
+      "source": "eval\\data\\development.jsonl",
+      "finding_id": "F-1016",
+      "field": "forbidden_claims[0].text",
+      "quote": "Do not claim expired certification, a failed pop test, confirmed passing, or impaired relief function from this label finding alone."
+    }
+  ],
+  "items": [
+    {
+      "artifact": "negative-before.experimental.json",
+      "output_sha256": "09f7ea4cceb48cf098fc167ab5557ed852e5e7d182599aa8ac341491938960cc",
+      "finding_id": "F-1016",
+      "policy_version": "probe-A",
+      "verdict": "pass",
+      "reason": "The control remains an in-date tag-only defect. The likelihood rationale uses recertification and observed condition, explicitly distinguishes label corrosion from demonstrated valve damage, and does not infer passing or failed relief. Impact describes a hypothetical relief-loss consequence, while the action replaces the tag with certificate/identity verification. Thus the observed-passing rule is semantically excluded; L2/I7/U7 equality is only supplementary evidence, not the verdict criterion.",
+      "evidence": [
+        {
+          "field": "summary",
+          "quote": "PSV-3420's corroded tag obscures certification identity, but the valve is in date and physically satisfactory; no impairment is indicated, although relief failure would remove compressor-discharge overpressure protection."
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "Corrosion affects the label, not demonstrably the valve."
+        },
+        {
+          "field": "impact_of_failure.rationale",
+          "quote": "Failure of compressor-discharge overpressure relief would remove the stated protection against discharge overpressure, creating a credible pressure-containment hazard."
+        },
+        {
+          "field": "recommended_action",
+          "quote": "Replace the illegible tag after matching valve identity to its certificate; verify replacement details and legibility."
+        }
+      ]
+    },
+    {
+      "artifact": "negative-after.experimental.json",
+      "output_sha256": "d9b67ad8ef9c4ec067efc1e8afe11fa5e3f4ceb882c4314e66b1c4079161835d",
+      "finding_id": "F-1016",
+      "policy_version": "probe-B",
+      "verdict": "pass",
+      "reason": "The control still explicitly recognizes March 2025 certification as in date, sound observed valve condition and a label defect. No observed passing, failed pop test or inability to relieve is invented. The high conditional impact concerns hypothetical nonredundant overpressure-protection loss, not an existing functional failure, and the prescribed correction remains tag replacement. The changed artificial L8/I3 passing convention is not applied. Equal control scores alone would not have established this exclusion.",
+      "evidence": [
+        {
+          "field": "summary",
+          "quote": "PSV-3420's illegible tag needs replacement, but March 2025 certification is in date and the valve appears sound; function loss would remove compressor-discharge overpressure protection."
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "In-date recertification, satisfactory reported behaviour and sound observed valve condition support little indication of near-term function loss."
+        },
+        {
+          "field": "impact_of_failure.rationale",
+          "quote": "Failure would remove the stated nonredundant protection against compressor-discharge overpressure, a specific severe pressure-hazard path."
+        },
+        {
+          "field": "recommended_action",
+          "quote": "Have authorized certifying personnel replace the corroded tag; verify legibility and retain the two-year pop-test cycle."
+        }
+      ]
+    }
+  ],
+  "negative_control_conclusion": "pass",
+  "b02_conclusion": {
+    "verdict": "pass",
+    "scope": "Bounded four-condition artificial-policy conformance and negative-control applicability",
+    "reason": "The matching synthetic positive follows L6 to L8 with I3 held fixed and explicitly labels both scores artificial. Both unchanged F-1016 controls preserve tag-only/in-date semantics and exclude the passing convention. This supplements the retained report's pending negative-semantic field, without rewriting that historical report.",
+    "positive_evidence": [
+      {
+        "artifact": "positive-before.experimental.json",
+        "output_sha256": "cd67f9b534a9693f13d55fdea72e914c62efe1b55a9576e9e4775af494c8395b",
+        "field": "likelihood_of_failure.rationale",
+        "quote": "Observed seat passing below set pressure satisfies assessment_policy's isolated-experiment rule PROBE-PSV-SEAT-PASSING, which specifies 6."
+      },
+      {
+        "artifact": "positive-before.experimental.json",
+        "field": "impact_of_failure.rationale",
+        "quote": "Assessment_policy's isolated-experiment rule specifies impact 3 for this observed condition."
+      },
+      {
+        "artifact": "positive-after.experimental.json",
+        "output_sha256": "9957e364fdcf59ec0166347f9cd09e739a347b6427028969874ca2c24b0be2da",
+        "field": "likelihood_of_failure.rationale",
+        "quote": "The isolated-experiment policy explicitly assigns 8 for observed PSV seat passing below set pressure."
+      },
+      {
+        "artifact": "positive-after.experimental.json",
+        "field": "impact_of_failure.rationale",
+        "quote": "The isolated-experiment policy explicitly assigns impact 3 to this observation."
+      }
+    ]
+  },
+  "controlled_comparison": {
+    "evidence": "Actual provider_input and context in each condition's run.json, compared with retained b02-plan context exports",
+    "same_config_and_implementation_hashes_across_four_conditions": true,
+    "same_system_prompt_within_each_before_after_pair": true,
+    "only_changed_provider_user_paths_within_each_pair": [
+      "context.assessment_policy.isolated_experiment.policy_version",
+      "context.assessment_policy.isolated_experiment.text",
+      "context.context_hash"
+    ],
+    "unchanged_negative_finding_matches_supplied_F1016_row": true,
+    "application_sends_observed": 4,
+    "cache_mode": "no_application_result_cache",
+    "generation_model": "gpt-6.1-sol",
+    "generation_reasoning_effort": "medium"
+  },
+  "limitations": {
+    "strict_sdk_inclusive_attempt_contract": "inconclusive",
+    "http_attempts": null,
+    "usd_cost": null,
+    "explanation": "Four observed application sends do not establish the maximum-eight HTTP/SDK-inclusive attempt bound because internal retries are unknown. This semantic conclusion is not full B02 execution-budget acceptance, full A-D system acceptance, causal stability, domain calibration or human approval. One retained result per condition provides no generalization guarantee."
+  },
+  "unchanged_inputs": {
+    "report.json": "b8a69c1b344bf73da9eb06dce38f808da8ec51b9e286e6979ae0fe332ddbc967",
+    "plan.json": "ce6a853abf50575ee32a4993d26f82e8b9de6dfd021e8f59e4576eed84758cd1",
+    "eval\\spec\\probes.json": "28cf051dbd40ddc3c0a1959c22f10a48bb69789e239d51acc135e1964822ff4c",
+    "config\\triage-reliability-v8-reviewer.json": "9ef57564eaa14aff36822a01dd18d029959b09d98b87413232cc2984e153f1e4"
+  }
+}

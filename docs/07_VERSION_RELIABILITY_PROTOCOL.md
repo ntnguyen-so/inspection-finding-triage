@@ -1,6 +1,7 @@
 # Reliability of a Frozen Triage Version
 
-> **Study status:** protocol defined; frozen-v8 measured result **not run**.
+> **Study status:** three controlled v8 observations completed; the formal
+> clean-freeze/reproducibility gate remains **inconclusive**.
 
 ## Abstract
 
@@ -14,10 +15,9 @@ to produce reviewable drafts without hiding model variance.
 The study therefore answers six questions separately: deterministic control,
 batch completion, decision stability, semantic quality, usefulness, and
 reproducibility/cost. No composite score is used. Code and
-configuration are frozen before inference; every run is retained; no tuning is
-allowed between repeats. Version 8 is the worked example, but its current local
-artifacts predate a valid freeze and are excluded. The protocol can therefore be
-reviewed now without claiming a result that has not been earned.
+configuration are held fixed during inference; every run is retained; no tuning
+is allowed between repeats. Version 8 supplies a hash-pinned dirty-worktree
+observation, not a clean-checkout reliability certification.
 
 ## 1. Why this study exists
 
@@ -234,32 +234,51 @@ version is created.
 `triage-policy-v8` is the eighth labelled revision of the code-owned execution
 and urgency policy. `triage-activation-v8.json` binds that policy to selected
 knowledge and the assessment rubric. The current preregistration proposes GitHub
-Copilot `gpt-6.1-sol` at medium reasoning effort against reference 1.3. V8
-currently demonstrates why the freeze gate matters; it does not provide a
-measured reliability result.
+Copilot `gpt-6.1-sol` at medium reasoning effort against reference 1.3. V8 demonstrates both the value and the limit of the protocol: the runs provide
+useful route-specific variability evidence, while their dirty identity and
+activation timing prevent a clean-freeze pass.
 
 | Gate | Current evidence | Status |
 |---|---|---|
-| Clean identity | Preregistration declares `clean_commit=false`; relevant files are uncommitted | **Fail before measurement** |
-| Activation provenance | The file was written before its claimed review time; that time also follows preregistration and the first send | **Cannot serve as provenance; regenerate before freeze** |
-| Acceptance reference | Version 1.3 is a pending, test-informed working-tree change; validator integrity is not a committed freeze | **Not frozen** |
-| Preregistration | Its status field claims preregistration, but it declares a dirty source, lacks complete decision rules/blinded duplicate assignment, requests rates rather than raw counts, and pins pre-migration spec hashes | **Self-labelled status does not satisfy this protocol; non-conforming** |
-| Local Copilot series | `v8r1`, `v8r2` and `v8r3` were subsequently started. Their mutable state belongs in local `run.json` files; the acceptance/split specs changed while the series was active | **Pre-freeze development observations; not measured repeats, X01 or Azure reliability** |
+| Clean identity | Runtime/prompt/config hashes match all three runs, but the preregistration declares `clean_commit=false` | **Controlled dirty-worktree observation; clean reproduction inconclusive** |
+| Activation provenance | The recorded review time follows repeat 1 start by seconds | **Invalid for a formal frozen-study claim; retained rather than rewritten** |
+| Acceptance reference | Runs used the pinned reference-1.3 bytes; later layout/spec changes occurred after all three runs | **Comparable within the three runs; current layout hashes differ** |
+| Preregistration | `config\triage-reliability-v8.json` existed before the measured sends and fixed route, three-run order, 126-send ceiling and no-tuning rule | **Useful prospective control, but not a committed clean-freeze record** |
+| Copilot series | 3/3 completed in 21/23/21 sends; two malformed responses repaired | **Observed execution completion; hidden transport attempts remain unknown** |
 | Reviewer | Primary reviewer uses the same model family as generation | **Separate session only; not independent engineering judgment** |
-| Budget/pricing | Application-send ceiling exists and the candidate used an existing Copilot subscription, but provider transport attempts, subscription allocation, pricing source and per-run USD cost are absent | **Low marginal development spend observed; SDK-inclusive attempt and reproducible cost results remain inconclusive** |
-| Delivery | Strict Azure config still points to an old v7 ledger | **Fresh ledger and new declared run required** |
+| Budget/pricing | 21-send delivery took 635.64 s and reported 983,821 input plus 40,200 output tokens. OpenAI standard short-context rates imply US$2.37 under a simple no-cache-discount assumption | **Useful reproducibility estimate; actual Copilot USD allocation and hidden transport attempts remain unknown** |
+| Stability | Exact L/I/U agreement 15/21, 19/21 and 17/21; urgency bands 21/21; review flags 20/21 | **Operational bands stable in these runs; numeric and routing variance remains visible** |
+| Semantic review | Primary passes 54/63, 59/63 and 60/63 with 9/4/3 pending and no fail; sensitivity disagreement 8/7/15 dimensions and one failed repeat | **Inconclusive, not all-green or domain-certified** |
+| Delivery | Fresh root `tickets.json`: 21 tickets/21 sends, contract pass, primary 61 pass/2 pending/0 fail | **Real provisional deliverable; human approval and clean reproduction remain pending** |
 
-The measured v8 result is therefore **not run**. Existing pre-freeze
-`v8verify-*` and local `v8r1`-`v8r3` artifacts may be retained as development
-evidence, but they cannot be relabelled after the fact. They are not yet tracked
-submission evidence. Policy v6/v7 observations likewise explain the design
-history; they do not transfer to v8.
+The result is therefore a **completed controlled observation with an
+inconclusive formal freeze gate**, not `not run` and not an accepted reliability
+pass. Raw evidence, reviews and hashes are retained under
+`eval\results\triage\v8-reliability`.
 
-Before a valid v8 study, the owner must commit a clean freeze, create a new
+Root `tickets.json` is a single generated delivery artifact, not the preregistered
+repeat series required by this protocol. Its existence must not be used to
+backfill a reliability claim.
+
+Before a protocol-grade reproduction, the owner must commit a clean freeze, create a new
 activation identity with ordered provenance rather than repinning the invalid
-file in place, commit conforming decision rules, designate the blinded review
-duplicate, and use fresh ledgers. The protocol then runs without tuning and
-records the result whether it passes or fails.
+file in place, and use fresh ledgers. This remaining work does not erase the
+observed variability.
+
+### 6.1 Post-v8 calibration evidence
+
+Document 08 records a separate behavior-calibration study, not a retroactive v8
+reliability pass. V9 and v10 each completed two all-21 runs but were rejected:
+their review routing hid material uncertainty, and v10's formula added no
+demonstrated operational benefit. Exact v9/v10 policy bytes and all outputs are
+retained.
+
+V11 restored the v8 urgency formula and conservative review gate while retaining
+the explicit assessment-v2 impact anchors. Its one declared delivery completed
+in 21 sends, generated the current root artifact and received 54 pass, 9
+`needs_review`, 0 fail from the primary AI-only reviewer. This supports a
+provisional delivery decision, not version-reliability: v11 has not completed
+the multi-repeat clean-freeze protocol defined by this document.
 
 ## 7. Interpretation and limitations
 

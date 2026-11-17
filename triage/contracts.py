@@ -24,7 +24,7 @@ class TriageError(RuntimeError):
             "attempts": self.attempts,
             "published_output": False,
         }
-        if self.execution_mode == "copilot_experiment":
+        if self.execution_mode in {"copilot_experiment", "copilot_delivery"}:
             result.update(execution_mode=self.execution_mode, acceptance_eligible=False,
                           attempt_accounting_unit="application_sends_http_attempts_unknown")
         return result

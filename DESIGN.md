@@ -4,17 +4,19 @@
 
 This prototype turns 21 supplied inspection findings into draft maintenance
 tickets. It has a tested implementation, controlled knowledge lifecycle,
-code-derived urgency and retained real-model experiments. It does **not** yet have
-an acceptance-eligible root `tickets.json`. The best Copilot review result was not
-reproduced by the next model: two later reviews each failed at 60/63. Every draft
-still requires human approval.
+code-derived urgency, retained real-model experiments and a generated root
+`tickets.json` covering all 21 findings. The artifact passes the deterministic
+output contract but is **not acceptance-eligible**: semantic assessment remains
+`needs_review` at 54/63 with zero fail, human approval is outstanding, and clean-checkout
+reproduction has not been run. Every draft still requires human approval.
 
 | Panel question | Current answer |
 |---|---|
 | Can it generate the required structure? | Yes in offline tests and real experiments; malformed and schema-invalid responses were observed and regenerated once or failed closed. |
-| Does it use the supplied engineering context? | The complete bounded source package, registry and maintained knowledge are hash-pinned and captured; causal knowledge influence remains unproven. |
+| Does it use the supplied engineering context? | The complete bounded source package, registry and maintained knowledge are hash-pinned and captured. Reference-1.3 B02 provides a bounded causal-influence and negative-control pass; general domain correctness remains unproven. |
 | Is urgency model-authored? | No. The model proposes L/I and facts; code computes urgency and applies traceable rules. |
-| Is it submission-ready? | No. The strict final-provider route has not produced an accepted frozen-v8 batch, and root `tickets.json` is absent. |
+| Is the required file present? | Yes. Root `tickets.json` contains exactly 21 system-generated drafts and passes the deterministic contract. |
+| Is it submission-ready? | The required draft file exists. V11 primary AI review is 54/63 with nine review-routed judgments and zero fail; the receipt remains non-eligible and human approval is mandatory. Actual Copilot USD allocation is unknown, while a disclosed equivalent OpenAI API estimate is about US$2.37. |
 
 The ordered rationale from requirements through reliability measurement is in
 [`docs/README.md`](docs/README.md); evidence status and limitations are indexed in
@@ -64,11 +66,11 @@ a separately billed OpenAI/Azure API, while keeping orchestration, validation an
 policy independent of Copilot.
 
 This was an economic development choice, not a claim that Copilot inference is
-free or delivery-equivalent. Subscription cost and quotas are real, hidden HTTP
-attempts and per-run USD allocation are unavailable, and another reviewer may
-not share the entitlement. The strict route therefore remains direct Azure where
-SDK retries can be disabled and attempts are ledgered. The adapter boundary made
-that route change possible without rewriting the triage workflow.
+free or equivalent to a fully observable direct route. Subscription cost and
+quotas are real, hidden HTTP attempts and per-run USD allocation are unavailable,
+and another reviewer may not share the entitlement. The final draft uses the
+explicit `copilot_delivery` mode: application sends are bounded and audited, but
+strict transport accounting remains unestablished and acceptance remains false.
 
 ## Architecture and responsibility boundary
 
@@ -177,11 +179,19 @@ correct.
 | Later pre-v8 gpt-6.1 retry | 21 contract-valid tickets in 23 sends; two separate calibrated AI-only reviews each failed at 60/63 | The earlier gpt-6 63/63 result is best-of-several evidence, not stable quality |
 | Direct Azure v5, 21 findings | 24 requests produced 21 contract-valid tickets; semantic gate still failed despite 60/63 reviewed dimensions | Structural success is insufficient |
 
-The Azure experiment used 1,289,873 prompt tokens, 45,878 completion tokens and
+The historical Azure experiment used 1,289,873 prompt tokens, 45,878 completion tokens and
 16,474 reasoning tokens. Reported cache reuse was small relative to cache writes;
-USD cost remains unknown because no deployment tariff was captured. Therefore the
-brief's "low enough to reproduce" cost expectation is not yet evidenced; unknown
-cost is not treated as zero or as a pass.
+its USD cost remains unknown because no deployment tariff was captured.
+
+The current Copilot delivery provides a simpler reproducibility estimate. It
+completed 21 application sends in 635.64 seconds (about 10m36s), with median
+send latency 29.45 seconds and maximum 37.36 seconds. Receipts report 983,821
+input tokens and 40,200 output tokens. Pricing all input at $2/M and output at
+$10/M using OpenAI's 2026-11-17 standard short-context `gpt-6.1-sol` table gives
+an illustrative **US$2.37**. This intentionally ignores cache discounts and is
+not the actual Copilot subscription charge. Exact assumptions and the pricing
+URL are retained in
+`eval\results\triage\v8-reliability\delivery-cost-latency.json`.
 
 ## B. Knowledge, context and maintenance
 
@@ -222,10 +232,14 @@ python -B -m triage_knowledge --store knowledge\source-first publish `
 
 The returned `knowledge_version` must be reviewed and pinned in a **new**
 activation identity and fresh run configuration; activation remains separate
-from knowledge publication. The existing
-`config\triage-activation-v8.json` has invalid review provenance and is not a
-freeze-ready target. The prototype does not yet provide a dedicated
-activation-approval CLI.
+from knowledge publication. `config\triage-activation-v11.json` records the
+post-experiment policy decision and two bounded critical reviews. The prototype
+still does not provide a dedicated activation-approval CLI.
+
+The current root `tickets.json` was generated with that activation and the
+prospectively pinned v11 delivery configuration. This closes the earlier
+activation-provenance gap for the recorded run, but not the separate
+clean-checkout reproduction or human-approval gates.
 
 ## C. Urgency derivation and observed stability
 
@@ -288,14 +302,24 @@ with unknown POB comparison activates `P-EVACUATION`, not the supplied
 | Floors changed the base result | Only F-1001 and F-1005 |
 | Targeted review flag | 21/21 true |
 | Azure v5 versus pre-v8 policy-v5 Copilot urgency band | 19/21 the same; F-1007 and F-1014 differed |
+| Current v11 root urgency | 19/21 at 7-10; distribution is U4=1, U5=1, U7=6, U8=6, U9=7 |
+| Current v11 root review flag | 20/21 true |
 
 The concentration is driven mainly by high model impact assessments rather than
-floors, but code-owned ceiling also matters: eight raw weighted values between
-integer points round upward, and five 8.3 cases enter the today band. The 19/21
-cross-run agreement is encouraging but is not a controlled model benchmark
-because provider, model and policy revisions differ. The 21/21 review rate also
-means the targeted flag currently carries little discriminating information
-beyond global human approval.
+floors. V9 attempted to make review selective and v10 attempted an interaction
+formula; both were rejected after semantic failures and no demonstrated
+prioritisation benefit. V11 deliberately accepts a saturated conservative review
+gate because material uncertainty must remain visible. The flag is therefore a
+safety gate, not a workload-ranking mechanism.
+
+The current root artifact confirms rather than resolves this calibration risk.
+Code sets `review_required` whenever any policy rule exists; 62 generic
+`P-SAFETY-UNKNOWN` rule instances therefore help saturate the flag. F-1016
+(in-date PSV with an illegible tag, U7) and F-1019 (unquantified dropped-object
+exposure, U8) are explicit challenge cases. The candidate did not tune policy
+after seeing the final artifact. The retained adjudication accepts the file as a
+review-routed draft, not as proof that 19 findings objectively require
+week-or-faster handling.
 
 Controlled repeats show the remaining semantic variance. Before policy v4,
 F-1016 changed from U7 to U6 and crossed from this-week to this-month. A later
@@ -349,17 +373,20 @@ they are not presented as untouched blind-test findings.
 
 ## Submission gap and ordered next work
 
-1. Produce and review an acceptance-eligible frozen-v8 root `tickets.json`.
+1. Perform semantic and human review of the generated root `tickets.json`; either
+   restore and commit the exact generating workflow or regenerate from a clean,
+   approved frozen identity so the result is reproducible.
 2. Calibrate impact anchors, precaution thresholds and targeted review with a
    domain owner, especially the low-consequence weekly cases.
 3. Demonstrate a PSV knowledge change with a controlled ablation.
 4. Add hash-pinned per-finding resume without weakening atomic final publication.
-5. Reduce repeated context cost and capture a tariff-qualified USD estimate.
+5. Reduce repeated context cost and, if available, capture actual Copilot billing
+   rather than relying on the disclosed US$2.37 equivalent-API estimate.
 6. Repeat controlled stability experiments on held-out or independently
    reviewed cases.
 
 The strongest demonstrated claim is narrow: **model behavior varied, including
 real malformed and schema-invalid output; deterministic controls made those
 failures traceable, bounded and fail-closed.** The prototype is technically
-substantial, but final semantic acceptance and the required deliverable are still
-open.
+substantial, and the required file now exists. Final semantic acceptance and
+reproducible delivery provenance remain open.

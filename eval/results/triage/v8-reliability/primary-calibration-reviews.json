@@ -1,0 +1,54 @@
+{
+  "reference_version": "1.3",
+  "reviewer": {
+    "kind": "ai_only",
+    "provider": "GitHub Copilot CLI",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "high",
+    "role": "primary_semantic_reviewer",
+    "independent_of_generation": true,
+    "domain_expert_claimed": false
+  },
+  "judgments": [
+    {
+      "probe_id": "A04-FW-HEALTHY",
+      "dimension": "grounding",
+      "verdict": "fail",
+      "reason": "F-1003 records pump B failing its first start and recovering on retry. Its paired finding F-1017 records pump A at 9.2 barg against 11 barg design, with flow unmeasured. This contradicts the ticket's full-design-pressure claim and does not establish a healthy, capable standby. The domain redundancy rule requires checking the partner and disallows crediting healthy redundancy when both legs have findings. The low-impact rationale and routine urgency therefore rest on a false premise.",
+      "evidence": [
+        {
+          "field": "summary",
+          "quote": "Firewater pump B failed its first start but recovered on retry; pump A is confirmed healthy, preserving full N+1 protection."
+        },
+        {
+          "field": "impact_of_failure.rationale",
+          "quote": "Pump A is confirmed healthy and delivers full design pressure, so the pair retains healthy N+1 redundancy."
+        },
+        {
+          "field": "urgency.rationale",
+          "quote": "Routine planning is adequate because a healthy standby preserves protection."
+        }
+      ]
+    },
+    {
+      "probe_id": "A04-PSV-LABEL",
+      "dimension": "grounding",
+      "verdict": "fail",
+      "reason": "F-1016 reports an illegible corroded certification label, verifies March 2025 recertification remains in date, and describes the valve's physical condition as fine. These observations do not establish failure of the relief function. Under the domain distinction between likelihood of functional failure and consequence if failure occurs, label illegibility cannot justify confirmed inability to relieve, likelihood 10 on that basis, or an urgency rationale asserting confirmed loss of relief. In-date certification does not itself prove functional capability either; the ticket must not invent a confirmed failure.",
+      "evidence": [
+        {
+          "field": "summary",
+          "quote": "PSV-3420 is confirmed unable to relieve overpressure because its certification label is illegible."
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "The illegible certification label proves the valve cannot perform its relief function."
+        },
+        {
+          "field": "urgency.rationale",
+          "quote": "Confirmed loss of the relief function requires immediate attention."
+        }
+      ]
+    }
+  ]
+}

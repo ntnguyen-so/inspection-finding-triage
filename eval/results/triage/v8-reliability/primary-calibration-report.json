@@ -1,0 +1,17 @@
+{
+  "scope": "known_fixture_conformance",
+  "reference_version": "1.3",
+  "review_provenance": {
+    "kind": "ai_only",
+    "provider": "GitHub Copilot CLI",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "high",
+    "role": "primary_semantic_reviewer",
+    "independent_of_generation": true,
+    "domain_expert_claimed": false
+  },
+  "calibration_status": "pass",
+  "wrong_fixture_judgments": [],
+  "pending": [],
+  "limitation": "Checks these seeded contradictions only; not arbitrary semantic truth or a system result."
+}

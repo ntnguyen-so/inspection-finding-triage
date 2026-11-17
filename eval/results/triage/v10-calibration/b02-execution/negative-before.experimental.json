@@ -1,0 +1,27 @@
+{
+  "generated_at": "2026-11-17T09:12:17.962266+00:00",
+  "tickets_generated": 1,
+  "tickets": [
+    {
+      "ticket_id": "TKT-1016",
+      "finding_id": "F-1016",
+      "equipment_id": "PSV-3420",
+      "summary": "PSV-3420's corroded tag obscures certification identity, but the valve is in date and physically satisfactory; no impairment is indicated, although relief failure would remove compressor-discharge overpressure protection.",
+      "recommended_action": "Replace the illegible tag after matching valve identity to its certificate; verify replacement details and legibility. Retain the two-year pop-test cycle under integrity engineering review. Review relief scenario and personnel exposure.",
+      "likelihood_of_failure": {
+        "score": 2,
+        "rationale": "The assessed function is compressor-discharge overpressure relief. In-date recertification, satisfactory observed valve condition and the engineer's satisfactory operating account support little indication of near-term function loss. Corrosion affects the label, not demonstrably the valve."
+      },
+      "impact_of_failure": {
+        "score": 7,
+        "rationale": "Failure of compressor-discharge overpressure relief would remove the stated protection against discharge overpressure, creating a credible pressure-containment hazard. No redundant relief device is listed. This supports a severe consequence path, but the actual relief scenario and exposure are insufficiently detailed to justify an extreme band. Label replacement cost does not define this consequence."
+      },
+      "urgency": {
+        "score": 7,
+        "rationale": "triage-policy-v10: ceil((5*I+2*L+3*sqrt(I*L))/10), L=2, I=7, base=6, final=7. P-SAFETY-UNKNOWN (precautionary_policy): The compressor-discharge relief scenario, other independent protection and personnel exposure are unspecified. These limit consequence precision, not the evidence supporting a tag-only defect with retained valve capability. Sources: equipment:PSV-3420:service_description, equipment:PSV-3420:redundancy, finding:F-1016:finding_description. R-SCE (review): SCE draft requires integrity-engineer review; SCE status alone adds no floor. Sources: registry SCE flag."
+      },
+      "review_required": true,
+      "review_reason": "P-SAFETY-UNKNOWN (precautionary_policy): The compressor-discharge relief scenario, other independent protection and personnel exposure are unspecified. These limit consequence precision, not the evidence supporting a tag-only defect with retained valve capability. Sources: equipment:PSV-3420:service_description, equipment:PSV-3420:redundancy, finding:F-1016:finding_description. R-SCE (review): SCE draft requires integrity-engineer review; SCE status alone adds no floor. Sources: registry SCE flag."
+    }
+  ]
+}

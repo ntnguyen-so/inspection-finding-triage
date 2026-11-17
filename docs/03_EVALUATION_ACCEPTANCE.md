@@ -108,13 +108,15 @@ only in an isolated knowledge input, with artificial values labelled synthetic.
 **Failure.** No intended decision change, uncontrolled context differences or an
 uncalibrated negative control.
 
-**Current status.** Retained v1.2 B02 evidence is failed/inconclusive: the
+**Current status.** Retained v1.2 B02 evidence remains failed/inconclusive: the
 likelihood-only overlay left impact unsupported, so both positive cases were
 unassessable and no complete strict L/I draft existed to compare. The negative
 controls remained unchanged. Reference v1.3 is a test-informed correction that
 adds the same synthetic impact 3 to both policies while likelihood varies from 6
-to 8. B02 has not been rerun under v1.3; the correction must not be reported as
-knowledge effectiveness.
+to 8. The v1.3 rerun completed all four conditions: the positive changed
+L6/I3→L8/I3 and calibrated semantic review confirmed both unchanged tag-only
+negative controls excluded the synthetic passing rule. This is a bounded pass
+for influence and isolation, not production knowledge correctness.
 
 ### B03 — Maintenance path
 
@@ -220,6 +222,12 @@ application-send pass. Unknown price also remains unknown.
 Passing `eval.validate` proves artifact consistency only. A complete delivery
 also requires the generated root `tickets.json`, successful declared route and
 applicable semantic evidence.
+
+The current root artifact satisfies the file-presence and deterministic-contract
+parts of that statement. It does not satisfy the remaining parts: its assessor
+status is `needs_review`, human approval is pending, the receipt is
+`acceptance_eligible=false`, and the declared generating workflow hash differs
+from current `main`.
 
 ## 7. Reviewer and reference policy
 

@@ -1,7 +1,8 @@
 # Fail-Closed Triage Workflow
 
-> **Document status:** current workflow rationale. Deterministic controls are
-> implemented and tested; semantic quality and final delivery remain unresolved.
+> **Document status:** current workflow rationale. Deterministic controls and a
+> v11 root delivery are demonstrated; semantic review remains provisional and
+> human approval is required.
 
 ## Abstract
 
@@ -171,7 +172,9 @@ excluded.
 Full bounded context was chosen because the supplied corpus is small and
 relationship-heavy. This avoids unsupported top-k assumptions, but it has a
 measured token cost and does not prove that the model used every relevant item.
-The B02 influence experiment remains failed/inconclusive.
+The reference-1.3 B02 influence experiment is a bounded pass for the declared
+synthetic positive and negative-control scope; it is not production domain
+certification.
 
 ## 6. Complete-batch publication
 
@@ -202,8 +205,8 @@ There are three valid outcomes:
 specific check beyond the global approval required for every draft. No output
 authorizes maintenance, shutdown or work-order creation.
 
-The current retained Copilot artifact sets `review_required` on all 21 tickets
-and places 19 at urgency 7-9. That is honest evidence of weak discrimination,
+The current root Copilot artifact sets `review_required` on 20/21 tickets and
+places 19 at urgency 7-10. That is honest evidence of weak discrimination,
 not a success metric. `R-SCE` guarantees targeted review for every SCE, so the
 flag currently adds little beyond global human approval. F-1016 (an illegible
 tag on a recently recertified PSV) and F-1019 (loose cladding with no process
@@ -217,11 +220,16 @@ additional check and recalibrate impact anchors on those lower-consequence cases
 |---|---|---|
 | Schema, identity, bounded repair, exhaustion and atomic publication | Deterministic fault and behavior demonstrations | **D-pass** for stated control behavior |
 | Urgency range, monotonicity, corners and fact-state rules | Regression and 100-cell grid checks | **D-pass** for implemented policy; not calibrated truth |
-| Knowledge/context delivery | Captured provider-bound context and source integration checks | **D-pass** for delivery; influence unproven |
+| Knowledge/context delivery | Captured provider-bound context, source integration checks and reference-1.3 B02 | **D-pass** for delivery; bounded causal-influence/isolation pass |
 | Pre-v8 policy-v5 Copilot all-21 at `235bdd1` | One gpt-6 batch reviewed 63/63 | **Provisional**, selected and non-eligible |
 | Later pre-v8 gpt-6 X01 pair at `4debeba` | Both generations completed; semantic reviews were 38/39 and 37/39 | **Fail**; matching-model stability gate not closed |
 | Later gpt-6.1 all-21 | First run failed; retry failed two AI-only reviews at 60/63 | **Fail**, contradicting stable-quality claims |
 | Strict Azure delivery | Latest applicable route failed closed | **Fail/pending**; no accepted root output |
+| V8 Copilot reliability series | Three all-21 batches completed in 21/23/21 sends; bands 21/21 stable, review flags 20/21 stable | **Controlled dirty-worktree observation**; primary reviews retain 9/4/3 pending dimensions and sensitivity disagreement |
+| V9/v10 calibration | Four all-21 runs completed; all semantic reviews failed mandatory uncertainty routing; v10 added no demonstrated prioritisation benefit | **Rejected**, retained as negative evidence |
+| V11 Copilot root delivery | Published all 21 tickets in 21 sends; deterministic assessor contract passed; primary review 54 pass, 9 pending, 0 fail | **Provisional**; zero-fail gate passed, human approval pending, receipt non-eligible and clean reproduction unresolved |
+| V11 delivery cost/time | 688.11 s wall clock; 986,488 input and 39,404 output tokens | Actual Copilot USD unknown; simple equivalent OpenAI API estimate **US$2.37** under documented assumptions |
+| V8 output adjudication | F-1010/F-1019 adjacent impact scores remain review-routed; repeat-2 F-1013 issue is absent from the root action | **Honest deferral**; no hand correction or post-result policy tuning |
 | Human/domain certification | Not performed | **Not run** |
 
 The evidence authority is `eval\results\README.md`. Test counts, evaluator
@@ -239,9 +247,9 @@ development repeat changed one finding from weekly to monthly routing, and the
 floor was added to protect the supplied low-L/high-I corner. This provenance is
 why the policy is labelled candidate-owned and uncalibrated.
 
-Pre-freeze `v8verify-*` and `v8r1` observations cannot become measured v8
-reliability evidence after the fact. The prospective measurement authority is
-`docs\07_VERSION_RELIABILITY_PROTOCOL.md`.
+The v8 series is reported as controlled dirty-worktree evidence, not silently
+promoted to a clean frozen-study pass. The measurement authority and remaining
+provenance limitation are in `docs\07_VERSION_RELIABILITY_PROTOCOL.md`.
 
 ## 10. Assumptions and limitations
 

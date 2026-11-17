@@ -68,11 +68,11 @@ class RunConfig:
         require(type(self.phase_attempt_budget) is int and self.phase_attempt_budget > 0,
                 "configuration", "Positive phase attempt budget required")
         require(nonblank(self.attempt_ledger), "configuration", "Persistent phase ledger required")
-        require(self.execution_mode in {"strict", "copilot_experiment"},
+        require(self.execution_mode in {"strict", "copilot_experiment", "copilot_delivery"},
                 "configuration", "Unknown inference execution mode")
-        if self.execution_mode == "copilot_experiment":
+        if self.execution_mode in {"copilot_experiment", "copilot_delivery"}:
             require(Path(self.attempt_ledger).name.lower().endswith(".experimental-ledger.json"),
-                    "configuration", "Copilot experiments require a separate .experimental-ledger.json")
+                    "configuration", "Copilot runs require a separate .experimental-ledger.json")
         require(type(self.max_context_bytes) is int and self.max_context_bytes > 0,
                 "configuration", "Positive context byte limit required")
         require(type(self.timeout_seconds) in {int, float}
@@ -291,7 +291,7 @@ def checked_copilot_receipt(receipt: dict, model: str, system: str, user: str) -
 
 def reserve_attempt(path: Path, budget: int, token: str, execution_mode: str = "strict") -> None:
     initial = {"budget": budget, "reservations": []}
-    if execution_mode == "copilot_experiment":
+    if execution_mode in {"copilot_experiment", "copilot_delivery"}:
         initial["execution_mode"] = execution_mode
     ledger = strict_json(path.read_text(encoding="utf-8")) if path.exists() else initial
     require(isinstance(ledger, dict) and set(ledger) == set(initial)
@@ -327,8 +327,9 @@ async def run_workflow(
     *, purpose: str = "normal", overlay_ref: dict | None = None,
 ) -> dict:
     output, evidence = output.resolve(), evidence.resolve()
+    copilot = config.execution_mode in {"copilot_experiment", "copilot_delivery"}
     experimental = config.execution_mode == "copilot_experiment"
-    entries_key = "application_sends" if experimental else "attempts"
+    entries_key = "application_sends" if copilot else "attempts"
     report = {
         "run_status": "running", "published_output": False, "policy_version": POLICY_VERSION,
         "started_at": datetime.now(timezone.utc).isoformat(), "config": asdict(config),
@@ -338,11 +339,13 @@ async def run_workflow(
         "semantic_status": "not_reviewed", "human_approval": "required_outside_generation",
         "output_path": str(output),
     }
-    if experimental:
+    if copilot:
         report.update(acceptance_eligible=False, strict_attempt_contract="not_established",
                       http_attempts=None, usd_cost=None, output_token_cap=None,
-                      knowledge_review="ai_assisted_experiment_only_not_human_or_expert_approval",
+                      knowledge_review="ai_assisted_not_human_or_expert_approval",
                       attempt_accounting_unit="application_sends_http_attempts_unknown")
+        if not experimental:
+            report["delivery_route_declared"] = True
     active, attempts = None, 0
     owned_evidence = False
     temporary: Path | None = None
@@ -412,7 +415,7 @@ async def run_workflow(
         tickets = []
         async with provider_factory() as provider:
             configuration = provider.configuration()
-            if experimental:
+            if copilot:
                 report["catalog_model"] = copilot_preflight(provider, config)
             else:
                 require(isinstance(configuration, dict)
@@ -476,13 +479,13 @@ async def run_workflow(
                     save_json(evidence / "run.json", report)
                     try:
                         last_dispatch = time.monotonic()
-                        async with asyncio.timeout(config.timeout_seconds + (20 if experimental else 0)):
+                        async with asyncio.timeout(config.timeout_seconds + (20 if copilot else 0)):
                             response = await provider.generate(request)
                         require(isinstance(response, InferenceResponse),
                                 "provider_contract", "Provider returned an invalid response object")
                         entry["receipt"] = response.receipt
                         entry["response"] = response.text
-                        if experimental:
+                        if copilot:
                             checked_copilot_receipt(response.receipt, config.model, system, user)
                         else:
                             checked_receipt(response.receipt)
@@ -557,7 +560,7 @@ async def run_workflow(
                         if isinstance(error, InferenceError):
                             entry["receipt"] = error.receipt
                             if code in RECOVERABLE:
-                                if experimental:
+                                if copilot:
                                     checked_copilot_receipt(error.receipt, config.model, system, user)
                                 else:
                                     checked_receipt(error.receipt)
@@ -598,6 +601,10 @@ async def run_workflow(
                 "tickets_generated": len(tickets), "semantic_status": "not_reviewed"}
         if experimental:
             result.update(run_status="experimental_draft_generated", acceptance_eligible=False,
+                          execution_mode=config.execution_mode, http_attempts=None,
+                          application_send_count=len(report[entries_key]))
+        elif copilot:
+            result.update(delivery_eligible=True, acceptance_eligible=False,
                           execution_mode=config.execution_mode, http_attempts=None,
                           application_send_count=len(report[entries_key]))
         return result

@@ -1,0 +1,66 @@
+{
+  "schema": "triage-v11-delivery-summary-v1",
+  "policy_version": "triage-policy-v11",
+  "assessment_policy": "triage-assessment-v2",
+  "output": {
+    "path": "tickets.json",
+    "sha256": "641c8ee358544d562267e40b215ed2bdbe3f2221259437783156a90d889b9694",
+    "tickets": 21,
+    "contract_status": "pass",
+    "application_sends": 21,
+    "published": true,
+    "delivery_eligible": true,
+    "acceptance_eligible": false
+  },
+  "runtime": {
+    "elapsed_seconds": 688.11,
+    "median_send_seconds": 33.391,
+    "maximum_send_seconds": 39.016
+  },
+  "usage": {
+    "input_tokens": 986488,
+    "output_tokens": 39404,
+    "cache_read_tokens": 245811,
+    "cache_write_tokens": 740614,
+    "reasoning_tokens": 7062,
+    "copilot_usage_units": 21.0,
+    "actual_usd": "unknown",
+    "illustrative_openai_equivalent_usd": 2.367016,
+    "assumption": "US$2/M input and US$10/M output, all input priced uncached; not a Copilot invoice."
+  },
+  "behavior": {
+    "urgency_distribution": {"4": 1, "5": 1, "7": 6, "8": 6, "9": 7},
+    "urgency_7_to_10": 19,
+    "review_required": 20
+  },
+  "primary_semantic_review": {
+    "status": "needs_review",
+    "pass": 54,
+    "needs_review": 9,
+    "fail": 0,
+    "zero_fail_gate": "pass",
+    "pending": [
+      "F-1003 planning",
+      "F-1005 planning",
+      "F-1009 grounding",
+      "F-1009 planning",
+      "F-1011 planning",
+      "F-1013 planning",
+      "F-1015 planning",
+      "F-1017 planning",
+      "F-1018 planning"
+    ]
+  },
+  "selection": {
+    "retained": "Assessment-v2 evidence thresholds, v8 urgency formula, conservative bool(rules) review gate.",
+    "rejected": "V9 selective review routing and v10 interaction urgency formula.",
+    "b02": "Bounded pass under the frozen v10 runtime; knowledge and assessment policy are unchanged in v11."
+  },
+  "limitations": [
+    "Human approval has not occurred.",
+    "The run is a dirty-worktree hash-pinned observation, not clean-checkout reproduction.",
+    "Semantic review is AI-only and not domain certification.",
+    "Hidden HTTP attempts and actual Copilot USD allocation are unknown.",
+    "Review routing remains saturated and is a conservative safety gate, not a workload-ranking mechanism."
+  ]
+}

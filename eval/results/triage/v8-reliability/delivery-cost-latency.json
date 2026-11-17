@@ -1,0 +1,45 @@
+{
+  "schema": "triage-delivery-cost-latency-v1",
+  "artifact_sha256": "b564e22df26166de4218a525d003128e948c9f0aa51d7c73ae914d5c5897b9ed",
+  "provider_route": "GitHub Copilot subscription",
+  "model": "gpt-6.1-sol",
+  "observed": {
+    "application_sends": 21,
+    "wall_clock_seconds": 635.640000000014,
+    "per_send_seconds": {
+      "minimum": 22.42200000002049,
+      "median": 29.45299999997951,
+      "maximum": 37.35899999999674,
+      "sum": 623.3600000000442
+    },
+    "usage_receipt_totals": {
+      "inputTokens": 983821,
+      "outputTokens": 40200,
+      "cacheReadTokens": 244719,
+      "cacheWriteTokens": 739039,
+      "reasoningTokens": 7291,
+      "cost": 21.0
+    },
+    "actual_usd_cost": null,
+    "actual_cost_limitation": "Copilot subscription allocation and hidden provider HTTP attempts are not exposed. Receipt cost=21.0 is a provider usage unit, not USD."
+  },
+  "illustrative_openai_api_estimate": {
+    "status": "assumption_not_actual_copilot_charge",
+    "pricing_source": "https://developers.openai.com/api/docs/pricing",
+    "pricing_retrieved_at": "2026-11-17",
+    "pricing_tier": "Standard, short context, gpt-6.1-sol",
+    "input_usd_per_million_tokens": 2.0,
+    "output_usd_per_million_tokens": 10.0,
+    "method": "Simple conservative calculation requested for reviewer readability: price every reported input token at the standard input rate and every reported output token at the standard output rate. Do not apply cache discounts or separate cache-write prices; assume reported outputTokens already cover billable reasoning output.",
+    "input_component_usd": 1.967642,
+    "output_component_usd": 0.402,
+    "estimated_total_usd": 2.369642,
+    "rounded_reviewer_value_usd": 2.37,
+    "limitations": [
+      "This is an equivalent direct-API estimate, not the Copilot invoice.",
+      "Regional, Fast, Batch, long-context and subscription pricing are excluded.",
+      "Each observed request was below the published 272K long-context threshold."
+    ]
+  },
+  "interpretation": "Under the stated simplifying assumption, one 21-ticket run is approximately USD 2.37 and completes in about 10 minutes 36 seconds. This supports low reproducibility cost as an estimate, not an observed cash charge."
+}

@@ -117,8 +117,9 @@ and report decision/reviewer variance without a composite score.
 evaluation contract, component identities and workflow are fixed. Historical
 development runs cannot be promoted retrospectively.
 
-**Output/gate:** a prospective measurement protocol. The frozen-v8 measured
-result remains **not run**.
+**Output/gate:** a prospective measurement protocol plus a completed,
+hash-pinned dirty-worktree observation. The clean-freeze/reproduction result is
+**inconclusive**, not all-green.
 
 ## Where the actual chronology deviated
 
@@ -131,8 +132,10 @@ development occurred once in seven perfect phases:
   correction;
 - the `P-SCE-HIGH-IMPACT` floor was added after a development stability failure
   crossed the weekly/monthly urgency boundary; and
-- the reliability protocol was written after local `v8r1`-`v8r3` runs had
-  started, so it excludes those runs from measured frozen-v8 evidence.
+- the detailed reliability protocol prose was finalized after the local
+  `v8r1`-`v8r3` series, while the machine-readable run order, hashes, budget and
+  no-tuning rule were recorded before sends; the result is therefore useful
+  controlled evidence but not a committed clean-freeze study.
 
 These deviations are evidence of iteration, not erased history. The numbered
 order shows how a reviewer should reason about the final design and which

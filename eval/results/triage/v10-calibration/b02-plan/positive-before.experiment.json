@@ -1,0 +1,56 @@
+{
+  "contract": "triage-isolated-probe-v1",
+  "experiment_id": "B02-PSV-maintenance",
+  "input_kind": "evaluation_input",
+  "findings_sha256": "6df563e35a6067d6a45ec07e9314bc33d87615173ff9e6ddc7cf6f8fa71d6d49",
+  "registry_sha256": "43217a483b9ff1da80d7604b9860c0a6ac33817cb949e852234291b7b63bf0b8",
+  "assessment_policy": {
+    "authority": "Document 05 section 4; approved prototype ordinal anchors, not calibrated probabilities.",
+    "bands": [
+      {
+        "impact": "Appearance, housekeeping or similarly limited low-energy consequence without a supported injury or functional-loss path.",
+        "likelihood": "Little supported indication of near-term function loss; supported margin/service state matters.",
+        "maximum": 2,
+        "minimum": 1
+      },
+      {
+        "impact": "Localized recoverable consequence with supported containment, limited exposure or justified functional alternatives.",
+        "likelihood": "Credible limited degradation with supported margin, without strong progression evidence.",
+        "maximum": 4,
+        "minimum": 3
+      },
+      {
+        "impact": "Material operational or personnel consequence where severe exposure, scale or protection loss is not established.",
+        "likelihood": "Active degradation or meaningful precursor; near-term progression uncertain.",
+        "maximum": 6,
+        "minimum": 5
+      },
+      {
+        "impact": "Specific supported severe consequence path, delayed integrity threat or major-accident exposure, accounting for actual protection.",
+        "likelihood": "Strong progression, advanced damage or recurrent functional interruption.",
+        "maximum": 8,
+        "minimum": 7
+      },
+      {
+        "impact": "Extreme consequences supported by the actual scenario, not merely an SCE label, generic hazard possibility, missing mitigation or repair cost.",
+        "likelihood": "Direct evidence of imminent loss; a confirmed failed required function belongs at this top end.",
+        "maximum": 10,
+        "minimum": 9
+      }
+    ],
+    "confirmed_required_function_failure_minimum": 9,
+    "impact_definition": "Consequence if that failure occurs; credit only available and capable redundancy.",
+    "likelihood_definition": "Near-term failure of the assessed item's required function.",
+    "priors": "Reliability runs inversely to likelihood; criticality is only an impact prior. Neither is an answer.",
+    "uncertainty": "Do not inflate scores to obtain human attention. Missing evidence neither proves safety nor supplies the exposure, scale or protection-loss evidence required for a higher consequence band. Select the highest adjacent band directly supported by known facts and route unresolved decision modifiers to review. Unsupported required scores mean inability.",
+    "version": "triage-assessment-v2",
+    "isolated_experiment": {
+      "experiment_id": "B02-PSV-maintenance",
+      "scope": "Testing-only artificial policy diagnostic, not engineering calibration.",
+      "policy_version": "probe-A",
+      "rule_id": "PROBE-PSV-SEAT-PASSING",
+      "text": "Testing-only diagnostic convention, not an engineering calibration: for pressure safety valve findings with observed seat passing below set pressure, assign likelihood_of_failure.score 6 and impact_of_failure.score 3. These fixed probe scores take precedence for this synthetic experiment only. Do not apply to tag-only defects without passing evidence."
+    }
+  },
+  "assessment_policy_sha256": "12d2f3c22d095cebb14c357a0feec481f546a8a1ef4d98e61e6fbbad846b4176"
+}

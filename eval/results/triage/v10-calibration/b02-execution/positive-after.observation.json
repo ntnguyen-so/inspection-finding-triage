@@ -1,0 +1,15 @@
+{
+  "status": "draft_generated",
+  "receipt": {
+    "run_status": "experimental_draft_generated",
+    "published_output": true,
+    "output": "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\v10-calibration\\b02-execution\\positive-after.experimental.json",
+    "output_sha256": "9957e364fdcf59ec0166347f9cd09e739a347b6427028969874ca2c24b0be2da",
+    "tickets_generated": 1,
+    "semantic_status": "not_reviewed",
+    "acceptance_eligible": false,
+    "execution_mode": "copilot_experiment",
+    "http_attempts": null,
+    "application_send_count": 1
+  }
+}

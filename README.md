@@ -10,13 +10,27 @@ Output: one fail-closed, atomically published `tickets.json` of draft tickets fo
 
 - **Built:** implementation, deterministic tests, system design and curated
   model-run evidence.
-- **Missing:** a system-generated root `tickets.json`; this is not a final
-  accepted delivery.
-- **Why:** the strict provider route has not completed an accepted v8 batch.
-  One pre-v8 policy-v5 gpt-6 experiment reviewed 63/63, but a later pre-v8
-  gpt-6.1 retry
-  reviewed 60/63 twice. The former also flags all 21 tickets for targeted review
-  and puts 19 at urgency 7-9, so quality and discrimination are unresolved.
+- **Generated:** root `tickets.json` contains all 21 findings and passes the
+  deterministic output contract. Its SHA-256 is
+  `641c8ee358544d562267e40b215ed2bdbe3f2221259437783156a90d889b9694`.
+- **Still provisional:** the v11 primary AI reviewer reports 54 pass, 9
+  `needs_review`, 0 fail across 63 dimensions. The declared zero-fail delivery
+  gate passed; human approval remains mandatory and
+  `acceptance_eligible=false`.
+- **Calibration observed:** two v9 and two v10 all-21 runs were retained and
+  rejected. Their reduced review routing violated the material-uncertainty
+  contract; v10 added formula complexity without reducing urgency concentration.
+  V11 keeps the explicit impact anchors, restores mandatory review and the
+  original urgency formula. The reference-1.3 B02 probe passed its bounded
+  knowledge-influence and negative-control checks.
+- **Provenance limitation:** the observations are hash-pinned dirty-worktree
+  evidence, not clean-checkout reproduction. Hidden HTTP attempts and actual
+  Copilot USD allocation are unknown. The v11 delivery took 688.11 seconds
+  (about 11m28s). A deliberately simple equivalent OpenAI API estimate is
+  **US$2.37** using the observed token counts and published standard
+  short-context `gpt-6.1-sol` rates; it is an assumption, not the Copilot charge.
+  The file is a real system-generated deliverable, not domain-certified or
+  human-approved.
 
 See `eval\results\README.md` for run-by-run status, accounting and limitations.
 
@@ -27,8 +41,10 @@ See `eval\results\README.md` for run-by-run status, accounting and limitations.
 2. **0:45 — Design:** read `DESIGN.md` for model/code boundaries, knowledge,
    urgency, recovery, deferral and trade-offs; use `docs\README.md` to follow why
    the development process is ordered 01-07.
-3. **2:15 — Behavior and output evidence:** read the historical
-   `eval\results\design-behavior-demonstration.json`, then inspect the pre-v8
+3. **2:15 — Behavior and output evidence:** inspect root `tickets.json`,
+   `eval\results\triage\v11-delivery\primary-assessment.json` and
+   `docs\08_BEHAVIOR_CALIBRATION_STUDY.md`, then read the
+   historical `eval\results\design-behavior-demonstration.json` and the pre-v8
    policy-v5 artifact at
    `eval\results\triage\copilot-gpt6-current-all21\tickets.experimental.json`
    with its `assessment-report.json` and the matching-model X01 failure at
@@ -40,39 +56,33 @@ See `eval\results\README.md` for run-by-run status, accounting and limitations.
 
 ## Install and run
 
-Python 3.11+ and Azure credentials named in `.env.example` are required. The
-command shape below installs the package and performs the billable all-21
-workflow, but it is **not freeze-ready as written**: the current v8 activation
-has invalid review provenance and `config\final-run.json` retains a stale v7
-ledger. A final run must substitute a newly approved activation file and fresh
-run configuration.
+Python 3.11+ and the pinned dependencies in `pyproject.toml` are required. The
+retained root artifact was generated through this reviewed Copilot route:
 
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -e .
 .\.venv\Scripts\python.exe -B -m triage `
-  --provider azure `
+  --provider copilot `
   --findings docs\candidate-pack\candidate-pack\data\inspection_findings.csv `
   --registry docs\candidate-pack\candidate-pack\data\equipment_registry.csv `
   --knowledge-store knowledge\source-first `
-  --activation config\triage-activation-v8.json `
-  --config config\final-run.json `
+  --activation config\triage-activation-v11.json `
+  --config config\triage-delivery-v11.json `
   --output tickets.json `
-  --evidence .delivery-state\panel-final-run `
+  --evidence eval\results\triage\v11-delivery\run-evidence `
   --allow-inference
 ```
 
 The workflow publishes nothing unless every ticket passes deterministic
-validation. Use a fresh evidence directory for each live run.
-
-`config\final-run.json` pins the Azure deployment in its `model` field; the
-`AZURE_OPENAI_DEPLOYMENT` example variable does not override it. A reviewer using
-a different deployment must copy the config and change `model`. On a fresh clone
-the configured ignored ledger path starts empty; in this working checkout the v7
-ledger already has two reservations, so a new run must also use a fresh ledger.
-That is a new run, not reproduction of a recorded model observation. On Windows,
-use a short checkout path because deep synthetic fixture paths can exceed the
-legacy path limit.
+validation. Replay requires copied configuration with fresh evidence and ledger
+paths; reusing the retained paths is invalid. Copilot application sends are
+bounded, but hidden HTTP attempts and actual per-run Copilot USD allocation
+remain unknown. For reproducibility planning only, the v11 delivery's 986,488
+input and 39,404 output tokens imply about **US$2.37** at the OpenAI
+standard short-context `gpt-6.1-sol` rates retrieved on 2026-11-17, pricing every
+input token at the uncached rate. See
+`eval\results\triage\v11-delivery\run-evidence\run.json`.
 
 ## Falkor assessment-criteria map
 

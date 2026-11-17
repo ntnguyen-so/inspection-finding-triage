@@ -33,7 +33,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--evidence", type=Path, required=True, help="New per-run directory")
     parser.add_argument("--provider", choices=("azure", "copilot"), default="azure",
-                        help="Copilot requires execution_mode=copilot_experiment in config")
+                        help="Copilot requires an explicit copilot execution mode in config")
     parser.add_argument("--allow-inference", action="store_true", help="Explicit opt-in to billable inference")
     try:
         args = parser.parse_args(argv)
@@ -54,8 +54,9 @@ def main(argv: list[str] | None = None) -> int:
                 and not any(p.is_relative_to(args.evidence.resolve()) for p in sources),
                 "configuration", "Output/evidence must not overwrite input artifacts")
         config = RunConfig(**strict_json(args.config.read_text(encoding="utf-8")))
-        require((args.provider == "copilot") == (config.execution_mode == "copilot_experiment"),
-                "configuration", "Copilot provider and explicit experiment mode must be selected together")
+        copilot_mode = config.execution_mode in {"copilot_experiment", "copilot_delivery"}
+        require((args.provider == "copilot") == copilot_mode,
+                "configuration", "Copilot provider and an explicit Copilot mode must be selected together")
         require(Path(config.attempt_ledger).resolve() not in sources,
                 "configuration", "Phase ledger must not overwrite input artifacts")
         require(not native or not Path(config.attempt_ledger).resolve().is_relative_to(store),

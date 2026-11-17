@@ -1,0 +1,15 @@
+{
+  "schema": "delivery-generator-source-v1",
+  "source": "exact bytes reconstructed from current files plus the single retained post-generation status-only diff",
+  "files": {
+    "__init__.py": "51f62fcfafec299f8d680aa5383a2c1167776721cc2d3ebbdf3ec22fbf2ad648",
+    "__main__.py": "8ded95b00fba788e0a173746a28cef44e285a9882c83f1872064a2b8411fa2dd",
+    "assessment.py": "65022912cbc81122bab4d1db53e2ff78e2dba216a08bde619793d1947e6ac063",
+    "assessment_policy.py": "8a843de918e7d00815322349f6977fa911ade1a8a0aa70047f5c47cb6603b59f",
+    "contracts.py": "5bc848138876e66fa1ca3cfe658c52f468084677e81d0d01eed2fa4d084ea907",
+    "inputs.py": "5ba3846f328c6740a1898ae9afe19c5737205094ecf37c89722ea5fdd171dd61",
+    "policy.py": "5a282eb3e8a32eb0980727223cdfe0a93fa0dee7a6f5d94f8795914786fac4c8",
+    "source_context.py": "0f1641dd18e0517f8369ff67e8d92f2f831d2f6f6884d124861940d188c45b8a",
+    "workflow.py": "2622aba13538da51303ae60fda1191c6f10920c8ebc5d474d317095f2b0749eb"
+  }
+}

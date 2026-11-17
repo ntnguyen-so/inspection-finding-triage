@@ -1,0 +1,27 @@
+{
+  "generated_at": "2026-11-17T09:12:51.525633+00:00",
+  "tickets_generated": 1,
+  "tickets": [
+    {
+      "ticket_id": "TKT-1016",
+      "finding_id": "F-1016",
+      "equipment_id": "PSV-3420",
+      "summary": "PSV-3420's illegible tag needs replacement, but March 2025 certification is in date and the valve appears sound; function loss would remove compressor-discharge overpressure protection.",
+      "recommended_action": "Have authorized certifying personnel replace the corroded tag; verify legibility and retain the two-year pop-test cycle. Review discharge relief basis and exposure.",
+      "likelihood_of_failure": {
+        "score": 2,
+        "rationale": "The assessed function is compressor-discharge overpressure protection. In-date recertification, satisfactory reported behaviour and sound observed valve condition support little indication of near-term function loss. Corrosion affects the label, not the valve."
+      },
+      "impact_of_failure": {
+        "score": 7,
+        "rationale": "Failure would remove the stated nonredundant protection against compressor-discharge overpressure, a specific severe pressure-hazard path. The harmless appearance of the tag defect does not reduce this hypothetical consequence. Extreme consequences are not established."
+      },
+      "urgency": {
+        "score": 7,
+        "rationale": "triage-policy-v10: ceil((5*I+2*L+3*sqrt(I*L))/10), L=2, I=7, base=6, final=7. P-SAFETY-UNKNOWN (precautionary_policy): Discharge relief scenarios, other safeguards and personnel exposure are not detailed. These could refine consequence severity, but do not negate the supported loss-of-overpressure-protection path or justify an extreme score. Sources: equipment:PSV-3420:service_description, equipment:PSV-3420:redundancy, equipment:PSV-3420:engineer_comment. R-SCE (review): SCE draft requires integrity-engineer review; SCE status alone adds no floor. Sources: registry SCE flag."
+      },
+      "review_required": true,
+      "review_reason": "P-SAFETY-UNKNOWN (precautionary_policy): Discharge relief scenarios, other safeguards and personnel exposure are not detailed. These could refine consequence severity, but do not negate the supported loss-of-overpressure-protection path or justify an extreme score. Sources: equipment:PSV-3420:service_description, equipment:PSV-3420:redundancy, equipment:PSV-3420:engineer_comment. R-SCE (review): SCE draft requires integrity-engineer review; SCE status alone adds no floor. Sources: registry SCE flag."
+    }
+  ]
+}

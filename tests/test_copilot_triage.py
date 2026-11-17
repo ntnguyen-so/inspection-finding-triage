@@ -81,6 +81,45 @@ class CopilotIntegrationTests(Artifacts, unittest.TestCase):
         self.assertIsNone(report["http_attempts"])
         self.assertEqual("not_established", report["strict_attempt_contract"])
 
+    def test_explicit_copilot_delivery_mode_generates_human_approval_draft(self):
+        output = self.root / "tickets.json"
+        config = replace(
+            self.config,
+            execution_mode="copilot_delivery",
+            attempt_ledger=str(self.root / "delivery.experimental-ledger.json"),
+        )
+        result = self.run_one(FakeCopilot(), config=config, output=output)
+        self.assertEqual("draft_generated", result["run_status"])
+        self.assertTrue(result["delivery_eligible"])
+        self.assertFalse(result["acceptance_eligible"])
+        self.assertTrue(result["published_output"])
+        self.assertEqual(1, result["application_send_count"])
+        report = strict_json((self.root / "run" / "run.json").read_text())
+        self.assertTrue(report["delivery_route_declared"])
+        self.assertNotIn("delivery_eligible", report)
+        self.assertFalse(report["acceptance_eligible"])
+        self.assertIsNone(report["http_attempts"])
+        self.assertEqual("required_outside_generation", report["human_approval"])
+
+    def test_failed_copilot_delivery_is_never_marked_delivery_eligible(self):
+        output = self.root / "tickets.json"
+        config = replace(
+            self.config,
+            execution_mode="copilot_delivery",
+            attempt_ledger=str(self.root / "delivery.experimental-ledger.json"),
+        )
+        with self.assertRaises(TriageError):
+            self.run_one(
+                FakeCopilot([InferenceError("refusal", "Synthetic refusal")]),
+                config=config,
+                output=output,
+            )
+        self.assertFalse(output.exists())
+        report = strict_json((self.root / "run" / "run.json").read_text())
+        self.assertTrue(report["delivery_route_declared"])
+        self.assertNotIn("delivery_eligible", report)
+        self.assertFalse(report["published_output"])
+
     def test_strict_default_rejects_copilot_without_dispatch(self):
         provider = FakeCopilot()
         config = replace(self.config, execution_mode="strict",

@@ -185,7 +185,8 @@ artifact. The prior committed v1.2 contract remains in Git at revision
 | Runtime context isolation | Tested in bounded paths; not a universal proof |
 | Semantic reference authority | Provisional; not expert gold |
 | Acceptance scenarios | Mixed observed evidence; see `eval\results\README.md` |
-| Final system acceptance | Not achieved; root `tickets.json` is absent |
+| Generated deliverable | Root `tickets.json` exists, covers all 21 findings and passes the deterministic contract |
+| Final system acceptance | Not achieved; two semantic judgments and human approval are pending, and clean-checkout reproduction has not been run |
 
 The current working specs identify reference 1.3, while the archived Document 02
 records the earlier design history. Validator consistency does not make an

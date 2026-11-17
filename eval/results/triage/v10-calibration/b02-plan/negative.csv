@@ -1,0 +1,2 @@
+finding_id,reported_date,equipment_id,equipment_type,inspection_type,inspection_method,finding_description,reported_by,reporter_role
+F-1016,2026-06-16,PSV-3420,Pressure Safety Valve,Routine Operator Round,Visual,"Certification tag on the compressor discharge PSV is illegible, the label has corroded. Checked the register and the valve was recertified in March 2025 so it is in date. Physical condition of the valve looks fine.",R. Mbeki,Production Operator

@@ -1,0 +1,22 @@
+{
+  "schema": "triage-reliability-reviewer-v1",
+  "reference_version": "1.3",
+  "primary": {
+    "provider": "GitHub Copilot CLI",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "high",
+    "role": "primary_semantic_reviewer",
+    "domain_expert_claimed": false
+  },
+  "sensitivity": {
+    "provider": "GitHub Copilot CLI",
+    "model": "gpt-6-sol",
+    "reasoning_effort": "high",
+    "role": "sensitivity_only",
+    "domain_expert_claimed": false
+  },
+  "instructions": "Use only the frozen reference 1.3 cards, supplied source evidence and exact ticket file. Judge grounding, planning and uncertainty independently as pass, needs_review or fail. Preserve adjacent-score ambiguity and unsupported conclusions as needs_review or fail; never vote, repair a ticket, infer domain certification or convert disagreement into pass. Quote exact ticket fields as evidence. Calibration on seeded contradictions must pass before any measured review.",
+  "primary_is_gate": true,
+  "sensitivity_is_gate": false,
+  "human_approval_required": true
+}

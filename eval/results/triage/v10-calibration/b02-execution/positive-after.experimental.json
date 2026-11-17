@@ -1,0 +1,27 @@
+{
+  "generated_at": "2026-11-17T09:11:44.484697+00:00",
+  "tickets_generated": 1,
+  "tickets": [
+    {
+      "ticket_id": "TKT-9001",
+      "finding_id": "F-9001",
+      "equipment_id": "PSV-9001",
+      "summary": "PSV-9001 showed seat passing below set pressure on an isolated synthetic bench; relief lift/capacity remain untested, and no installed plant protection is involved.",
+      "recommended_action": "Have bench engineering inspect the seat and correct passing as findings warrant. Approve criteria; test seating, lift/capacity.",
+      "likelihood_of_failure": {
+        "score": 8,
+        "rationale": "The isolated-experiment policy explicitly assigns 8 for observed PSV seat passing below set pressure. This is a synthetic diagnostic score, not a calibrated engineering likelihood. Passing does not establish failure of relief lifting or capacity."
+      },
+      "impact_of_failure": {
+        "score": 3,
+        "rationale": "The isolated-experiment policy explicitly assigns impact 3 to this observation. This is an artificial diagnostic convention, not evidence of an installed-plant consequence; the device is an isolated synthetic fixture."
+      },
+      "urgency": {
+        "score": 5,
+        "rationale": "triage-policy-v10: ceil((5*I+2*L+3*sqrt(I*L))/10), L=8, I=3, base=5, final=5. R-MATERIAL (review): The sole chronological observation confirms bench seat passing, not subsequent correction or present capability. Seating acceptance limits and relief lift/capacity remain unverified. These prevent engineering acceptance, although the experiment fixes both diagnostic scores. Sources: finding:F-9001:finding_description, finding:F-9001:reported_date, equipment:PSV-9001:engineer_comment, equipment:PSV-9001:service_description."
+      },
+      "review_required": true,
+      "review_reason": "R-MATERIAL (review): The sole chronological observation confirms bench seat passing, not subsequent correction or present capability. Seating acceptance limits and relief lift/capacity remain unverified. These prevent engineering acceptance, although the experiment fixes both diagnostic scores. Sources: finding:F-9001:finding_description, finding:F-9001:reported_date, equipment:PSV-9001:engineer_comment, equipment:PSV-9001:service_description."
+    }
+  ]
+}

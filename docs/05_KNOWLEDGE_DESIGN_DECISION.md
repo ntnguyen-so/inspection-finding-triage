@@ -1,8 +1,9 @@
 # Source-Faithful Knowledge Design
 
 > **Document status:** current knowledge architecture and maintenance decision.
-> Context delivery is demonstrated; causal influence and domain correctness are
-> not.
+> Context delivery is demonstrated. Reference-1.3 B02 provides a bounded causal
+> influence and scope-isolation pass; general domain correctness is not
+> established.
 
 ## Abstract
 
@@ -214,17 +215,20 @@ change.
 | Are supplied bytes and provenance preserved? | Source integration/readiness checks | **D-pass** for checked artifacts |
 | Can reviewed content be released and promoted? | Source-owner promotion evidence and lifecycle tests | **D-pass** for software workflow |
 | Does the provider receive expected context? | Captured provider-bound context and history verification | **D-pass** for delivery |
-| Does knowledge causally change the intended decisions? | B02 controlled probe | **Failed/inconclusive** |
+| Does knowledge causally change the intended decisions? | Reference-1.3 B02 controlled probe | **Bounded pass**: positive L6/I3→L8/I3 and both tag-only negative controls excluded the synthetic rule |
 | Is selection independently domain-correct? | AI-assisted references and software checks only | **Not certified** |
 | Is the current release a production-qualified default? | No accepted final run or domain approval | **No** |
 
-The B02 result is intentionally not converted into a pass. Under reference v1.2,
-the likelihood-only overlay left impact unsupported, so both positive cases were
-unassessable; the negative controls remained unchanged. Reference v1.3 is a
-disclosed, test-informed repair that supplies the same synthetic impact 3 to both
-policies and varies only likelihood. It has not been run, so no v1.3
-knowledge-influence result exists. Likewise, an extraction test or unchanged
-release digest cannot prove usefulness.
+The earlier result was intentionally not converted into a pass. Under reference
+v1.2, the likelihood-only overlay left impact unsupported, so both positive
+cases were unassessable; the negative controls remained unchanged. Reference
+v1.3 is a disclosed, test-informed repair that supplies the same synthetic
+impact 3 to both policies and varies only likelihood. It was executed under the
+frozen v10 runtime: all four conditions completed in one send, the positive
+changed L6/I3 to L8/I3, and calibrated semantic review confirmed both unchanged
+F-1016 controls excluded the passing rule. This is a bounded causal and
+isolation result, not engineering validation of the synthetic scores or
+certification of the production knowledge base.
 
 ## 8. Rejected broader architectures
 

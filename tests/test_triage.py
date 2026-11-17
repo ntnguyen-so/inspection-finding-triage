@@ -558,6 +558,28 @@ class PolicyTests(unittest.TestCase):
         self.assertEqual(7, result["final"])
         self.assertTrue(result["review_required"])
 
+    def test_nonbinding_material_safety_uncertainty_still_requires_review(self):
+        uncertainty = {
+            "material": True,
+            "safety": True,
+            "reason": "Exposure detail could refine an already high base score.",
+            "sources_checked": [REFERENCE],
+            "verification_activity": "Verify exposure.",
+        }
+        result = self.derive(
+            facts(), likelihood=8, impact=7, sce=False, uncertainties=[uncertainty],
+        )
+        self.assertEqual((8, 8), (result["base"], result["final"]))
+        self.assertTrue(result["review_required"])
+        self.assertIn("P-SAFETY-UNKNOWN", result["review_reason"])
+        self.assertIn("P-SAFETY-UNKNOWN", result["rationale"])
+
+    def test_explicit_review_rule_remains_targeted_when_floor_is_nonbinding(self):
+        result = self.derive(facts(), likelihood=10, impact=10, sce=True)
+        self.assertEqual((10, 10), (result["base"], result["final"]))
+        self.assertTrue(result["review_required"])
+        self.assertIn("R-SCE", result["review_reason"])
+
 
 class BoundaryTests(Artifacts, unittest.TestCase):
     def setUp(self):
