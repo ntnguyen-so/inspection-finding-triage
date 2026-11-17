@@ -216,6 +216,14 @@ native schema, has no agent/tool layer, and offers a lower-complexity reproducib
 path than the failed Responses/reasoning alternatives. The committed config
 also enforces 20-second request pacing.
 
+The first run on the dedicated deployment progressed through 11 findings and
+then failed closed on F-1012 because the composed action was 301 characters
+after its single repair attempt. No output was published. The generic recovery
+guidance was corrected to budget model-authored text around fixed code-supplied
+checks; the hard 300-character limit and required activities were not weakened.
+That code change starts a new bounded phase ledger, while the failed observation
+remains retained.
+
 The final run permits at most 42 direct requests (21 findings, at most two
 attempts each), with SDK/HTTP retries disabled and explicit token accounting.
 USD cost depends on the Azure deployment tariff and is reported as unknown unless
