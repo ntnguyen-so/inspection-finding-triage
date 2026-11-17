@@ -29,14 +29,16 @@ def write_csv(path: Path, fields: tuple, rows: list) -> None:
     path.write_bytes(stream.getvalue().encode("utf-8"))
 
 
-def source_files(root: Path, *, count: int = 1, sce: bool = False, redundancy: str = "None"):
+def source_files(root: Path, *, count: int = 1, sce: bool = False, redundancy: str = "None",
+                 finding_description: str | None = None):
     equipment = dict(zip(EQUIPMENT_FIELDS, (
         "PMP-8001", "Pump", "Synthetic utility service", "3", "7",
         "Yes" if sce else "No", redundancy, "Partner availability is not verified.",
     )))
     rows = [dict(zip(FINDING_FIELDS, (
         f"F-{8001+i}", "2025-01-01", "PMP-8001", "Pump", "Routine",
-        "Visual", QUOTE + " Verify function before use.", "Synthetic inspector", "Inspector",
+        "Visual", finding_description or QUOTE + " Verify function before use.",
+        "Synthetic inspector", "Inspector",
     ))) for i in range(count)]
     findings, registry = root / "findings.csv", root / "registry.csv"
     write_csv(findings, FINDING_FIELDS, rows)

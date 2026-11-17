@@ -1,0 +1,15 @@
+{
+  "status": "draft_generated",
+  "receipt": {
+    "run_status": "experimental_draft_generated",
+    "published_output": true,
+    "output": "C:\\Users\\thanh\\.copilot\\session-state\\973d15b3-bbdb-4572-a47d-8db307236ce9\\files\\v6-b02-run\\negative-after.experimental.json",
+    "output_sha256": "297f1256a2d85bf79ae9d78ce54229fcddebe5fe8806898b73f8b6aa941ba62b",
+    "tickets_generated": 1,
+    "semantic_status": "not_reviewed",
+    "acceptance_eligible": false,
+    "execution_mode": "copilot_experiment",
+    "http_attempts": null,
+    "application_send_count": 1
+  }
+}

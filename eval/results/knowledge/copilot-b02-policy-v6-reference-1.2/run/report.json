@@ -1,0 +1,52 @@
+{
+  "status": "failed_or_inconclusive",
+  "positive_policy_response_observed": false,
+  "conditions": {
+    "positive-before": {
+      "status": "failed",
+      "error_class": "unassessable",
+      "observed_likelihood": null
+    },
+    "positive-after": {
+      "status": "failed",
+      "error_class": "unassessable",
+      "observed_likelihood": null
+    },
+    "negative-before": {
+      "status": "draft_generated",
+      "receipt": {
+        "run_status": "experimental_draft_generated",
+        "published_output": true,
+        "output": "C:\\Users\\thanh\\.copilot\\session-state\\973d15b3-bbdb-4572-a47d-8db307236ce9\\files\\v6-b02-run\\negative-before.experimental.json",
+        "output_sha256": "161a372fccc3b254b71d82fff9f5b8dc862c4755ea8185614b782ab9310cfe92",
+        "tickets_generated": 1,
+        "semantic_status": "not_reviewed",
+        "acceptance_eligible": false,
+        "execution_mode": "copilot_experiment",
+        "http_attempts": null,
+        "application_send_count": 1
+      }
+    },
+    "negative-after": {
+      "status": "draft_generated",
+      "receipt": {
+        "run_status": "experimental_draft_generated",
+        "published_output": true,
+        "output": "C:\\Users\\thanh\\.copilot\\session-state\\973d15b3-bbdb-4572-a47d-8db307236ce9\\files\\v6-b02-run\\negative-after.experimental.json",
+        "output_sha256": "297f1256a2d85bf79ae9d78ce54229fcddebe5fe8806898b73f8b6aa941ba62b",
+        "tickets_generated": 1,
+        "semantic_status": "not_reviewed",
+        "acceptance_eligible": false,
+        "execution_mode": "copilot_experiment",
+        "http_attempts": null,
+        "application_send_count": 1
+      }
+    }
+  },
+  "negative_semantic_status": "pending_calibrated_review",
+  "code_stable_during_run": true,
+  "phase_reservations": 4,
+  "acceptance_eligible": false,
+  "http_attempts": null,
+  "usd_cost": null
+}

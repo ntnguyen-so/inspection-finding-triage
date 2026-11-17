@@ -96,12 +96,14 @@ def _distinct_actions(activities: list[str]) -> list[str]:
 def compose_action(core: str, activities: list[str],
                    fixed_activities: list[str] | None = None) -> dict:
     required = _distinct_actions(activities)
+    fixed_required = _distinct_actions(fixed_activities or [])
     appended = [activity for activity in required if activity not in core]
-    fixed = set(fixed_activities or [])
+    fixed = set(fixed_required)
     appended_fixed = [activity for activity in appended if activity in fixed]
     appended_model = [activity for activity in appended if activity not in fixed]
     parts = [core, *appended]
     return {"model_core": core, "required_activities": required,
+            "fixed_required_activities": fixed_required,
             "appended_activities": appended,
             "fixed_appended_activities": appended_fixed,
             "model_appended_activities": appended_model,
@@ -118,7 +120,8 @@ def require_fixed_actions_fit(fixed_activities: list[str]) -> None:
 
 
 def action_retry_budget(composition: dict) -> dict:
-    fixed = composition["fixed_appended_activities"]
+    fixed = composition.get("fixed_required_activities",
+                            composition["fixed_appended_activities"])
     model = composition["model_appended_activities"]
     require_fixed_actions_fit(fixed)
     fixed_chars = sum(len(activity) + 1 for activity in fixed)
@@ -503,6 +506,14 @@ async def run_workflow(
                             sce=data["registry"][finding["equipment_id"]]["safety_critical_element"] == "Yes",
                             gaps=gaps, same_day_attention=attention,
                         )
+                        if feedback == "policy_verification" and retry_action_budget is not None:
+                            dropped_fixed = [
+                                activity for activity in retry_fixed_activities
+                                if activity not in decision["fixed_verification_activities"]
+                            ]
+                            require(not dropped_fixed, "policy_verification",
+                                    "Overflow repair changed facts and dropped code-owned activities: "
+                                    + "; ".join(dropped_fixed))
                         composition = compose_action(
                             assessment["recommended_action"],
                             decision["verification_activities"],
@@ -512,7 +523,7 @@ async def run_workflow(
                         action = composition["composed"]
                         if len(action) > ACTION_MAX_CHARS:
                             feedback_message, retry_action_budget = action_overflow_message(composition)
-                            retry_fixed_activities = composition["fixed_appended_activities"]
+                            retry_fixed_activities = decision["fixed_verification_activities"]
                             retry_model_activities = composition["model_appended_activities"]
                             raise TriageError("policy_verification", feedback_message)
                         if feedback == "policy_verification" and retry_action_budget is not None:

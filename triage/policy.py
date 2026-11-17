@@ -3,7 +3,7 @@ from __future__ import annotations
 from .assessment import SAME_DAY_VALIDATOR, validate_facts
 from .contracts import nonblank, require, score
 
-POLICY_VERSION = "triage-policy-v5"
+POLICY_VERSION = "triage-policy-v8"
 CAPACITY_COMPARISON_ACTIVITY = "Verify current POB against certified available evacuation capacity."
 SAME_DAY_ATTENTION_ACTIVITY = "Obtain source-required attention today."
 CONTROL_ALIGNMENT_ACTIVITY = "Verify current protection control alignment."

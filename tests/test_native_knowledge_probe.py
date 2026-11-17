@@ -33,15 +33,21 @@ class NativeProbeDriverTests(Artifacts, unittest.TestCase):
     def test_exact_positive_controls_do_not_claim_negative_semantic_acceptance(self):
         target = self.root / "observed"
         target.mkdir()
-        observed_scores = iter((6, 8, 2, 2))
+        observed_scores = iter(((6, 3), (8, 3), (2, 4), (2, 4)))
         async def fake_workflow(inputs, context, factory, config, output, evidence, **kwargs):
             self.assertEqual("isolated_probe", kwargs["purpose"])
             self.assertTrue(output.name.endswith(".experimental.json"))
-            write_once(output, {"tickets": [{"likelihood_of_failure": {"score": next(observed_scores)}}]})
+            likelihood, impact = next(observed_scores)
+            write_once(output, {"tickets": [{
+                "likelihood_of_failure": {"score": likelihood},
+                "impact_of_failure": {"score": impact},
+            }]})
             return {"published_output": True}
         with patch.object(probe, "run_workflow", side_effect=fake_workflow):
             report = asyncio.run(probe.execute(self.plan, target))
         self.assertTrue(report["positive_policy_response_observed"])
+        self.assertEqual(3, report["conditions"]["positive-before"]["observed_impact"])
+        self.assertEqual(3, report["conditions"]["positive-after"]["observed_impact"])
         self.assertEqual("pending_calibrated_review", report["negative_semantic_status"])
         self.assertFalse(report["acceptance_eligible"])
 

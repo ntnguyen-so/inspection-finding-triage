@@ -1,0 +1,10 @@
+{
+  "budget": 8,
+  "reservations": [
+    "C:\\Users\\thanh\\.copilot\\session-state\\973d15b3-bbdb-4572-a47d-8db307236ce9\\files\\v6-b02-run\\positive-before:F-9001:1",
+    "C:\\Users\\thanh\\.copilot\\session-state\\973d15b3-bbdb-4572-a47d-8db307236ce9\\files\\v6-b02-run\\positive-after:F-9001:1",
+    "C:\\Users\\thanh\\.copilot\\session-state\\973d15b3-bbdb-4572-a47d-8db307236ce9\\files\\v6-b02-run\\negative-before:F-1016:1",
+    "C:\\Users\\thanh\\.copilot\\session-state\\973d15b3-bbdb-4572-a47d-8db307236ce9\\files\\v6-b02-run\\negative-after:F-1016:1"
+  ],
+  "execution_mode": "copilot_experiment"
+}

@@ -26,7 +26,7 @@ def sha256(path: Path) -> str:
 
 def fingerprints() -> dict:
     files = [ROOT / "pyproject.toml", ROOT / "README.md", ROOT / "AGENTS.md",
-             ROOT / "docs" / "05_TRIAGE_WORKFLOW.md", Path(__file__),
+             ROOT / "docs" / "06_TRIAGE_WORKFLOW.md", Path(__file__),
              ROOT / "tools" / "integrate_triage.py",
              ROOT / "tools" / "probe_native_knowledge.py"]
     for package in ("triage", "llm_inference", "triage_knowledge"):
@@ -41,7 +41,7 @@ def fingerprints() -> dict:
     files.extend(sorted((ROOT / "eval").glob("*.py")))
     files.extend(sorted((ROOT / "eval" / "tests").glob("*.py")))
     files.extend(sorted((ROOT / "eval" / "spec").glob("*.json")))
-    files.append(ROOT / "docs" / "06_KNOWLEDGE_DESIGN_DECISION.md")
+    files.append(ROOT / "docs" / "05_KNOWLEDGE_DESIGN_DECISION.md")
     files.extend([ROOT / "eval" / "spec" / "split.json", ROOT / "eval" / "spec" / "acceptance.json"])
     return {str(path.relative_to(ROOT)): sha256(path) for path in files}
 
@@ -92,6 +92,9 @@ def main(argv=None):
         for deviation in ("confirmed_true", "confirmed_false", "suspected", "unknown"):
             values = triage_support.facts()
             values["protection_impaired"]["state"] = impairment
+            values["protection_impaired"]["verification_activity"] = (
+                "Verify whether protection is impaired."
+            )
             values["recorded_deviation"].update(state=deviation, verification_activity="Check deviation log.")
             actual = derive_policy(1, 1, values, [], sce=False, gaps=[])
             matrix.append({"protection_impaired": impairment, "recorded_deviation": deviation,

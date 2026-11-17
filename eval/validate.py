@@ -21,8 +21,8 @@ SOURCES = {
     "reference\\example_ticket.json",
 }
 ARTIFACTS = {
-    "docs\\02_DATA_EVALUATION_PLAN.md",
-    "docs\\03_EVALUATION_ACCEPTANCE.md",
+    "docs\\original-decision-process\\02_DATA_EVALUATION_PLAN.md",
+    "docs\\original-decision-process\\03_EVALUATION_ACCEPTANCE.md",
     "eval\\spec\\acceptance.json",
     "eval\\assess.py",
     "eval\\spec\\probes.json",
@@ -356,7 +356,18 @@ def validate_probes(probes, manifest, findings, equipment, sections):
                 and all(nonempty_string(policy.get(field)) for field in ("version", "rule_id", "text")),
                 "Incomplete PSV test policy")
         require(finding["finding_id"] not in policy["text"], "Do not branch policy on synthetic finding ID")
-    require(policies["before"]["text"] != policies["after"]["text"], "PSV policies must differ")
+    expected = b02.get("expected")
+    require(isinstance(expected, dict) and expected.get("positive_before_likelihood") == 6
+            and expected.get("positive_after_likelihood") == 8
+            and expected.get("positive_impact") == 3,
+            "PSV probe score conventions must be explicit")
+    before_text, after_text = policies["before"]["text"], policies["after"]["text"]
+    require(before_text.count("likelihood_of_failure.score 6") == 1
+            and after_text == before_text.replace(
+                "likelihood_of_failure.score 6", "likelihood_of_failure.score 8", 1
+            ), "PSV policies may differ only in the declared likelihood convention")
+    require(before_text.count("impact_of_failure.score 3") == 1,
+            "PSV policies must share one fixed impact convention")
     calibration = probes.get("review_calibration")
     require(isinstance(calibration, dict)
             and calibration.get("status") == "fixtures_only_not_reviewed_by_actual_output_reviewer",

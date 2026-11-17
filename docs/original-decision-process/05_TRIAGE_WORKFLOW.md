@@ -1,5 +1,16 @@
 # Triage workflow: design and eval-driven delivery
 
+## Navigation and authority
+
+- **Role:** Workflow architecture, model/code boundaries, policy evolution and delivery observations.
+- **Status:** Historical development record containing superseded phases as well as current handoff context.
+- **Supports:** Brief questions A-D and scenarios A01-A04, B01-B03, C01-C04, D01-D04 and X01-X02.
+- **Current authority:** Root `DESIGN.md`, production `triage\assessment.py`, `triage\policy.py`, `triage\workflow.py` and `config\triage-activation-v8.json`.
+- **Retained evidence:** `eval\results\triage`, indexed by `eval\results\README.md`.
+- **Conflict rule:** Production code and root `DESIGN.md` prevail if these historical notes conflict.
+- **Previous:** `docs\04_INFERENCE_LIBRARY.md`.
+- **Next:** `docs\06_KNOWLEDGE_DESIGN_DECISION.md`.
+
 ## 1. Status, scope and approval boundary
 
 **Status: migrated to document 06's source-first schema 3 / native bundle 3.
@@ -2202,3 +2213,57 @@ reference validation passed. The observation at
 `eval\results\reproducibility\clean-235bdd1.json` closes the deterministic
 clean-checkout portion of X02. It does not claim live-provider reproduction,
 strict Copilot HTTP/cost accounting or final delivery publication.
+
+## 20. Withdrawn policy-v6/v7 planning patches
+
+Policy-v6/v7 experiments added code-owned planning phrases after individual
+semantic-review omissions. Retained failed and passing observations remain
+evidence of that phase, but those additions are withdrawn from the stabilized
+system. They demonstrated that turning each omitted phrase into a new fact/rule
+does not establish general semantic reliability and increases action-budget and
+evaluation-overfitting risk.
+
+One defect found during that phase is retained because it is a generic control
+invariant: an overflow-only repair cannot drop a previously required code-owned
+activity by changing its triggering assessment. Fixed activities are fully
+reserved in retry arithmetic; inconsistency fails without publication.
+
+## 21. Stabilized policy-v8 freeze and gate separation
+
+The v8 inventory classifies changes as follows:
+
+| Class | Disposition |
+|---|---|
+| Generic deterministic invariant | Retain fixed-activity retry preservation, bounded attempts, schema/identity checks, code-owned urgency and atomic fail-closed publication |
+| Candidate policy requiring disclosure | Retain the prototype urgency formula, confirmed overrides, precautionary floors, all-SCE review and the `I>=8` SCE week-floor threshold; none is domain-certified |
+| Finding/evaluator-driven patch | Withdraw local-indication comparison, repeated-failure replacement, measured-output retest, certification-tag traceability and within-band score-selection additions |
+
+Model-authored contextual diagnosis and planning remain probabilistic. Code owns
+only generic mandatory control behavior and the already disclosed policy layer.
+Activation `config\triage-activation-v8.json` pins knowledge, selector,
+assessment-rubric and execution-policy bytes. The separate reliability
+preregistration pins the system prompt, orchestration, provider adapter, run
+configuration and reviewer. Earlier v8 artifacts predate this freeze and are
+non-comparable model observations.
+
+Reference 1.3 is internally validated but remains an uncommitted, test-informed
+working-tree change; it is not a durable freeze until committed. Prospectively,
+delivery reporting
+separates: (1) a mandatory 100% deterministic contract gate; (2) semantic
+assessment by one preregistered calibrated primary AI reviewer; (3) any second
+AI reviewer as non-gating sensitivity evidence; and (4) mandatory human approval.
+`needs_review`, adjacent-score ambiguity and reviewer disagreement stay visible
+without being relabelled contract failure or semantic pass. A semantic `fail`
+always remains a fail in reports.
+
+Document 02's two-reviewer step governs review of the frozen reference artifact;
+it does not require two runtime AI reviewers to agree on every generated ticket.
+
+The planned reliability observation is three sequential all-21 Copilot batches
+with one model/config/prompt/knowledge/policy/reference and no changes between
+runs. Maximum application budget is 126 sends (63 findings x two attempts).
+Document 08 defines the measurement rules. Any `v8r1` execution started before a
+committed clean-tree freeze is retained as a pre-freeze development observation,
+not renamed as a measured repeat. No output from this experiment is promoted to
+root `tickets.json`; delivery eligibility must be declared before a separate
+fresh system run.

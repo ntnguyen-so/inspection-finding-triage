@@ -22,8 +22,11 @@ from triage.inputs import ExportedContext, FINDING_FIELDS, read_inputs, validate
 from triage.policy import (
     CAPACITY_COMPARISON_ACTIVITY, CONTROL_ALIGNMENT_ACTIVITY, IMPAIRMENT_RECORD_ACTIVITY,
     RESTORATION_CLOSURE_ACTIVITY, SAME_DAY_ATTENTION_ACTIVITY, base_urgency, derive_policy,
+    gap_verification_activity,
 )
-from triage.workflow import action_retry_budget, compose_action, run_workflow, validate_output
+from triage.workflow import (
+    action_retry_budget, compose_action, run_workflow, validate_output,
+)
 from tests.triage_support import (
     Artifacts, CUTOFF, FixtureContext, FakeProvider, QUOTE, REFERENCE, assessment,
     facts, native_response, receipt, source_files, write_csv,
@@ -717,6 +720,37 @@ class BoundaryTests(Artifacts, unittest.TestCase):
 
 
 class WorkflowTests(Artifacts, unittest.TestCase):
+    def test_overflow_repair_that_drops_fixed_activity_fails_without_publication(self):
+        first = assessment()
+        first["recommended_action"] = "Inspect and correct. " + "x" * 220
+        first["facts"]["unlogged_impairment_discovered"].update(
+            state="confirmed_true",
+            evidence=[{"source_ref": REFERENCE, "quote": QUOTE}],
+        )
+        first["facts"]["protection_restored"]["verification_activity"] = (
+            "Verify restored protection."
+        )
+        repaired = assessment()
+        repaired["recommended_action"] = "Inspect and correct."
+        provider = FakeProvider([first, repaired])
+        with self.assertRaises(TriageError) as caught:
+            self.run_one(provider)
+        self.assertEqual("policy_verification", caught.exception.code)
+        retry = strict_json(provider.requests[1].user)
+        self.assertEqual(
+            [
+                CONTROL_ALIGNMENT_ACTIVITY,
+                IMPAIRMENT_RECORD_ACTIVITY,
+                RESTORATION_CLOSURE_ACTIVITY,
+            ],
+            retry["fixed_appended_verification_activities"],
+        )
+        self.assertFalse(self.output.exists())
+        self.assertEqual(
+            "failed",
+            strict_json((self.evidence / "run.json").read_text())["run_status"],
+        )
+
     def test_locally_rejected_visible_draft_is_retained_and_sent_as_untrusted_retry_data(self):
         rejected = '{"status":"assessed","incomplete":true}'
         provider = FakeProvider([
@@ -955,7 +989,7 @@ class WorkflowTests(Artifacts, unittest.TestCase):
                "source_refs": ["equipment:PMP-8001:redundancy"]}
         self.source = FixtureContext(self.inputs, gaps=[gap])
         value = assessment()
-        value["recommended_action"] = "Verify availability and capability of PMP-8999."
+        value["recommended_action"] = gap_verification_activity(gap)
         self.run_one(FakeProvider([value]))
         ticket = strict_json(self.output.read_text())["tickets"][0]
         self.assertEqual(7, ticket["urgency"]["score"])
@@ -1150,7 +1184,11 @@ class WorkflowTests(Artifacts, unittest.TestCase):
         provider = FakeProvider([first, repaired])
         self.run_one(provider)
         retry = strict_json(provider.requests[1].user)
-        fixed = "Verify availability and capability of PSV-1311."
+        fixed = gap_verification_activity({
+            "kind": "tagged_partner_not_in_registry",
+            "partner_equipment_id": "PSV-1311",
+            "source_refs": ["equipment:PSV-1310:redundancy"],
+        })
         self.assertEqual([fixed], retry["fixed_appended_verification_activities"])
         self.assertEqual(list(checks), retry["model_appended_verification_activities"])
         budget = retry["retry_action_budget"]

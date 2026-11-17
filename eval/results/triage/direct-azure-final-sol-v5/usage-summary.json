@@ -1,0 +1,28 @@
+{
+  "schema": "triage-run-usage-summary-v1",
+  "source_run": ".delivery-state\\final-run-sol-v5\\run.json",
+  "source_run_sha256": "8c48fbed5ebc2719d34fb1cf95d20cfd200ec2dd839cf5dd53873d3028b56afc",
+  "source_run_bytes": 4887554,
+  "started_at": "2026-11-17T02:36:18.479578+00:00",
+  "provider": "azure-openai",
+  "model": "triage-final-sol-20260709",
+  "policy_version": "triage-policy-v4",
+  "application_requests": 24,
+  "validated_tickets": 21,
+  "usage": {
+    "prompt_tokens": 1289873,
+    "completion_tokens": 45878,
+    "reasoning_tokens_in_completion": 16474,
+    "prompt_cache_write_tokens": 1234490,
+    "prompt_cached_tokens": 55311,
+    "total_tokens": 1335751
+  },
+  "usd_cost": null,
+  "cost_status": "unverified_no_deployment_tariff_recorded",
+  "publication": {
+    "run_status": "ready_to_publish",
+    "published_output": false,
+    "semantic_review": "fail_60_of_63"
+  },
+  "scope": "Compact accounting derived from the hash-bound local run. It does not convert the failed run into acceptance evidence."
+}

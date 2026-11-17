@@ -1,5 +1,16 @@
 # Knowledge Module: Design Decision and Evaluation Contract
 
+## Navigation and authority
+
+- **Role:** Knowledge-module design, lifecycle, retrieval contract and evaluation decision.
+- **Status:** Historical record; current for knowledge rationale only where consistent with root `DESIGN.md`.
+- **Supports:** Brief question B and scenarios B01-B03, with A04, C04, D04 and X01-X02.
+- **Current authority:** Root `DESIGN.md`, `triage_knowledge`, `knowledge\source-first` and production `triage\source_context.py`.
+- **Retained evidence:** `eval\results\knowledge`, indexed by `eval\results\README.md`.
+- **Conflict rule:** Production code and root `DESIGN.md` prevail if historical passages conflict.
+- **Previous:** `docs\05_TRIAGE_WORKFLOW.md`.
+- **Next:** Root `DESIGN.md` for the owner-approved system design.
+
 ## 1. Status, scope and authority
 
 This is the **single current design decision** for the replacement knowledge
@@ -9,7 +20,8 @@ removed; this file is the renamed decision. The shipped knowledge package now
 contains only the source-first implementation; schema-1/2 runtime surfaces were
 removed after native migration. Implementation does not imply
 evaluation success, content approval or workflow activation.
-Root `DESIGN.md` remains reserved for the project owner.
+At this phase, root `DESIGN.md` remained reserved for the project owner; the
+owner-authorized final file now exists and is authoritative.
 
 Authority: the supplied candidate brief/domain, then documents 02/03 and frozen
 reference 1.2. The owner additionally requires explicit evaluation of knowledge

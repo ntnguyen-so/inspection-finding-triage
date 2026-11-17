@@ -11,8 +11,10 @@ Start with `README.md`, then:
 - `docs\candidate-pack\candidate-pack\README.md` and
   `reference\domain_knowledge.md` inside that package: panel requirements and
   supplied triage rules. Preserve the entire supplied package unchanged.
-- `docs\02_DATA_EVALUATION_PLAN.md`: data/context boundaries and split rationale.
-- `docs\03_EVALUATION_ACCEPTANCE.md` and `eval\spec\acceptance.json`: agreed
+- `docs\02_DATA_EVALUATION_PLAN.md`: panel summary of data/context boundaries;
+  exact historical bytes are under `docs\original-decision-process`.
+- `docs\03_EVALUATION_ACCEPTANCE.md`: panel summary of the acceptance contract;
+  exact historical bytes and `eval\spec\acceptance.json` hold the agreed
   prototype policies, scenario IDs, acceptance criteria and required evidence.
 - `eval\spec\split.json`: current reference version, membership and fingerprints.
   Inspect `eval\results` for actual observations, not presumed system success.

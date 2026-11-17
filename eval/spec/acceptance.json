@@ -1,8 +1,8 @@
 {
-  "reference_version": "1.2",
+  "reference_version": "1.3",
   "status": "specification_only_no_system_results",
   "source": "docs\\candidate-pack\\candidate-pack\\README.md",
-  "design_contract": "docs\\03_EVALUATION_ACCEPTANCE.md",
+  "design_contract": "docs\\original-decision-process\\03_EVALUATION_ACCEPTANCE.md",
   "urgency_constraints": {
     "basis": "design",
     "formula_selected": false,
@@ -88,8 +88,8 @@
       "kind": "controlled_model_probe",
       "basis": "design",
       "sources": ["brief:6. Design document"],
-      "setup": ["Use the frozen synthetic F-9001 input and probe-A/probe-B overlays in eval\\spec\\probes.json, not production knowledge.", "Use F-1016 tag-only defect with valid certification as the negative control.", "Run one output for each input under each policy: four nominal requests, at most eight including the declared retries.", "Use identical model/configuration and record original/edited knowledge versions; do not modify the supplied package."],
-      "pass_criteria": ["A knowledge/policy edit alone changes the declared source without orchestration or case-ID branches.", "Synthetic positive likelihood follows the deliberately artificial 6-to-8 convention, not a claimed engineering truth.", "The negative control does not receive an inapplicable functional-failure conclusion; exact control-score equality is not required.", "Unexpected or unchanged behavior is reported as a failed/inconclusive probe, not silently retuned."],
+      "setup": ["Use the frozen synthetic F-9001 input and probe-A/probe-B overlays in eval\\spec\\probes.json, not production knowledge.", "Hold the artificial positive impact convention fixed while changing only the artificial likelihood convention from 6 to 8.", "Use F-1016 tag-only defect with valid certification as the negative control.", "Run one output for each input under each policy: four nominal requests, at most eight including the declared retries.", "Use identical model/configuration and record original/edited knowledge versions; do not modify the supplied package."],
+      "pass_criteria": ["A knowledge/policy edit alone changes the declared source without orchestration or case-ID branches.", "Synthetic positive likelihood follows the deliberately artificial 6-to-8 convention while synthetic impact remains at the fixed artificial value; neither is claimed as engineering truth.", "The negative control does not receive an inapplicable functional-failure conclusion; exact control-score equality is not required.", "Unexpected or unchanged behavior is reported as a failed/inconclusive probe, not silently retuned."],
       "evidence_required": ["Synthetic fixture and expected effect declared before run", "Knowledge-only diff", "Before/after real model outputs", "Negative-control review"],
       "status": "not_run_no_system"
     },

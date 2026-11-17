@@ -1,0 +1,27 @@
+{
+  "generated_at": "2026-11-17T05:39:43.446053+00:00",
+  "tickets_generated": 1,
+  "tickets": [
+    {
+      "ticket_id": "TKT-1016",
+      "finding_id": "F-1016",
+      "equipment_id": "PSV-3420",
+      "summary": "PSV-3420's corroded certification tag is illegible, but certification is in date and the valve appears sound; no impairment is indicated, although valve failure would remove compressor-discharge overpressure protection.",
+      "recommended_action": "Have the certification authority verify valve identity and certificate, renew the corroded tag and confirm legible details match the register; retain the two-year pop-test cycle.",
+      "likelihood_of_failure": {
+        "score": 2,
+        "rationale": "The assessed function is compressor-discharge overpressure protection. The defect concerns only the certification label: certification is reported in date, valve condition is satisfactory and the engineer reports normal behaviour. Little evidence supports near-term protective-function loss."
+      },
+      "impact_of_failure": {
+        "score": 8,
+        "rationale": "Hypothetical loss of compressor-discharge overpressure protection creates credible major-accident exposure. No redundant relief device is listed. This supports a severe consequence band, not an extreme scenario unsupported by detailed consequence evidence; the inexpensive tag repair does not reduce this consequence."
+      },
+      "urgency": {
+        "score": 7,
+        "rationale": "triage-policy-v6: ceil(0.7*I+0.3*L), L=2, I=8, base=7, final=7. P-SCE-HIGH-IMPACT (precautionary_policy): Registry SCE finding assessed at I=8 requires attention at least this week. Sources: registry SCE flag. R-SCE (review): SCE draft requires integrity-engineer review; SCE status alone adds no floor. Sources: registry SCE flag."
+      },
+      "review_required": true,
+      "review_reason": "P-SCE-HIGH-IMPACT (precautionary_policy): Registry SCE finding assessed at I=8 requires attention at least this week. Sources: registry SCE flag. R-SCE (review): SCE draft requires integrity-engineer review; SCE status alone adds no floor. Sources: registry SCE flag."
+    }
+  ]
+}

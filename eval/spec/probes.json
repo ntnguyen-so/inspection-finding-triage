@@ -1,5 +1,5 @@
 {
-  "reference_version": "1.2",
+  "reference_version": "1.3",
   "purpose": "Synthetic evaluation probes, never production inputs or numeric gold for the original 21 findings.",
   "b02": {
     "status": "not_run_no_model",
@@ -36,17 +36,18 @@
       "before": {
         "version": "probe-A",
         "rule_id": "PROBE-PSV-SEAT-PASSING",
-        "text": "Testing-only diagnostic convention, not an engineering calibration: for pressure safety valve findings with observed seat passing below set pressure, assign likelihood_of_failure.score 6. This probe convention takes precedence for this synthetic experiment only. Do not apply to tag-only defects without passing evidence."
+        "text": "Testing-only diagnostic convention, not an engineering calibration: for pressure safety valve findings with observed seat passing below set pressure, assign likelihood_of_failure.score 6 and impact_of_failure.score 3. These fixed probe scores take precedence for this synthetic experiment only. Do not apply to tag-only defects without passing evidence."
       },
       "after": {
         "version": "probe-B",
         "rule_id": "PROBE-PSV-SEAT-PASSING",
-        "text": "Testing-only diagnostic convention, not an engineering calibration: for pressure safety valve findings with observed seat passing below set pressure, assign likelihood_of_failure.score 8. This probe convention takes precedence for this synthetic experiment only. Do not apply to tag-only defects without passing evidence."
+        "text": "Testing-only diagnostic convention, not an engineering calibration: for pressure safety valve findings with observed seat passing below set pressure, assign likelihood_of_failure.score 8 and impact_of_failure.score 3. These fixed probe scores take precedence for this synthetic experiment only. Do not apply to tag-only defects without passing evidence."
       }
     },
     "expected": {
       "positive_before_likelihood": 6,
       "positive_after_likelihood": 8,
+      "positive_impact": 3,
       "negative_control": "Still recognizes in-date certification and a tag-only observation; does not infer a failed relief function or apply the passing rule. Exact control-score equality is not required.",
       "source_trace": "Record original source hashes and policy versions, knowledge-only diff, actual requests/attempts/cost and all four outputs.",
       "on_mismatch": "Report failed or inconclusive probe. Do not rewrite the rule or add repeats to conceal the initial result."

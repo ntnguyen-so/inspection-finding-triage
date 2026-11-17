@@ -1,0 +1,6 @@
+{"case": "role", "arm": "azure", "status": "pass"}
+Executing <Task pending name='Task-206' coro=<AzureResponsesTests.test_absent_usage_is_unknown_and_plain_text_is_visible_only() running at C:\Users\thanh\falkor_case2\tests\test_azure.py:697> wait_for=<Future pending cb=[_chain_future.<locals>._call_check_cancel() at C:\Users\thanh\AppData\Local\Programs\Python\Python311\Lib\asyncio\futures.py:387, Task.task_wakeup()] created at C:\Users\thanh\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py:428> cb=[_run_until_complete_cb() at C:\Users\thanh\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py:181] created at C:\Users\thanh\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py:100> took 0.437 seconds
+----------------------------------------------------------------------
+Ran 63 tests in 1.951s
+
+OK

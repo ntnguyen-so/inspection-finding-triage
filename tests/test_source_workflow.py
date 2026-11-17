@@ -121,7 +121,7 @@ class SourceWorkflowTests(Artifacts, unittest.TestCase):
         self.assertIn("confirmed or suspected protection_impaired", provider.requests[0].system)
         self.assertIn("facts.protection_impaired.verification_activity",
                       provider.requests[0].system)
-        self.assertIn("poor lubrication", provider.requests[0].system)
+        self.assertIn("evidence-supported correction", provider.requests[0].system)
         self.assertIn("confirmed out of service", provider.requests[0].system)
         self.assertIn("not currently providing a protective function",
                       provider.requests[0].system)
@@ -129,8 +129,6 @@ class SourceWorkflowTests(Artifacts, unittest.TestCase):
         self.assertIn("sound pressure boundary", provider.requests[0].system)
         self.assertIn("explicitly unknown duration", provider.requests[0].system)
         self.assertIn("protected function or consequence path",
-                      provider.requests[0].system)
-        self.assertIn("source evidence confirms an independent control",
                       provider.requests[0].system)
         self.assertIn("valid in-date certification", provider.requests[0].system)
         self.assertIn("physical or operational deterioration", provider.requests[0].system)
@@ -160,7 +158,6 @@ class SourceWorkflowTests(Artifacts, unittest.TestCase):
         self.assertIn("should fit 280 characters", provider.requests[0].system)
         self.assertIn("as fixed", provider.requests[0].system)
         self.assertIn("never paraphrase a fixed activity", provider.requests[0].system)
-        self.assertIn("compare the restored local indication", provider.requests[0].system)
         self.assertEqual(
             [
                 CAPACITY_COMPARISON_ACTIVITY,

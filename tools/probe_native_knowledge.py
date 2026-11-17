@@ -151,9 +151,17 @@ async def execute(plan: dict, target: Path) -> dict:
     positives = True
     for when in ("before", "after"):
         path = target / f"positive-{when}.experimental.json"
-        observed = json.loads(path.read_text())["tickets"][0]["likelihood_of_failure"]["score"] if path.exists() else None
-        outcomes[f"positive-{when}"]["observed_likelihood"] = observed
-        positives &= observed == probe["expected"][f"positive_{when}_likelihood"]
+        ticket = json.loads(path.read_text())["tickets"][0] if path.exists() else None
+        observed_likelihood = ticket["likelihood_of_failure"]["score"] if ticket else None
+        observed_impact = ticket["impact_of_failure"]["score"] if ticket else None
+        outcomes[f"positive-{when}"].update(
+            observed_likelihood=observed_likelihood,
+            observed_impact=observed_impact,
+        )
+        positives &= (
+            observed_likelihood == probe["expected"][f"positive_{when}_likelihood"]
+            and observed_impact == probe["expected"]["positive_impact"]
+        )
     report = {
         "status": "four_conditions_completed_review_pending" if positives and all(
             item["status"] == "draft_generated" for item in outcomes.values()) else "failed_or_inconclusive",

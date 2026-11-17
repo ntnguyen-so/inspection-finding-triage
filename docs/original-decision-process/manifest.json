@@ -1,0 +1,50 @@
+[
+  {
+    "file": "01_INITIAL_INVESTIGATION.md",
+    "bytes": 15148,
+    "sha256": "a2f7266a0a6232785be8cad3bca60682191f214352603390eee211d6814b5eea",
+    "source": "uncommitted working-tree snapshot immediately before panel rewrite on 2026-11-17",
+    "head_revision": "92734d6790fa7a938f536294c87e13a7bd147558",
+    "head_sha256": "ef44f4fbd3641da91bb9d5f6e0681a987959fbdac9a8b4c41c101c596e312f9c"
+  },
+  {
+    "file": "02_DATA_EVALUATION_PLAN.md",
+    "bytes": 21537,
+    "sha256": "54a890a6a4234fc63c0012a1f530ec9f2494da5b96a6564e022744c54faf1304",
+    "source": "working-tree snapshot immediately before panel rewrite; byte-identical to HEAD",
+    "head_revision": "92734d6790fa7a938f536294c87e13a7bd147558",
+    "head_sha256": "54a890a6a4234fc63c0012a1f530ec9f2494da5b96a6564e022744c54faf1304"
+  },
+  {
+    "file": "03_EVALUATION_ACCEPTANCE.md",
+    "bytes": 28431,
+    "sha256": "ab6cdaaebb84a6ebf17cc9dbc9021ad2d6d9c4b3eb35d19ff5e931ce0210f86f",
+    "source": "uncommitted reference-v1.3 working-tree snapshot immediately before panel rewrite",
+    "head_revision": "92734d6790fa7a938f536294c87e13a7bd147558",
+    "head_sha256": "ed0d6488673615857d47d396f148217e218469d2289704e3410308ea4a662e70"
+  },
+  {
+    "file": "04_INFERENCE_LIBRARY.md",
+    "bytes": 49693,
+    "sha256": "289c94b5f970bc53f542c2ac10d044853abcd1fcd8efa1caf3b1e71f3bbc11bc",
+    "source": "uncommitted working-tree snapshot immediately before panel rewrite on 2026-11-17",
+    "head_revision": "92734d6790fa7a938f536294c87e13a7bd147558",
+    "head_sha256": "7ee44dfc8db5004926fd2e2867b8a8b599b9f49658e4303c305c9282a6e94c23"
+  },
+  {
+    "file": "05_TRIAGE_WORKFLOW.md",
+    "bytes": 161290,
+    "sha256": "1a4ce6b2b452361e3d6c2d7e415e525b59c298fa32ebd7af88f323f9afcde0b5",
+    "source": "uncommitted working-tree snapshot immediately before panel rewrite on 2026-11-17",
+    "head_revision": "92734d6790fa7a938f536294c87e13a7bd147558",
+    "head_sha256": "5e1d433a38bf58002308a055a78cee990b00428519548dc773ac4398eaa3d80b"
+  },
+  {
+    "file": "06_KNOWLEDGE_DESIGN_DECISION.md",
+    "bytes": 94538,
+    "sha256": "ddef5c9d234b19ebbc496845a51ba2df394d131b5ab551811b622acb68709062",
+    "source": "uncommitted working-tree snapshot immediately before panel rewrite on 2026-11-17",
+    "head_revision": "92734d6790fa7a938f536294c87e13a7bd147558",
+    "head_sha256": "daea45bdb16d2725f8a4f87115320cee397b279193fc5cf6f90e086cf47288f8"
+  }
+]

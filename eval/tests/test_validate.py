@@ -13,6 +13,7 @@ from eval.validate import (
     validate,
     validate_cards,
     validate_manifest,
+    validate_probes,
 )
 
 
@@ -124,6 +125,26 @@ class EvaluationIntegrityTests(unittest.TestCase):
             path.write_text("changed", encoding="utf-8")
             with self.assertRaisesRegex(ValueError, "SHA-256 mismatch"):
                 check_hashes(root, expected, {"reference.jsonl"})
+
+    def test_b02_policies_hold_impact_fixed_and_change_only_likelihood(self):
+        probes = json.loads((ROOT / "eval" / "spec" / "probes.json").read_text(encoding="utf-8"))
+        for mutate in (
+            lambda value: value["b02"]["policies"]["after"].update(
+                text=value["b02"]["policies"]["after"]["text"].replace(
+                    "impact_of_failure.score 3", "impact_of_failure.score 4"
+                )
+            ),
+            lambda value: value["b02"]["policies"]["after"].update(
+                text=value["b02"]["policies"]["after"]["text"] + " Extra rule."
+            ),
+        ):
+            with self.subTest(mutate=mutate):
+                changed = copy.deepcopy(probes)
+                mutate(changed)
+                with self.assertRaisesRegex(ValueError, "differ only"):
+                    validate_probes(
+                        changed, self.manifest, self.findings, self.equipment, self.sections,
+                    )
 
     def test_complete_references_pass(self):
         summary = validate(allow_draft=True)

@@ -1,8 +1,8 @@
 {
-  "version": "1.2",
+  "version": "1.3",
   "status": "frozen",
-  "layout_revision": 1,
-  "revision_reason": "Layout-only reorganization of reference v1.2: number authored documents and group data, specifications, evaluator tests, and observed results. Sources, card bytes, split membership, scenario expectations, and reviewer judgments are unchanged; paths and execution commands are updated.",
+  "layout_revision": 2,
+  "revision_reason": "Semantic reference v1.3 fixes the synthetic B02 probe confound disclosed by retained v1.2 model runs: both policies now hold an artificial impact score fixed while likelihood alone changes from 6 to 8. Layout revision 2 moves the unchanged v1.3 Document 02/03 working-contract bytes from docs\\ to docs\\original-decision-process\\ so the primary paths can hold panel summaries. Candidate-pack sources, all 21 evidence cards, split membership, A04 fixtures and original-finding expectations are unchanged.",
   "reference_status": "ai_assisted_provisional_not_expert_certified",
   "test_claim": "non_blind_procedural_freeze_prior_exposure_to_all_21_findings",
   "source_root": "docs\\candidate-pack\\candidate-pack",
@@ -15,15 +15,15 @@
     "reference\\example_ticket.json": "63aa79897bf35abe1e685414b16cdeb7ee4121a61b3877b0d38ae1ddd40d4732"
   },
   "artifacts_sha256": {
-    "docs\\02_DATA_EVALUATION_PLAN.md": "54a890a6a4234fc63c0012a1f530ec9f2494da5b96a6564e022744c54faf1304",
-    "docs\\03_EVALUATION_ACCEPTANCE.md": "ed0d6488673615857d47d396f148217e218469d2289704e3410308ea4a662e70",
-    "eval\\spec\\acceptance.json": "033d1860c3feb3493c587ee32d2b72b510f2fec3847d04dad77de0626ea2c23c",
+    "docs\\original-decision-process\\02_DATA_EVALUATION_PLAN.md": "54a890a6a4234fc63c0012a1f530ec9f2494da5b96a6564e022744c54faf1304",
+    "docs\\original-decision-process\\03_EVALUATION_ACCEPTANCE.md": "ab6cdaaebb84a6ebf17cc9dbc9021ad2d6d9c4b3eb35d19ff5e931ce0210f86f",
+    "eval\\spec\\acceptance.json": "893d8e1a00a59091402f1151ceac93c0bf29eb98511dd4c31f8299f3a10fce1b",
     "eval\\assess.py": "f518fb5c9fc8d5fa1af3b12b6211e94e5b7724ff4aa7f19295ebd351feb1d4f8",
-    "eval\\spec\\probes.json": "7f4005f8f5311b690adba6b53f8d1cbd603e477e1746d20399a542b197be374a",
+    "eval\\spec\\probes.json": "28cf051dbd40ddc3c0a1959c22f10a48bb69789e239d51acc135e1964822ff4c",
     "eval\\data\\development.jsonl": "dd12bb1f740dc57f089ac1945103315facac0fcbcd1cdd460182dc5b79424f6e",
     "eval\\data\\test.jsonl": "14019fe2b41a298460ce42f0fe1385058cc0a4d24ad04e7c3e3805585a8ebf7d",
-    "eval\\validate.py": "77622bc3748a31bb1e3eac36d5a985bf12289a8af8052e9234758007c6e19e9b",
-    "eval\\tests\\test_validate.py": "fb987528ac2c83c50a6797cbb3c40a4eae63ea810b42bd2ba2141ed4d390bf90",
+    "eval\\validate.py": "a9b37d4680463210f8b474c877989d2a1863a1860f052fd42850853a70fef493",
+    "eval\\tests\\test_validate.py": "a949a141458f0e7f6fe9560d9b1e8b575328bb30a3bfcdb97f01f7b83ab6ede1",
     "eval\\tests\\test_assess.py": "93466b08bf970c5dc09c195621a08c48415c2cbf2382f065dea86c0db7b597f8"
   },
   "partitions": {

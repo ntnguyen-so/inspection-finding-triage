@@ -1,352 +1,365 @@
 # Inspection Finding Triage — System Design
 
-## Overview
+## Five-minute status
 
-The system converts the supplied findings CSV and equipment registry into draft
-maintenance tickets. An LLM performs evidence-grounded assessment and concise
-planning; deterministic Python code owns input identity, context construction,
-schema validation, retry accounting, urgency derivation, coverage and atomic
-publication. Every ticket remains subject to human approval.
+This prototype turns 21 supplied inspection findings into draft maintenance
+tickets. It has a tested implementation, controlled knowledge lifecycle,
+code-derived urgency and retained real-model experiments. It does **not** yet have
+an acceptance-eligible root `tickets.json`. The best Copilot review result was not
+reproduced by the next model: two later reviews each failed at 60/63. Every draft
+still requires human approval.
 
-The final delivery uses:
+| Panel question | Current answer |
+|---|---|
+| Can it generate the required structure? | Yes in offline tests and real experiments; malformed and schema-invalid responses were observed and regenerated once or failed closed. |
+| Does it use the supplied engineering context? | The complete bounded source package, registry and maintained knowledge are hash-pinned and captured; causal knowledge influence remains unproven. |
+| Is urgency model-authored? | No. The model proposes L/I and facts; code computes urgency and applies traceable rules. |
+| Is it submission-ready? | No. The strict final-provider route has not produced an accepted frozen-v8 batch, and root `tickets.json` is absent. |
 
-- the unchanged 21-row findings file and 18-row registry;
-- the owner-promoted, source-faithful knowledge release derived from
-  `reference/domain_knowledge.md`;
-- equipment comments plus deterministic same-equipment history and explicit
-  registry/redundancy links;
-- the direct Azure deployment `triage-final-sol-20260709` with native JSON
-  Schema; and
-- `triage-policy-v5`, with a fixed assessment time and bounded attempt ledger.
+The ordered rationale from requirements through reliability measurement is in
+[`docs/README.md`](docs/README.md); evidence status and limitations are indexed in
+[`eval/results/README.md`](eval/results/README.md).
 
-## A. Structured output
+## The four judgment traps
 
-### Boundary
+1. **Missing evidence is not evidence of absence.** Unknown deviation, capacity,
+   restoration or partner condition must remain unknown; it cannot activate a
+   supplied override that requires a confirmed fact.
+2. **Redundancy is not automatically creditable.** A stated 2oo3 arrangement
+   proves a relationship, not that every partner is currently available and
+   capable.
+3. **Impact is not repair cost.** The assessment includes loss of required
+   function, escalation, delayed or hidden consequences and the protected
+   major-accident scenario where supported.
+4. **Valid JSON is not a valid engineering answer.** The system must separate
+   malformed output, structural errors, unsupported semantics and genuinely
+   unassessable evidence.
 
-The model proposes:
+These traps drive the architecture. Probabilistic interpretation is used where
+language and evidence must be synthesized; predictable engineering controls stay
+in code.
 
-- likelihood and impact scores with evidence-based rationales;
-- a planning summary and specific recommended action;
-- explicit policy fact states (`confirmed_true`, `confirmed_false`, `suspected`,
-  `unknown`) and material uncertainties.
+### Why knowledge and triage are separate modules
 
-Code decides and enforces:
+`triage_knowledge` owns source ingestion, extraction, review, immutable releases,
+selection and context validation. `triage` owns assessment orchestration,
+urgency policy, attempts, complete coverage and publication. Triage consumes a
+pinned knowledge/context contract; it does not know how the store extracted or
+selected the underlying items.
 
-- finding/equipment identity and one-ticket-per-input coverage;
-- the closed assessment and ticket schemas;
-- exact source references and quotations;
-- score types/ranges and summary/action length;
-- policy consistency and required verification activities;
-- urgency calculation and escalation;
-- the total attempt budget; and
-- final all-or-nothing publication.
+This one-way dependency separates content authority from execution authority. A
+domain owner can update approved PSV guidance without editing workflow code, and
+a workflow developer cannot silently turn evaluation cases into maintained
+knowledge. The workflow is independent of store internals, not independent of
+engineering context: missing or invalid required context remains a terminal
+failure.
 
-### Validation and recovery
+### Why inference is a separate module
 
-Provider responses use native strict JSON Schema and are independently validated
-locally. A response is rejected for malformed JSON, unknown fields, wrong
-identity, missing coverage, invalid score types/ranges, unsupported citations,
-policy contradictions or incomplete required activities.
+The candidate already had a GitHub Copilot CLI subscription that included access
+to the coding models used for development without a separately visible per-call
+API charge. A provider-neutral `llm_inference` boundary allowed repeated probes
+to use that lower-marginal-cost route instead of funding every iteration through
+a separately billed OpenAI/Azure API, while keeping orchestration, validation and
+policy independent of Copilot.
 
-One repair retry is allowed for a recoverable structural or validation failure.
-It receives the same approved context, the code-generated validation message
-(bounded to 500 characters) and the rejected draft, never evaluation answers.
-Authentication, configuration, refusal, transport ambiguity, explicit inability
-to assess, or exhausted attempts stop the run.
+This was an economic development choice, not a claim that Copilot inference is
+free or delivery-equivalent. Subscription cost and quotas are real, hidden HTTP
+attempts and per-run USD allocation are unavailable, and another reviewer may
+not share the entitlement. The strict route therefore remains direct Azure where
+SDK retries can be disabled and attempts are ledgered. The adapter boundary made
+that route change possible without rewriting the triage workflow.
 
-A structurally valid but semantically questionable score is not silently
-rewritten. It remains visible for evidence-bound semantic and human review.
-If any ticket cannot be produced, the CLI exits nonzero, emits a JSON diagnostic
-and does not replace the previous output. On success, all 21 tickets are
-validated before `tickets.json` is atomically replaced.
-
-## B. Domain knowledge
-
-The source-first knowledge module stores the exact supplied domain document,
-reviewed item revisions and immutable releases separately from orchestration.
-The final run pins one release and retrieval implementation by hash.
-
-For each finding, code constructs a bounded context containing:
-
-- the complete target finding and registry row, including `engineer_comment`;
-- applicable source lines from `domain_knowledge.md`;
-- a deterministic same-equipment timeline;
-- related findings only through explicit redundancy or registry references; and
-- provenance, limitations and the workflow-owned assessment policy.
-
-This mechanism was chosen because the source is small enough to include without
-lossy summarization, exact citations are auditable, and no vector index or
-retrieval-quality assumption is needed. Relationships are context, not inferred
-causation. Test references, expected
-answers, reviewer judgments and evaluator code are excluded from production
-context.
-
-The supplied domain document currently contains no PSV-specific rule. To add one,
-an integrity engineer imports an approved PSV guidance source, creates a
-`Pressure Safety Valve`-scoped item in the editor/CLI, cites its basis, obtains
-review, publishes a new immutable release and regenerates the activation.
-`knowledge_version` is then updated in both the activation and final config.
-Equipment-specific facts may instead be maintained in the registry
-`engineer_comment`. Changing generic L/I anchors or code-owned urgency requires a
-separately versioned code-policy change; prompts, finding-ID branches and
-evaluation cards are not the maintenance surface.
-
-## C. Urgency derivation
-
-The model does not choose urgency. Code computes:
+## Architecture and responsibility boundary
 
 ```text
-base = ceil(0.7 * impact + 0.3 * likelihood)
-final = max(base, every applicable policy floor)
+validated findings + registry + pinned knowledge + fixed configuration
+  -> complete source-first context and independent hash checks             [code]
+  -> L/I, fact states, uncertainty, summary and proposed activity         [model]
+  -> identity, schema, quotations, citations and fact consistency checks  [code]
+  -> urgency arithmetic, floors, review routing and required checks       [code]
+  -> exact 21-ticket coverage and atomic tickets.json replacement         [code]
+  -> semantic evaluation and human approval                    [outside generation]
 ```
 
-Impact is weighted more heavily so severe consequences are not averaged away.
-The corners behave as follows:
+| Model interprets or authors | Deterministic code owns |
+|---|---|
+| Meaning of observations and comments | Input shape, IDs, joins, dates and score directions |
+| Near-term likelihood and consequence | Closed schemas, ranges and text limits |
+| Confirmed/false/suspected/unknown facts | Exact citations, quotations and state consistency |
+| Uncertainty and proposed verification | Urgency, floors, override conditions and review rules |
+| Summary and recommended activity | Attempt budget, complete coverage and atomic publication |
+| Explicit inability to support L/I | Nonzero failure; never a guessed fallback score |
 
-| Likelihood | Impact | Base urgency | Interpretation |
-|---:|---:|---:|---|
-| 10 | 1 | 4 | highly likely but limited consequence |
-| 1 | 10 | 8 | unlikely but extreme consequence |
+The boundary does not make model judgment deterministic or correct. It makes the
+consequences observable and bounded. Real runs produced malformed JSON and schema
+violations; model repair attempts guided by code-generated feedback validated four
+responses in one batch, while another batch failed after both attempts. A later
+fixed-configuration gpt-6 X01 pair completed both generations but reviewed
+38/39 then 37/39, so the showcased all-21 63/63 result did not close the
+stability gate. No
+counterfactual experiment has compared this design with model-authored urgency,
+so that alternative is rejected on predictability and brief compliance, not
+claimed empirical superiority.
 
-This is neither a plain average nor a maximum. It is an ordinal attention
-ranking, not calibrated expected loss.
+### Worked example: F-1005
 
-| Rule | Evidence-backed trigger | Floor/disposition |
+The detector head failed two gas tests; the other two heads in the 2oo3 group
+responded. The model assessed `L=9`: failure of this head's required function was
+confirmed. It assessed `I=6`: detection was degraded, but the observation still
+showed two responsive heads and therefore did not justify treating group
+protection as lost.
+
+Code calculated a base urgency of 7. A separately labelled candidate policy for a
+confirmed failed protection-function test raised the final urgency to 9 and
+required checks of the impairment/deviation record and current group condition.
+The supplied confirmed override was **not** claimed because absence of a recorded
+deviation was unknown, not confirmed. This example shows the intended separation:
+semantic assessment may vary; arithmetic, fact-state requirements and provenance
+do not.
+
+## A. Structured output and failure behavior
+
+Each model response must satisfy a closed assessment schema. Code rejects extra
+fields, duplicate keys, wrong identity, non-integer or out-of-range scores,
+unsupported citations, inexact quotations, invalid fact combinations and missing
+required activities. A repair receives the same pinned context, the rejected
+draft and a bounded error message. Only explicitly recoverable output errors get
+one further application attempt.
+
+The L/I rubric defines ordinal bands. A confirmed required-function failure must
+be in the 9-10 likelihood band; a lower but otherwise valid score is an
+`assessment_contradiction` and gets one repair. Code can similarly detect
+citation and fact-state contradictions. A coherent, in-range but engineering-wrong
+score cannot be proven wrong by schema code: it remains subject to offline
+semantic review and human approval, as the Azure v5 failures demonstrate.
+Model-authored fact states can also activate code-owned floors—for example, a
+confirmed failed protection-function test triggers a floor of 9. Code validates
+the fact state's form, citations and internal consistency, not its engineering
+truth. Independent fact-state calibration remains future work.
+
+The batch has a persistent 42-attempt budget. Provider retries are disabled on
+the strict Azure route. Any failed finding exits nonzero and publishes nothing;
+an existing output remains byte-identical. Only a complete, revalidated
+21-ticket wrapper is flushed and atomically substituted for `tickets.json`.
+
+### Observed control behavior
+
+The retained
+[`behavior demonstration`](eval/results/design-behavior-demonstration.json)
+binds a 195,917-byte raw verifier report by SHA-256. It ran 125 component tests
+with zero failures, plus 63 inference/provider tests, 81 knowledge/context tests,
+126 evaluator tests and frozen-reference validation. It predates the current v8
+production changes and is historical control evidence, not current-v8
+certification.
+
+| Adversarial behavior exercised | Observed result | What it establishes |
 |---|---|---|
-| `O-PROTECTION` | Confirmed protection impairment and confirmed absence of a recorded deviation | 9 |
-| `O-EVACUATION` | Confirmed evacuation capacity below personnel on board | 9 |
-| `P-FAILED-TEST` | Confirmed failed protection-function test | 9 |
-| `P-EVACUATION` | Unavailable craft with capacity comparison unresolved | 9 |
-| `P-RESTORATION` | Discovered unlogged impairment with restoration unresolved/false | 9 |
-| `S-SOURCE-TODAY` | Applicable source explicitly requires same-day attention | 9 |
-| `P-SAFETY-UNKNOWN` | Material safety uncertainty | 7 |
-| `P-SCE-HIGH-IMPACT` | Registry SCE and assessed impact at least 8 | 7 |
-| `R-MATERIAL` / `R-SCE` | Material uncertainty or SCE integrity review | Review; no extra floor |
+| Malformed JSON versus structural schema failure | Classified separately; each received only its allowed repair | Errors are not collapsed into a success-shaped fallback |
+| Both attempts invalid | Nonzero failure; previous output preserved | Exhaustion cannot masquerade as current success |
+| One finding fails within a batch | No partial batch published | Completeness is enforced at publication |
+| Atomic replace fails | Old bytes preserved; temporary file removed | Publication failure is fail-closed |
+| New process tries to reset budget | Persistent budget still enforced | Restarting cannot create unbounded retries |
+| Evidence cannot support L/I | No midpoint or placeholder score | Review does not legitimize fabrication |
+| Timeout, refusal or context mutation | No publication | Transport and provenance failures are terminal |
 
-The model assesses SCE consequences against the protected major-accident
-scenario. Code does not mechanically alter L/I from the SCE flag; it applies the
-documented floor/review rules after assessment. All applied rules and evidence
-appear in the urgency rationale.
+These are deterministic self-tests, not evidence that the proposed L/I values are
+correct.
 
-I rejected a plain mean because it suppresses low-likelihood/high-impact cases,
-and a plain maximum because it over-prioritizes high-likelihood cosmetic defects.
-I also rejected asking the model for urgency because that would make policy
-inconsistent and difficult to test.
+### Observed model behavior
 
-## D. Limits and human deferral
+| Experiment | Observation | Interpretation |
+|---|---|---|
+| Pre-v8 policy-v5 Copilot at `235bdd1`, 21 findings | 25 sends; four first attempts failed: two malformed JSON and two schema violations; all four repairs succeeded | Bounded repair solved observed output faults on that route/version, but the run is not acceptance-eligible |
+| Pre-v8 Copilot X01 first run | F-1017 returned malformed JSON twice; batch failed and no repeat was run | The same controls also rejected a real exhausted response |
+| Later pre-v8 gpt-6 X01 pair at `4debeba` | Both 13-ticket generations completed; semantic reviews were 38/39 `needs_review` and 37/39 `fail` on F-1003/F-1005 planning | Recorded X01 **fail**; the separate 63/63 all-21 result did not establish stability |
+| Later pre-v8 gpt-6.1 first all-21 run | Failed at F-1015 after 15 sends because the response crossed the output boundary | A newer model did not reproduce complete generation on its first attempt |
+| Later pre-v8 gpt-6.1 retry | 21 contract-valid tickets in 23 sends; two separate calibrated AI-only reviews each failed at 60/63 | The earlier gpt-6 63/63 result is best-of-several evidence, not stable quality |
+| Direct Azure v5, 21 findings | 24 requests produced 21 contract-valid tickets; semantic gate still failed despite 60/63 reviewed dimensions | Structural success is insufficient |
 
-The system fails rather than publishing a scored placeholder when required
-identity, context, evidence or score justification cannot be established.
-Material uncertainty that can be bounded produces a draft with
-`review_required=true`, a specific reason and a verification action. Missing
-evidence is never converted into confirmed absence.
+The Azure experiment used 1,289,873 prompt tokens, 45,878 completion tokens and
+16,474 reasoning tokens. Reported cache reuse was small relative to cache writes;
+USD cost remains unknown because no deployment tariff was captured. Therefore the
+brief's "low enough to reproduce" cost expectation is not yet evidenced; unknown
+cost is not treated as zero or as a pass.
 
-Human approval is always required before the batch enters a work queue.
-`review_required=false` only means no additional case-specific targeted check
-was identified. Additional review is explicitly flagged for SCEs, policy floors,
-material uncertainties and context gaps.
+## B. Knowledge, context and maintenance
 
-Deliberate exclusions:
+The corpus is small and relationship-heavy, so every assessment receives the
+complete bounded registry, all selected findings and engineer comments, exact
+source-faithful domain items, deterministic same-equipment history and explicit
+relationships. This avoids lossy summaries, vector infrastructure and unsupported
+top-k retrieval assumptions. The supplied package is preserved byte-for-byte.
 
-- no live work-order creation or autonomous operational action;
-- no high-level orchestration framework;
-- no vector database or probabilistic relationship inference for 21 rows;
-- no learned/calibrated probability model from this small, non-gold dataset;
-- no automatic repair of semantically unsupported scores;
-- no hidden provider fallback or unbounded retry; and
-- no claim that AI-only evaluation is domain-expert certification.
+A run pins input, knowledge release, selector, prompt, assessment policy and
+execution policy by hash. Code independently reconstructs and validates context
+before provider dispatch. Evaluation cards, expected answers and reviewer
+judgments are excluded from production context.
 
-These choices keep the prototype reviewable and inexpensive while preserving
-the safety boundary.
+An engineer changing PSV behavior uses one of three explicit surfaces:
 
-The direct Azure path uses the provider SDK only. The optional GitHub Copilot SDK
-was used for development experiments with tools disabled; it is not an
-orchestration framework and is not selected by the final command.
+| Intended change | Correct surface |
+|---|---|
+| General PSV guidance or exception | Import an approved PSV-scoped source, review it, publish an immutable knowledge release, then approve and repin activation |
+| Fact about one PSV | Update the registry snapshot and revalidate it |
+| Generic L/I anchor or urgency/review policy | Change versioned application policy and focused tests |
 
-## Assumptions
+This avoids prompt surgery and finding-ID branches. It also exposes a limitation:
+captured context proves delivery, not causal use. The retained B02 influence probe
+was failed/inconclusive, and no PSV-specific behavior change has yet been
+demonstrated.
 
-- The supplied files are the complete assessment snapshot at the configured
-  assessment time.
-- Registry links and comments are authoritative inputs but still require
-  evidence-aware interpretation.
-- Likelihood, impact and urgency are ordinal 1–10 rankings, not probabilities.
-- The final Azure deployment `triage-final-sol-20260709` is available to the
-  reproducing reviewer and is explicitly bound to account-visible model
-  `gpt-5.6-sol`, version `2026-07-09`. Secrets
-  are supplied through the environment and never committed.
-- The local filesystem supports atomic replacement and one writer per output.
-
-## AI assistance and evaluation disclosure
-
-GitHub Copilot assisted with implementation, tests, documentation, review and
-experimental inference. I retained control of policy choices, rejected
-finding-ID answer branches, initially rejected an unapproved SCE floor, later
-versioned it only after owner authorization, and retained the failed frozen
-observation rather than relabelling a corrected rerun. Evaluation answers never
-enter production inference.
-
-The following results used Copilot `gpt-5.6-sol-fast` in explicitly
-non-acceptance-eligible experimental mode on a non-blind, AI-assisted split:
-
-- initial frozen eight-ticket observation: 22/24;
-- an intermediate test-informed regression remained non-green;
-- disclosed corrected test-informed regression: 24/24;
-- development and fixed-config repeat: 39/39 each; and
-- a fresh all-21 run: 59/63, while the separately reviewed partition composite
-  reached 63/63 but was not a single inference.
-
-The failed v3 development repeat exposed F-1016 policy drift and preceded the
-owner-authorized policy-v4 change. Numeric variation in the later v4 repeat was
-reported rather than called deterministic; all urgency bands and review gates
-were stable. These AI-only observations are regression evidence, not independent
-engineering truth and not evidence for the final Azure model. The final direct
-Azure output is reviewed separately after generation.
-
-Earlier direct-Azure development experiments were also retained. `o4-mini` and
-`gpt-5.1-codex-max` had structural/semantic failures; `gpt-5.1-chat` runs failed
-semantic review. An earlier `gpt-5.3-chat` development run needed evidence-repair
-retries for F-1001/F-1005/F-1019 and then failed review on F-1012 grounding and
-F-1019 uncertainty. That run used an older knowledge release and pre-v4 policy,
-so it is not reused as final evidence. The first final attempt used that
-deployment but its 50k-token/minute limit was lower than the full-batch request
-and failed closed before producing a ticket. I therefore created the dedicated
-version-bound `triage-final-chat-20261007` deployment at 250k tokens/minute,
-without changing model family or application logic. It supports the required
-native schema, has no agent/tool layer, and offers a lower-complexity reproducible
-path than the earlier failed configurations. The committed config also enforces
-20-second request pacing.
-
-The first run on the dedicated deployment progressed through 11 findings and
-then failed closed on F-1012 because the composed action was 301 characters
-after its single repair attempt. No output was published. The generic recovery
-guidance was corrected to budget model-authored text around fixed code-supplied
-checks; the hard 300-character limit and required activities were not weakened.
-That code change starts a new bounded phase ledger, while the failed observation
-remains retained.
-
-The next bounded phase failed closed on F-1007 because the model repeated
-inspection/retest content in both the core and five appended verification
-activities. No output was published. The composition contract was then clarified
-so completeness applies to the final composed action, exact activities are
-whitespace-normalized/deduplicated, repair requests receive the actual appended
-checks and a 15-character safety margin, and impossible fixed-only compositions
-fail visibly. Required steps and the hard 300-character limit remain unchanged.
-
-A subsequent chat-model phase still missed the composed-action budget by four
-characters on F-1002. Because repeated prompt-only tuning was no longer a robust
-delivery strategy, the final configuration uses the version-bound direct Azure
-`gpt-5.6-sol` deployment at the same 250k-token/minute capacity. This is the
-related model family to the `gpt-5.6-sol-fast` Copilot regressions, but those
-results are not treated as evidence for this distinct final model. A same-model,
-API, effort, token-cap and pacing native-schema preflight validated F-1001 after
-one composition repair (the first action was 350/300 characters). A separate
-preflight of the three prior overflow cases F-1002, F-1007 and F-1012 validated
-all three on their first attempts, with final actions within the hard limit.
-This deployment uses the selected chat-completions strict-schema path. The
-provider remains direct Azure with no tools, fallback or orchestration layer;
-the earlier reasoning-model failures had separate structural or semantic causes.
-
-The first direct `gpt-5.6-sol` all-21 run published 21 structurally valid drafts
-in 24 requests, but calibrated AI-only review was non-green at 60/63: F-1010
-grounding and F-1020 planning failed, and F-1009 grounding needed review. This
-observation is retained at
-`eval\results\triage\direct-azure-final-sol-v5` and is not relabelled as final
-acceptance. A disclosed medium-reasoning preflight resolved the F-1010 issue and
-showed F-1009's impact rationale was permitted but still omitted part of
-F-1020's required restoration-control sequence. `triage-policy-v5` therefore
-keeps v4 scoring unchanged while code-owning the generic sequence for any
-confirmed unlogged protection impairment whose restoration is false or
-unverified: verify current control alignment, reconcile the impairment/deviation
-record, and close only after a witnessed passing function test. This is a
-test-informed change; it is not an untouched frozen-test result.
-
-A later Copilot `gpt-6.1-sol` experimental all-21 run generated 21 drafts in 21
-application sends and received 62/63 calibrated AI-only semantic dimensions.
-F-1015 planning omitted comparison of the cleaned local gauge indication against
-the reported independent transmitter/reference. The generic planning contract
-now requires that comparison for local readability/visibility defects while
-preserving the distinction between impaired observation and process-function
-failure. This is another disclosed test-informed correction, not a finding-ID
-branch or an untouched test result.
-The failed artifact is retained at
-`eval\results\triage\copilot-gpt61-policy-v5-all21`.
-
-A separate Copilot `gpt-6-sol` experimental all-21 run recorded the prior
-prompt hash, generated 21 drafts in 27 application sends and received a
-provisional 63/63 AI-only review. `triage\assessment.py` changed while that run
-was active, so its recorded prompt state and output are retained at
-`eval\results\triage\copilot-gpt6-policy-v5-all21` but are not claimed as
-current-code evidence. The revised F-1015 guidance has only a disclosed one-case
-spot check at `eval\results\triage\copilot-gpt61-f1015-guidance`; F-1015 is no
-longer held out, and no development-partition case independently exercises this
-new rule.
-
-The current committed-code Copilot `gpt-6-sol` experiment at revision `235bdd1`
-then generated 21 tickets in 25 application sends and received 63/63 calibrated
-AI-only dimensions with no pending judgments. The exact artifact, reviews,
-prompt hash and limitations are retained at
-`eval\results\triage\copilot-gpt6-current-all21`. It is still explicitly
-non-acceptance-eligible: Copilot does not expose strict HTTP retry/cost
-accounting and the workflow prevents it from publishing root `tickets.json`.
-
-The same revision was installed into an isolated Python 3.11 environment in a
-detached clean checkout. All 276 production tests passed (four
-environment-dependent skips), all 126 evaluator tests passed, and
-`python -B -m eval.validate` passed. The exact commands and scope are retained
-at `eval\results\reproducibility\clean-235bdd1.json`; this establishes
-deterministic clean-checkout reproducibility, not live-provider acceptance.
-
-The final run permits at most 42 direct requests (21 findings, at most two
-attempts each), with SDK/HTTP retries disabled and explicit token accounting.
-Before the policy-v5 v7 final run, retained final-phase attempts and preflights
-consumed 95 direct
-requests across separate disclosed ledgers; no ledger was reset to relabel an
-old phase as untouched.
-USD cost depends on the Azure deployment tariff and is reported as unknown unless
-a sourced rate is available; request/token usage is retained so reproduction
-cost can be estimated without claiming subscription credits are free.
-
-The first policy-v5 medium-reasoning preflight failed closed before producing
-F-1011 because all 4096 completion tokens were consumed by reasoning and Azure
-returned `finish_reason=length`; no draft text or output was published. The
-final configuration therefore provides 8192 completion-token headroom. This
-does not add retries or alter the two-attempt application budget; any non-`stop`
-finish reason still fails visibly.
-
-The first all-21 policy-v5 phase validated 19 findings, then Azure exceeded the
-120-second deadline on F-1020; dispatch outcome was recorded as unknown, F-1021
-was not attempted, and no output was published. The v7 phase changes only the
-provider deadline to 180 seconds and uses a fresh ledger/evidence directory.
-It does not retry the ambiguous dispatch inside the old phase or change model,
-reasoning effort, prompt, knowledge, policy or ticket requirements.
-
-## Run
-
-Install on Windows with Python 3.11+:
+The concrete general-guidance path is:
 
 ```powershell
-python -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -e .
+python -B -m triage_knowledge --store knowledge\source-first import-source `
+  --source "path\to\approved-psv-guidance.md" --name "approved-psv-source"
+python -B -m triage_knowledge --store knowledge\source-first review `
+  --item "item-id" --expected-digest "digest" --reviewer "reviewer" --reason "scope checked"
+python -B -m triage_knowledge --store knowledge\source-first publish `
+  --expected-digest "digest" --author "author" --reviewer "reviewer" --reason "approved"
 ```
 
-Set `AZURE_OPENAI_ENDPOINT` and `AZURE_OPENAI_API_KEY`, then run:
+The returned `knowledge_version` must be reviewed and pinned in a **new**
+activation identity and fresh run configuration; activation remains separate
+from knowledge publication. The existing
+`config\triage-activation-v8.json` has invalid review provenance and is not a
+freeze-ready target. The prototype does not yet provide a dedicated
+activation-approval CLI.
 
-```powershell
-.\.venv\Scripts\python.exe -B -m triage `
-  --provider azure `
-  --findings docs\candidate-pack\candidate-pack\data\inspection_findings.csv `
-  --registry docs\candidate-pack\candidate-pack\data\equipment_registry.csv `
-  --knowledge-store knowledge\source-first `
-  --activation config\triage-activation-v5.json `
-  --config config\final-run.json `
-  --output tickets.json `
-  --evidence .delivery-state\final-run-sol-v7 `
-  --allow-inference
+## C. Urgency derivation and observed stability
+
+The model never outputs urgency. For ordinal likelihood `L` and impact `I`:
+
+```text
+base  = ceil(0.7 * I + 0.3 * L)
+      = (7 * I + 3 * L + 9) // 10
+final = max(base, every applicable rule floor)
 ```
 
-The command consumes billable inference, writes complete evidence, and publishes
-only after all 21 tickets pass deterministic validation. The committed config
-uses a repository-relative ledger under ignored `.delivery-state`. A rerun in
-the same working tree must use a fresh evidence directory and a fresh ledger path;
-a clean clone starts with neither. The ledger's 42-attempt budget covers the
-whole batch and must never be reset to conceal consumed attempts.
+This is a candidate-owned attention policy, not probability, expected loss or a
+calibrated risk model. Its source is the supplied asymmetric corner requirement,
+not an external formula. If `w` is the impact weight, requiring `(L=10,I=1)` to
+remain at most 4 gives `w >= 2/3`; requiring `(L=1,I=10)` to remain at most 8
+gives `w <= 7/9`. `0.7` is a simple interior rational with exact integer
+arithmetic.
+
+| L / I | Plain mean | Plain maximum | Chosen formula |
+|---|---:|---:|---:|
+| 1 / 1 | 1 | 1 | 1 |
+| 10 / 1 | 5.5 | 10 | 4 |
+| 1 / 10 | 5.5 | 10 | 8 |
+| 10 / 10 | 10 | 10 | 10 |
+
+All 100 input pairs were range-checked and monotone. A 16-state fact experiment
+also showed that the supplied protection override fires only for confirmed
+impairment plus confirmed absence of a recorded deviation; suspected or unknown
+states receive separately labelled precaution/review treatment.
+
+The base formula alone gives `L=1,I=8 -> U=6`, so it does not satisfy the supplied
+statement that a low-likelihood, high-impact SCE still needs attention this week.
+`P-SCE-HIGH-IMPACT` closes that specific gap with a floor of 7. It was added after
+an observed development-repeat band failure, but its design authority is the
+supplied SCE rule; the threshold remains candidate-owned and uncalibrated.
+
+| Rule | Trigger and effect | Authority |
+|---|---|---|
+| `O-PROTECTION` | Confirmed impairment and confirmed no recorded deviation; floor 9 | Supplied override |
+| `O-EVACUATION` | Confirmed evacuation capacity below POB; floor 9 | Supplied override |
+| `S-SOURCE-TODAY` | Cited active source explicitly requires same-day attention; floor 9 | Source directive composed by code |
+| `P-FAILED-TEST` | Confirmed failed protection-function test; floor 9 | Candidate precaution |
+| `P-EVACUATION` | Craft unavailable but capacity/POB comparison unresolved; floor 9 plus verification | Candidate precaution |
+| `P-RESTORATION` | Unlogged impairment and restoration false/unverified; floor 9 plus closure checks | Candidate precaution |
+| `P-SAFETY-UNKNOWN` | Material safety uncertainty, including unknown deviation; floor 7 plus verification | Candidate precaution |
+| `P-SCE-HIGH-IMPACT` | SCE with assessed impact at least 8; floor 7 | Supplied SCE intent, candidate threshold |
+| `R-MATERIAL` / `R-SCE` | Targeted review; no urgency floor | Candidate review policy |
+
+F-1020 demonstrates `O-PROTECTION`: impairment and absence of a deviation record
+were both confirmed. F-1012 demonstrates the opposite boundary: unavailable craft
+with unknown POB comparison activates `P-EVACUATION`, not the supplied
+`O-EVACUATION` override.
+
+### What the outputs reveal
+
+| Observation | Result |
+|---|---|
+| Pre-v8 policy-v5 Copilot urgency | 7 today, 12 this week, 1 this month, 1 next shutdown |
+| Model impact scores | 13 at I=8, 5 at I=7, 1 at I=6, 2 at I=4 |
+| Floors changed the base result | Only F-1001 and F-1005 |
+| Targeted review flag | 21/21 true |
+| Azure v5 versus pre-v8 policy-v5 Copilot urgency band | 19/21 the same; F-1007 and F-1014 differed |
+
+The concentration is driven mainly by high model impact assessments rather than
+floors, but code-owned ceiling also matters: eight raw weighted values between
+integer points round upward, and five 8.3 cases enter the today band. The 19/21
+cross-run agreement is encouraging but is not a controlled model benchmark
+because provider, model and policy revisions differ. The 21/21 review rate also
+means the targeted flag currently carries little discriminating information
+beyond global human approval.
+
+Controlled repeats show the remaining semantic variance. Before policy v4,
+F-1016 changed from U7 to U6 and crossed from this-week to this-month. A later
+gpt-6.1 repeat changed three of 39 impact values but no final urgency band; one
+threshold rule trace changed. The high-impact SCE floor that absorbed the earlier
+corner is explicitly test-informed, not independently calibrated.
+
+## D. Limits, alternatives and human authority
+
+The system has only three valid outcomes: supported draft; supported but
+materially uncertain draft with a specific check; or unassessable batch failure.
+Human approval is always outside generation. No output authorizes maintenance,
+shutdown or work-order creation.
+
+The main rejected alternatives are model-authored urgency, rules-only L/I, plain
+mean/maximum urgency, automatic credit for redundancy, using the SCE label alone
+to force high L/I or immediate urgency, placeholder scores, semantic rewriting in
+code, vector RAG for this corpus, unbounded retries and partial publication. Each
+either conflicts with the brief, hides uncertainty or adds infrastructure without
+demonstrated need.
+
+The production-essential core is smaller than the evidence apparatus: validated
+context, one bounded repair, schema/fact checks, urgency policy and atomic
+publication. The calibrated reviewers, frozen cards, archives and experiment
+ledgers are prototype evaluation scaffolding. They explain failures and prevent
+success-shaped claims, but they would not belong in the runtime service. The
+current balance is still too evaluation-heavy for the brief because it has not
+yet produced the required final artifact.
+
+### High-impact assumptions
+
+| Assumption | Safeguard or consequence |
+|---|---|
+| Supplied files are the complete selected snapshot | No unprovided state is invented |
+| Assessment cutoff is `2026-07-01T00:00:00+00:00` | Later deterioration or repair is not assumed |
+| Registry comments are evidence, not conclusions | They require grounded interpretation |
+| Redundancy relationships do not prove partner health | Availability and capability require evidence |
+| Missing deviation, POB or restoration data remains unknown | Confirmed overrides cannot be inferred |
+| L/I/U are ordinal scales | Numerical gaps are not treated as equal quantities |
+| One trusted local writer and same-volume replacement are available | No distributed-concurrency claim |
+| Model/reviewer labels expose configuration, not hidden weights or expertise | Results are evidence, not certification |
+
+### AI assistance and candidate overrides
+
+AI assisted code, tests, documentation, review and experiments. Candidate-owned
+decisions overrode AI suggestions by keeping urgency in code, rejecting
+per-finding answer tables and placeholder scores, retaining failed/inconclusive
+results, and preserving frozen evaluation fingerprints. Restoration sequencing,
+the high-impact SCE floor and some guidance are disclosed test-informed changes;
+they are not presented as untouched blind-test findings.
+
+## Submission gap and ordered next work
+
+1. Produce and review an acceptance-eligible frozen-v8 root `tickets.json`.
+2. Calibrate impact anchors, precaution thresholds and targeted review with a
+   domain owner, especially the low-consequence weekly cases.
+3. Demonstrate a PSV knowledge change with a controlled ablation.
+4. Add hash-pinned per-finding resume without weakening atomic final publication.
+5. Reduce repeated context cost and capture a tariff-qualified USD estimate.
+6. Repeat controlled stability experiments on held-out or independently
+   reviewed cases.
+
+The strongest demonstrated claim is narrow: **model behavior varied, including
+real malformed and schema-invalid output; deterministic controls made those
+failures traceable, bounded and fail-closed.** The prototype is technically
+substantial, but final semantic acceptance and the required deliverable are still
+open.

@@ -37,13 +37,13 @@
   },
   "status": "frozen_component_reference_not_system_acceptance",
   "freeze_order": ["unitizer_and_initial_C0_rules", "source_families_and_partitions", "source_bytes_and_atoms", "hash_sorted_repeat_selection", "disclosed_C0_output_exposure", "development_informed_C0_refinement"],
-  "authority": "docs\\06_KNOWLEDGE_DESIGN_DECISION.md",
+  "authority": "docs\\05_KNOWLEDGE_DESIGN_DECISION.md",
   "layout_revision": {
     "prior_semantic_freeze": "056d5c0",
-    "change": "Owner-requested 07-to-06 decision-document rename only; code, prompts, source/reference bytes, thresholds, queries and profile semantics are unchanged.",
+    "change": "Owner-requested panel-reading reorder: knowledge design moves from 06 to 05 and triage workflow moves from 05 to 06. Code, prompts, source/reference bytes, thresholds, queries and profile semantics are unchanged.",
     "comparability": "Historical run manifests retain their original hashes. This layout change does not relabel or rebind old observations."
   },
-  "triage_reference_version": "1.2",
+  "triage_reference_version": "1.3",
   "scenario_support": ["B01", "B02", "B03", "A04", "C04", "D04", "X01", "X02"],
   "scenario_limits": "B03 is the actual maintenance/edit path, not isolation. Isolation supports B01/D04 and component gates. B02 requires the separate downstream change experiment.",
   "exposure": "AI-authored and AI-exposed synthetic reference, not independently blind or human certified. Evaluation source labels must not enter production or development tuning.",
