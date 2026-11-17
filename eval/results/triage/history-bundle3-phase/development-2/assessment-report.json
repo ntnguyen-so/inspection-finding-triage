@@ -1,0 +1,32 @@
+{
+  "scope": "ticket_outputs_only_not_full_A_D_system_acceptance",
+  "reference_version": "1.2",
+  "partition": "development",
+  "output_sha256": "73e92af54f0c5cda7e633ea01a499dc9af13925111d46cb0fb103dc0b8c83a93",
+  "contract": {
+    "status": "pass",
+    "errors": []
+  },
+  "semantic": {
+    "status": "provisional_pass",
+    "reviewer": {
+      "kind": "ai_only",
+      "independent_of_generation": false,
+      "label": "bundle3-author-gpt-5.6-sol-fast",
+      "configuration": "Copilot CLI parent assistant, model ID gpt-5.6-sol-fast; calibrated on the two frozen A04 contradiction controls; document03 three-dimensional rubric, frozen reference1.2 and output-bound quotes. Same implementation author and model family as generation; no independent domain expertise. Parent sampling and USD unavailable."
+    },
+    "passed_dimensions": 39,
+    "applicable_dimensions": 39,
+    "failed": [],
+    "pending": [],
+    "limitation": "Declared review agreement is not independent engineering truth or accuracy."
+  },
+  "overall": "provisional_pass",
+  "review_provenance": {
+    "kind": "ai_only",
+    "independent_of_generation": false,
+    "label": "bundle3-author-gpt-5.6-sol-fast",
+    "configuration": "Copilot CLI parent assistant, model ID gpt-5.6-sol-fast; calibrated on the two frozen A04 contradiction controls; document03 three-dimensional rubric, frozen reference1.2 and output-bound quotes. Same implementation author and model family as generation; no independent domain expertise. Parent sampling and USD unavailable."
+  },
+  "system_scenario_results": "not_provided_not_implied_by_this_report"
+}

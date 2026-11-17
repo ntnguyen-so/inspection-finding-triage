@@ -1,0 +1,416 @@
+{
+  "contract": "x01-fixed-configuration-review-v1",
+  "status": "provisional_pass",
+  "reference_version": "1.2",
+  "reviewer": {
+    "kind": "ai_only",
+    "independent_of_generation": false,
+    "label": "policy-v4-x01-review",
+    "configuration": "GitHub Copilot coding agent in the repository session; exact underlying model identifier, sampling settings, token usage, and USD cost are unavailable to this reviewer. Compared the two fixed-plan outputs against frozen X01 criteria after separate 39-dimension AI-only reviews. No human or domain-expert review; independence from generation is not claimed."
+  },
+  "first_output_sha256": "b50802fcd2f4950505b733ef4caf5f0ca58910edebad4ee6b03e58f0a451335a",
+  "repeat_output_sha256": "6b9494f8740b119312f78c9fac47cdac6086537b8fabbc7e01b3687af179c784",
+  "same_frozen_plan": true,
+  "fixed_configuration_evidence": {
+    "model": "gpt-5.6-sol-fast",
+    "reasoning_effort": "low",
+    "assessment_time": "2026-07-01T00:00:00+00:00",
+    "knowledge_version": "sha256-13df0b9d9ee3326c5866f8603bbb72c3c140540a8a92f38201a3533510e358e3",
+    "planned_context_hash": "239f8cc5f1c90ed9498525a9f0ca483e7167f06404bc827ea2781d512da25a20",
+    "git_revision": "4677a61e7b8a82ae4f50b749d38f4023e3831cb2",
+    "cache_mode": "fresh Copilot sessions; result caching not reported",
+    "http_attempts": null,
+    "usd_cost": null
+  },
+  "first_semantic": "39/39 provisional_pass",
+  "repeat_semantic": "39/39 provisional_pass",
+  "exact_score_tuple_stable_cases": 9,
+  "stable_numeric_dimensions": 34,
+  "drifted_numeric_dimensions": 5,
+  "numeric_drift_cases": 4,
+  "urgency_score_stable_cases": 12,
+  "urgency_band_stable_cases": 13,
+  "review_flag_stable_cases": 13,
+  "numeric_drifts": [
+    {
+      "finding_id": "F-1006",
+      "dimension": "impact",
+      "first": 6,
+      "repeat": 7,
+      "change": 1,
+      "urgency_band_changed": false
+    },
+    {
+      "finding_id": "F-1010",
+      "dimension": "impact",
+      "first": 9,
+      "repeat": 10,
+      "change": 1,
+      "urgency_band_changed": false
+    },
+    {
+      "finding_id": "F-1010",
+      "dimension": "urgency",
+      "first": 9,
+      "repeat": 10,
+      "change": 1,
+      "urgency_band_changed": false
+    },
+    {
+      "finding_id": "F-1012",
+      "dimension": "likelihood",
+      "first": 10,
+      "repeat": 9,
+      "change": -1,
+      "urgency_band_changed": false
+    },
+    {
+      "finding_id": "F-1019",
+      "dimension": "impact",
+      "first": 6,
+      "repeat": 5,
+      "change": -1,
+      "urgency_band_changed": false
+    }
+  ],
+  "qualitative_decision_drifts": [
+    {
+      "finding_id": "F-1007",
+      "dimension": "protection_fact_state",
+      "first_quote": "P-SAFETY-UNKNOWN (precautionary_policy): Protection impairment suspected; deviation status unverified, not confirmed absent.",
+      "repeat_quote": "P-SAFETY-UNKNOWN (precautionary_policy): Protection impaired; deviation status unverified, not confirmed absent.",
+      "status": "supported_nonblocking_nondeterminism",
+      "assessment": "The stronger wording is supported by three trips and about ten days of intermittent delivery from the sole corrosion-inhibitor pump: its corrosion-protection delivery function was actually interrupted. It does not assert confirmed downstream wall loss or a proven diaphragm cause. Both outputs apply the same P-SAFETY-UNKNOWN precaution, urgency 8 (this week), review gate, unknown deviation/restoration treatment and delayed-corrosion consequence, so rule/precaution disposition does not materially change."
+    }
+  ],
+  "adjudication": "X01 provisionally passes under the exact frozen criteria. All five numeric drifts are visible and reviewed; each is a defensible adjacent/top-band alternative without a forbidden claim. All 13 urgency time bands and review gates are stable, and the applicable failed-test, safety-uncertainty, SCE and evacuation dispositions remain materially stable. F-1007 stronger impairment wording is supported by observed interruption of the sole inhibitor-delivery function and does not change policy disposition. The repeat is therefore decision-stable for X01 but explicitly not numerically deterministic.",
+  "cases": [
+    {
+      "finding_id": "F-1001",
+      "first": {
+        "likelihood": 8,
+        "impact": 8,
+        "urgency": 9,
+        "urgency_band": "today",
+        "review_required": true
+      },
+      "repeat": {
+        "likelihood": 8,
+        "impact": 8,
+        "urgency": 9,
+        "urgency_band": "today",
+        "review_required": true
+      },
+      "numeric_drift_fields": [],
+      "exact_score_tuple_stable": true,
+      "urgency_band_stable": true,
+      "review_flag_stable": true
+    },
+    {
+      "finding_id": "F-1003",
+      "first": {
+        "likelihood": 9,
+        "impact": 8,
+        "urgency": 9,
+        "urgency_band": "today",
+        "review_required": true
+      },
+      "repeat": {
+        "likelihood": 9,
+        "impact": 8,
+        "urgency": 9,
+        "urgency_band": "today",
+        "review_required": true
+      },
+      "numeric_drift_fields": [],
+      "exact_score_tuple_stable": true,
+      "urgency_band_stable": true,
+      "review_flag_stable": true
+    },
+    {
+      "finding_id": "F-1004",
+      "first": {
+        "likelihood": 8,
+        "impact": 8,
+        "urgency": 8,
+        "urgency_band": "this_week",
+        "review_required": true
+      },
+      "repeat": {
+        "likelihood": 8,
+        "impact": 8,
+        "urgency": 8,
+        "urgency_band": "this_week",
+        "review_required": true
+      },
+      "numeric_drift_fields": [],
+      "exact_score_tuple_stable": true,
+      "urgency_band_stable": true,
+      "review_flag_stable": true
+    },
+    {
+      "finding_id": "F-1005",
+      "first": {
+        "likelihood": 9,
+        "impact": 6,
+        "urgency": 9,
+        "urgency_band": "today",
+        "review_required": true
+      },
+      "repeat": {
+        "likelihood": 9,
+        "impact": 6,
+        "urgency": 9,
+        "urgency_band": "today",
+        "review_required": true
+      },
+      "numeric_drift_fields": [],
+      "exact_score_tuple_stable": true,
+      "urgency_band_stable": true,
+      "review_flag_stable": true
+    },
+    {
+      "finding_id": "F-1006",
+      "first": {
+        "likelihood": 4,
+        "impact": 6,
+        "urgency": 7,
+        "urgency_band": "this_week",
+        "review_required": true
+      },
+      "repeat": {
+        "likelihood": 4,
+        "impact": 7,
+        "urgency": 7,
+        "urgency_band": "this_week",
+        "review_required": true
+      },
+      "numeric_drift_fields": [
+        "impact"
+      ],
+      "exact_score_tuple_stable": false,
+      "urgency_band_stable": true,
+      "review_flag_stable": true
+    },
+    {
+      "finding_id": "F-1007",
+      "first": {
+        "likelihood": 9,
+        "impact": 7,
+        "urgency": 8,
+        "urgency_band": "this_week",
+        "review_required": true
+      },
+      "repeat": {
+        "likelihood": 9,
+        "impact": 7,
+        "urgency": 8,
+        "urgency_band": "this_week",
+        "review_required": true
+      },
+      "numeric_drift_fields": [],
+      "exact_score_tuple_stable": true,
+      "urgency_band_stable": true,
+      "review_flag_stable": true
+    },
+    {
+      "finding_id": "F-1008",
+      "first": {
+        "likelihood": 7,
+        "impact": 8,
+        "urgency": 8,
+        "urgency_band": "this_week",
+        "review_required": true
+      },
+      "repeat": {
+        "likelihood": 7,
+        "impact": 8,
+        "urgency": 8,
+        "urgency_band": "this_week",
+        "review_required": true
+      },
+      "numeric_drift_fields": [],
+      "exact_score_tuple_stable": true,
+      "urgency_band_stable": true,
+      "review_flag_stable": true
+    },
+    {
+      "finding_id": "F-1009",
+      "first": {
+        "likelihood": 2,
+        "impact": 8,
+        "urgency": 7,
+        "urgency_band": "this_week",
+        "review_required": true
+      },
+      "repeat": {
+        "likelihood": 2,
+        "impact": 8,
+        "urgency": 7,
+        "urgency_band": "this_week",
+        "review_required": true
+      },
+      "numeric_drift_fields": [],
+      "exact_score_tuple_stable": true,
+      "urgency_band_stable": true,
+      "review_flag_stable": true
+    },
+    {
+      "finding_id": "F-1010",
+      "first": {
+        "likelihood": 9,
+        "impact": 9,
+        "urgency": 9,
+        "urgency_band": "today",
+        "review_required": true
+      },
+      "repeat": {
+        "likelihood": 9,
+        "impact": 10,
+        "urgency": 10,
+        "urgency_band": "today",
+        "review_required": true
+      },
+      "numeric_drift_fields": [
+        "impact",
+        "urgency"
+      ],
+      "exact_score_tuple_stable": false,
+      "urgency_band_stable": true,
+      "review_flag_stable": true
+    },
+    {
+      "finding_id": "F-1012",
+      "first": {
+        "likelihood": 10,
+        "impact": 8,
+        "urgency": 9,
+        "urgency_band": "today",
+        "review_required": true
+      },
+      "repeat": {
+        "likelihood": 9,
+        "impact": 8,
+        "urgency": 9,
+        "urgency_band": "today",
+        "review_required": true
+      },
+      "numeric_drift_fields": [
+        "likelihood"
+      ],
+      "exact_score_tuple_stable": false,
+      "urgency_band_stable": true,
+      "review_flag_stable": true
+    },
+    {
+      "finding_id": "F-1016",
+      "first": {
+        "likelihood": 1,
+        "impact": 8,
+        "urgency": 7,
+        "urgency_band": "this_week",
+        "review_required": true
+      },
+      "repeat": {
+        "likelihood": 1,
+        "impact": 8,
+        "urgency": 7,
+        "urgency_band": "this_week",
+        "review_required": true
+      },
+      "numeric_drift_fields": [],
+      "exact_score_tuple_stable": true,
+      "urgency_band_stable": true,
+      "review_flag_stable": true
+    },
+    {
+      "finding_id": "F-1017",
+      "first": {
+        "likelihood": 6,
+        "impact": 8,
+        "urgency": 8,
+        "urgency_band": "this_week",
+        "review_required": true
+      },
+      "repeat": {
+        "likelihood": 6,
+        "impact": 8,
+        "urgency": 8,
+        "urgency_band": "this_week",
+        "review_required": true
+      },
+      "numeric_drift_fields": [],
+      "exact_score_tuple_stable": true,
+      "urgency_band_stable": true,
+      "review_flag_stable": true
+    },
+    {
+      "finding_id": "F-1019",
+      "first": {
+        "likelihood": 8,
+        "impact": 6,
+        "urgency": 7,
+        "urgency_band": "this_week",
+        "review_required": true
+      },
+      "repeat": {
+        "likelihood": 8,
+        "impact": 5,
+        "urgency": 7,
+        "urgency_band": "this_week",
+        "review_required": true
+      },
+      "numeric_drift_fields": [
+        "impact"
+      ],
+      "exact_score_tuple_stable": false,
+      "urgency_band_stable": true,
+      "review_flag_stable": true
+    }
+  ],
+  "acceptance_eligible": false,
+  "limitations": [
+    "AI-only, non-independent review is provisional and not engineering assurance.",
+    "The output is not numerically deterministic: five L/I/U values drift across four findings despite stable bands and review gates.",
+    "Copilot HTTP-attempt and USD accounting are unavailable; neither is treated as zero.",
+    "This X01 result does not imply full A-D system acceptance."
+  ],
+  "reviewed_nondeterminism": true,
+  "deterministic": false,
+  "rule_precaution_disposition_stable_cases": 13,
+  "numeric_drift_adjudications": [
+    {
+      "finding_id": "F-1006",
+      "drifts": [
+        "impact 6 to 7"
+      ],
+      "status": "supported_nonblocking_nondeterminism",
+      "adjudication": "Both scores are defensible for failure of the main-hoist rope: the source establishes crane/logistics consequence, while suspended-load injury/equipment severity depends on unknown loads, personnel exposure and controls. Neither output says the 10-wire discard limit was reached or certifies unrestricted use. Urgency remains 7 (this week), review remains required, and the material-safety-uncertainty disposition is unchanged."
+    },
+    {
+      "finding_id": "F-1010",
+      "drifts": [
+        "impact 9 to 10",
+        "urgency 9 to 10"
+      ],
+      "status": "supported_nonblocking_nondeterminism",
+      "adjudication": "Impact 9 and 10 are both defensible top-end assessments for confirmed failure of a non-redundant temporary-refuge hydrocarbon barrier protecting mustering personnel; the frozen reference prescribes no exact impact score. Urgency follows the disclosed formula from the changed impact and remains in the 9-10 today band, with the same confirmed-failed-protection-test policy and mandatory review. No forbidden cause or restoration claim is introduced."
+    },
+    {
+      "finding_id": "F-1012",
+      "drifts": [
+        "likelihood 10 to 9"
+      ],
+      "status": "supported_nonblocking_nondeterminism",
+      "adjudication": "Both 9 and 10 satisfy the top-of-range principle for confirmed required-function loss: certification is withheld and the craft is declared unavailable. Both outputs preserve unknown LB-4101 capability and POB/capacity comparison, avoid asserting a below-POB override, retain urgency 9 (today), and require review."
+    },
+    {
+      "finding_id": "F-1019",
+      "drifts": [
+        "impact 6 to 5"
+      ],
+      "status": "supported_nonblocking_nondeterminism",
+      "adjudication": "Both adjacent impacts are defensible for a credible dropped-object hazard with unknown cladding mass, height and personnel exposure and an explicit absence of process concern. Neither output transfers compressor/process consequences or calls the issue cosmetic. Urgency remains 7 (this week) under material safety uncertainty and review remains required."
+    }
+  ]
+}

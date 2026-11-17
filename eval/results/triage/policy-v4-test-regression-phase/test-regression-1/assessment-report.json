@@ -1,0 +1,32 @@
+{
+  "scope": "ticket_outputs_only_not_full_A_D_system_acceptance",
+  "reference_version": "1.2",
+  "partition": "test",
+  "output_sha256": "492f2263214b1c50effb789411697a135086cbb2a965c351dcc1f1d514b95243",
+  "contract": {
+    "status": "pass",
+    "errors": []
+  },
+  "semantic": {
+    "status": "provisional_pass",
+    "reviewer": {
+      "kind": "ai_only",
+      "independent_of_generation": false,
+      "label": "policy-v4-test-regression-ai-only-review",
+      "configuration": "GitHub Copilot coding agent semantic review; exact underlying model identifier was not exposed in this session. Test-informed, output-bound review against frozen reference 1.2 and docs/03 three-dimension rubric. Prior generated outputs and reviews, including the retained 22/24 frozen-test failure, were visible; no independent reviewer or domain expert participated."
+    },
+    "passed_dimensions": 24,
+    "applicable_dimensions": 24,
+    "failed": [],
+    "pending": [],
+    "limitation": "Declared review agreement is not independent engineering truth or accuracy."
+  },
+  "overall": "provisional_pass",
+  "review_provenance": {
+    "kind": "ai_only",
+    "independent_of_generation": false,
+    "label": "policy-v4-test-regression-ai-only-review",
+    "configuration": "GitHub Copilot coding agent semantic review; exact underlying model identifier was not exposed in this session. Test-informed, output-bound review against frozen reference 1.2 and docs/03 three-dimension rubric. Prior generated outputs and reviews, including the retained 22/24 frozen-test failure, were visible; no independent reviewer or domain expert participated."
+  },
+  "system_scenario_results": "not_provided_not_implied_by_this_report"
+}

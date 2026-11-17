@@ -20,7 +20,10 @@ from .assessment import (
 )
 from .contracts import TriageError, digest, nonblank, require, score, timestamp
 from .inputs import ContextExport, ExportedContext, Inputs, validate_context, validate_rows
-from .policy import POLICY_VERSION, derive_policy, gap_verification_activity
+from .policy import (
+    CAPACITY_COMPARISON_ACTIVITY, POLICY_VERSION, SAME_DAY_ATTENTION_ACTIVITY,
+    derive_policy, gap_verification_activity,
+)
 from .source_context import IsolatedProbeContext, NativeContext
 
 RECOVERABLE = {
@@ -374,6 +377,10 @@ async def run_workflow(
                     request = request_for(config.model, context_text, active, finding["equipment_id"],
                                           config.timeout_seconds, config.reasoning_effort, feedback,
                                           [gap_verification_activity(gap) for gap in gaps],
+                                          possible_policy_activities=[
+                                              CAPACITY_COMPARISON_ACTIVITY,
+                                              SAME_DAY_ATTENTION_ACTIVITY,
+                                          ],
                                           feedback_detail=feedback_detail, previous_draft=previous_draft)
                     system, user, _ = request.prepared()
                     if last_dispatch is not None and config.minimum_request_interval_seconds > 0:

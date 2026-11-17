@@ -3,7 +3,7 @@ from __future__ import annotations
 from .assessment import SAME_DAY_VALIDATOR, validate_facts
 from .contracts import nonblank, require, score
 
-POLICY_VERSION = "triage-policy-v2"
+POLICY_VERSION = "triage-policy-v4"
 CAPACITY_COMPARISON_ACTIVITY = "Verify current POB against certified available evacuation capacity."
 SAME_DAY_ATTENTION_ACTIVITY = "Obtain source-required attention today."
 
@@ -48,14 +48,14 @@ def derive_policy(likelihood: int, impact: int, facts: dict, uncertainties: list
         return sorted({ref for name in names for ref in facts[name].get("sources_checked", [])}
                       | {x["source_ref"] for name in names for x in facts[name].get("evidence", [])})
 
-    for trigger, dependent in (
-        ("protection_impaired", "recorded_deviation"),
-        ("evacuation_unavailable", "capacity_below_pob"),
-        ("unlogged_impairment_discovered", "protection_restored"),
+    for trigger, dependent, trigger_states in (
+        ("protection_impaired", "recorded_deviation", {"confirmed_true", "suspected"}),
+        ("evacuation_unavailable", "capacity_below_pob", {"confirmed_true"}),
+        ("unlogged_impairment_discovered", "protection_restored", {"confirmed_true"}),
     ):
-        require(not (state(trigger) == "confirmed_true"
+        require(not (state(trigger) in trigger_states
                      and facts[dependent]["applicability"] == "not_applicable"),
-                "fact_contract", f"Confirmed {trigger} makes {dependent} relevant")
+                "fact_contract", f"Triggered {trigger} makes {dependent} relevant")
 
     if state("protection_impaired") == "confirmed_true" and state("recorded_deviation") == "confirmed_false":
         add("O-PROTECTION", "confirmed_override", 9,
@@ -92,11 +92,21 @@ def derive_policy(likelihood: int, impact: int, facts: dict, uncertainties: list
         add("S-SOURCE-TODAY", "source_directed_attention", 9,
                 "Explicit source-directed same-day attention: " + item["reason"], sources,
                 SAME_DAY_ATTENTION_ACTIVITY)
-    if state("protection_impaired") == "confirmed_true" and state("recorded_deviation") in {"unknown", "suspected"}:
+    impairment = state("protection_impaired")
+    deviation = state("recorded_deviation")
+    if impairment in {"confirmed_true", "suspected"} and deviation in {"unknown", "suspected"}:
         activity = facts["recorded_deviation"].get("verification_activity")
         require(nonblank(activity), "policy_verification", "Deviation verification activity required")
         add("P-SAFETY-UNKNOWN", "precautionary_policy", 7,
-            "Protection impaired; deviation status unverified, not confirmed absent.",
+            ("Protection impaired; deviation status unverified, not confirmed absent."
+             if impairment == "confirmed_true" else
+             "Protection impairment suspected; deviation status unverified, not confirmed absent."),
+            refs("protection_impaired", "recorded_deviation"), activity)
+    if impairment == "suspected" and deviation == "confirmed_false":
+        activity = facts["protection_impaired"].get("verification_activity")
+        require(nonblank(activity), "policy_verification", "Protection verification activity required")
+        add("P-SAFETY-UNKNOWN", "precautionary_policy", 7,
+            "Protection impairment suspected; no recorded deviation.",
             refs("protection_impaired", "recorded_deviation"), activity)
     for name, fact in facts.items():
         if fact["applicability"] == "uncertain":
@@ -121,8 +131,12 @@ def derive_policy(likelihood: int, impact: int, facts: dict, uncertainties: list
         add("P-SAFETY-UNKNOWN" if sce else "R-MATERIAL", "precautionary_policy" if sce else "review",
             7 if sce else 1, f"Partner {gap['partner_equipment_id']} has no registry record.",
             gap["source_refs"], gap_verification_activity(gap))
+    if sce and impact >= 8:
+        add("P-SCE-HIGH-IMPACT", "precautionary_policy", 7,
+            f"Registry SCE finding assessed at I={impact} requires attention at least this week.", [])
     if sce:
-        add("R-SCE", "review", 1, "SCE draft requires integrity-engineer review; no automatic urgency floor.", [])
+        add("R-SCE", "review", 1,
+            "SCE draft requires integrity-engineer review; SCE status alone adds no floor.", [])
     final = max([base, *(x["floor"] for x in rules)])
     details = " ".join(
         f"{x['rule_id']} ({x['kind']}): {x['reason']} Sources: {', '.join(x['sources']) or 'registry SCE flag'}."

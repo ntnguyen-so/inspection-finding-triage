@@ -20,7 +20,7 @@ from triage.__main__ import main
 from triage.assessment_policy import ASSESSMENT_POLICY_SHA256, assessment_policy
 from triage.contracts import TriageError, digest
 from triage.inputs import EQUIPMENT_FIELDS, FINDING_FIELDS, read_inputs
-from triage.policy import SAME_DAY_ATTENTION_ACTIVITY
+from triage.policy import CAPACITY_COMPARISON_ACTIVITY, SAME_DAY_ATTENTION_ACTIVITY
 from triage.source_context import IsolatedProbeContext, NativeContext, activation_candidate
 from triage.workflow import run_workflow
 from triage_knowledge.contracts import KnowledgeError, canonical_bytes
@@ -108,6 +108,44 @@ class SourceWorkflowTests(Artifacts, unittest.TestCase):
         provider = FakeProvider([assessment(), assessment("F-8002")])
         self.run_one(provider)
         message = strict_json(provider.requests[0].user)
+        self.assertIn("do not transfer a vibration directive", provider.requests[0].system)
+        self.assertIn("at-rest, running", provider.requests[0].system)
+        self.assertIn("successful retry", provider.requests[0].system)
+        self.assertIn("unknown acceptance criteria", provider.requests[0].system)
+        self.assertIn("different failure mode", provider.requests[0].system)
+        self.assertIn("linked partner's observed impairment", provider.requests[0].system)
+        self.assertIn("recorded-deviation status", provider.requests[0].system)
+        self.assertIn("confirmed or suspected protection_impaired", provider.requests[0].system)
+        self.assertIn("facts.protection_impaired.verification_activity",
+                      provider.requests[0].system)
+        self.assertIn("poor lubrication", provider.requests[0].system)
+        self.assertIn("confirmed out of service", provider.requests[0].system)
+        self.assertIn("not currently providing a protective function",
+                      provider.requests[0].system)
+        self.assertIn("naming only the equipment class", provider.requests[0].system)
+        self.assertIn("sound pressure boundary", provider.requests[0].system)
+        self.assertIn("explicitly unknown duration", provider.requests[0].system)
+        self.assertIn("protected function or consequence path",
+                      provider.requests[0].system)
+        self.assertIn("source evidence confirms an independent control",
+                      provider.requests[0].system)
+        self.assertIn("valid in-date certification", provider.requests[0].system)
+        self.assertIn("physical or operational deterioration", provider.requests[0].system)
+        self.assertIn("observed evidence raises doubt", provider.requests[0].system)
+        self.assertIn("unresolved repair, restoration", provider.requests[0].system)
+        self.assertIn("existing maintenance-backlog status",
+                      provider.requests[0].system)
+        self.assertIn("target finding backlog status", provider.requests[0].system)
+        self.assertIn("backlog status alone does not lower urgency",
+                      provider.requests[0].system)
+        self.assertIn("SCE status, redundancy status", provider.requests[0].system)
+        self.assertIn("do not infer unstated", provider.requests[0].system)
+        self.assertIn("operational, interruption or personnel consequence",
+                      provider.requests[0].system)
+        self.assertEqual(
+            [CAPACITY_COMPARISON_ACTIVITY, SAME_DAY_ATTENTION_ACTIVITY],
+            message["possible_policy_activities"],
+        )
         history = message["target_query_facts"]["history"]
         self.assertEqual(["F-8001", "F-8002"], [
             item["finding_id"] for item in history["equipment_timeline"]])

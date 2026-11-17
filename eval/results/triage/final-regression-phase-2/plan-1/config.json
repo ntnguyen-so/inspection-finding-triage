@@ -1,0 +1,14 @@
+{
+  "model": "gpt-5.6-sol-fast",
+  "knowledge_version": "sha256-4cdb338350468ee42a9fa865d69e7b5c8be249707f4443bf3c2626d29a484102",
+  "assessment_time": "2026-07-01T00:00:00+00:00",
+  "phase_attempt_budget": 52,
+  "attempt_ledger": "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\final-regression-phase-2\\native-e2e.experimental-ledger.json",
+  "max_context_bytes": 128000,
+  "timeout_seconds": 90,
+  "reasoning_effort": "low",
+  "execution_mode": "copilot_experiment",
+  "minimum_request_interval_seconds": 0,
+  "azure_max_completion_tokens": 4096,
+  "azure_api": "chat_completions"
+}

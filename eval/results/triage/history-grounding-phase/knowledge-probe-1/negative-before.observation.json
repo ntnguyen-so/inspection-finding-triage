@@ -1,0 +1,15 @@
+{
+  "status": "draft_generated",
+  "receipt": {
+    "run_status": "experimental_draft_generated",
+    "published_output": true,
+    "output": "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\history-grounding-phase\\knowledge-probe-1\\negative-before.experimental.json",
+    "output_sha256": "3e5e31cc6ae46c470e4e7a78927669f18d8af990e90f4f43012ba94ac63ae5e8",
+    "tickets_generated": 1,
+    "semantic_status": "not_reviewed",
+    "acceptance_eligible": false,
+    "execution_mode": "copilot_experiment",
+    "http_attempts": null,
+    "application_send_count": 1
+  }
+}

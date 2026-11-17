@@ -1,0 +1,23 @@
+{
+  "contract": "native-triage-policy-v4-test-informed-regression-v1",
+  "reference_version": "1.2",
+  "finding_ids": [
+    "F-1002",
+    "F-1011",
+    "F-1013",
+    "F-1014",
+    "F-1015",
+    "F-1018",
+    "F-1020",
+    "F-1021"
+  ],
+  "model": "gpt-5.6-sol-fast",
+  "maximum_sends": 16,
+  "nominal_sends": 8,
+  "frozen_test_predecessor": "eval/results/triage/history-policy-v3-test-phase/test-1",
+  "frozen_test_status": "22/24 semantic fail",
+  "prior_regression": "eval/results/triage/final-test-regression-phase/test-regression-1",
+  "classification": "test_informed_regression_not_untouched_test",
+  "acceptance_eligible": false,
+  "disclosure": "Post-frozen-test, policy-v4 regression observation. It does not replace or relabel the retained untouched frozen-test result."
+}

@@ -1,0 +1,14 @@
+{
+  "contract": "reviewed-partition-composite-v1",
+  "classification": "deterministic_composite_not_single_all21_inference",
+  "development_source": "eval/results/triage/final-regression-phase-4/development-1/tickets.experimental.json",
+  "development_sha256": "c9e6b616f9f878daf1544de6e3992373bcdd7a2bce7f74811a924c0f0380072b",
+  "development_semantic": "39/39 provisional_pass",
+  "test_source": "eval/results/triage/final-test-regression-phase/test-regression-1/tickets.experimental.json",
+  "test_sha256": "d1eb0708313e52f965d22c9721df55a70ba9e7b19aedc97d47cd9c11c2cda432",
+  "test_semantic": "24/24 provisional_pass test-informed regression",
+  "frozen_test_status": "22/24 fail retained",
+  "single_all21_status": "59/63 with 4 needs_review retained",
+  "output_sha256": "fbf19ea7fb5c76b87fa299ad645c6454f896557d737ac20689525a9f7950a26d",
+  "acceptance_eligible": false
+}

@@ -1,0 +1,27 @@
+{
+  "generated_at": "2026-11-16T23:08:34.552502+00:00",
+  "tickets_generated": 1,
+  "tickets": [
+    {
+      "ticket_id": "TKT-1016",
+      "finding_id": "F-1016",
+      "equipment_id": "PSV-3420",
+      "summary": "PSV-3420\u2019s certification tag is illegible, but the register shows March 2025 recertification and no valve defect or protection loss was observed.",
+      "recommended_action": "Replace the tag under authorized PSV certification control; verify valve identity and March 2025 certificate.",
+      "likelihood_of_failure": {
+        "score": 1,
+        "rationale": "An illegible tag does not indicate near-term loss of relief function; the valve was recently recertified, is reported in date and has no observed physical defect."
+      },
+      "impact_of_failure": {
+        "score": 9,
+        "rationale": "Failure of this non-redundant safety-critical PSV would remove compressor-discharge overpressure protection, creating extreme major-accident exposure."
+      },
+      "urgency": {
+        "score": 7,
+        "rationale": "triage-policy-v2: ceil(0.7*I+0.3*L), L=1, I=9, base=7, final=7. R-SCE (review): SCE draft requires integrity-engineer review; no automatic urgency floor. Sources: registry SCE flag."
+      },
+      "review_required": true,
+      "review_reason": "R-SCE (review): SCE draft requires integrity-engineer review; no automatic urgency floor. Sources: registry SCE flag."
+    }
+  ]
+}

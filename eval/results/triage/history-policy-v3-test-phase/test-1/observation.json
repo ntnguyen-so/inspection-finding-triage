@@ -1,0 +1,18 @@
+{
+  "status": "frozen_test_completed_review_pending",
+  "cli_exit_code": 0,
+  "tickets_generated": 8,
+  "output_contract_valid": true,
+  "actual_native_context_delivery": true,
+  "code_stable_during_run": true,
+  "application_sends": 8,
+  "phase_reservations": 8,
+  "maximum_sends": 16,
+  "semantic_status": "not_reviewed",
+  "output_sha256": "12773816effeb61e110d436569c82f032ed7df0a38e963c54ffc53e149465baf",
+  "elapsed_seconds": 128.82800000003772,
+  "http_attempts": null,
+  "usd_cost": null,
+  "acceptance_eligible": false,
+  "disclosure": "One-time non-blind frozen test; Copilot HTTP attempts and USD cost unavailable."
+}

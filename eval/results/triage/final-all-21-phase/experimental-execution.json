@@ -1,0 +1,27 @@
+{
+  "command": [
+    ".venv\\Scripts\\python.exe",
+    "-B",
+    "-m",
+    "triage",
+    "--provider",
+    "copilot",
+    "--findings",
+    "eval\\results\\triage\\final-all-21-phase\\plan-1\\findings.csv",
+    "--registry",
+    "eval\\results\\triage\\final-all-21-phase\\plan-1\\registry.csv",
+    "--knowledge-store",
+    "eval\\results\\triage\\final-all-21-phase\\plan-1\\software-store",
+    "--activation",
+    "eval\\results\\triage\\final-all-21-phase\\plan-1\\activation.json",
+    "--config",
+    "eval\\results\\triage\\final-all-21-phase\\plan-1\\config.json",
+    "--output",
+    "eval\\results\\triage\\final-all-21-phase\\tickets.experimental.json",
+    "--evidence",
+    "eval\\results\\triage\\final-all-21-phase\\run",
+    "--allow-inference"
+  ],
+  "recorded_at": "2026-11-17T00:42:58.0070236Z",
+  "classification": "automated_all_21_experimental_after_final_publication_safeguard"
+}

@@ -1,0 +1,301 @@
+{
+  "reference_version": "1.2",
+  "partition": "test",
+  "output_sha256": "d1eb0708313e52f965d22c9721df55a70ba9e7b19aedc97d47cd9c11c2cda432",
+  "reviewer": {
+    "kind": "ai_only",
+    "independent_of_generation": false,
+    "label": "final-test-regression-author-gpt-5.6-sol-fast",
+    "configuration": "Copilot CLI parent assistant, model ID gpt-5.6-sol-fast; test-informed output-bound review under document03 rubric. Same implementation author and model family; no independent domain expertise."
+  },
+  "items": [
+    {
+      "finding_id": "F-1002",
+      "dimension": "grounding",
+      "verdict": "pass",
+      "reason": "The ticket retains the test card decision-changing evidence, applies related history without forbidden claims, and supports its L/I assessment.",
+      "evidence": [
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "Observed leakage below set pressure is active degradation of the relief device, but no protective-service test establishes loss of relief capability."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1002",
+      "dimension": "planning",
+      "verdict": "pass",
+      "reason": "The summary and action explain the function/consequence and name evidence-appropriate authority, correction and verification.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Pressure-systems authority to inspect/test PSV, repair per findings, and verify seat tightness and certified set-pressure lift. Check impairment/deviation register. Confirm repair and passing retest. Function-test relief performance. Review relief basis and exposure."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1002",
+      "dimension": "uncertainty",
+      "verdict": "pass",
+      "reason": "Material unknowns and code-owned policy routing are explicit, bounded and consistent with the available evidence.",
+      "evidence": [
+        {
+          "field": "review_reason",
+          "quote": "P-SAFETY-UNKNOWN (precautionary_policy): Protection impaired; deviation status unverified, not confirmed absent. Sources: equipment:PSV-1310:engineer_comment, finding:F-1002:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): Relief capacity and set-pressure operation have not been tested; leakage alone does not establish whether the required relief function will fail. Sources: finding:F-1002:finding_description, equipment:PSV-1310:engineer_comment. P-SAFETY-UNKNOWN (precautionary_policy): The observation predates assessment and no evidence confirms repair or restoration. Sources: finding:F-1002:reported_date, finding:F-1002:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): The protected vessel and absence of PSV redundancy are known, but the specific overpressure scenario and personnel exposure are not supplied. Sources: equipment:PSV-1310:redundancy, equipment:PSV-1310:service_description. R-SCE (review): SCE draft requires integrity-engineer review; no automatic urgency floor. Sources: registry SCE flag."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1011",
+      "dimension": "grounding",
+      "verdict": "pass",
+      "reason": "The ticket retains the test card decision-changing evidence, applies related history without forbidden claims, and supports its L/I assessment.",
+      "evidence": [
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "Required deluge delivery from approximately 12 of 60 north-quadrant nozzles failed during the function test; normal header conditions localize the demonstrated loss downstream."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1011",
+      "dimension": "planning",
+      "verdict": "pass",
+      "reason": "The summary and action explain the function/consequence and name evidence-appropriate authority, correction and verification.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Inspect and clear north branch/nozzles; full-flow retest coverage; obtain fire-protection authority disposition and check deviation record. Check impairment/deviation record. Full-flow retest north quadrant."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1011",
+      "dimension": "uncertainty",
+      "verdict": "pass",
+      "reason": "Material unknowns and code-owned policy routing are explicit, bounded and consistent with the available evidence.",
+      "evidence": [
+        {
+          "field": "review_reason",
+          "quote": "P-FAILED-TEST (precautionary_policy): Confirmed failed protection-function test; immediate human attention. Sources: finding:F-1011:finding_description, finding:F-1011:inspection_method, finding:F-1011:inspection_type. P-SAFETY-UNKNOWN (precautionary_policy): Protection impaired; deviation status unverified, not confirmed absent. Sources: equipment:DEL-8300:engineer_comment, equipment:DEL-8300:service_description, finding:F-1011:finding_description, finding:F-1020:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): Current north-quadrant coverage is unknown because no repair completion or successful repeat flow test is recorded; later valve reopening does not prove nozzle restoration. Sources: finding:F-1011:finding_description, finding:F-1020:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): The impairment's deviation and impairment-register status is unknown, affecting compliance and operating disposition. Sources: finding:F-1011:finding_description, finding:F-1020:finding_description. R-SCE (review): SCE draft requires integrity-engineer review; no automatic urgency floor. Sources: registry SCE flag."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1013",
+      "dimension": "grounding",
+      "verdict": "pass",
+      "reason": "The ticket retains the test card decision-changing evidence, applies related history without forbidden claims, and supports its L/I assessment.",
+      "evidence": [
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "The required accurate level signal is already demonstrably lost: INST-2150 differs from the backup by about 12% and the sight glass by about 15%, with worsening divergence over three weeks."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1013",
+      "dimension": "planning",
+      "verdict": "pass",
+      "reason": "The summary and action explain the function/consequence and name evidence-appropriate authority, correction and verification.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Instrument and operations engineers transfer control if approved, diagnose/calibrate INST-2150, and function-test control and alarm. Check impairment/deviation register. Calibrate against approved criteria. Function-test INST-2151."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1013",
+      "dimension": "uncertainty",
+      "verdict": "pass",
+      "reason": "Material unknowns and code-owned policy routing are explicit, bounded and consistent with the available evidence.",
+      "evidence": [
+        {
+          "field": "review_reason",
+          "quote": "P-SAFETY-UNKNOWN (precautionary_policy): Protection impairment suspected; deviation status unverified, not confirmed absent. Sources: equipment:INST-2150:engineer_comment, finding:F-1013:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): INST-2151 was later observed flat-lined for about 36 hours; its present capability and any restoration are unknown, so duplication cannot be credited. Sources: finding:F-1018:finding_description, equipment:INST-2150:redundancy. P-SAFETY-UNKNOWN (precautionary_policy): The high-level alarm response and impairment/deviation status have not been established. Sources: equipment:INST-2150:engineer_comment, finding:F-1013:finding_description. R-MATERIAL (review): The cause of the growing bias and the applicable calibration acceptance criterion are not supplied; both affect correction and return-to-service disposition. Sources: finding:F-1013:finding_description."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1014",
+      "dimension": "grounding",
+      "verdict": "pass",
+      "reason": "The ticket retains the test card decision-changing evidence, applies related history without forbidden claims, and supports its L/I assessment.",
+      "evidence": [
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "One support bracket has already lost its support function, evidenced by corrosion through and partial plate detachment. The separator being out of service limits exposure but does not reverse the bracket's confirmed failure."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1014",
+      "dimension": "planning",
+      "verdict": "pass",
+      "reason": "The summary and action explain the function/consequence and name evidence-appropriate authority, correction and verification.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Integrity engineer inspect all supports, approve repair of the deflector/bracket, and verify secure alignment before return. Check repair status and re-inspect internals."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1014",
+      "dimension": "uncertainty",
+      "verdict": "pass",
+      "reason": "Material unknowns and code-owned policy routing are explicit, bounded and consistent with the available evidence.",
+      "evidence": [
+        {
+          "field": "review_reason",
+          "quote": "R-MATERIAL (review): Repair or restoration after the 2026-06-12 observation is not evidenced; current internal condition must be confirmed to avoid duplicate work and establish return-to-service scope. Sources: finding:F-1014:finding_description, finding:F-1014:reported_date."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1015",
+      "dimension": "grounding",
+      "verdict": "pass",
+      "reason": "The ticket retains the test card decision-changing evidence, applies related history without forbidden claims, and supports its L/I assessment.",
+      "evidence": [
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "Readability is credibly degraded, but the gauge was not reported wholly unreadable and transmitter-based level control appeared normal."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1015",
+      "dimension": "planning",
+      "verdict": "pass",
+      "reason": "The summary and action explain the function/consequence and name evidence-appropriate authority, correction and verification.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Clean and inspect gauge glass; compare indication with transmitter and verify clear, accurate level display. Check gauge readability and accuracy."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1015",
+      "dimension": "uncertainty",
+      "verdict": "pass",
+      "reason": "Material unknowns and code-owned policy routing are explicit, bounded and consistent with the available evidence.",
+      "evidence": [
+        {
+          "field": "review_reason",
+          "quote": "R-MATERIAL (review): The record does not establish whether the gauge was subsequently cleaned or remains reliably readable and accurate. Sources: finding:F-1015:finding_description, finding:F-1015:reported_date."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1018",
+      "dimension": "grounding",
+      "verdict": "pass",
+      "reason": "The ticket retains the test card decision-changing evidence, applies related history without forbidden claims, and supports its L/I assessment.",
+      "evidence": [
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "The required backup indication was already demonstrably unavailable for approximately 36 hours; the blocked impulse line and failed sensor remain alternative suspected causes."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1018",
+      "dimension": "planning",
+      "verdict": "pass",
+      "reason": "The summary and action explain the function/consequence and name evidence-appropriate authority, correction and verification.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Inspect impulse line and sensor; repair as found, then calibrate and function-test both channels and control/alarm response. Confirm channel control/alarm assignments. Diagnose cause and confirm restoration. Verify both channels' current capability."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1018",
+      "dimension": "uncertainty",
+      "verdict": "pass",
+      "reason": "Material unknowns and code-owned policy routing are explicit, bounded and consistent with the available evidence.",
+      "evidence": [
+        {
+          "field": "review_reason",
+          "quote": "P-SAFETY-UNKNOWN (precautionary_policy): Current capability of both legs is unresolved: INST-2151 was flat-lined, while INST-2150 was controlling with a growing discrepancy. History does not establish subsequent restoration. Sources: finding:F-1018:finding_description, finding:F-1013:finding_description, equipment:INST-2151:redundancy. P-SAFETY-UNKNOWN (precautionary_policy): The target channel's exact control, alarm and process consequence assignments are not documented; the duty transmitter is stated to feed control and high-level alarm, but that cannot be transferred to INST-2151 without verification. Sources: equipment:INST-2150:engineer_comment, equipment:INST-2151:service_description. R-MATERIAL (review): Blocked impulse line and failed sensor are alternative suspected causes, and no repair or restoration record is supplied. Sources: finding:F-1018:finding_description."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1020",
+      "dimension": "grounding",
+      "verdict": "pass",
+      "reason": "The ticket retains the test card decision-changing evidence, applies related history without forbidden claims, and supports its L/I assessment.",
+      "evidence": [
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "Required flow through the north-quadrant branch was confirmed unavailable when found closed. It was reopened immediately, but the closure duration is unknown and restored delivery was not demonstrated."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1020",
+      "dimension": "planning",
+      "verdict": "pass",
+      "reason": "The summary and action explain the function/consequence and name evidence-appropriate authority, correction and verification.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Fire-protection engineer to inspect valve controls and north branch, correct findings, approve disposition, and full-flow test coverage. Full-flow test north quadrant. Trace closure cause and duration."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1020",
+      "dimension": "uncertainty",
+      "verdict": "pass",
+      "reason": "Material unknowns and code-owned policy routing are explicit, bounded and consistent with the available evidence.",
+      "evidence": [
+        {
+          "field": "review_reason",
+          "quote": "O-PROTECTION (confirmed_override): Confirmed protection impairment without recorded deviation. Sources: equipment:DEL-8300:service_description, finding:F-1020:finding_description. P-FAILED-TEST (precautionary_policy): Confirmed failed protection-function test; immediate human attention. Sources: finding:F-1011:finding_description, finding:F-1011:inspection_method, finding:F-1011:inspection_type. P-RESTORATION (precautionary_policy): Unlogged impairment discovered; restored protection not verified. Sources: finding:F-1011:finding_description, finding:F-1020:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): Current north-quadrant delivery remains unverified after reopening, while the preceding test documented deficient coverage. Sources: finding:F-1020:finding_description, finding:F-1011:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): The closure duration and cause are unknown, affecting recurrence control and the disposition of an unlogged SCE impairment. Sources: finding:F-1020:finding_description. R-SCE (review): SCE draft requires integrity-engineer review; no automatic urgency floor. Sources: registry SCE flag."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1021",
+      "dimension": "grounding",
+      "verdict": "pass",
+      "reason": "The ticket retains the test card decision-changing evidence, applies related history without forbidden claims, and supports its L/I assessment.",
+      "evidence": [
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "Wet insulation and rust staining support an active corrosion precursor, but the thick-walled, historically trouble-free boundary has no confirmed damage or functional loss."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1021",
+      "dimension": "planning",
+      "verdict": "pass",
+      "reason": "The summary and action explain the function/consequence and name evidence-appropriate authority, correction and verification.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Remove insulation at the manway, inspect and UT the boundary; integrity engineer to disposition findings and verify acceptance after correction. Check impairment/deviation register. Check inventory, pressure and personnel exposure. Inspect and UT hidden pressure boundary."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1021",
+      "dimension": "uncertainty",
+      "verdict": "pass",
+      "reason": "Material unknowns and code-owned policy routing are explicit, bounded and consistent with the available evidence.",
+      "evidence": [
+        {
+          "field": "review_reason",
+          "quote": "P-SAFETY-UNKNOWN (precautionary_policy): Protection impairment suspected; deviation status unverified, not confirmed absent. Sources: equipment:V-1201:engineer_comment, finding:F-1021:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): Actual wall condition and remaining thickness beneath the damp insulation are unknown; confirmed significant loss would increase likelihood and alter disposition. Sources: finding:F-1021:finding_description, equipment:V-1201:engineer_comment. P-SAFETY-UNKNOWN (precautionary_policy): Operating inventory, pressure and personnel exposure at the manway are not supplied, limiting consequence refinement within the severe band. Sources: equipment:V-1201:engineer_comment, equipment:V-1201:service_description. R-SCE (review): SCE draft requires integrity-engineer review; no automatic urgency floor. Sources: registry SCE flag."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "status": "experimental_e2e_pass",
+  "cli_exit_code": 0,
+  "output_contract_valid": true,
+  "actual_native_context_delivery": true,
+  "code_stable_during_run": true,
+  "application_sends": 13,
+  "phase_send_ceiling": 52,
+  "http_attempts": null,
+  "usd_cost": null,
+  "semantic_status": "not_reviewed",
+  "output_sha256": "73e92af54f0c5cda7e633ea01a499dc9af13925111d46cb0fb103dc0b8c83a93",
+  "elapsed_seconds": 614.2810000000172,
+  "acceptance_eligible": false,
+  "disclosure": "Isolated SOFTWARE-fixture publication/activation of unchanged supplied domain; not genuine engineer approval, qualified extraction or system acceptance. Provider accounting is reported separately.",
+  "phase_application_send_reservations": 29
+}

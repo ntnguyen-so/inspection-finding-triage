@@ -1,0 +1,6 @@
+{
+  "status": "failed",
+  "error_class": "freeze_changed",
+  "message": "Native E2E code/configuration changed; never silently refresh pins",
+  "acceptance_eligible": false
+}

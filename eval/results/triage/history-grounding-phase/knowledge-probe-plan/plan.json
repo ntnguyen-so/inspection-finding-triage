@@ -1,0 +1,113 @@
+{
+  "contract": "native-b02-v1",
+  "source_directory": "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\history-grounding-phase\\knowledge-probe-plan",
+  "config": {
+    "model": "gpt-5.6-sol-fast",
+    "knowledge_version": "sha256-7b83d91a6a0a0989a0471a55540d2c846640f69caba7f52da41318f5dcc98232",
+    "assessment_time": "2026-07-01T00:00:00+00:00",
+    "phase_attempt_budget": 8,
+    "attempt_ledger": "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\history-grounding-phase\\native-b02.experimental-ledger.json",
+    "max_context_bytes": 128000,
+    "timeout_seconds": 90,
+    "reasoning_effort": "low",
+    "execution_mode": "copilot_experiment",
+    "minimum_request_interval_seconds": 0,
+    "azure_max_completion_tokens": 4096,
+    "azure_api": "chat_completions"
+  },
+  "cases": {
+    "positive-before": {
+      "finding_ids": [
+        "F-9001"
+      ],
+      "context_hash": "10ac759138d1f52fd952493ab9c452d85bd1c0bce11ad45dc1648181433c68de",
+      "overlay_sha256": "3cf50f94a0ddafcff42004e9f136f724868b12d905c3534716896d11dc4a7d53"
+    },
+    "positive-after": {
+      "finding_ids": [
+        "F-9001"
+      ],
+      "context_hash": "7e733272d3e091389a3207114e5645780dc804ad0f67857e4cc07f79130899e7",
+      "overlay_sha256": "689fe94104219f62946d19dcabc4597707703e204efe153020801c58b6e30120"
+    },
+    "negative-before": {
+      "finding_ids": [
+        "F-1016"
+      ],
+      "context_hash": "aeb33cc5896bf65ceea2af03a1936a3527855dff0f58014447d354ac5544819e",
+      "overlay_sha256": "3cf50f94a0ddafcff42004e9f136f724868b12d905c3534716896d11dc4a7d53"
+    },
+    "negative-after": {
+      "finding_ids": [
+        "F-1016"
+      ],
+      "context_hash": "83a8532a4099dbd4095ad42815937915eabf4d4d2ae3475675f20c1a7384c853",
+      "overlay_sha256": "689fe94104219f62946d19dcabc4597707703e204efe153020801c58b6e30120"
+    }
+  },
+  "code_sha256": {
+    "tools\\integrate_triage.py": "2d992b6b2cac67b91775ccd49d6adfda14ef350ce59fe4e9ff7b3494b8d981ba",
+    "pyproject.toml": "646ccb78205ac51bb3decd8021a27a3e51223456666a21f1ae26e25397de1bbf",
+    "eval\\spec\\split.json": "bf708a150f0ac08a1f65f1d585f2cdde6fb6984578ea379465a066cf9a622e43",
+    "eval\\spec\\acceptance.json": "033d1860c3feb3493c587ee32d2b72b510f2fec3847d04dad77de0626ea2c23c",
+    "triage\\__init__.py": "51f62fcfafec299f8d680aa5383a2c1167776721cc2d3ebbdf3ec22fbf2ad648",
+    "triage\\__main__.py": "b43d7238d4c799be9087f9e9573c2e43974104f31e939451817668e1a567e727",
+    "triage\\assessment.py": "d7c9ee7f19371915dc7b757f6206deaffbe13174e6b8e6c1b4a9f4b9ec983629",
+    "triage\\assessment_policy.py": "8a843de918e7d00815322349f6977fa911ade1a8a0aa70047f5c47cb6603b59f",
+    "triage\\contracts.py": "617852d136cb46f1e4d961c0ca1d708fca64ba77f63da603775567829c780f7d",
+    "triage\\inputs.py": "5ba3846f328c6740a1898ae9afe19c5737205094ecf37c89722ea5fdd171dd61",
+    "triage\\policy.py": "f4d539440e73529ead6ecfcc7162a879ae32137574d1c58356319f70711b0cf4",
+    "triage\\source_context.py": "0f1641dd18e0517f8369ff67e8d92f2f831d2f6f6884d124861940d188c45b8a",
+    "triage\\workflow.py": "336c4dfbd1472bccb296445fe37951eda9067f312a3fa4c13843ac9fd63ca1e3",
+    "triage_knowledge\\__init__.py": "ad88d9716743dbdcca5f51c2508d18d32c4619ae90ed1ebc9f2936c05a6cb9eb",
+    "triage_knowledge\\__main__.py": "68644fe2d0ec06345784a8b663eea0eeb77f2b598fc54310aeddb9c27755fd17",
+    "triage_knowledge\\contracts.py": "ab812eb5124d6fdae77d208519e2511526857214cbff57fcfc80341bc5354c74",
+    "triage_knowledge\\editor.py": "ad29cc29345f7ae4261a9b6e26efb764b9f347c4ad383f52097d67dd73568ad0",
+    "triage_knowledge\\retrieval.py": "5c77502ca74a4c3b485d1ba3bab2ad22c79ab3b01a5a1ee9bd6f12dea080ec91",
+    "triage_knowledge\\source.py": "d2cb494ff1088d2e262f2c924467cd126c41921ab6e8191cf0cc86c2a4033e79",
+    "triage_knowledge\\source_cli.py": "e34171422c006db2528578de93790ba0df73049f8e81a3b03a8eac66adc1f839",
+    "triage_knowledge\\source_context.py": "e3672a29b260ebb1bf4d82e518603b54bb30b5886e0f2d51d5ee80ac5eef76aa",
+    "triage_knowledge\\source_editor.py": "97e2a027478c45959456a53a672bd9f970bb9d82f07aa58eac48a36fe2a5fc21",
+    "triage_knowledge\\source_store.py": "3673d83cdf8d5937232f77a11329080eef925d1583132ffe8a27a2abc67b98fb",
+    "llm_inference\\__init__.py": "95dc7f05b494cd3c7135bdb061453e9ddc72c45a20777dee1569fe36e8c3f6bc",
+    "llm_inference\\__main__.py": "f2acc111947d8a818cefdb93f67e420566e44804c8d11c6837480f9fdd4c0746",
+    "llm_inference\\_lifecycle.py": "b8c983e8e230e0cdfce5d329f361cdebda6dd040ab6e7774b53626eb1d97bbef",
+    "llm_inference\\azure.py": "636c3b0c08280af84d8337907b9238ddd7c32bfb0a14de5b3074a524279b83c3",
+    "llm_inference\\contracts.py": "9c0ae31b46ad600c71fa08f84c83923ea2318b3e72e8857e67ccdaf065b78eb8",
+    "llm_inference\\copilot.py": "49b01321cfb2d7bb635f119c36e5c1768e40ca23863357e3425fd1c5909f3417",
+    "tools\\probe_native_knowledge.py": "7f69e4e9f49bfc039053e665b961246b06b95aecf5576be4f4583d6713f8be03",
+    "eval\\spec\\probes.json": "7f4005f8f5311b690adba6b53f8d1cbd603e477e1746d20399a542b197be374a"
+  },
+  "artifact_sha256": {
+    "activation.json": "b4f3439e103b8b523459c2825ac34477a4f99088330424ad26173410be3897f8",
+    "negative-after.context.json": "7c4dce0610583af29cf4140363b17c548250721e8c346ba6b21537161bdd5c17",
+    "negative-after.experiment.json": "aee86a20cbce1160a9886358334048a0a737d9477b516ea385d0ae7dbcc0fca3",
+    "negative-before.context.json": "148c8e43ef5523e91a79f92bc29791dae6858b08409782f6a20c0f6c9eb80df6",
+    "negative-before.experiment.json": "6975f0edec319c70b7474d60ba7f8f2f6818d71650ee4901e04fc9c37fc14118",
+    "negative.csv": "d946e9e47655835bdfcb9e22764b7d9a26eb9abef9485818b066c19acf009d0b",
+    "positive-after.context.json": "6dd98e4602fdd1413c89efea763eae311d93596b9ba21d36858cda96b4205dbb",
+    "positive-after.experiment.json": "302797f72dfa0aea6367abb4eb9e4df7c273367658ddfb139ab046f724bb34e0",
+    "positive-before.context.json": "e72722287c7237d6f6aa0dbe8f9fa8aecd8d1d122ff3e1f06da457bf1a295314",
+    "positive-before.experiment.json": "40d2967cd16f28199df87247f9a628fe8ac275a9c547b9108ea83e80e9e3cabd",
+    "positive.csv": "6df563e35a6067d6a45ec07e9314bc33d87615173ff9e6ddc7cf6f8fa71d6d49",
+    "registry.csv": "43217a483b9ff1da80d7604b9860c0a6ac33817cb949e852234291b7b63bf0b8",
+    "software-store\\draft.json": "881bc468dbb00e7f705fd9bc51cce5d28972fcc732d790830e70e509167d5a4f",
+    "software-store\\releases\\sha256-7b83d91a6a0a0989a0471a55540d2c846640f69caba7f52da41318f5dcc98232.json": "7b83d91a6a0a0989a0471a55540d2c846640f69caba7f52da41318f5dcc98232",
+    "software-store\\revisions\\sha256-2830ce7c2e6f734bec0605fc9989250187cda0e5797ddfb6aecde81043bb9ffc.json": "2830ce7c2e6f734bec0605fc9989250187cda0e5797ddfb6aecde81043bb9ffc",
+    "software-store\\revisions\\sha256-2c0ee0a5e02a84b8cb99c110618e6c6fa70ed7c7558d448d6e28560f9b05a4ce.json": "2c0ee0a5e02a84b8cb99c110618e6c6fa70ed7c7558d448d6e28560f9b05a4ce",
+    "software-store\\revisions\\sha256-5b15f828acc9f7721c7524dbb5edfc859806af556831e8a2827f8d05200f3ae7.json": "5b15f828acc9f7721c7524dbb5edfc859806af556831e8a2827f8d05200f3ae7",
+    "software-store\\revisions\\sha256-a59bcd5659571efaedb7dfabedcd52be71d7b11a16252422bed95eed3b4d8582.json": "a59bcd5659571efaedb7dfabedcd52be71d7b11a16252422bed95eed3b4d8582",
+    "software-store\\revisions\\sha256-b2053992b8832263a6d29343eac78e6e13c9f561a86b9021f58e4bf9651a106c.json": "b2053992b8832263a6d29343eac78e6e13c9f561a86b9021f58e4bf9651a106c",
+    "software-store\\revisions\\sha256-ce3961ec18e5121c75c01565b6357931eb4b51d21e8a975fe961ca0d7bcc0584.json": "ce3961ec18e5121c75c01565b6357931eb4b51d21e8a975fe961ca0d7bcc0584",
+    "software-store\\revisions\\sha256-f70ef63618ed34aaaf7d14c74703ccb2812e4856ab6ec8f03b40da9de50b233b.json": "f70ef63618ed34aaaf7d14c74703ccb2812e4856ab6ec8f03b40da9de50b233b",
+    "software-store\\revisions\\sha256-fc093e633e7a597adfe8845f09c84defd063f9307bd6a17196403283a6f4a966.json": "fc093e633e7a597adfe8845f09c84defd063f9307bd6a17196403283a6f4a966",
+    "software-store\\sources\\sha256-5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066.bin": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066"
+  },
+  "maximum_sends": 8,
+  "nominal_sends": 4,
+  "automatic_repeats": false,
+  "acceptance_eligible": false,
+  "http_attempts": null,
+  "usd_cost": null,
+  "disclosure": "Software-only fixture publication, isolated evaluation_input and artificial policy; not real KB approval."
+}

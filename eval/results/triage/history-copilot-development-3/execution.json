@@ -1,0 +1,30 @@
+{
+  "command": [
+    "C:\\Users\\thanh\\falkor_case2\\.venv\\Scripts\\python.exe",
+    "-B",
+    "-m",
+    "triage",
+    "--provider",
+    "copilot",
+    "--findings",
+    "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\history-copilot-plan-3\\selected.csv",
+    "--registry",
+    "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\history-copilot-plan-3\\registry.csv",
+    "--knowledge-store",
+    "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\history-copilot-plan-3\\software-store",
+    "--activation",
+    "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\history-copilot-plan-3\\activation.json",
+    "--config",
+    "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\history-copilot-plan-3\\config.json",
+    "--output",
+    "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\history-copilot-development-3\\tickets.experimental.json",
+    "--evidence",
+    "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\history-copilot-development-3\\run",
+    "--allow-inference"
+  ],
+  "recorded_at": "2026-11-16T21:59:47.561779+00:00",
+  "git_revision": "142aee64250dc132d9dfef13d2c38cb4ef9d749b",
+  "dirty_worktree": "?? eval/results/triage/history-copilot-development-3/\n?? eval/results/triage/history-copilot-plan-3/\n",
+  "disclosure": "Isolated SOFTWARE-fixture publication/activation of unchanged supplied domain; not genuine engineer approval, qualified extraction or system acceptance. Provider accounting is reported separately.",
+  "phase_reservations_before_dispatch": 15
+}

@@ -1,0 +1,19 @@
+{
+  "status": "final_test_informed_regression_completed_review_pending",
+  "classification": "test_informed_regression_not_untouched_test",
+  "frozen_test_predecessor": "eval/results/triage/history-policy-v3-test-phase/test-1",
+  "cli_exit_code": 0,
+  "tickets_generated": 8,
+  "output_contract_valid": true,
+  "actual_native_context_delivery": true,
+  "code_stable_during_run": true,
+  "application_sends": 8,
+  "phase_reservations": 8,
+  "maximum_sends": 16,
+  "semantic_status": "not_reviewed",
+  "output_sha256": "d1eb0708313e52f965d22c9721df55a70ba9e7b19aedc97d47cd9c11c2cda432",
+  "elapsed_seconds": 195.5470000000205,
+  "http_attempts": null,
+  "usd_cost": null,
+  "acceptance_eligible": false
+}

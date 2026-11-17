@@ -32,7 +32,7 @@ still apply before paid baseline/test/final generation.
 | Full selected-batch evidence, module-owned active knowledge selection | Document 06 sections 8-9; B01-B03 | Keep all selected finding/registry rows; retain one independently validated active-knowledge snapshot, without workflow ranking |
 | L/I bands, with confirmed failed required function at the top end (9-10) | Prototype rubric within supplied scoring definitions; A04, C04, D03 | Owner approved |
 | Consequence-weighted rounded urgency and exact floor 9 within allowed 9-10 | Prototype numerical choices; C01-C03 | Owner approved |
-| All-SCE mandatory review, without an extra urgency floor | Additional declared prototype choice; D01/D03 | Owner approved |
+| All-SCE mandatory review; impact 8+ also receives a week-level floor | Implements the supplied low-likelihood/high-impact SCE timing rule without changing L/I; D01/D03 | Owner-authorized all-green continuation; rule and cutoff are declared prototype choices superseding the earlier no-floor decision; see document 06 |
 | Bottom-up slices and bounded generation phase plan | Implementation approach; A-D, X01-X02 | Owner approved; live budget sign-off still separate |
 | Exact provider snapshot, run controls, reviewer-call budget and pricing | Baseline configuration, not resolved by design approval; X01-X02 | Required before paid runs |
 
@@ -421,8 +421,9 @@ review or human approval.
 | `P-EVACUATION` | Known unavailable craft with unverified remaining capacity/POB comparison | 9; precautionary attention, not proven capacity shortfall |
 | `P-RESTORATION` | Explicit discovered unlogged impairment with unverified restored protection | 9; precautionary attention, not a claim of continuing total defeat |
 | `P-SAFETY-UNKNOWN` | Other material safety uncertainty | 7 and mandatory review/verification |
+| `P-SCE-HIGH-IMPACT` | Registry identifies an SCE and assessed impact is 8 or above | 7; week-level routing without changing L/I |
 | `R-MATERIAL` | Material uncertainty affecting justified assessment/disposition | Mandatory review, specific reason and verification; no extra floor unless safety policy applies |
-| `R-SCE` | Registry identifies an SCE | Mandatory integrity review as a separately declared prototype choice; no automatic urgency floor |
+| `R-SCE` | Registry identifies an SCE | Mandatory integrity review; SCE status alone adds no floor |
 
 State predicates below resolve the rule table before implementation. `T`, `F`,
 `S` and `U` mean confirmed true, confirmed false, suspected and unknown. Apply
@@ -436,16 +437,19 @@ to `F`. Each named condition is scoped to the assessment cutoff and evidence.
 | `P-FAILED-TEST` | failed protection-function test `T` |
 | `P-EVACUATION` | unavailable craft `T` AND capacity below POB in `{U, S}`, with unverified remaining capacity/POB comparison |
 | `P-RESTORATION` | discovered unlogged impairment `T` AND verified restored protection in `{F, U, S}` |
-| `P-SAFETY-UNKNOWN` | a source-derived safety gap or an evidence-backed material safety uncertainty, including unresolved safety-policy applicability; no stronger immediate condition is required |
+| `P-SAFETY-UNKNOWN` | protection impairment `T` with recorded deviation in `{U, S}`, protection impairment `S` with recorded deviation in `{F, U, S}`, or another source-derived/evidence-backed material safety uncertainty; no stronger immediate condition is required |
+| `P-SCE-HIGH-IMPACT` | primary registry SCE flag is `Yes` AND assessed impact is at least 8 |
 | `R-MATERIAL` | source-derived material gap or assessed material uncertainty; verification activity required |
 | `R-SCE` | primary registry SCE flag is `Yes`, independent of model applicability |
 
 For capacity below POB, `F` means the comparison is verified non-shortfall, not
 that a partner tag exists. Restored protection `F` means verified non-restoration;
 `U`/`S` mean restoration is not verified, not confirmed continuing total defeat.
-Protection impairment `T` with deviation `U`/`S` does not meet `O-PROTECTION`:
-require review and at least floor 7 for that material safety uncertainty, or floor
-9 if a separate failed-test/restoration/evacuation precaution qualifies.
+Protection impairment `T` with deviation `U`/`S`, and suspected impairment `S`
+with deviation `F`/`U`/`S`, do not meet `O-PROTECTION`: require review and at
+least floor 7 for that material safety uncertainty, or floor 9 if a separate
+failed-test/restoration/evacuation precaution qualifies. A relevant deviation
+fact cannot be declared not applicable to suppress this precaution.
 Two simultaneous overrides retain both rule IDs. A lower floor never reduces
 an already higher base or floor.
 
@@ -2049,7 +2053,17 @@ Native-only `native-assessment-v2` supersedes the earlier wire layout:
   Mechanical provenance does **not** prove directive applicability or detect
   an omitted directive; actual semantic review remains necessary.
 
-Execution policy `triage-policy-v2` leaves the base formula and L/I unchanged.
+Execution policy `triage-policy-v4` leaves the base formula and L/I unchanged.
+Version 4 adds a week-level floor for registry SCE findings with assessed impact
+8 or above. The timing requirement comes from the supplied domain notes; impact
+8 as the start of the high-impact band is the declared prototype
+cutoff. It does not change L/I or create an immediate-attention override.
+Version 3 made suspected protection impairment with absent, unknown or
+suspected deviation status a visible `P-SAFETY-UNKNOWN` week-level precaution.
+Unknown or suspected status appends the model-supplied deviation-record check;
+confirmed absence needs no status check but appends the model-supplied
+protection-capability check. It does not create a confirmed
+override; urgency 9-10 still requires the contract's confirmed conditions.
 `S-SOURCE-TODAY`, explicitly labelled `source_directed_attention`, floors U at9
 and requires review plus `Obtain source-required attention today.` It schedules
 an evidenced existing source instruction; it is not a fabricated confirmed

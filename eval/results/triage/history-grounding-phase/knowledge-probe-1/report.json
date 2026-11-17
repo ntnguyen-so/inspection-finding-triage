@@ -1,0 +1,63 @@
+{
+  "status": "failed_or_inconclusive",
+  "positive_policy_response_observed": false,
+  "conditions": {
+    "positive-before": {
+      "status": "draft_generated",
+      "receipt": {
+        "run_status": "experimental_draft_generated",
+        "published_output": true,
+        "output": "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\history-grounding-phase\\knowledge-probe-1\\positive-before.experimental.json",
+        "output_sha256": "881db0b2d64ada3495f3dae2704ee60071f7e3de9ab86c5692bb43c45a6f010d",
+        "tickets_generated": 1,
+        "semantic_status": "not_reviewed",
+        "acceptance_eligible": false,
+        "execution_mode": "copilot_experiment",
+        "http_attempts": null,
+        "application_send_count": 1
+      },
+      "observed_likelihood": 6
+    },
+    "positive-after": {
+      "status": "failed",
+      "error_class": "unassessable",
+      "observed_likelihood": null
+    },
+    "negative-before": {
+      "status": "draft_generated",
+      "receipt": {
+        "run_status": "experimental_draft_generated",
+        "published_output": true,
+        "output": "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\history-grounding-phase\\knowledge-probe-1\\negative-before.experimental.json",
+        "output_sha256": "3e5e31cc6ae46c470e4e7a78927669f18d8af990e90f4f43012ba94ac63ae5e8",
+        "tickets_generated": 1,
+        "semantic_status": "not_reviewed",
+        "acceptance_eligible": false,
+        "execution_mode": "copilot_experiment",
+        "http_attempts": null,
+        "application_send_count": 1
+      }
+    },
+    "negative-after": {
+      "status": "draft_generated",
+      "receipt": {
+        "run_status": "experimental_draft_generated",
+        "published_output": true,
+        "output": "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\history-grounding-phase\\knowledge-probe-1\\negative-after.experimental.json",
+        "output_sha256": "7936bbec1ebdd504b7161fb58ce9b2a3e97a07557b850be9e87dd848f89e6fbc",
+        "tickets_generated": 1,
+        "semantic_status": "not_reviewed",
+        "acceptance_eligible": false,
+        "execution_mode": "copilot_experiment",
+        "http_attempts": null,
+        "application_send_count": 1
+      }
+    }
+  },
+  "negative_semantic_status": "pending_calibrated_review",
+  "code_stable_during_run": true,
+  "phase_reservations": 4,
+  "acceptance_eligible": false,
+  "http_attempts": null,
+  "usd_cost": null
+}

@@ -251,6 +251,8 @@ class PolicyTests(unittest.TestCase):
                 with self.subTest(impaired=impaired, deviation=deviation):
                     values = facts()
                     values["protection_impaired"]["state"] = impaired
+                    if impaired == "suspected":
+                        values["protection_impaired"]["verification_activity"] = "Verify protection capability."
                     values["recorded_deviation"].update(state=deviation,
                                                        verification_activity="Check deviation log.")
                     result = self.derive(values)
@@ -258,8 +260,22 @@ class PolicyTests(unittest.TestCase):
                     self.assertEqual("O-PROTECTION" in ids,
                                      impaired == "confirmed_true" and deviation == "confirmed_false")
                     expected = 9 if impaired == "confirmed_true" and deviation == "confirmed_false" else (
-                        7 if impaired == "confirmed_true" and deviation in {"unknown", "suspected"} else 1)
+                        7 if impaired in {"confirmed_true", "suspected"}
+                        and deviation in {"confirmed_false", "unknown", "suspected"}
+                        and not (impaired == "confirmed_true" and deviation == "confirmed_false")
+                        else 1)
                     self.assertEqual(expected, result["final"])
+                    if impaired == "suspected" and deviation in {"unknown", "suspected"}:
+                        self.assertIn("Protection impairment suspected", result["review_reason"])
+                        self.assertIn("Check deviation log.", result["verification_activities"])
+                        rule = next(rule for rule in result["rules"]
+                                    if rule["reason"].startswith("Protection impairment suspected"))
+                        self.assertEqual("precautionary_policy", rule["kind"])
+                    if impaired == "suspected" and deviation == "confirmed_false":
+                        self.assertIn("no recorded deviation", result["review_reason"])
+                        self.assertNotIn("Check deviation log.", result["verification_activities"])
+                        self.assertIn("Verify protection capability.",
+                                      result["verification_activities"])
 
     def test_precautions_capacity_and_restoration(self):
         for capacity in ("confirmed_true", "confirmed_false", "suspected", "unknown"):
@@ -320,7 +336,8 @@ class PolicyTests(unittest.TestCase):
         before = deepcopy(values)
         result = self.derive(values, 10, 10, sce=True)
         self.assertEqual(10, result["final"])
-        self.assertEqual({"O-PROTECTION", "O-EVACUATION", "P-FAILED-TEST", "R-SCE"},
+        self.assertEqual({"O-PROTECTION", "O-EVACUATION", "P-FAILED-TEST",
+                          "P-SCE-HIGH-IMPACT", "R-SCE"},
                          {x["rule_id"] for x in result["rules"]})
         self.assertEqual(before, values)
 
@@ -348,6 +365,13 @@ class PolicyTests(unittest.TestCase):
         with self.assertRaises(TriageError):
             self.derive(values)
 
+    def test_high_impact_sce_gets_week_level_floor(self):
+        result = self.derive(facts(), likelihood=1, impact=8, sce=True)
+        self.assertEqual((6, 7), (result["base"], result["final"]))
+        self.assertIn("P-SCE-HIGH-IMPACT", {rule["rule_id"] for rule in result["rules"]})
+        self.assertEqual(6, self.derive(facts(), likelihood=1, impact=8, sce=False)["final"])
+        self.assertLess(self.derive(facts(), likelihood=1, impact=7, sce=True)["final"], 7)
+
     def test_missing_verification_blocks_policy(self):
         values = facts()
         values["evacuation_unavailable"]["state"] = "confirmed_true"
@@ -371,6 +395,12 @@ class PolicyTests(unittest.TestCase):
                 result = self.derive(values)
                 self.assertEqual(1, result["final"])
                 self.assertFalse(result["review_required"])
+        values = facts()
+        values["protection_impaired"]["state"] = "suspected"
+        values["recorded_deviation"]["applicability"] = "not_applicable"
+        with self.assertRaises(TriageError) as caught:
+            self.derive(values)
+        self.assertEqual("fact_contract", caught.exception.code)
         values = facts()
         values["unlogged_impairment_discovered"]["state"] = "confirmed_true"
         values["protection_restored"]["state"] = "confirmed_false"

@@ -1222,6 +1222,27 @@ one-sided link exclusion, chronology, row-order stability, history tampering and
 target request delivery. These AI reviews are not domain certification or proof
 that a model uses the delivered history correctly.
 
+### Provider-bound completeness audit
+
+The post-implementation audit traced the unchanged candidate package through the
+reviewed release, native bundle and actual provider request. All eight active
+domain sections cover the supplied `domain_knowledge.md` bytes and are delivered;
+all finding/registry fields, including engineer comments and redundancy, remain
+addressable. Target requests additionally carry the target equipment timeline,
+full rows for same-equipment observations, and full rows linked by explicit
+redundancy or registry references. Links remain context-only and do not assert
+causation, repair or current state. Synthetic knowledge-extraction references and
+expected answers remain evaluator-only and are not production context.
+
+Two bounded read-only reviews found no missing source-backed knowledge. The
+cross-critique did find a separate action-composition blocker: fixed conditional
+POB/same-day activities were appended after inference but were not visible to the
+model for exact reuse and budgeting. The request now exposes those generic policy
+strings as conditional possibilities; they are not automatically required, and
+the unchanged policy/validator still decides applicability, appends obligations
+verbatim and rejects actions over 300 characters. Focused workflow, context and
+provider regressions passed before the new bounded development phase.
+
 The post-migration schema-1/2 cleanup received a bounded implementation review
 and sequential cross-review. Both found no blocking source-first or triage
 regression. Accepted findings preserved active `TableSource` and strict-JSON
@@ -1233,3 +1254,131 @@ The existing triage v0 consumer remains only for explicit archived replay; the
 knowledge package no longer ships a v0 producer, schema-1/2 store, CLI or editor.
 Unrelated concurrent triage prompt/evidence changes were excluded from this
 cleanup review and disposition.
+
+### Frozen-test observation and disclosed regression
+
+The one-time policy-v3 frozen test is retained at
+`eval\results\triage\history-policy-v3-test-phase\test-1`. It generated all
+eight tickets in eight application sends with stable code and native bundle-3
+context. Output-bound review passed 22 of 24 dimensions and failed F-1014
+uncertainty plus F-1015 planning. This result remains the frozen-test result and
+is not relabelled after correction.
+
+The resulting regression work is explicitly test-informed. Generic assessment
+guidance is intended to prevent a speculative future exposure from creating a current
+safety-uncertainty floor only when the item is confirmed out of service, can
+remain isolated or bypassed without current production effect, is not currently
+providing a protective function, and the proposed action gates return to service
+on engineering acceptance. It does not suppress current exposure or unconfirmed
+isolation. Effectiveness is unverified pending a disclosed regression run.
+Summary guidance now requires synthesis of the equipment service role and why a
+condition matters or has limited priority, rather than clause-by-clause source
+paraphrase. Neither change edits frozen cards, expectations, partitions or
+fingerprints. Any later test rerun is a disclosed regression observation, not a
+second untouched test.
+
+The first disclosed regression at
+`eval\results\triage\test-informed-regression-test-phase\test-regression-1`
+corrected F-1014 urgency but remained non-green:
+F-1015 still omitted the protected turbine function, while F-1014 and F-1020
+dropped decision-changing bounding facts. The follow-up summary contract
+therefore requires the protected function or consequence path and preserves
+mitigating/temporal facts such as a sound pressure boundary, confirmed
+out-of-service or reopened state, and explicitly unknown duration. This remains
+test-informed general guidance; subsequent runs are regressions, not new blind
+tests. The follow-up summary contract remains unverified until the next disclosed
+regression run.
+
+The final disclosed regression at
+`eval\results\triage\final-test-regression-phase\test-regression-1` generated all
+eight tickets in eight sends and received a 24/24 provisional AI-only semantic
+pass. This verifies the targeted regression behavior only; it does not replace
+or relabel the retained 22/24 frozen-test failure, establish independent domain
+accuracy, strict provider accounting or acceptance eligibility.
+
+The fresh single-run all-21 Copilot artifact at
+`eval\results\triage\final-all-21-phase\tickets.experimental.json` generated all
+21 tickets in 21 sends but received 59/63 provisional semantic passes with four
+`needs_review` dimensions. It remains unchanged and is not described as green.
+
+For review convenience, code deterministically composed the separately reviewed
+39/39 development output and 24/24 disclosed test-informed regression output at
+`eval\results\triage\final-composite-21\tickets.experimental.json`. The assessor
+reports 63/63 provisional pass and binds the composite to its two source hashes.
+This is not a single all-input inference run, does not replace the failed frozen
+test or non-green fresh all-21 run, and is not acceptance-eligible final
+publication.
+
+The final-code X01 repeat at
+`eval\results\triage\final-regression-phase-4\x01-review.json` fails one of 13
+decision-stability checks. F-1016 changed from L/I/U 1/9/7 to 1/8/6, moving from
+this week to this month. This exposes an unresolved contract conflict: the
+supplied domain calls for this-week attention for a low-likelihood, high-impact
+SCE finding, while the frozen prototype policy declares mandatory `R-SCE` review
+without an SCE-status-alone urgency floor. A proposed v4 floor was rejected
+rather than silently changing frozen acceptance after observing results. Current
+code therefore remained policy v3 and X01 remained failed pending an authorized,
+versioned resolution of that conflict. The subsequent decision below supersedes
+that temporary state without rewriting its evidence.
+
+The subsequent owner instruction explicitly authorized continuing until all
+gates are green. The conflict is therefore resolved in favor of the supplied
+domain timing rule through `triage-policy-v4`: registry SCE findings with impact
+8 or above receive a week-level urgency floor of 7. Impact 8 is the declared
+prototype cutoff for the high-impact band. The rule does not alter L/I, does not
+create a 9-10 override, and leaves `R-SCE` as a separate mandatory-review rule.
+All prior v3 observations, including the failed X01 pair, remain unchanged and
+non-comparable to v4 runs.
+
+The finalized v4 development observation at
+`eval\results\triage\policy-v4-final-phase-2\development-1` generated all 13
+tickets in 13 sends and received a 39/39 provisional AI-only semantic pass. Its
+single fixed-plan repeat also received 39/39. The X01 adjudication is a
+provisional pass, not a determinism claim: five numeric dimensions across four
+findings changed and F-1007 used different supported impairment wording, while
+all 13 urgency bands, review gates and policy dispositions remained stable. The
+earlier v4 observation under `policy-v4-final-phase` is retained but excluded
+because a review-driven source edit made `code_stable_during_run` false; its
+stale-plan rerun was rejected before inference.
+
+The separately disclosed v4 test-informed regression at
+`eval\results\triage\policy-v4-test-regression-phase\test-regression-1`
+generated all eight tickets in eight sends and received a 24/24 provisional
+AI-only semantic pass. It does not replace the retained untouched 22/24 frozen
+test failure. The deterministic reviewed-partition composite at
+`eval\results\triage\policy-v4-composite-21` received 63/63 provisional pass,
+but is not a single all-input inference run or an acceptance-eligible final
+publication.
+
+The next development-only regression at
+`eval\results\triage\summary-retention-regression-phase\development-1`
+remained non-green because concise output
+dropped alternative cause/restoration/current-capability unknowns on three
+findings and treated lack of an extra current test on an in-date, visually sound
+certified PSV as material safety uncertainty. Follow-up generic guidance retains
+those decision-changing unknowns, requires the actual protected function rather
+than a generic SCE/redundancy label, and keeps certification/identity checks as
+planning or routine review when valid certification and no observed operational
+deterioration are supplied. No test rerun followed that non-green development
+observation.
+
+The following development regression passed 38 of 39 semantic dimensions but
+dropped a source-stated repeated-report/maintenance-backlog fact needed to avoid
+duplicate planning work and interpret progression. Generic guidance now retains
+existing backlog and repeat-report status when the source supplies it. This is a
+development-evidence correction; no frozen expectation or partition changed.
+It is restricted to the target finding's own report and must remain visible in
+the summary or action without transferring another finding's backlog or reducing
+urgency by itself. Effectiveness remains unverified pending another disclosed
+development regression.
+
+The same review raised a conflict between the domain note's high-impact SCE
+attention statement and the frozen prototype decision that SCE status alone
+requires review without an extra urgency floor. The proposed v4 floor was
+rejected at that time rather than changing frozen acceptance after observing
+results. Policy then remained `triage-policy-v3`; F-1016 followed the base formula
+and mandatory `R-SCE` human review. The later owner-authorized v4 decision above
+supersedes that temporary policy state while retaining this historical
+observation. Summary guidance still requires a
+source-supplied operational, interruption or personnel consequence path of the
+assessed failure when condition/criterion wording alone would be a paraphrase.

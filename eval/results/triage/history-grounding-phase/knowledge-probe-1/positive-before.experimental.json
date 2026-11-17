@@ -1,0 +1,27 @@
+{
+  "generated_at": "2026-11-16T23:07:39.332268+00:00",
+  "tickets_generated": 1,
+  "tickets": [
+    {
+      "ticket_id": "TKT-9001",
+      "finding_id": "F-9001",
+      "equipment_id": "PSV-9001",
+      "summary": "PSV-9001 passed at the outlet seat below set pressure on an isolated synthetic bench; lifting and capacity remain untested, so protective performance is unknown.",
+      "recommended_action": "Inspect the seat, repair as indicated, then have a valve engineer verify seat tightness, lift and capacity to approved criteria. Obtain valve engineer acceptance criteria. Test lift and capacity to criteria.",
+      "likelihood_of_failure": {
+        "score": 6,
+        "rationale": "Observed below-set seat passing is an active degradation; the synthetic experiment convention assigns likelihood 6, while lifting and capacity remain untested."
+      },
+      "impact_of_failure": {
+        "score": 1,
+        "rationale": "The device is an isolated evaluation fixture, not installed plant, so failure has only a limited test-fixture consequence and no evidenced operating exposure."
+      },
+      "urgency": {
+        "score": 3,
+        "rationale": "triage-policy-v2: ceil(0.7*I+0.3*L), L=6, I=1, base=3, final=3. R-MATERIAL (review): Lifting and relieving capacity were not tested, so the valve's pressure-relief performance is unknown. Sources: finding:F-9001:finding_description. R-MATERIAL (review): No calibrated engineering rating or acceptance criterion is supplied for disposition of the fixture. Sources: equipment:PSV-9001:engineer_comment."
+      },
+      "review_required": true,
+      "review_reason": "R-MATERIAL (review): Lifting and relieving capacity were not tested, so the valve's pressure-relief performance is unknown. Sources: finding:F-9001:finding_description. R-MATERIAL (review): No calibrated engineering rating or acceptance criterion is supplied for disposition of the fixture. Sources: equipment:PSV-9001:engineer_comment."
+    }
+  ]
+}

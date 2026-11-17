@@ -1,0 +1,11 @@
+{
+  "contract": "reviewed-partition-composite-v1",
+  "acceptance_eligible": false,
+  "single_inference_run": false,
+  "development_output": "eval/results/triage/policy-v4-final-phase-2/development-1/tickets.experimental.json",
+  "development_sha256": "b50802fcd2f4950505b733ef4caf5f0ca58910edebad4ee6b03e58f0a451335a",
+  "test_regression_output": "eval/results/triage/policy-v4-test-regression-phase/test-regression-1/tickets.experimental.json",
+  "test_regression_sha256": "492f2263214b1c50effb789411697a135086cbb2a965c351dcc1f1d514b95243",
+  "composite_sha256": "ae1a0018981d93075f340fa5818ab73c453d3004fe79181922d8693adb588b2b",
+  "disclosure": "Review convenience artifact only; does not replace the retained frozen-test failure or establish a single all-input inference run."
+}
