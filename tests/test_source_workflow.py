@@ -142,6 +142,16 @@ class SourceWorkflowTests(Artifacts, unittest.TestCase):
         self.assertIn("do not infer unstated", provider.requests[0].system)
         self.assertIn("operational, interruption or personnel consequence",
                       provider.requests[0].system)
+        self.assertIn("The COMPLETE composed action must include",
+                      provider.requests[0].system)
+        self.assertIn("never repeat those checks in the core",
+                      provider.requests[0].system)
+        self.assertIn("validation_message combined limit for the core plus all",
+                      provider.requests[0].system)
+        self.assertIn("appended_verification_activities",
+                      provider.requests[0].system)
+        self.assertIn("only when its exact string is already among",
+                      provider.requests[0].system)
         self.assertIn("should fit 280 characters", provider.requests[0].system)
         self.assertIn("as fixed", provider.requests[0].system)
         self.assertIn("never paraphrase a fixed activity", provider.requests[0].system)

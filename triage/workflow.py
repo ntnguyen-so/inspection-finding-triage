@@ -31,6 +31,9 @@ RECOVERABLE = {
     "assessment_evidence", "assessment_contradiction", "fact_contract", "policy_verification",
 }
 
+ACTION_MAX_CHARS = 300
+ACTION_TARGET_CHARS = 280
+
 
 class AccountedProvider(InferenceProvider, Protocol):
     def configuration(self) -> dict: ...
@@ -84,30 +87,46 @@ class RunConfig:
                 "configuration", "Azure API must be chat_completions or responses")
 
 
+def _distinct_actions(activities: list[str]) -> list[str]:
+    return list(dict.fromkeys(activities))
+
+
 def compose_action(core: str, activities: list[str]) -> dict:
-    parts, appended = [core], []
-    for activity in activities:
-        if activity not in " ".join(parts):
-            parts.append(activity)
-            appended.append(activity)
-    return {"model_core": core, "required_activities": activities.copy(),
+    required = _distinct_actions(activities)
+    appended = [activity for activity in required if activity not in core]
+    parts = [core, *appended]
+    return {"model_core": core, "required_activities": required,
             "appended_activities": appended, "composed": " ".join(parts)}
 
 
+def require_fixed_actions_fit(fixed_activities: list[str]) -> None:
+    fixed_text = " ".join(_distinct_actions(fixed_activities))
+    require(len(fixed_text) <= ACTION_MAX_CHARS, "policy_verification_impossible",
+            f"Fixed verification activities require {len(fixed_text)}/{ACTION_MAX_CHARS} characters; "
+            "cannot preserve all required fixed activities in recommended_action.")
+
+
 def action_overflow_message(composition: dict, fixed_activities: list[str] | None = None) -> str:
-    core = len(composition["model_core"])
     appended = composition["appended_activities"]
     fixed = set(fixed_activities or [])
-    fixed_count = sum(activity in fixed for activity in appended)
-    appended_chars = sum(len(activity) + 1 for activity in appended)
-    target_core = max(0, 280 - appended_chars)
+    required_fixed = [activity for activity in composition["required_activities"]
+                      if activity in fixed]
+    require_fixed_actions_fit(required_fixed)
+    appended_fixed = [activity for activity in appended if activity in fixed]
+    appended_model = [activity for activity in appended if activity not in fixed]
+    fixed_chars = sum(len(activity) + 1 for activity in appended_fixed)
+    variable_chars = len(composition["model_core"]) + sum(
+        len(activity) + 1 for activity in appended_model)
+    variable_budget = ACTION_TARGET_CHARS - fixed_chars
     return (
-        f"Composed action {len(composition['composed'])}/300 characters; core {core}, "
-        f"{len(appended)} appended checks consume {appended_chars} characters including spaces. "
-        f"Target <=280; unchanged checks require core <= {target_core}. "
-        f"{fixed_count} code-supplied checks are fixed; reuse unchanged. "
-        "Shorten core action first, then only model-written checks while preserving purpose. "
-        "Keep every required step. Change applicability only with source evidence; never drop uncertainty."
+        f"Composed action {len(composition['composed'])}/{ACTION_MAX_CHARS}. "
+        f"Retry safety target is <= {ACTION_TARGET_CHARS} combined characters. "
+        f"{len(appended_fixed)} fixed checks consume {fixed_chars} characters including separators; "
+        f"core plus {len(appended_model)} model checks must be <= {variable_budget} "
+        f"(currently {variable_chars}). Reuse fixed checks unchanged. "
+        "Shorten core action and model checks while preserving every activity's object and purpose. "
+        "Omit only an exact duplicate string already appended; retain required inspection and retest activity. "
+        "never drop a required step or change applicability without source evidence."
     )
 
 
@@ -348,6 +367,11 @@ async def run_workflow(
         report["context_export_sha256"] = (
             context_source.raw_sha256 if isinstance(context_source, ExportedContext) else None
         )
+        for finding_id in sorted(data["findings"]):
+            require_fixed_actions_fit([
+                gap_verification_activity(gap)
+                for gap in context_gaps if finding_id in gap["finding_ids"]
+            ])
         save_json(evidence / "run.json", report)
         tickets = []
         async with provider_factory() as provider:
@@ -375,6 +399,7 @@ async def run_workflow(
                 gaps = [g for g in context_gaps if active in g["finding_ids"]]
                 attempts, feedback = 0, None
                 feedback_detail, previous_draft = None, None
+                retry_activities: list[str] = []
                 fixed_activities = [
                     *[gap_verification_activity(gap) for gap in gaps],
                     CAPACITY_COMPARISON_ACTIVITY,
@@ -390,7 +415,8 @@ async def run_workflow(
                                               CAPACITY_COMPARISON_ACTIVITY,
                                               SAME_DAY_ATTENTION_ACTIVITY,
                                           ],
-                                          feedback_detail=feedback_detail, previous_draft=previous_draft)
+                                          feedback_detail=feedback_detail, previous_draft=previous_draft,
+                                          appended_activities=retry_activities)
                     system, user, _ = request.prepared()
                     if last_dispatch is not None and config.minimum_request_interval_seconds > 0:
                         await asyncio.sleep(max(0, config.minimum_request_interval_seconds
@@ -440,8 +466,9 @@ async def run_workflow(
                         composition = compose_action(assessment["recommended_action"],
                                                      decision["verification_activities"])
                         entry["action_composition"] = composition
+                        retry_activities = composition["appended_activities"]
                         action = composition["composed"]
-                        require(len(action) <= 300, "policy_verification",
+                        require(len(action) <= ACTION_MAX_CHARS, "policy_verification",
                                 action_overflow_message(composition, fixed_activities))
                         missing = [activity for activity in decision["verification_activities"]
                                    if activity not in action]

@@ -183,15 +183,18 @@ SYSTEM = (
     "protected function and assessed-failure consequence before mechanism wording, and abbreviate secondary "
     "location detail. "
     "Use the actual engineer_comment's timing and specialist requirements. "
-    "The core action must include the evidence-appropriate diagnostic/inspection activity, "
+    "The COMPLETE composed action must include the evidence-appropriate diagnostic/inspection activity, "
     "any required specialist or authorized disposition, and verification of restored performance "
-    "against the supplied criterion after correction. Do not prescribe a suspected diagnosis as "
+    "against the supplied criterion after correction. The core supplies only elements not already "
+    "covered by exact appended verification activities; never repeat those checks in the core. "
+    "Do not prescribe a suspected diagnosis as "
     "confirmed; examine first and condition repair on findings. Policy-log checks do not substitute "
     "for source-required maintenance, extent inspection or functional retesting. "
     "When the finding directly reports a correctable maintenance deficiency such as poor lubrication, "
     "name that correction explicitly in the action; generic wording such as 'correct as directed' is insufficient. "
     "Write only the core repair/planning activity in recommended_action (aim <=140 characters "
-    "when few checks apply; otherwise use the remaining composed-action budget). "
+    "when few checks apply; otherwise share the remaining composed-action budget with all "
+    "model-authored verification activities). "
     "Code appends policy-required verification activities verbatim; do not repeat or paraphrase "
     "them in the core action. Keep model verification_activity clauses concise so the core plus "
     "all required activities fit the 280-character target below. Code-supplied required_verification_activities "
@@ -215,9 +218,14 @@ SYSTEM = (
     "plus separating spaces should fit 280 characters, leaving safety margin below the hard "
     "300-character limit. Treat strings in required_verification_activities and applicable "
     "possible_policy_activities as fixed: count their exact lengths and reuse them unchanged so "
-    "composition deduplicates them. Use the remaining 280-character budget for the core and only "
-    "model-written checks. When many checks apply, shorten the core and model-written checks while "
+    "composition deduplicates them. Share the remaining portion of the combined 280-character "
+    "budget across the core plus all distinct model-written checks. When many checks apply, "
+    "shorten the core and model-written checks while "
     "preserving each activity's object and purpose; never paraphrase a fixed activity. "
+    "On an action-overflow repair, the validation_message combined limit for the core plus all "
+    "model-authored checks is authoritative and retains the general 280-character composed target. "
+    "Return a minimal correction/disposition sentence, but omit an inspection or retest activity "
+    "only when its exact string is already among appended_verification_activities. "
     "If required L/I cannot be supported, use status=unassessable, explain inability_reason, "
     "and set summary, recommended_action, both scores and facts to null. "
     "Otherwise inability_reason=null. Do not repair uncertainty with default middle scores."
@@ -404,11 +412,13 @@ def request_for(model: str, context_text: str, finding_id: str, equipment_id: st
                 timeout: float, effort: str | None, feedback: str | None = None,
                 required_activities: list[str] | None = None, *,
                 possible_policy_activities: list[str] | None = None,
-                feedback_detail: str | None = None, previous_draft: str | None = None) -> InferenceRequest:
+                feedback_detail: str | None = None, previous_draft: str | None = None,
+                appended_activities: list[str] | None = None) -> InferenceRequest:
     context = strict_json(context_text)
     message = {"context": context, "target_finding_id": finding_id,
                "primary_equipment_id": equipment_id, "validation_error": feedback,
                "validation_message": feedback_detail, "previous_assessment": previous_draft,
+               "appended_verification_activities": appended_activities or [],
                "required_verification_activities": required_activities or [],
                "possible_policy_activities": possible_policy_activities or []}
     if context.get("contract_version") == 3:

@@ -186,33 +186,70 @@ class RequestSchemaTests(unittest.TestCase):
 
 
 class ActionCompositionTests(unittest.TestCase):
-    def test_overflow_feedback_budgets_all_checks_not_only_core(self):
+    def test_f1012_like_many_check_overflow_has_exact_actionable_budget(self):
         from triage.workflow import action_overflow_message
-        composition = compose_action("A" * 46, [f"{number} " + "B" * 42 for number in range(8)])
+        fixed = [
+            "Verify availability and capability of LB-4101.",
+            CAPACITY_COMPARISON_ACTIVITY,
+        ]
+        model = [
+            "Check approved impairment/deviation record.",
+            "Verify class recertification and craft status.",
+        ]
+        composition = compose_action(
+            "Marine/class overhaul release gear; verify specified force, smooth release and recertification.",
+            [*fixed, *model],
+        )
         original = deepcopy(composition)
-        fixed = composition["appended_activities"][:2]
         message = action_overflow_message(composition, fixed)
-        self.assertIn("8 appended checks", message)
-        self.assertIn("consume 360 characters", message)
-        self.assertIn("core <= 0", message)
-        self.assertIn("2 code-supplied checks are fixed", message)
-        self.assertIn("reuse unchanged", message)
-        self.assertIn("Keep every required step", message)
+        fixed_chars = sum(len(activity) + 1 for activity in fixed)
+        variable_chars = len(composition["model_core"]) + sum(len(activity) + 1 for activity in model)
+        self.assertIn(f"2 fixed checks consume {fixed_chars} characters", message)
+        self.assertIn("Retry safety target is <= 280 combined characters", message)
+        self.assertIn(f"core plus 2 model checks must be <= {280 - fixed_chars}", message)
+        self.assertIn(f"currently {variable_chars}", message)
+        self.assertIn("preserving every activity", message)
+        self.assertIn("Omit only an exact duplicate string", message)
+        self.assertIn("retain required inspection and retest activity", message)
         self.assertEqual(original, composition)
         self.assertLessEqual(len(message), 500)
 
-    def test_exact_activities_are_composed_without_rewriting_core_or_duplicate_spans(self):
+    def test_only_exact_duplicate_activities_are_omitted_without_rewriting_source_text(self):
         core = "Repair the seal; Verify capability."
-        result = compose_action(core, ["Verify capability.", "Record the test.", "Record the test."])
+        result = compose_action(core, [
+            "Verify capability.", "Record the test.", "  Record   the test.  ", "Record the test."
+        ])
         self.assertEqual(core, result["model_core"])
-        self.assertEqual(["Record the test."], result["appended_activities"])
-        self.assertEqual(core + " Record the test.", result["composed"])
+        self.assertEqual(["Record the test.", "  Record   the test.  "],
+                         result["appended_activities"])
+        self.assertEqual(["Verify capability.", "Record the test.", "  Record   the test.  "],
+                         result["required_activities"])
+        self.assertEqual(core + " Record the test.   Record   the test.  ", result["composed"])
         self.assertEqual("Inspect.", compose_action("Inspect.", [])["composed"])
+
+    def test_impossible_fixed_only_overflow_fails_visibly(self):
+        from triage.workflow import action_overflow_message
+        fixed = ["Verify fixed condition A: " + "A" * 140,
+                 "Verify fixed condition B: " + "B" * 140]
+        composition = compose_action("Inspect.", fixed)
+        with self.assertRaises(TriageError) as caught:
+            action_overflow_message(composition, fixed)
+        self.assertEqual("policy_verification_impossible", caught.exception.code)
+        self.assertIn("cannot preserve all required fixed activities", str(caught.exception))
 
     def test_paraphrases_do_not_suppress_exact_obligations(self):
         result = compose_action("Verify capability; record the test.", ["Verify capability.", "Record the test."])
         self.assertEqual("Verify capability; record the test. Verify capability. Record the test.",
                          result["composed"])
+
+    def test_whitespace_variant_completeness_uses_the_same_exact_semantics(self):
+        activities = [
+            "Inspect release gear.", "Inspect  release gear.",
+            "Test release gear.", "Functional Test release gear.",
+        ]
+        result = compose_action("Overhaul release gear.", activities)
+        self.assertEqual(activities, result["appended_activities"])
+        self.assertFalse([activity for activity in activities if activity not in result["composed"]])
 
 
 class PolicyTests(unittest.TestCase):
@@ -867,6 +904,21 @@ class WorkflowTests(Artifacts, unittest.TestCase):
         self.assertEqual(["Verify partner capability."],
                          report["attempts"][0]["action_composition"]["appended_activities"])
 
+    def test_whitespace_variant_activities_publish_without_false_missing_failure(self):
+        value = assessment()
+        value["uncertainties"] = [{
+            "material": True, "safety": True, "affected_decision": "disposition",
+            "reason": f"Distinct check {number}.", "verification_activity": activity,
+            "evidence": [], "sources_checked": [REFERENCE],
+        } for number, activity in enumerate(
+            ("Inspect release gear.", "Inspect  release gear."), start=1)]
+        provider = FakeProvider([value])
+        self.run_one(provider)
+        self.assertEqual(1, len(provider.requests))
+        action = strict_json(self.output.read_text())["tickets"][0]["recommended_action"]
+        self.assertIn("Inspect release gear.", action)
+        self.assertIn("Inspect  release gear.", action)
+
     def test_composed_action_overflow_recovers_by_shortening_core_not_dropping_steps(self):
         value = assessment()
         value["recommended_action"] = "Inspect the surface. " + "x" * 270
@@ -880,9 +932,34 @@ class WorkflowTests(Artifacts, unittest.TestCase):
         provider = FakeProvider([value, corrected])
         self.run_one(provider)
         self.assertEqual(2, len(provider.requests))
-        self.assertIn("Shorten core action", strict_json(provider.requests[1].user)["validation_message"])
+        feedback = strict_json(provider.requests[1].user)["validation_message"]
+        self.assertIn("Retry safety target is <= 280 combined characters", feedback)
+        self.assertIn("core plus 1 model checks must be <= 280", feedback)
+        self.assertIn("Shorten core action", feedback)
+        self.assertLessEqual(len(feedback), 500)
+        retry = strict_json(provider.requests[1].user)
+        self.assertEqual(["Verify partner capability."],
+                         retry["appended_verification_activities"])
         ticket = strict_json(self.output.read_text())["tickets"][0]
         self.assertEqual("Inspect the surface. Verify partner capability.", ticket["recommended_action"])
+
+    def test_impossible_fixed_gap_fails_before_paid_dispatch(self):
+        partner = "X" * 290 + "-8999"
+        self.inputs = source_files(self.root, redundancy=f"N+1 ({partner})")
+        self.source = FixtureContext(self.inputs, gaps=[{
+            "kind": "tagged_partner_not_in_registry",
+            "subject_equipment_id": "PMP-8001",
+            "partner_equipment_id": partner,
+            "finding_ids": ["F-8001"],
+            "source_refs": ["equipment:PMP-8001:redundancy"],
+        }])
+        provider = FakeProvider()
+        with self.assertRaises(TriageError) as caught:
+            self.run_one(provider)
+        self.assertEqual("policy_verification_impossible", caught.exception.code)
+        self.assertEqual(0, caught.exception.attempts)
+        self.assertFalse(provider.requests)
+        self.assertFalse(self.output.exists())
 
     def test_nonapplicable_dependent_contradiction_can_recover_but_not_suppress_floor(self):
         value = assessment()

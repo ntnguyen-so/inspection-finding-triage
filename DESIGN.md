@@ -224,6 +224,14 @@ checks; the hard 300-character limit and required activities were not weakened.
 That code change starts a new bounded phase ledger, while the failed observation
 remains retained.
 
+The next bounded phase failed closed on F-1007 because the model repeated
+inspection/retest content in both the core and five appended verification
+activities. No output was published. The composition contract was then clarified
+so completeness applies to the final composed action, exact activities are
+whitespace-normalized/deduplicated, repair requests receive the actual appended
+checks and a 15-character safety margin, and impossible fixed-only compositions
+fail visibly. Required steps and the hard 300-character limit remain unchanged.
+
 The final run permits at most 42 direct requests (21 findings, at most two
 attempts each), with SDK/HTTP retries disabled and explicit token accounting.
 USD cost depends on the Azure deployment tariff and is reported as unknown unless
