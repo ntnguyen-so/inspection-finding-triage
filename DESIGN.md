@@ -80,6 +80,10 @@ Detailed component decisions are recorded in
 
 ## A. Structured output and failure behavior
 
+> **Candidate Brief §6.A.** How is output conformance enforced; what happens
+> after a malformed response, a structural violation or a valid-but-incorrect
+> score; and what is the failure mode when a ticket cannot be produced?
+
 The model returns an internal assessment object rather than the final public
 ticket. Code then projects the validated assessment into the required ticket
 schema.
@@ -120,6 +124,10 @@ that a plausible L/I judgment is engineering truth. That is why deterministic
 validation, separate semantic review and human approval remain distinct.
 
 ## B. Domain knowledge and maintainability
+
+> **Candidate Brief §6.B.** How do `domain_knowledge.md` and the registry
+> `engineer_comment` reach the model, why is that mechanism used, and what does
+> an integrity engineer modify to change how PSV findings are scored?
 
 Every assessment receives:
 
@@ -175,6 +183,10 @@ observed experiment.
 
 ## C. Urgency derivation
 
+> **Candidate Brief §6.C.** What function derives urgency, how does it behave
+> for high likelihood with low impact and low likelihood with high impact,
+> which overrides apply, and why was this approach chosen over alternatives?
+
 The model never outputs urgency. For ordinal likelihood `L` and impact `I`, code
 computes:
 
@@ -229,6 +241,9 @@ The complete rule set and calibration history are in
 
 ## D. Deferral, limits and rejected scope
 
+> **Candidate Brief §6.D.** How does the system decide to defer to a human
+> instead of answering, and what was deliberately not built?
+
 The system has three valid outcomes:
 
 1. a supported draft;
@@ -262,6 +277,98 @@ Frozen cards, semantic reviewers, archives and experiment ledgers establish
 evidence for the prototype; they are not runtime dependencies of ticket
 generation.
 
+## E. Reproducibility and delivery identity
+
+> **Candidate Brief §5 constraint.** The system must run end to end from one
+> documented command. How can another engineer execute it, and what identifies
+> the exact inputs, configuration and output of a run?
+
+The root `README.md` documents one command for each supported provider:
+
+```powershell
+.\.venv\Scripts\python.exe -B run_triage.py --provider copilot
+.\.venv\Scripts\python.exe -B run_triage.py `
+  --provider azure --model "<deployment-name>"
+```
+
+The wrapper creates fresh configuration, evidence and attempt-ledger paths,
+then invokes the same production `triage` CLI used by the retained runs. A run
+binds:
+
+- exact finding and registry hashes;
+- knowledge release and activation identity;
+- prompt, assessment-policy, urgency-policy and projection identity;
+- provider route, model, reasoning setting and assessment time;
+- application sends, errors, exposed token usage and latency; and
+- publication receipt and final output SHA-256.
+
+The input package remains byte-preserved, direct dependencies are pinned, the
+activation is committed and successful publication is atomic. Deterministic
+tests cover wrapper configuration, activation compatibility, failure paths and
+the production workflow. Model output is not expected to be byte-identical
+between runs; reproducibility means that the same declared system can be
+identified, executed and audited without silently changing its inputs or
+policy.
+
+The submitted root artifact was produced by the retained reviewed delivery and
+promoted byte-identically. The current workflow was also replayed
+contract-valid across all 21 findings using the same `triage` CLI, source and
+retained activation in `copilot_experiment` mode; that replay was not
+semantically reviewed. Its execution-policy identity differs from the delivery
+run because the current workflow adds documented post-publication rollback.
+The observation was recorded from a dirty worktree. The `run_triage.py` wrapper
+has deterministic coverage, but its exact `copilot_delivery` invocation has
+not been separately live-executed. Clean-checkout reproduction therefore
+remains an explicit open gate rather than a claimed pass.
+
+## F. Cost and run budget
+
+> **Candidate Brief §5 constraint.** A full run must remain inexpensive enough
+> to reproduce. How is application spend bounded, what was actually measured,
+> and which cost values remain unknown?
+
+Application work is bounded structurally even though provider-level cost is
+only partially observable:
+
+- one assessment request is prepared per finding;
+- malformed or structurally invalid output receives at most one application
+  repair;
+- the persistent ledger prevents a restarted run from refunding spent
+  attempts;
+- partial success is not published; and
+- the small fixed corpus uses complete bounded context instead of additional
+  retrieval infrastructure.
+
+The application ceiling is 42 sends: at most two for each of 21 findings. This
+is not a provider-attempt or USD ceiling because Copilot can hide transport
+attempts and repair payloads may be larger than first attempts. The retained
+delivery needed no repairs: it used 21 application sends, 973,468 input tokens
+and 40,335 output tokens. Applying the declared public short-context rates of
+US$2 per million input tokens and US$10 per million output tokens gives:
+
+```text
+(973,468 * US$2 + 40,335 * US$10) / 1,000,000
+= US$2.350286
+```
+
+That is a reproducible API-equivalent estimate, about US$0.111918 per ticket,
+not a Copilot invoice. Applying the separately declared cache-read and
+30-minute cache-write assumptions gives a higher US$2.493186 scenario. The
+receipt reports 21 request-cost units and 249.31861 AI units. Copilot does not
+expose the subscription's per-run USD allocation, its AI-unit-to-USD conversion
+or hidden HTTP attempts, so those values remain unknown.
+
+Input represents about 82.8% of the simple estimate. Complete context was still
+chosen for this small corpus because relationship omissions were a larger
+prototype risk than the measured cost. If the corpus grows, safe context
+reduction is the first cost optimization to evaluate; it must demonstrate
+retrieval coverage before replacing complete context.
+
+Exact usage, source-run hash, rates and calculation are retained in
+[`delivery-cost-summary.json`](eval/results/delivery-cost-summary.json).
+Provider and cache-aware cost boundaries are detailed in
+[`04_INFERENCE_LIBRARY.md`](docs/04_INFERENCE_LIBRARY.md).
+
 ## Assumptions
 
 | Assumption | Consequence or safeguard |
@@ -279,31 +386,21 @@ generation.
 | A trusted local writer can perform same-volume atomic replacement | No distributed-concurrency guarantee is claimed |
 | Every generated ticket is a draft | Human approval remains mandatory |
 
-## Evidence and known limitations
+## Evidence status and known limitations
 
 The final artifact covers all 21 findings and passes the deterministic output
 contract. It was generated by the retained reviewed delivery and promoted
-byte-identically. The workflow now included in this submission was subsequently
-replayed successfully across all 21 findings from a dirty worktree; this is
-behavior evidence rather than clean-checkout reproduction. Retained real-model runs show that
-malformed JSON, schema violations and exhausted responses occur in practice;
-the controls made those outcomes bounded and fail-closed. The final development
-repeat preserved urgency bands and exceptional review routing, but full
-stability acceptance remains inconclusive because the reviewer runtime did not
-expose every required identity.
+byte-identically. Retained real-model runs show that malformed JSON, schema
+violations and exhausted responses occur in practice; the controls made those
+outcomes bounded and fail-closed. The final development repeat preserved
+urgency bands and exceptional review routing, but full stability acceptance
+remains inconclusive because the reviewer runtime did not expose every required
+identity.
 
 The current evidence does not establish independent domain certification,
 population-level model reliability, per-finding knowledge isolation or
 byte-identical replay of model output. Numeric urgency thresholds and candidate
 precautionary floors require domain-owner calibration before operational use.
-Actual Copilot subscription allocation is unavailable; measured usage supports
-the disclosed API-equivalent estimate.
-
-The retained replay used the same `triage` CLI, source and session-only replay
-activation in `copilot_experiment` mode. The root `run_triage.py` convenience
-wrapper builds fresh paths and `copilot_delivery` configuration and has
-deterministic wrapper coverage, but that exact wrapper mode has not been
-separately live-executed.
 
 Observed results and exact limitations are indexed in
 [`eval\results\README.md`](eval/results/README.md). The acceptance contract and
