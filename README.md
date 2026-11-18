@@ -22,24 +22,32 @@ The supplied candidate package is preserved unchanged under
 
 ## Architecture
 
-```text
-findings + registry + reviewed knowledge
-                 |
-                 v
-       model proposes L / I, facts,
-       uncertainty and planning text
-                 |
-                 v
-       code validates evidence and schema
-                 |
-                 v
-       code derives urgency and review policy
-                 |
-                 v
-       complete atomic tickets.json draft
-                 |
-                 v
-              human approval
+```mermaid
+flowchart LR
+    I["<b>Controlled inputs</b><br/>findings | registry | knowledge | policy"]
+    A["<b>Code</b><br/>assemble and hash<br/>bounded context"]
+    M["<b>Model</b><br/>propose L / I, facts,<br/>uncertainty and planning text"]
+    D["<b>Code</b><br/>validate evidence and schema<br/>derive urgency and review policy"]
+    P{"All 21 tickets valid?"}
+    O["<b>Code</b><br/>atomically publish<br/>tickets.json draft"]
+    H["<b>Human</b><br/>approve draft and<br/>authorize action"]
+    X["<b>Fail closed</b><br/>preserve previous output"]
+
+    I --> A --> M --> D --> P
+    P -- Yes --> O --> H
+    P -- No --> X
+
+    classDef input fill:#eef4ff,stroke:#0969da,color:#1f2328;
+    classDef model fill:#fff8c5,stroke:#9a6700,color:#1f2328;
+    classDef code fill:#dafbe1,stroke:#1a7f37,color:#1f2328;
+    classDef human fill:#fbefff,stroke:#8250df,color:#1f2328;
+    classDef failure fill:#ffebe9,stroke:#cf222e,color:#1f2328;
+
+    class I input;
+    class M model;
+    class A,D,P,O code;
+    class H human;
+    class X failure;
 ```
 
 See [`DESIGN.md`](DESIGN.md) for the responsibility boundary, assumptions,
@@ -163,9 +171,9 @@ recorded in `eval\results\README.md`.
 
 The replay invoked the same `triage` CLI and retained source/activation in
 `copilot_experiment` mode. `run_triage.py` is the documented convenience
-wrapper for fresh paths and delivery-mode configuration; its wrapper behavior
-is covered by deterministic tests, but that exact `copilot_delivery` invocation
-has not been separately live-executed.
+wrapper for fresh paths and delivery-mode configuration. Its deterministic
+behavior is covered by tests; each live invocation records separate run
+evidence because provider output can vary.
 
 The retained Copilot delivery used 21 application sends, completed in about ten
 minutes and reprices to approximately US$2.35 at the documented API-equivalent

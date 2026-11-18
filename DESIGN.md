@@ -27,29 +27,45 @@ The supporting decision trail is in [`docs\README.md`](docs/README.md).
 
 ## Architecture and responsibility boundary
 
-```text
-unchanged candidate inputs
-  + reviewed source-first knowledge
-  + pinned prompt, policy and configuration
-                         |
-                         v
-              deterministic context assembly          [code]
-                         |
-                         v
-        L / I, facts, uncertainty and planning text   [model]
-                         |
-                         v
-       schema, identity, quotation and evidence checks [code]
-                         |
-                         v
-          urgency, escalation and review routing       [code]
-                         |
-                         v
-          complete coverage and atomic publication     [code]
-                         |
-                         v
-                    human approval
+```mermaid
+flowchart LR
+    S["<b>1. Controlled sources</b><br/>findings | registry | reviewed knowledge<br/>prompt | policy | model | activation"]
+    CA["<b>2. Application control</b><br/>validate inputs, assemble context<br/>and bind identities with hashes"]
+    PB["<b>Restricted boundary</b><br/>one observable provider send<br/>no tools or policy authority"]
+    MJ["<b>3. Model judgment</b><br/>L / I | facts | uncertainty<br/>summary | recommended activity"]
+    DG["<b>4. Deterministic gates</b><br/>schema | identity | quotations | facts<br/>urgency | escalation | review rules"]
+    RE{"Assessment<br/>and policy valid?"}
+    RP["<b>Bounded repair</b><br/>prior draft + named errors<br/>+ code-owned limits"]
+    CV{"Complete valid<br/>coverage for all<br/>21 findings?"}
+    AP["<b>Atomic publication</b><br/>complete tickets.json<br/>draft only"]
+    HA["<b>5. Human authority</b><br/>approve draft and<br/>authorize action"]
+    FC["<b>Fail closed</b><br/>nonzero exit<br/>old output unchanged"]
+
+    S --> CA --> PB --> MJ --> DG --> RE
+    PB -- "timeout or terminal transport failure" --> FC
+    RE -- Yes --> CV
+    RE -- "recoverable first failure" --> RP --> PB
+    RE -- "non-recoverable or second failure" --> FC
+    CV -- Yes --> AP --> HA
+    CV -- No --> FC
+
+    classDef source fill:#eef4ff,stroke:#0969da,color:#1f2328;
+    classDef app fill:#dafbe1,stroke:#1a7f37,color:#1f2328;
+    classDef model fill:#fff8c5,stroke:#9a6700,color:#1f2328;
+    classDef human fill:#fbefff,stroke:#8250df,color:#1f2328;
+    classDef failure fill:#ffebe9,stroke:#cf222e,color:#1f2328;
+
+    class S source;
+    class CA,PB,DG,RE,RP,CV,AP app;
+    class MJ model;
+    class HA human;
+    class FC failure;
 ```
+
+The diagram is intentionally asymmetric: the model contributes engineering
+judgment, but it cannot select runtime knowledge, derive urgency, spend retries,
+publish a partial batch or authorize work. Those authorities remain with
+reviewable code and the human approver.
 
 | Model interprets or authors | Deterministic code owns |
 |---|---|
@@ -317,9 +333,9 @@ retained activation in `copilot_experiment` mode; that replay was not
 semantically reviewed. Its execution-policy identity differs from the delivery
 run because the current workflow adds documented post-publication rollback.
 The observation was recorded from a dirty worktree. The `run_triage.py` wrapper
-has deterministic coverage, but its exact `copilot_delivery` invocation has
-not been separately live-executed. Clean-checkout reproduction therefore
-remains an explicit open gate rather than a claimed pass.
+has deterministic coverage, while live invocations record distinct evidence
+because provider output can vary. Clean-checkout reproduction remains an
+explicit open gate rather than a claimed pass.
 
 ## F. Cost and run budget
 
