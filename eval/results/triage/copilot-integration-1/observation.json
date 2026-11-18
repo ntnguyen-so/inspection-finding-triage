@@ -1,9 +1,0 @@
-{
-  "status": "integration_failed",
-  "error_class": "experiment_io_or_contract",
-  "collector_error": "TypeError",
-  "stage": "preflight",
-  "acceptance_eligible": false,
-  "http_attempts": null,
-  "usd_cost": null
-}

@@ -243,7 +243,7 @@ activation timing prevent a clean-freeze pass.
 | Clean identity | Runtime/prompt/config hashes match all three runs, but the preregistration declares `clean_commit=false` | **Controlled dirty-worktree observation; clean reproduction inconclusive** |
 | Activation provenance | The recorded review time follows repeat 1 start by seconds | **Invalid for a formal frozen-study claim; retained rather than rewritten** |
 | Acceptance reference | Runs used the pinned reference-1.3 bytes; later layout/spec changes occurred after all three runs | **Comparable within the three runs; current layout hashes differ** |
-| Preregistration | `config\triage-reliability-v8.json` existed before the measured sends and fixed route, three-run order, 126-send ceiling and no-tuning rule | **Useful prospective control, but not a committed clean-freeze record** |
+| Preregistration | The historical `triage-reliability-v8.json` existed before the measured sends and fixed route, three-run order, 126-send ceiling and no-tuning rule | **Useful prospective control, but not a committed clean-freeze record** |
 | Copilot series | 3/3 completed in 21/23/21 sends; two malformed responses repaired | **Observed execution completion; hidden transport attempts remain unknown** |
 | Reviewer | Primary reviewer uses the same model family as generation | **Separate session only; not independent engineering judgment** |
 | Budget/pricing | 21-send delivery took 635.64 s and reported 983,821 input plus 40,200 output tokens. OpenAI standard short-context rates imply US$2.37 under a simple no-cache-discount assumption | **Useful reproducibility estimate; actual Copilot USD allocation and hidden transport attempts remain unknown** |
@@ -254,7 +254,9 @@ activation timing prevent a clean-freeze pass.
 The result is therefore a **completed controlled observation with an
 inconclusive formal freeze gate**, not `not run` and not an accepted reliability
 pass. Raw evidence, reviews and hashes are retained under
-`eval\results\triage\v8-reliability`.
+Git commit `071d29e62be419bb7443a6e18bf55d2763d46e69`; the current panel-facing
+tree retains the v31 result and material v29/v30 failures instead of this
+superseded raw series.
 
 Root `tickets.json` is a single generated delivery artifact, not the preregistered
 repeat series required by this protocol. Its existence must not be used to

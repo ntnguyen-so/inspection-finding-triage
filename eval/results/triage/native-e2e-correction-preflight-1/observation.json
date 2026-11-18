@@ -1,9 +1,0 @@
-{
-  "status": "predispatch_freeze_changed",
-  "application_sends": 0,
-  "phase_reservations_unchanged": 3,
-  "changed_file": "triage_knowledge\\source.py",
-  "planned_sha256": "5f41d226457c7e0492ce31a1e124e11f5db953483ef626befce490e36031fb09",
-  "observed_sha256": "902801c5d846a4557dd757ebcdb240604dcd7a4a17c168cc847d8532aa9b13a8",
-  "resolution": "Execute the exact already-frozen bytes in .artifacts/i1; source.py recovered byte-identically from 6736fc2. No shared source edits or activation refresh."
-}

@@ -1,1 +1,0 @@
-{"run_status": "failed", "finding_id": "F-1017", "error_class": "malformed_json", "message": "Finding assessment failed", "attempts": 2, "published_output": false, "execution_mode": "copilot_experiment", "acceptance_eligible": false, "attempt_accounting_unit": "application_sends_http_attempts_unknown"}

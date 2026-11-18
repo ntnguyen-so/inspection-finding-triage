@@ -40,16 +40,12 @@ See `eval\results\README.md` for run-by-run status, accounting and limitations.
 3. **2:15 — Behavior and output evidence:** inspect root `tickets.json`,
    `eval\results\triage\structured-planning-v31\final\primary-reviews.json` and
    `docs\12_SUBMISSION_READINESS_REPORT.md`, then
-   `docs\08_BEHAVIOR_CALIBRATION_STUDY.md`; for the official knowledge lifecycle
-   and disclosed v1-v4 update experiment, read
-   `docs\09_KNOWLEDGE_CHANGE_STUDY.md`. Then read the
-   historical `eval\results\design-behavior-demonstration.json` and the pre-v8
-   policy-v5 artifact at
-   `eval\results\triage\copilot-gpt6-current-all21\tickets.experimental.json`
-   with its `assessment-report.json` and the matching-model X01 failure at
-   `eval\results\triage\copilot-gpt6-current-x01\run-summary.json`.
+   `docs\08_BEHAVIOR_CALIBRATION_STUDY.md`; for the official knowledge lifecycle,
+   read `docs\09_KNOWLEDGE_CHANGE_STUDY.md` and the retained bounded B02
+   conclusion at
+   `eval\results\triage\v10-calibration\b02-execution\negative-control-semantic-review.json`.
 4. **3:15 — Evidence:** read `eval\results\README.md` and
-   `eval\results\reproducibility\clean-235bdd1.json`.
+   `eval\results\triage\structured-planning-v31\x01-development-adjudication.json`.
 5. **4:15 — Implementation:** inspect `triage\workflow.py`,
    `triage\assessment.py`, `triage\policy.py` and `knowledge\source-first`.
 

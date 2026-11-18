@@ -208,9 +208,11 @@ The returned release identity is then pinned by activation/run configuration.
 There is not yet a dedicated activation-approval CLI. The owner must review the
 output of `triage.source_context.activation_candidate`, record approval
 provenance, create a new activation identity, and repin a fresh run
-configuration. The existing `config\triage-activation-v8.json` cannot be reused
-as freeze provenance. This manual approval step is a documented runbook gap, not
-an automatic promotion.
+configuration. The historical v8 activation cannot be reused as freeze
+provenance; that file is available in Git commit
+`071d29e62be419bb7443a6e18bf55d2763d46e69`. The current delivery pins
+`config\triage-activation-v31.experimental.json`. This manual approval step is a
+documented runbook gap, not an automatic promotion.
 
 Document 09 exercises this path in an evaluation-only store. Its retained v4
 observation published old/new PSV releases, recorded a replacement and effective

@@ -17,6 +17,11 @@ Historical experiment claims remain bound to the code, configuration and
 document hashes recorded by those experiments; this archive does not make old
 results current.
 
+Some raw experiment paths cited by these preserved documents are intentionally
+absent from the panel-facing tree. Their last tracked snapshot is recoverable
+from Git commit `071d29e62be419bb7443a6e18bf55d2763d46e69`; current retained
+evidence is indexed in `eval\results\README.md`.
+
 Documents 02 and 03 require special care. Archived Document 02 is byte-identical
 to HEAD. Archived Document 03 is the pre-rewrite reference-v1.3 working contract;
 the committed v1.2 contract remains recoverable from revision `92734d6` and has

@@ -187,15 +187,12 @@ The historical Azure experiment used 1,289,873 prompt tokens, 45,878 completion 
 16,474 reasoning tokens. Reported cache reuse was small relative to cache writes;
 its USD cost remains unknown because no deployment tariff was captured.
 
-The current Copilot delivery provides a simpler reproducibility estimate. It
-completed 21 application sends in 635.64 seconds (about 10m36s), with median
-send latency 29.45 seconds and maximum 37.36 seconds. Receipts report 983,821
-input tokens and 40,200 output tokens. Pricing all input at $2/M and output at
-$10/M using OpenAI's 2026-11-17 standard short-context `gpt-6.1-sol` table gives
-an illustrative **US$2.37**. This intentionally ignores cache discounts and is
-not the actual Copilot subscription charge. Exact assumptions and the pricing
-URL are retained in
-`eval\results\triage\v8-reliability\delivery-cost-latency.json`.
+The current v31 Copilot delivery completed 21 application sends in 617.75
+seconds. The retained run record exposes the application-level receipts and
+latencies, but not hidden HTTP attempts or an actual Copilot USD allocation.
+No API-equivalent estimate is presented as the subscription cost. Exact final
+run provenance is retained in
+`eval\results\triage\structured-planning-v31\final\evidence\run.json`.
 
 ## B. Knowledge, context and maintenance
 
@@ -219,9 +216,10 @@ An engineer changing PSV behavior uses one of three explicit surfaces:
 | Generic L/I anchor or urgency/review policy | Change versioned application policy and focused tests |
 
 This avoids prompt surgery and finding-ID branches. It also exposes a limitation:
-captured context proves delivery, not causal use. The retained B02 influence probe
-was failed/inconclusive, and no PSV-specific behavior change has yet been
-demonstrated.
+captured context proves delivery, not causal use. Earlier B02 attempts were
+failed or inconclusive. The retained reference-1.3 B02 probe later demonstrated
+bounded artificial-policy influence and negative-control isolation, but not
+general causal use, domain correctness or a production PSV policy change.
 
 The concrete general-guidance path is:
 

@@ -1,8 +1,0 @@
-{
-  "status": "diagnostic_failed_request_preserved",
-  "error_class": "bad_request",
-  "sends": 1,
-  "phase_reserved_sends": 11,
-  "recognized_schema_diagnostic": "Invalid schema for response_format 'inference_response': In context=('anyOf', '261', 'properties', 'quote'), \n is not allowed in string literals for structured outputs (strict=true).",
-  "published_output": false
-}

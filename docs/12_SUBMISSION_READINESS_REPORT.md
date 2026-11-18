@@ -22,7 +22,7 @@ attempts plus actual Copilot cost remain unknown.
 | Grounded L/I and planning | v31 `final\primary-reviews.json` | 63/63 provisional pass |
 | Code-derived urgency | `triage-policy-v16`; deterministic tests | Pass |
 | Selective exceptional review | Six explicit routes with `Why:` and checks | Pass; below target of seven |
-| Fail-closed publication | v27 failure retained; v31 atomic receipt verified | Pass |
+| Fail-closed publication | Deterministic failure tests; v31 atomic receipt verified; v27 raw failure archived | Pass |
 | X01 stability | v31 development pair and adjudication | Pass under frozen rule |
 | Reproducibility/accounting | Hashes, configs, receipts, run evidence | Partial: hidden HTTP/cost unknown |
 | Human authority | Every ticket remains a draft | Required outside generation |
@@ -56,14 +56,16 @@ specific reason plus verification activity.
 
 ## 5. Controlled failures and rejected changes
 
-The retained history is part of the evidence:
+The material failure history remains part of the evidence. V29/v30 summaries are
+visible in the panel-facing tree; superseded tracked raw runs including v27 are
+losslessly retained in `eval\results\archive\superseded-evidence-071d29e.zip`
+and indexed by `eval\results\artifacts-manifest.json`. Uncommitted intermediate
+observations are not presented as shared evidence.
 
 - v27 failed closed at F-1021 because schema limits contradicted the prompt;
   no partial batch was published.
-- v28 generated 21 tickets and 4 review flags, but its all-21 repeat was
-  over-scoped and unstable.
 - v29 passed development X01, but its first frozen all-21 semantic review failed
-  F-1011 at 61/63. The artifact remains retained.
+  F-1011 at 61/63. Its review, ticket and receipt remain directly retained.
 - v30 attempted a prompt-only chronology repair. It was rejected before a final
   run because development X01 changed two urgency bands and one review flag.
 - v31 retained prompt v7 and used deterministic, source-labelled provenance

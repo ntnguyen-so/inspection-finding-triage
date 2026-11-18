@@ -66,9 +66,9 @@ X01/X02 to observable evidence and explicit failure conditions.
 criteria to move after failures are observed.
 
 **Output/gate:** preregistered executable expectations, attempt/accounting rules
-and claim limits. Reference v1.2 was committed; the test-informed v1.3 working
-revision is not yet a durable committed freeze. This unlocks component
-implementation and controlled experiments.
+and claim limits. Reference v1.3 is tracked, but remains a disclosed
+test-informed, non-blind revision rather than independent gold. This unlocks
+component implementation and controlled experiments.
 
 ### 04 — Isolate model transport and development economics
 
@@ -162,6 +162,11 @@ development occurred once in seven perfect phases:
 These deviations are evidence of iteration, not erased history. The numbered
 order shows how a reviewer should reason about the final design and which
 dependency should govern future changes.
+
+The panel-facing tree retains current evidence and the material v29/v30 failures,
+not every generated transcript. Superseded raw experiments remain recoverable in
+Git commit `071d29e62be419bb7443a6e18bf55d2763d46e69`; see
+`eval\results\README.md` for the retained evidence map.
 
 ## Authority and evidence
 
