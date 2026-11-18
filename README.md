@@ -166,11 +166,12 @@ approval. Model behavior can vary, so a replay is not expected to reproduce the
 submitted file byte for byte.
 
 The submitted root artifact was produced by the retained reviewed delivery and
-promoted byte-identically. The workflow now included in this submission was
-subsequently replayed successfully on all 21 findings. That observation was
-recorded from a dirty worktree, so it is behavior evidence rather than a
-clean-checkout reproduction; provenance and the remaining limitation are
-recorded in `eval\results\README.md`.
+promoted byte-identically. An earlier execution-policy revision was subsequently
+replayed successfully on all 21 findings. That observation was recorded from a
+dirty worktree and predates the provider-parity changes in the current revision,
+so it is bounded behavior evidence rather than a clean-checkout reproduction;
+provenance and the remaining limitation are recorded in
+`eval\results\README.md`.
 
 The replay invoked the same `triage` CLI and retained source/activation in
 `copilot_experiment` mode. `run_triage.py` is the documented convenience

@@ -35,7 +35,7 @@
     "context_contract_version": 3
   },
   "review": {
-    "reviewer": "User-authorized current-code reproduction",
+    "reviewer": "User-authorized provider-parity policy update",
     "reason": "User-authorized provider-parity fix: Azure now pins and verifies the tested gpt-6.1-sol version, provider-owned deadlines complete before the workflow guard, and the single plan repair receives full-contract and 280-character guidance; knowledge, retrieval, assessment policy and prompt remain pinned.",
     "reviewed_at": "2026-11-18T05:55:13.1710562+00:00",
     "source_policy_compatible": true

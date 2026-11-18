@@ -334,15 +334,16 @@ identified, executed and audited without silently changing its inputs or
 policy.
 
 The submitted root artifact was produced by the retained reviewed delivery and
-promoted byte-identically. The current workflow was also replayed
-contract-valid across all 21 findings using the same `triage` CLI, source and
-retained activation in `copilot_experiment` mode; that replay was not
-semantically reviewed. Its execution-policy identity differs from the delivery
-run because the current workflow adds documented post-publication rollback.
-The observation was recorded from a dirty worktree. The `run_triage.py` wrapper
-has deterministic coverage, while live invocations record distinct evidence
-because provider output can vary. Clean-checkout reproduction remains an
-explicit open gate rather than a claimed pass.
+promoted byte-identically. An earlier execution-policy revision was replayed
+contract-valid across all 21 findings using the same `triage` CLI and source in
+`copilot_experiment` mode; that replay was not semantically reviewed and
+predates the current provider-parity changes. Its execution-policy identity also
+differs from the delivery run because it includes documented post-publication
+rollback. The observation was recorded from a dirty worktree. The
+`run_triage.py` wrapper has deterministic coverage, while live invocations
+record distinct evidence because provider output can vary. Clean-checkout
+reproduction of the current revision remains an explicit open gate rather than
+a claimed pass.
 
 ## F. Cost and run budget
 
