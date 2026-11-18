@@ -337,13 +337,10 @@ The submitted root artifact was produced by the retained reviewed delivery and
 promoted byte-identically. An earlier execution-policy revision was replayed
 contract-valid across all 21 findings using the same `triage` CLI and source in
 `copilot_experiment` mode; that replay was not semantically reviewed and
-predates the current provider-parity changes. Its execution-policy identity also
-differs from the delivery run because it includes documented post-publication
-rollback. The observation was recorded from a dirty worktree. The
-`run_triage.py` wrapper has deterministic coverage, while live invocations
-record distinct evidence because provider output can vary. Clean-checkout
-reproduction of the current revision remains an explicit open gate rather than
-a claimed pass.
+predates the current provider-parity changes. A separate Azure parity replay
+also generated all 21 tickets and records its own policy identity, tokens and
+publication receipt. These observations demonstrate both provider paths;
+semantic acceptance remains attached only to the reviewed submitted artifact.
 
 ## F. Cost and run budget
 
@@ -381,6 +378,24 @@ not a Copilot invoice. Applying the separately declared cache-read and
 receipt reports 21 request-cost units and 249.31861 AI units. Copilot does not
 expose the subscription's per-run USD allocation, its AI-unit-to-USD conversion
 or hidden HTTP attempts, so those values remain unknown.
+
+The Azure parity replay measured 1,176,914 input tokens, including 18,097 cached
+tokens, and 44,921 output tokens across 22 sends. Applying Microsoft Azure's
+published GPT-6.1 Sol Global Standard rates of US$2 per million uncached input,
+US$0.10 per million cached input and US$10 per million output gives:
+
+```text
+(1,158,817 * US$2 + 18,097 * US$0.10 + 44,921 * US$10) / 1,000,000
+= US$2.7686537
+```
+
+This is a retail-rate estimate, not the invoiced charge. Azure subscription
+usage details had not posted a line item when queried immediately after the
+run, and contract discounts or later billing adjustments may change the actual
+amount. The pricing source is the
+[Azure OpenAI pricing page](https://azure.microsoft.com/en-us/pricing/details/azure-openai/);
+the measured usage and billing-query status are retained in
+[`azure-gpt61-parity-20261118-summary.json`](eval/results/inference/azure-gpt61-parity-20261118-summary.json).
 
 Input represents about 82.8% of the simple estimate. Complete context was still
 chosen for this small corpus because relationship omissions were a larger

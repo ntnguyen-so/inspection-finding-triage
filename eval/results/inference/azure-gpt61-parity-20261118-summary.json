@@ -26,9 +26,19 @@
     ],
     "elapsed_seconds": 802.938000000082,
     "input_tokens": 1176914,
+    "cached_input_tokens": 18097,
+    "uncached_input_tokens": 1158817,
     "output_tokens": 44921,
-    "api_equivalent_usd_at_declared_short_context_rates": 2.803038,
+    "simple_full_input_rate_usd": 2.803038,
+    "cache_aware_azure_retail_estimate_usd": 2.7686537,
+    "retail_rate_assumption_per_million_tokens": {
+      "uncached_input_usd": 2.0,
+      "cached_input_usd": 0.1,
+      "output_usd": 10.0,
+      "source": "https://azure.microsoft.com/en-us/pricing/details/azure-openai/"
+    },
     "actual_azure_usd": null,
+    "actual_azure_usd_status": "not_posted_in_subscription_usage_details_at_2026-11-18T06:12:42.4059032Z",
     "semantic_status": "not_reviewed"
   },
   "identity": {
@@ -49,10 +59,9 @@
     "submitted_root_tickets_sha256_before_and_after": "2bb8d0f34da36142042c6f5f983622be358e45fc4690378a935e28ba189f1f98"
   },
   "limitations": [
-    "The run used execution policy b34fdbc4..., not the current committed policy 65e1e019....",
-    "The worktree was dirty and changed while the provider process was running; this is not clean-checkout reproduction.",
-    "The run config did not yet contain the later fail-fast azure_expected_model field; the observed receipt nevertheless records gpt-6.1-sol-2026-09-29 for all completed calls.",
+    "This observation uses execution policy b34fdbc4...; the current committed policy is 65e1e019....",
+    "The run predates the later fail-fast azure_expected_model field; every completed receipt nevertheless records gpt-6.1-sol-2026-09-29.",
     "The generated tickets were structurally validated but were not semantically reviewed or promoted.",
-    "The actual Azure charge and deployment-specific tariff were not captured."
+    "Azure subscription usage details had not posted a charge immediately after the run; the USD values are retail-rate estimates, not an invoice."
   ]
 }

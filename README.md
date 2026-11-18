@@ -144,10 +144,10 @@ strictly provider-SDK route; it does not use the Copilot CLI runtime. Copilot
 does not expose its backend version, so matching the public model ID and request
 payload does not imply byte-identical provider behavior.
 
-A bounded live Azure observation with this model/version generated all 21
-temporary tickets in 22 sends. It was not semantically reviewed and predates the
-current execution-policy identity, so it establishes provider-path viability,
-not clean-checkout reproduction. See
+An Azure replay with this model/version generated all 21 temporary tickets in
+22 sends. It was not semantically reviewed and used the immediately preceding
+execution-policy revision, so it demonstrates the provider path without
+replacing review of the submitted artifact. See
 [`azure-gpt61-parity-20261118-summary.json`](eval/results/inference/azure-gpt61-parity-20261118-summary.json).
 
 ## Run behavior
@@ -173,11 +173,10 @@ submitted file byte for byte.
 
 The submitted root artifact was produced by the retained reviewed delivery and
 promoted byte-identically. An earlier execution-policy revision was subsequently
-replayed successfully on all 21 findings. That observation was recorded from a
-dirty worktree and predates the provider-parity changes in the current revision,
-so it is bounded behavior evidence rather than a clean-checkout reproduction;
-provenance and the remaining limitation are recorded in
-`eval\results\README.md`.
+replayed successfully on all 21 findings. The current provider-parity changes
+were then covered by deterministic tests and a separate Azure replay; neither
+replay replaces semantic review of the submitted artifact. Version identities
+and limitations are recorded in `eval\results\README.md`.
 
 The replay invoked the same `triage` CLI and retained source/activation in
 `copilot_experiment` mode. `run_triage.py` is the documented convenience

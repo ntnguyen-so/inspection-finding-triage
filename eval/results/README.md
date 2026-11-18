@@ -50,13 +50,13 @@ Specifications under `eval\spec` define gates; they are not results.
    replay is contract-valid but not semantically reviewed. The adjacent
    `contract-assessment.json` records that contract result and pending semantic
    checks. Its `raw` directory retains the generated output, run evidence,
-   ledger, configuration and session-only activation needed to inspect the
+   ledger, configuration and recorded activation needed to inspect the
    observation.
 12. [`inference\azure-gpt61-parity-20261118-summary.json`](inference/azure-gpt61-parity-20261118-summary.json)
-   — bounded live observation that the Azure `gpt-6.1-sol` parity deployment
+   — Azure `gpt-6.1-sol` parity replay that
    generated and atomically published 21 temporary tickets. It records one
-   repaired schema violation, 22 sends, measured tokens and the explicit
-   limitation that the run predates the current execution-policy identity.
+   repaired schema violation, 22 sends, measured tokens, retail-rate estimates
+   and the execution-policy identity used by the run.
 
 ## Requirement-to-evidence map
 
@@ -68,7 +68,7 @@ Specifications under `eval\spec` define gates; they are not results.
 | Code-derived urgency | `triage\policy.py`; deterministic tests; `DESIGN.md` section C | Deterministic pass for the declared prototype policy |
 | Deferral and review | v31 final reviews; projection/policy tests | Six exceptional review routes; all drafts still require human approval |
 | Repeat stability | v31 development tickets/reviews, comparison and adjudication | Inconclusive for full X01 protocol acceptance: operational routing is stable, but the semantic procedure is supplementary and reviewer identity is incomplete |
-| Reproducibility and cost | Final configs, run record, receipt, recovered producer source and current-code replay summary | Partial: measured usage gives a US$2.350286 API-equivalent estimate; clean checkout, hidden retries and the Copilot AI-unit-to-USD conversion remain unresolved |
+| Reproducibility and cost | Final configs, run record, receipt, recovered producer source and replay summaries | Partial: measured Copilot and Azure usage supports explicit retail-rate estimates; independent replay of the exact producing revision, hidden Copilot retries and the Copilot AI-unit-to-USD conversion remain unresolved |
 
 ## Retained failed and rejected observations
 
