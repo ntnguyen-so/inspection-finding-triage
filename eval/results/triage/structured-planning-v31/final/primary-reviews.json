@@ -1,0 +1,1049 @@
+{
+  "reference_version": "1.3",
+  "partition": "all",
+  "output_sha256": "2bb8d0f34da36142042c6f5f983622be358e45fc4690378a935e28ba189f1f98",
+  "reviewer": {
+    "kind": "ai_only",
+    "provider": "GitHub Copilot CLI agent",
+    "model": "unknown_not_exposed",
+    "reasoning_effort": "unknown_not_exposed",
+    "prompt_sha256": "unknown_not_exposed",
+    "role": "primary_semantic_reviewer",
+    "independent_of_generation": true,
+    "domain_expert_claimed": false
+  },
+  "items": [
+    {
+      "finding_id": "F-1001",
+      "dimension": "grounding",
+      "verdict": "pass",
+      "reason": "The ticket preserves the rising, non-plateauing vibration below alarm and the sole-train production consequence, while avoiding a confirmed bearing failure or available-redundancy claim.",
+      "evidence": [
+        {
+          "field": "summary",
+          "quote": "K-3401 non-drive-end vibration rose from 2.1 to 4.6 mm/s over six weeks with growing 1x/sidebands and no plateau, still below alarm; loss of this sole gas export train would send the platform to recycle and cut production within an hour."
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "The six-week rise from 2.1 to 4.6 mm/s, growing 1x component and absence of a plateau support strong progression and high near-term likelihood. Remaining below alarm bounds the assessment below imminent or confirmed function loss; no subsequent progression is assumed."
+        },
+        {
+          "field": "impact_of_failure.rationale",
+          "quote": "Loss of this single train has no spare or workaround: a trip sends the platform to recycle and cuts production within the hour. This establishes material operational consequence, but not extreme loss or a specific severe personnel or major-accident consequence."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1001",
+      "dimension": "planning",
+      "verdict": "pass",
+      "reason": "The action directs same-day rotating-equipment diagnosis using vibration and train response at load, followed by diagnosis-dependent correction and trend verification.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Obtain attention today. Diagnose NDE vibration and train response at load. Rotating specialist: Correct vibration cause once confirmed. Run at load; verify vibration trend; independent ref. Witness; close."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1001",
+      "dimension": "uncertainty",
+      "verdict": "pass",
+      "reason": "The rationale explicitly bounds the evidence below confirmed function loss, and specialist diagnosis plus loaded trend verification routes the unknown mechanism and progression.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Obtain attention today. Diagnose NDE vibration and train response at load. Rotating specialist: Correct vibration cause once confirmed. Run at load; verify vibration trend; independent ref. Witness; close."
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "The six-week rise from 2.1 to 4.6 mm/s, growing 1x component and absence of a plateau support strong progression and high near-term likelihood. Remaining below alarm bounds the assessment below imminent or confirmed function loss; no subsequent progression is assumed."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1002",
+      "dimension": "grounding",
+      "verdict": "pass",
+      "reason": "The ticket treats below-set-pressure hissing and hydrocarbon smell as suspected PSV passing, preserves the relief-protection consequence, and does not claim proven inability to relieve, rupture, or a quantified release.",
+      "evidence": [
+        {
+          "field": "summary",
+          "quote": "PSV-1310 outlet hissing and nearby hydrocarbon smell well below set pressure suggest passing, potentially compromising V-1201's nonredundant overpressure relief and allowing pressure-boundary failure on demand; no liquid was visible."
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "Outlet hissing and nearby hydrocarbon smell below set pressure support suspected passing and an advanced degradation precursor to unreliable relief in the near term. They do not establish failure to relieve on demand; no functional test is reported."
+        },
+        {
+          "field": "impact_of_failure.rationale",
+          "quote": "Failure on demand would remove the registered, nonredundant overpressure relief function for V-1201, creating a specific pressure-boundary failure and hydrocarbon-release escalation path. The evidence supports severe major-accident exposure, but not a quantified extreme outcome."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1002",
+      "dimension": "planning",
+      "verdict": "pass",
+      "reason": "The action requires impairment-record reconciliation, authorized leak/passing and relief-path checks, integrity disposition, and pop/leak testing with recertification if passing is confirmed.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Reconcile impairment record. Check leak source and relief path. Integrity engineer: Repair PSV if passing is confirmed. Pop/leak test and recertify PSV; Approved relief/seat limits; independent ref. Witness; close."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1002",
+      "dimension": "uncertainty",
+      "verdict": "pass",
+      "reason": "Passing source, cause, rate and deviation status remain unasserted and are routed through leak-source testing, relief-path checks and impairment-record reconciliation with explicit human review.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Reconcile impairment record. Check leak source and relief path. Integrity engineer: Repair PSV if passing is confirmed. Pop/leak test and recertify PSV; Approved relief/seat limits; independent ref. Witness; close."
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "Outlet hissing and nearby hydrocarbon smell below set pressure support suspected passing and an advanced degradation precursor to unreliable relief in the near term. They do not establish failure to relieve on demand; no functional test is reported."
+        },
+        {
+          "field": "review_reason",
+          "quote": "Review: P-SAFETY-UNKNOWN (2): material safety uncertainty; verify the action checks. Why: Protection impairment suspected; deviation status unverified, not confirmed absent. Whether the symptoms originate from PSV passing and compromise the sole registered relief path changes the immediate protection disposition and required controls before queue entry.; checks: Reconcile impairment/deviation record., Check leak source and relief path. Full reasons and citations are in run evidence."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1003",
+      "dimension": "grounding",
+      "verdict": "pass",
+      "reason": "The ticket retains the failed first start, successful retry and rated running pressure, and withholds healthy N+1 credit because pump A later achieved only 9.2 of 11 barg with flow unmeasured.",
+      "evidence": [
+        {
+          "field": "summary",
+          "quote": "FW-8102 failed its first weekly start with batteries at 22.8 V, then started on retry after ~8 s and reached rated pressure; unreliable firewater starting could delay firefighting, while FW-8101's later 9.2/11 barg result leaves standby capability unresolved."
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "The June 3 weekly test directly demonstrated failure on the initial start demand. Starting on the second attempt after about eight seconds of cranking and subsequently achieving rated discharge pressure bound the failure to starting reliability, but do not erase it. The 22.8 V resting battery measurement and recurring starting problems support investigation, not a confirmed battery diagnosis; intermittent success supports 9 rather than 10."
+        },
+        {
+          "field": "impact_of_failure.rationale",
+          "quote": "Failure on the initial demand can delay firewater delivery and firefighting, a supported severe protection consequence. N+1 is registered, but FW-8101's later June 17 result of 9.2 barg against 11 barg, with flow unmeasured and the test path unresolved, prevents crediting proven capable redundancy. It does not establish that both pumps are unavailable or justify an extreme-consequence score."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1003",
+      "dimension": "planning",
+      "verdict": "pass",
+      "reason": "The action covers batteries and the full starting circuit, witnessed demand-start and rated-duty verification, and explicit pressure/flow verification of the partner pump.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Reconcile impairment record. Test B batteries, charger, air and start circuit. Verify A duty flow/pressure and test path. Operations authority: Repair B starting defects found by testing. Prove B demand start and rated duty; First-attempt start; rated duty; independent ref. Witness; close."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1003",
+      "dimension": "uncertainty",
+      "verdict": "pass",
+      "reason": "Battery causation, current demand capability, partner capability and impairment status are not asserted; targeted tests and record reconciliation provide concrete verification routes.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Reconcile impairment record. Test B batteries, charger, air and start circuit. Verify A duty flow/pressure and test path. Operations authority: Repair B starting defects found by testing. Prove B demand start and rated duty; First-attempt start; rated duty; independent ref. Witness; close."
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "The June 3 weekly test directly demonstrated failure on the initial start demand. Starting on the second attempt after about eight seconds of cranking and subsequently achieving rated discharge pressure bound the failure to starting reliability, but do not erase it. The 22.8 V resting battery measurement and recurring starting problems support investigation, not a confirmed battery diagnosis; intermittent success supports 9 rather than 10."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1004",
+      "dimension": "grounding",
+      "verdict": "pass",
+      "reason": "The ticket preserves the local 6.2 mm result below the 7.4 mm minimum, saturated insulation and full-pressure hydrocarbon consequence without averaging adjacent acceptable windows or claiming a leak or remaining life.",
+      "evidence": [
+        {
+          "field": "summary",
+          "quote": "PL-1002 window 2 near the low point drain has 6.2 mm wall versus 7.4 mm minimum beneath saturated insulation; adjacent windows comply, but local thinning threatens containment of hydrocarbons at full wellhead pressure, with potential release and fire."
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "Advanced local wall loss to 6.2 mm, below the 7.4 mm minimum, with saturated insulation and heavy scaling supports the advanced-damage band for near-term containment loss. Adjacent windows remain within tolerance. The breached thickness limit does not establish leakage or imminent rupture."
+        },
+        {
+          "field": "impact_of_failure.rationale",
+          "quote": "Failure of this pressure boundary would release hydrocarbons at full wellhead pressure, providing a specific severe fire and personnel-exposure path if ignited. No redundant line is registered. The evidence supports severe consequences, but not an extreme release scale or platform-wide loss."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1004",
+      "dimension": "planning",
+      "verdict": "pass",
+      "reason": "The action requires targeted wall-loss mapping, containment and fitness assessment by integrity engineering, approved repair, and pressure-integrity and insulation-seal verification.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Map wall loss; check containment and fitness. Integrity engineer: Repair pipe and renew dry, sealed insulation. Test pressure integrity; inspect insulation seals; Approved repair/test specification; independent ref. Witness; close."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1004",
+      "dimension": "uncertainty",
+      "verdict": "pass",
+      "reason": "Extent, residual fitness and approved operating disposition remain unresolved and are routed through mapping, fitness assessment and integrity-authorized acceptance.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Map wall loss; check containment and fitness. Integrity engineer: Repair pipe and renew dry, sealed insulation. Test pressure integrity; inspect insulation seals; Approved repair/test specification; independent ref. Witness; close."
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "Advanced local wall loss to 6.2 mm, below the 7.4 mm minimum, with saturated insulation and heavy scaling supports the advanced-damage band for near-term containment loss. Adjacent windows remain within tolerance. The breached thickness limit does not establish leakage or imminent rupture."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1005",
+      "dimension": "grounding",
+      "verdict": "pass",
+      "reason": "The ticket treats the repeatedly nonresponsive detector head as failed while preserving the two responding heads and degraded, not defeated, 2oo3 protection.",
+      "evidence": [
+        {
+          "field": "summary",
+          "quote": "FG-0455 in the compression module gave no response to 50% LEL gas from two cylinders; both other 2oo3 heads responded, so gas detection retains function but loses its margin against another channel failure."
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "The assessed detection function already failed: no response to 50 percent LEL gas on two cylinders during the bump test. Correct responses from the other heads support the test conditions but do not reduce this failed channel's likelihood."
+        },
+        {
+          "field": "impact_of_failure.rationale",
+          "quote": "Loss of this channel materially degrades hydrocarbon detection protection. Both remaining heads responded correctly, so the 2oo3 arrangement retains function but loses its failure margin; another channel failure could defeat voting. Present total protection loss or extreme consequences are not established."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1005",
+      "dimension": "planning",
+      "verdict": "pass",
+      "reason": "The action requires impairment-record reconciliation, head/wiring/input diagnosis, diagnosis-dependent repair, certified-gas response testing and verification of correct voting.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Reconcile impairment record. Check head, wiring and input. Instrument TA: Repair channel fault once located. Test channel/vote with certified gas; Responds at 50% LEL; correct voting; independent ref. Witness; close."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1005",
+      "dimension": "uncertainty",
+      "verdict": "pass",
+      "reason": "Deviation status and fault location are not invented; record reconciliation and functional channel/vote testing provide concrete resolution routes.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Reconcile impairment record. Check head, wiring and input. Instrument TA: Repair channel fault once located. Test channel/vote with certified gas; Responds at 50% LEL; correct voting; independent ref. Witness; close."
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "The assessed detection function already failed: no response to 50 percent LEL gas on two cylinders during the bump test. Correct responses from the other heads support the test conditions but do not reduce this failed channel's likelihood."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1006",
+      "dimension": "grounding",
+      "verdict": "pass",
+      "reason": "The ticket retains six broken wires per lay against the discard criterion of ten, poor lubrication and satisfactory hook, sheaves and structure, without saying the limit is reached or unrestricted use is certified.",
+      "evidence": [
+        {
+          "field": "summary",
+          "quote": "CR-5001 main hoist rope has 6 broken wires/lay versus 10 discard, with poor lubrication where it spools onto the drum at maximum radius; hook, sheaves and structure are satisfactory, but rope failure could drop a load and halt offloads, affecting logistics within days."
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "Six broken wires per lay and poor lubrication establish limited degradation, but the count remains below the supplied discard criterion of ten. No progression rate or functional loss is established; the supported margin places near-term load-support failure in the 3–4 band."
+        },
+        {
+          "field": "impact_of_failure.rationale",
+          "quote": "Loss of suspended-load support presents a material dropped-load consequence and removes the sole crane's offloading capability, creating logistics problems within days. The supplied snapshot does not establish exposure or scale supporting severe or extreme consequences."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1006",
+      "dimension": "planning",
+      "verdict": "pass",
+      "reason": "The action requires full-rope and drum-contact inspection, lubrication, lifting-authority reassessment and renewal only if the responsible surveyor requires it.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Inspect full rope and drum contact section. Lifting surveyor: Lubricate rope; renew if surveyor requires. Inspect rope condition and lubrication; Lifting standard; below 10 breaks/lay. Witness; close."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1006",
+      "dimension": "uncertainty",
+      "verdict": "pass",
+      "reason": "No deterioration rate or invented interval is asserted; targeted rope inspection and lifting-standard acceptance route continued-use uncertainty.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Inspect full rope and drum contact section. Lifting surveyor: Lubricate rope; renew if surveyor requires. Inspect rope condition and lubrication; Lifting standard; below 10 breaks/lay. Witness; close."
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "Six broken wires per lay and poor lubrication establish limited degradation, but the count remains below the supplied discard criterion of ten. No progression rate or functional loss is established; the supported margin places near-term load-support failure in the 3–4 band."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1007",
+      "dimension": "grounding",
+      "verdict": "pass",
+      "reason": "The ticket preserves the third trip, roughly ten days of intermittent injection, no spare and delayed downstream corrosion consequence while keeping diaphragm damage suspected and downstream wall loss unconfirmed.",
+      "evidence": [
+        {
+          "field": "summary",
+          "quote": "P-3305's third low-pressure trip this month has left wellhead manifold inhibitor injection intermittent for about ten days; diaphragm failure is suspected, no spare exists, and starvation risks downstream steel corrosion within weeks despite no immediate production stop."
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "The assessed interruption has occurred: three low-discharge-pressure trips this month and around ten days of intermittent injection establish failed delivery, not merely a suspected diaphragm defect. This supports the confirmed-function-failure band for near-term injection demand."
+        },
+        {
+          "field": "impact_of_failure.rationale",
+          "quote": "Loss of injection, with no redundant pump, creates a supported delayed integrity threat: inhibitor starvation allows downstream carbon steel corrosion within weeks, with consequences described six months later. Production does not stop immediately; no actual downstream damage or extreme consequence is established."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1007",
+      "dimension": "planning",
+      "verdict": "pass",
+      "reason": "The action covers the complete path: diaphragm and discharge-system examination, dosing/interruption review, restoration of the confirmed fault, and verification of sustained manifold dose and pressure without trips.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Check diaphragm and full injection path. Review dosing log and corrosion exposure. Maintenance/Corrosion: Repair injection fault if confirmed. Test manifold dose and pressure with reference; Required delivery sustained without trips; independent ref. Witness; close."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1007",
+      "dimension": "uncertainty",
+      "verdict": "pass",
+      "reason": "Root cause, delivered dose and downstream condition remain unasserted and are routed through full-path checks, dosing-log/corrosion review and sustained-delivery testing.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Check diaphragm and full injection path. Review dosing log and corrosion exposure. Maintenance/Corrosion: Repair injection fault if confirmed. Test manifold dose and pressure with reference; Required delivery sustained without trips; independent ref. Witness; close."
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "The assessed interruption has occurred: three low-discharge-pressure trips this month and around ten days of intermittent injection establish failed delivery, not merely a suspected diaphragm defect. This supports the confirmed-function-failure band for near-term injection demand."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1008",
+      "dimension": "grounding",
+      "verdict": "pass",
+      "reason": "The ticket retains the MPI-confirmed approximately 45 mm crack at primary connection B4, distinguishes the coating backlog and does not claim collapse or transfer the crack to F-1009.",
+      "evidence": [
+        {
+          "field": "summary",
+          "quote": "SC-1001 has an approximately 45 mm MPI-confirmed weld-toe crack at the primary brace/node connection at cellar-deck grid B4; intact coating distinguishes it from the fabric backlog, and loss of connection capacity could destabilize deck support."
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "The approximately 45 mm MPI-confirmed weld-toe crack is a meaningful precursor to loss of connection capacity. Crack depth, growth and residual capacity are not established, so neither strong near-term progression nor existing functional failure is demonstrated."
+        },
+        {
+          "field": "impact_of_failure.rationale",
+          "quote": "Loss of capacity at this primary brace-to-node connection could destabilize the supported cellar-deck structure, providing a specific severe structural consequence path. No redundancy is registered, but platform-wide collapse or extreme exposure is not established."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1008",
+      "dimension": "planning",
+      "verdict": "pass",
+      "reason": "The action requires crack sizing, structural-capacity assessment, engineer-authorized repair if required, and NDT/capacity verification against approved criteria.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Reconcile impairment record. Size B4 crack; assess load capacity. Structural engineer: Repair B4 weld if engineer requires. Verify B4 NDT and structural capacity; Approved structural criteria; independent ref. Witness; close."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1008",
+      "dimension": "uncertainty",
+      "verdict": "pass",
+      "reason": "Depth and residual capacity are explicitly routed to structural engineering and targeted NDT, with the protection concern additionally sent for human review.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Reconcile impairment record. Size B4 crack; assess load capacity. Structural engineer: Repair B4 weld if engineer requires. Verify B4 NDT and structural capacity; Approved structural criteria; independent ref. Witness; close."
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "The approximately 45 mm MPI-confirmed weld-toe crack is a meaningful precursor to loss of connection capacity. Crack depth, growth and residual capacity are not established, so neither strong near-term progression nor existing functional failure is demonstrated."
+        },
+        {
+          "field": "review_reason",
+          "quote": "Review: P-SAFETY-UNKNOWN: material safety uncertainty; verify the action checks. Why: Protection impairment suspected; deviation status unverified, not confirmed absent.; checks: Reconcile impairment/deviation record.. Full reasons and citations are in run evidence."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1009",
+      "dimension": "grounding",
+      "verdict": "pass",
+      "reason": "The ticket keeps the C2-C5 coating/backlog mechanism distinct from the B4 crack and limits the consequence to barrier loss and surface deterioration without measured section loss.",
+      "evidence": [
+        {
+          "field": "summary",
+          "quote": "SC-1001 underside deck coating at C2–C5 has widespread flaking and rust staining, already on the fabric backlog; its corrosion barrier has locally failed, with surface deterioration supported but no demonstrated structural-capacity loss."
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "Flaking primer together with rust staining establishes that the local coating no longer provides a continuous corrosion barrier. This is an observed local coating-function failure, not evidence that the deck has lost structural capacity."
+        },
+        {
+          "field": "impact_of_failure.rationale",
+          "quote": "The supported consequence of this local barrier loss is surface corrosion and coating deterioration, characterized by the engineer as mostly cosmetic. No section-loss measurement or structural-capacity consequence is established for C2–C5; the separate B4 crack is not transferred to this finding."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1009",
+      "dimension": "planning",
+      "verdict": "pass",
+      "reason": "The action requires substrate inspection for hidden section loss, surface preparation, coating renewal and verification of restored barrier integrity.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Inspect C2–C5 substrate for section loss. Integrity engineer: Prepare substrate and renew C2–C5 coating. Test restored coating barrier integrity; Approved coating specification; independent ref. Witness; close."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1009",
+      "dimension": "uncertainty",
+      "verdict": "pass",
+      "reason": "Underlying steel condition is not asserted and is routed through substrate inspection before maintenance closure.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Inspect C2–C5 substrate for section loss. Integrity engineer: Prepare substrate and renew C2–C5 coating. Test restored coating barrier integrity; Approved coating specification; independent ref. Witness; close."
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "Flaking primer together with rust staining establishes that the local coating no longer provides a continuous corrosion barrier. This is an observed local coating-function failure, not evidence that the deck has lost structural capacity."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1010",
+      "dimension": "grounding",
+      "verdict": "pass",
+      "reason": "The ticket preserves 27 Pa against the 50 Pa minimum and the temporary-refuge protection function, while keeping damper or seal causes suspected rather than confirmed.",
+      "evidence": [
+        {
+          "field": "summary",
+          "quote": "HVAC-7201 achieved only 27 Pa across the accommodation envelope versus 50 Pa minimum despite rated fan speed; with no redundancy, refuge protection against hydrocarbon ingress is impaired, with damper or door-seal leakage suspected."
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "The supplied functional test directly demonstrates the assessed failure: 27 Pa against a required minimum of 50 Pa while the fan runs at rated speed. This is confirmed required-function failure, not merely a suspected component defect; the near-term assessment therefore belongs in the top likelihood band."
+        },
+        {
+          "field": "impact_of_failure.rationale",
+          "quote": "Failure to achieve required refuge pressure compromises the barrier against hydrocarbon ingress during a gas release, exposing mustering personnel. No redundant unit is registered. This supports a severe major-accident exposure path, but the supplied scenario does not establish extreme consequences warranting 9–10."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1010",
+      "dimension": "planning",
+      "verdict": "pass",
+      "reason": "The action covers damper, seal, airflow and envelope checks, diagnosis-dependent correction and calibrated repeat pressure testing to the stated minimum.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Reconcile impairment record. Check airflow, dampers, seals and envelope leaks. Technical authority: If found, repair airflow or envelope defects. Retest refuge pressure with calibrated gauge; At least 50 Pa; independent ref. Witness; close."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1010",
+      "dimension": "uncertainty",
+      "verdict": "pass",
+      "reason": "Root cause and deviation status are not invented; record reconciliation, envelope checks and repeat differential-pressure testing provide concrete routes.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Reconcile impairment record. Check airflow, dampers, seals and envelope leaks. Technical authority: If found, repair airflow or envelope defects. Retest refuge pressure with calibrated gauge; At least 50 Pa; independent ref. Witness; close."
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "The supplied functional test directly demonstrates the assessed failure: 27 Pa against a required minimum of 50 Pa while the fan runs at rated speed. This is confirmed required-function failure, not merely a suspected component defect; the near-term assessment therefore belongs in the top likelihood band."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1011",
+      "dimension": "grounding",
+      "verdict": "pass",
+      "reason": "The ticket retains the June 10 local spray failure despite normal header supply and includes source-labelled F-1020 chronology showing the branch valve was later found chained closed, reopened, and of unknown closure duration, without claiming sole causation or restored coverage.",
+      "evidence": [
+        {
+          "field": "summary",
+          "quote": "DEL-8300's June 10 full-flow test found about 12 of 60 north-quadrant nozzles with no flow or distorted spray despite normal header supply, impairing deluge coverage above two producing wellheads and creating a fire-escalation path."
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "The June 10 full-flow test directly demonstrated absent or badly distorted discharge from approximately 12 of 60 north-quadrant nozzles despite normal header flow and skid pressure. Effective local delivery has already failed; remaining nozzle delivery does not reduce likelihood for that assessed function. Related-finding context cited by typed facts: [protection_restored=unknown] Fact reason: No successful post-correction coverage test is supplied. Later reopening of a branch valve does not prove restoration of the earlier nozzle and branch blockage impairment. Related quote (F-1020 finding_description): \"Isolation valve on the deluge branch line to the north quadrant was found chained in the closed position with no valve status tag and no entry in the impairment register. Valve was reopened immediately and the control room informed. Unknown how long it had been shut.\""
+        },
+        {
+          "field": "impact_of_failure.rationale",
+          "quote": "Loss of local deluge coverage directly above two producing wellheads creates a specific fire-escalation exposure through ineffective water application. No redundant deluge system is registered. The observed impairment is partial, not proof of total fire-protection loss or extreme installation-wide consequences."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1011",
+      "dimension": "planning",
+      "verdict": "pass",
+      "reason": "The action requires impairment reconciliation, north-branch and nozzle inspection, correction of remaining delivery defects, and witnessed full north-nozzle flow and spray-coverage testing before closure.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Reconcile impairment record. Inspect north branches and nozzles for blockage. Fire protection engineer: Clear branch and nozzle blockages. Flow-test all north nozzles against design; Required flow and spray coverage; independent ref. Witness; close."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1011",
+      "dimension": "uncertainty",
+      "verdict": "pass",
+      "reason": "The ticket explicitly states that no successful post-correction coverage test is supplied and that reopening does not prove restoration; the quoted related record preserves unknown closure duration and the action routes restoration through retest.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Reconcile impairment record. Inspect north branches and nozzles for blockage. Fire protection engineer: Clear branch and nozzle blockages. Flow-test all north nozzles against design; Required flow and spray coverage; independent ref. Witness; close."
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "The June 10 full-flow test directly demonstrated absent or badly distorted discharge from approximately 12 of 60 north-quadrant nozzles despite normal header flow and skid pressure. Effective local delivery has already failed; remaining nozzle delivery does not reduce likelihood for that assessed function. Related-finding context cited by typed facts: [protection_restored=unknown] Fact reason: No successful post-correction coverage test is supplied. Later reopening of a branch valve does not prove restoration of the earlier nozzle and branch blockage impairment. Related quote (F-1020 finding_description): \"Isolation valve on the deluge branch line to the north quadrant was found chained in the closed position with no valve status tag and no entry in the impairment register. Valve was reopened immediately and the control room informed. Unknown how long it had been shut.\""
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1012",
+      "dimension": "grounding",
+      "verdict": "pass",
+      "reason": "The ticket preserves withheld certification and declared lifeboat unavailability while treating LB-4101 capability and capacity versus POB as unresolved, not as confirmed healthy redundancy or a proven shortfall.",
+      "evidence": [
+        {
+          "field": "summary",
+          "quote": "LB-4102 at the port station is unavailable after annual survey found notchy hydraulic release above specified force and withheld certification, reducing emergency evacuation capacity; LB-4101 capability and remaining capacity against POB require verification."
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "The assessed function is already unavailable: the annual survey established excessive release force and notchy movement, the certificate was withheld and the boat declared unavailable. This is confirmed function loss, not merely a diagnostic precursor; it does not establish that release is physically impossible."
+        },
+        {
+          "field": "impact_of_failure.rationale",
+          "quote": "Loss of this boat's certified launch availability removes evacuation capacity during an emergency, a specific severe personnel-safety consequence path. LB-4101 is only nominal redundancy; its capability and remaining capacity against POB are unresolved. Total evacuation failure or an actual capacity deficit is not established, so extreme impact is unsupported."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1012",
+      "dimension": "planning",
+      "verdict": "pass",
+      "reason": "The action explicitly verifies partner capability, compares usable certified capacity with POB, overhauls the release gear, tests it to specification and requires class recertification before use.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Reconcile impairment record. Verify LB-4101 availability/capability. Compare usable evacuation capacity with POB. OIM / Class surveyor: Overhaul release gear. Test release to spec; class recertify before use; Smooth release within specified force; independent ref. Witness; close."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1012",
+      "dimension": "uncertainty",
+      "verdict": "pass",
+      "reason": "POB, remaining certified capacity and partner condition are routed through named checks and exceptional human review without prematurely applying a below-POB factual claim.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Reconcile impairment record. Verify LB-4101 availability/capability. Compare usable evacuation capacity with POB. OIM / Class surveyor: Overhaul release gear. Test release to spec; class recertify before use; Smooth release within specified force; independent ref. Witness; close."
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "The assessed function is already unavailable: the annual survey established excessive release force and notchy movement, the certificate was withheld and the boat declared unavailable. This is confirmed function loss, not merely a diagnostic precursor; it does not establish that release is physically impossible."
+        },
+        {
+          "field": "review_reason",
+          "quote": "Review: P-EVACUATION: evacuation capacity remains unverified. Why: Craft unavailable; remaining capacity/POB comparison unverified, not proven shortfall.; checks: Compare usable evacuation capacity with POB.; P-SAFETY-UNKNOWN (2): material safety uncertainty; verify the action checks. Why: Whether remaining capacity covers POB changes the immediate evacuation safety disposition and requires resolution before queue entry. Partner LB-4101 has no registry record.; checks: Compare usable evacuation capacity with POB., Verify LB-4101 availability/capability.. Full reasons and citations are in run evidence."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1013",
+      "dimension": "grounding",
+      "verdict": "pass",
+      "reason": "The ticket preserves growing duty-transmitter divergence, its control/alarm role and the later backup flatline, while explicitly avoiding a shared-failure or actual-overfill claim.",
+      "evidence": [
+        {
+          "field": "summary",
+          "quote": "INST-2150 on V-1201 feeds control and the high-level alarm but reads ~12% above backup and ~15% above sight glass, worsening over three weeks; the backup later flatlined for ~36 h, leaving reliable coverage unverified and risking incorrect control/alarm response."
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "Divergence from two references has increased steadily over three weeks while the channel remains selected for control, supporting strong progression toward the assessed failure. No applicable accuracy criterion or validated reference test establishes confirmed required-function loss."
+        },
+        {
+          "field": "impact_of_failure.rationale",
+          "quote": "Nonrepresentative input can produce incorrect separator level control and high-level alarm response, a material operational consequence. The later backup flatline prevents crediting capable duplication without verification; it does not prove shared failure. A specific severe accident consequence is not established."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1013",
+      "dimension": "planning",
+      "verdict": "pass",
+      "reason": "The action requires independent level comparison, checks of the duty sensor/taps, backup and sight glass, calibration if confirmed, and control/alarm testing before disposition.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Reconcile impairment record. Check sensor/taps, backup and sight glass. Ops/I&C: Recalibrate if drift confirmed. Test control/alarm against independent level; independent ref. Witness; close."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1013",
+      "dimension": "uncertainty",
+      "verdict": "pass",
+      "reason": "True level, fault location and current protection adequacy are routed through independent measurement and both-leg checks, with explicit human review before queue entry.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Reconcile impairment record. Check sensor/taps, backup and sight glass. Ops/I&C: Recalibrate if drift confirmed. Test control/alarm against independent level; independent ref. Witness; close."
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "Divergence from two references has increased steadily over three weeks while the channel remains selected for control, supporting strong progression toward the assessed failure. No applicable accuracy criterion or validated reference test establishes confirmed required-function loss."
+        },
+        {
+          "field": "review_reason",
+          "quote": "Review: P-SAFETY-UNKNOWN (2): material safety uncertainty; verify the action checks. Why: Protection impairment suspected; deviation status unverified, not confirmed absent. The duty channel feeds both control and the high-level alarm, while the backup was subsequently reported flatlined for approximately 36 hours. Reliable alternative measurement and protection coverage require verification before deciding the interim control arrangement.; checks: Reconcile impairment/deviation record., Check sensor/taps, backup and sight glass. Full reasons and citations are in run evidence."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1014",
+      "dimension": "grounding",
+      "verdict": "pass",
+      "reason": "The ticket preserves real deflector/support damage, sound shell and heads, out-of-service state and indefinite bypass without inventing production loss or pressure-boundary failure.",
+      "evidence": [
+        {
+          "field": "summary",
+          "quote": "V-1305's inlet deflector is partly detached with one of four brackets corroded through, risking loss of inlet-flow deflection during well testing; shell and heads are sound, the separator is out of service, and bypass permits no production impact."
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "Partial detachment and corrosion through one of four brackets provide a meaningful precursor to loss of inlet-flow deflection, but do not establish that function is already lost. The supplied snapshot records the separator out of service, with no near-term demand established; this moderates likelihood without treating the damage as repaired."
+        },
+        {
+          "field": "impact_of_failure.rationale",
+          "quote": "Loss of inlet-flow deflection could compromise the local well-testing function. The separator can be isolated and bypassed indefinitely without production impact, and its shell and heads were reported in good condition. No path from this internal defect to pressure-boundary failure is established."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1014",
+      "dimension": "planning",
+      "verdict": "pass",
+      "reason": "The action requires inspection and approved repair of the deflector and all supports, followed by retention/alignment acceptance before return to service.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Inspect deflector and all four support brackets. Integrity engineer: Repair deflector supports to approved design. Inspect deflector retention and alignment; Conforms to approved design; independent ref. Witness; close."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1014",
+      "dimension": "uncertainty",
+      "verdict": "pass",
+      "reason": "Future service timing and repair detail are not invented; approved design inspection and acceptance route readiness uncertainty.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Inspect deflector and all four support brackets. Integrity engineer: Repair deflector supports to approved design. Inspect deflector retention and alignment; Conforms to approved design; independent ref. Witness; close."
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "Partial detachment and corrosion through one of four brackets provide a meaningful precursor to loss of inlet-flow deflection, but do not establish that function is already lost. The supplied snapshot records the separator out of service, with no near-term demand established; this moderates likelihood without treating the damage as repaired."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1015",
+      "dimension": "grounding",
+      "verdict": "pass",
+      "reason": "The ticket distinguishes reduced local gauge visibility from loss of scrubber control, retains reported normal transmitter control and no carryover indications, and does not claim turbine damage.",
+      "evidence": [
+        {
+          "field": "summary",
+          "quote": "V-2450 fuel gas scrubber gauge glass is dirty and hard to read, limiting local level cross-checks; transmitter control appears normal with no downstream carryover indications, so loss of turbine liquid-carryover protection is not established."
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "Dirt already limits local readability, supporting credible limited degradation in the near term. The observation says hard to read, not unreadable; neither complete indication loss nor strong progression is established."
+        },
+        {
+          "field": "impact_of_failure.rationale",
+          "quote": "Loss of the local reading removes a local level cross-check, a localized recoverable operational consequence. Transmitter-based control appears normal and no downstream carryover indications were observed. The evidence does not connect this gauge defect to loss of scrubber separation or turbine damage."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1015",
+      "dimension": "planning",
+      "verdict": "pass",
+      "reason": "The action requires authorized cleaning/restoration of readability and comparison of the local gauge with the transmitter.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Check gauge readability and level response. Operations: Clean level gauge glass. Compare readable gauge level with transmitter; Readable; agrees with transmitter; independent ref. Witness; close."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1015",
+      "dimension": "uncertainty",
+      "verdict": "pass",
+      "reason": "Cause and complete control health are not asserted; readability and independent indication comparison provide the concrete verification route.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Check gauge readability and level response. Operations: Clean level gauge glass. Compare readable gauge level with transmitter; Readable; agrees with transmitter; independent ref. Witness; close."
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "Dirt already limits local readability, supporting credible limited degradation in the near term. The observation says hard to read, not unreadable; neither complete indication loss nor strong progression is established."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1016",
+      "dimension": "grounding",
+      "verdict": "pass",
+      "reason": "The ticket preserves the in-date March 2025 register confirmation and confines failure to local tag readability, expressly denying evidence of relief-function loss.",
+      "evidence": [
+        {
+          "field": "summary",
+          "quote": "PSV-3420's corroded certification tag is illegible at the compressor discharge, impairing local traceability; the register confirms March 2025 recertification is in date, and tag damage does not establish loss of overpressure protection."
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "The assessed local identification function has already failed: the corroded certification tag is explicitly illegible. This does not establish failure of the valve's pressure-relief function."
+        },
+        {
+          "field": "impact_of_failure.rationale",
+          "quote": "Loss of local certification identification creates a localized, recoverable traceability problem. The checked register supplies an alternative and confirms March 2025 recertification was in date at the reported snapshot. No physical or operational path from tag corrosion to loss of compressor-discharge overpressure protection is established."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1016",
+      "dimension": "planning",
+      "verdict": "pass",
+      "reason": "The action requires identity-to-certificate matching and replacement of the corroded tag while preserving traceability, not unnecessary valve replacement.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Match valve identity to certificate. Integrity engineer: Replace corroded certification tag. Read tag and compare with certificate; Legible; matches certificate; independent ref. Witness; close."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1016",
+      "dimension": "uncertainty",
+      "verdict": "pass",
+      "reason": "The ticket does not turn visual condition into a functional certificate; identity and certificate comparison limits the action to the supported traceability defect.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Match valve identity to certificate. Integrity engineer: Replace corroded certification tag. Read tag and compare with certificate; Legible; matches certificate; independent ref. Witness; close."
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "The assessed local identification function has already failed: the corroded certification tag is explicitly illegible. This does not establish failure of the valve's pressure-relief function."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1017",
+      "dimension": "grounding",
+      "verdict": "pass",
+      "reason": "The ticket retains 9.2 versus 11 barg, unmeasured flow, normal engine parameters and the partner's earlier delayed start, without claiming measured low flow, proven wear, healthy standby or total unavailability.",
+      "evidence": [
+        {
+          "field": "summary",
+          "quote": "FW-8101 started first time with normal engine parameters but gave 9.2 vs 11 barg design with flow unmeasured, suggesting wear or test-line restriction and uncertain firewater delivery; FW-8102's earlier delayed start leaves backup unverified against fire escalation."
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "9.2 barg against 11 barg design is a meaningful delivery-performance precursor supporting the upper active-degradation band. No progression or recurrent interruption of A is established. Missing flow and unresolved test-path validity require suspected impairment, not a confirmed-failure score."
+        },
+        {
+          "field": "impact_of_failure.rationale",
+          "quote": "Failure of A's required delivery would degrade firewater protection and permit fire escalation. Dependable backup cannot yet be credited: B previously failed its first start, although it subsequently ran normally at rated pressure. This supports a severe protection-loss consequence, not confirmed simultaneous pump unavailability or an extreme consequence."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1017",
+      "dimension": "planning",
+      "verdict": "pass",
+      "reason": "The action requires test-line and pump-path checks, independent witnessed pressure/flow testing, partner start/delivery verification, diagnosis-dependent correction and retest at design flow.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Reconcile impairment record. Check A pump/path; test pressure/flow independently. Verify B start and delivery. Fire protection authority: If confirmed, correct pump or test-line defect. Retest A start, pressure and flow; Demand start; 11 barg at design flow; independent ref. Witness; close."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1017",
+      "dimension": "uncertainty",
+      "verdict": "pass",
+      "reason": "Delivered flow, cause, partner capability and impairment status are explicitly routed through pressure/flow testing, path inspection, partner verification and human review.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Reconcile impairment record. Check A pump/path; test pressure/flow independently. Verify B start and delivery. Fire protection authority: If confirmed, correct pump or test-line defect. Retest A start, pressure and flow; Demand start; 11 barg at design flow; independent ref. Witness; close."
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "9.2 barg against 11 barg design is a meaningful delivery-performance precursor supporting the upper active-degradation band. No progression or recurrent interruption of A is established. Missing flow and unresolved test-path validity require suspected impairment, not a confirmed-failure score."
+        },
+        {
+          "field": "review_reason",
+          "quote": "Review: P-SAFETY-UNKNOWN (2): material safety uncertainty; verify the action checks. Why: Protection impairment suspected; deviation status unverified, not confirmed absent. Whether A can deliver its required firewater duty changes the immediate protection disposition; pressure alone under an unresolved test configuration cannot settle that decision.; checks: Reconcile impairment/deviation record., Check A pump/path; test pressure/flow independently. Full reasons and citations are in run evidence."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1018",
+      "dimension": "grounding",
+      "verdict": "pass",
+      "reason": "The ticket preserves the 36-hour implausible flatline and loss of credible backup measurement; its source-labelled F-1013 context is scoped to the separate duty channel and does not claim simultaneous or shared failure.",
+      "evidence": [
+        {
+          "field": "summary",
+          "quote": "INST-2151 on V-1201 has flatlined for about 36 hours, losing responsive backup level measurement; with earlier duty-channel drift unresolved, dependable level-control and alarm support cannot be assumed."
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "The reported 36-hour flat line is explicitly not credible for this service: the required responsive backup measurement function has already failed. The suspected mechanism remains unresolved; duplication does not lower this channel's likelihood. Related-finding context cited by typed facts: [protection_impaired=unknown] Fact reason: Backup measurement failure is established, but its assigned protection role is not. Earlier duty-channel divergence matters because that separate channel feeds control and the high-level alarm; its present capability is unresolved. Related quote (F-1013 finding_description): \"Interface level transmitter is reading approximately 12 percent higher than the backup transmitter and around 15 percent higher than the sight glass. Divergence has been growing steadily over about three weeks. Control is currently on this transmitter.\""
+        },
+        {
+          "field": "impact_of_failure.rationale",
+          "quote": "Loss of responsive backup level measurement removes the intended second measurement leg on V-1201. The duty channel previously showed growing divergence while controlling level, so capable redundancy cannot be credited without verification. This supports a material operational consequence, not a demonstrated severe release or total separator failure."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1018",
+      "dimension": "planning",
+      "verdict": "pass",
+      "reason": "The action requires impulse-line, sensor and signal-loop checks, independent level verification, duty/alarm comparison and tested restoration of responsive backup measurement.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Check duty level and alarm against sight glass. Check impulse line, sensor and signal path. Instrument engineer: If confirmed, repair level-signal path fault. Test backup response against independent level; Responsive, credible level agreement; independent ref. Witness; close."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1018",
+      "dimension": "uncertainty",
+      "verdict": "pass",
+      "reason": "Cause, true level, restoration and the approved control/alarm arrangement remain unresolved and are routed through independent level and both-channel functional checks.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Check duty level and alarm against sight glass. Check impulse line, sensor and signal path. Instrument engineer: If confirmed, repair level-signal path fault. Test backup response against independent level; Responsive, credible level agreement; independent ref. Witness; close."
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "The reported 36-hour flat line is explicitly not credible for this service: the required responsive backup measurement function has already failed. The suspected mechanism remains unresolved; duplication does not lower this channel's likelihood. Related-finding context cited by typed facts: [protection_impaired=unknown] Fact reason: Backup measurement failure is established, but its assigned protection role is not. Earlier duty-channel divergence matters because that separate channel feeds control and the high-level alarm; its present capability is unresolved. Related quote (F-1013 finding_description): \"Interface level transmitter is reading approximately 12 percent higher than the backup transmitter and around 15 percent higher than the sight glass. Divergence has been growing steadily over about three weeks. Control is currently on this transmitter.\""
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1019",
+      "dimension": "grounding",
+      "verdict": "pass",
+      "reason": "The ticket grounds the consequence in loose wind-flapping cladding that could detach and strike personnel, keeps the explicit no-process-concern boundary and does not import compressor vibration or production consequences.",
+      "evidence": [
+        {
+          "field": "summary",
+          "quote": "Loose lagging and wind-flapping cladding on K-3401's second-stage discharge line threaten cladding retention and could fall and strike personnel, with no process concern reported."
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "Loose lagging and cladding already flapping in wind constitute advanced attachment degradation supporting near-term detachment. Actual falling is not reported; compressor reliability and the earlier vibration finding do not determine this local event."
+        },
+        {
+          "field": "impact_of_failure.rationale",
+          "quote": "Falling cladding supports a personnel-strike consequence beyond housekeeping. Severe exposure or scale is not established, and the finding explicitly identifies no process concern; compressor trip and production loss are not supported consequences of this event."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1019",
+      "dimension": "planning",
+      "verdict": "pass",
+      "reason": "The action requires inspection of fixings and loose scope, a dropped-object exposure check, and authorized securing of loose lagging and cladding.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Inspect fixings, loose scope and drop exposure. Maintenance lead: Secure loose lagging and cladding. Inspect lagging and cladding retention; Secure; no loose sections."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1019",
+      "dimension": "uncertainty",
+      "verdict": "pass",
+      "reason": "Exact exposure and consequence are not quantified; the action specifically checks drop exposure and retention before closure.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Inspect fixings, loose scope and drop exposure. Maintenance lead: Secure loose lagging and cladding. Inspect lagging and cladding retention; Secure; no loose sections."
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "Loose lagging and cladding already flapping in wind constitute advanced attachment degradation supporting near-term detachment. Actual falling is not reported; compressor reliability and the earlier vibration finding do not determine this local event."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1020",
+      "dimension": "grounding",
+      "verdict": "pass",
+      "reason": "The ticket preserves the chained-closed, untagged and unlogged valve, immediate reopening and unknown duration, while stating that restored delivery is unverified and avoiding a causal claim for every earlier spray defect.",
+      "evidence": [
+        {
+          "field": "summary",
+          "quote": "DEL-8300 north-quadrant valve was chained shut, untagged and unlogged for an unknown duration, disabling wellhead deluge and risking fire escalation; it was reopened immediately, but restored delivery is unverified."
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "The chained-closed branch valve establishes an observed temporary inability to deliver water on demand. Immediate reopening does not erase that failure or demonstrate restored delivery; the duration remains unknown."
+        },
+        {
+          "field": "impact_of_failure.rationale",
+          "quote": "Loss of north-quadrant deluge delivery removes local fire protection over producing wellheads, providing a specific fire-escalation path without credited redundancy. The earlier report locates the protected exposure but does not establish the closure's cause or present nozzle condition. Extreme installation-wide consequences are not established."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1020",
+      "dimension": "planning",
+      "verdict": "pass",
+      "reason": "The action requires impairment/deviation reconciliation, valve alignment verification, approved securing/tagging and a witnessed branch-flow and nozzle-coverage test before closure.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Verify control alignment. Reconcile impairment record. Check post-reopening quadrant delivery. Fire safety lead: Secure and tag approved valve alignment. Test branch flow and nozzle coverage; Approved deluge performance standard; independent ref. Witness; close."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1020",
+      "dimension": "uncertainty",
+      "verdict": "pass",
+      "reason": "Closure duration, current coverage and causal relation to the earlier test remain unasserted; post-reopening delivery testing and explicit human review route restoration uncertainty.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Verify control alignment. Reconcile impairment record. Check post-reopening quadrant delivery. Fire safety lead: Secure and tag approved valve alignment. Test branch flow and nozzle coverage; Approved deluge performance standard; independent ref. Witness; close."
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "The chained-closed branch valve establishes an observed temporary inability to deliver water on demand. Immediate reopening does not erase that failure or demonstrate restored delivery; the duration remains unknown."
+        },
+        {
+          "field": "review_reason",
+          "quote": "Review: P-RESTORATION: restoration remains unverified. Why: Unlogged impairment discovered; restored protection not verified.; checks: Check post-reopening quadrant delivery; P-SAFETY-UNKNOWN: material safety uncertainty; verify the action checks. Why: Whether reopening restored north-quadrant delivery changes the immediate protection disposition and required interim controls.; checks: Check post-reopening quadrant delivery. Full reasons and citations are in run evidence."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1021",
+      "dimension": "grounding",
+      "verdict": "pass",
+      "reason": "The ticket preserves damp insulation, rust staining and first-stage pressure-boundary consequence while keeping corrosion, wall loss and leakage unconfirmed.",
+      "evidence": [
+        {
+          "field": "summary",
+          "quote": "Damp insulation and rust beneath cladding around V-1201's manway suggest concealed corrosion threatening first-stage pressure containment and a possible process release, but metal condition and remaining thickness are unverified."
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "Damp insulation and rust emerging beneath the cladding support a meaningful corrosion precursor, but concealed metal has not been inspected or measured. Near-term containment loss is uncertain; the thick-walled, historically reliable vessel does not support imminent failure."
+        },
+        {
+          "field": "impact_of_failure.rationale",
+          "quote": "Failure of this pressure boundary would release first-stage production fluids and interrupt a nonredundant separation stage, supporting a severe containment consequence. The supplied scenario does not establish extreme release scale or consequences."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1021",
+      "dimension": "planning",
+      "verdict": "pass",
+      "reason": "The action requires integrity review, authorized local exposure, UT/condition inspection, ingress tracing and integrity-approved repair acceptance.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Expose manway shell/pipework; UT and trace ingress. Integrity engineer: Repair as found; renew dry insulation and seals. Inspect repairs and insulation weather seal; Integrity-approved acceptance criteria."
+        }
+      ]
+    },
+    {
+      "finding_id": "F-1021",
+      "dimension": "uncertainty",
+      "verdict": "pass",
+      "reason": "Underlying condition, remaining thickness, extent and rate are not asserted and are routed through insulation removal, UT and integrity review.",
+      "evidence": [
+        {
+          "field": "recommended_action",
+          "quote": "Expose manway shell/pipework; UT and trace ingress. Integrity engineer: Repair as found; renew dry insulation and seals. Inspect repairs and insulation weather seal; Integrity-approved acceptance criteria."
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "Damp insulation and rust emerging beneath the cladding support a meaningful corrosion precursor, but concealed metal has not been inspected or measured. Near-term containment loss is uncertain; the thick-walled, historically reliable vessel does not support imminent failure."
+        }
+      ]
+    }
+  ]
+}

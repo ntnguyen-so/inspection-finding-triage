@@ -1,0 +1,18 @@
+# PSV seat-tightness policy update
+Scope: Pressure Safety Valve
+
+For a pressure safety valve with audible tailpipe hissing and hydrocarbon odour
+while operating pressure is below set pressure, the observed condition confirms
+failure of the required seat-tightness function and an impaired protection
+layer, even before a quantified leak rate is available.
+
+Use likelihood 9 and impact 8 when the valve is the only credited
+overpressure-protection device for a high-criticality vessel. The likelihood
+reflects the observed failed seat-tightness function. The impact reflects the
+consequence if the nonredundant overpressure-protection function is lost.
+
+Do not apply this guidance to certification-tag, register or visual-condition
+findings without audible, visible or measured passing evidence.
+
+This source is an evaluation-only proposed policy used to test the maintained
+knowledge lifecycle. Publication does not authorize production activation.

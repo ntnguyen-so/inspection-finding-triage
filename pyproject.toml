@@ -19,3 +19,6 @@ editor = ["streamlit==1.51.0"]
 
 [tool.setuptools]
 packages = ["llm_inference", "triage", "triage_knowledge"]
+
+[tool.setuptools.package-data]
+triage = ["prompts/*.txt"]

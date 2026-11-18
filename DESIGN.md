@@ -7,8 +7,10 @@ tickets. It has a tested implementation, controlled knowledge lifecycle,
 code-derived urgency, retained real-model experiments and a generated root
 `tickets.json` covering all 21 findings. The artifact passes the deterministic
 output contract but is **not acceptance-eligible**: semantic assessment remains
-`needs_review` at 54/63 with zero fail, human approval is outstanding, and clean-checkout
-reproduction has not been run. Every draft still requires human approval.
+provisionally 63/63 pass under the calibrated primary AI reviewer, while human
+approval is outstanding and clean-checkout reproduction has not been run. Six
+tickets require exceptional prequeue review; every draft still requires ordinary
+human approval.
 
 | Panel question | Current answer |
 |---|---|
@@ -16,7 +18,7 @@ reproduction has not been run. Every draft still requires human approval.
 | Does it use the supplied engineering context? | The complete bounded source package, registry and maintained knowledge are hash-pinned and captured. Reference-1.3 B02 provides a bounded causal-influence and negative-control pass; general domain correctness remains unproven. |
 | Is urgency model-authored? | No. The model proposes L/I and facts; code computes urgency and applies traceable rules. |
 | Is the required file present? | Yes. Root `tickets.json` contains exactly 21 system-generated drafts and passes the deterministic contract. |
-| Is it submission-ready? | The required draft file exists. V11 primary AI review is 54/63 with nine review-routed judgments and zero fail; the receipt remains non-eligible and human approval is mandatory. Actual Copilot USD allocation is unknown, while a disclosed equivalent OpenAI API estimate is about US$2.37. |
+| Is it submission-ready? | The required draft file exists. The v31 primary AI review is provisionally 63/63, with six exceptional review routes; the receipt remains non-eligible and human approval is mandatory. Actual Copilot USD allocation is unknown. |
 
 The ordered rationale from requirements through reliability measurement is in
 [`docs/README.md`](docs/README.md); evidence status and limitations are indexed in
@@ -98,8 +100,10 @@ consequences observable and bounded. Real runs produced malformed JSON and schem
 violations; model repair attempts guided by code-generated feedback validated four
 responses in one batch, while another batch failed after both attempts. A later
 fixed-configuration gpt-6 X01 pair completed both generations but reviewed
-38/39 then 37/39, so the showcased all-21 63/63 result did not close the
-stability gate. No
+38/39 then 37/39. The final v31 development pair closes the current observed
+stability gate: both outputs reviewed 39/39, all 13 urgency bands and review
+flags matched, and visible numeric/rule drift was adjudicated without selecting
+a better run. No
 counterfactual experiment has compared this design with model-authored urgency,
 so that alternative is rejected on predictability and brief compliance, not
 claimed empirical superiority.
@@ -232,12 +236,13 @@ python -B -m triage_knowledge --store knowledge\source-first publish `
 
 The returned `knowledge_version` must be reviewed and pinned in a **new**
 activation identity and fresh run configuration; activation remains separate
-from knowledge publication. `config\triage-activation-v11.json` records the
-post-experiment policy decision and two bounded critical reviews. The prototype
-still does not provide a dedicated activation-approval CLI.
+from knowledge publication. `config\triage-activation-v31.experimental.json`
+records the activation used by the promoted v31 delivery. The prototype still
+does not provide a dedicated activation-approval CLI.
 
-The current root `tickets.json` was generated with that activation and the
-prospectively pinned v11 delivery configuration. This closes the earlier
+The current root `tickets.json` is byte-identical to the retained v31 final
+output generated with that activation and
+`config\triage-v31-final.experimental.json`. This closes the earlier
 activation-provenance gap for the recorded run, but not the separate
 clean-checkout reproduction or human-approval gates.
 
@@ -252,11 +257,29 @@ final = max(base, every applicable rule floor)
 ```
 
 This is a candidate-owned attention policy, not probability, expected loss or a
-calibrated risk model. Its source is the supplied asymmetric corner requirement,
-not an external formula. If `w` is the impact weight, requiring `(L=10,I=1)` to
-remain at most 4 gives `w >= 2/3`; requiring `(L=1,I=10)` to remain at most 8
-gives `w <= 7/9`. `0.7` is a simple interior rational with exact integer
-arithmetic.
+calibrated risk model. The qualitative corner behavior is source-backed. The
+supplied `reference\domain_knowledge.md` states that a low-likelihood,
+high-impact SCE still requires attention this week and that a near-certain
+failure of something inconsequential can wait for the next shutdown. The same
+section maps "this week" to U7-U8 and "next planned shutdown" to U3-U4.
+
+The numeric construction remains candidate-owned. It maps those qualitative
+examples to the extreme points `(L=1,I=10)` and `(L=10,I=1)`, selects the
+normalized weighted-linear family
+`ceil(w*I + (1-w)*L)`, and requires the points to remain in their stated bands:
+
+```text
+3 <= ceil(10 - 9w) <= 4  =>  2/3 <= w < 8/9
+7 <= ceil(1 + 9w) <= 8   =>  5/9 < w <= 7/9
+```
+
+Their intersection is `2/3 <= w <= 7/9`. `w=0.7` is a simple interior decimal
+with exact integer arithmetic; it is not an empirically fitted optimum. The
+likelihood weight `0.3` is not a second independently sourced constant: it is
+the normalized complement `1-w`. Normalization preserves the 1-10 scale and
+ensures that equal inputs map to the same base score. Other interior choices,
+such as 0.68/0.32 or 0.75/0.25, would satisfy these two corner constraints and
+would require calibration evidence to distinguish.
 
 | L / I | Plain mean | Plain maximum | Chosen formula |
 |---|---:|---:|---:|
@@ -286,7 +309,7 @@ supplied SCE rule; the threshold remains candidate-owned and uncalibrated.
 | `P-RESTORATION` | Unlogged impairment and restoration false/unverified; floor 9 plus closure checks | Candidate precaution |
 | `P-SAFETY-UNKNOWN` | Material safety uncertainty, including unknown deviation; floor 7 plus verification | Candidate precaution |
 | `P-SCE-HIGH-IMPACT` | SCE with assessed impact at least 8; floor 7 | Supplied SCE intent, candidate threshold |
-| `R-MATERIAL` / `R-SCE` | Targeted review; no urgency floor | Candidate review policy |
+| `R-MATERIAL` | Material non-safety uncertainty; no urgency floor | Candidate review policy |
 
 F-1020 demonstrates `O-PROTECTION`: impairment and absence of a deviation record
 were both confirmed. F-1012 demonstrates the opposite boundary: unavailable craft
@@ -298,28 +321,26 @@ with unknown POB comparison activates `P-EVACUATION`, not the supplied
 | Observation | Result |
 |---|---|
 | Pre-v8 policy-v5 Copilot urgency | 7 today, 12 this week, 1 this month, 1 next shutdown |
-| Model impact scores | 13 at I=8, 5 at I=7, 1 at I=6, 2 at I=4 |
-| Floors changed the base result | Only F-1001 and F-1005 |
-| Targeted review flag | 21/21 true |
+| Current v31 urgency distribution | U4=2, U5=1, U6=3, U7=2, U8=6, U9=7 |
+| Current v31 urgency bands | 7 today, 8 this week, 4 this month, 2 next shutdown |
+| Current v31 exceptional review flag | 6/21 true |
 | Azure v5 versus pre-v8 policy-v5 Copilot urgency band | 19/21 the same; F-1007 and F-1014 differed |
-| Current v11 root urgency | 19/21 at 7-10; distribution is U4=1, U5=1, U7=6, U8=6, U9=7 |
-| Current v11 root review flag | 20/21 true |
+| Current v31 development X01 | 13/13 band and review matches; both artifacts 39/39 |
+| Current v31 final semantic review | 63/63 provisional pass |
 
-The concentration is driven mainly by high model impact assessments rather than
-floors. V9 attempted to make review selective and v10 attempted an interaction
-formula; both were rejected after semantic failures and no demonstrated
-prioritisation benefit. V11 deliberately accepts a saturated conservative review
-gate because material uncertainty must remain visible. The flag is therefore a
-safety gate, not a workload-ranking mechanism.
+The concentration remains material but is no longer the earlier 19/21 result:
+15 tickets are weekly-or-faster. More importantly, global draft approval is now
+separate from exceptional prequeue review. Six tickets require the latter for a
+specific unresolved protection, evacuation, redundancy or restoration
+decision; documentation checks, confirmed failed tests and ordinary diagnosis
+do not automatically saturate the exceptional queue.
 
-The current root artifact confirms rather than resolves this calibration risk.
-Code sets `review_required` whenever any policy rule exists; 62 generic
-`P-SAFETY-UNKNOWN` rule instances therefore help saturate the flag. F-1016
-(in-date PSV with an illegible tag, U7) and F-1019 (unquantified dropped-object
-exposure, U8) are explicit challenge cases. The candidate did not tune policy
-after seeing the final artifact. The retained adjudication accepts the file as a
-review-routed draft, not as proof that 19 findings objectively require
-week-or-faster handling.
+The final policy is disclosed as test-informed. V29 exposed an omitted related
+chronology; unstable prompt-only v30 was rejected at development X01. V31 kept
+the v29 prompt/policy and used deterministic source-labelled provenance
+projection for model-selected related-finding facts. The retained failed runs
+and section 15 of Document 08 preserve comparability and prevent the final
+63/63 review from being presented as untouched blind evidence.
 
 Controlled repeats show the remaining semantic variance. Before policy v4,
 F-1016 changed from U7 to U6 and crossed from this-week to this-month. A later

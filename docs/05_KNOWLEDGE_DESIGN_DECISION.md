@@ -2,8 +2,9 @@
 
 > **Document status:** current knowledge architecture and maintenance decision.
 > Context delivery is demonstrated. Reference-1.3 B02 provides a bounded causal
-> influence and scope-isolation pass; general domain correctness is not
-> established.
+> influence and scope-isolation pass. Document 09 additionally demonstrates one
+> end-to-end immutable release replacement after disclosing three failed design
+> iterations; general domain correctness is not established.
 
 ## Abstract
 
@@ -25,6 +26,11 @@ The supplied corpus is small, so the current assessment path favors complete
 bounded context over vector retrieval. This is a scope decision, not a claim that
 retrieval is generally unnecessary. Captured context proves what was sent to the
 provider; it does not prove that the model used the knowledge correctly.
+
+The source-first store is the official knowledge base. Its mutable authoring
+file is `working-candidate.json`; runtime authority belongs to immutable
+`releases\sha256-*.json` plus a separately reviewed activation. Legacy
+`draft.json` stores remain readable and migrate on the next successful write.
 
 ## 1. Why knowledge is a separate module
 
@@ -204,9 +210,40 @@ output of `triage.source_context.activation_candidate`, record approval
 provenance, create a new activation identity, and repin a fresh run
 configuration. The existing `config\triage-activation-v8.json` cannot be reused
 as freeze provenance. This manual approval step is a documented runbook gap, not
-an automatic promotion. The current repository demonstrates the lifecycle
-mechanically but has not demonstrated a domain-owner-approved PSV behavior
-change.
+an automatic promotion.
+
+Document 09 exercises this path in an evaluation-only store. Its retained v4
+observation published old/new PSV releases, recorded a replacement and effective
+date, activated each release and observed L4→L8 for the applicable synthetic
+likelihood case while the unchanged tag-only control stayed L2 and explicitly
+excluded the rule. V1-v3 failures are retained: the system first rejected a
+harness boundary and then two knowledge rules that conflicted with the
+production assessment policy. This is exploratory lifecycle evidence, not a
+domain-owner-approved production change or a prospective B02 pass.
+
+The subsequent official-store follow-up used the existing Streamlit-equivalent
+CLI operations against `knowledge\source-first`, then ran the production triage
+CLI on all 21 findings twice per arm. The test-informed F-1002 case repeated
+L7/I8/U8 under the baseline release and L9/I8/U9 under the revised release;
+F-1016 remained L2, with explicit exclusion in one revised run. The first source revision failed because experiment-status prose in
+the domain text caused the model to reject its authority. This demonstrates why
+workflow metadata belongs in publication/activation records, not engineering
+guidance. The source rule was written and revised against test finding F-1002,
+was sent in the shared all-21 context and conflicts with the reference's
+suspected-passing framing. The synthetic releases remain unpromoted, and the
+working candidate was reset to the eight-item baseline pending authenticated
+domain and semantic review.
+
+The experiment also found a source-editor defect: a text amendment cleared
+structured scope and evidence. The editor now re-runs deterministic extraction
+for one-item amendments, preserving source-derived scope/aliases/evidence and
+rejecting structural edits that would create multiple items. A scoped immutable
+verification release and full 21-ticket run confirmed the stored-metadata fix;
+it did not narrow delivery because selection is batch-wide and the batch
+contains PSVs. Per-finding knowledge isolation is not implemented. Production
+knowledge remains the unchanged baseline release. Activation v12 recorded the
+editor fix; activation v13 supersedes it only to add the byte-identical,
+independently pinned assessment prompt.
 
 ## 7. Evidence status
 
@@ -216,6 +253,8 @@ change.
 | Can reviewed content be released and promoted? | Source-owner promotion evidence and lifecycle tests | **D-pass** for software workflow |
 | Does the provider receive expected context? | Captured provider-bound context and history verification | **D-pass** for delivery |
 | Does knowledge causally change the intended decisions? | Reference-1.3 B02 controlled probe | **Bounded pass**: positive L6/I3→L8/I3 and both tag-only negative controls excluded the synthetic rule |
+| Can a later source replacement traverse import, review, immutable release and activation? | Document 09 v1-v4 retained study | **Exploratory bounded pass** for v4 lifecycle and likelihood L4→L8; protocol was tuned after disclosed failures |
+| Can the existing official editor/store change a complete 21-ticket run? | Document 09 official-store follow-up and `knowledge-kb-edit-v1-study.json` | **Test-informed delivery/influence observation**: repeat-stable F-1002 L7→L9 and F-1016 L2, with non-target variance, reference conflict and semantic review still open |
 | Is selection independently domain-correct? | AI-assisted references and software checks only | **Not certified** |
 | Is the current release a production-qualified default? | No accepted final run or domain approval | **No** |
 

@@ -463,7 +463,7 @@ class StoreTests(StoreHarness):
                                                  expected_digest=self.digest)
         self.assertEqual(len(attempts), 2)
         self.assertEqual(self.store.item_record(item_id)["review_state"], "reviewed")
-        self.assertFalse((self.root / ".draft-writing.json").exists())
+        self.assertFalse((self.root / ".working-candidate-writing.json").exists())
 
     def test_add_source_preserves_existing_candidate_and_source_document(self):
         item_id, = self.create()
@@ -601,17 +601,20 @@ class StoreTests(StoreHarness):
         self.assertTrue(self.publish().startswith("sha256-"))
 
     def test_edit_new_source_ancestry_and_review_invalidation(self):
-        item_id, = self.create()
+        item_id, = self.create(b"# Original\nScope: Pumps\nRule.\n")
         self.review_all()
         release_id = self.publish()
         original = self.store.load_draft()[0]["items"][item_id]["revision"]
-        self.digest = self.store.edit_item(item_id, "New user text \u2713\r\n",
+        self.digest = self.store.edit_item(
+            item_id, "# Revision\nScope: Valves\nNew user text \u2713\r\n",
                                           reason="Explicit software amendment", expected_digest=self.digest)
         candidate, _ = self.store.load_draft()
         item = candidate["items"][item_id]
         self.assertEqual(item["review_state"], "pending")
         self.assertNotEqual(item["revision"]["source_id"], original["source_id"])
-        self.assertEqual(item["revision"]["text"], "New user text \u2713\r\n")
+        self.assertEqual(item["revision"]["text"],
+                         "# Revision\nScope: Valves\nNew user text \u2713\r\n")
+        self.assertEqual(item["revision"]["scopes"], ["Valves"])
         self.assertTrue(item["revision"]["ancestry"])
         self.assertTrue(candidate["sources"][item["revision"]["source_id"]]["ancestry"])
         with self.assertRaises(KnowledgeError):
@@ -624,6 +627,19 @@ class StoreTests(StoreHarness):
                                           expected_digest=self.digest)
         self.review_all()
         self.publish()
+
+    def test_edit_rejects_multi_item_structure_without_changing_candidate(self):
+        item_id, = self.create(b"# Original\nScope: Pumps\nRule.\n")
+        before = self.store.draft_path.read_bytes()
+        with self.assertRaises(KnowledgeError) as caught:
+            self.store.edit_item(
+                item_id,
+                "# First\nScope: Pumps\nOne.\n# Second\nScope: Valves\nTwo.\n",
+                reason="Structural change",
+                expected_digest=self.digest,
+            )
+        self.assertEqual("edit_shape", caught.exception.code)
+        self.assertEqual(before, self.store.draft_path.read_bytes())
 
     def test_rejected_source_spans_require_reason_and_are_retained_locally(self):
         ids = self.create(b"# One\nKeep\n# Two\nReject\n")

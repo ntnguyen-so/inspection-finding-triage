@@ -21,15 +21,19 @@ from .assessment import (
 from .contracts import TriageError, digest, nonblank, require, score, timestamp
 from .inputs import ContextExport, ExportedContext, Inputs, validate_context, validate_rows
 from .policy import (
-    CAPACITY_COMPARISON_ACTIVITY, CONTROL_ALIGNMENT_ACTIVITY, IMPAIRMENT_RECORD_ACTIVITY,
-    POLICY_VERSION, RESTORATION_CLOSURE_ACTIVITY, SAME_DAY_ATTENTION_ACTIVITY, derive_policy,
-    gap_verification_activity,
+    CONTROL_ALIGNMENT_ACTIVITY, FAILED_TEST_RETEST_ACTIVITY, IMPAIRMENT_RECORD_ACTIVITY,
+    POLICY_VERSION, RESTORATION_CLOSURE_ACTIVITY, SAME_DAY_ATTENTION_ACTIVITY,
+    derive_policy, gap_verification_activity,
 )
-from .source_context import IsolatedProbeContext, NativeContext
+from .planning import compose_plan, validate_plan
+from .projection import PROJECTION_VERSION, project_related_context, project_ticket_text
+from .prompt import assessment_prompt, prompt_from_identity
+from .source_context import IsolatedKnowledgeReleaseContext, IsolatedProbeContext, NativeContext
 
 RECOVERABLE = {
     "malformed_json", "schema_violation", "assessment_schema", "assessment_identity",
     "assessment_evidence", "assessment_contradiction", "fact_contract", "policy_verification",
+    "plan_contract",
 }
 
 ACTION_MAX_CHARS = 300
@@ -97,12 +101,19 @@ def compose_action(core: str, activities: list[str],
                    fixed_activities: list[str] | None = None) -> dict:
     required = _distinct_actions(activities)
     fixed_required = _distinct_actions(fixed_activities or [])
-    appended = [activity for activity in required if activity not in core]
+    model_core = core
+    for activity in fixed_required:
+        if activity == FAILED_TEST_RETEST_ACTIVITY:
+            model_core = model_core.replace(activity, "")
+    model_core = " ".join(model_core.split())
+    require(nonblank(model_core), "policy_verification",
+            "Action core cannot consist only of code-owned activities")
+    appended = [activity for activity in required if activity not in model_core]
     fixed = set(fixed_required)
     appended_fixed = [activity for activity in appended if activity in fixed]
     appended_model = [activity for activity in appended if activity not in fixed]
-    parts = [core, *appended]
-    return {"model_core": core, "required_activities": required,
+    parts = [model_core, *appended]
+    return {"model_core": model_core, "required_activities": required,
             "fixed_required_activities": fixed_required,
             "appended_activities": appended,
             "fixed_appended_activities": appended_fixed,
@@ -215,6 +226,25 @@ def save_json(path: Path, value: dict) -> None:
         os.fsync(stream.fileno())
 
 
+def save_json_atomic(path: Path, value: dict) -> None:
+    encoded = (json.dumps(value, ensure_ascii=True, indent=2, allow_nan=False) + "\n").encode()
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            dir=path.parent, prefix=f".{path.stem}-", suffix=".tmp", delete=False,
+        ) as stream:
+            temporary = Path(stream.name)
+            stream.write(encoded)
+            stream.flush()
+            os.fsync(stream.fileno())
+        os.replace(temporary, path)
+        temporary = None
+    finally:
+        if temporary is not None:
+            temporary.unlink(missing_ok=True)
+
+
 def checked_receipt(receipt: dict) -> None:
     require(isinstance(receipt, dict)
             and type(receipt.get("http_dispatches_observed")) is int
@@ -325,6 +355,7 @@ async def run_workflow(
     provider_factory: Callable[[], AsyncContextManager[AccountedProvider]],
     config: RunConfig, output: Path, evidence: Path,
     *, purpose: str = "normal", overlay_ref: dict | None = None,
+    selected_finding_ids: list[str] | None = None,
 ) -> dict:
     output, evidence = output.resolve(), evidence.resolve()
     copilot = config.execution_mode in {"copilot_experiment", "copilot_delivery"}
@@ -349,6 +380,9 @@ async def run_workflow(
     active, attempts = None, 0
     owned_evidence = False
     temporary: Path | None = None
+    publication_succeeded = False
+    previous_output_existed = False
+    previous_output_bytes: bytes | None = None
     started = time.monotonic()
     try:
         config.validate()
@@ -363,12 +397,27 @@ async def run_workflow(
         require(not output.exists() or output.is_file(), "configuration", "Output is not a file")
         evidence.mkdir(parents=True)
         owned_evidence = True
-        report["previous_output_sha256"] = digest(output.read_bytes()) if output.exists() else None
+        previous_output_existed = output.exists()
+        previous_output_bytes = output.read_bytes() if previous_output_existed else None
+        report["previous_output_sha256"] = (
+            digest(previous_output_bytes) if previous_output_bytes is not None else None
+        )
         data = inputs.data
         validate_rows(data["findings"], data["registry"])
+        selected_ids = (
+            sorted(data["findings"]) if selected_finding_ids is None
+            else sorted(dict.fromkeys(selected_finding_ids))
+        )
+        require(bool(selected_ids)
+                and all(identifier in data["findings"] for identifier in selected_ids),
+                "configuration", "Selected findings must be nonempty known finding IDs")
+        selected_findings = {
+            identifier: data["findings"][identifier] for identifier in selected_ids
+        }
+        report["selected_finding_ids"] = selected_ids
         native = isinstance(context_source, NativeContext)
         if native:
-            if isinstance(context_source, IsolatedProbeContext):
+            if isinstance(context_source, (IsolatedProbeContext, IsolatedKnowledgeReleaseContext)):
                 require(purpose == "isolated_probe" and overlay_ref is None
                         and output.name.lower().endswith(".experimental.json"),
                         "context_overlay", "Isolated native probes require explicit purpose and experimental output")
@@ -389,9 +438,15 @@ async def run_workflow(
         report["context"] = bundle
         report["knowledge_content_hash"] = snapshot["content_hash"]
         report["config_sha256"] = digest(canonical(asdict(config)).encode())
+        selected_prompt = (
+            prompt_from_identity(snapshot["activation"]["assessment_prompt"])
+            if native else assessment_prompt()
+        )
         report["implementation_sha256"] = {
             path.name: digest(path.read_bytes()) for path in sorted(Path(__file__).parent.glob("*.py"))
         }
+        report["assessment_prompt"] = selected_prompt.identity()
+        report["ticket_projection"] = PROJECTION_VERSION
         report["context_provenance"] = (
             "native_source_first_bundle_3" if native else "unauthenticated_provisional_export")
         report["knowledge_approval"] = (
@@ -406,7 +461,7 @@ async def run_workflow(
         report["context_export_sha256"] = (
             context_source.raw_sha256 if isinstance(context_source, ExportedContext) else None
         )
-        for finding_id in sorted(data["findings"]):
+        for finding_id in selected_ids:
             require_fixed_actions_fit([
                 gap_verification_activity(gap)
                 for gap in context_gaps if finding_id in gap["finding_ids"]
@@ -433,7 +488,7 @@ async def run_workflow(
                             "provider_capabilities", "Azure provider API/token cap differs from configuration")
             report["provider"] = configuration
             last_dispatch = None
-            for active in sorted(data["findings"]):
+            for active in selected_ids:
                 finding = data["findings"][active]
                 gaps = [g for g in context_gaps if active in g["finding_ids"]]
                 attempts, feedback = 0, None
@@ -441,19 +496,14 @@ async def run_workflow(
                 retry_fixed_activities: list[str] = []
                 retry_model_activities: list[str] = []
                 retry_action_budget: dict | None = None
-                fixed_activities = [
-                    *[gap_verification_activity(gap) for gap in gaps],
-                    CAPACITY_COMPARISON_ACTIVITY,
-                    SAME_DAY_ATTENTION_ACTIVITY,
-                ]
                 while attempts < 2:
                     require(len(report[entries_key]) < config.phase_attempt_budget,
                             "attempt_budget", "Phase attempt budget exhausted")
                     request = request_for(config.model, context_text, active, finding["equipment_id"],
                                           config.timeout_seconds, config.reasoning_effort, feedback,
                                           [gap_verification_activity(gap) for gap in gaps],
+                                          system_prompt=selected_prompt.text,
                                           possible_policy_activities=[
-                                              CAPACITY_COMPARISON_ACTIVITY,
                                               SAME_DAY_ATTENTION_ACTIVITY,
                                               CONTROL_ALIGNMENT_ACTIVITY,
                                               IMPAIRMENT_RECORD_ACTIVITY,
@@ -462,7 +512,8 @@ async def run_workflow(
                                           feedback_detail=feedback_detail, previous_draft=previous_draft,
                                           fixed_appended_activities=retry_fixed_activities,
                                           model_appended_activities=retry_model_activities,
-                                          retry_action_budget=retry_action_budget)
+                                          retry_action_budget=retry_action_budget,
+                                          assessment_contract=selected_prompt.assessment_contract)
                     system, user, _ = request.prepared()
                     if last_dispatch is not None and config.minimum_request_interval_seconds > 0:
                         await asyncio.sleep(max(0, config.minimum_request_interval_seconds
@@ -496,11 +547,14 @@ async def run_workflow(
                         if bundle.get("contract_version") == 3:
                             assessment_text, attention = project_native_assessment(
                                 response.text, bundle["source_index"])
-                            entry["assessment_projection_contract"] = NATIVE_ASSESSMENT_CONTRACT
+                            entry["assessment_projection_contract"] = selected_prompt.assessment_contract
                             entry["citation_catalog_sha256"] = strict_json(request.user)["citation_catalog_sha256"]
                             entry["projected_assessment"] = strict_json(assessment_text)
                             entry["same_day_attention"] = attention
-                        assessment = validate_assessment(assessment_text, finding, bundle["source_index"])
+                        assessment = validate_assessment(
+                            assessment_text, finding, bundle["source_index"],
+                            selected_prompt.assessment_contract,
+                        )
                         attention = validate_same_day_attention(attention, finding, bundle["source_index"])
                         decision = derive_policy(
                             assessment["likelihood_of_failure"]["score"],
@@ -517,40 +571,74 @@ async def run_workflow(
                             require(not dropped_fixed, "policy_verification",
                                     "Overflow repair changed facts and dropped code-owned activities: "
                                     + "; ".join(dropped_fixed))
-                        composition = compose_action(
-                            assessment["recommended_action"],
-                            decision["verification_activities"],
-                            decision["fixed_verification_activities"],
-                        )
+                        if selected_prompt.assessment_contract == NATIVE_ASSESSMENT_CONTRACT:
+                            composition = compose_action(
+                                assessment["recommended_action"],
+                                decision["verification_activities"],
+                                decision["fixed_verification_activities"],
+                            )
+                        else:
+                            validate_plan(
+                                assessment["plan"], decision, assessment["facts"],
+                                assessment["uncertainties"],
+                            )
+                            composition = compose_plan(assessment["plan"], decision)
                         entry["action_composition"] = composition
                         action = composition["composed"]
-                        if len(action) > ACTION_MAX_CHARS:
+                        if len(action) > ACTION_MAX_CHARS and selected_prompt.assessment_contract == NATIVE_ASSESSMENT_CONTRACT:
                             feedback_message, retry_action_budget = action_overflow_message(composition)
                             retry_fixed_activities = decision["fixed_verification_activities"]
                             retry_model_activities = composition["model_appended_activities"]
                             raise TriageError("policy_verification", feedback_message)
+                        if len(action) > ACTION_MAX_CHARS:
+                            raise TriageError(
+                                "plan_contract",
+                                f"Composed plan is {len(action)}/{ACTION_MAX_CHARS} characters; "
+                                "shorten plan fields without dropping required phases.",
+                            )
                         if feedback == "policy_verification" and retry_action_budget is not None:
                             require(len(action) <= ACTION_MAX_CHARS, "policy_verification",
                                     f"Repaired action is {len(action)}/{ACTION_MAX_CHARS} characters; "
                                     "no truncation or required-activity dropping is permitted.")
-                        missing = [activity for activity in decision["verification_activities"]
-                                   if activity not in action]
+                        missing = [] if selected_prompt.assessment_contract != NATIVE_ASSESSMENT_CONTRACT else [
+                            activity for activity in decision["verification_activities"]
+                            if activity != RESTORATION_CLOSURE_ACTIVITY and activity not in action
+                        ]
                         require(not missing, "policy_verification",
                                 "Required verification activity missing from action: " + "; ".join(missing))
+                        projection = project_ticket_text(
+                            decision,
+                            assessment["likelihood_of_failure"]["score"],
+                            assessment["impact_of_failure"]["score"],
+                        )
                         ticket = {
                             "ticket_id": "TKT-" + active[2:], "finding_id": active,
                             "equipment_id": finding["equipment_id"],
                             "summary": assessment["summary"],
                             "recommended_action": action,
-                            **{field: {name: assessment[field][name] for name in ("score", "rationale")}
-                               for field in ("likelihood_of_failure", "impact_of_failure")},
-                            "urgency": {"score": decision["final"], "rationale": decision["rationale"]},
+                            "likelihood_of_failure": {
+                                "score": assessment["likelihood_of_failure"]["score"],
+                                "rationale": (
+                                    assessment["likelihood_of_failure"]["rationale"]
+                                    + project_related_context(assessment["facts"], active)
+                                ),
+                            },
+                            "impact_of_failure": {
+                                name: assessment["impact_of_failure"][name]
+                                for name in ("score", "rationale")
+                            },
+                            "urgency": {
+                                "score": decision["final"],
+                                "rationale": projection["urgency_rationale"],
+                            },
                             "review_required": decision["review_required"],
-                            "review_reason": decision["review_reason"],
+                            "review_reason": projection["review_reason"],
                         }
                         entry.update(status="validated", assessment=assessment)
                         entry.pop("projected_assessment", None)
-                        report["decisions"].append({"finding_id": active, **decision})
+                        report["decisions"].append({
+                            "finding_id": active, **decision, "ticket_projection": projection,
+                        })
                         tickets.append(ticket)
                         save_json(evidence / "run.json", report)
                         break
@@ -582,7 +670,7 @@ async def run_workflow(
         active = None
         payload = {"generated_at": datetime.now(timezone.utc).isoformat(),
                    "tickets_generated": len(tickets), "tickets": tickets}
-        validate_output(payload, data["findings"])
+        validate_output(payload, selected_findings)
         encoded = (json.dumps(payload, ensure_ascii=True, indent=2, allow_nan=False) + "\n").encode()
         report.update(run_status="ready_to_publish", intended_output_sha256=digest(encoded),
                       elapsed_seconds=time.monotonic() - started)
@@ -596,8 +684,44 @@ async def run_workflow(
             os.fsync(stream.fileno())
         os.replace(temporary, output)
         temporary = None
+        publication_succeeded = True
+        observed_output = output.read_bytes()
+        observed_hash = digest(observed_output)
+        require(observed_output == encoded and observed_hash == report["intended_output_sha256"],
+                "publication_verification",
+                "Published output bytes differ from the validated publication candidate")
+        published_at = datetime.now(timezone.utc).isoformat()
+        publication_receipt = {
+            "contract": "triage-publication-receipt-v1",
+            "published_at": published_at,
+            "publication_method": "same-directory-temporary-file_then_os_replace",
+            "output_path": str(output),
+            "output_sha256": observed_hash,
+            "output_bytes": len(observed_output),
+            "tickets_generated": len(tickets),
+            "previous_output_sha256": report["previous_output_sha256"],
+            "run_config_sha256": report["config_sha256"],
+            "context_hash": report["context_hash"],
+            "assessment_prompt": report["assessment_prompt"],
+            "policy_version": POLICY_VERSION,
+            "verified_after_replace": True,
+        }
+        save_json_atomic(evidence / "publication.json", publication_receipt)
+        publication_receipt_sha256 = digest((evidence / "publication.json").read_bytes())
+        report.update(
+            run_status="published",
+            published_output=True,
+            published_at=published_at,
+            output_sha256=observed_hash,
+            publication_receipt="publication.json",
+            publication_receipt_sha256=publication_receipt_sha256,
+            elapsed_seconds=time.monotonic() - started,
+        )
+        save_json(evidence / "run.json", report)
         result = {"run_status": "draft_generated", "published_output": True,
-                "output": str(output), "output_sha256": digest(encoded),
+                "output": str(output), "output_sha256": observed_hash,
+                "publication_receipt": str(evidence / "publication.json"),
+                "publication_receipt_sha256": publication_receipt_sha256,
                 "tickets_generated": len(tickets), "semantic_status": "not_reviewed"}
         if experimental:
             result.update(run_status="experimental_draft_generated", acceptance_eligible=False,
@@ -622,8 +746,47 @@ async def run_workflow(
         failure.finding_id = failure.finding_id or active
         failure.attempts = attempts
         failure.execution_mode = config.execution_mode
+        if publication_succeeded:
+            rollback_temporary = None
+            try:
+                if previous_output_existed:
+                    with tempfile.NamedTemporaryFile(
+                        dir=output.parent, prefix=".triage-rollback-", suffix=".tmp",
+                        delete=False,
+                    ) as stream:
+                        rollback_temporary = Path(stream.name)
+                        stream.write(previous_output_bytes or b"")
+                        stream.flush()
+                        os.fsync(stream.fileno())
+                    os.replace(rollback_temporary, output)
+                    rollback_temporary = None
+                else:
+                    output.unlink(missing_ok=True)
+                publication_succeeded = False
+                report.update(publication_rolled_back=True, published_output=False)
+                for key in (
+                    "published_at", "output_sha256", "publication_receipt",
+                    "publication_receipt_sha256", "post_publication_failure",
+                ):
+                    report.pop(key, None)
+                try:
+                    (evidence / "publication.json").unlink(missing_ok=True)
+                except OSError as cleanup_error:
+                    report["publication_receipt_cleanup_error"] = str(cleanup_error)[:500]
+            except OSError as rollback_error:
+                report["publication_rollback_error"] = str(rollback_error)[:500]
+            finally:
+                if rollback_temporary is not None:
+                    rollback_temporary.unlink(missing_ok=True)
+        failure.published_output = publication_succeeded
         report.update(run_status="failed", diagnostic=failure.diagnostic(),
                       elapsed_seconds=time.monotonic() - started)
+        if publication_succeeded:
+            report.update(
+                published_output=True,
+                output_sha256=digest(output.read_bytes()) if output.is_file() else None,
+                post_publication_failure=True,
+            )
         if owned_evidence:
             try:
                 report["output_after_failure_sha256"] = digest(output.read_bytes()) if output.is_file() else None

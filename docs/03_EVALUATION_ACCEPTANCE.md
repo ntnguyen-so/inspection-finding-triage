@@ -241,6 +241,11 @@ The semantic reference and reviewers are AI-assisted and non-blind. Therefore:
 - output-bound quotations and provenance are required; and
 - independent human/domain review remains outside the current evidence.
 
+The operational reviewer checklist and verdict boundaries are frozen in
+`docs\11_SEMANTIC_REVIEW_PROTOCOL.md`. Ad hoc free-form agent reviews are
+sensitivity observations only and cannot establish or overturn the semantic
+gate.
+
 Reference expectations may not be changed merely to make an observed failure
 pass. Genuine corrections require preserved prior bytes, rationale,
 comparability analysis, versioned semantic change and rerun of affected checks.

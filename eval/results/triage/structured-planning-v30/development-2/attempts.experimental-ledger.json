@@ -1,0 +1,20 @@
+{
+  "budget": 26,
+  "reservations": [
+    "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\structured-planning-v30\\development-2\\evidence:F-1001:1",
+    "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\structured-planning-v30\\development-2\\evidence:F-1003:1",
+    "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\structured-planning-v30\\development-2\\evidence:F-1004:1",
+    "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\structured-planning-v30\\development-2\\evidence:F-1005:1",
+    "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\structured-planning-v30\\development-2\\evidence:F-1006:1",
+    "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\structured-planning-v30\\development-2\\evidence:F-1007:1",
+    "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\structured-planning-v30\\development-2\\evidence:F-1008:1",
+    "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\structured-planning-v30\\development-2\\evidence:F-1009:1",
+    "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\structured-planning-v30\\development-2\\evidence:F-1010:1",
+    "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\structured-planning-v30\\development-2\\evidence:F-1012:1",
+    "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\structured-planning-v30\\development-2\\evidence:F-1016:1",
+    "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\structured-planning-v30\\development-2\\evidence:F-1017:1",
+    "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\structured-planning-v30\\development-2\\evidence:F-1017:2",
+    "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\structured-planning-v30\\development-2\\evidence:F-1019:1"
+  ],
+  "execution_mode": "copilot_experiment"
+}

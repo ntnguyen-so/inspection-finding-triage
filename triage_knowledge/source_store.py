@@ -42,8 +42,22 @@ class SourceKnowledgeStore:
         self._experimental_profile = _copy(experimental_profile)
 
     @property
-    def draft_path(self):
+    def working_candidate_path(self):
+        return self.root / "working-candidate.json"
+
+    @property
+    def legacy_draft_path(self):
         return self.root / "draft.json"
+
+    @property
+    def draft_path(self):
+        if self.working_candidate_path.exists() or not self.legacy_draft_path.exists():
+            return self.working_candidate_path
+        return self.legacy_draft_path
+
+    @property
+    def legacy_draft_used(self):
+        return self.draft_path == self.legacy_draft_path
 
     def _path(self, kind, digest):
         require(release_identifier(digest), "store_hash", "A hash-safe identifier is required.")
@@ -87,7 +101,7 @@ class SourceKnowledgeStore:
             self._immutable(self._path("revisions", item["revision_id"]),
                             canonical_bytes(item["revision"]))
         raw = canonical_bytes(candidate)
-        staging = self.root / ".draft-writing.json"
+        staging = self.root / ".working-candidate-writing.json"
         created = False
         try:
             with staging.open("xb") as stream:
@@ -97,7 +111,7 @@ class SourceKnowledgeStore:
                 os.fsync(stream.fileno())
             for attempt in range(10):
                 try:
-                    os.replace(staging, self.draft_path)
+                    os.replace(staging, self.working_candidate_path)
                     break
                 except PermissionError:
                     # Windows readers/indexers may briefly deny replacement of a closed file.
@@ -107,6 +121,8 @@ class SourceKnowledgeStore:
         finally:
             if created and staging.exists():
                 staging.unlink()
+        if self.legacy_draft_path.exists():
+            self.legacy_draft_path.unlink()
         return sha256(raw)
 
     def _source(self, source_hash):
@@ -526,14 +542,19 @@ class SourceKnowledgeStore:
             old = item["revision"]
             sid = "user-" + sha256(canonical_bytes([item_id, item["revision_id"], text, reason]))[:32]
             doc = SourceDocument.from_bytes(raw, name="User amendment", source_id=sid)
+            from .source import extract_code
+            extraction = extract_code(doc)
+            require(len(extraction.groups) == 1, "edit_shape",
+                    "One item edit must extract to exactly one item; import a source for structural changes.")
+            group = extraction.groups[0]
             self._immutable(self._path("sources", "sha256-" + doc.source_sha256), raw)
             candidate["sources"][sid] = {"name": doc.name, "source_sha256": doc.source_sha256,
                 "extraction_profile": "user-amendment",
                 "ancestry": [{"item_id": item_id, "revision_id": item["revision_id"],
                               "source_id": old["source_id"], "source_sha256": old["source_sha256"]}]}
             rev = {**old, "source_id": sid, "source_sha256": doc.source_sha256,
-                   "spans": [{"start": u["start"], "end": u["end"]} for u in doc.units],
-                   "text": text, "scopes": [], "aliases": [], "evidence": [],
+                   **{key: group[key] for key in
+                      ("spans", "text", "scopes", "aliases", "evidence")},
                    "ancestry": old["ancestry"] + [item["revision_id"]], "reason": reason}
             candidate["items"][item_id] = self._pending(rev)
         return self._change(expected_digest, change)

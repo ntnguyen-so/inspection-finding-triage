@@ -1,318 +1,318 @@
 {
-  "generated_at": "2026-11-17T09:35:04.982185+00:00",
+  "generated_at": "2026-11-17T20:18:30.667214+00:00",
   "tickets_generated": 21,
   "tickets": [
     {
       "ticket_id": "TKT-1001",
       "finding_id": "F-1001",
       "equipment_id": "K-3401",
-      "summary": "K-3401 NDE vibration rose from 2.1 to 4.6 mm/s in six weeks and is still rising below alarm; loss of this sole gas-export train would send the platform to recycle and cut production within an hour.",
-      "recommended_action": "Rotating equipment specialist today: diagnose NDE vibration, set operating/repair disposition; correct per findings, verify vibration to agreed limits and trend daily. Obtain source-required attention today. Verify trend, limits and export capability.",
+      "summary": "K-3401 non-drive-end vibration rose from 2.1 to 4.6 mm/s over six weeks with growing 1x/sidebands and no plateau, still below alarm; loss of this sole gas export train would send the platform to recycle and cut production within an hour.",
+      "recommended_action": "Obtain attention today. Diagnose NDE vibration and train response at load. Rotating specialist: Correct vibration cause once confirmed. Run at load; verify vibration trend; independent ref. Witness; close.",
       "likelihood_of_failure": {
         "score": 7,
-        "rationale": "For continued gas-export compression, the more-than-doubled NDE vibration and growing spectral components without a plateau support strong progression. Remaining below alarm limits the assessment; neither imminent loss nor an actual compression failure is established."
+        "rationale": "The six-week rise from 2.1 to 4.6 mm/s, growing 1x component and absence of a plateau support strong progression and high near-term likelihood. Remaining below alarm bounds the assessment below imminent or confirmed function loss; no subsequent progression is assumed."
       },
       "impact_of_failure": {
         "score": 6,
-        "rationale": "Failure of this sole gas-export compressor would send the platform to recycle and cut production within an hour, with no spare or workaround. This establishes material operational consequence, but not the severe scale or specific safety consequence needed for a higher band."
+        "rationale": "Loss of this single train has no spare or workaround: a trip sends the platform to recycle and cuts production within the hour. This establishes material operational consequence, but not extreme loss or a specific severe personnel or major-accident consequence."
       },
       "urgency": {
         "score": 9,
-        "rationale": "triage-policy-v11: ceil(0.7*I+0.3*L), L=7, I=6, base=7, final=9. S-SOURCE-TODAY (source_directed_attention): Explicit source-directed same-day attention: The continuing unusual vibration rise triggers same-day rotating equipment specialist attention. Sources: equipment:K-3401:engineer_comment, finding:F-1001:finding_description. R-MATERIAL (review): The June 2 observation does not establish current vibration, numerical alarm/trip margins, root cause, subsequent correction or present export capability. The June 19 loose-cladding report is a separate mechanism, not evidence of vibration restoration. These unknowns affect operating and repair disposition. Sources: finding:F-1001:finding_description, finding:F-1001:reported_date, equipment:K-3401:engineer_comment, finding:F-1019:finding_description, finding:F-1019:reported_date."
+        "rationale": "triage-policy-v16: ceil(0.7*I+0.3*L), L=7, I=6, base=U7, final=U9. Rules: S-SOURCE-TODAY[source_directed_attention,U9]. Basis: Explicit source-directed same-day attention: The unusual, continuing vibration rise triggers same-day rotating-equipment specialist attention."
       },
-      "review_required": true,
-      "review_reason": "S-SOURCE-TODAY (source_directed_attention): Explicit source-directed same-day attention: The continuing unusual vibration rise triggers same-day rotating equipment specialist attention. Sources: equipment:K-3401:engineer_comment, finding:F-1001:finding_description. R-MATERIAL (review): The June 2 observation does not establish current vibration, numerical alarm/trip margins, root cause, subsequent correction or present export capability. The June 19 loose-cladding report is a separate mechanism, not evidence of vibration restoration. These unknowns affect operating and repair disposition. Sources: finding:F-1001:finding_description, finding:F-1001:reported_date, equipment:K-3401:engineer_comment, finding:F-1019:finding_description, finding:F-1019:reported_date."
+      "review_required": false,
+      "review_reason": null
     },
     {
       "ticket_id": "TKT-1002",
       "finding_id": "F-1002",
       "equipment_id": "PSV-1310",
-      "summary": "PSV-1310 tailpipe hiss and hydrocarbon smell below set pressure suggest passing, raising doubt over V-1201 overpressure protection; relief capability remains unverified.",
-      "recommended_action": "Integrity engineer: diagnose passing, check two-year certification/regulatory deadline, approve operating/repair disposition; repair if confirmed. Reconcile impairment/deviation record. Verify pop pressure and seat tightness. Gas-test area; check personnel exposure.",
+      "summary": "PSV-1310 outlet hissing and nearby hydrocarbon smell well below set pressure suggest passing, potentially compromising V-1201's nonredundant overpressure relief and allowing pressure-boundary failure on demand; no liquid was visible.",
+      "recommended_action": "Reconcile impairment record. Check leak source and relief path. Integrity engineer: Repair PSV if passing is confirmed. Pop/leak test and recertify PSV; Approved relief/seat limits; independent ref. Witness; close.",
       "likelihood_of_failure": {
-        "score": 6,
-        "rationale": "Assessed function is PSV-1310 providing overpressure relief for V-1201. Hissing below set pressure with nearby hydrocarbon smell supports suspected passing and a meaningful degradation precursor. Neither progression nor inability to relieve pressure is established."
+        "score": 7,
+        "rationale": "Outlet hissing and nearby hydrocarbon smell below set pressure support suspected passing and an advanced degradation precursor to unreliable relief in the near term. They do not establish failure to relieve on demand; no functional test is reported."
       },
       "impact_of_failure": {
         "score": 8,
-        "rationale": "Failure would remove the stated nonredundant overpressure protection of the first-stage production separator, supporting a severe pressure-containment-loss consequence path. Actual exposure and escalation scale are unknown; extreme consequences are not established."
+        "rationale": "Failure on demand would remove the registered, nonredundant overpressure relief function for V-1201, creating a specific pressure-boundary failure and hydrocarbon-release escalation path. The evidence supports severe major-accident exposure, but not a quantified extreme outcome."
       },
       "urgency": {
         "score": 8,
-        "rationale": "triage-policy-v11: ceil(0.7*I+0.3*L), L=6, I=8, base=8, final=8. P-SAFETY-UNKNOWN (precautionary_policy): Protection impairment suspected; deviation status unverified, not confirmed absent. Sources: equipment:PSV-1310:engineer_comment, finding:F-1002:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): Passing, its cause, present relief capability and any subsequent restoration remain unverified. These determine corrective scope and whether protection is impaired. Sources: finding:F-1002:finding_description, equipment:PSV-1310:engineer_comment, finding:F-1016:finding_description, finding:F-1021:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): Deviation status and applicable regulatory deadline are not supplied. Suspected impairment requires reconciliation rather than an assumption that it is unlogged. Sources: equipment:PSV-1310:engineer_comment, finding:F-1002:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): Nearby hydrocarbon smell establishes a credible exposure concern, but concentration, release source and personnel exposure are unknown. These affect immediate controls and consequence magnitude. Sources: finding:F-1002:finding_description. P-SCE-HIGH-IMPACT (precautionary_policy): Registry SCE finding assessed at I=8 requires attention at least this week. Sources: registry SCE flag. R-SCE (review): SCE draft requires integrity-engineer review; SCE status alone adds no floor. Sources: registry SCE flag."
+        "rationale": "triage-policy-v16: ceil(0.7*I+0.3*L), L=7, I=8, base=U8, final=U8. Rules: P-SAFETY-UNKNOWN[precautionary_policy,U7]x2, P-SCE-HIGH-IMPACT[precautionary_policy,U7]."
       },
       "review_required": true,
-      "review_reason": "P-SAFETY-UNKNOWN (precautionary_policy): Protection impairment suspected; deviation status unverified, not confirmed absent. Sources: equipment:PSV-1310:engineer_comment, finding:F-1002:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): Passing, its cause, present relief capability and any subsequent restoration remain unverified. These determine corrective scope and whether protection is impaired. Sources: finding:F-1002:finding_description, equipment:PSV-1310:engineer_comment, finding:F-1016:finding_description, finding:F-1021:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): Deviation status and applicable regulatory deadline are not supplied. Suspected impairment requires reconciliation rather than an assumption that it is unlogged. Sources: equipment:PSV-1310:engineer_comment, finding:F-1002:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): Nearby hydrocarbon smell establishes a credible exposure concern, but concentration, release source and personnel exposure are unknown. These affect immediate controls and consequence magnitude. Sources: finding:F-1002:finding_description. P-SCE-HIGH-IMPACT (precautionary_policy): Registry SCE finding assessed at I=8 requires attention at least this week. Sources: registry SCE flag. R-SCE (review): SCE draft requires integrity-engineer review; SCE status alone adds no floor. Sources: registry SCE flag."
+      "review_reason": "Review: P-SAFETY-UNKNOWN (2): material safety uncertainty; verify the action checks. Why: Protection impairment suspected; deviation status unverified, not confirmed absent. Whether the symptoms originate from PSV passing and compromise the sole registered relief path changes the immediate protection disposition and required controls before queue entry.; checks: Reconcile impairment/deviation record., Check leak source and relief path. Full reasons and citations are in run evidence."
     },
     {
       "ticket_id": "TKT-1003",
       "finding_id": "F-1003",
       "equipment_id": "FW-8102",
-      "summary": "FW-8102 failed its first start; retry took ~8 s cranking, then achieved rated pressure. Batteries were 22.8 V at rest. Unreliable starting weakens fire protection; partner A later gave 9.2 vs 11 barg with flow unmeasured. Both unavailable means production shutdown.",
-      "recommended_action": "Mechanical engineer: load-test batteries, inspect charging/starting air; repair per findings and determine operating disposition. Check impairment/deviation records. Retest first-start and rated pressure. Verify A pressure/flow against duty criteria.",
+      "summary": "FW-8102 failed its first weekly start with batteries at 22.8 V, then started on retry after ~8 s and reached rated pressure; unreliable firewater starting could delay firefighting, while FW-8101's later 9.2/11 barg result leaves standby capability unresolved.",
+      "recommended_action": "Reconcile impairment record. Test B batteries, charger, air and start circuit. Verify A duty flow/pressure and test path. Operations authority: Repair B starting defects found by testing. Prove B demand start and rated duty; First-attempt start; rated duty; independent ref. Witness; close.",
       "likelihood_of_failure": {
         "score": 9,
-        "rationale": "The assessed function is FW-8102 starting on demand to supply firewater. The failed first attempt directly demonstrates function loss. Starting on the second attempt after about eight seconds of cranking, then running normally at rated discharge pressure, bounds the failure but does not erase it. The 22.8 V measurement was at rest, not during cranking; battery causation remains unconfirmed."
+        "rationale": "The June 3 weekly test directly demonstrated failure on the initial start demand. Starting on the second attempt after about eight seconds of cranking and subsequently achieving rated discharge pressure bound the failure to starting reliability, but do not erase it. The 22.8 V resting battery measurement and recurring starting problems support investigation, not a confirmed battery diagnosis; intermittent success supports 9 rather than 10."
       },
       "impact_of_failure": {
         "score": 8,
-        "rationale": "Failure to start removes this pump's on-demand firewater contribution and degrades fire protection. The explicitly linked partner started successfully on June 17 but delivered 9.2 barg against 11 barg design, with flow unmeasured; full capable redundancy cannot be credited. This supports a severe protection-loss consequence path, not demonstrated total firewater loss. Both pumps being unavailable would require production shutdown, but neither simultaneous unavailability nor an actual shutdown is established."
+        "rationale": "Failure on the initial demand can delay firewater delivery and firefighting, a supported severe protection consequence. N+1 is registered, but FW-8101's later June 17 result of 9.2 barg against 11 barg, with flow unmeasured and the test path unresolved, prevents crediting proven capable redundancy. It does not establish that both pumps are unavailable or justify an extreme-consequence score."
       },
       "urgency": {
         "score": 9,
-        "rationale": "triage-policy-v11: ceil(0.7*I+0.3*L), L=9, I=8, base=9, final=9. P-FAILED-TEST (precautionary_policy): Confirmed failed protection-function test; immediate human attention. Sources: finding:F-1003:finding_description, finding:F-1003:inspection_method, finding:F-1003:inspection_type. P-SAFETY-UNKNOWN (precautionary_policy): Protection impaired; deviation status unverified, not confirmed absent. Sources: equipment:FW-8102:engineer_comment, equipment:FW-8102:service_description, finding:F-1003:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): Low at-rest voltage suggests a starting-system issue but does not prove battery failure. Battery, charging and starting-air condition require diagnosis; repair completion and current reliable starting remain unverified. Sources: equipment:FW-8102:engineer_comment, finding:F-1003:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): June 3 pump B observations precede the June 17 partner finding. Pump A's pressure deficit may reflect internal wear or a partly closed test-line valve; flow, acceptance criteria, repair and current duty capability are unknown. Neither full redundancy nor total firewater shortfall is established. Sources: finding:F-1003:reported_date, finding:F-1017:reported_date, finding:F-1017:finding_description, equipment:FW-8102:redundancy. P-SAFETY-UNKNOWN (precautionary_policy): Recorded-deviation status is unknown and affects impairment-control reconciliation; the record cannot be assumed absent. Sources: finding:F-1003:finding_description, equipment:FW-8102:engineer_comment. P-SCE-HIGH-IMPACT (precautionary_policy): Registry SCE finding assessed at I=8 requires attention at least this week. Sources: registry SCE flag. R-SCE (review): SCE draft requires integrity-engineer review; SCE status alone adds no floor. Sources: registry SCE flag."
+        "rationale": "triage-policy-v16: ceil(0.7*I+0.3*L), L=9, I=8, base=U9, final=U9. Rules: P-FAILED-TEST[precautionary_policy,U9], P-SAFETY-UNKNOWN[precautionary_policy,U7]x2, P-SCE-HIGH-IMPACT[precautionary_policy,U7]."
       },
-      "review_required": true,
-      "review_reason": "P-FAILED-TEST (precautionary_policy): Confirmed failed protection-function test; immediate human attention. Sources: finding:F-1003:finding_description, finding:F-1003:inspection_method, finding:F-1003:inspection_type. P-SAFETY-UNKNOWN (precautionary_policy): Protection impaired; deviation status unverified, not confirmed absent. Sources: equipment:FW-8102:engineer_comment, equipment:FW-8102:service_description, finding:F-1003:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): Low at-rest voltage suggests a starting-system issue but does not prove battery failure. Battery, charging and starting-air condition require diagnosis; repair completion and current reliable starting remain unverified. Sources: equipment:FW-8102:engineer_comment, finding:F-1003:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): June 3 pump B observations precede the June 17 partner finding. Pump A's pressure deficit may reflect internal wear or a partly closed test-line valve; flow, acceptance criteria, repair and current duty capability are unknown. Neither full redundancy nor total firewater shortfall is established. Sources: finding:F-1003:reported_date, finding:F-1017:reported_date, finding:F-1017:finding_description, equipment:FW-8102:redundancy. P-SAFETY-UNKNOWN (precautionary_policy): Recorded-deviation status is unknown and affects impairment-control reconciliation; the record cannot be assumed absent. Sources: finding:F-1003:finding_description, equipment:FW-8102:engineer_comment. P-SCE-HIGH-IMPACT (precautionary_policy): Registry SCE finding assessed at I=8 requires attention at least this week. Sources: registry SCE flag. R-SCE (review): SCE draft requires integrity-engineer review; SCE status alone adds no floor. Sources: registry SCE flag."
+      "review_required": false,
+      "review_reason": null
     },
     {
       "ticket_id": "TKT-1004",
       "finding_id": "F-1004",
       "equipment_id": "PL-1002",
-      "summary": "PL-1002 has CUI at window 2 near the low-point drain: 6.2 mm versus 7.4 mm minimum threatens containment of hydrocarbons at full wellhead pressure; adjacent windows remain within tolerance.",
-      "recommended_action": "Integrity engineer to set operating/repair disposition; repair to approved design, renew weatherproofing, verify wall >=7.4 mm and pressure integrity. Expose/UT-map low point; check repair status. Check personnel exposure and release paths.",
+      "summary": "PL-1002 window 2 near the low point drain has 6.2 mm wall versus 7.4 mm minimum beneath saturated insulation; adjacent windows comply, but local thinning threatens containment of hydrocarbons at full wellhead pressure, with potential release and fire.",
+      "recommended_action": "Map wall loss; check containment and fitness. Integrity engineer: Repair pipe and renew dry, sealed insulation. Test pressure integrity; inspect insulation seals; Approved repair/test specification; independent ref. Witness; close.",
       "likelihood_of_failure": {
         "score": 8,
-        "rationale": "The assessed function is pressure containment by the flowline. Thickness below the minimum allowable, heavy scaling and saturated insulation establish advanced damage with an active corrosion mechanism. Adjacent acceptable windows limit the demonstrated extent, not the local severity. Actual containment loss or imminent rupture is not established."
+        "rationale": "Advanced local wall loss to 6.2 mm, below the 7.4 mm minimum, with saturated insulation and heavy scaling supports the advanced-damage band for near-term containment loss. Adjacent windows remain within tolerance. The breached thickness limit does not establish leakage or imminent rupture."
       },
       "impact_of_failure": {
         "score": 8,
-        "rationale": "Failure of containment on a live 6 inch production flowline at full wellhead pressure supports a severe high-pressure hydrocarbon release and potential ignition/injury path. No redundant line is identified. Release inventory, isolation performance and personnel exposure are unknown, so extreme consequences are not established."
+        "rationale": "Failure of this pressure boundary would release hydrocarbons at full wellhead pressure, providing a specific severe fire and personnel-exposure path if ignited. No redundant line is registered. The evidence supports severe consequences, but not an extreme release scale or platform-wide loss."
       },
       "urgency": {
         "score": 8,
-        "rationale": "triage-policy-v11: ceil(0.7*I+0.3*L), L=8, I=8, base=8, final=8. P-SAFETY-UNKNOWN (precautionary_policy): The June 4 observation establishes local below-minimum wall, but corrosion extent, rate, subsequent correction and present containment capability are unknown. The linked June 22 separator observation does not establish shared damage or restoration of this line. Sources: finding:F-1004:finding_description, finding:F-1004:reported_date, finding:F-1021:finding_description, finding:F-1021:reported_date, equipment:PL-1002:service_description. P-SAFETY-UNKNOWN (precautionary_policy): Full-wellhead-pressure hydrocarbon service supports severe release consequences, but personnel occupancy, release inventory, ignition exposure and effective isolation are not supplied. These could change consequence magnitude and operating disposition. Sources: equipment:PL-1002:engineer_comment, equipment:PL-1002:service_description, finding:F-1004:finding_description."
+        "rationale": "triage-policy-v16: ceil(0.7*I+0.3*L), L=8, I=8, base=U8, final=U8."
       },
-      "review_required": true,
-      "review_reason": "P-SAFETY-UNKNOWN (precautionary_policy): The June 4 observation establishes local below-minimum wall, but corrosion extent, rate, subsequent correction and present containment capability are unknown. The linked June 22 separator observation does not establish shared damage or restoration of this line. Sources: finding:F-1004:finding_description, finding:F-1004:reported_date, finding:F-1021:finding_description, finding:F-1021:reported_date, equipment:PL-1002:service_description. P-SAFETY-UNKNOWN (precautionary_policy): Full-wellhead-pressure hydrocarbon service supports severe release consequences, but personnel occupancy, release inventory, ignition exposure and effective isolation are not supplied. These could change consequence magnitude and operating disposition. Sources: equipment:PL-1002:engineer_comment, equipment:PL-1002:service_description, finding:F-1004:finding_description."
+      "review_required": false,
+      "review_reason": null
     },
     {
       "ticket_id": "TKT-1005",
       "finding_id": "F-1005",
       "equipment_id": "FG-0455",
-      "summary": "FG-0455 failed to detect 50% LEL gas with two cylinders; the compression-module 2oo3 group retains gas detection through two responding heads but has lost its failure margin.",
-      "recommended_action": "Instrument engineer to diagnose the nonresponsive head and approve repair/replacement and operating controls. Reconcile impairment/deviation record. Verify current head and voted-group status.",
+      "summary": "FG-0455 in the compression module gave no response to 50% LEL gas from two cylinders; both other 2oo3 heads responded, so gas detection retains function but loses its margin against another channel failure.",
+      "recommended_action": "Reconcile impairment record. Check head, wiring and input. Instrument TA: Repair channel fault once located. Test channel/vote with certified gas; Responds at 50% LEL; correct voting; independent ref. Witness; close.",
       "likelihood_of_failure": {
         "score": 10,
-        "rationale": "The assessed function is this individual head's hydrocarbon-gas detection response. No response on either cylinder confirms function loss, irrespective of clean optics or the other heads' successful responses."
+        "rationale": "The assessed detection function already failed: no response to 50 percent LEL gas on two cylinders during the bump test. Correct responses from the other heads support the test conditions but do not reduce this failed channel's likelihood."
       },
       "impact_of_failure": {
         "score": 6,
-        "rationale": "Loss of this gas-detection channel materially degrades protection in the compression module. Both remaining heads responded correctly, supporting retained 2oo3 capability but no further failure margin. This supports moderate impact, not total protection defeat or an extreme consequence."
+        "rationale": "Loss of this channel materially degrades hydrocarbon detection protection. Both remaining heads responded correctly, so the 2oo3 arrangement retains function but loses its failure margin; another channel failure could defeat voting. Present total protection loss or extreme consequences are not established."
       },
       "urgency": {
         "score": 9,
-        "rationale": "triage-policy-v11: ceil(0.7*I+0.3*L), L=10, I=6, base=8, final=9. P-FAILED-TEST (precautionary_policy): Confirmed failed protection-function test; immediate human attention. Sources: finding:F-1005:finding_description, finding:F-1005:inspection_method, finding:F-1005:inspection_type. P-SAFETY-UNKNOWN (precautionary_policy): Protection impaired; deviation status unverified, not confirmed absent. Sources: equipment:FG-0455:engineer_comment, equipment:FG-0455:redundancy, finding:F-1005:finding_description, knowledge:item-54adfcd342912676dbeb55a8ed2ee100@sha256-ce3961ec18e5121c75c01565b6357931eb4b51d21e8a975fe961ca0d7bcc0584:text. P-SAFETY-UNKNOWN (precautionary_policy): Current head restoration and voted-group condition are unverified beyond the 5 June test. The scores assess the observed failed head and credit only the two responses demonstrated then. Sources: finding:F-1005:finding_description, finding:F-1005:reported_date, equipment:FG-0455:redundancy. P-SAFETY-UNKNOWN (precautionary_policy): Recorded-deviation status is unknown and determines whether the impaired protection has documented controls. Sources: finding:F-1005:finding_description, equipment:FG-0455:engineer_comment. R-SCE (review): SCE draft requires integrity-engineer review; SCE status alone adds no floor. Sources: registry SCE flag."
+        "rationale": "triage-policy-v16: ceil(0.7*I+0.3*L), L=10, I=6, base=U8, final=U9. Rules: P-FAILED-TEST[precautionary_policy,U9], P-SAFETY-UNKNOWN[precautionary_policy,U7]. Basis: Confirmed failed protection-function test; immediate human attention."
       },
-      "review_required": true,
-      "review_reason": "P-FAILED-TEST (precautionary_policy): Confirmed failed protection-function test; immediate human attention. Sources: finding:F-1005:finding_description, finding:F-1005:inspection_method, finding:F-1005:inspection_type. P-SAFETY-UNKNOWN (precautionary_policy): Protection impaired; deviation status unverified, not confirmed absent. Sources: equipment:FG-0455:engineer_comment, equipment:FG-0455:redundancy, finding:F-1005:finding_description, knowledge:item-54adfcd342912676dbeb55a8ed2ee100@sha256-ce3961ec18e5121c75c01565b6357931eb4b51d21e8a975fe961ca0d7bcc0584:text. P-SAFETY-UNKNOWN (precautionary_policy): Current head restoration and voted-group condition are unverified beyond the 5 June test. The scores assess the observed failed head and credit only the two responses demonstrated then. Sources: finding:F-1005:finding_description, finding:F-1005:reported_date, equipment:FG-0455:redundancy. P-SAFETY-UNKNOWN (precautionary_policy): Recorded-deviation status is unknown and determines whether the impaired protection has documented controls. Sources: finding:F-1005:finding_description, equipment:FG-0455:engineer_comment. R-SCE (review): SCE draft requires integrity-engineer review; SCE status alone adds no floor. Sources: registry SCE flag."
+      "review_required": false,
+      "review_reason": null
     },
     {
       "ticket_id": "TKT-1006",
       "finding_id": "F-1006",
       "equipment_id": "CR-5001",
-      "summary": "CR-5001 hoist rope has 6 broken wires/lay versus 10 discard at the maximum-radius drum section; poor lubrication warrants attention despite remaining margin, as failure risks dropped loads and stops supply offloads, affecting logistics within days.",
-      "recommended_action": "Lubricate rope; lifting competent person to set operating/replacement disposition and reinspection interval; verify below 10 broken wires/lay after correction. Inspect full rope; trend broken-wire count. Check lift loads, heights and personnel zones.",
+      "summary": "CR-5001 main hoist rope has 6 broken wires/lay versus 10 discard, with poor lubrication where it spools onto the drum at maximum radius; hook, sheaves and structure are satisfactory, but rope failure could drop a load and halt offloads, affecting logistics within days.",
+      "recommended_action": "Inspect full rope and drum contact section. Lifting surveyor: Lubricate rope; renew if surveyor requires. Inspect rope condition and lubrication; Lifting standard; below 10 breaks/lay. Witness; close.",
       "likelihood_of_failure": {
         "score": 4,
-        "rationale": "The assessed function is main-hoist rope load support during lifting. Six broken wires per lay and poor lubrication establish limited degradation, but the count remains below the supplied discard criterion of ten. No progression series or functional interruption is established by the sole observation dated 2026-06-05."
+        "rationale": "Six broken wires per lay and poor lubrication establish limited degradation, but the count remains below the supplied discard criterion of ten. No progression rate or functional loss is established; the supported margin places near-term load-support failure in the 3\u20134 band."
       },
       "impact_of_failure": {
         "score": 6,
-        "rationale": "Loss of hoist-rope load support presents a dropped-load personnel hazard and would interrupt crane offloading. No redundant crane is listed, and the engineer identifies logistics problems within days without supply-boat offloads. These support material consequences; actual loads, heights and personnel exposure are unknown, so a specific severe-injury scale is not established."
+        "rationale": "Loss of suspended-load support presents a material dropped-load consequence and removes the sole crane's offloading capability, creating logistics problems within days. The supplied snapshot does not establish exposure or scale supporting severe or extreme consequences."
       },
       "urgency": {
-        "score": 7,
-        "rationale": "triage-policy-v11: ceil(0.7*I+0.3*L), L=4, I=6, base=6, final=7. P-SAFETY-UNKNOWN (precautionary_policy): Only the 2026-06-05 survey is supplied. Subsequent repair, present rope condition and rate of broken-wire accumulation are unknown; the below-discard count does not itself authorize operation. Sources: finding:F-1006:finding_description, finding:F-1006:reported_date, equipment:CR-5001:engineer_comment. P-SAFETY-UNKNOWN (precautionary_policy): Lift loads, heights and personnel exposure are unspecified. These could change injury severity; the score reflects material operational and personnel consequences without assuming severe exposure. Sources: finding:F-1006:finding_description, equipment:CR-5001:service_description, equipment:CR-5001:engineer_comment."
+        "score": 6,
+        "rationale": "triage-policy-v16: ceil(0.7*I+0.3*L), L=4, I=6, base=U6, final=U6."
       },
-      "review_required": true,
-      "review_reason": "P-SAFETY-UNKNOWN (precautionary_policy): Only the 2026-06-05 survey is supplied. Subsequent repair, present rope condition and rate of broken-wire accumulation are unknown; the below-discard count does not itself authorize operation. Sources: finding:F-1006:finding_description, finding:F-1006:reported_date, equipment:CR-5001:engineer_comment. P-SAFETY-UNKNOWN (precautionary_policy): Lift loads, heights and personnel exposure are unspecified. These could change injury severity; the score reflects material operational and personnel consequences without assuming severe exposure. Sources: finding:F-1006:finding_description, equipment:CR-5001:service_description, equipment:CR-5001:engineer_comment."
+      "review_required": false,
+      "review_reason": null
     },
     {
       "ticket_id": "TKT-1007",
       "finding_id": "F-1007",
       "equipment_id": "P-3305",
-      "summary": "P-3305's third low-pressure trip this month leaves manifold inhibitor injection intermittent for around ten days; production continues, but starvation threatens downstream steel corrosion within weeks. Diaphragm failure is suspected.",
-      "recommended_action": "Mechanical engineer: inspect diaphragm and pressure circuit; repair proven faults. Obtain integrity engineering operating disposition. Reconcile impairment/deviation record. Verify sustained injection at required dose. Integrity engineer: assess underdose effects.",
+      "summary": "P-3305's third low-pressure trip this month has left wellhead manifold inhibitor injection intermittent for about ten days; diaphragm failure is suspected, no spare exists, and starvation risks downstream steel corrosion within weeks despite no immediate production stop.",
+      "recommended_action": "Check diaphragm and full injection path. Review dosing log and corrosion exposure. Maintenance/Corrosion: Repair injection fault if confirmed. Test manifold dose and pressure with reference; Required delivery sustained without trips; independent ref. Witness; close.",
       "likelihood_of_failure": {
         "score": 9,
-        "rationale": "Repeated low-pressure trips and logged intermittent injection establish actual loss of the pump's required continuous inhibitor-delivery function. The diaphragm remains only a suspected cause; current restoration is unverified."
+        "rationale": "The assessed interruption has occurred: three low-discharge-pressure trips this month and around ten days of intermittent injection establish failed delivery, not merely a suspected diaphragm defect. This supports the confirmed-function-failure band for near-term injection demand."
       },
       "impact_of_failure": {
         "score": 7,
-        "rationale": "Loss of inhibitor delivery creates a specific delayed integrity threat: downstream carbon steel starts corroding within weeks, with consequences months later. There is no redundant pump. Production does not stop immediately; actual corrosion extent or a severe release scenario is not established."
+        "rationale": "Loss of injection, with no redundant pump, creates a supported delayed integrity threat: inhibitor starvation allows downstream carbon steel corrosion within weeks, with consequences described six months later. Production does not stop immediately; no actual downstream damage or extreme consequence is established."
       },
       "urgency": {
         "score": 8,
-        "rationale": "triage-policy-v11: ceil(0.7*I+0.3*L), L=9, I=7, base=8, final=8. P-SAFETY-UNKNOWN (precautionary_policy): Protection impaired; deviation status unverified, not confirmed absent. Sources: equipment:P-3305:engineer_comment, equipment:P-3305:service_description, finding:F-1007:finding_description. R-MATERIAL (review): Diaphragm failure is suspected, not diagnosed; repair completion and current sustained delivery are unknown. Inspect before selecting the repair and demonstrate restored dosing afterward. Sources: finding:F-1007:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): Around ten days of intermittent injection is established, but the dosing deficit, downstream corrosion already incurred and affected exposure are unknown. These affect integrity disposition without proving existing containment failure. Sources: finding:F-1007:finding_description, equipment:P-3305:engineer_comment. P-SAFETY-UNKNOWN (precautionary_policy): Corrosion-prevention capability was degraded, but the recorded deviation and associated controls are unknown. Sources: finding:F-1007:finding_description, equipment:P-3305:service_description."
+        "rationale": "triage-policy-v16: ceil(0.7*I+0.3*L), L=9, I=7, base=U8, final=U8."
       },
-      "review_required": true,
-      "review_reason": "P-SAFETY-UNKNOWN (precautionary_policy): Protection impaired; deviation status unverified, not confirmed absent. Sources: equipment:P-3305:engineer_comment, equipment:P-3305:service_description, finding:F-1007:finding_description. R-MATERIAL (review): Diaphragm failure is suspected, not diagnosed; repair completion and current sustained delivery are unknown. Inspect before selecting the repair and demonstrate restored dosing afterward. Sources: finding:F-1007:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): Around ten days of intermittent injection is established, but the dosing deficit, downstream corrosion already incurred and affected exposure are unknown. These affect integrity disposition without proving existing containment failure. Sources: finding:F-1007:finding_description, equipment:P-3305:engineer_comment. P-SAFETY-UNKNOWN (precautionary_policy): Corrosion-prevention capability was degraded, but the recorded deviation and associated controls are unknown. Sources: finding:F-1007:finding_description, equipment:P-3305:service_description."
+      "review_required": false,
+      "review_reason": null
     },
     {
       "ticket_id": "TKT-1008",
       "finding_id": "F-1008",
       "equipment_id": "SC-1001",
-      "summary": "SC-1001 has an MPI-confirmed ~45 mm crack at the B4 primary brace weld, raising concern over cellar-deck support capacity; function loss is unconfirmed and intact coating distinguishes this from the fabric backlog.",
-      "recommended_action": "Structural engineer to size crack, inspect adjacent joints and set operating/repair disposition separately from coating backlog; verify repair by NDT and approved capacity criteria. Reconcile impairment/deviation record. Assess B4 loads, exposure and capacity.",
+      "summary": "SC-1001 has an approximately 45 mm MPI-confirmed weld-toe crack at the primary brace/node connection at cellar-deck grid B4; intact coating distinguishes it from the fabric backlog, and loss of connection capacity could destabilize deck support.",
+      "recommended_action": "Reconcile impairment record. Size B4 crack; assess load capacity. Structural engineer: Repair B4 weld if engineer requires. Verify B4 NDT and structural capacity; Approved structural criteria; independent ref. Witness; close.",
       "likelihood_of_failure": {
         "score": 6,
-        "rationale": "The assessed function is structural support through the B4 primary brace connection. A confirmed weld crack is a meaningful precursor to support loss, but crack depth, progression and residual capacity are unknown. Neither imminent failure nor actual support-function loss is established."
+        "rationale": "The approximately 45 mm MPI-confirmed weld-toe crack is a meaningful precursor to loss of connection capacity. Crack depth, growth and residual capacity are not established, so neither strong near-term progression nor existing functional failure is demonstrated."
       },
       "impact_of_failure": {
-        "score": 7,
-        "rationale": "Failure of this primary brace connection has a specific structural consequence path: loss of primary cellar-deck support. No redundancy is recorded. This supports a severe structural consequence band, not an assertion of total platform collapse. Supported loads, personnel exposure and propagation beyond this connection remain unknown."
+        "score": 8,
+        "rationale": "Loss of capacity at this primary brace-to-node connection could destabilize the supported cellar-deck structure, providing a specific severe structural consequence path. No redundancy is registered, but platform-wide collapse or extreme exposure is not established."
       },
       "urgency": {
-        "score": 7,
-        "rationale": "triage-policy-v11: ceil(0.7*I+0.3*L), L=6, I=7, base=7, final=7. P-SAFETY-UNKNOWN (precautionary_policy): Protection impairment suspected; deviation status unverified, not confirmed absent. Sources: equipment:SC-1001:engineer_comment, equipment:SC-1001:service_description, finding:F-1008:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): Crack depth, growth and residual capacity are unknown; the approximately 45 mm surface indication alone cannot establish near-term support loss. Sources: finding:F-1008:finding_description, equipment:SC-1001:service_description. P-SAFETY-UNKNOWN (precautionary_policy): Actual supported loads, occupancy and the extent of structural consequences are unknown. Primary support loss supports the proposed broad band, but not extreme consequences. Sources: equipment:SC-1001:service_description, finding:F-1008:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): Structural impairment is suspected, while deviation coverage and any subsequent accepted restoration remain unknown. Sources: finding:F-1008:finding_description, equipment:SC-1001:engineer_comment, finding:F-1009:finding_description. R-SCE (review): SCE draft requires integrity-engineer review; SCE status alone adds no floor. Sources: registry SCE flag."
+        "score": 8,
+        "rationale": "triage-policy-v16: ceil(0.7*I+0.3*L), L=6, I=8, base=U8, final=U8. Rules: P-SAFETY-UNKNOWN[precautionary_policy,U7]x2, P-SCE-HIGH-IMPACT[precautionary_policy,U7]."
       },
       "review_required": true,
-      "review_reason": "P-SAFETY-UNKNOWN (precautionary_policy): Protection impairment suspected; deviation status unverified, not confirmed absent. Sources: equipment:SC-1001:engineer_comment, equipment:SC-1001:service_description, finding:F-1008:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): Crack depth, growth and residual capacity are unknown; the approximately 45 mm surface indication alone cannot establish near-term support loss. Sources: finding:F-1008:finding_description, equipment:SC-1001:service_description. P-SAFETY-UNKNOWN (precautionary_policy): Actual supported loads, occupancy and the extent of structural consequences are unknown. Primary support loss supports the proposed broad band, but not extreme consequences. Sources: equipment:SC-1001:service_description, finding:F-1008:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): Structural impairment is suspected, while deviation coverage and any subsequent accepted restoration remain unknown. Sources: finding:F-1008:finding_description, equipment:SC-1001:engineer_comment, finding:F-1009:finding_description. R-SCE (review): SCE draft requires integrity-engineer review; SCE status alone adds no floor. Sources: registry SCE flag."
+      "review_reason": "Review: P-SAFETY-UNKNOWN: material safety uncertainty; verify the action checks. Why: Protection impairment suspected; deviation status unverified, not confirmed absent.; checks: Reconcile impairment/deviation record.. Full reasons and citations are in run evidence."
     },
     {
       "ticket_id": "TKT-1009",
       "finding_id": "F-1009",
       "equipment_id": "SC-1001",
-      "summary": "Repeat C2\u2013C5 underside coating breakdown remains on the fabric backlog; support loss is not established, but failure of the cellar deck primary support would threaten structural integrity.",
-      "recommended_action": "Use existing fabric backlog to prepare and recoat after inspection; structural engineer to disposition section loss separately from B4 and verify coating acceptance. Verify supported loads and personnel exposure.",
+      "summary": "SC-1001 underside deck coating at C2\u2013C5 has widespread flaking and rust staining, already on the fabric backlog; its corrosion barrier has locally failed, with surface deterioration supported but no demonstrated structural-capacity loss.",
+      "recommended_action": "Inspect C2\u2013C5 substrate for section loss. Integrity engineer: Prepare substrate and renew C2\u2013C5 coating. Test restored coating barrier integrity; Approved coating specification; independent ref. Witness; close.",
       "likelihood_of_failure": {
-        "score": 2,
-        "rationale": "The assessed function is cellar deck structural support, not coating appearance. Coating breakdown and rust staining give little evidence of near-term support loss; no section-loss measurement or progression rate is supplied. The June 7 B4 weld crack is a separate mechanism and is not transferred to the June 8 C2\u2013C5 finding."
+        "score": 9,
+        "rationale": "Flaking primer together with rust staining establishes that the local coating no longer provides a continuous corrosion barrier. This is an observed local coating-function failure, not evidence that the deck has lost structural capacity."
       },
       "impact_of_failure": {
-        "score": 7,
-        "rationale": "Hypothetical loss of the assessed primary structural-support function threatens cellar deck structural integrity, a specific severe structural consequence rather than a coating repair consequence. No redundancy is recorded. Supported loads and personnel exposure remain unknown; total platform loss or extreme consequences are not established."
+        "score": 2,
+        "rationale": "The supported consequence of this local barrier loss is surface corrosion and coating deterioration, characterized by the engineer as mostly cosmetic. No section-loss measurement or structural-capacity consequence is established for C2\u2013C5; the separate B4 crack is not transferred to this finding."
       },
       "urgency": {
-        "score": 7,
-        "rationale": "triage-policy-v11: ceil(0.7*I+0.3*L), L=2, I=7, base=6, final=7. P-SAFETY-UNKNOWN (precautionary_policy): Primary structural support establishes a severe hypothetical failure path, but actual supported loads and personnel exposure are unspecified. These limit consequence precision and do not establish extreme consequences. Sources: equipment:SC-1001:service_description, equipment:SC-1001:redundancy, finding:F-1009:finding_description. R-SCE (review): SCE draft requires integrity-engineer review; SCE status alone adds no floor. Sources: registry SCE flag."
+        "score": 5,
+        "rationale": "triage-policy-v16: ceil(0.7*I+0.3*L), L=9, I=2, base=U5, final=U5."
       },
-      "review_required": true,
-      "review_reason": "P-SAFETY-UNKNOWN (precautionary_policy): Primary structural support establishes a severe hypothetical failure path, but actual supported loads and personnel exposure are unspecified. These limit consequence precision and do not establish extreme consequences. Sources: equipment:SC-1001:service_description, equipment:SC-1001:redundancy, finding:F-1009:finding_description. R-SCE (review): SCE draft requires integrity-engineer review; SCE status alone adds no floor. Sources: registry SCE flag."
+      "review_required": false,
+      "review_reason": null
     },
     {
       "ticket_id": "TKT-1010",
       "finding_id": "F-1010",
       "equipment_id": "HVAC-7201",
-      "summary": "HVAC-7201 delivered 27 Pa versus the 50 Pa refuge minimum despite rated fan speed, impairing protection against hydrocarbon inhalation during muster; damper closure or door-seal defects are suspected, and restoration is unverified.",
-      "recommended_action": "HVAC engineer to set operating/repair disposition and repair defects identified. Reconcile impairment/deviation record. Inspect dampers and door seals. Retest refuge pressure to >=50 Pa. Verify refuge occupancy and gas exposure.",
+      "summary": "HVAC-7201 achieved only 27 Pa across the accommodation envelope versus 50 Pa minimum despite rated fan speed; with no redundancy, refuge protection against hydrocarbon ingress is impaired, with damper or door-seal leakage suspected.",
+      "recommended_action": "Reconcile impairment record. Check airflow, dampers, seals and envelope leaks. Technical authority: If found, repair airflow or envelope defects. Retest refuge pressure with calibrated gauge; At least 50 Pa; independent ref. Witness; close.",
       "likelihood_of_failure": {
         "score": 9,
-        "rationale": "The assessed function is maintaining the required temporary-refuge envelope differential pressure. The June 8 protective-service test demonstrated failure against the explicit 50 Pa minimum, not merely suspected deterioration. Rated fan speed does not establish adequate pressurisation; no subsequent restoration is supplied."
+        "rationale": "The supplied functional test directly demonstrates the assessed failure: 27 Pa against a required minimum of 50 Pa while the fan runs at rated speed. This is confirmed required-function failure, not merely a suspected component defect; the near-term assessment therefore belongs in the top likelihood band."
       },
       "impact_of_failure": {
         "score": 8,
-        "rationale": "Failure compromises the positive-pressure barrier protecting people mustering in the temporary refuge from inhaling hydrocarbons during a gas release. This is a specific severe personnel-exposure path, with no registered redundancy. Occupancy and exposure magnitude are not supplied, so extreme consequences are not established."
+        "rationale": "Failure to achieve required refuge pressure compromises the barrier against hydrocarbon ingress during a gas release, exposing mustering personnel. No redundant unit is registered. This supports a severe major-accident exposure path, but the supplied scenario does not establish extreme consequences warranting 9\u201310."
       },
       "urgency": {
         "score": 9,
-        "rationale": "triage-policy-v11: ceil(0.7*I+0.3*L), L=9, I=8, base=9, final=9. P-FAILED-TEST (precautionary_policy): Confirmed failed protection-function test; immediate human attention. Sources: finding:F-1010:finding_description, finding:F-1010:inspection_type. P-SAFETY-UNKNOWN (precautionary_policy): Protection impaired; deviation status unverified, not confirmed absent. Sources: equipment:HVAC-7201:engineer_comment, finding:F-1010:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): Incomplete damper closure and degraded door seals are alternative suspected causes, not confirmed diagnoses; inspection must determine the correction. Sources: finding:F-1010:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): Restoration after the failed test is unverified; rated fan speed alone cannot demonstrate restored protective performance. Sources: finding:F-1010:finding_description, finding:F-1010:reported_date. P-SAFETY-UNKNOWN (precautionary_policy): Deviation and impairment-record status are unknown, affecting control and disposition of the demonstrated protection impairment. Sources: finding:F-1010:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): The refuge hydrocarbon-exposure path is established, but occupancy and gas-exposure magnitude are unknown; these limit consequence precision and do not establish the extreme band. Sources: equipment:HVAC-7201:engineer_comment. P-SCE-HIGH-IMPACT (precautionary_policy): Registry SCE finding assessed at I=8 requires attention at least this week. Sources: registry SCE flag. R-SCE (review): SCE draft requires integrity-engineer review; SCE status alone adds no floor. Sources: registry SCE flag."
+        "rationale": "triage-policy-v16: ceil(0.7*I+0.3*L), L=9, I=8, base=U9, final=U9. Rules: P-FAILED-TEST[precautionary_policy,U9], P-SAFETY-UNKNOWN[precautionary_policy,U7], P-SCE-HIGH-IMPACT[precautionary_policy,U7]."
       },
-      "review_required": true,
-      "review_reason": "P-FAILED-TEST (precautionary_policy): Confirmed failed protection-function test; immediate human attention. Sources: finding:F-1010:finding_description, finding:F-1010:inspection_type. P-SAFETY-UNKNOWN (precautionary_policy): Protection impaired; deviation status unverified, not confirmed absent. Sources: equipment:HVAC-7201:engineer_comment, finding:F-1010:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): Incomplete damper closure and degraded door seals are alternative suspected causes, not confirmed diagnoses; inspection must determine the correction. Sources: finding:F-1010:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): Restoration after the failed test is unverified; rated fan speed alone cannot demonstrate restored protective performance. Sources: finding:F-1010:finding_description, finding:F-1010:reported_date. P-SAFETY-UNKNOWN (precautionary_policy): Deviation and impairment-record status are unknown, affecting control and disposition of the demonstrated protection impairment. Sources: finding:F-1010:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): The refuge hydrocarbon-exposure path is established, but occupancy and gas-exposure magnitude are unknown; these limit consequence precision and do not establish the extreme band. Sources: equipment:HVAC-7201:engineer_comment. P-SCE-HIGH-IMPACT (precautionary_policy): Registry SCE finding assessed at I=8 requires attention at least this week. Sources: registry SCE flag. R-SCE (review): SCE draft requires integrity-engineer review; SCE status alone adds no floor. Sources: registry SCE flag."
+      "review_required": false,
+      "review_reason": null
     },
     {
       "ticket_id": "TKT-1011",
       "finding_id": "F-1011",
       "equipment_id": "DEL-8300",
-      "summary": "DEL-8300 failed spray delivery at approximately 12/60 north-quadrant nozzles despite normal header conditions, impairing fire coverage above two producing wellheads; restoration remains unverified.",
-      "recommended_action": "Fire-protection engineer: inspect/clear blocked branches and nozzles; set coverage criteria and operating disposition. Reconcile impairment/deviation record. Witness function test; close impairment only after pass. Verify wellhead fire/personnel exposure.",
+      "summary": "DEL-8300's June 10 full-flow test found about 12 of 60 north-quadrant nozzles with no flow or distorted spray despite normal header supply, impairing deluge coverage above two producing wellheads and creating a fire-escalation path.",
+      "recommended_action": "Reconcile impairment record. Inspect north branches and nozzles for blockage. Fire protection engineer: Clear branch and nozzle blockages. Flow-test all north nozzles against design; Required flow and spray coverage; independent ref. Witness; close.",
       "likelihood_of_failure": {
         "score": 9,
-        "rationale": "The assessed function is effective deluge delivery through the north-quadrant branches and nozzles. The June 10 full-flow test demonstrated failed delivery, not merely deterioration. Normal header conditions do not establish local coverage. Subsequent valve reopening does not demonstrate correction of this failure."
+        "rationale": "The June 10 full-flow test directly demonstrated absent or badly distorted discharge from approximately 12 of 60 north-quadrant nozzles despite normal header flow and skid pressure. Effective local delivery has already failed; remaining nozzle delivery does not reduce likelihood for that assessed function. Related-finding context cited by typed facts: [protection_restored=unknown] Fact reason: No successful post-correction coverage test is supplied. Later reopening of a branch valve does not prove restoration of the earlier nozzle and branch blockage impairment. Related quote (F-1020 finding_description): \"Isolation valve on the deluge branch line to the north quadrant was found chained in the closed position with no valve status tag and no entry in the impairment register. Valve was reopened immediately and the control room informed. Unknown how long it had been shut.\""
       },
       "impact_of_failure": {
         "score": 8,
-        "rationale": "Loss of effective fire coverage directly above two producing wellheads provides a specific severe fire-escalation path. No redundant deluge arrangement is identified. This supports the severe band, but not extreme installation-wide consequences; personnel exposure and other effective protections remain unverified."
+        "rationale": "Loss of local deluge coverage directly above two producing wellheads creates a specific fire-escalation exposure through ineffective water application. No redundant deluge system is registered. The observed impairment is partial, not proof of total fire-protection loss or extreme installation-wide consequences."
       },
       "urgency": {
         "score": 9,
-        "rationale": "triage-policy-v11: ceil(0.7*I+0.3*L), L=9, I=8, base=9, final=9. P-FAILED-TEST (precautionary_policy): Confirmed failed protection-function test; immediate human attention. Sources: finding:F-1011:finding_description, finding:F-1011:inspection_method, finding:F-1011:inspection_type. P-SAFETY-UNKNOWN (precautionary_policy): Protection impaired; deviation status unverified, not confirmed absent. Sources: equipment:DEL-8300:engineer_comment, finding:F-1011:finding_description, finding:F-1020:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): Current coverage and correction of the reported downstream blockage remain unverified. Marine growth and scale are recurring causes, not confirmed deposits here. The June 21 valve reopening does not establish causation or repair of the June 10 failure; its closure duration was unknown. Sources: finding:F-1011:finding_description, equipment:DEL-8300:engineer_comment, finding:F-1020:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): The nozzle impairment's deviation and control status are unknown, affecting authorized operating disposition. Sources: finding:F-1011:finding_description, finding:F-1020:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): Two producing wellheads establish a severe fire-exposure path, but personnel occupancy, escalation extent and other effective protections are unspecified. These limit consequence precision and do not establish the extreme band. Sources: finding:F-1011:finding_description, equipment:DEL-8300:redundancy. P-SCE-HIGH-IMPACT (precautionary_policy): Registry SCE finding assessed at I=8 requires attention at least this week. Sources: registry SCE flag. R-SCE (review): SCE draft requires integrity-engineer review; SCE status alone adds no floor. Sources: registry SCE flag."
+        "rationale": "triage-policy-v16: ceil(0.7*I+0.3*L), L=9, I=8, base=U9, final=U9. Rules: P-FAILED-TEST[precautionary_policy,U9], P-SAFETY-UNKNOWN[precautionary_policy,U7], P-SCE-HIGH-IMPACT[precautionary_policy,U7]."
       },
-      "review_required": true,
-      "review_reason": "P-FAILED-TEST (precautionary_policy): Confirmed failed protection-function test; immediate human attention. Sources: finding:F-1011:finding_description, finding:F-1011:inspection_method, finding:F-1011:inspection_type. P-SAFETY-UNKNOWN (precautionary_policy): Protection impaired; deviation status unverified, not confirmed absent. Sources: equipment:DEL-8300:engineer_comment, finding:F-1011:finding_description, finding:F-1020:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): Current coverage and correction of the reported downstream blockage remain unverified. Marine growth and scale are recurring causes, not confirmed deposits here. The June 21 valve reopening does not establish causation or repair of the June 10 failure; its closure duration was unknown. Sources: finding:F-1011:finding_description, equipment:DEL-8300:engineer_comment, finding:F-1020:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): The nozzle impairment's deviation and control status are unknown, affecting authorized operating disposition. Sources: finding:F-1011:finding_description, finding:F-1020:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): Two producing wellheads establish a severe fire-exposure path, but personnel occupancy, escalation extent and other effective protections are unspecified. These limit consequence precision and do not establish the extreme band. Sources: finding:F-1011:finding_description, equipment:DEL-8300:redundancy. P-SCE-HIGH-IMPACT (precautionary_policy): Registry SCE finding assessed at I=8 requires attention at least this week. Sources: registry SCE flag. R-SCE (review): SCE draft requires integrity-engineer review; SCE status alone adds no floor. Sources: registry SCE flag."
+      "review_required": false,
+      "review_reason": null
     },
     {
       "ticket_id": "TKT-1012",
       "finding_id": "F-1012",
       "equipment_id": "LB-4102",
-      "summary": "LB-4102's release force exceeded specification; its certificate is withheld and the port lifeboat is declared unavailable, reducing evacuation capacity. Remaining certified capacity versus POB is unknown.",
-      "recommended_action": "Inspect and overhaul release gear; retest to force specification under class survey. Verify current POB against certified available evacuation capacity. Check deviation record. Verify availability and capability of LB-4101. Obtain class recertification before return.",
+      "summary": "LB-4102 at the port station is unavailable after annual survey found notchy hydraulic release above specified force and withheld certification, reducing emergency evacuation capacity; LB-4101 capability and remaining capacity against POB require verification.",
+      "recommended_action": "Reconcile impairment record. Verify LB-4101 availability/capability. Compare usable evacuation capacity with POB. OIM / Class surveyor: Overhaul release gear. Test release to spec; class recertify before use; Smooth release within specified force; independent ref. Witness; close.",
       "likelihood_of_failure": {
-        "score": 10,
-        "rationale": "The assessed function is LB-4102's availability for certified evacuation launch. Excessive release force, withheld certification and declared unavailability establish existing required-function loss, irrespective of the partner craft."
+        "score": 9,
+        "rationale": "The assessed function is already unavailable: the annual survey established excessive release force and notchy movement, the certificate was withheld and the boat declared unavailable. This is confirmed function loss, not merely a diagnostic precursor; it does not establish that release is physically impossible."
       },
       "impact_of_failure": {
         "score": 8,
-        "rationale": "Loss of this survival craft removes evacuation capacity and can prevent personnel evacuation in an emergency, supporting a severe consequence path. LB-4101 capability and capacity versus POB are unverified: neither adequate remaining capacity nor an installation-wide evacuation shortfall is established, so extreme consequences are not asserted."
+        "rationale": "Loss of this boat's certified launch availability removes evacuation capacity during an emergency, a specific severe personnel-safety consequence path. LB-4101 is only nominal redundancy; its capability and remaining capacity against POB are unresolved. Total evacuation failure or an actual capacity deficit is not established, so extreme impact is unsupported."
       },
       "urgency": {
         "score": 9,
-        "rationale": "triage-policy-v11: ceil(0.7*I+0.3*L), L=10, I=8, base=9, final=9. P-FAILED-TEST (precautionary_policy): Confirmed failed protection-function test; immediate human attention. Sources: finding:F-1012:finding_description, finding:F-1012:inspection_method. P-EVACUATION (precautionary_policy): Craft unavailable; remaining capacity/POB comparison unverified, not proven shortfall. Sources: equipment:LB-4102:engineer_comment, equipment:LB-4102:redundancy, finding:F-1012:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): Protection impaired; deviation status unverified, not confirmed absent. Sources: equipment:LB-4102:engineer_comment, finding:F-1012:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): Remaining certified evacuation capacity versus current POB is unknown; a shortfall would change the required controls. Sources: equipment:LB-4102:engineer_comment, finding:F-1012:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): The registry names LB-4101 as the N+1 partner, but no observation establishes its availability or capability; no redundancy credit is taken. Sources: equipment:LB-4102:redundancy. P-SAFETY-UNKNOWN (precautionary_policy): Recorded-deviation status is unknown despite confirmed loss of this craft's evacuation capability. Sources: finding:F-1012:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): Repair completion and present restored capability are unverified; the June 11 observation cannot establish subsequent restoration or authorize return. Sources: finding:F-1012:finding_description, finding:F-1012:reported_date. P-SAFETY-UNKNOWN (precautionary_policy): Partner LB-4101 has no registry record. Sources: equipment:LB-4102:redundancy. P-SCE-HIGH-IMPACT (precautionary_policy): Registry SCE finding assessed at I=8 requires attention at least this week. Sources: registry SCE flag. R-SCE (review): SCE draft requires integrity-engineer review; SCE status alone adds no floor. Sources: registry SCE flag."
+        "rationale": "triage-policy-v16: ceil(0.7*I+0.3*L), L=9, I=8, base=U9, final=U9. Rules: P-FAILED-TEST[precautionary_policy,U9], P-EVACUATION[precautionary_policy,U9], P-SAFETY-UNKNOWN[precautionary_policy,U7]x4, P-SCE-HIGH-IMPACT[precautionary_policy,U7]."
       },
       "review_required": true,
-      "review_reason": "P-FAILED-TEST (precautionary_policy): Confirmed failed protection-function test; immediate human attention. Sources: finding:F-1012:finding_description, finding:F-1012:inspection_method. P-EVACUATION (precautionary_policy): Craft unavailable; remaining capacity/POB comparison unverified, not proven shortfall. Sources: equipment:LB-4102:engineer_comment, equipment:LB-4102:redundancy, finding:F-1012:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): Protection impaired; deviation status unverified, not confirmed absent. Sources: equipment:LB-4102:engineer_comment, finding:F-1012:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): Remaining certified evacuation capacity versus current POB is unknown; a shortfall would change the required controls. Sources: equipment:LB-4102:engineer_comment, finding:F-1012:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): The registry names LB-4101 as the N+1 partner, but no observation establishes its availability or capability; no redundancy credit is taken. Sources: equipment:LB-4102:redundancy. P-SAFETY-UNKNOWN (precautionary_policy): Recorded-deviation status is unknown despite confirmed loss of this craft's evacuation capability. Sources: finding:F-1012:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): Repair completion and present restored capability are unverified; the June 11 observation cannot establish subsequent restoration or authorize return. Sources: finding:F-1012:finding_description, finding:F-1012:reported_date. P-SAFETY-UNKNOWN (precautionary_policy): Partner LB-4101 has no registry record. Sources: equipment:LB-4102:redundancy. P-SCE-HIGH-IMPACT (precautionary_policy): Registry SCE finding assessed at I=8 requires attention at least this week. Sources: registry SCE flag. R-SCE (review): SCE draft requires integrity-engineer review; SCE status alone adds no floor. Sources: registry SCE flag."
+      "review_reason": "Review: P-EVACUATION: evacuation capacity remains unverified. Why: Craft unavailable; remaining capacity/POB comparison unverified, not proven shortfall.; checks: Compare usable evacuation capacity with POB.; P-SAFETY-UNKNOWN (2): material safety uncertainty; verify the action checks. Why: Whether remaining capacity covers POB changes the immediate evacuation safety disposition and requires resolution before queue entry. Partner LB-4101 has no registry record.; checks: Compare usable evacuation capacity with POB., Verify LB-4101 availability/capability.. Full reasons and citations are in run evidence."
     },
     {
       "ticket_id": "TKT-1013",
       "finding_id": "F-1013",
       "equipment_id": "INST-2150",
-      "summary": "INST-2150's growing 12% divergence from backup and 15% from sight glass threatens separator control and high-level warning; the backup was later reported flatlined, so redundancy cannot be credited.",
-      "recommended_action": "Instrument engineer to diagnose drift and approve operating/repair disposition; recalibrate or repair as indicated. Check deviation/impairment records. Test accuracy/alarm to approved limits. Prove backup response and current alignment. Check process consequences and exposure.",
+      "summary": "INST-2150 on V-1201 feeds control and the high-level alarm but reads ~12% above backup and ~15% above sight glass, worsening over three weeks; the backup later flatlined for ~36 h, leaving reliable coverage unverified and risking incorrect control/alarm response.",
+      "recommended_action": "Reconcile impairment record. Check sensor/taps, backup and sight glass. Ops/I&C: Recalibrate if drift confirmed. Test control/alarm against independent level; independent ref. Witness; close.",
       "likelihood_of_failure": {
         "score": 8,
-        "rationale": "The assessed function is providing reliable interface-level input to control and the high-level alarm. Steadily increasing divergence over about three weeks supports strong progression. Accuracy limits and independent reference validation are absent, so required-function failure remains suspected rather than confirmed."
+        "rationale": "Divergence from two references has increased steadily over three weeks while the channel remains selected for control, supporting strong progression toward the assessed failure. No applicable accuracy criterion or validated reference test establishes confirmed required-function loss."
       },
       "impact_of_failure": {
         "score": 6,
-        "rationale": "Failure compromises separator level control and high-level warning, supporting material operational consequences. INST-2151 was reported flatlined on June 18, after the June 11 duty-transmitter finding, so capable redundancy is not credited. Specific severe exposure or escalation is not established; neither vessel deterioration nor total separator loss is attributed to this transmitter."
+        "rationale": "Nonrepresentative input can produce incorrect separator level control and high-level alarm response, a material operational consequence. The later backup flatline prevents crediting capable duplication without verification; it does not prove shared failure. A specific severe accident consequence is not established."
       },
       "urgency": {
         "score": 7,
-        "rationale": "triage-policy-v11: ceil(0.7*I+0.3*L), L=8, I=6, base=7, final=7. P-SAFETY-UNKNOWN (precautionary_policy): Protection impairment suspected; deviation status unverified, not confirmed absent. Sources: equipment:INST-2150:engineer_comment, finding:F-1013:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): Validated level accuracy, acceptance limits and alarm response are unknown. These determine whether suspected measurement and warning degradation constitutes confirmed required-function loss and whether correction restores capability. Sources: finding:F-1013:finding_description, equipment:INST-2150:engineer_comment. P-SAFETY-UNKNOWN (precautionary_policy): June 11 comparisons precede the June 18 report of approximately 36 hours of backup flatlining. Current repair status and control alignment are unknown. Backup blockage or sensor failure are alternatives for that separate item, not diagnoses of INST-2150. Sources: finding:F-1013:finding_description, finding:F-1013:reported_date, finding:F-1018:finding_description, finding:F-1018:reported_date, equipment:INST-2150:redundancy. P-SAFETY-UNKNOWN (precautionary_policy): Recorded deviation status is unknown. A missing supplied record does not prove that the suspected alarm impairment is unlogged. Sources: equipment:INST-2150:engineer_comment, finding:F-1013:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): The consequences of erroneous interface control, independent safeguards and personnel exposure are unspecified. Material control/alarm consequences support the proposed band, but a severe consequence path is not established. Sources: equipment:INST-2150:engineer_comment, equipment:INST-2150:service_description, finding:F-1013:finding_description."
+        "rationale": "triage-policy-v16: ceil(0.7*I+0.3*L), L=8, I=6, base=U7, final=U7. Rules: P-SAFETY-UNKNOWN[precautionary_policy,U7]x2."
       },
       "review_required": true,
-      "review_reason": "P-SAFETY-UNKNOWN (precautionary_policy): Protection impairment suspected; deviation status unverified, not confirmed absent. Sources: equipment:INST-2150:engineer_comment, finding:F-1013:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): Validated level accuracy, acceptance limits and alarm response are unknown. These determine whether suspected measurement and warning degradation constitutes confirmed required-function loss and whether correction restores capability. Sources: finding:F-1013:finding_description, equipment:INST-2150:engineer_comment. P-SAFETY-UNKNOWN (precautionary_policy): June 11 comparisons precede the June 18 report of approximately 36 hours of backup flatlining. Current repair status and control alignment are unknown. Backup blockage or sensor failure are alternatives for that separate item, not diagnoses of INST-2150. Sources: finding:F-1013:finding_description, finding:F-1013:reported_date, finding:F-1018:finding_description, finding:F-1018:reported_date, equipment:INST-2150:redundancy. P-SAFETY-UNKNOWN (precautionary_policy): Recorded deviation status is unknown. A missing supplied record does not prove that the suspected alarm impairment is unlogged. Sources: equipment:INST-2150:engineer_comment, finding:F-1013:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): The consequences of erroneous interface control, independent safeguards and personnel exposure are unspecified. Material control/alarm consequences support the proposed band, but a severe consequence path is not established. Sources: equipment:INST-2150:engineer_comment, equipment:INST-2150:service_description, finding:F-1013:finding_description."
+      "review_reason": "Review: P-SAFETY-UNKNOWN (2): material safety uncertainty; verify the action checks. Why: Protection impairment suspected; deviation status unverified, not confirmed absent. The duty channel feeds both control and the high-level alarm, while the backup was subsequently reported flatlined for approximately 36 hours. Reliable alternative measurement and protection coverage require verification before deciding the interim control arrangement.; checks: Reconcile impairment/deviation record., Check sensor/taps, backup and sight glass. Full reasons and citations are in run evidence."
     },
     {
       "ticket_id": "TKT-1014",
       "finding_id": "F-1014",
       "equipment_id": "V-1305",
-      "summary": "V-1305's inlet deflector is partly detached, with one of four brackets corroded through; shell and heads are sound. It is out of service and bypassable without production loss, limiting current operational consequences.",
-      "recommended_action": "Plan next-shutdown inspection of all deflector supports; repair the corroded bracket and plate attachment under integrity engineer-approved disposition, with acceptance before return to service. Verify internals meet engineer-approved criteria.",
+      "summary": "V-1305's inlet deflector is partly detached with one of four brackets corroded through, risking loss of inlet-flow deflection during well testing; shell and heads are sound, the separator is out of service, and bypass permits no production impact.",
+      "recommended_action": "Inspect deflector and all four support brackets. Integrity engineer: Repair deflector supports to approved design. Inspect deflector retention and alignment; Conforms to approved design; independent ref. Witness; close.",
       "likelihood_of_failure": {
-        "score": 4,
-        "rationale": "Assessed function is inlet deflection within the test separator, not the individual bracket's support function. Partial detachment is meaningful degradation, but the separator is out of service and need not operate. This supports limited near-term likelihood rather than treating damage as demonstrated loss of inlet-deflection capability."
+        "score": 5,
+        "rationale": "Partial detachment and corrosion through one of four brackets provide a meaningful precursor to loss of inlet-flow deflection, but do not establish that function is already lost. The supplied snapshot records the separator out of service, with no near-term demand established; this moderates likelihood without treating the damage as repaired."
       },
       "impact_of_failure": {
         "score": 3,
-        "rationale": "Loss of inlet deflection would affect the local well-testing function. The separator is not in service, can remain isolated and bypassed without production impact, and has sound shell and heads. These facts support a localized recoverable consequence, not an inferred pressure-boundary failure or total production loss."
+        "rationale": "Loss of inlet-flow deflection could compromise the local well-testing function. The separator can be isolated and bypassed indefinitely without production impact, and its shell and heads were reported in good condition. No path from this internal defect to pressure-boundary failure is established."
       },
       "urgency": {
         "score": 4,
-        "rationale": "triage-policy-v11: ceil(0.7*I+0.3*L), L=4, I=3, base=4, final=4. R-MATERIAL (review): Remaining support capacity, repair completion and acceptable inlet-deflector performance are unverified. The history contains only the inspection observation. These affect repair scope and return-to-service acceptance, not the supported current out-of-service consequence. Sources: finding:F-1014:finding_description, finding:F-1014:reported_date, equipment:V-1305:engineer_comment."
+        "rationale": "triage-policy-v16: ceil(0.7*I+0.3*L), L=5, I=3, base=U4, final=U4."
       },
-      "review_required": true,
-      "review_reason": "R-MATERIAL (review): Remaining support capacity, repair completion and acceptable inlet-deflector performance are unverified. The history contains only the inspection observation. These affect repair scope and return-to-service acceptance, not the supported current out-of-service consequence. Sources: finding:F-1014:finding_description, finding:F-1014:reported_date, equipment:V-1305:engineer_comment."
+      "review_required": false,
+      "review_reason": null
     },
     {
       "ticket_id": "TKT-1015",
       "finding_id": "F-1015",
       "equipment_id": "V-2450",
-      "summary": "V-2450's dirty gauge limits local level checks, but transmitter control appears normal with no carryover indications; loss of scrubber liquid separation could damage the turbines.",
-      "recommended_action": "Safely isolate and clean the gauge glass; inspect if readability remains poor. Refer any level disagreement to the process engineer for disposition.",
+      "summary": "V-2450 fuel gas scrubber gauge glass is dirty and hard to read, limiting local level cross-checks; transmitter control appears normal with no downstream carryover indications, so loss of turbine liquid-carryover protection is not established.",
+      "recommended_action": "Check gauge readability and level response. Operations: Clean level gauge glass. Compare readable gauge level with transmitter; Readable; agrees with transmitter; independent ref. Witness; close.",
       "likelihood_of_failure": {
-        "score": 2,
-        "rationale": "Assessed function: V-2450 removing liquid from turbine fuel gas. Poor gauge readability provides little indication of near-term separation failure: transmitter control appears normal and no downstream carryover indications were observed. No progression or linked case is supplied."
+        "score": 4,
+        "rationale": "Dirt already limits local readability, supporting credible limited degradation in the near term. The observation says hard to read, not unreadable; neither complete indication loss nor strong progression is established."
       },
       "impact_of_failure": {
-        "score": 6,
-        "rationale": "Failure of liquid separation could send a liquid slug into the turbines, supporting material machinery and operational consequences. No redundancy is listed. Severe personnel exposure, major-accident escalation or installation-wide loss is not established; the score is not based on gauge cleaning cost."
+        "score": 3,
+        "rationale": "Loss of the local reading removes a local level cross-check, a localized recoverable operational consequence. Transmitter-based control appears normal and no downstream carryover indications were observed. The evidence does not connect this gauge defect to loss of scrubber separation or turbine damage."
       },
       "urgency": {
-        "score": 5,
-        "rationale": "triage-policy-v11: ceil(0.7*I+0.3*L), L=2, I=6, base=5, final=5."
+        "score": 4,
+        "rationale": "triage-policy-v16: ceil(0.7*I+0.3*L), L=4, I=3, base=U4, final=U4."
       },
       "review_required": false,
       "review_reason": null
@@ -321,127 +321,127 @@
       "ticket_id": "TKT-1016",
       "finding_id": "F-1016",
       "equipment_id": "PSV-3420",
-      "summary": "PSV-3420's illegible tag needs replacement, but certification is in date and the valve appears sound; no current impairment is indicated, although relief failure would remove compressor-discharge overpressure protection.",
-      "recommended_action": "Replace the corroded certification tag with verified details; confirm legibility and retain the two-year pop-test cycle.",
+      "summary": "PSV-3420's corroded certification tag is illegible at the compressor discharge, impairing local traceability; the register confirms March 2025 recertification is in date, and tag damage does not establish loss of overpressure protection.",
+      "recommended_action": "Match valve identity to certificate. Integrity engineer: Replace corroded certification tag. Read tag and compare with certificate; Legible; matches certificate; independent ref. Witness; close.",
       "likelihood_of_failure": {
-        "score": 1,
-        "rationale": "The assessed function is compressor-discharge overpressure relief. The defect concerns only the certification label: certification is in date, the valve looks sound and the engineer reports normal behaviour. Little indicates near-term relief-function loss. The earlier PSV-1310 observation concerns another valve and is not transferred."
+        "score": 10,
+        "rationale": "The assessed local identification function has already failed: the corroded certification tag is explicitly illegible. This does not establish failure of the valve's pressure-relief function."
       },
       "impact_of_failure": {
-        "score": 8,
-        "rationale": "Hypothetical failure would remove compressor-discharge overpressure protection, with no redundant relief device identified. This is a specific severe pressure-protection consequence, not the cost of replacing a label. The evidence does not establish an extreme consequence scale."
+        "score": 3,
+        "rationale": "Loss of local certification identification creates a localized, recoverable traceability problem. The checked register supplies an alternative and confirms March 2025 recertification was in date at the reported snapshot. No physical or operational path from tag corrosion to loss of compressor-discharge overpressure protection is established."
       },
       "urgency": {
-        "score": 7,
-        "rationale": "triage-policy-v11: ceil(0.7*I+0.3*L), L=1, I=8, base=6, final=7. P-SCE-HIGH-IMPACT (precautionary_policy): Registry SCE finding assessed at I=8 requires attention at least this week. Sources: registry SCE flag. R-SCE (review): SCE draft requires integrity-engineer review; SCE status alone adds no floor. Sources: registry SCE flag."
+        "score": 6,
+        "rationale": "triage-policy-v16: ceil(0.7*I+0.3*L), L=10, I=3, base=U6, final=U6."
       },
-      "review_required": true,
-      "review_reason": "P-SCE-HIGH-IMPACT (precautionary_policy): Registry SCE finding assessed at I=8 requires attention at least this week. Sources: registry SCE flag. R-SCE (review): SCE draft requires integrity-engineer review; SCE status alone adds no floor. Sources: registry SCE flag."
+      "review_required": false,
+      "review_reason": null
     },
     {
       "ticket_id": "TKT-1017",
       "finding_id": "F-1017",
       "equipment_id": "FW-8101",
-      "summary": "FW-8101 started first time but delivered 9.2 vs 11 barg design; flow is unknown, raising doubt over firefighting delivery. FW-8102's earlier start failure weakens backup assurance; loss of both requires shutdown.",
-      "recommended_action": "Mechanical/fire-protection engineer: inspect valves/pump, correct per findings and approve disposition; retain weekly testing. Reconcile impairment/deviation record. Verify duty pressure/flow against 11 barg design. Verify FW-8102 start/delivery capability.",
+      "summary": "FW-8101 started first time with normal engine parameters but gave 9.2 vs 11 barg design with flow unmeasured, suggesting wear or test-line restriction and uncertain firewater delivery; FW-8102's earlier delayed start leaves backup unverified against fire escalation.",
+      "recommended_action": "Reconcile impairment record. Check A pump/path; test pressure/flow independently. Verify B start and delivery. Fire protection authority: If confirmed, correct pump or test-line defect. Retest A start, pressure and flow; Demand start; 11 barg at design flow; independent ref. Witness; close.",
       "likelihood_of_failure": {
         "score": 6,
-        "rationale": "The assessed function is FW-8101's required firewater delivery, not starting alone. Stabilised running pressure of 9.2 barg against 11 barg design is a meaningful performance precursor. Successful first-time starting and normal engine parameters are bounding evidence, but unmeasured flow and unspecified acceptance criteria prevent confirmation of required-delivery failure. No progression is established."
+        "rationale": "9.2 barg against 11 barg design is a meaningful delivery-performance precursor supporting the upper active-degradation band. No progression or recurrent interruption of A is established. Missing flow and unresolved test-path validity require suspected impairment, not a confirmed-failure score."
       },
       "impact_of_failure": {
         "score": 8,
-        "rationale": "Failure of required firewater delivery would degrade firefighting protection, providing a specific severe consequence path rather than merely an SCE designation. N+1 redundancy cannot be fully credited: on 3 June FW-8102 failed its first start, started on its second attempt after about eight seconds of cranking, then ran normally and achieved rated discharge pressure. This does not establish present partner unavailability or total firewater loss. Both pumps unavailable would require production shutdown; extreme consequences are not established."
+        "rationale": "Failure of A's required delivery would degrade firewater protection and permit fire escalation. Dependable backup cannot yet be credited: B previously failed its first start, although it subsequently ran normally at rated pressure. This supports a severe protection-loss consequence, not confirmed simultaneous pump unavailability or an extreme consequence."
       },
       "urgency": {
         "score": 8,
-        "rationale": "triage-policy-v11: ceil(0.7*I+0.3*L), L=6, I=8, base=8, final=8. P-SAFETY-UNKNOWN (precautionary_policy): Protection impairment suspected; deviation status unverified, not confirmed absent. Sources: equipment:FW-8101:engineer_comment, equipment:FW-8101:service_description, finding:F-1017:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): Required delivery capability and restoration remain unresolved because flow and acceptance criteria are absent. Internal pump wear and a partly closed test-line valve remain alternative suspected causes; neither is confirmed. This prevents classifying the observation as confirmed protective-function loss. Sources: finding:F-1017:finding_description, equipment:FW-8101:engineer_comment. P-SAFETY-UNKNOWN (precautionary_policy): FW-8102's 3 June failed first start preceded its successful second attempt after about eight seconds of cranking. Its batteries measured 22.8 V at rest; once started it ran normally and achieved rated discharge pressure. Repair and present starting/delivery capability are unknown, so neither healthy backup nor current total loss is assumed. Sources: finding:F-1003:finding_description, finding:F-1003:reported_date, equipment:FW-8101:redundancy, finding:F-1017:reported_date. P-SAFETY-UNKNOWN (precautionary_policy): Recorded-deviation status is unknown. Reconciliation is needed to determine whether suspected firewater impairment is formally controlled; missing records do not prove an unlogged impairment. Sources: finding:F-1017:finding_description, equipment:FW-8101:engineer_comment. P-SCE-HIGH-IMPACT (precautionary_policy): Registry SCE finding assessed at I=8 requires attention at least this week. Sources: registry SCE flag. R-SCE (review): SCE draft requires integrity-engineer review; SCE status alone adds no floor. Sources: registry SCE flag."
+        "rationale": "triage-policy-v16: ceil(0.7*I+0.3*L), L=6, I=8, base=U8, final=U8. Rules: P-SAFETY-UNKNOWN[precautionary_policy,U7]x3, P-SCE-HIGH-IMPACT[precautionary_policy,U7]."
       },
       "review_required": true,
-      "review_reason": "P-SAFETY-UNKNOWN (precautionary_policy): Protection impairment suspected; deviation status unverified, not confirmed absent. Sources: equipment:FW-8101:engineer_comment, equipment:FW-8101:service_description, finding:F-1017:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): Required delivery capability and restoration remain unresolved because flow and acceptance criteria are absent. Internal pump wear and a partly closed test-line valve remain alternative suspected causes; neither is confirmed. This prevents classifying the observation as confirmed protective-function loss. Sources: finding:F-1017:finding_description, equipment:FW-8101:engineer_comment. P-SAFETY-UNKNOWN (precautionary_policy): FW-8102's 3 June failed first start preceded its successful second attempt after about eight seconds of cranking. Its batteries measured 22.8 V at rest; once started it ran normally and achieved rated discharge pressure. Repair and present starting/delivery capability are unknown, so neither healthy backup nor current total loss is assumed. Sources: finding:F-1003:finding_description, finding:F-1003:reported_date, equipment:FW-8101:redundancy, finding:F-1017:reported_date. P-SAFETY-UNKNOWN (precautionary_policy): Recorded-deviation status is unknown. Reconciliation is needed to determine whether suspected firewater impairment is formally controlled; missing records do not prove an unlogged impairment. Sources: finding:F-1017:finding_description, equipment:FW-8101:engineer_comment. P-SCE-HIGH-IMPACT (precautionary_policy): Registry SCE finding assessed at I=8 requires attention at least this week. Sources: registry SCE flag. R-SCE (review): SCE draft requires integrity-engineer review; SCE status alone adds no floor. Sources: registry SCE flag."
+      "review_reason": "Review: P-SAFETY-UNKNOWN (2): material safety uncertainty; verify the action checks. Why: Protection impairment suspected; deviation status unverified, not confirmed absent. Whether A can deliver its required firewater duty changes the immediate protection disposition; pressure alone under an unresolved test configuration cannot settle that decision.; checks: Reconcile impairment/deviation record., Check A pump/path; test pressure/flow independently. Full reasons and citations are in run evidence."
     },
     {
       "ticket_id": "TKT-1018",
       "finding_id": "F-1018",
       "equipment_id": "INST-2151",
-      "summary": "INST-2151's approximately 36-hour flatline defeats credible backup level indication on V-1201; duty INST-2150 was already drifting while feeding control/high-level alarm, so healthy redundancy cannot be credited.",
-      "recommended_action": "Instrument engineer: inspect line/sensor; clear blockage or replace sensor if confirmed; set operating disposition. Check impairment/deviation records. Prove calibrated live response. Verify duty leg and control/alarm accuracy. Verify protection role and exposure.",
+      "summary": "INST-2151 on V-1201 has flatlined for about 36 hours, losing responsive backup level measurement; with earlier duty-channel drift unresolved, dependable level-control and alarm support cannot be assumed.",
+      "recommended_action": "Check duty level and alarm against sight glass. Check impulse line, sensor and signal path. Instrument engineer: If confirmed, repair level-signal path fault. Test backup response against independent level; Responsive, credible level agreement; independent ref. Witness; close.",
       "likelihood_of_failure": {
-        "score": 10,
-        "rationale": "The required function is credible, responsive backup interface-level measurement. The June 18 observation establishes loss of that function for approximately 36 hours, irrespective of whether the cause is impulse-line blockage or sensor failure. Subsequent restoration is unverified."
+        "score": 9,
+        "rationale": "The reported 36-hour flat line is explicitly not credible for this service: the required responsive backup measurement function has already failed. The suspected mechanism remains unresolved; duplication does not lower this channel's likelihood. Related-finding context cited by typed facts: [protection_impaired=unknown] Fact reason: Backup measurement failure is established, but its assigned protection role is not. Earlier duty-channel divergence matters because that separate channel feeds control and the high-level alarm; its present capability is unresolved. Related quote (F-1013 finding_description): \"Interface level transmitter is reading approximately 12 percent higher than the backup transmitter and around 15 percent higher than the sight glass. Divergence has been growing steadily over about three weeks. Control is currently on this transmitter.\""
       },
       "impact_of_failure": {
         "score": 6,
-        "rationale": "Loss of backup measurement is materially consequential because the explicitly duplicated duty transmitter was reported on June 11 to be increasingly divergent while controlling the process, and its registry service includes the high-level alarm. Healthy redundancy cannot be credited without verification. This supports material control/alarm reliability consequences, but not a specific severe-injury or major-accident scenario."
+        "rationale": "Loss of responsive backup level measurement removes the intended second measurement leg on V-1201. The duty channel previously showed growing divergence while controlling level, so capable redundancy cannot be credited without verification. This supports a material operational consequence, not a demonstrated severe release or total separator failure."
       },
       "urgency": {
-        "score": 8,
-        "rationale": "triage-policy-v11: ceil(0.7*I+0.3*L), L=10, I=6, base=8, final=8. P-SAFETY-UNKNOWN (precautionary_policy): Protection impairment suspected; deviation status unverified, not confirmed absent. Sources: equipment:INST-2150:engineer_comment, equipment:INST-2151:engineer_comment, equipment:INST-2151:redundancy, finding:F-1013:finding_description, finding:F-1018:finding_description. R-MATERIAL (review): Blocked impulse line and failed sensor remain alternative suspected causes. Repair completion and present responsive measurement are unknown; diagnose before selecting correction and demonstrate calibration and live response afterward. Sources: finding:F-1018:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): Duty-leg divergence was reported June 11, before the backup flatline reported June 18. Neither later repair nor current control/alarm accuracy is established, so the partner cannot be credited as healthy. Sources: finding:F-1013:finding_description, finding:F-1013:reported_date, finding:F-1018:finding_description, finding:F-1018:reported_date, equipment:INST-2150:engineer_comment, equipment:INST-2151:redundancy. P-SAFETY-UNKNOWN (precautionary_policy): The backup's protective allocation, remaining alarm capability and associated personnel exposure are unknown. These affect operating disposition and could change impact; the documented near miss alone does not establish a severe consequence scenario. Sources: equipment:INST-2151:engineer_comment, equipment:INST-2151:service_description, equipment:INST-2150:engineer_comment. P-SAFETY-UNKNOWN (precautionary_policy): Recorded-deviation status is unknown while protective impairment is suspected; verify records rather than infer either compliance or an unlogged impairment. Sources: finding:F-1018:finding_description, equipment:INST-2150:engineer_comment, equipment:INST-2151:engineer_comment."
+        "score": 7,
+        "rationale": "triage-policy-v16: ceil(0.7*I+0.3*L), L=9, I=6, base=U7, final=U7. Rules: P-SAFETY-UNKNOWN[precautionary_policy,U7]."
       },
-      "review_required": true,
-      "review_reason": "P-SAFETY-UNKNOWN (precautionary_policy): Protection impairment suspected; deviation status unverified, not confirmed absent. Sources: equipment:INST-2150:engineer_comment, equipment:INST-2151:engineer_comment, equipment:INST-2151:redundancy, finding:F-1013:finding_description, finding:F-1018:finding_description. R-MATERIAL (review): Blocked impulse line and failed sensor remain alternative suspected causes. Repair completion and present responsive measurement are unknown; diagnose before selecting correction and demonstrate calibration and live response afterward. Sources: finding:F-1018:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): Duty-leg divergence was reported June 11, before the backup flatline reported June 18. Neither later repair nor current control/alarm accuracy is established, so the partner cannot be credited as healthy. Sources: finding:F-1013:finding_description, finding:F-1013:reported_date, finding:F-1018:finding_description, finding:F-1018:reported_date, equipment:INST-2150:engineer_comment, equipment:INST-2151:redundancy. P-SAFETY-UNKNOWN (precautionary_policy): The backup's protective allocation, remaining alarm capability and associated personnel exposure are unknown. These affect operating disposition and could change impact; the documented near miss alone does not establish a severe consequence scenario. Sources: equipment:INST-2151:engineer_comment, equipment:INST-2151:service_description, equipment:INST-2150:engineer_comment. P-SAFETY-UNKNOWN (precautionary_policy): Recorded-deviation status is unknown while protective impairment is suspected; verify records rather than infer either compliance or an unlogged impairment. Sources: finding:F-1018:finding_description, equipment:INST-2150:engineer_comment, equipment:INST-2151:engineer_comment."
+      "review_required": false,
+      "review_reason": null
     },
     {
       "ticket_id": "TKT-1019",
       "finding_id": "F-1019",
       "equipment_id": "K-3401",
-      "summary": "Loose, wind-flapping cladding on K-3401\u2019s second-stage discharge line threatens to become a dropped object and injure personnel, although no process concern is reported.",
-      "recommended_action": "Inspect cladding and adjacent fixings; obtain mechanical engineering repair disposition, resecure or replace loose lagging/cladding, and verify retention against engineering acceptance criteria. Check cladding mass, height and exposure.",
+      "summary": "Loose lagging and wind-flapping cladding on K-3401's second-stage discharge line threaten cladding retention and could fall and strike personnel, with no process concern reported.",
+      "recommended_action": "Inspect fixings, loose scope and drop exposure. Maintenance lead: Secure loose lagging and cladding. Inspect lagging and cladding retention; Secure; no loose sections.",
       "likelihood_of_failure": {
-        "score": 6,
-        "rationale": "Assessed function is retention of the second-stage discharge-line lagging and cladding, not gas compression. Loose lagging and wind-driven cladding movement are active precursors to detachment, but its timing is unknown. The earlier bearing-vibration observation is a separate mechanism and does not establish cladding progression."
+        "score": 8,
+        "rationale": "Loose lagging and cladding already flapping in wind constitute advanced attachment degradation supporting near-term detachment. Actual falling is not reported; compressor reliability and the earlier vibration finding do not determine this local event."
       },
       "impact_of_failure": {
         "score": 5,
-        "rationale": "Cladding detachment creates a credible dropped-object personnel-injury path despite the explicit absence of process concern. This supports a material personnel consequence, but mass, fall height and occupancy do not establish a severe consequence band. Compressor-trip production consequences are not attributed to this local defect."
+        "rationale": "Falling cladding supports a personnel-strike consequence beyond housekeeping. Severe exposure or scale is not established, and the finding explicitly identifies no process concern; compressor trip and production loss are not supported consequences of this event."
       },
       "urgency": {
-        "score": 7,
-        "rationale": "triage-policy-v11: ceil(0.7*I+0.3*L), L=6, I=5, base=6, final=7. P-SAFETY-UNKNOWN (precautionary_policy): Cladding mass, fall height and personnel exposure below the discharge line are unknown. These could change injury severity and work controls; absence of process concern does not resolve personnel risk. Sources: finding:F-1019:finding_description, equipment:K-3401:service_description."
+        "score": 6,
+        "rationale": "triage-policy-v16: ceil(0.7*I+0.3*L), L=8, I=5, base=U6, final=U6."
       },
-      "review_required": true,
-      "review_reason": "P-SAFETY-UNKNOWN (precautionary_policy): Cladding mass, fall height and personnel exposure below the discharge line are unknown. These could change injury severity and work controls; absence of process concern does not resolve personnel risk. Sources: finding:F-1019:finding_description, equipment:K-3401:service_description."
+      "review_required": false,
+      "review_reason": null
     },
     {
       "ticket_id": "TKT-1020",
       "finding_id": "F-1020",
       "equipment_id": "DEL-8300",
-      "summary": "DEL-8300's unlogged closed north-branch valve defeated deluge over two producing wellheads for an unknown duration; it was reopened, but restored fire protection remains unverified.",
-      "recommended_action": "Fire-protection engineer: inspect branch, correct defects and restore valve tagging. Verify current protection control alignment. Reconcile impairment/deviation record. Witness function test; close impairment only after pass. Review isolation history and fire exposure.",
+      "summary": "DEL-8300 north-quadrant valve was chained shut, untagged and unlogged for an unknown duration, disabling wellhead deluge and risking fire escalation; it was reopened immediately, but restored delivery is unverified.",
+      "recommended_action": "Verify control alignment. Reconcile impairment record. Check post-reopening quadrant delivery. Fire safety lead: Secure and tag approved valve alignment. Test branch flow and nozzle coverage; Approved deluge performance standard; independent ref. Witness; close.",
       "likelihood_of_failure": {
         "score": 9,
-        "rationale": "The assessed function is delivery of deluge through the north-quadrant branch. The chained-closed isolation valve demonstrably defeated that function. Immediate reopening is confirmed, but does not establish restored delivery capability; the score reflects the observed failure, not an assertion that the valve remains closed."
+        "rationale": "The chained-closed branch valve establishes an observed temporary inability to deliver water on demand. Immediate reopening does not erase that failure or demonstrate restored delivery; the duration remains unknown."
       },
       "impact_of_failure": {
         "score": 8,
-        "rationale": "Loss of north-quadrant deluge removes fire-protection coverage above two producing wellheads, providing a specific fire-escalation consequence path. No redundant arrangement is listed. Reopening limits the observed isolation state, but does not reduce the consequence if delivery fails. Extreme consequence scale is not established."
+        "rationale": "Loss of north-quadrant deluge delivery removes local fire protection over producing wellheads, providing a specific fire-escalation path without credited redundancy. The earlier report locates the protected exposure but does not establish the closure's cause or present nozzle condition. Extreme installation-wide consequences are not established."
       },
       "urgency": {
         "score": 9,
-        "rationale": "triage-policy-v11: ceil(0.7*I+0.3*L), L=9, I=8, base=9, final=9. O-PROTECTION (confirmed_override): Confirmed protection impairment without recorded deviation. Sources: finding:F-1020:finding_description. P-FAILED-TEST (precautionary_policy): Confirmed failed protection-function test; immediate human attention. Sources: finding:F-1011:finding_description, finding:F-1011:inspection_method, finding:F-1011:reported_date, finding:F-1020:finding_description, finding:F-1020:reported_date. P-RESTORATION (precautionary_policy): Unlogged impairment discovered; restored protection not verified. Sources: finding:F-1011:finding_description, finding:F-1020:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): Current north-quadrant delivery is unverified. The June 10 test found approximately 12 of 60 nozzles deficient; its correction is undocumented, and no causal link to the later closed valve is established. Verify coverage against the approved performance requirements before accepting restoration. Sources: finding:F-1011:finding_description, finding:F-1020:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): The isolation duration and reason for chaining are unknown. Establish the period of lost protection, operating and personnel exposure during it, and any experienced interruption consequences; these affect retrospective controls and recurrence prevention. Sources: finding:F-1020:finding_description, finding:F-1011:finding_description. P-SCE-HIGH-IMPACT (precautionary_policy): Registry SCE finding assessed at I=8 requires attention at least this week. Sources: registry SCE flag. R-SCE (review): SCE draft requires integrity-engineer review; SCE status alone adds no floor. Sources: registry SCE flag."
+        "rationale": "triage-policy-v16: ceil(0.7*I+0.3*L), L=9, I=8, base=U9, final=U9. Rules: O-PROTECTION[confirmed_override,U9], P-RESTORATION[precautionary_policy,U9], P-SAFETY-UNKNOWN[precautionary_policy,U7], P-SCE-HIGH-IMPACT[precautionary_policy,U7]. Basis: Confirmed protection impairment without recorded deviation."
       },
       "review_required": true,
-      "review_reason": "O-PROTECTION (confirmed_override): Confirmed protection impairment without recorded deviation. Sources: finding:F-1020:finding_description. P-FAILED-TEST (precautionary_policy): Confirmed failed protection-function test; immediate human attention. Sources: finding:F-1011:finding_description, finding:F-1011:inspection_method, finding:F-1011:reported_date, finding:F-1020:finding_description, finding:F-1020:reported_date. P-RESTORATION (precautionary_policy): Unlogged impairment discovered; restored protection not verified. Sources: finding:F-1011:finding_description, finding:F-1020:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): Current north-quadrant delivery is unverified. The June 10 test found approximately 12 of 60 nozzles deficient; its correction is undocumented, and no causal link to the later closed valve is established. Verify coverage against the approved performance requirements before accepting restoration. Sources: finding:F-1011:finding_description, finding:F-1020:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): The isolation duration and reason for chaining are unknown. Establish the period of lost protection, operating and personnel exposure during it, and any experienced interruption consequences; these affect retrospective controls and recurrence prevention. Sources: finding:F-1020:finding_description, finding:F-1011:finding_description. P-SCE-HIGH-IMPACT (precautionary_policy): Registry SCE finding assessed at I=8 requires attention at least this week. Sources: registry SCE flag. R-SCE (review): SCE draft requires integrity-engineer review; SCE status alone adds no floor. Sources: registry SCE flag."
+      "review_reason": "Review: P-RESTORATION: restoration remains unverified. Why: Unlogged impairment discovered; restored protection not verified.; checks: Check post-reopening quadrant delivery; P-SAFETY-UNKNOWN: material safety uncertainty; verify the action checks. Why: Whether reopening restored north-quadrant delivery changes the immediate protection disposition and required interim controls.; checks: Check post-reopening quadrant delivery. Full reasons and citations are in run evidence."
     },
     {
       "ticket_id": "TKT-1021",
       "finding_id": "F-1021",
       "equipment_id": "V-1201",
-      "summary": "Damp insulation and rust staining at V-1201's manway suggest hidden corrosion of the first-stage pressure boundary; containment loss could release production fluids, but remaining wall thickness is unknown.",
-      "recommended_action": "Integrity engineer to set operating/repair disposition; correct defects and reseal as indicated; verify containment to approved criteria. Reconcile impairment/deviation record. Expose/UT-map shell; verify allowable wall. Check release inventory and personnel exposure.",
+      "summary": "Damp insulation and rust beneath cladding around V-1201's manway suggest concealed corrosion threatening first-stage pressure containment and a possible process release, but metal condition and remaining thickness are unverified.",
+      "recommended_action": "Expose manway shell/pipework; UT and trace ingress. Integrity engineer: Repair as found; renew dry insulation and seals. Inspect repairs and insulation weather seal; Integrity-approved acceptance criteria.",
       "likelihood_of_failure": {
         "score": 5,
-        "rationale": "Wet insulation and rust staining are meaningful precursors to concealed corrosion, supporting the active-degradation/precursor band. Wall loss, progression and remaining margin are unmeasured; the historically thick-walled vessel does not establish current margin. Earlier linked piping, transmitter and PSV findings do not establish vessel-shell failure."
+        "rationale": "Damp insulation and rust emerging beneath the cladding support a meaningful corrosion precursor, but concealed metal has not been inspected or measured. Near-term containment loss is uncertain; the thick-walled, historically reliable vessel does not support imminent failure."
       },
       "impact_of_failure": {
         "score": 8,
-        "rationale": "Failure of the entire first-stage production pressure boundary provides a specific severe release and operational-loss path, with no redundant vessel identified. This supports the severe band, not an extreme-consequence claim. Release inventory and personnel exposure remain unverified; the score is not based on insulation repair cost or the SCE designation alone."
+        "rationale": "Failure of this pressure boundary would release first-stage production fluids and interrupt a nonredundant separation stage, supporting a severe containment consequence. The supplied scenario does not establish extreme release scale or consequences."
       },
       "urgency": {
         "score": 8,
-        "rationale": "triage-policy-v11: ceil(0.7*I+0.3*L), L=5, I=8, base=8, final=8. P-SAFETY-UNKNOWN (precautionary_policy): Protection impairment suspected; deviation status unverified, not confirmed absent. Sources: equipment:V-1201:engineer_comment, finding:F-1021:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): Corrosion location, extent, remaining thickness and allowable wall are unknown beneath the manway-area insulation. These determine actual containment impairment and engineering disposition; no subsequent restoration is documented. Sources: finding:F-1021:finding_description, equipment:V-1201:engineer_comment. P-SAFETY-UNKNOWN (precautionary_policy): Recorded-deviation status is unknown while containment impairment is suspected, preventing confirmation that controls and records address the potential barrier degradation. Sources: finding:F-1021:finding_description, equipment:V-1201:engineer_comment. P-SAFETY-UNKNOWN (precautionary_policy): First-stage pressure containment establishes a severe release path, but inventory, release conditions and nearby personnel exposure are not supplied. These could change consequence magnitude; extreme consequences are not assumed. Sources: equipment:V-1201:engineer_comment, equipment:V-1201:service_description, finding:F-1021:finding_description. P-SCE-HIGH-IMPACT (precautionary_policy): Registry SCE finding assessed at I=8 requires attention at least this week. Sources: registry SCE flag. R-SCE (review): SCE draft requires integrity-engineer review; SCE status alone adds no floor. Sources: registry SCE flag."
+        "rationale": "triage-policy-v16: ceil(0.7*I+0.3*L), L=5, I=8, base=U8, final=U8. Rules: P-SCE-HIGH-IMPACT[precautionary_policy,U7]."
       },
-      "review_required": true,
-      "review_reason": "P-SAFETY-UNKNOWN (precautionary_policy): Protection impairment suspected; deviation status unverified, not confirmed absent. Sources: equipment:V-1201:engineer_comment, finding:F-1021:finding_description. P-SAFETY-UNKNOWN (precautionary_policy): Corrosion location, extent, remaining thickness and allowable wall are unknown beneath the manway-area insulation. These determine actual containment impairment and engineering disposition; no subsequent restoration is documented. Sources: finding:F-1021:finding_description, equipment:V-1201:engineer_comment. P-SAFETY-UNKNOWN (precautionary_policy): Recorded-deviation status is unknown while containment impairment is suspected, preventing confirmation that controls and records address the potential barrier degradation. Sources: finding:F-1021:finding_description, equipment:V-1201:engineer_comment. P-SAFETY-UNKNOWN (precautionary_policy): First-stage pressure containment establishes a severe release path, but inventory, release conditions and nearby personnel exposure are not supplied. These could change consequence magnitude; extreme consequences are not assumed. Sources: equipment:V-1201:engineer_comment, equipment:V-1201:service_description, finding:F-1021:finding_description. P-SCE-HIGH-IMPACT (precautionary_policy): Registry SCE finding assessed at I=8 requires attention at least this week. Sources: registry SCE flag. R-SCE (review): SCE draft requires integrity-engineer review; SCE status alone adds no floor. Sources: registry SCE flag."
+      "review_required": false,
+      "review_reason": null
     }
   ]
 }

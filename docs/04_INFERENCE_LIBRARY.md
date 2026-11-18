@@ -55,6 +55,7 @@ is operationally correct.
 | Provider SDKs permitted; orchestration frameworks prohibited | Thin adapters call inference endpoints; workflow and policy remain repository-owned |
 | Malformed and structurally invalid output handled explicitly | Provider response is parsed and locally revalidated; error class remains visible |
 | One reproducible command and low cost | Route/model/settings and exposed usage are captured; unknown retries or price remain unknown |
+| Reproducible model instructions | The workflow supplies a versioned, hash-pinned packaged prompt artifact; the adapter records the transmitted system hash |
 | Human deferral | Refusal, timeout or exhausted output budget returns failure; the adapter does not invent a fallback ticket |
 
 The strict interpretation of observable attempts is a candidate-owned policy,

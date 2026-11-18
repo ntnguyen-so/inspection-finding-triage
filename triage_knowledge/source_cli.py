@@ -111,7 +111,8 @@ def main(argv: list[str] | None = None) -> int:
             candidate, digest = store.load_draft() if store.draft_path.exists() else (None, None)
             result = {
                 "contract": "source-knowledge-storage-v1", "schema_version": 3,
-                "store": str(store.root), "draft": str(store.draft_path),
+                "store": str(store.root),
+                "working_candidate": str(store.working_candidate_path),
                 "candidate_digest": digest,
                 "review_counts": {
                     state: sum(item["review_state"] == state for item in candidate["items"].values())
@@ -119,11 +120,11 @@ def main(argv: list[str] | None = None) -> int:
                 },
                 "releases": store.list_releases(), "workflow_pin": None,
                 "deployment_status": "unknown_requires_explicit_workflow_pin",
-                "legacy_draft_used": False,
+                "legacy_draft_used": store.legacy_draft_used,
             }
         elif args.command == "check":
             candidate, digest = store.load_draft()
-            result = {"status": "valid_draft", "candidate_digest": digest,
+            result = {"status": "valid_working_candidate", "candidate_digest": digest,
                       "candidate": candidate, "approved": False}
         elif args.command == "strategy":
             result = strategy_binding()

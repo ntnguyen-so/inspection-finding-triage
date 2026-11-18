@@ -1,0 +1,68 @@
+{
+  "artifact_type": "primary_semantic_reviewer_observation",
+  "completed_at": "2026-11-18T02:25:07.3219230+07:00",
+  "ticket_file": "eval\\results\\triage\\structured-planning-v29\\final\\tickets.experimental.json",
+  "ticket_sha256": "76805189a7c7ca96af8ddc6f78d56927c497befabf73878fa97a8a8a6e1a2dd3",
+  "review_file": "eval\\results\\triage\\structured-planning-v29\\final\\primary-reviews.json",
+  "review_sha256": "636dd8cd4c125c1eb9e7911d0a30f42bc46467ef88058a0318ca09a20804eedc",
+  "reference_version": "1.3",
+  "partition": "all",
+  "reviewer_identity": {
+    "kind": "ai_only",
+    "provider": "GitHub Copilot CLI agent",
+    "model": "unknown_not_exposed",
+    "reasoning_effort": "unknown_not_exposed",
+    "prompt_identity": "unknown_not_exposed",
+    "prompt_sha256": "unknown_not_exposed",
+    "role": "primary_semantic_reviewer",
+    "independent_of_generation": true,
+    "domain_expert_claimed": false
+  },
+  "commands": [
+    {
+      "command": "python -B -m eval.assess --partition development --calibration-reviews eval\\results\\triage\\structured-planning-v29\\final\\primary-calibration-reviews.json",
+      "exit_code": 0,
+      "outcome": "pass"
+    },
+    {
+      "command": "python -B -m eval.assess --partition all --tickets eval\\results\\triage\\structured-planning-v29\\final\\tickets.experimental.json --reviews eval\\results\\triage\\structured-planning-v29\\final\\primary-reviews.json",
+      "exit_code": 1,
+      "outcome": "fail"
+    }
+  ],
+  "calibration": {
+    "status": "pass",
+    "fixture_count": 2,
+    "correct_fixture_judgments": 2,
+    "wrong_fixture_judgments": 0,
+    "needs_review_count": 0
+  },
+  "assessment": {
+    "contract_status": "pass",
+    "semantic_status": "fail",
+    "overall_status": "fail",
+    "passed_dimensions": 61,
+    "applicable_dimensions": 63,
+    "failed_count": 2,
+    "needs_review_count": 0,
+    "failed": [
+      {
+        "finding_id": "F-1011",
+        "dimension": "grounding"
+      },
+      {
+        "finding_id": "F-1011",
+        "dimension": "uncertainty"
+      }
+    ],
+    "pending": [],
+    "first_complete_result_preserved": true
+  },
+  "limitations": [
+    "This is a provisional AI-only assessment, not domain certification, human approval or full A-D system acceptance.",
+    "The provider model, reasoning setting, prompt identity and prompt hash were not exposed to this reviewer session and are recorded as unknown_not_exposed.",
+    "Calibration establishes conformance only on the two disclosed contradiction fixtures.",
+    "The assessor validates review structure and artifact-bound quotations; it does not independently prove engineering truth.",
+    "The semantic failures concern F-1011's omission of the later branch-valve chronology and the associated unknown closure duration and causal relation; no review rerun was performed."
+  ]
+}

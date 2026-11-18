@@ -1,0 +1,21 @@
+{
+  "contract": "triage-publication-receipt-v1",
+  "published_at": "2026-11-17T20:06:10.238622+00:00",
+  "publication_method": "same-directory-temporary-file_then_os_replace",
+  "output_path": "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\structured-planning-v31\\development-2\\tickets.experimental.json",
+  "output_sha256": "bb511b01dc860852e394842bccefac6a54656b237092c03d5daaf4de54c6e7a8",
+  "output_bytes": 23488,
+  "tickets_generated": 13,
+  "previous_output_sha256": null,
+  "run_config_sha256": "f6bc76e11031b4e32681955cccd82c1f8ad58c871a87701293e16461d433bc94",
+  "context_hash": "ad9196b059f0deab08cb28d6daa8eaa6735331fb19cb7ba413303c69b14f6477",
+  "assessment_prompt": {
+    "version": "assessment-system-v7",
+    "sha256": "f275552a9a7cc12fc091b3d7ced214f5e3ef82ac6c31e692a4fcf599c0c66fd8",
+    "assessment_contract": "native-assessment-v4",
+    "schema_contract": "triage-assessment-schema-v3",
+    "context_contract_version": 3
+  },
+  "policy_version": "triage-policy-v16",
+  "verified_after_replace": true
+}

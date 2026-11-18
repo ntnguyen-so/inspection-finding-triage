@@ -68,6 +68,10 @@ class SourceCliTests(unittest.TestCase):
         status, out, error = self.invoke("status")
         self.assertEqual((status, error), (0, ""))
         record = json.loads(out)
+        self.assertEqual(
+            record["working_candidate"],
+            str(self.store_path / "working-candidate.json"),
+        )
         self.assertEqual(record["releases"][0]["knowledge_version"], release)
         self.assertEqual(record["review_counts"]["reviewed"], 1)
         self.assertFalse(record["legacy_draft_used"])
@@ -77,6 +81,24 @@ class SourceCliTests(unittest.TestCase):
         status, out, error = self.invoke("status")
         self.assertEqual((status, out), (1, ""))
         self.assertIn("error_class", json.loads(error))
+
+    def test_legacy_draft_is_read_then_migrated_on_next_write(self):
+        source = self.root / "source.txt"
+        source.write_bytes(b"# Existing source\n\nRetain source bytes.\n")
+        self.invoke("import-source", "--source", str(source), "--name", "Existing source")
+        store = SourceKnowledgeStore(self.store_path)
+        store.working_candidate_path.replace(store.legacy_draft_path)
+
+        status, out, error = self.invoke("status")
+        self.assertEqual((status, error), (0, ""))
+        self.assertTrue(json.loads(out)["legacy_draft_used"])
+
+        candidate, digest = store.load_draft()
+        item = next(iter(candidate["items"]))
+        store.review_item(item, reviewer="Software fixture",
+                          reason="Migrate legacy candidate", expected_digest=digest)
+        self.assertTrue(store.working_candidate_path.exists())
+        self.assertFalse(store.legacy_draft_path.exists())
 
 
 if __name__ == "__main__":

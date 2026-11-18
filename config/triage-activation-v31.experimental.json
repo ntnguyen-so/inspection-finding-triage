@@ -1,0 +1,43 @@
+{
+  "contract": "triage-activation-v2",
+  "knowledge_version": "sha256-b215857575e443ba5fd9cb56a19f3079003cd68acb03fdf0e33ca7fbed59e097",
+  "strategy": {
+    "strategy": "source-selector-v1",
+    "implementation_sha256": "a3af5f16e58e4ecb30ccb6e9e2adddd0e6e5699a23731c44ad3cbd1680d435da",
+    "implementation_files": {
+      "retrieval.py": "5c77502ca74a4c3b485d1ba3bab2ad22c79ab3b01a5a1ee9bd6f12dea080ec91",
+      "source_store.py": "230d947b9ffe0e1a7d6ab9b2c02c15c131f33750a52464355f11de3a0fdb8187",
+      "source.py": "d2cb494ff1088d2e262f2c924467cd126c41921ab6e8191cf0cc86c2a4033e79",
+      "contracts.py": "ab812eb5124d6fdae77d208519e2511526857214cbff57fcfc80341bc5354c74"
+    },
+    "parameters": {
+      "closure": "bidirectional",
+      "general": "always",
+      "lexical": "disabled",
+      "ordering": "address-ascending",
+      "overflow": "failure-only",
+      "scope": "casefold-exact",
+      "source_context": "c0-heading-source-context-v2",
+      "type_scope": "registry-type-vocabulary",
+      "unknown": "all-active",
+      "version": "source-selector-v1"
+    },
+    "parameters_sha256": "758b205aefbcec9954e67293eff9d1614c4d8a21904b5ae374ed8965232b9875"
+  },
+  "retrieval_index_sha256": "420e4db9257f64d416030a1726acc7496511213b3a777e0c74f51bcfc2a39092",
+  "assessment_policy_sha256": "0474934be96ecc2ddfeaae0bed84810dfa762f713b74291a9e7cf1919799e34e",
+  "execution_policy_sha256": "648aac457922bfa7e3d525eb81d13f5773213061927d82bdf043f71458cbcb20",
+  "assessment_prompt": {
+    "version": "assessment-system-v7",
+    "sha256": "f275552a9a7cc12fc091b3d7ced214f5e3ef82ac6c31e692a4fcf599c0c66fd8",
+    "assessment_contract": "native-assessment-v4",
+    "schema_contract": "triage-assessment-schema-v3",
+    "context_contract_version": 3
+  },
+  "review": {
+    "reviewer": "Owner-authorized deterministic provenance remediation",
+    "reason": "V31 retains prompt v7 and policy v29, rejects unstable prompt v30, and changes only ticket projection to expose at most two source-labelled related-finding fact notes already selected by the model.",
+    "reviewed_at": "2026-11-18T05:30:00+07:00",
+    "source_policy_compatible": true
+  }
+}

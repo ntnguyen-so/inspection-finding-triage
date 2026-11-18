@@ -139,6 +139,8 @@ def main() -> None:
             with st.form("source_edit_" + selected + digest):
                 revised = st.text_area("Revised source text", item["text"], height=200)
                 reason = st.text_input("Edit reason")
+                st.caption("Saving re-extracts scope, aliases and source evidence from this text. "
+                           "Structural multi-item changes must be imported as a new source.")
                 if st.form_submit_button("Preview source edit diff"):
                     difference = "".join(unified_diff(
                         item["text"].splitlines(keepends=True), revised.splitlines(keepends=True),

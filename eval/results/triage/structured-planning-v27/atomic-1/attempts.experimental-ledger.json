@@ -1,0 +1,28 @@
+{
+  "budget": 42,
+  "reservations": [
+    "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\structured-planning-v27\\atomic-1\\evidence:F-1001:1",
+    "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\structured-planning-v27\\atomic-1\\evidence:F-1002:1",
+    "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\structured-planning-v27\\atomic-1\\evidence:F-1003:1",
+    "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\structured-planning-v27\\atomic-1\\evidence:F-1004:1",
+    "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\structured-planning-v27\\atomic-1\\evidence:F-1005:1",
+    "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\structured-planning-v27\\atomic-1\\evidence:F-1006:1",
+    "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\structured-planning-v27\\atomic-1\\evidence:F-1007:1",
+    "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\structured-planning-v27\\atomic-1\\evidence:F-1008:1",
+    "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\structured-planning-v27\\atomic-1\\evidence:F-1009:1",
+    "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\structured-planning-v27\\atomic-1\\evidence:F-1010:1",
+    "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\structured-planning-v27\\atomic-1\\evidence:F-1011:1",
+    "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\structured-planning-v27\\atomic-1\\evidence:F-1012:1",
+    "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\structured-planning-v27\\atomic-1\\evidence:F-1013:1",
+    "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\structured-planning-v27\\atomic-1\\evidence:F-1014:1",
+    "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\structured-planning-v27\\atomic-1\\evidence:F-1015:1",
+    "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\structured-planning-v27\\atomic-1\\evidence:F-1016:1",
+    "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\structured-planning-v27\\atomic-1\\evidence:F-1017:1",
+    "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\structured-planning-v27\\atomic-1\\evidence:F-1018:1",
+    "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\structured-planning-v27\\atomic-1\\evidence:F-1019:1",
+    "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\structured-planning-v27\\atomic-1\\evidence:F-1020:1",
+    "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\structured-planning-v27\\atomic-1\\evidence:F-1021:1",
+    "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\structured-planning-v27\\atomic-1\\evidence:F-1021:2"
+  ],
+  "execution_mode": "copilot_experiment"
+}

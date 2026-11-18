@@ -13,10 +13,16 @@ from triage_knowledge.contracts import canonical_bytes, strict_json
 from .assessment_policy import ASSESSMENT_POLICY_SHA256, assessment_policy
 from .contracts import TriageError, digest, nonblank, require, timestamp
 from .inputs import Inputs, missing_partner_gaps, validate_rows
+from .prompt import DEFAULT_ASSESSMENT_PROMPT_VERSION, assessment_prompt, prompt_from_identity
 
 
 def execution_policy_hash() -> str:
-    return digest(Path(__file__).with_name("policy.py").read_bytes())
+    root = Path(__file__).parent
+    manifest = {
+        path.name: digest(path.read_bytes())
+        for path in sorted(root.glob("*.py"))
+    }
+    return digest(canonical_bytes(manifest))
 
 
 def retrieval_index_hash(candidate: dict) -> str:
@@ -30,15 +36,17 @@ def retrieval_index_hash(candidate: dict) -> str:
                                    "replacements": candidate["replacements"]}))
 
 
-def activation_candidate(store: SourceKnowledgeStore, version: str) -> dict:
+def activation_candidate(store: SourceKnowledgeStore, version: str, *,
+                         prompt_version: str = DEFAULT_ASSESSMENT_PROMPT_VERSION) -> dict:
     """Prepare pins only; a candidate is deliberately not an activation approval."""
     release = store.resolve_release(version)
     return {
-        "contract": "triage-activation-v1", "knowledge_version": version,
+        "contract": "triage-activation-v2", "knowledge_version": version,
         "strategy": strategy_binding(),
         "retrieval_index_sha256": retrieval_index_hash(release["candidate"]),
         "assessment_policy_sha256": ASSESSMENT_POLICY_SHA256,
-        "execution_policy_sha256": execution_policy_hash(), "review": None,
+        "execution_policy_sha256": execution_policy_hash(),
+        "assessment_prompt": assessment_prompt(prompt_version).identity(), "review": None,
     }
 
 
@@ -58,6 +66,8 @@ class NativeContext:
         self.store_path = Path(store)
         self._activation = canonical_bytes(activation)
         self._probe = None
+        self._input_kind = "finding_input"
+        self._input_purpose = None
 
     def prepare(self, inputs: Inputs, version: str, assessment_time: str,
                 max_bytes: int) -> tuple[dict, str, dict]:
@@ -73,8 +83,8 @@ class NativeContext:
         activation = strict_json(self._activation)
         require(isinstance(activation, dict) and set(activation) == {
             "contract", "knowledge_version", "strategy", "retrieval_index_sha256",
-            "assessment_policy_sha256", "execution_policy_sha256", "review",
-        } and activation["contract"] == "triage-activation-v1",
+            "assessment_policy_sha256", "execution_policy_sha256", "assessment_prompt", "review",
+        } and activation["contract"] == "triage-activation-v2",
                 "knowledge_activation", "Explicit source-first activation contract required")
         review = activation["review"]
         require(isinstance(review, dict) and set(review) ==
@@ -86,7 +96,9 @@ class NativeContext:
         require(activation["knowledge_version"] == version
                 and activation["strategy"] == strategy_binding()
                 and activation["assessment_policy_sha256"] == ASSESSMENT_POLICY_SHA256
-                and activation["execution_policy_sha256"] == execution_policy_hash(),
+                and activation["execution_policy_sha256"] == execution_policy_hash()
+                and prompt_from_identity(activation["assessment_prompt"]).identity() ==
+                activation["assessment_prompt"],
                 "knowledge_activation", "Release, strategy or workflow policy differs from activation")
         cutoff = timestamp(assessment_time)
         data = inputs.data
@@ -97,7 +109,7 @@ class NativeContext:
         require(digest(inputs.findings_raw) == inputs.findings_hash
                 and digest(inputs.registry_raw) == inputs.registry_hash,
                 "input_binding_mismatch", "Input bytes differ from their independent hashes")
-        policy, input_kind = assessment_policy(), "finding_input"
+        policy, input_kind = assessment_policy(), self._input_kind
         probe = strict_json(self._probe) if self._probe is not None else None
         if probe is not None:
             require(set(probe) == {
@@ -135,13 +147,15 @@ class NativeContext:
         native = build_source_context(
             pinned, findings, registry, knowledge_version=version, assessment_time=assessment_time,
             expected_strategy=activation["strategy"], assessment_policy=policy,
-            max_bytes=max_bytes, **({"input_purpose": "isolated_probe"} if probe else {}),
+            max_bytes=max_bytes, **({"input_purpose": self._input_purpose}
+                                    if self._input_purpose else {}),
         )
         validated = validate_source_context(
             native, findings, registry, pinned, knowledge_version=version,
             assessment_time=assessment_time, expected_strategy=activation["strategy"],
             expected_assessment_policy=policy, max_bytes=max_bytes,
-            **({"expected_input_purpose": "isolated_probe"} if probe else {}),
+            **({"expected_input_purpose": self._input_purpose}
+               if self._input_purpose else {}),
         )
         bundle, evidence = validated.to_dict(), validated.evidence()
         result = evidence["retrieval"]
@@ -168,4 +182,14 @@ class IsolatedProbeContext(NativeContext):
     def __init__(self, store: Path, activation: dict, experiment: dict):
         require(isinstance(experiment, dict), "context_overlay", "Explicit isolated experiment pins required")
         super().__init__(store, activation)
+        self._input_purpose = "isolated_probe"
         self._probe = canonical_bytes(experiment)
+
+
+class IsolatedKnowledgeReleaseContext(NativeContext):
+    """Evaluation-only probe: evaluation inputs, production policy, experimental output."""
+
+    def __init__(self, store: Path, activation: dict):
+        super().__init__(store, activation)
+        self._input_kind = "evaluation_input"
+        self._input_purpose = "isolated_probe"

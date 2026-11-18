@@ -27,6 +27,8 @@ disclosed below.
 | Why each step depends on the previous one | This page |
 | Current delivery/evidence status | [`eval\results\README.md`](../eval/results/README.md) |
 | How one frozen version is measured | [`07_VERSION_RELIABILITY_PROTOCOL.md`](07_VERSION_RELIABILITY_PROTOCOL.md) |
+| How behavior, knowledge, prompt authority and semantic review are controlled | [`08_BEHAVIOR_CALIBRATION_STUDY.md`](08_BEHAVIOR_CALIBRATION_STUDY.md), [`09_KNOWLEDGE_CHANGE_STUDY.md`](09_KNOWLEDGE_CHANGE_STUDY.md), [`10_PROMPT_AUTHORITY_AUDIT.md`](10_PROMPT_AUTHORITY_AUDIT.md), [`11_SEMANTIC_REVIEW_PROTOCOL.md`](11_SEMANTIC_REVIEW_PROTOCOL.md) |
+| Final submission-readiness decision, issue closure and limitations | [`12_SUBMISSION_READINESS_REPORT.md`](12_SUBMISSION_READINESS_REPORT.md) |
 
 ## Why the logical process is ordered 01 to 07
 
@@ -121,6 +123,24 @@ development runs cannot be promoted retrospectively.
 hash-pinned dirty-worktree observation. The clean-freeze/reproduction result is
 **inconclusive**, not all-green.
 
+### 08-11 — Record controlled changes without rewriting failed observations
+
+[`08_BEHAVIOR_CALIBRATION_STUDY.md`](08_BEHAVIOR_CALIBRATION_STUDY.md) records
+the rejected v9/v10 policy calibrations and the retained v11 decision.
+[`09_KNOWLEDGE_CHANGE_STUDY.md`](09_KNOWLEDGE_CHANGE_STUDY.md) records how a
+future PSV source change traverses the official source-first lifecycle,
+including three failed protocol iterations before the bounded v4 observation,
+while [`10_PROMPT_AUTHORITY_AUDIT.md`](10_PROMPT_AUTHORITY_AUDIT.md) separates
+prompt protocol from code, source evidence, equipment registry and reviewed
+knowledge authority. [`11_SEMANTIC_REVIEW_PROTOCOL.md`](11_SEMANTIC_REVIEW_PROTOCOL.md)
+freezes reviewer scope, checklist dimensions and verdict boundaries so ad hoc
+reviewer variation cannot be used as a delivery gate.
+
+**Why after 07:** Documents 08-10 are observed change studies, not prerequisites
+that can be presented as prospectively frozen acceptance. Document 11 is a
+retrospective reviewer protocol for future reviews; it does not rescore earlier
+observations.
+
 ## Where the actual chronology deviated
 
 The clean dependency chain is a retrospective explanation, not a claim that
@@ -135,7 +155,9 @@ development occurred once in seven perfect phases:
 - the detailed reliability protocol prose was finalized after the local
   `v8r1`-`v8r3` series, while the machine-readable run order, hashes, budget and
   no-tuning rule were recorded before sends; the result is therefore useful
-  controlled evidence but not a committed clean-freeze study.
+  controlled evidence but not a committed clean-freeze study; and
+- the knowledge-change study was redesigned after v1-v3 failures. V4 is useful
+  exploratory lifecycle evidence, not the original prospective B02 protocol.
 
 These deviations are evidence of iteration, not erased history. The numbered
 order shows how a reviewer should reason about the final design and which
@@ -150,7 +172,7 @@ dependency should govern future changes.
 | Current system design | `DESIGN.md` |
 | Evaluation membership/scenarios | `eval\spec\split.json` and `eval\spec\acceptance.json` |
 | Current working evaluation contract | `eval\spec`; archived v1.3 Documents 02/03 provide fingerprinted prose |
-| Component rationale | Documents 01-07, subordinate to `DESIGN.md`, code/config and `eval\spec` on conflict |
+| Component rationale, controlled change studies and reviewer protocol | Documents 01-11, subordinate to `DESIGN.md`, code/config, `eval\spec` and `eval\assess.py` on conflict |
 | Runtime string `Document 05 section 4` | Historical pointer to `docs\original-decision-process\05_TRIAGE_WORKFLOW.md` §4; it does not mean current panel Document 05 |
 | Observed outcome | `eval\results` |
 | Chronological development narrative | Archived Documents 01-06 and Git history |

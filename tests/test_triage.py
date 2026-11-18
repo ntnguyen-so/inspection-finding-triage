@@ -14,16 +14,18 @@ from jsonschema import Draft202012Validator
 from llm_inference import InferenceError, InferenceResponse
 from llm_inference.contracts import canonical, strict_json
 from triage.assessment import (
-    SCHEMA, citation_catalog, project_native_assessment, request_schema, validate_assessment,
-    validate_same_day_attention,
+    SCHEMA, assessment_schema, citation_catalog, project_native_assessment,
+    request_schema, validate_assessment, validate_same_day_attention,
 )
 from triage.contracts import TriageError, digest
 from triage.inputs import ExportedContext, FINDING_FIELDS, read_inputs, validate_context
+from triage.prompt import DEFAULT_ASSESSMENT_PROMPT_VERSION, assessment_prompt
 from triage.policy import (
-    CAPACITY_COMPARISON_ACTIVITY, CONTROL_ALIGNMENT_ACTIVITY, IMPAIRMENT_RECORD_ACTIVITY,
-    RESTORATION_CLOSURE_ACTIVITY, SAME_DAY_ATTENTION_ACTIVITY, base_urgency, derive_policy,
-    gap_verification_activity,
+    CAPACITY_COMPARISON_ACTIVITY, CONTROL_ALIGNMENT_ACTIVITY, FAILED_TEST_RETEST_ACTIVITY,
+    IMPAIRMENT_RECORD_ACTIVITY, RESTORATION_CLOSURE_ACTIVITY, SAME_DAY_ATTENTION_ACTIVITY,
+    base_urgency, derive_policy, gap_verification_activity,
 )
+from triage.projection import project_related_context
 from triage.workflow import (
     action_retry_budget, compose_action, run_workflow, validate_output,
 )
@@ -175,6 +177,22 @@ class RequestSchemaTests(unittest.TestCase):
         self.assertFalse(schema["additionalProperties"])
         self.assertEqual(set(schema["properties"]), set(schema["required"]))
 
+    def test_v4_native_schema_replaces_free_text_action_with_closed_plan(self):
+        from triage.prompt import PLANNED_ASSESSMENT_CONTRACT
+        schema = request_schema(
+            {"contract_version": 3, "source_index": {REFERENCE: QUOTE}},
+            "F-8001", "PMP-8001", PLANNED_ASSESSMENT_CONTRACT,
+        )
+        assessed = schema["properties"]["assessment"]["anyOf"][0]
+        self.assertIn("plan", assessed["properties"])
+        self.assertNotIn("recommended_action", assessed["properties"])
+        plan = assessed["properties"]["plan"]
+        self.assertFalse(plan["additionalProperties"])
+        self.assertEqual(
+            {"diagnose", "disposition", "correction", "acceptance"},
+            set(plan["required"]),
+        )
+
     def test_native_fact_branches_preserve_applicability_state_contract(self):
         schema = request_schema({"source_index": {REFERENCE: QUOTE}}, "F-8001", "PMP-8001")
         validator = Draft202012Validator(schema)
@@ -185,7 +203,17 @@ class RequestSchemaTests(unittest.TestCase):
         ):
             changed = assessment()
             changed["facts"]["evacuation_unavailable"].update(applicability=applicability, state=state)
+            if applicability == "uncertain":
+                changed["facts"]["evacuation_unavailable"]["verification_activity"] = (
+                    "Verify applicability.")
             self.assertEqual(valid, validator.is_valid(changed))
+        uncertain = assessment()
+        uncertain["facts"]["protection_test_failed"].update(
+            applicability="uncertain", state="unknown", verification_activity=None)
+        self.assertFalse(validator.is_valid(uncertain))
+        uncertain["facts"]["protection_test_failed"]["verification_activity"] = (
+            "Verify test applicability.")
+        self.assertTrue(validator.is_valid(uncertain))
         from llm_inference.azure import native_schema
         Draft202012Validator.check_schema(native_schema(schema)["json_schema"]["schema"])
 
@@ -211,7 +239,137 @@ class RequestSchemaTests(unittest.TestCase):
         self.assertIn(REFERENCE, feedback)
 
 
+class PromptArtifactTests(unittest.TestCase):
+    def test_assessment_prompt_has_stable_identity_and_exact_request_text(self):
+        artifact = assessment_prompt()
+        self.assertEqual("assessment-system-v1", DEFAULT_ASSESSMENT_PROMPT_VERSION)
+        self.assertEqual("44206b1b43708f90ce7c2900796daeb3716b54fa39e921438739ba1f57b74bb0",
+                         artifact.sha256)
+        self.assertTrue(artifact.text.startswith("Produce an evidence-grounded draft assessment"))
+        self.assertFalse(artifact.text.endswith("\n"))
+
+    def test_v2_prompt_excludes_known_equipment_specific_clauses(self):
+        artifact = assessment_prompt("assessment-system-v2")
+        for text in ("illegible label", "out of service", "vibration directive",
+                     "during-cranking", "mass, height", "failure to start"):
+            self.assertNotIn(text, artifact.text)
+
+    def test_v3_prompt_classifies_documentation_and_operational_unknowns_generically(self):
+        artifact = assessment_prompt("assessment-system-v3")
+        self.assertIn("Documentation-only identity and record verification", artifact.text)
+        self.assertIn("credible current safety consequence path", artifact.text)
+        self.assertIn(RESTORATION_CLOSURE_ACTIVITY, artifact.text)
+        for text in ("PSV-3420", "V-1305", "F-1014", "F-1016"):
+            self.assertNotIn(text, artifact.text)
+
+    def test_v4_prompt_uses_typed_plan_contract_without_case_specific_rules(self):
+        artifact = assessment_prompt("assessment-system-v4")
+        self.assertEqual("native-assessment-v3", artifact.assessment_contract)
+        self.assertEqual("triage-assessment-schema-v2", artifact.schema_contract)
+        self.assertIn("Return plan-v1 instead of a free-text action", artifact.text)
+        self.assertIn("acceptance proves restored function after correction", artifact.text.lower())
+        for text in ("PSV-3420", "V-1305", "F-1014", "F-1016"):
+            self.assertNotIn(text, artifact.text)
+
+    def test_v5_prompt_grounds_one_failure_basis_and_complete_planning_scope(self):
+        artifact = assessment_prompt("assessment-system-v5")
+        self.assertEqual("native-assessment-v4", artifact.assessment_contract)
+        self.assertEqual("triage-assessment-schema-v3", artifact.schema_contract)
+        self.assertIn("Define one shared failure_basis", artifact.text)
+        self.assertIn("planning_requirements", artifact.text)
+        self.assertIn("exceptional specialist review", artifact.text)
+        for text in ("F-1007", "F-1012", "F-1019", "P-3305", "LB-4102"):
+            self.assertNotIn(text, artifact.text)
+
+        schema = assessment_schema("native-assessment-v4")
+        fact = schema["properties"]["facts"]["anyOf"][0]["properties"][
+            "protection_impaired"
+        ]
+        self.assertEqual(
+            64,
+            fact["properties"]["verification_activity"]["maxLength"],
+        )
+
+    def test_v7_prompt_applies_versioned_test_interpretation(self):
+        artifact = assessment_prompt("assessment-system-v7")
+        self.assertIn("assessment_policy.test_result_interpretation", artifact.text)
+        for text in (
+            "F-1017", "FW-8101", "9.2 barg", "11 barg",
+            "F-1013", "F-1014", "F-1015", "F-1018",
+        ):
+            self.assertNotIn(text, artifact.text)
+
+    def test_v8_prompt_requires_visible_related_chronology_without_transfer(self):
+        artifact = assessment_prompt("assessment-system-v8")
+        base = assessment_prompt("assessment-system-v7")
+        self.assertTrue(artifact.text.startswith(base.text + "\n\n"))
+        self.assertIn("assessment_policy.test_result_interpretation", artifact.text)
+        self.assertIn("A citation used only inside a typed fact is incomplete.", artifact.text)
+        self.assertIn("Do not copy its fact state, override, directive or defect", artifact.text)
+        for text in ("F-1011", "F-1020", "DEL-8300", "branch valve"):
+            self.assertNotIn(text, artifact.text)
+
+    def test_v6_prompt_reserves_exceptional_review_for_prequeue_safety_decisions(self):
+        artifact = assessment_prompt("assessment-system-v6")
+        self.assertEqual("native-assessment-v4", artifact.assessment_contract)
+        self.assertIn("Do not convert missing post-report observations", artifact.text)
+        self.assertIn("Non-safety diagnostic uncertainty", artifact.text)
+        for text in ("F-1007", "F-1012", "F-1019", "P-3305", "LB-4102"):
+            self.assertNotIn(text, artifact.text)
+
+    def test_missing_prompt_fails_explicitly(self):
+        assessment_prompt.cache_clear()
+        self.addCleanup(assessment_prompt.cache_clear)
+        with patch("triage.prompt.files", side_effect=OSError("missing")):
+            with self.assertRaisesRegex(TriageError, "Assessment prompt artifact is unavailable"):
+                assessment_prompt()
+
+
 class ActionCompositionTests(unittest.TestCase):
+    def test_related_fact_context_is_projected_without_transferring_state(self):
+        facts = {
+            "protection_restored": {
+                "applicability": "applicable",
+                "state": "unknown",
+                "reason": "A later action does not prove restored function.",
+                "evidence": [{
+                    "source_ref": "finding:F-B:finding_description",
+                    "quote": "A control was changed later.",
+                }],
+            },
+            "required_function_failed": {
+                "applicability": "applicable",
+                "state": "confirmed_true",
+                "reason": "The target test failed.",
+                "evidence": [{
+                    "source_ref": "finding:F-A:finding_description",
+                    "quote": "The target test failed.",
+                }],
+            },
+        }
+        self.assertEqual(
+            " Related-finding context cited by typed facts: "
+            "[protection_restored=unknown] Fact reason: "
+            "A later action does not prove restored function. "
+            "Related quote (F-B finding_description): "
+            "\"A control was changed later.\"",
+            project_related_context(facts, "F-A"),
+        )
+
+    def test_code_owned_activity_is_removed_from_core_and_appended_once(self):
+        core = f"Diagnose and correct the fault. {FAILED_TEST_RETEST_ACTIVITY} Record findings."
+        result = compose_action(
+            core,
+            ["Check exposure.", FAILED_TEST_RETEST_ACTIVITY],
+            [FAILED_TEST_RETEST_ACTIVITY],
+        )
+        self.assertEqual(
+            "Diagnose and correct the fault. Record findings. Check exposure. "
+            "Witness function test; close impairment only after pass.",
+            result["composed"],
+        )
+        self.assertEqual(1, result["composed"].count(FAILED_TEST_RETEST_ACTIVITY))
+
     def test_f1002_like_many_check_overflow_has_exact_actionable_budget(self):
         from triage.workflow import action_overflow_message
         fixed = [
@@ -346,6 +504,19 @@ class ActionCompositionTests(unittest.TestCase):
 
 
 class PolicyTests(unittest.TestCase):
+    def test_policy_reports_all_missing_fact_activities_in_one_retry(self):
+        values = facts()
+        values["protection_impaired"]["state"] = "suspected"
+        values["recorded_deviation"]["state"] = "unknown"
+        values["evacuation_unavailable"]["state"] = "confirmed_true"
+        values["capacity_below_pob"]["state"] = "unknown"
+        with self.assertRaises(TriageError) as caught:
+            self.derive(values)
+        self.assertEqual("policy_verification", caught.exception.code)
+        message = str(caught.exception)
+        self.assertNotIn("facts.recorded_deviation.verification_activity", message)
+        self.assertIn("facts.capacity_below_pob.verification_activity", message)
+
     def test_independently_worked_grid_and_monotonicity(self):
         expected = (
             (1, 2, 3, 4, 4, 5, 6, 6, 7, 8),
@@ -400,7 +571,10 @@ class PolicyTests(unittest.TestCase):
                     self.assertEqual(expected, result["final"])
                     if impaired == "suspected" and deviation in {"unknown", "suspected"}:
                         self.assertIn("Protection impairment suspected", result["review_reason"])
-                        self.assertIn("Check deviation log.", result["verification_activities"])
+                        self.assertIn(IMPAIRMENT_RECORD_ACTIVITY,
+                                      result["verification_activities"])
+                        self.assertIn("Check deviation log.",
+                                      result["covered_verification_activities"])
                         rule = next(rule for rule in result["rules"]
                                     if rule["reason"].startswith("Protection impairment suspected"))
                         self.assertEqual("precautionary_policy", rule["kind"])
@@ -411,6 +585,28 @@ class PolicyTests(unittest.TestCase):
                                       result["verification_activities"])
 
     def test_precautions_capacity_and_restoration(self):
+        values = facts()
+        values["protection_test_failed"]["state"] = "confirmed_true"
+        result = self.derive(values)
+        self.assertIn(FAILED_TEST_RETEST_ACTIVITY, result["verification_activities"])
+        self.assertIn(FAILED_TEST_RETEST_ACTIVITY, result["fixed_verification_activities"])
+        self.assertEqual(FAILED_TEST_RETEST_ACTIVITY, result["verification_activities"][-1])
+
+        values["unlogged_impairment_discovered"]["state"] = "confirmed_true"
+        values["protection_restored"].update(
+            state="unknown", verification_activity=RESTORATION_CLOSURE_ACTIVITY)
+        uncertainty = {
+            "material": True,
+            "safety": False,
+            "affected_decision": "disposition",
+            "reason": "Restoration remains unverified.",
+            "sources_checked": [REFERENCE],
+            "verification_activity": RESTORATION_CLOSURE_ACTIVITY,
+        }
+        result = self.derive(values, uncertainties=[uncertainty])
+        self.assertEqual(1, result["verification_activities"].count(RESTORATION_CLOSURE_ACTIVITY))
+        self.assertEqual(RESTORATION_CLOSURE_ACTIVITY, result["verification_activities"][-1])
+
         for capacity in ("confirmed_true", "confirmed_false", "suspected", "unknown"):
             values = facts()
             values["evacuation_unavailable"]["state"] = "confirmed_true"
@@ -452,7 +648,8 @@ class PolicyTests(unittest.TestCase):
                 self.assertNotIn("confirmed_override", {item["kind"] for item in result["rules"]})
                 self.assertIn("Verify current condition.", result["verification_activities"])
                 if trigger == "evacuation_unavailable":
-                    self.assertIn(CAPACITY_COMPARISON_ACTIVITY, result["verification_activities"])
+                    self.assertNotIn("Verify current condition.",
+                                     result["fixed_verification_activities"])
         self.assertNotIn(CAPACITY_COMPARISON_ACTIVITY, self.derive(facts())["verification_activities"])
 
     def test_source_directed_attention_floors_urgency_without_altering_scores_or_facts(self):
@@ -465,7 +662,7 @@ class PolicyTests(unittest.TestCase):
         self.assertEqual((1, 9), (result["base"], result["final"]))
         self.assertEqual("source_directed_attention", result["rules"][0]["kind"])
         self.assertEqual([SAME_DAY_ATTENTION_ACTIVITY], result["verification_activities"])
-        self.assertTrue(result["review_required"])
+        self.assertFalse(result["review_required"])
         self.assertEqual(before, values)
         self.assertIn("L=1, I=1", result["rationale"])
         with self.assertRaises(TriageError):
@@ -480,7 +677,7 @@ class PolicyTests(unittest.TestCase):
         result = self.derive(values, 10, 10, sce=True)
         self.assertEqual(10, result["final"])
         self.assertEqual({"O-PROTECTION", "O-EVACUATION", "P-FAILED-TEST",
-                          "P-SCE-HIGH-IMPACT", "R-SCE"},
+                          "P-SCE-HIGH-IMPACT"},
                          {x["rule_id"] for x in result["rules"]})
         self.assertEqual(before, values)
 
@@ -489,6 +686,7 @@ class PolicyTests(unittest.TestCase):
         self.assertEqual(1, self.derive(facts(), sce=True)["final"])
         for safety in (True, False):
             uncertainty = {"material": True, "safety": safety, "reason": "Unknown state affects decision.",
+                           "affected_decision": "redundancy" if safety else "likelihood",
                            "sources_checked": [REFERENCE], "verification_activity": "Verify state."}
             result = self.derive(facts(), uncertainties=[uncertainty])
             self.assertEqual(7 if safety else 1, result["final"])
@@ -496,7 +694,7 @@ class PolicyTests(unittest.TestCase):
         gap = {"kind": "tagged_partner_not_in_registry", "partner_equipment_id": "PMP-8999",
                "source_refs": ["equipment:PMP-8001:redundancy"]}
         self.assertEqual(7, self.derive(facts(), sce=True, gaps=[gap])["final"])
-        self.assertTrue(self.derive(facts(), gaps=[gap])["review_required"])
+        self.assertFalse(self.derive(facts(), gaps=[gap])["review_required"])
         values = facts()
         values["protection_impaired"].update(applicability="uncertain",
                                             verification_activity="Verify applicability.")
@@ -553,6 +751,7 @@ class PolicyTests(unittest.TestCase):
         gap = {"kind": "tagged_partner_not_in_registry", "partner_equipment_id": "PMP-8999",
                "source_refs": ["equipment:PMP-8001:redundancy"]}
         uncertainty = {"material": True, "safety": True, "reason": "Safety consequence on non-SCE.",
+                       "affected_decision": "protection",
                        "sources_checked": [REFERENCE], "verification_activity": "Verify capability."}
         result = self.derive(facts(), sce=False, gaps=[gap], uncertainties=[uncertainty])
         self.assertEqual(7, result["final"])
@@ -562,6 +761,7 @@ class PolicyTests(unittest.TestCase):
         uncertainty = {
             "material": True,
             "safety": True,
+            "affected_decision": "protection",
             "reason": "Exposure detail could refine an already high base score.",
             "sources_checked": [REFERENCE],
             "verification_activity": "Verify exposure.",
@@ -574,11 +774,29 @@ class PolicyTests(unittest.TestCase):
         self.assertIn("P-SAFETY-UNKNOWN", result["review_reason"])
         self.assertIn("P-SAFETY-UNKNOWN", result["rationale"])
 
-    def test_explicit_review_rule_remains_targeted_when_floor_is_nonbinding(self):
+    def test_local_safety_disposition_stays_under_global_approval(self):
+        uncertainty = {
+            "material": True,
+            "safety": True,
+            "affected_decision": "disposition",
+            "reason": "Local integrity disposition is required.",
+            "sources_checked": [REFERENCE],
+            "verification_activity": "Verify local integrity condition.",
+        }
+        result = self.derive(
+            facts(), likelihood=7, impact=7, sce=False, uncertainties=[uncertainty],
+        )
+        self.assertEqual(7, result["final"])
+        self.assertFalse(result["review_required"])
+        self.assertIn("Verify local integrity condition.", result["verification_activities"])
+
+    def test_deterministic_sce_floor_does_not_create_exceptional_review(self):
         result = self.derive(facts(), likelihood=10, impact=10, sce=True)
         self.assertEqual((10, 10), (result["base"], result["final"]))
-        self.assertTrue(result["review_required"])
-        self.assertIn("R-SCE", result["review_reason"])
+        self.assertFalse(result["review_required"])
+        self.assertIsNone(result["review_reason"])
+        self.assertEqual({"P-SCE-HIGH-IMPACT"},
+                         {rule["rule_id"] for rule in result["rules"]})
 
 
 class BoundaryTests(Artifacts, unittest.TestCase):
@@ -859,8 +1077,12 @@ class WorkflowTests(Artifacts, unittest.TestCase):
         self.assertEqual("not_reviewed", result["semantic_status"])
         self.assertEqual(1, self.source.read_calls)
         record = strict_json((self.evidence / "run.json").read_text())
-        self.assertEqual("ready_to_publish", record["run_status"])
-        self.assertFalse(record["published_output"])
+        self.assertEqual("published", record["run_status"])
+        self.assertTrue(record["published_output"])
+        publication = strict_json((self.evidence / "publication.json").read_text())
+        self.assertEqual("triage-publication-receipt-v1", publication["contract"])
+        self.assertEqual(result["output_sha256"], publication["output_sha256"])
+        self.assertTrue(publication["verified_after_replace"])
         self.assertEqual(2, len(record["attempts"]))
         self.assertFalse(list(self.root.glob(".triage-*.tmp")))
 
@@ -1041,7 +1263,10 @@ class WorkflowTests(Artifacts, unittest.TestCase):
         self.run_one(provider)
         self.assertEqual(2, len(provider.requests))
         action = strict_json(self.output.read_text())["tickets"][0]["recommended_action"]
-        self.assertEqual("Inspect the surface. Verify availability and capability of PMP-8999.", action)
+        self.assertEqual(
+            "Inspect the surface. Verify PMP-8999 availability/capability.",
+            action,
+        )
 
     def test_required_verification_is_composed_without_a_model_copying_retry(self):
         value = assessment()
@@ -1297,7 +1522,8 @@ class WorkflowTests(Artifacts, unittest.TestCase):
         ticket = strict_json(self.output.read_text())["tickets"][0]
         self.assertEqual(2, len(provider.requests))
         self.assertEqual(7, ticket["urgency"]["score"])
-        self.assertTrue(ticket["review_required"])
+        self.assertFalse(ticket["review_required"])
+        self.assertIn("Reconcile impairment/deviation record", ticket["recommended_action"])
 
     def test_verification_overflow_fails_visibly_without_truncating_or_publishing(self):
         value = assessment()
@@ -1330,6 +1556,51 @@ class WorkflowTests(Artifacts, unittest.TestCase):
                 self.run_one(FakeProvider())
         self.assertEqual(b"old", self.output.read_bytes())
         self.assertFalse(list(self.root.glob(".triage-*.tmp")))
+
+    def test_receipt_failure_rolls_back_published_output(self):
+        import triage.workflow as module
+        actual = module.save_json_atomic
+        self.output.write_bytes(b"old")
+
+        def fail_publication_receipt(path, value):
+            if Path(path).name == "publication.json":
+                raise PermissionError("Synthetic receipt failure")
+            return actual(path, value)
+
+        with patch("triage.workflow.save_json_atomic", side_effect=fail_publication_receipt):
+            with self.assertRaises(TriageError) as caught:
+                self.run_one(FakeProvider())
+        self.assertEqual(b"old", self.output.read_bytes())
+        self.assertFalse(caught.exception.diagnostic()["published_output"])
+        record = strict_json((self.evidence / "run.json").read_text())
+        self.assertTrue(record["publication_rolled_back"])
+        self.assertFalse(record["diagnostic"]["published_output"])
+
+    def test_final_report_failure_rolls_back_output_and_receipt(self):
+        import triage.workflow as module
+        actual = module.save_json
+        failed = False
+        self.output.write_bytes(b"old")
+
+        def fail_published_report_once(path, value):
+            nonlocal failed
+            if value.get("run_status") == "published" and not failed:
+                failed = True
+                raise PermissionError("Synthetic final report failure")
+            return actual(path, value)
+
+        with patch("triage.workflow.save_json", side_effect=fail_published_report_once):
+            with self.assertRaises(TriageError) as caught:
+                self.run_one(FakeProvider())
+        self.assertEqual(b"old", self.output.read_bytes())
+        self.assertFalse(caught.exception.diagnostic()["published_output"])
+        self.assertFalse((self.evidence / "publication.json").exists())
+        record = strict_json((self.evidence / "run.json").read_text())
+        self.assertEqual("failed", record["run_status"])
+        self.assertTrue(record["publication_rolled_back"])
+        self.assertFalse(record["published_output"])
+        self.assertNotIn("output_sha256", record)
+        self.assertNotIn("publication_receipt", record)
 
     def test_old_evidence_is_not_reused(self):
         self.evidence.mkdir()

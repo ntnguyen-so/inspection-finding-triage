@@ -5,18 +5,18 @@ This is the single reviewer-facing index for observed evaluation evidence. Read
 Specifications such as `eval\spec\acceptance.json` define gates; they are not
 results.
 
-> **GATE BANNER — GENERATED DELIVERABLE, ACCEPTANCE PENDING.** Root
+> **GATE BANNER — GENERATED DELIVERABLE, HUMAN APPROVAL PENDING.** Root
 > `tickets.json` now contains all 21 findings and passes the deterministic
-> contract. `triage\v11-delivery` records its preregistration, exact run,
-> reviewer judgments and output hash. Primary AI review is 54/63 with nine
-> `needs_review` judgments and zero fail; human approval has not occurred.
-> V9 and v10 are retained rejected experiments because reduced review routing
-> violated D01 and the v10 formula added no demonstrated benefit. Reference-1.3
+> contract. `triage\structured-planning-v31\final` records the exact run,
+> reviewer judgments and output hash. The checklist-bound primary AI review is
+> 63/63 after seeded calibration; human/domain approval has not occurred.
+> Six tickets require exceptional review. V29 and v30 are retained failed
+> test-informed iterations; v31 development X01 passed after visible drift
+> adjudication. Reference-1.3
 > B02 is a bounded causal-influence/isolation pass. Clean-checkout reproduction
 > has not been run. The receipt states `acceptance_eligible=false`. Observed
-> runtime was 688.11 seconds; actual
-> Copilot USD allocation is unknown, while a disclosed equivalent OpenAI API
-> estimate is US$2.37. Human approval is always required.
+> runtime was 617.75 seconds; actual Copilot usage/USD and hidden HTTP attempts
+> are unknown. Human approval is always required.
 
 Production code has changed since the latest clean, isolated deterministic run at
 revision `235bdd1`. The evidence collector was subsequently corrected and rerun
@@ -41,17 +41,17 @@ current-v11 clean-checkout observation.
 
 | Requirement | Evidence and class | Status no stronger than evidence |
 |---|---|---|
-| Brief §3: 21-ticket JSON, identities, fields, lengths, L/I/U and planning text | Root `tickets.json`; **W** `triage\v11-delivery\primary-assessment.json`; deterministic fault evidence | Root artifact **D-pass** for the output contract and exact coverage; primary semantic review 54/63 with nine review-routed judgments and zero fail |
-| Brief §5: own orchestration, bounded retry, one command, no keys, low reproducibility cost | **W** `triage\v11-delivery\run-evidence\run.json`; **T** package/reproduction evidence | One-command delivery completed in 688.11 s. Actual Copilot USD allocation and hidden HTTP attempts are unknown; simple equivalent OpenAI API estimate is US$2.37 |
+| Brief §3: 21-ticket JSON, identities, fields, lengths, L/I/U and planning text | Root `tickets.json`; **W** `triage\structured-planning-v31\final\primary-reviews.json`; deterministic fault evidence | Root artifact **D-pass** for the output contract and exact coverage; calibrated primary AI review 63/63 |
+| Brief §5: own orchestration, bounded retry, one command, no keys, low reproducibility cost | **W** `triage\structured-planning-v31\final\evidence\run.json`; **T** package/reproduction evidence | One-command delivery completed in 617.75 s and 21 application sends. Actual Copilot USD allocation and hidden HTTP attempts are unknown |
 | Brief §6A: structured output, malformed/structural/semantic handling, fail-closed publication | **W** `design-behavior-demonstration.json`; **T** `triage\native-v2-fault-evidence-1\report.json`; **T** `triage\direct-azure-final-sol-v5\assessment-report.json` | Structural/recovery paths **D-pass**; valid-but-wrong output was retained as **Fail**, not repaired silently |
-| Brief §6B: domain knowledge, engineer comments, PSV maintenance path | Source lifecycle/delivery evidence plus **W** `triage\v10-calibration\b02-execution` | Delivery/lifecycle **D-pass**; reference-1.3 B02 is a bounded influence/isolation pass |
+| Brief §6B: domain knowledge, engineer comments, PSV maintenance path | Source lifecycle/delivery evidence; **W** `triage\v10-calibration\b02-execution`; exploratory `triage\knowledge-release-change-v1-*` through `v4-*` | Delivery/lifecycle **D-pass**; reference-1.3 B02 is a bounded influence/isolation pass; v4 demonstrates one actual immutable release replacement after three disclosed failed iterations |
 | Brief §6C: code-derived urgency, corners, overrides, alternatives | **W** `design-behavior-demonstration.json`; **T** `triage\native-v2-regression-2\report.json`; `DESIGN.md` §C | Formula, monotonic grid, corners and fact-state rules **D-pass**; policy is prototype engineering choice, not calibrated truth |
 | Brief §6D: deferral, human review, deliberate exclusions | **T** `triage\native-v2-fault-evidence-1\report.json`; **T** `triage\native-handoff-system-summary.json`; `DESIGN.md` §D | Failure/deferral machinery **D-pass**; output-level judgments remain model/reviewer-limited |
 | Brief §6 assumptions and AI assistance/overrides | `DESIGN.md` “High-impact assumptions” and “AI assistance and candidate overrides” | Documented; historical test-informed changes and rejected suggestions disclosed |
 | Brief §7: `tickets.json`, source, manifest, run command, DESIGN, Git history | Root `tickets.json`, `pyproject.toml`, `README.md`, `DESIGN.md`, Git log; current delivery summary | Required generated file is present. Semantic/human approval and exact-code reproducibility remain pending, so this is not an accepted frozen result |
 | Brief §8.1: model/code boundary and structured-output handling | `DESIGN.md` §A/C; deterministic reports above | **D-pass** for implemented boundary; final provider/output acceptance pending |
-| Brief §8.2: knowledge encapsulation/maintainability | Source-first evidence above; `docs\05_KNOWLEDGE_DESIGN_DECISION.md`; reference-1.3 B02 | Lifecycle, module boundary and edit surface **D-pass**; bounded causal influence/isolation demonstrated, general correctness not certified |
-| Brief §8.3: output quality and defensibility | Current v11 root assessment; rejected v9/v10 calibration runs | Current root is 54/63 with zero fail and nine pending planning/grounding judgments. Review remains saturated at 20/21 and urgency is 7-10 for 19/21; those limitations are explicit |
+| Brief §8.2: knowledge encapsulation/maintainability | Source-first evidence above; `docs\05_KNOWLEDGE_DESIGN_DECISION.md`; `docs\09_KNOWLEDGE_CHANGE_STUDY.md`; reference-1.3 B02 | Lifecycle, module boundary and edit surface **D-pass**; bounded influence and one exploratory release-change observation demonstrated, general correctness not certified |
+| Brief §8.3: output quality and defensibility | Current v31 root assessment; retained historical reviewer sensitivity | Checklist-bound primary review is 63/63 after seeded calibration; it remains AI-only, with reviewer model/prompt identity not exposed by the agent runtime |
 | Brief §8.4: DESIGN quality | `DESIGN.md`; **T** `triage\design-verification.json`; **T** `knowledge\design-verification.json` | Required topics present; panel judgment remains external |
 | Domain trap: reliability direction and priors | Deterministic context/policy tests; current artifact review | Implemented/tested; current non-eligible output **Provisional** |
 | Domain trap: SCE impact means major-accident consequence, not repair cost | Policy tests and semantic cards | Implemented; AI-only semantic evidence, not domain certification |
@@ -81,8 +81,8 @@ current-v11 clean-checkout observation.
 | D02 | **D-pass** | Invalid identity, unassessable scores, missing partner and no-default-score fault tests |
 | D03 | **Provisional** | Pre-v8 F-1016/F-1008/F-1009 reviews pass AI-only cards; direct-Azure F-1009 remained pending |
 | D04 | **Documented; system gate pending** | Limits, exclusions, assumptions and AI disclosure exist; final output/provider evidence incomplete |
-| X01 | **Fail, non-eligible** | Pre-v4 F-1016 drift changed this-week→this-month; a pre-v8 gpt-6 attempt failed closed before repeat; a later clean-detached gpt-6 pair completed but reviewed 38/39 then 37/39 and recorded `x01_result=fail`. Stable-band policy-v3/v4/gpt-6.1 observations do not rescue it |
-| X02 | **Partial** | V11 root artifact, 688.11 s runtime and an explicit US$2.37 equivalent-API estimate exist; actual Copilot USD/HTTP attempts and clean-checkout reproduction remain unresolved |
+| X01 | **Provisional pass** | V31 development pair: both outputs reviewed 39/39; 13/13 urgency bands and review flags matched; visible numeric/rule drift was adjudicated without selecting a better run or finding unsupported claims |
+| X02 | **Partial** | V31 root artifact, hashes, configs, two publication receipts and 617.75 s final runtime exist; actual Copilot USD/HTTP attempts and clean-checkout reproduction remain unresolved |
 
 ## Deterministic commands and observed results
 
@@ -118,7 +118,7 @@ recorded.
 | Experiment / retained location | Outcome | Eligibility and current interpretation |
 |---|---|---|
 | Offline component, fault, package and source-first phases, **T** `triage\native-v2-fault-evidence-1\report.json`, `triage\native-v2-regression-2\report.json`, `knowledge\source-integration-readiness.json` | Deterministic passes plus retained earlier fixture/regression failures | Software evidence only; mocks do not establish model quality |
-| B02 controlled Copilot probe, **T** `knowledge\copilot-b02-1\`; later v1.2 policy-v6 run, **W** `knowledge\copilot-b02-policy-v6-reference-1.2\` | **Inconclusive/fail**: likelihood-only overlays left impact unsupported, so positive cases were unassessable; negative controls remained unchanged | Non-eligible knowledge experiments; test-informed reference v1.3 adds shared synthetic impact 3 and varies only likelihood, but B02 has not been rerun |
+| B02 controlled Copilot probe, **T** `knowledge\copilot-b02-1\`; later v1.2 policy-v6 run, **W** `knowledge\copilot-b02-policy-v6-reference-1.2\` | **Inconclusive/fail**: likelihood-only overlays left impact unsupported, so positive cases were unassessable; negative controls remained unchanged | Non-eligible historical experiments; test-informed reference v1.3 later corrected and reran this probe, recorded below |
 | Early Copilot integration/correction phases, **T** `triage\copilot-integration-1\observation.json`, `triage\copilot-correction-3\verification.json` | Initial integration failures followed by a validated local correction | Historical, non-eligible |
 | Policy-v3 test, **T** `triage\history-policy-v3-test-phase\test-1\` | **Fail 22/24** | Frozen failed observation retained |
 | Disclosed corrected test regression, **T** `triage\final-test-regression-phase\test-regression-1\` | **Provisional 24/24** | Test-informed, AI-only, non-eligible |
@@ -147,6 +147,8 @@ recorded.
 | Fresh v8 delivery, **W** `triage\v9-calibration\comparison\v8-baseline\tickets.json` and `triage\v8-reliability\delivery-*` | 21 drafts in 21 sends; contract pass; primary AI review 61/63; 635.64 s; equivalent OpenAI API estimate US$2.37 | Superseded root artifact retained byte-for-byte; human approval was pending and actual Copilot USD/hidden HTTP attempts remain unknown |
 | V9/v10 behavior calibration, **W** `triage\v9-calibration` and `triage\v10-calibration` | Four all-21 runs completed; v9 23/22 sends, v10 21/21; every primary review failed mandatory uncertainty routing; v10 did not reduce concentration | **Rejected**, retained with exact policy snapshots and full negative evidence |
 | Reference-1.3 B02, **W** `triage\v10-calibration\b02-execution` | Four conditions completed in four sends; positive L6/I3→L8/I3; both F-1016 negative controls excluded the synthetic passing rule | **Bounded pass** for causal influence/isolation; synthetic and non-eligible |
+| Actual knowledge-release replacement, `triage\knowledge-release-change-v1-*` through `v4-*` | V1 harness failure; v2/v3 knowledge-policy conflicts rejected as unassessable; v4 completed L4/I7→L8/I7 with both tag controls L2/I7. Four v4 sends, 100.859 s, 124,075 input and 5,330 output tokens; illustrative API equivalent US$0.3015 | **Exploratory bounded lifecycle observation**, tuned after retained failures; not a prospective B02 pass, calibrated semantic review or domain certification |
+| Official-store full-batch KB edit, `triage\knowledge-kb-edit-v1-*` | Existing editor/CLI imported, amended, reviewed and published the source; two baseline and two revised 21-ticket runs repeated test finding F-1002 L7/I8/U8→L9/I8/U9 while F-1016 stayed L2. The study exposed and fixed amendment scope loss; `knowledge-kb-edit-v1-scoped` retained structured PSV scope and repeated F-1002 L9. | **Test-informed delivery/influence and editor-regression observation**, not acceptance: source was tuned against a test case, non-target variance/reference conflict remain, semantic review is pending, working candidate reset and no production promotion |
 | V11 root delivery, **W** `triage\v11-delivery` and `..\..\tickets.json` | 21 drafts in 21 sends; contract pass; primary AI review 54/63 with zero fail; 688.11 s; equivalent API estimate US$2.37 | Preregistered zero-fail gate passed; human approval and clean reproduction pending |
 
 ## Artifact-location legend

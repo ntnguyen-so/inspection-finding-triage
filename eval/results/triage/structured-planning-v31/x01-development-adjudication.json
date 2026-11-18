@@ -1,0 +1,212 @@
+{
+  "artifact_type": "x01_development_pair_adjudication",
+  "reference_version": "1.3",
+  "partition": "development",
+  "comparison_file": "eval\\results\\triage\\structured-planning-v31\\x01-development-comparison.json",
+  "comparison_sha256": "860240c32bee0b03ec8e0312c8953e501d8f90c366960b1fca67dfc5209387b8",
+  "frozen_rule": "A band or review flip, or a new unsupported claim, fails or leaves X01 unresolved. Numeric and rule-set drift must remain visible and be reviewed rather than hidden.",
+  "calibration": {
+    "path": "eval\\results\\triage\\structured-planning-v31\\primary-calibration-reviews.json",
+    "sha256": "d91153a9f12f5116a4674a79d643012ff50d5008dff32c0977969f2dace6bec4",
+    "status": "pass",
+    "fixture_count": 2,
+    "correct_fixture_judgments": 2,
+    "wrong_fixture_judgments": 0,
+    "needs_review_count": 0
+  },
+  "run_a": {
+    "tickets_path": "eval\\results\\triage\\structured-planning-v31\\development-1\\tickets.experimental.json",
+    "tickets_sha256": "27f82edf8ec435f67f64705c76ff15cd3453fba6b847ce7aceff0f61d538b719",
+    "run_path": "eval\\results\\triage\\structured-planning-v31\\development-1\\evidence\\run.json",
+    "run_sha256": "4dd547713b899461d7b20f6a1ea68304b9907af20e1e92d9c0f994d505e5ac04",
+    "semantic_review_path": "eval\\results\\triage\\structured-planning-v31\\development-1\\primary-reviews.json",
+    "semantic_review_sha256": "74c0ba825605b6f30d31b236adb88e9623e91a17089346673c0e6a72962c665b",
+    "semantic_status": "provisional_pass",
+    "passed_dimensions": 39,
+    "applicable_dimensions": 39,
+    "failed_dimensions": 0,
+    "needs_review_dimensions": 0
+  },
+  "run_b": {
+    "tickets_path": "eval\\results\\triage\\structured-planning-v31\\development-2\\tickets.experimental.json",
+    "tickets_sha256": "bb511b01dc860852e394842bccefac6a54656b237092c03d5daaf4de54c6e7a8",
+    "run_path": "eval\\results\\triage\\structured-planning-v31\\development-2\\evidence\\run.json",
+    "run_sha256": "acba1b8de0deb6a4f5f30316d60de111065e88ef1e1b6200e41b23966ff8b6b0",
+    "semantic_review_path": "eval\\results\\triage\\structured-planning-v31\\development-2\\primary-reviews.json",
+    "semantic_review_sha256": "e8e1c59ab8ce3f14c98f9fe0e1bf90ab2697caedc26f15f705adafc5611995f8",
+    "semantic_status": "provisional_pass",
+    "passed_dimensions": 39,
+    "applicable_dimensions": 39,
+    "failed_dimensions": 0,
+    "needs_review_dimensions": 0
+  },
+  "automated_comparison": {
+    "finding_count": 13,
+    "coverage_matches": 13,
+    "coverage_mismatches": 0,
+    "numeric_score_matches": 11,
+    "numeric_score_drift_findings": 2,
+    "urgency_band_matches": 13,
+    "urgency_band_flips": 0,
+    "review_flag_matches": 13,
+    "review_flag_flips": 0,
+    "rule_set_matches": 12,
+    "rule_set_drifts": 1,
+    "configuration_fields_compared": 8,
+    "configuration_fields_matching": 8,
+    "configuration_fields_mismatching": 0,
+    "valid_publication_receipts": 2,
+    "invalid_publication_receipts": 0,
+    "automated_status": "fail",
+    "status_explanation": "The automated comparator reports fail because two findings have numeric score drift and one has rule-set drift. The frozen X01 rule requires visible semantic adjudication; these drifts are not by themselves a band/review flip or a new unsupported-claim failure."
+  },
+  "drift_adjudications": [
+    {
+      "drift_id": "F-1001-impact",
+      "drift_type": "numeric",
+      "finding_id": "F-1001",
+      "field": "impact_of_failure.score",
+      "run_a_value": 7,
+      "run_b_value": 6,
+      "same_likelihood": 7,
+      "same_urgency": 9,
+      "same_urgency_band": "today",
+      "same_review_required": false,
+      "same_rule_ids": [
+        "S-SOURCE-TODAY"
+      ],
+      "run_a_exact_rationale": "Interruption of this sole export compressor would put the platform into recycle and cut production within an hour, with no spare or workaround. This is a specific severe operational consequence; extreme safety consequences or total asset loss are not established.",
+      "run_b_exact_rationale": "Failure of this same export-compression function would put the platform into recycle and cut production within an hour, with no spare or workaround. This establishes material operational consequence, but not extreme loss or a specific major-accident exposure.",
+      "card_evidence": {
+        "observed_facts": "The card records a single gas-export train with no spare or workaround and a production interruption consequence if the compressor is lost.",
+        "required_evidence": "The assessment must retain the absence of a spare and the rising trend.",
+        "expected_behavior": "Assess the production consequence rather than copying registry criticality; distinguish elevated concern from confirmed functional failure.",
+        "forbidden_boundary": "Do not claim alarm exceedance, compressor failure or available redundancy."
+      },
+      "adjudication": "I7 and I6 are adjacent defensible judgments for the same specific production-loss consequence. Run A calls the within-hour production interruption severe operational consequence; run B calls it material operational consequence while excluding extreme loss and a specific major-accident path. Neither contradicts the card or adds a forbidden claim.",
+      "material_decision_changed": false,
+      "unsupported_claim_introduced": false,
+      "disposition": "acceptable_visible_numeric_drift_no_material_decision_change"
+    },
+    {
+      "drift_id": "F-1016-impact",
+      "drift_type": "numeric",
+      "finding_id": "F-1016",
+      "field": "impact_of_failure.score",
+      "run_a_value": 3,
+      "run_b_value": 2,
+      "same_likelihood": 10,
+      "run_a_exact_rationale": "Loss of local certification identification is a localized, recoverable traceability consequence: the checked register supplies the March 2025 recertification and confirms it is in date. No physical or operational path from tag corrosion to loss of compressor-discharge overpressure protection is established.",
+      "run_b_exact_rationale": "Consequence is limited to loss of local certification readability: the register was checked and confirms March 2025 recertification remained in date at the reported snapshot. No supported path connects the label defect to loss of compressor-discharge overpressure protection.",
+      "card_evidence": {
+        "observed_facts": "The tag is illegible, while the register confirms March 2025 recertification is in date and physical condition looks fine.",
+        "required_evidence": "Preserve in-date certification and distinguish label condition from evidence of failed relief function.",
+        "expected_behavior": "Do not assign relief-function failure from SCE status or the illegible label.",
+        "unknown": "Visual condition is not a new functional-test certificate and does not establish every aspect of valve health."
+      },
+      "adjudication": "I3 and I2 are adjacent defensible judgments limited to recoverable local traceability/readability. Both rationales rely on the verified in-date register, expressly deny a path to loss of overpressure protection and do not claim a functional pass.",
+      "material_decision_changed": false,
+      "unsupported_claim_introduced": false,
+      "disposition": "acceptable_visible_numeric_drift_no_material_decision_change"
+    },
+    {
+      "drift_id": "F-1016-urgency",
+      "drift_type": "numeric",
+      "finding_id": "F-1016",
+      "field": "urgency.score",
+      "run_a_value": 6,
+      "run_b_value": 5,
+      "same_urgency_band": "this_month",
+      "same_review_required": false,
+      "same_rule_ids": [],
+      "run_a_exact_rationale": "triage-policy-v16: ceil(0.7*I+0.3*L), L=10, I=3, base=U6, final=U6.",
+      "run_b_exact_rationale": "triage-policy-v16: ceil(0.7*I+0.3*L), L=10, I=2, base=U5, final=U5.",
+      "card_evidence": {
+        "decision_basis": "Urgency is code-derived from the differing adjacent impact scores under the same triage-policy-v16 formula.",
+        "action_constraint": "Replace the identification/certification tag from the verified register while maintaining traceability rather than inventing valve replacement."
+      },
+      "adjudication": "The U6/U5 difference is the deterministic consequence of the disclosed I3/I2 drift. Both remain in the same this_month band with no review or rule change, and both preserve the same traceability action.",
+      "material_decision_changed": false,
+      "unsupported_claim_introduced": false,
+      "disposition": "acceptable_derived_numeric_drift_same_material_decision"
+    },
+    {
+      "drift_id": "F-1004-rule-set",
+      "drift_type": "rule_set",
+      "finding_id": "F-1004",
+      "field": "applied_rule_ids",
+      "run_a_value": [],
+      "run_b_value": [
+        "P-SAFETY-UNKNOWN"
+      ],
+      "same_likelihood": 8,
+      "same_impact": 8,
+      "same_urgency": 8,
+      "same_urgency_band": "this_week",
+      "same_review_required": false,
+      "run_a_exact_policy_rationale": "triage-policy-v16: ceil(0.7*I+0.3*L), L=8, I=8, base=8, final=8.",
+      "run_b_exact_policy_rationale": "triage-policy-v16: ceil(0.7*I+0.3*L), L=8, I=8, base=8, final=8. P-SAFETY-UNKNOWN (precautionary_policy): The live line is below its minimum allowable wall thickness. Residual pressure capacity is unresolved and requires an exceptional integrity decision on interim isolation or operating restrictions before queue entry; this is not evidence that rupture has occurred. Sources: finding:F-1004:finding_description, equipment:PL-1002:engineer_comment.",
+      "run_b_rule_exact_reason": "The live line is below its minimum allowable wall thickness. Residual pressure capacity is unresolved and requires an exceptional integrity decision on interim isolation or operating restrictions before queue entry; this is not evidence that rupture has occurred.",
+      "run_b_rule_sources": [
+        "finding:F-1004:finding_description",
+        "equipment:PL-1002:engineer_comment"
+      ],
+      "run_b_rule_activity": "Map wall loss; assess pressure capacity",
+      "card_evidence": {
+        "observed_facts": "Window 2 is 6.2 mm against a 7.4 mm minimum under saturated insulation on a live hydrocarbon line at full wellhead pressure.",
+        "expected_behavior": "Below-allowable thickness and the active mechanism are decision-changing, with high-energy hydrocarbon consequences.",
+        "unknown": "Corrosion rate, full extent of loss and approved operating disposition are not provided.",
+        "action_constraint": "Integrity-engineer assessment and targeted extent inspection are required; operating disposition requires authorized engineering review."
+      },
+      "adjudication": "Run B explicitly activates the precautionary safety-unknown rule because residual pressure capacity and interim operating disposition are unresolved; that rationale maps to the card unknown and action constraint. Run A omits the rule but still directs wall-loss mapping and pressure-integrity assessment. The run-B floor U7 is below the shared base/final U8, requires no review, and changes no band, score, action or publication decision. The rule states alternatives for authorized disposition and does not claim rupture or mandate isolation.",
+      "material_decision_changed": false,
+      "unsupported_claim_introduced": false,
+      "disposition": "acceptable_visible_rule_set_drift_no_material_decision_change"
+    }
+  ],
+  "unsupported_claim_adjudication": {
+    "run_a": {
+      "status": "none_found",
+      "new_unsupported_claim": false,
+      "semantic_dimensions_passed": 39
+    },
+    "run_b": {
+      "status": "none_found",
+      "new_unsupported_claim": false,
+      "semantic_dimensions_passed": 39
+    },
+    "pair_status": "no_new_unsupported_claim",
+    "basis": "Each exact artifact received one artifact-bound review against all 13 frozen development cards and all three semantic dimensions. Both reviews produced 39 pass, 0 needs_review and 0 fail; the three numeric field drifts and one rule-set drift were separately checked against exact rationales, facts and card boundaries."
+  },
+  "x01": {
+    "status": "pass",
+    "band_flip": false,
+    "review_flip": false,
+    "new_unsupported_claim": false,
+    "numeric_drift_reported": true,
+    "numeric_drift_reviewed": true,
+    "rule_set_drift_reported": true,
+    "rule_set_drift_reviewed": true,
+    "material_decision_changed_by_drift": false,
+    "better_run_selected": false,
+    "reason": "All 13 urgency bands and review flags match. The F-1001 impact drift and F-1016 impact/derived-urgency drifts are adjacent, supported judgments with unchanged material routing. The F-1004 rule appears only in run B but is source/card-supported and changes no score, band, review flag or action. Neither artifact introduces a new unsupported claim."
+  },
+  "reviewer_provenance": {
+    "kind": "ai_only",
+    "provider": "GitHub Copilot CLI agent",
+    "model": "unknown_not_exposed",
+    "reasoning_effort": "unknown_not_exposed",
+    "prompt_sha256": "unknown_not_exposed",
+    "role": "primary_semantic_reviewer_and_x01_adjudicator",
+    "independent_of_generation": true,
+    "domain_expert_claimed": false,
+    "same_configuration_used_for_both_outputs": true
+  },
+  "limitations": [
+    "This is provisional AI-only review, not domain certification, human approval or full A-D system acceptance.",
+    "Calibration establishes conformance only on the two disclosed contradiction fixtures.",
+    "The provider model, reasoning setting and prompt hash were not exposed to the reviewer session and are recorded as unknown_not_exposed.",
+    "The assessor validates review structure and artifact-bound quotations; it does not independently prove engineering truth.",
+    "The development split is non-blind and AI-assisted."
+  ]
+}

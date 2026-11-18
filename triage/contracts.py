@@ -14,6 +14,7 @@ class TriageError(RuntimeError):
         self.finding_id = finding_id
         self.attempts = 0
         self.execution_mode = "strict"
+        self.published_output = False
 
     def diagnostic(self) -> dict:
         result = {
@@ -22,7 +23,7 @@ class TriageError(RuntimeError):
             "error_class": self.code,
             "message": str(self),
             "attempts": self.attempts,
-            "published_output": False,
+            "published_output": self.published_output,
         }
         if self.execution_mode in {"copilot_experiment", "copilot_delivery"}:
             result.update(execution_mode=self.execution_mode, acceptance_eligible=False,

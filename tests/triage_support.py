@@ -179,7 +179,9 @@ class FakeProvider:
         if isinstance(value, InferenceResponse):
             return value
         message = json.loads(request.user)
-        if message.get("assessment_contract") == NATIVE_ASSESSMENT_CONTRACT:
+        if message.get("assessment_contract") in {
+            NATIVE_ASSESSMENT_CONTRACT, "native-assessment-v3", "native-assessment-v4",
+        }:
             try:
                 candidate = strict_json(value) if isinstance(value, str) else deepcopy(value)
             except (ValueError, RecursionError):

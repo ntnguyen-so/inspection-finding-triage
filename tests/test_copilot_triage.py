@@ -275,7 +275,10 @@ class CopilotIntegrationTests(Artifacts, unittest.TestCase):
             return result
         self.run_one(FakeCopilot([respond]))
         ticket = strict_json(self.output.read_text())["tickets"][0]
-        self.assertEqual("Verify availability and capability of PMP-8999.", ticket["recommended_action"])
+        self.assertEqual(
+            "Verify PMP-8999 availability/capability.",
+            ticket["recommended_action"],
+        )
         self.assertEqual(7, ticket["urgency"]["score"])
 
 

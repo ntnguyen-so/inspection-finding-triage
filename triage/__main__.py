@@ -27,11 +27,14 @@ def main(argv: list[str] | None = None) -> int:
     context = parser.add_mutually_exclusive_group(required=True)
     context.add_argument("--knowledge-store", type=Path, help="Reviewed source-first schema-3 store")
     context.add_argument("--context-export", type=Path, help="Legacy v0 replay only; requires --legacy-replay")
-    parser.add_argument("--activation", type=Path, help="Reviewed triage-activation-v1 pins for native knowledge")
+    parser.add_argument("--activation", type=Path,
+                        help="Reviewed triage-activation-v2 pins for knowledge, policies and prompt")
     parser.add_argument("--legacy-replay", action="store_true", help="Explicitly replay the retired v0 interface")
     parser.add_argument("--config", type=Path, required=True, help="Explicit RunConfig JSON")
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--evidence", type=Path, required=True, help="New per-run directory")
+    parser.add_argument("--finding-id", action="append", dest="finding_ids",
+                        help="Process only this finding while retaining the full input context; repeatable")
     parser.add_argument("--provider", choices=("azure", "copilot"), default="azure",
                         help="Copilot requires an explicit copilot execution mode in config")
     parser.add_argument("--allow-inference", action="store_true", help="Explicit opt-in to billable inference")
@@ -71,6 +74,7 @@ def main(argv: list[str] | None = None) -> int:
                                          max_completion_tokens=config.azure_max_completion_tokens,
                                          api=config.azure_api)),
             config, args.output, args.evidence,
+            selected_finding_ids=args.finding_ids,
         ))
     except (TriageError, InferenceError, OSError, ValueError, TypeError, AttributeError, RecursionError) as error:
         if isinstance(error, TriageError):

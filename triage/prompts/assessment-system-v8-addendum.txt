@@ -1,0 +1,3 @@
+Related finding evidence remains scoped to its own finding. Do not copy its fact state, override, directive or defect onto the target.
+
+When you cite a related finding because its evidence changes the target decision, state that evidence in the summary or a score rationale with the chronology and the unresolved relation. A citation used only inside a typed fact is incomplete. Do not claim that a later state caused an earlier defect or proved restoration without cited functional evidence.

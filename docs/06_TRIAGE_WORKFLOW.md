@@ -1,7 +1,7 @@
 # Fail-Closed Triage Workflow
 
 > **Document status:** current workflow rationale. Deterministic controls and a
-> v11 root delivery are demonstrated; semantic review remains provisional and
+> v31 root delivery is demonstrated; semantic review is provisional and
 > human approval is required.
 
 ## Abstract
@@ -69,6 +69,14 @@ load and validate inputs
 
 Any terminal finding failure stops the batch. The previous output remains
 unchanged.
+
+The assessment system prompt is a packaged workflow artifact, not inline Python
+or mutable runtime configuration. Activation v2 pins its version, raw SHA-256,
+assessment contract, schema contract and context contract. Loading or
+compatibility failure occurs before provider dispatch. The prompt governs task
+protocol. Document 10 defines the intended authority of observed equipment facts
+and reviewed knowledge, and also records that prompt v1 still contains embedded
+domain clauses; extraction alone does not remove that compatibility risk.
 
 ## 2. Responsibility boundary
 
@@ -205,14 +213,12 @@ There are three valid outcomes:
 specific check beyond the global approval required for every draft. No output
 authorizes maintenance, shutdown or work-order creation.
 
-The current root Copilot artifact sets `review_required` on 20/21 tickets and
-places 19 at urgency 7-10. That is honest evidence of weak discrimination,
-not a success metric. `R-SCE` guarantees targeted review for every SCE, so the
-flag currently adds little beyond global human approval. F-1016 (an illegible
-tag on a recently recertified PSV) and F-1019 (loose cladding with no process
-concern) are the concrete weekly-routing cases to challenge. The next experiment
-should retain global approval but reserve `review_required` for a specific
-additional check and recalibrate impact anchors on those lower-consequence cases.
+The current root artifact sets `review_required` on 6/21 tickets. Global human
+approval remains universal; the exceptional flag is now reserved for specific
+unresolved protection, evacuation, redundancy or restoration decisions. Each
+flagged ticket projects a concrete `Why:` explanation and verification check.
+F-1016 and F-1019 no longer enter the exceptional queue merely because they are
+SCE-adjacent or uncertain.
 
 ## 8. Evidence status
 
@@ -228,6 +234,11 @@ additional check and recalibrate impact anchors on those lower-consequence cases
 | V8 Copilot reliability series | Three all-21 batches completed in 21/23/21 sends; bands 21/21 stable, review flags 20/21 stable | **Controlled dirty-worktree observation**; primary reviews retain 9/4/3 pending dimensions and sensitivity disagreement |
 | V9/v10 calibration | Four all-21 runs completed; all semantic reviews failed mandatory uncertainty routing; v10 added no demonstrated prioritisation benefit | **Rejected**, retained as negative evidence |
 | V11 Copilot root delivery | Published all 21 tickets in 21 sends; deterministic assessor contract passed; primary review 54 pass, 9 pending, 0 fail | **Provisional**; zero-fail gate passed, human approval pending, receipt non-eligible and clean reproduction unresolved |
+| V29 final | Published 21 tickets with 6 review flags; exact-artifact review failed F-1011 at 61/63 | **Fail retained**; triggered disclosed chronology repair |
+| V30 prompt repair | Development pair changed two urgency bands and one review flag | **Rejected before final run** |
+| V31 development X01 | Both 13-ticket runs reviewed 39/39; 13/13 bands and review flags matched | **Provisional pass** after visible drift adjudication |
+| V31 final/root | Published 21 tickets in 21 sends; receipt verified; primary review 63/63; 6 review flags | **Provisional pass**; human approval, clean reproduction and provider-hidden accounting remain open |
+| V31 delivery time | 617.75 s wall clock | Actual Copilot usage/USD and hidden HTTP attempts unknown |
 | V11 delivery cost/time | 688.11 s wall clock; 986,488 input and 39,404 output tokens | Actual Copilot USD unknown; simple equivalent OpenAI API estimate **US$2.37** under documented assumptions |
 | V8 output adjudication | F-1010/F-1019 adjacent impact scores remain review-routed; repeat-2 F-1013 issue is absent from the root action | **Honest deferral**; no hand correction or post-result policy tuning |
 | Human/domain certification | Not performed | **Not run** |

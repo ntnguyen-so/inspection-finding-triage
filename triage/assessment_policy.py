@@ -31,6 +31,14 @@ _POLICY = {
          "impact": "Extreme consequences supported by the actual scenario, not merely an SCE label, generic hazard possibility, missing mitigation or repair cost."},
     ],
     "confirmed_required_function_failure_minimum": CONFIRMED_FAILURE_MINIMUM,
+    "test_result_interpretation": (
+        "A test confirms required-function failure only when cited evidence establishes an "
+        "applicable criterion for that required function and adequate test conditions. A "
+        "shortfall in one measured parameter while another necessary performance parameter "
+        "is unmeasured, or while test-path validity is unresolved, supports suspected "
+        "impairment rather than confirmed function loss. Retain material protection "
+        "uncertainty and plan a complete functional test."
+    ),
     "priors": "Reliability runs inversely to likelihood; criticality is only an impact prior. Neither is an answer.",
     "uncertainty": (
         "Do not inflate scores to obtain human attention. Missing evidence neither proves safety nor "

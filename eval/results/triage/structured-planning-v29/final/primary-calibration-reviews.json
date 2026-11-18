@@ -1,0 +1,47 @@
+{
+  "reference_version": "1.3",
+  "reviewer": {
+    "kind": "ai_only",
+    "provider": "GitHub Copilot CLI agent",
+    "model": "unknown_not_exposed",
+    "reasoning_effort": "unknown_not_exposed",
+    "prompt_sha256": "unknown_not_exposed",
+    "role": "primary_semantic_reviewer",
+    "independent_of_generation": true,
+    "domain_expert_claimed": false
+  },
+  "judgments": [
+    {
+      "probe_id": "A04-FW-HEALTHY",
+      "dimension": "grounding",
+      "verdict": "fail",
+      "reason": "The ticket falsely calls pump A confirmed healthy with full-design performance, contradicting the paired finding's 9.2 barg result against 11 barg design and unmeasured flow.",
+      "evidence": [
+        {
+          "field": "summary",
+          "quote": "pump A is confirmed healthy, preserving full N+1 protection"
+        },
+        {
+          "field": "impact_of_failure.rationale",
+          "quote": "Pump A is confirmed healthy and delivers full design pressure"
+        }
+      ]
+    },
+    {
+      "probe_id": "A04-PSV-LABEL",
+      "dimension": "grounding",
+      "verdict": "fail",
+      "reason": "The ticket converts an illegible, in-date certification label into confirmed inability to relieve, which is not established by the source.",
+      "evidence": [
+        {
+          "field": "summary",
+          "quote": "confirmed unable to relieve overpressure because its certification label is illegible"
+        },
+        {
+          "field": "likelihood_of_failure.rationale",
+          "quote": "The illegible certification label proves the valve cannot perform its relief function."
+        }
+      ]
+    }
+  ]
+}

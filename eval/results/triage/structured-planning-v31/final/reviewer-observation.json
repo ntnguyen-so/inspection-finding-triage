@@ -1,0 +1,123 @@
+{
+  "artifact_type": "final_primary_exact_artifact_semantic_review_observation",
+  "completed_at": "2026-11-18T03:20:17.941096+07:00",
+  "reference_version": "1.3",
+  "partition": "all",
+  "reviewer_identity": {
+    "kind": "ai_only",
+    "provider": "GitHub Copilot CLI agent",
+    "model": "unknown_not_exposed",
+    "reasoning_effort": "unknown_not_exposed",
+    "prompt_identity": "unknown_not_exposed",
+    "prompt_sha256": "unknown_not_exposed",
+    "role": "primary_semantic_reviewer",
+    "independent_of_generation": true,
+    "domain_expert_claimed": false
+  },
+  "commands": [
+    {
+      "command": "python -B -m eval.assess --partition all --checklist",
+      "exit_code": 0,
+      "outcome": "generic_checklist_generated"
+    },
+    {
+      "command": "python -B -m eval.assess --partition all --tickets eval\\results\\triage\\structured-planning-v31\\final\\tickets.experimental.json",
+      "exit_code": 2,
+      "outcome": "artifact_bound_template_generated_semantic_needs_review_without_reviews"
+    },
+    {
+      "command": "python -B -m eval.assess --partition development --calibration-reviews eval\\results\\triage\\structured-planning-v31\\final\\primary-calibration-reviews.json",
+      "exit_code": 0,
+      "outcome": "pass"
+    },
+    {
+      "command": "python -B -m eval.assess --partition all --tickets eval\\results\\triage\\structured-planning-v31\\final\\tickets.experimental.json --reviews eval\\results\\triage\\structured-planning-v31\\final\\primary-reviews.json",
+      "exit_code": 0,
+      "outcome": "provisional_pass"
+    }
+  ],
+  "calibration": {
+    "path": "eval\\results\\triage\\structured-planning-v31\\final\\primary-calibration-reviews.json",
+    "sha256": "d91153a9f12f5116a4674a79d643012ff50d5008dff32c0977969f2dace6bec4",
+    "status": "pass",
+    "fixture_count": 2,
+    "correct_fixture_judgments": 2,
+    "wrong_fixture_judgments": 0,
+    "pending_count": 0
+  },
+  "primary_review": {
+    "tickets_path": "eval\\results\\triage\\structured-planning-v31\\final\\tickets.experimental.json",
+    "tickets_sha256": "2bb8d0f34da36142042c6f5f983622be358e45fc4690378a935e28ba189f1f98",
+    "reviews_path": "eval\\results\\triage\\structured-planning-v31\\final\\primary-reviews.json",
+    "reviews_sha256": "e4f13655b5c7aa23b1451f7e678aa80e29f2f626a5a1d970e631490450935b16",
+    "artifact_review_count": 1,
+    "first_complete_result_preserved": true,
+    "contract_status": "pass",
+    "contract_error_count": 0,
+    "semantic_status": "provisional_pass",
+    "overall_status": "provisional_pass",
+    "passed_dimensions": 63,
+    "applicable_dimensions": 63,
+    "failed_count": 0,
+    "failed": [],
+    "pending_count": 0,
+    "pending": [],
+    "review_routes": {
+      "count": 6,
+      "finding_ids": [
+        "F-1002",
+        "F-1008",
+        "F-1012",
+        "F-1013",
+        "F-1017",
+        "F-1020"
+      ],
+      "status": "all_six_review_required_routes_checked_for_concrete_reason_and_verification_action"
+    }
+  },
+  "generation_artifact_provenance": {
+    "run_evidence_path": "eval\\results\\triage\\structured-planning-v31\\final\\evidence\\run.json",
+    "run_evidence_sha256": "b23bc50f558bc29973dec61c6b235e656314b170ffd7624979b589b32fa4bcd1",
+    "publication_receipt_path": "eval\\results\\triage\\structured-planning-v31\\final\\evidence\\publication.json",
+    "publication_receipt_sha256": "875ae4ddb74a04d84499805ad6b0af1c0da496d771e6afe40a4ebd7fc90b8dcf",
+    "run_status": "published",
+    "tickets_generated": 21,
+    "application_sends": 21,
+    "validated_application_sends": 21,
+    "elapsed_seconds": 617.75,
+    "provider_route": "github-copilot",
+    "generation_model": "gpt-6.1-sol",
+    "generation_reasoning_effort": "medium",
+    "execution_mode": "copilot_experiment",
+    "cache_mode": "no_application_result_cache",
+    "assessment_time": "2026-07-01T00:00:00+00:00",
+    "config_sha256": "b60ba324018517213e99d22e2988fc11b4e0d60cc140c6a4b886a712527e55f0",
+    "context_hash": "ad9196b059f0deab08cb28d6daa8eaa6735331fb19cb7ba413303c69b14f6477",
+    "assessment_prompt_version": "assessment-system-v7",
+    "assessment_prompt_sha256": "f275552a9a7cc12fc091b3d7ced214f5e3ef82ac6c31e692a4fcf599c0c66fd8",
+    "ticket_projection": "ticket-projection-v4",
+    "strict_attempt_contract": "not_established",
+    "http_attempts": "unknown_not_exposed",
+    "generation_usage": "unknown_not_exposed",
+    "generation_cost_usd": "unknown_not_exposed",
+    "acceptance_eligible": false,
+    "human_approval": "required_outside_generation"
+  },
+  "metadata": {
+    "git_revision": "da7d8913cc25609913e110dd1a01a3a6ca3d8026",
+    "worktree_state": "dirty_preexisting_and_task_outputs",
+    "review_usage": "unknown_not_exposed",
+    "review_cost_usd": "unknown_not_exposed",
+    "review_latency_seconds": "unknown_not_measured"
+  },
+  "limitations": [
+    "This is a provisional AI-only semantic assessment, not domain certification, human approval or full A-D system acceptance.",
+    "Calibration covers only the two disclosed seeded contradiction fixtures and does not establish arbitrary semantic truth.",
+    "The reviewer model, reasoning setting, prompt identity, prompt hash, usage, cost and latency were not exposed or measured and remain unknown.",
+    "The assessor validates review structure, exact artifact binding and quoted output evidence; it does not independently prove engineering correctness.",
+    "The reference and split are non-blind and AI-assisted, and the chronology repair is disclosed as test-informed.",
+    "The working tree was already dirty and the observation is hash-pinned worktree evidence rather than clean-checkout reproduction.",
+    "Generation-side hidden HTTP attempts, strict SDK-inclusive attempt compliance, exposed usage and actual USD cost remain unknown; the run receipt remains acceptance_eligible=false.",
+    "The exact final artifact received one complete primary semantic review; no green-seeking rerun or secondary majority vote was used."
+  ]
+}

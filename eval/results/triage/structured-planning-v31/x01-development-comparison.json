@@ -1,0 +1,431 @@
+{
+  "contract": "x01-repeat-comparison-v1",
+  "claim_boundary": "Automated comparison covers scores, urgency bands, review flags, rule sets, configuration identity and publication receipts. Unsupported-claim review remains a separate semantic gate.",
+  "run_a": {
+    "tickets": "eval\\results\\triage\\structured-planning-v31\\development-1\\tickets.experimental.json",
+    "tickets_sha256": "27f82edf8ec435f67f64705c76ff15cd3453fba6b847ce7aceff0f61d538b719",
+    "run": "eval\\results\\triage\\structured-planning-v31\\development-1\\evidence\\run.json",
+    "run_sha256": "4dd547713b899461d7b20f6a1ea68304b9907af20e1e92d9c0f994d505e5ac04",
+    "publication": {
+      "path": "eval\\results\\triage\\structured-planning-v31\\development-1\\evidence\\publication.json",
+      "sha256": "1a4518656807888b907f4549a748357c035aa2bc276424172f86035c0249f04d",
+      "recorded_sha256": "1a4518656807888b907f4549a748357c035aa2bc276424172f86035c0249f04d",
+      "output_path": "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\structured-planning-v31\\development-1\\tickets.experimental.json",
+      "output_sha256": "27f82edf8ec435f67f64705c76ff15cd3453fba6b847ce7aceff0f61d538b719",
+      "recorded_output_sha256": "27f82edf8ec435f67f64705c76ff15cd3453fba6b847ce7aceff0f61d538b719",
+      "valid": true
+    }
+  },
+  "run_b": {
+    "tickets": "eval\\results\\triage\\structured-planning-v31\\development-2\\tickets.experimental.json",
+    "tickets_sha256": "bb511b01dc860852e394842bccefac6a54656b237092c03d5daaf4de54c6e7a8",
+    "run": "eval\\results\\triage\\structured-planning-v31\\development-2\\evidence\\run.json",
+    "run_sha256": "acba1b8de0deb6a4f5f30316d60de111065e88ef1e1b6200e41b23966ff8b6b0",
+    "publication": {
+      "path": "eval\\results\\triage\\structured-planning-v31\\development-2\\evidence\\publication.json",
+      "sha256": "c3b35d98032525b9d17cf4268ae2ec6943f8b7ebf2ffb0ff84f616abbb9e6127",
+      "recorded_sha256": "c3b35d98032525b9d17cf4268ae2ec6943f8b7ebf2ffb0ff84f616abbb9e6127",
+      "output_path": "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\structured-planning-v31\\development-2\\tickets.experimental.json",
+      "output_sha256": "bb511b01dc860852e394842bccefac6a54656b237092c03d5daaf4de54c6e7a8",
+      "recorded_output_sha256": "bb511b01dc860852e394842bccefac6a54656b237092c03d5daaf4de54c6e7a8",
+      "valid": true
+    }
+  },
+  "configuration_match": {
+    "input_sha256": true,
+    "context_hash": true,
+    "knowledge_content_hash": true,
+    "assessment_prompt": true,
+    "policy_version": true,
+    "ticket_projection": true,
+    "implementation_sha256": true,
+    "knowledge_implementation_sha256": true
+  },
+  "findings": [
+    {
+      "finding_id": "F-1001",
+      "coverage_match": true,
+      "run_a": {
+        "likelihood": 7,
+        "impact": 7,
+        "urgency": 9,
+        "urgency_band": "today",
+        "review_required": false,
+        "rule_ids": [
+          "S-SOURCE-TODAY"
+        ]
+      },
+      "run_b": {
+        "likelihood": 7,
+        "impact": 6,
+        "urgency": 9,
+        "urgency_band": "today",
+        "review_required": false,
+        "rule_ids": [
+          "S-SOURCE-TODAY"
+        ]
+      },
+      "numeric_score_match": false,
+      "urgency_band_match": true,
+      "review_flag_match": true,
+      "rule_set_match": true
+    },
+    {
+      "finding_id": "F-1003",
+      "coverage_match": true,
+      "run_a": {
+        "likelihood": 9,
+        "impact": 8,
+        "urgency": 9,
+        "urgency_band": "today",
+        "review_required": false,
+        "rule_ids": [
+          "P-FAILED-TEST",
+          "P-SAFETY-UNKNOWN",
+          "P-SAFETY-UNKNOWN",
+          "P-SCE-HIGH-IMPACT"
+        ]
+      },
+      "run_b": {
+        "likelihood": 9,
+        "impact": 8,
+        "urgency": 9,
+        "urgency_band": "today",
+        "review_required": false,
+        "rule_ids": [
+          "P-FAILED-TEST",
+          "P-SAFETY-UNKNOWN",
+          "P-SAFETY-UNKNOWN",
+          "P-SCE-HIGH-IMPACT"
+        ]
+      },
+      "numeric_score_match": true,
+      "urgency_band_match": true,
+      "review_flag_match": true,
+      "rule_set_match": true
+    },
+    {
+      "finding_id": "F-1004",
+      "coverage_match": true,
+      "run_a": {
+        "likelihood": 8,
+        "impact": 8,
+        "urgency": 8,
+        "urgency_band": "this_week",
+        "review_required": false,
+        "rule_ids": []
+      },
+      "run_b": {
+        "likelihood": 8,
+        "impact": 8,
+        "urgency": 8,
+        "urgency_band": "this_week",
+        "review_required": false,
+        "rule_ids": [
+          "P-SAFETY-UNKNOWN"
+        ]
+      },
+      "numeric_score_match": true,
+      "urgency_band_match": true,
+      "review_flag_match": true,
+      "rule_set_match": false
+    },
+    {
+      "finding_id": "F-1005",
+      "coverage_match": true,
+      "run_a": {
+        "likelihood": 10,
+        "impact": 6,
+        "urgency": 9,
+        "urgency_band": "today",
+        "review_required": false,
+        "rule_ids": [
+          "P-FAILED-TEST",
+          "P-SAFETY-UNKNOWN"
+        ]
+      },
+      "run_b": {
+        "likelihood": 10,
+        "impact": 6,
+        "urgency": 9,
+        "urgency_band": "today",
+        "review_required": false,
+        "rule_ids": [
+          "P-FAILED-TEST",
+          "P-SAFETY-UNKNOWN"
+        ]
+      },
+      "numeric_score_match": true,
+      "urgency_band_match": true,
+      "review_flag_match": true,
+      "rule_set_match": true
+    },
+    {
+      "finding_id": "F-1006",
+      "coverage_match": true,
+      "run_a": {
+        "likelihood": 4,
+        "impact": 7,
+        "urgency": 7,
+        "urgency_band": "this_week",
+        "review_required": false,
+        "rule_ids": []
+      },
+      "run_b": {
+        "likelihood": 4,
+        "impact": 7,
+        "urgency": 7,
+        "urgency_band": "this_week",
+        "review_required": false,
+        "rule_ids": []
+      },
+      "numeric_score_match": true,
+      "urgency_band_match": true,
+      "review_flag_match": true,
+      "rule_set_match": true
+    },
+    {
+      "finding_id": "F-1007",
+      "coverage_match": true,
+      "run_a": {
+        "likelihood": 9,
+        "impact": 7,
+        "urgency": 8,
+        "urgency_band": "this_week",
+        "review_required": false,
+        "rule_ids": []
+      },
+      "run_b": {
+        "likelihood": 9,
+        "impact": 7,
+        "urgency": 8,
+        "urgency_band": "this_week",
+        "review_required": false,
+        "rule_ids": []
+      },
+      "numeric_score_match": true,
+      "urgency_band_match": true,
+      "review_flag_match": true,
+      "rule_set_match": true
+    },
+    {
+      "finding_id": "F-1008",
+      "coverage_match": true,
+      "run_a": {
+        "likelihood": 6,
+        "impact": 8,
+        "urgency": 8,
+        "urgency_band": "this_week",
+        "review_required": true,
+        "rule_ids": [
+          "P-SAFETY-UNKNOWN",
+          "P-SAFETY-UNKNOWN",
+          "P-SCE-HIGH-IMPACT"
+        ]
+      },
+      "run_b": {
+        "likelihood": 6,
+        "impact": 8,
+        "urgency": 8,
+        "urgency_band": "this_week",
+        "review_required": true,
+        "rule_ids": [
+          "P-SAFETY-UNKNOWN",
+          "P-SAFETY-UNKNOWN",
+          "P-SCE-HIGH-IMPACT"
+        ]
+      },
+      "numeric_score_match": true,
+      "urgency_band_match": true,
+      "review_flag_match": true,
+      "rule_set_match": true
+    },
+    {
+      "finding_id": "F-1009",
+      "coverage_match": true,
+      "run_a": {
+        "likelihood": 9,
+        "impact": 3,
+        "urgency": 5,
+        "urgency_band": "this_month",
+        "review_required": false,
+        "rule_ids": []
+      },
+      "run_b": {
+        "likelihood": 9,
+        "impact": 3,
+        "urgency": 5,
+        "urgency_band": "this_month",
+        "review_required": false,
+        "rule_ids": []
+      },
+      "numeric_score_match": true,
+      "urgency_band_match": true,
+      "review_flag_match": true,
+      "rule_set_match": true
+    },
+    {
+      "finding_id": "F-1010",
+      "coverage_match": true,
+      "run_a": {
+        "likelihood": 9,
+        "impact": 8,
+        "urgency": 9,
+        "urgency_band": "today",
+        "review_required": false,
+        "rule_ids": [
+          "P-FAILED-TEST",
+          "P-SAFETY-UNKNOWN",
+          "P-SCE-HIGH-IMPACT"
+        ]
+      },
+      "run_b": {
+        "likelihood": 9,
+        "impact": 8,
+        "urgency": 9,
+        "urgency_band": "today",
+        "review_required": false,
+        "rule_ids": [
+          "P-FAILED-TEST",
+          "P-SAFETY-UNKNOWN",
+          "P-SCE-HIGH-IMPACT"
+        ]
+      },
+      "numeric_score_match": true,
+      "urgency_band_match": true,
+      "review_flag_match": true,
+      "rule_set_match": true
+    },
+    {
+      "finding_id": "F-1012",
+      "coverage_match": true,
+      "run_a": {
+        "likelihood": 9,
+        "impact": 8,
+        "urgency": 9,
+        "urgency_band": "today",
+        "review_required": true,
+        "rule_ids": [
+          "P-EVACUATION",
+          "P-FAILED-TEST",
+          "P-SAFETY-UNKNOWN",
+          "P-SAFETY-UNKNOWN",
+          "P-SAFETY-UNKNOWN",
+          "P-SAFETY-UNKNOWN",
+          "P-SCE-HIGH-IMPACT"
+        ]
+      },
+      "run_b": {
+        "likelihood": 9,
+        "impact": 8,
+        "urgency": 9,
+        "urgency_band": "today",
+        "review_required": true,
+        "rule_ids": [
+          "P-EVACUATION",
+          "P-FAILED-TEST",
+          "P-SAFETY-UNKNOWN",
+          "P-SAFETY-UNKNOWN",
+          "P-SAFETY-UNKNOWN",
+          "P-SAFETY-UNKNOWN",
+          "P-SCE-HIGH-IMPACT"
+        ]
+      },
+      "numeric_score_match": true,
+      "urgency_band_match": true,
+      "review_flag_match": true,
+      "rule_set_match": true
+    },
+    {
+      "finding_id": "F-1016",
+      "coverage_match": true,
+      "run_a": {
+        "likelihood": 10,
+        "impact": 3,
+        "urgency": 6,
+        "urgency_band": "this_month",
+        "review_required": false,
+        "rule_ids": []
+      },
+      "run_b": {
+        "likelihood": 10,
+        "impact": 2,
+        "urgency": 5,
+        "urgency_band": "this_month",
+        "review_required": false,
+        "rule_ids": []
+      },
+      "numeric_score_match": false,
+      "urgency_band_match": true,
+      "review_flag_match": true,
+      "rule_set_match": true
+    },
+    {
+      "finding_id": "F-1017",
+      "coverage_match": true,
+      "run_a": {
+        "likelihood": 6,
+        "impact": 8,
+        "urgency": 8,
+        "urgency_band": "this_week",
+        "review_required": true,
+        "rule_ids": [
+          "P-SAFETY-UNKNOWN",
+          "P-SAFETY-UNKNOWN",
+          "P-SAFETY-UNKNOWN",
+          "P-SCE-HIGH-IMPACT"
+        ]
+      },
+      "run_b": {
+        "likelihood": 6,
+        "impact": 8,
+        "urgency": 8,
+        "urgency_band": "this_week",
+        "review_required": true,
+        "rule_ids": [
+          "P-SAFETY-UNKNOWN",
+          "P-SAFETY-UNKNOWN",
+          "P-SAFETY-UNKNOWN",
+          "P-SCE-HIGH-IMPACT"
+        ]
+      },
+      "numeric_score_match": true,
+      "urgency_band_match": true,
+      "review_flag_match": true,
+      "rule_set_match": true
+    },
+    {
+      "finding_id": "F-1019",
+      "coverage_match": true,
+      "run_a": {
+        "likelihood": 8,
+        "impact": 5,
+        "urgency": 6,
+        "urgency_band": "this_month",
+        "review_required": false,
+        "rule_ids": []
+      },
+      "run_b": {
+        "likelihood": 8,
+        "impact": 5,
+        "urgency": 6,
+        "urgency_band": "this_month",
+        "review_required": false,
+        "rule_ids": []
+      },
+      "numeric_score_match": true,
+      "urgency_band_match": true,
+      "review_flag_match": true,
+      "rule_set_match": true
+    }
+  ],
+  "summary": {
+    "finding_count": 13,
+    "numeric_score_matches": 11,
+    "urgency_band_matches": 13,
+    "review_flag_matches": 13,
+    "rule_set_matches": 12
+  },
+  "automated_status": "fail",
+  "unsupported_claim_status": "not_reviewed"
+}

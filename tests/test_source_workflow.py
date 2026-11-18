@@ -14,17 +14,21 @@ from unittest.mock import patch
 from llm_inference import InferenceError
 from llm_inference.contracts import canonical, strict_json
 from tests.triage_support import (
-    Artifacts, CUTOFF, FakeProvider, assessment, native_response, source_files, write_csv,
+    Artifacts, CUTOFF, FakeProvider, QUOTE, REFERENCE, assessment, native_response,
+    source_files, write_csv,
 )
 from triage.__main__ import main
 from triage.assessment_policy import ASSESSMENT_POLICY_SHA256, assessment_policy
 from triage.contracts import TriageError, digest
 from triage.inputs import EQUIPMENT_FIELDS, FINDING_FIELDS, read_inputs
 from triage.policy import (
-    CAPACITY_COMPARISON_ACTIVITY, CONTROL_ALIGNMENT_ACTIVITY, IMPAIRMENT_RECORD_ACTIVITY,
+    CONTROL_ALIGNMENT_ACTIVITY, IMPAIRMENT_RECORD_ACTIVITY,
     RESTORATION_CLOSURE_ACTIVITY, SAME_DAY_ATTENTION_ACTIVITY,
 )
-from triage.source_context import IsolatedProbeContext, NativeContext, activation_candidate
+from triage.prompt import assessment_prompt
+from triage.source_context import (
+    IsolatedKnowledgeReleaseContext, IsolatedProbeContext, NativeContext, activation_candidate,
+)
 from triage.workflow import run_workflow
 from triage_knowledge.contracts import KnowledgeError, canonical_bytes
 from triage_knowledge.source import SourceDocument, extract_code
@@ -104,6 +108,9 @@ class SourceWorkflowTests(Artifacts, unittest.TestCase):
         self.assertEqual("native_source_first_bundle_3", record["context_provenance"])
         self.assertEqual(ASSESSMENT_POLICY_SHA256,
                          record["knowledge_handoff"]["activation"]["assessment_policy_sha256"])
+        self.assertEqual(assessment_prompt().identity(),
+                         record["knowledge_handoff"]["activation"]["assessment_prompt"])
+        self.assertEqual(assessment_prompt().identity(), record["assessment_prompt"])
         self.assertEqual(digest(self.inputs.findings_raw), self.inputs.findings_hash)
 
     def test_native_request_exposes_target_history_without_invented_state(self):
@@ -160,7 +167,6 @@ class SourceWorkflowTests(Artifacts, unittest.TestCase):
         self.assertIn("never paraphrase a fixed activity", provider.requests[0].system)
         self.assertEqual(
             [
-                CAPACITY_COMPARISON_ACTIVITY,
                 SAME_DAY_ATTENTION_ACTIVITY,
                 CONTROL_ALIGNMENT_ACTIVITY,
                 IMPAIRMENT_RECORD_ACTIVITY,
@@ -174,6 +180,131 @@ class SourceWorkflowTests(Artifacts, unittest.TestCase):
         self.assertEqual("F-8002", next(iter(history["related_findings"])))
         self.assertIn("not repair completion", history["limitations"][0])
         self.assertNotIn("score", canonical(history))
+
+    def test_selected_finding_keeps_full_context_but_publishes_only_selection(self):
+        self.inputs = source_files(self.root, count=2)
+        provider = FakeProvider([assessment("F-8002")])
+        result = asyncio.run(run_workflow(
+            self.inputs, self.source(), lambda: provider, self.config(),
+            self.output, self.root / "selected", selected_finding_ids=["F-8002"],
+        ))
+        self.assertEqual(1, result["tickets_generated"])
+        message = strict_json(provider.requests[0].user)
+        self.assertEqual("F-8002", message["target_finding_id"])
+        self.assertIn("F-8001", message["context"]["payload"]["findings"])
+        payload = strict_json(self.output.read_text())
+        self.assertEqual(["F-8002"], [ticket["finding_id"] for ticket in payload["tickets"]])
+
+    def test_activation_selects_exact_reviewed_prompt_version(self):
+        self.activation = activation_candidate(
+            self.store, self.version, prompt_version="assessment-system-v2")
+        self.activation["review"] = {
+            "reviewer": "Synthetic software fixture", "reason": "Not genuine content approval",
+            "reviewed_at": CUTOFF, "source_policy_compatible": True,
+        }
+        provider = FakeProvider()
+        self.run_one(provider)
+        expected = assessment_prompt("assessment-system-v2")
+        self.assertEqual(expected.text, provider.requests[0].system)
+        record = strict_json((self.root / "run" / "run.json").read_text())
+        self.assertEqual(expected.identity(), record["assessment_prompt"])
+
+    def test_v4_workflow_composes_typed_plan_and_records_concise_projection(self):
+        self.activation = activation_candidate(
+            self.store, self.version, prompt_version="assessment-system-v4")
+        self.activation["review"] = {
+            "reviewer": "Synthetic software fixture", "reason": "Not genuine content approval",
+            "reviewed_at": CUTOFF, "source_policy_compatible": True,
+        }
+        proposed = assessment()
+        proposed.pop("recommended_action")
+        proposed["plan"] = {
+            "diagnose": [],
+            "disposition": {
+                "authority": "Integrity engineer",
+                "decision": "approve repair basis",
+            },
+            "correction": {
+                "text": "repair confirmed defect",
+                "conditional": False,
+            },
+            "acceptance": {
+                "kind": "functional_test",
+                "test": "Test restored function",
+                "criterion": "approved limits",
+                "witnessed": False,
+                "independent_reference": False,
+            },
+        }
+        provider = FakeProvider([proposed, proposed])
+        result = self.run_one(provider)
+        self.assertTrue(result["published_output"])
+        ticket = strict_json(self.output.read_text())["tickets"][0]
+        self.assertLess(
+            ticket["recommended_action"].index("repair confirmed defect"),
+            ticket["recommended_action"].index("Test restored function"),
+        )
+        record = strict_json((self.root / "run" / "run.json").read_text())
+        self.assertEqual("native-assessment-v3",
+                         record["assessment_prompt"]["assessment_contract"])
+        self.assertEqual("ticket-projection-v4", record["ticket_projection"])
+        self.assertEqual("plan-v1",
+                         record["attempts"][0]["action_composition"]["contract"])
+        self.assertEqual("Integrity engineer",
+                         record["attempts"][0]["action_composition"]["disposition"]["authority"])
+
+    def test_v5_workflow_uses_shared_failure_basis_and_grounded_plan(self):
+        self.activation = activation_candidate(
+            self.store, self.version, prompt_version="assessment-system-v5")
+        self.activation["review"] = {
+            "reviewer": "Synthetic software fixture", "reason": "Not genuine content approval",
+            "reviewed_at": CUTOFF, "source_policy_compatible": True,
+        }
+        proposed = assessment()
+        proposed.pop("recommended_action")
+        proposed["failure_basis"] = {
+            "assessed_item": "Synthetic pump surface",
+            "required_function": "retain its boundary",
+            "failure_event": "surface defect breaches the boundary",
+            "evidence": [{"source_ref": REFERENCE, "quote": QUOTE}],
+        }
+        proposed["plan"] = {
+            "planning_requirements": [{
+                "activity": "Inspect the surface",
+                "phase": "diagnose",
+                "reason": "The cited observation requires inspection.",
+                "evidence": [{"source_ref": REFERENCE, "quote": QUOTE}],
+            }],
+            "diagnose": ["Inspect the surface"],
+            "disposition": {
+                "authority": "Integrity engineer",
+                "decision": "approve repair basis",
+            },
+            "correction": {
+                "text": "repair confirmed defect",
+                "conditional": True,
+            },
+            "acceptance": {
+                "kind": "inspection",
+                "test": "Inspect repaired boundary",
+                "criterion": "approved condition",
+                "witnessed": False,
+                "independent_reference": False,
+            },
+        }
+        provider = FakeProvider([proposed, proposed])
+        self.run_one(provider, "v5")
+        ticket = strict_json(self.output.read_text())["tickets"][0]
+        self.assertIn("Inspect the surface", ticket["recommended_action"])
+        record = strict_json((self.root / "v5" / "run.json").read_text())
+        self.assertEqual("native-assessment-v4",
+                         record["assessment_prompt"]["assessment_contract"])
+        self.assertEqual("plan-v2",
+                         record["attempts"][0]["action_composition"]["contract"])
+        self.assertEqual(
+            "surface defect breaches the boundary",
+            record["attempts"][0]["assessment"]["failure_basis"]["failure_event"],
+        )
 
     def test_provider_bound_request_contains_no_evaluator_material(self):
         marker = "FROZEN_EVALUATOR_SECRET_EXPECTED_ANSWER"
@@ -207,7 +338,7 @@ class SourceWorkflowTests(Artifacts, unittest.TestCase):
         self.assertEqual((2, 3, 9), (ticket["likelihood_of_failure"]["score"],
                                     ticket["impact_of_failure"]["score"], ticket["urgency"]["score"]))
         self.assertIn(SAME_DAY_ATTENTION_ACTIVITY, ticket["recommended_action"])
-        self.assertTrue(ticket["review_required"])
+        self.assertFalse(ticket["review_required"])
         record = strict_json((self.root / "timing" / "run.json").read_text())
         self.assertIn("citation_catalog_sha256", record["attempts"][0])
         self.assertEqual("Specialist attention is required today.",
@@ -230,6 +361,7 @@ class SourceWorkflowTests(Artifacts, unittest.TestCase):
             lambda a: a.update(retrieval_index_sha256="0" * 64),
             lambda a: a.update(assessment_policy_sha256="0" * 64),
             lambda a: a.update(execution_policy_sha256="0" * 64),
+            lambda a: a["assessment_prompt"].update(sha256="0" * 64),
             lambda a: a["strategy"].update(parameters_sha256="0" * 64),
             lambda a: a["review"].update(source_policy_compatible=False),
         ]
@@ -294,7 +426,8 @@ class SourceWorkflowTests(Artifacts, unittest.TestCase):
         self.assertTrue(ticket["review_required"])
         self.assertEqual(7, ticket["urgency"]["score"])
         self.assertEqual(2, ticket["likelihood_of_failure"]["score"])
-        self.assertIn("Verify availability and capability of PMP-8999.", ticket["recommended_action"])
+        self.assertIn("Verify PMP-8999 availability/capability.",
+                      ticket["recommended_action"])
         self.assertNotIn("gaps", strict_json(provider.requests[0].user)["context"])
         report = strict_json((self.root / "run" / "run.json").read_text())
         self.assertEqual("PMP-8999", report["context_gaps"][0]["partner_equipment_id"])
@@ -472,6 +605,33 @@ class SourceWorkflowTests(Artifacts, unittest.TestCase):
             self.assertEqual("context_overlay", caught.exception.code)
             self.assertFalse(provider.requests)
             self.assertEqual(b"previous", output.read_bytes())
+
+    def test_release_probe_uses_evaluation_input_with_unchanged_production_policy(self):
+        source = IsolatedKnowledgeReleaseContext(self.store.root, self.activation)
+        bundle, _, handoff = self.prepare(source=source)
+        self.assertEqual(assessment_policy(), bundle["assessment_policy"])
+        self.assertNotIn("isolated_experiment", bundle["assessment_policy"])
+        self.assertEqual("isolated_probe", bundle["input_purpose"])
+        self.assertEqual(
+            "evaluation_input",
+            handoff["native_evidence"]["source_manifest"][0]["kind"],
+        )
+        provider = FakeProvider()
+        output = self.root / "release-probe.experimental.json"
+        asyncio.run(run_workflow(
+            self.inputs,
+            source,
+            lambda: provider,
+            self.config(),
+            output,
+            self.root / "release-probe",
+            purpose="isolated_probe",
+        ))
+        self.assertTrue(output.exists())
+        self.assertEqual(
+            assessment_policy(),
+            strict_json(provider.requests[0].user)["context"]["assessment_policy"],
+        )
 
     def test_replaced_knowledge_stays_excluded_after_successor_expiry(self):
         documents = [SourceDocument.from_bytes(
