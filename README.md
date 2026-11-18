@@ -115,8 +115,12 @@ instructions and host operations; it is used only as an inference transport.
 
 ## Option B — Run with Azure OpenAI
 
-Create an Azure OpenAI resource and deploy a model capable of producing the
-required JSON. Set credentials in the current PowerShell session:
+Create an Azure OpenAI resource and deploy **`gpt-6.1-sol` version
+`2026-09-29`**. This matches the Copilot route's public model ID instead of
+silently substituting another model family. The Azure deployment name is
+arbitrary; the wrapper verifies the observed model identity after dispatch.
+
+Set credentials in the current PowerShell session:
 
 ```powershell
 $env:AZURE_OPENAI_ENDPOINT = "https://<resource>.openai.azure.com"
@@ -132,14 +136,13 @@ Do not write the key into a config file or commit it. The value passed to
   --model "<azure-deployment-name>"
 ```
 
-The current end-to-end Azure path uses API-key authentication and the Azure
-chat-completions API. The deployment must support JSON-schema structured output.
-The default reasoning effort is `medium`; pass `--reasoning-effort low`, another
-deployment-supported value, or `--reasoning-effort none` when appropriate. The
-provider adapter disables SDK retries so the application attempt budget remains
-authoritative. This is the strictly provider-SDK route; it does not use the
-Copilot CLI runtime. Prior Azure evidence established transport and structural
-behavior, not equivalent semantic quality to the retained Copilot delivery.
+The pinned parity configuration is `gpt-6.1-sol` `2026-09-29`, medium reasoning,
+an 8,192-token output cap, a 300-second provider deadline and the Azure
+chat-completions API. The adapter verifies the deployment's observed model,
+disables SDK retries and preserves the application attempt budget. This is the
+strictly provider-SDK route; it does not use the Copilot CLI runtime. Copilot
+does not expose its backend version, so matching the public model ID and request
+payload does not imply byte-identical provider behavior.
 
 ## Run behavior
 

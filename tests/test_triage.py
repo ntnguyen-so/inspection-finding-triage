@@ -27,7 +27,7 @@ from triage.policy import (
 )
 from triage.projection import project_related_context
 from triage.workflow import (
-    action_retry_budget, compose_action, run_workflow, validate_output,
+    action_retry_budget, compose_action, repair_feedback, run_workflow, validate_output,
 )
 from tests.triage_support import (
     Artifacts, CUTOFF, FixtureContext, FakeProvider, QUOTE, REFERENCE, assessment,
@@ -1065,6 +1065,33 @@ class WorkflowTests(Artifacts, unittest.TestCase):
         return asyncio.run(run_workflow(self.inputs, self.source, lambda: provider,
                                        config or self.config(), self.output, evidence or self.evidence))
 
+    def azure_provider(self, observed_model):
+        configuration = {
+            **receipt(),
+            "provider": "azure-openai",
+            "api": "azure-openai-v1-chat-completions",
+            "max_completion_tokens": 8192,
+        }
+        provider = FakeProvider(configuration=configuration)
+        generate = provider.generate
+
+        async def with_azure_receipt(request):
+            response = await generate(request)
+            system, user, _ = request.prepared()
+            azure_receipt = {
+                **receipt(),
+                **configuration,
+                "requested_model": request.model,
+                "observed_model": observed_model,
+                "wire_message_hashes_match": True,
+                "system_sha256": digest(system.encode()),
+                "user_sha256": digest(user.encode()),
+            }
+            return InferenceResponse(response.text, response.parsed, azure_receipt)
+
+        provider.generate = with_azure_receipt
+        return provider
+
     def test_complete_batch_publication_and_contract(self):
         self.inputs = source_files(self.root, count=2)
         self.source = FixtureContext(self.inputs)
@@ -1212,6 +1239,76 @@ class WorkflowTests(Artifacts, unittest.TestCase):
         self.assertEqual("timeout", caught.exception.code)
         self.assertEqual(1, caught.exception.attempts)
         self.assertFalse(self.output.exists())
+
+    def test_plan_repair_feedback_covers_full_contract_and_length(self):
+        detail = repair_feedback(
+            "plan_contract",
+            TriageError("plan_contract", "Required activity is in the wrong phase"),
+        )
+        self.assertIn("Required activity is in the wrong phase", detail)
+        self.assertIn("every plan-v2 invariant", detail)
+        self.assertIn("at or below 280 characters", detail)
+        self.assertLessEqual(len(detail), 500)
+        self.assertEqual(
+            "other failure",
+            repair_feedback("assessment_schema", ValueError("other failure")),
+        )
+
+    def test_matching_azure_model_identity_publishes(self):
+        expected = "gpt-6.1-sol-2026-09-29"
+        self.run_one(
+            self.azure_provider(expected),
+            config=self.config(
+                azure_max_completion_tokens=8192,
+                azure_api="chat_completions",
+                azure_expected_model=expected,
+            ),
+        )
+        self.assertTrue(self.output.exists())
+
+    def test_mismatched_azure_model_identity_fails_closed(self):
+        expected = "gpt-6.1-sol-2026-09-29"
+        with self.assertRaises(TriageError) as caught:
+            self.run_one(
+                self.azure_provider("gpt-5.6-sol-2026-07-09"),
+                config=self.config(
+                    azure_max_completion_tokens=8192,
+                    azure_api="chat_completions",
+                    azure_expected_model=expected,
+                ),
+            )
+        self.assertEqual("unverified_provider_call", caught.exception.code)
+        record = strict_json((self.evidence / "run.json").read_text())
+        self.assertIn(expected, record["attempts"][0]["validation_message"])
+        self.assertFalse(self.output.exists())
+
+    def test_azure_adapter_timeout_receipt_wins_before_workflow_guard(self):
+        azure_configuration = {
+            **receipt(),
+            "provider": "azure-openai",
+            "api": "azure-openai-v1-chat-completions",
+            "max_completion_tokens": 8192,
+        }
+        provider = FakeProvider(configuration=azure_configuration)
+
+        async def provider_deadline(request):
+            provider.requests.append(request)
+            await asyncio.sleep(request.timeout_seconds + 0.005)
+            raise InferenceError("timeout", "Synthetic Azure deadline", receipt())
+
+        provider.generate = provider_deadline
+        with self.assertRaises(TriageError) as caught:
+            self.run_one(provider, config=self.config(
+                timeout_seconds=0.01,
+                azure_max_completion_tokens=8192,
+                azure_api="chat_completions",
+            ))
+        self.assertEqual("timeout", caught.exception.code)
+        record = strict_json((self.evidence / "run.json").read_text())
+        self.assertEqual("failed", record["attempts"][0]["status"])
+        self.assertEqual("timeout", record["attempts"][0]["error_class"])
+        self.assertIn("receipt", record["attempts"][0])
+        self.assertNotIn("dispatch_outcome", record["attempts"][0])
 
     def test_persistent_budget_cannot_reset_by_starting_another_run(self):
         provider = FakeProvider(["bad", "bad"])

@@ -64,6 +64,7 @@ class RunConfig:
     minimum_request_interval_seconds: float = 0
     azure_max_completion_tokens: int = 4096
     azure_api: str = "chat_completions"
+    azure_expected_model: str | None = None
 
     def validate(self) -> None:
         require(nonblank(self.model) and nonblank(self.knowledge_version),
@@ -91,6 +92,8 @@ class RunConfig:
                 "configuration", "Azure completion-token cap must be an integer in [1, 32768]")
         require(isinstance(self.azure_api, str) and self.azure_api in {"chat_completions", "responses"},
                 "configuration", "Azure API must be chat_completions or responses")
+        require(self.azure_expected_model is None or nonblank(self.azure_expected_model),
+                "configuration", "Azure expected model must be null or nonblank")
 
 
 def _distinct_actions(activities: list[str]) -> list[str]:
@@ -177,6 +180,18 @@ def action_overflow_message(composition: dict) -> tuple[str, dict]:
     ), budget
 
 
+def repair_feedback(code: str, error: Exception) -> str:
+    detail = str(error)
+    if code != "plan_contract":
+        return detail[:500]
+    suffix = (
+        f" Recheck every plan-v2 invariant and keep the final composed action at or below "
+        f"{ACTION_TARGET_CHARS} characters by shortening authored fields without dropping "
+        "required phases or activities."
+    )
+    return detail[:500 - len(suffix)] + suffix
+
+
 def validate_output(payload: dict, findings: dict) -> None:
     require(isinstance(payload, dict) and set(payload) ==
             {"generated_at", "tickets_generated", "tickets"}, "output_schema", "Invalid wrapper")
@@ -259,10 +274,17 @@ def checked_azure_receipt(receipt: dict, config: RunConfig, system: str, user: s
     require(receipt.get("api") == "azure-openai-v1-" + config.azure_api.replace("_", "-")
             and receipt.get("max_completion_tokens") == config.azure_max_completion_tokens
             and receipt.get("requested_model") == config.model
+            and (
+                config.azure_expected_model is None
+                or receipt.get("observed_model") == config.azure_expected_model
+            )
             and receipt.get("wire_message_hashes_match") is True
             and receipt.get("system_sha256") == digest(system.encode())
             and receipt.get("user_sha256") == digest(user.encode()),
-            "unverified_provider_call", "Azure API, cap, model or actual message hashes differ from configuration")
+            "unverified_provider_call",
+            "Azure API, cap, deployment/model identity or actual message hashes differ from "
+            f"configuration; expected observed model {config.azure_expected_model!r}, "
+            f"received {receipt.get('observed_model')!r}")
 
 
 def copilot_preflight(provider: AccountedProvider, config: RunConfig) -> dict:
@@ -487,6 +509,9 @@ async def run_workflow(
                             and configuration.get("max_completion_tokens") == config.azure_max_completion_tokens,
                             "provider_capabilities", "Azure provider API/token cap differs from configuration")
             report["provider"] = configuration
+            provider_manages_timeout = (
+                copilot or configuration.get("provider") == "azure-openai"
+            )
             last_dispatch = None
             for active in selected_ids:
                 finding = data["findings"][active]
@@ -530,7 +555,9 @@ async def run_workflow(
                     save_json(evidence / "run.json", report)
                     try:
                         last_dispatch = time.monotonic()
-                        async with asyncio.timeout(config.timeout_seconds + (20 if copilot else 0)):
+                        async with asyncio.timeout(
+                            config.timeout_seconds + (20 if provider_manages_timeout else 0)
+                        ):
                             response = await provider.generate(request)
                         require(isinstance(response, InferenceResponse),
                                 "provider_contract", "Provider returned an invalid response object")
@@ -660,7 +687,7 @@ async def run_workflow(
                         if code not in RECOVERABLE or attempts == 2:
                             raise TriageError(code, "Finding assessment failed") from error
                         feedback = code
-                        feedback_detail = str(error)[:500]
+                        feedback_detail = repair_feedback(code, error)
                         previous_draft = entry.get("response")
                     except TimeoutError as error:
                         entry.update(status="failed", error_class="timeout", dispatch_outcome="unknown")

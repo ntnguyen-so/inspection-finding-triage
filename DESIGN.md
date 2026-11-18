@@ -318,6 +318,13 @@ binds:
 - application sends, errors, exposed token usage and latency; and
 - publication receipt and final output SHA-256.
 
+The declared provider baseline uses the public model ID `gpt-6.1-sol` with
+medium reasoning on both routes. Azure additionally pins version `2026-09-29`,
+an 8,192-token output cap and a 300-second deadline, and rejects a deployment
+whose observed model identity differs. Copilot exposes the model ID but not its
+backend version, so route parity is explicit and auditable without claiming
+that the two hosted services are identical.
+
 The input package remains byte-preserved, direct dependencies are pinned, the
 activation is committed and successful publication is atomic. Deterministic
 tests cover wrapper configuration, activation compatibility, failure paths and

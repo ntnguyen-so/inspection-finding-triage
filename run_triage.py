@@ -11,6 +11,9 @@ from triage.__main__ import main as triage_main
 
 ROOT = Path(__file__).resolve().parent
 DEFAULT_COPILOT_MODEL = "gpt-6.1-sol"
+AZURE_MODEL_NAME = "gpt-6.1-sol"
+AZURE_MODEL_VERSION = "2026-09-29"
+AZURE_OBSERVED_MODEL = f"{AZURE_MODEL_NAME}-{AZURE_MODEL_VERSION}"
 
 
 def build_config(
@@ -27,12 +30,13 @@ def build_config(
         "phase_attempt_budget": 42,
         "attempt_ledger": str(ledger.resolve()),
         "max_context_bytes": 128000,
-        "timeout_seconds": 180,
+        "timeout_seconds": 300 if provider == "azure" else 180,
         "reasoning_effort": reasoning_effort,
         "execution_mode": "copilot_delivery" if provider == "copilot" else "strict",
         "minimum_request_interval_seconds": 0,
         "azure_max_completion_tokens": 8192,
         "azure_api": "chat_completions",
+        "azure_expected_model": AZURE_OBSERVED_MODEL if provider == "azure" else None,
     }
 
 
@@ -43,7 +47,8 @@ def parser() -> argparse.ArgumentParser:
     result.add_argument("--provider", choices=("copilot", "azure"), required=True)
     result.add_argument(
         "--model",
-        help="Copilot catalog model or Azure OpenAI deployment name. "
+        help="Copilot catalog model or Azure OpenAI deployment name. The Azure "
+        f"deployment must serve {AZURE_MODEL_NAME} version {AZURE_MODEL_VERSION}. "
         f"Copilot defaults to {DEFAULT_COPILOT_MODEL}.",
     )
     result.add_argument(

@@ -26,7 +26,7 @@
   },
   "retrieval_index_sha256": "420e4db9257f64d416030a1726acc7496511213b3a777e0c74f51bcfc2a39092",
   "assessment_policy_sha256": "0474934be96ecc2ddfeaae0bed84810dfa762f713b74291a9e7cf1919799e34e",
-  "execution_policy_sha256": "d6e08ebd708e829c2d9790de624130940ca6d8ff823df896a78dbc5668e21ce1",
+  "execution_policy_sha256": "65e1e0192fc69e2a466c99d0c7f2a8aa8a89802166a041148ab169d6da0a4261",
   "assessment_prompt": {
     "version": "assessment-system-v7",
     "sha256": "f275552a9a7cc12fc091b3d7ced214f5e3ef82ac6c31e692a4fcf599c0c66fd8",
@@ -36,8 +36,8 @@
   },
   "review": {
     "reviewer": "User-authorized current-code reproduction",
-    "reason": "All-21 session-only reproduction; current execution policy adds documented post-publication rollback while knowledge, retrieval, assessment policy and prompt remain pinned.",
-    "reviewed_at": "2026-11-18T02:39:56.388645+00:00",
+    "reason": "User-authorized provider-parity fix: Azure now pins and verifies the tested gpt-6.1-sol version, provider-owned deadlines complete before the workflow guard, and the single plan repair receives full-contract and 280-character guidance; knowledge, retrieval, assessment policy and prompt remain pinned.",
+    "reviewed_at": "2026-11-18T05:55:13.1710562+00:00",
     "source_policy_compatible": true
   }
 }
