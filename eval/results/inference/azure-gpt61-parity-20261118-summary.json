@@ -1,0 +1,58 @@
+{
+  "contract": "azure-gpt61-parity-observation-v1",
+  "status": "published_not_semantically_reviewed",
+  "started_at": "2026-11-18T12:48:17.3304670+07:00",
+  "published_at": "2026-11-18T13:01:40.2858040+07:00",
+  "route": {
+    "provider": "azure-openai",
+    "api": "chat_completions",
+    "deployment": "triage-gpt61-sol-20260929",
+    "observed_model": "gpt-6.1-sol-2026-09-29",
+    "reasoning_effort": "medium",
+    "timeout_seconds": 300,
+    "max_completion_tokens": 8192
+  },
+  "outcome": {
+    "tickets_generated": 21,
+    "application_sends": 22,
+    "validated_attempts": 21,
+    "repairs": [
+      {
+        "finding_id": "F-1001",
+        "first_error_class": "schema_violation",
+        "first_error": "Response does not conform to the response schema",
+        "second_attempt": "validated"
+      }
+    ],
+    "elapsed_seconds": 802.938000000082,
+    "input_tokens": 1176914,
+    "output_tokens": 44921,
+    "api_equivalent_usd_at_declared_short_context_rates": 2.803038,
+    "actual_azure_usd": null,
+    "semantic_status": "not_reviewed"
+  },
+  "identity": {
+    "findings_sha256": "4bb4b2d324b53cf8c748e25c7a511a1a5d683dc0bfba6602013da89c8256652b",
+    "registry_sha256": "5520713b74a28a907b7167da638dca8879849ce3d85d99e1d3ef9968fb000033",
+    "context_hash": "ad9196b059f0deab08cb28d6daa8eaa6735331fb19cb7ba413303c69b14f6477",
+    "config_sha256": "9a49e779420e73e99cdc7c80f160dc216221308087702111e4077e9bbbc34891",
+    "activation_sha256": "bbb70143569921c846fa23326c3a330b9b3124e789205acc442929d6116e6418",
+    "execution_policy_sha256": "b34fdbc4dc70a82c1f0901a88688c8c71452dbb3059f09a3745ac44226af4faa",
+    "assessment_prompt_sha256": "f275552a9a7cc12fc091b3d7ced214f5e3ef82ac6c31e692a4fcf599c0c66fd8",
+    "output_sha256": "7cd70deabce8963d06384df6704c37df13997fc044a8fcbb079e09fe17e614df",
+    "publication_receipt_sha256": "6753fcf182229edc25ac062a15e2faef04b42f6a78902c62835d770b1ed5e22c"
+  },
+  "publication": {
+    "temporary_output": ".runs\\wrapper-live-azure-gpt61-verification-tickets-20261118T1249.json",
+    "output_bytes": 41403,
+    "verified_after_replace": true,
+    "submitted_root_tickets_sha256_before_and_after": "2bb8d0f34da36142042c6f5f983622be358e45fc4690378a935e28ba189f1f98"
+  },
+  "limitations": [
+    "The run used execution policy b34fdbc4..., not the current committed policy 65e1e019....",
+    "The worktree was dirty and changed while the provider process was running; this is not clean-checkout reproduction.",
+    "The run config did not yet contain the later fail-fast azure_expected_model field; the observed receipt nevertheless records gpt-6.1-sol-2026-09-29 for all completed calls.",
+    "The generated tickets were structurally validated but were not semantically reviewed or promoted.",
+    "The actual Azure charge and deployment-specific tariff were not captured."
+  ]
+}

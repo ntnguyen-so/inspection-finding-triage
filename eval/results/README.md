@@ -52,6 +52,12 @@ Specifications under `eval\spec` define gates; they are not results.
    checks. Its `raw` directory retains the generated output, run evidence,
    ledger, configuration and session-only activation needed to inspect the
    observation.
+12. [`inference\azure-gpt61-parity-20261118-summary.json`](inference/azure-gpt61-parity-20261118-summary.json)
+   — bounded live observation that the Azure `gpt-6.1-sol` parity deployment
+   generated and atomically published 21 temporary tickets. It records one
+   repaired schema violation, 22 sends, measured tokens and the explicit
+   limitation that the run predates the current execution-policy identity.
+
 ## Requirement-to-evidence map
 
 | Candidate-brief area | Retained evidence | Honest status |

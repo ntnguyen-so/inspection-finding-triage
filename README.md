@@ -144,6 +144,12 @@ strictly provider-SDK route; it does not use the Copilot CLI runtime. Copilot
 does not expose its backend version, so matching the public model ID and request
 payload does not imply byte-identical provider behavior.
 
+A bounded live Azure observation with this model/version generated all 21
+temporary tickets in 22 sends. It was not semantically reviewed and predates the
+current execution-policy identity, so it establishes provider-path viability,
+not clean-checkout reproduction. See
+[`azure-gpt61-parity-20261118-summary.json`](eval/results/inference/azure-gpt61-parity-20261118-summary.json).
+
 ## Run behavior
 
 Each command above:
