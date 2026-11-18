@@ -1,0 +1,47 @@
+{
+  "prompt": "assessment-system-v2",
+  "changes": [
+    {
+      "removed_or_generalized": "A pronoun or generic phrase such as 'anything unusual' inherits its immediately preceding topic; do not transfer a vibration directive to an unrelated condition on the same equipment.",
+      "replacement": "Resolve pronouns and generic directives only within their explicit source topic.",
+      "disposition": "source-scoping protocol generalized; vibration example removed",
+      "regression_cases": "F-1001/F-1019"
+    },
+    {
+      "removed_or_generalized": "Preserve observation conditions and chronology exactly across every field: at-rest, running, under-load and during-cranking measurements are not interchangeable, and a successful retry must retain the failed first attempt and attempt sequence.",
+      "replacement": "Preserve observation conditions and chronology exactly; measurements made under different conditions are not interchangeable, and later success does not erase an earlier observed failure.",
+      "disposition": "evidence protocol generalized; engine-start example removed",
+      "regression_cases": "F-1003"
+    },
+    {
+      "removed_or_generalized": "A valid in-date certification plus no observed physical or operational deterioration of the protective device is not made a material safety uncertainty merely because this inspection did not repeat the certified function test. A corroded or illegible label alone is not device deterioration. Keep certificate/identity verification in planning or routine review without inventing current impairment.",
+      "replacement": "Do not infer functional impairment from documentation or identification condition without supporting physical or operational evidence. Keep identity and record verification in planning when the supplied evidence requires it.",
+      "disposition": "device-specific conclusion removed; generic evidence rule retained",
+      "regression_cases": "F-1016"
+    },
+    {
+      "removed_or_generalized": "This excludes an in-date certified item with no observed physical or operational deterioration of the device.",
+      "replacement": "This excludes a case where supplied evidence establishes no current physical or operational deterioration of the protective function.",
+      "disposition": "certificate-specific exception generalized",
+      "regression_cases": "F-1016"
+    },
+    {
+      "removed_or_generalized": "Do not mark a speculative future exposure as a material safety uncertainty when source evidence says the item is confirmed out of service, can remain isolated or bypassed without current production effect, is not currently providing a protective function, and the action requires engineering acceptance before return to service. Keep that future consequence in the repair/return-to-service basis without using it to escalate current urgency. This does not apply to current personnel exposure or unconfirmed isolation.",
+      "replacement": "Use supplied operational-state evidence to distinguish current exposure from future return-to-service consequence. Do not treat a future consequence as current, and do not assume isolation or absence of exposure.",
+      "disposition": "operational-state domain conclusion generalized",
+      "regression_cases": "F-1014"
+    },
+    {
+      "removed_or_generalized": "Missing mass, height, occupancy or equivalent severity modifiers must not be used as evidence for the higher adjacent band.",
+      "replacement": "Missing severity modifiers must not be used as evidence for the higher adjacent band.",
+      "disposition": "dropped-object examples removed; anchor evidence rule retained",
+      "regression_cases": "F-1006/F-1019"
+    },
+    {
+      "removed_or_generalized": "Ground impact in the assessed function's credible consequence; do not reuse a different failure mode from an engineer comment, such as failure to start, when the observed issue concerns delivery capability.",
+      "replacement": "Ground impact in the assessed function's credible consequence; do not reuse a different failure mode from an engineer comment.",
+      "disposition": "firewater-specific example removed; function consistency retained",
+      "regression_cases": "F-1003/F-1017"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "contract": "doc04-replay-activation-comparison-v1",
+  "git_revision": "04e6d0d47c0c90a92f39c0c1a08158adcb641034",
+  "non_review_activation_differences": {
+    "execution_policy_sha256": {
+      "replay": "d6e08ebd708e829c2d9790de624130940ca6d8ff823df896a78dbc5668e21ce1",
+      "retained": "648aac457922bfa7e3d525eb81d13f5773213061927d82bdf043f71458cbcb20"
+    }
+  },
+  "preflight_application_sends": 0,
+  "preflight_failures_before_provider_dispatch": 4,
+  "production_code_paths": [
+    "triage",
+    "triage_knowledge",
+    "llm_inference",
+    "knowledge/source-first"
+  ],
+  "replay_activation_sha256": "fe3b42ac623784afcb58db304118b07520faa41650287025e1026df52d0c4a64",
+  "retained_activation_sha256": "8a7e4c47fcaf947a1a16e4544e81f0ee1c912838904c9c1821f63223401a0a29",
+  "uncommitted_code_differences": []
+}

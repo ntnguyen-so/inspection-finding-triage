@@ -39,9 +39,10 @@ def fingerprints() -> dict:
         "test_native_knowledge_probe.py", "test_probe_knowledge_context.py",
     ))
     files.extend(sorted((ROOT / "eval").glob("*.py")))
-    files.extend(sorted((ROOT / "eval" / "tests").glob("*.py")))
+    files.extend(sorted((ROOT / "eval" / "knowledge").glob("*.py")))
+    files.extend(sorted((ROOT / "eval" / "tests").rglob("*.py")))
     files.extend(sorted((ROOT / "eval" / "spec").glob("*.json")))
-    files.append(ROOT / "docs" / "05_KNOWLEDGE_DESIGN_DECISION.md")
+    files.append(ROOT / "docs" / "05_KNOWLEDGE_LIFECYCLE.md")
     files.extend([ROOT / "eval" / "spec" / "split.json", ROOT / "eval" / "spec" / "acceptance.json"])
     return {str(path.relative_to(ROOT)): sha256(path) for path in files}
 

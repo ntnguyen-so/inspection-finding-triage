@@ -8,6 +8,8 @@ __pycache__/
 build/
 dist/
 .delivery-state/
+.runs/
+!config/triage-activation.json
 
 # Local raw-evidence archives and disposable synthetic test payloads.
 /.artifacts/

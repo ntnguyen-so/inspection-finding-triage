@@ -1,0 +1,107 @@
+{
+  "contract": "behavior-calibration-replay-v1",
+  "purpose": "Separate review-routing effects from changed assessment inputs for the retained calibration comparison.",
+  "method": "Load each validated assessment's scores, facts, uncertainties and same-day attention; join source SCE state and context gaps; replay them through the current triage.policy.derive_policy implementation.",
+  "policy": {
+    "version": "triage-policy-v16",
+    "path": "triage\\policy.py",
+    "sha256": "60f26332d9fbca8778cacd74b134edde4d2a37852668771a0ccd9cdab40f29c4"
+  },
+  "inputs": {
+    "baseline": {
+      "path": ".delivery-state\\copilot-gpt6-current-all21\\run\\run.json",
+      "sha256": "1a71ccaeaac1653ba54ee97791017434be23f81cde4cda538764af16fd70aca9",
+      "shared_in_checkout": false,
+      "shared_binding": "eval\\results\\triage\\copilot-gpt6-current-all21\\run-summary.json in the retained lossless archive"
+    },
+    "near_control": {
+      "path": ".delivery-state\\copilot-gpt61-current-all21-retry\\run\\run.json",
+      "sha256": "38a04a5f608187a82b49e9e2b570b907df59c448bb8957bbf2d7d06c3334b708",
+      "shared_in_checkout": false,
+      "shared_binding": "eval\\results\\triage\\copilot-gpt61-current-all21\\run-summary.json in the retained lossless archive"
+    },
+    "current": {
+      "path": "eval\\results\\triage\\structured-planning-v31\\final\\evidence\\run.json",
+      "sha256": "b23bc50f558bc29973dec61c6b235e656314b170ffd7624979b589b32fa4bcd1",
+      "shared_in_checkout": true
+    }
+  },
+  "verification": {
+    "current_replay": {
+      "review_count": 6,
+      "finding_ids": [
+        "F-1002",
+        "F-1008",
+        "F-1012",
+        "F-1013",
+        "F-1017",
+        "F-1020"
+      ],
+      "matches_published_artifact": true
+    },
+    "baseline_inputs_under_current_policy": {
+      "review_count": 12,
+      "finding_ids": [
+        "F-1002",
+        "F-1003",
+        "F-1005",
+        "F-1008",
+        "F-1010",
+        "F-1011",
+        "F-1012",
+        "F-1013",
+        "F-1017",
+        "F-1018",
+        "F-1020",
+        "F-1021"
+      ],
+      "removed_by_routing_change_alone": [
+        "F-1001",
+        "F-1004",
+        "F-1006",
+        "F-1007",
+        "F-1009",
+        "F-1014",
+        "F-1015",
+        "F-1016",
+        "F-1019"
+      ],
+      "removed_by_routing_change_alone_count": 9
+    },
+    "additional_removals_requiring_changed_assessment_inputs": {
+      "finding_ids": [
+        "F-1003",
+        "F-1005",
+        "F-1010",
+        "F-1011",
+        "F-1018",
+        "F-1021"
+      ],
+      "count": 6,
+      "common_risk": "All six are protection cases whose current assessments no longer produce the earlier protection-affecting review inputs."
+    },
+    "near_control_inputs_under_current_policy": {
+      "review_count": 13,
+      "finding_ids": [
+        "F-1002",
+        "F-1003",
+        "F-1005",
+        "F-1007",
+        "F-1008",
+        "F-1010",
+        "F-1011",
+        "F-1012",
+        "F-1013",
+        "F-1017",
+        "F-1018",
+        "F-1020",
+        "F-1021"
+      ]
+    }
+  },
+  "limitations": [
+    "The baseline and near-control raw assessment records are retained local artifacts bound by SHA-256 and archived run summaries, not shared checkout files.",
+    "This deterministic replay isolates current routing against retained assessment inputs; it does not establish that either the earlier or current model-proposed facts and uncertainties are semantically correct.",
+    "The six protection-case input changes require domain adjudication before the lower review count can be treated as operationally safe."
+  ]
+}

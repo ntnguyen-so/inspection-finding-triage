@@ -1,6 +1,6 @@
 # Inference Boundary and Provider Control
 
-> **Document status:** current component design with historical observations.
+> **Document status:** current component design and evidence assessment.
 > Provider transport success is not ticket-quality acceptance.
 
 ## Abstract
@@ -54,8 +54,8 @@ is operationally correct.
 |---|---|
 | Provider SDKs permitted; orchestration frameworks prohibited | Thin adapters call inference endpoints; workflow and policy remain repository-owned |
 | Malformed and structurally invalid output handled explicitly | Provider response is parsed and locally revalidated; error class remains visible |
-| One reproducible command and low cost | Route/model/settings and exposed usage are captured; unknown retries or price remain unknown |
-| Reproducible model instructions | The workflow supplies a versioned, hash-pinned packaged prompt artifact; the adapter records the transmitted system hash |
+| One reproducible command and low cost | Route/model/settings and exposed usage are captured; API-equivalent cost is calculable while hidden retries and Copilot billing conversion remain unknown |
+| Reproducible model instructions | The workflow supplies an exact, hash-pinned packaged prompt artifact; the adapter records the transmitted system hash |
 | Human deferral | Refusal, timeout or exhausted output budget returns failure; the adapter does not invent a fallback ticket |
 
 The strict interpretation of observable attempts is a candidate-owned policy,
@@ -78,16 +78,19 @@ business policy.
 publishes would duplicate orchestration and make attempt accounting route
 dependent.
 
-### Decision 2 — Separate the economical development route from the strict route
+### Decision 2 — Separate route economics from acceptance authority
 
 **Decision.** Use the existing Copilot CLI entitlement for bounded development
-experiments, but keep the same application contract portable to direct Azure or
-another supported provider. Route identity is part of every observation.
+and delivery experiments, while keeping the same application contract portable
+to direct Azure or another supported provider. Route identity is part of every
+observation; no provider is accepted merely because it completes a batch.
 
 **Rationale.** The subscription reduced the candidate's marginal cash cost and
 made it practical to probe multiple models and failure modes. A dedicated
-inference module preserved the option to move to direct Azure when the study
-needed disabled SDK retries, explicit ledgers and provider usage fields.
+inference module preserved direct Azure as a comparison route with disabled SDK
+retries, explicit ledgers and provider usage fields. Azure observations exposed
+useful transport/accounting differences, but their retained semantic and
+completion results did not justify replacing the promoted Copilot artifact.
 
 **Rejected alternative.** Coding directly against one separately billed
 provider would couple experimentation cost and vendor behavior to the workflow.
@@ -95,11 +98,11 @@ Coding directly against Copilot would make the included subscription route look
 like a universal deployment assumption.
 
 **Cost boundary.** “Included in an existing subscription” does not mean zero
-economic cost or reproducible USD cost. Subscription price, quotas, hidden
-transport attempts and provider allocation are not exposed per run. Another
-reviewer may not have the same entitlement. Copilot observations therefore
-remain development evidence unless the route is explicitly frozen and its
-accounting limitations accepted.
+economic cost or measured API spend. Copilot receipts expose request-cost units,
+AI-unit metering and token/cache counts. They do not expose the subscription's
+AI-unit-to-USD conversion, hidden transport attempts or an actual per-run USD
+charge. Token counts can support a declared API-equivalent estimate, but not a
+claim about Copilot billing.
 
 ### Decision 3 — Require explicit route and model configuration
 
@@ -165,38 +168,77 @@ headers would create security risk without establishing semantic correctness.
 This separation matters because the same outward “no ticket” can have different
 causes and different evidence value.
 
-## 5. Evidence and observed behavior
+## 5. Current assessment of the inference design
 
-The retained evidence index is `eval\results\README.md`. Relevant observations
-include:
+The evidence below assesses whether the design decisions expose the intended
+failure modes. It does not establish a provider benchmark. Detailed artifacts
+and current status remain in
+`eval\results\README.md`.
 
-| Observation | Result | Highest defensible claim |
+| Design hypothesis | Current evidence | Assessment and remaining limit |
 |---|---|---|
-| Inference/provider component tests | Deterministic paths passed in retained runs | Adapter behavior passed its tested fixtures |
-| Pre-v8 policy-v5 Copilot all-21 run at `235bdd1` | Four first-attempt output faults were repaired; 21 contract-valid drafts produced | Bounded repair handled observed faults on that route/version |
-| Pre-v8 Copilot X01 run | One finding returned malformed JSON twice; batch failed closed | Exhausted malformed output did not masquerade as success |
-| Later pre-v8 gpt-6 X01 pair at `4debeba` | Both 13-ticket outputs were contract-valid; semantic reviews were 38/39 `needs_review` and 37/39 `fail` | Matching-model X01 failed; the all-21 63/63 artifact did not establish stability |
-| Direct Azure v5 | 21 contract-valid drafts in 24 requests; semantic review failed 60/63 | Structural completion did not establish ticket quality |
-| Azure v6 | Failed after 19 validated findings; no publication | Timeout/failure remained visible |
+| Native structured output still requires local validation and bounded repair | Real calls produced malformed JSON and schema faults; bounded repair recovered some responses, while an exhausted fault failed the batch without publication. | **Supported.** The boundary exposed recoverable and terminal failures, but hidden provider attempts remain unknown. |
+| Route completion must remain separate from semantic acceptance | Both provider routes produced structurally valid batches, while one completed Azure batch failed semantic review and the promoted Copilot delivery required a separate review. | **Supported.** Transport success is not evidence of ticket quality. |
+| Provider choice must not become workflow policy | Current retained observations cover Copilot and direct Azure routes under the same application contract. | **Supported.** Urgency and publication policy remain outside both adapters; route completion does not establish equivalent behavior. |
+| Cross-setup comparison must not be presented as fixed-identity reproduction | The all-21 comparison used current code with a different activation and execution-policy identity from the retained delivery. It preserved review routing for every ticket and L/I/U for 19 tickets, but changed every ticket's text. | **Bounded observation only.** It is neither X01 evidence nor clean reproduction, and the differences mix model variability with setup changes. |
 
-These are route- and version-specific observations. They are not a provider
-benchmark, proof of model quality or evidence that Copilot satisfies the strict
-Azure delivery policy.
+The comparison encountered preflight failures before provider dispatch and its
+successful artifact received no semantic review. It therefore cannot replace or
+strengthen the retained ticket-quality result. Its evidence is indexed in
+`eval\results\README.md`.
 
 ## 6. Reproducibility and cost limits
 
-Direct Azure was selected for the strict delivery route because the application
-can disable SDK/transport retries and retain an explicit ledger. Copilot was
-selected for much of development because its models were already included in the
-candidate's CLI subscription and did not create a separately visible API bill.
-That made iteration economical, but Copilot does not expose all HTTP attempts,
-per-run subscription allocation or a verified USD tariff in the retained
-records.
+Direct Azure was evaluated as the stricter accounting route because the
+application can disable SDK/transport retries and retain an explicit ledger. It
+did not produce the promoted root artifact: both that artifact and the
+cross-setup comparison used Copilot. This establishes route provenance, not a
+strict attempt contract; provider-hidden attempts remain unknown.
 
-The Azure v5 observation records 1,289,873 prompt tokens, 45,878 completion
-tokens and 16,474 reasoning tokens. USD cost is unknown because the deployment
-tariff was not captured. Unknown is not reported as zero, and this observation
-does not yet prove the brief’s low-cost reproducibility expectation.
+Cost is reported in three distinct layers:
+
+| Cost view | Retained delivery | Defensible claim |
+|---|---:|---|
+| Measured usage | 973,468 input; 40,335 output tokens | Receipt-backed usage |
+| Simple API-equivalent repricing | US$2.350286 | Reproducible estimate under declared rates |
+| Copilot metering | 21 request-cost units; 249.31861 AI units | Receipt-backed units without an exposed USD conversion |
+| Actual Copilot USD allocation | Unknown | Not exposed by the subscription route |
+
+The retained totals, source-run SHA-256, assumptions and calculations are
+available in the compact
+[delivery cost evidence](..\eval\results\delivery-cost-summary.json), which is
+derived only from per-send receipt usage rather than duplicated accounting
+checkpoints.
+
+The equivalent calculation is
+`input_tokens * US$2 / 1,000,000 + output_tokens * US$10 / 1,000,000`,
+using the configured model's OpenAI Standard short-context rates published at
+[OpenAI API pricing](https://developers.openai.com/api/docs/pricing) and checked
+on 2026-11-18.
+The production workflow records raw usage and leaves `usd_cost` null; it does not
+calculate this proxy. The repository's controlled-experiment helper implements
+the same rate formula, and this document applies it transparently to the retained
+run receipts. The simple estimate deliberately ignores cache adjustments so that
+it depends only on the measured input/output totals named in the formula.
+
+The retained receipt also exposes 143,251 cache-read tokens, 830,154 cache-write
+tokens and a model-catalog schedule whose unit ratios match the public
+short-context rates for ordinary input, cached input, 30-minute cache writes and
+output. Applying that schedule gives a cache-aware OpenAI-equivalent scenario of
+US$2.493186 and reproduces the reported 249.31861 AI units after the documented
+unit scaling. This stronger scenario is still not an invoice: Copilot does not
+expose an AI-unit-to-USD conversion or establish that subscription allocation
+equals public API billing.
+
+The retained delivery estimate consists of US$1.946936 input and US$0.403350
+output, approximately US$0.111918 per ticket. Input accounts for about 82.8% of
+this proxy, making bounded-context size the clearest cost-optimization surface.
+
+These estimates should be reported, not hidden under “unknown cost.” They remain
+API-equivalent planning values rather than Copilot invoices. Copilot does not
+expose hidden transport attempts. Direct Azure exposes attempts and tokens, but
+the retained observations do not include a deployment tariff. Metering and
+pricing assumptions are indexed in `eval\results\README.md`.
 
 ## 7. Assumptions and limitations
 
@@ -211,8 +253,5 @@ does not yet prove the brief’s low-cost reproducibility expectation.
 - Restricted-session or CLI-mediated experiments are development routes unless
   explicitly accepted and frozen as delivery configuration.
 
-The chronological adapter experiments, superseded proposals and probe diaries
-are preserved in
-`docs\original-decision-process\04_INFERENCE_LIBRARY.md`. Current system-level
-responsibility remains in `DESIGN.md`; measured run outcomes remain in
-`eval\results`.
+Current system-level responsibility remains in `DESIGN.md`; measured run
+outcomes remain in `eval\results`.

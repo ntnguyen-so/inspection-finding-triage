@@ -1,0 +1,181 @@
+# Source-First Knowledge Lifecycle
+
+> **Document status:** current knowledge architecture and maintenance interface.
+> Extraction experiments and change-study results are evidence, not runtime
+> authority; current observations remain in Document 07 and `eval\results`.
+
+## Abstract
+
+The knowledge component turns approved source bytes into reviewable, immutable
+and explicitly activated context. It is separate from ticket orchestration so a
+knowledge steward can change engineering guidance without editing workflow code,
+while a workflow developer cannot silently redefine knowledge authority.
+
+The lifecycle is:
+
+```text
+approved source bytes
+  -> extraction proposal with byte provenance
+  -> explicit review
+  -> immutable release
+  -> separate activation approval
+  -> deterministic selection and context assembly
+  -> consumer-side re-validation
+```
+
+The supplied corpus is small: 21 findings and 18 equipment records. The system
+therefore sends complete bounded source and registry context rather than adding a
+vector-retrieval platform. This reduces omission risk for the prototype but
+increases token cost. Captured context proves delivery, not causal model use or
+domain correctness.
+
+## 1. Responsibility and authority
+
+`triage_knowledge` owns import, extraction, provenance, review state, immutable
+release, selection and context validation. `triage` consumes a pinned context
+contract and owns assessment, urgency, retries and publication. The dependency
+points one way; knowledge tooling never runs triage or chooses ticket urgency.
+
+| Information | Runtime authority | Owner |
+|---|---|---|
+| Supplied or approved general guidance | Preserved source bytes, reviewed item and immutable release | Knowledge steward/domain owner |
+| Active release, selector, prompt and policy binding | Separately reviewed activation pinned by hash | Runtime approver |
+| Asset fact or `engineer_comment` | Explicit registry snapshot supplied to the run | Asset-data owner |
+| Finding and related observations | Selected input snapshot | Triage caller |
+| L/I anchors and assessment rubric | `triage\assessment_policy.py` plus tests | Application-policy owner |
+| Urgency and review floors | `triage\policy.py` plus tests | Application-policy owner |
+| Evaluation cards and expected answers | Evaluator only; prohibited from production context | Evaluation owner |
+
+Knowledge can provide source-backed evidence and interpretation within the
+approved assessment rubric. It cannot override code-owned anchors, urgency
+floors or review policy. A proposed guidance change that conflicts with those
+controls is a policy change, not a knowledge-only edit.
+
+## 2. Extraction and review gate
+
+Imported sources retain their original bytes, digest and exact supporting spans.
+Extraction creates a proposal; it never creates runtime authority by itself.
+
+The implementation supports two proposal paths:
+
+- deterministic C0 grouping and metadata extraction in
+  `triage_knowledge\source.py`; and
+- an optional schema-bound model extraction request for component experiments.
+
+The active release contains eight reviewed items produced through the
+source-only deterministic C0 path. Both proposal paths must pass source-span,
+shape and review checks before publication. Runtime extraction behavior is
+defined by `C0_POLICY` and extraction code in `triage_knowledge\source.py`, then
+bound to runs by the activation's strategy hash.
+`eval\spec\knowledge_extraction.json` is the frozen component-evaluation
+reference for thresholds, queries and limits; observed component results remain
+under `eval\results\knowledge`.
+
+This boundary rejects two shortcuts:
+
+- generated summaries without exact provenance; and
+- automatic publication or activation of extractor output.
+
+## 3. Publication and activation
+
+The mutable authoring surface is
+`knowledge\source-first\working-candidate.json`. Runtime authority belongs to an
+immutable `releases\sha256-*.json` artifact plus a separately reviewed
+activation. Publication proves that a candidate passed the editorial/software
+gate; activation decides whether that exact release, selector, prompt and policy
+combination may feed a run.
+
+Separating these decisions provides rollback and prevents a technically valid
+edit from becoming active merely because it was saved. There is no dedicated
+activation-approval CLI. The approver must inspect
+`triage.source_context.activation_candidate`, record provenance, create a new
+activation identity and repin a fresh run configuration. This manual handoff is a
+known runbook gap, not an automatic promotion.
+
+An experimental PSV source is retained outside the active release. It has no
+runtime authority; existence on disk never confers authority.
+
+## 4. Selection and provider delivery
+
+For each assessment, the knowledge/context boundary supplies:
+
+- the selected finding and input metadata;
+- complete registry rows and `engineer_comment` values;
+- deterministic same-equipment and declared related evidence;
+- active source-faithful knowledge items;
+- policy, prompt and release identities; and
+- hashes needed for consumer-side verification.
+
+Selection uses declared scope, aliases, source relationships and safe broadening
+rules. The workflow rebuilds expected identities and hashes before provider
+dispatch. Production code does not import evaluator cards or expected answers.
+
+The current selected batch contains PSVs, so scoped PSV guidance can be included
+in the shared batch context. Per-finding knowledge isolation is not implemented.
+A negative-control result can show that the model declined to apply an
+inapplicable rule; it does not prove selector-level isolation.
+
+Vector RAG, autonomous web retrieval and model-selected arbitrary context were
+rejected for this prototype. They would add ranking, omission and authority
+failure modes without evidence that the bounded corpus needs them.
+
+## 5. Six-month maintenance change
+
+The edit surface depends on what changed:
+
+| Requested change | Correct change surface |
+|---|---|
+| New general PSV evidence or interpretation inside the existing rubric | Add a separately approved source; import, review and publish a new knowledge release; if guidance overlaps prompt-embedded interpretation, complete the Document 06 compatibility review before activation |
+| New fact about one asset | Create a new registry snapshot outside the supplied candidate package and pass it with `--registry`; do not edit the preserved source package |
+| New generic L/I anchor or scoring rule | Update `triage\assessment_policy.py` and focused tests |
+| New urgency threshold or review floor | Update `triage\policy.py` and focused tests |
+| New extraction grammar or selector behavior | Update `triage_knowledge\source.py` or retrieval code and rerun the controlled component evaluation |
+
+Knowledge, policy, prompt, selector and extraction-code changes also change
+activation compatibility hashes. After their focused review/tests, each requires
+a new reviewed activation and fresh run configuration as described in section 3.
+A new registry snapshot is a run input rather than an activation change, but it
+still requires fresh evidence bound to its exact bytes.
+
+A general knowledge update uses the repository-owned lifecycle rather than prompt
+surgery:
+
+```powershell
+python -B -m triage_knowledge --store knowledge\source-first import-source `
+  --source "path\to\approved-psv-guidance.md" --name "approved-psv-source"
+python -B -m triage_knowledge --store knowledge\source-first review `
+  --item "item-id" --expected-digest "digest" --reviewer "reviewer" `
+  --reason "scope and source checked"
+python -B -m triage_knowledge --store knowledge\source-first publish `
+  --expected-digest "digest" --author "author" --reviewer "reviewer" `
+  --reason "approved"
+```
+
+The new release is not active until the separate approval and repinning step in
+section 3 is complete. Document 07 provides bounded lifecycle evidence; its
+synthetic material remains outside runtime authority. Experiment metadata
+belongs in publication records rather than engineering source text, and
+knowledge cannot silently override the production rubric.
+
+## 6. Evidence and limits
+
+| Claim | Evidence | Interpretation |
+|---|---|---|
+| Source bytes, spans and eight reviewed baseline items are preserved | `eval\results\knowledge\source-owner-promotion-1` | Software/editorial provenance demonstrated; not domain certification |
+| Reviewed content can become an immutable release and activation candidate | Source workflow tests and promotion evidence | Lifecycle mechanics demonstrated; activation approval remains manual |
+| Expected context reached the provider boundary | Retained run evidence indexed by `eval\results\README.md` | Delivery demonstrated; causal use is not implied |
+| A bounded knowledge change can influence one declared comparison | Bounded influence and negative-control evidence | Model-level positive change and rule exclusion; not selector isolation or calibrated engineering truth |
+| A source replacement can traverse the real lifecycle | Document 07 and retained artifacts | Bounded lifecycle evidence; experimental releases remain inactive |
+
+The current evidence does not establish independent domain correctness,
+population-level model reliability, per-finding knowledge isolation or automatic
+operational approval. Full context also creates a material token-cost trade-off;
+the retained delivery's simple API-equivalent estimate attributes about 82.8% of
+its cost proxy to input tokens. Safe context reuse or trimming remains future
+work; Document 04 records the calculation and billing boundary.
+
+## 7. Reader path
+
+- Current architecture and maintenance interface: this document.
+- Knowledge lifecycle validation study: Document 07.
+- Observed evidence: `eval\results\README.md` and `eval\results\knowledge`.

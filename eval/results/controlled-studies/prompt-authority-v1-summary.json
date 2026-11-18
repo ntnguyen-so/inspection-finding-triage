@@ -1,0 +1,227 @@
+{
+  "tickets": 52,
+  "application_sends": 55,
+  "usage": {
+    "inputTokens": 1671401,
+    "outputTokens": 108269,
+    "cacheReadTokens": 282050,
+    "cacheWriteTokens": 1389186,
+    "reasoningTokens": 20441,
+    "cost": 55.0
+  },
+  "v1_stable": 8,
+  "v2_stable": 10,
+  "transitions": [
+    {
+      "finding_id": "F-1001",
+      "v1": [
+        "L7/I6/U9/R1",
+        "L7/I6/U9/R1"
+      ],
+      "v2": [
+        "L7/I6/U9/R1",
+        "L7/I6/U9/R1"
+      ],
+      "v1_stable": true,
+      "v2_stable": true,
+      "max_shift": 0
+    },
+    {
+      "finding_id": "F-1003",
+      "v1": [
+        "L9/I8/U9/R1",
+        "L9/I7/U9/R1"
+      ],
+      "v2": [
+        "L9/I7/U9/R1",
+        "L9/I8/U9/R1"
+      ],
+      "v1_stable": false,
+      "v2_stable": false,
+      "max_shift": 1
+    },
+    {
+      "finding_id": "F-1004",
+      "v1": [
+        "L8/I8/U8/R1",
+        "L8/I8/U8/R1"
+      ],
+      "v2": [
+        "L8/I8/U8/R1",
+        "L8/I7/U8/R1"
+      ],
+      "v1_stable": true,
+      "v2_stable": false,
+      "max_shift": 1
+    },
+    {
+      "finding_id": "F-1005",
+      "v1": [
+        "L10/I6/U9/R1",
+        "L10/I6/U9/R1"
+      ],
+      "v2": [
+        "L10/I6/U9/R1",
+        "L10/I6/U9/R1"
+      ],
+      "v1_stable": true,
+      "v2_stable": true,
+      "max_shift": 0
+    },
+    {
+      "finding_id": "F-1006",
+      "v1": [
+        "L4/I6/U7/R1",
+        "L4/I6/U7/R1"
+      ],
+      "v2": [
+        "L4/I6/U7/R1",
+        "L4/I6/U7/R1"
+      ],
+      "v1_stable": true,
+      "v2_stable": true,
+      "max_shift": 0
+    },
+    {
+      "finding_id": "F-1007",
+      "v1": [
+        "L9/I7/U8/R1",
+        "L9/I7/U8/R1"
+      ],
+      "v2": [
+        "L9/I7/U8/R1",
+        "L9/I7/U8/R1"
+      ],
+      "v1_stable": true,
+      "v2_stable": true,
+      "max_shift": 0
+    },
+    {
+      "finding_id": "F-1008",
+      "v1": [
+        "L6/I6/U7/R1",
+        "L6/I7/U7/R1"
+      ],
+      "v2": [
+        "L6/I7/U7/R1",
+        "L6/I7/U7/R1"
+      ],
+      "v1_stable": false,
+      "v2_stable": true,
+      "max_shift": 1
+    },
+    {
+      "finding_id": "F-1009",
+      "v1": [
+        "L2/I6/U7/R1",
+        "L2/I6/U7/R1"
+      ],
+      "v2": [
+        "L2/I6/U7/R1",
+        "L2/I6/U7/R1"
+      ],
+      "v1_stable": true,
+      "v2_stable": true,
+      "max_shift": 0
+    },
+    {
+      "finding_id": "F-1010",
+      "v1": [
+        "L9/I8/U9/R1",
+        "L9/I8/U9/R1"
+      ],
+      "v2": [
+        "L9/I8/U9/R1",
+        "L9/I8/U9/R1"
+      ],
+      "v1_stable": true,
+      "v2_stable": true,
+      "max_shift": 0
+    },
+    {
+      "finding_id": "F-1012",
+      "v1": [
+        "L9/I7/U9/R1",
+        "L9/I8/U9/R1"
+      ],
+      "v2": [
+        "L9/I8/U9/R1",
+        "L9/I8/U9/R1"
+      ],
+      "v1_stable": false,
+      "v2_stable": true,
+      "max_shift": 1
+    },
+    {
+      "finding_id": "F-1016",
+      "v1": [
+        "L2/I7/U7/R1",
+        "L2/I8/U7/R1"
+      ],
+      "v2": [
+        "L2/I7/U7/R1",
+        "L2/I7/U7/R1"
+      ],
+      "v1_stable": false,
+      "v2_stable": true,
+      "max_shift": 1
+    },
+    {
+      "finding_id": "F-1017",
+      "v1": [
+        "L6/I7/U7/R1",
+        "L6/I7/U7/R1"
+      ],
+      "v2": [
+        "L6/I7/U7/R1",
+        "L6/I7/U7/R1"
+      ],
+      "v1_stable": true,
+      "v2_stable": true,
+      "max_shift": 0
+    },
+    {
+      "finding_id": "F-1019",
+      "v1": [
+        "L6/I5/U7/R1",
+        "L7/I5/U7/R1"
+      ],
+      "v2": [
+        "L7/I5/U7/R1",
+        "L6/I5/U7/R1"
+      ],
+      "v1_stable": false,
+      "v2_stable": false,
+      "max_shift": 1
+    }
+  ],
+  "send_statuses": {
+    "validated": 52,
+    "failed": 3
+  },
+  "repairs": 3,
+  "hidden_http_attempts": "unknown",
+  "run_records": 36,
+  "published_output": false,
+  "deterministic_evidence": {
+    "validated_assessments": 52,
+    "ticket_count": 52,
+    "source_ref_prefix_counts": {
+      "equipment": 540,
+      "finding": 744,
+      "knowledge": 58
+    },
+    "review_required_false": 0,
+    "recommended_action_chars": {
+      "min": 161,
+      "median": 252,
+      "max": 287
+    },
+    "summary_chars": {
+      "min": 177,
+      "median": 211,
+      "max": 254
+    },
+    "note": "Validated means production schema, citation, fact-state, assessment and projection checks passed; it is not semantic/domain acceptance."
+  }
+}

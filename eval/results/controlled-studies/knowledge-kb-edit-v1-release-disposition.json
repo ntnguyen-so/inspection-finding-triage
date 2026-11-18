@@ -1,0 +1,36 @@
+{
+  "schema": "knowledge-release-disposition-v1",
+  "working_candidate_reset": {
+    "release": "sha256-b215857575e443ba5fd9cb56a19f3079003cd68acb03fdf0e33ca7fbed59e097",
+    "candidate_digest": "90a200fd03fed05d349b7ad261151fb8201c227840e5c534fc11e92d50d57fe3",
+    "item_count": 8,
+    "reason": "Remove the synthetic test-informed rule from the next ordinary publish surface."
+  },
+  "releases": [
+    {
+      "release": "sha256-a1db74f5712c82a3bc503a8286fced21ef469aa6e6d30e36d09c37d8f4f31c54",
+      "source_sha256": "5a8520570a4e6c6453e5e4bb9f41b4fde2987bf5780f5d450ef91bbfdc1c8b5c",
+      "revision": "sha256-c4730acd563b5520d862e3a69e39d1f8eafee04af65b98679369eb8a31e31c41",
+      "status": "rejected_experiment_release",
+      "reason": "Experiment-status prose inside the domain source caused the model to reject the rule as non-authoritative."
+    },
+    {
+      "release": "sha256-a39db135667b8b13df866500124c3b0417f0e899e3576303cfd45a532863c5da",
+      "source_sha256": "4fd57691d9389b34e722731b56540a45f05f575ed4cd5b3511cb01e300164241",
+      "revision": "sha256-53807164cc01fe7cef62d822f79aef8c58a98ce264c88585e6c95c38d352cbbe",
+      "status": "evaluation_only_test_informed_release",
+      "reason": "Demonstrates full-batch delivery and influence but was written and revised against test finding F-1002, lacks authenticated domain approval and lost structured scope through the pre-fix edit path."
+    },
+    {
+      "release": "sha256-63f1855f93f63d48f2bec3e0032e82e4cbdf5a3f2adf282d9575b37bd70f242a",
+      "revision": "sha256-fcca1ab453a144dc76ccbb66336f13cb16c3c81a2e400001a0c4b366b9fb2c0e",
+      "status": "evaluation_only_scope_fix_verification",
+      "structured_scopes": [
+        "Pressure Safety Valve"
+      ],
+      "reason": "Verifies the fixed editor re-extracts structured scope and evidence. One full-batch run retained; no production activation."
+    }
+  ],
+  "production_activation": "Repinned as config/triage-activation-v12.json to the unchanged eight-item baseline release after the editor code hash changed.",
+  "root_tickets": "unchanged"
+}

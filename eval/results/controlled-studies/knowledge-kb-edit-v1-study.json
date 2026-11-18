@@ -1,0 +1,152 @@
+{
+  "schema": "official-kb-edit-study-v1",
+  "scope": "Test-informed full-batch delivery and influence observation: two 21-ticket baseline runs and two revised-release runs through the production triage CLI",
+  "official_store": "knowledge/source-first",
+  "source_editor_surface": "triage_knowledge/source_editor.py and equivalent triage_knowledge CLI operations",
+  "baseline_release": "sha256-b215857575e443ba5fd9cb56a19f3079003cd68acb03fdf0e33ca7fbed59e097",
+  "first_published_release": "sha256-a1db74f5712c82a3bc503a8286fced21ef469aa6e6d30e36d09c37d8f4f31c54",
+  "revised_release": "sha256-a39db135667b8b13df866500124c3b0417f0e899e3576303cfd45a532863c5da",
+  "source": {
+    "path": "knowledge/source-documents/psv-seat-tightness-policy-2026-11.md",
+    "item_id": "item-9dee3346ac8127ab5c2ec743001f67b1",
+    "scope": "Pressure Safety Valve",
+    "target_condition": "Audible tailpipe hissing and hydrocarbon odour below set pressure",
+    "declared_scores": "L9/I8",
+    "negative_condition": "Certification-tag, register or visual-condition findings without passing evidence",
+    "reference_partition": {
+      "F-1002": "test",
+      "F-1016": "development"
+    },
+    "test_informed_disclosure": "The rule closely follows F-1002 wording and was revised after observing its first output. It is not independent evaluation knowledge.",
+    "semantic_conflict": "The test reference frames F-1002 as suspected passing distinct from proven inability to relieve. The experimental rule classifies seat tightness itself as a confirmed failed required function."
+  },
+  "first_release_observation": {
+    "status": "rejected_source_wording",
+    "target": "F-1002 remained L7/I8/U8",
+    "reason": "The source text called itself an evaluation-only proposed policy. The model explicitly said it was not an activated assessment authority.",
+    "correction": "Experiment status stayed in publication and activation metadata; the domain source retained only the reviewed rule."
+  },
+  "full_batch_runs": [
+    {
+      "name": "before1",
+      "path": "eval/results/triage/knowledge-kb-edit-v1-before",
+      "tickets_sha256": "e7e6ad3019f4e570510ac42edfeb8aeca9f618d294982c371ef725c3f6c2810f",
+      "application_sends": 21,
+      "elapsed_seconds": 732.782,
+      "input_tokens": 986530,
+      "output_tokens": 40979
+    },
+    {
+      "name": "before2",
+      "path": "eval/results/triage/knowledge-kb-edit-v1-before2",
+      "tickets_sha256": "3ad081e35b69f7a3f87ec197923c07c7adc3716b9f0df6bd59d53c7cdb1bdb7d",
+      "application_sends": 23,
+      "elapsed_seconds": 714.547,
+      "input_tokens": 1084264,
+      "output_tokens": 43740
+    },
+    {
+      "name": "after1",
+      "path": "eval/results/triage/knowledge-kb-edit-v1-after2",
+      "tickets_sha256": "304103fd2803c1bc1beaf560c80a159227136cf51269f6666e00ddeb504d30ef",
+      "application_sends": 22,
+      "elapsed_seconds": 672.937,
+      "input_tokens": 1071808,
+      "output_tokens": 40453
+    },
+    {
+      "name": "after2",
+      "path": "eval/results/triage/knowledge-kb-edit-v1-after3",
+      "tickets_sha256": "9d12a7141476cef45b61591395c2bca0e71cea574d8ca22c1a5d2269d272bb6c",
+      "application_sends": 21,
+      "elapsed_seconds": 715.875,
+      "input_tokens": 1021873,
+      "output_tokens": 41176
+    }
+  ],
+  "target_result": {
+    "finding_id": "F-1002",
+    "baseline_repeats": [
+      "L7/I8/U8",
+      "L7/I8/U8"
+    ],
+    "revised_repeats": [
+      "L9/I8/U9",
+      "L9/I8/U9"
+    ],
+    "conclusion": "The test-informed official KB edit had a repeatable effect on F-1002. L9 is also enforced by the existing confirmed-function-failure floor once the source reclassifies seat tightness as a failed required function."
+  },
+  "negative_control": {
+    "finding_id": "F-1016",
+    "baseline_likelihood": [
+      2,
+      2
+    ],
+    "revised_likelihood": [
+      2,
+      2
+    ],
+    "revised_rationales": "One revised output explicitly cites the tag-only exclusion. The other preserves L2 and distinguishes the other valve without explicitly citing the rule.",
+    "impact_limitation": "Impact varied I7/I8 across baseline repeats and was I8/I8 after the edit; impact is not clean causal-isolation evidence."
+  },
+  "stability": {
+    "baseline_repeat_score_changes": 5,
+    "revised_repeat_score_changes": 6,
+    "interpretation": "Non-target model variance remains substantial. The rule text was sent in the shared full-batch context for all 21 findings. F-1005 was L10 in both baselines and L9 in every run containing either PSV rule revision; this possible side effect was not semantically resolved."
+  },
+  "editor_scope_bug": {
+    "observed": "The pre-fix edit path replaced structured scopes and evidence with empty arrays, so release a39d... stored the amended item as general even though its prose contained a Scope line.",
+    "fix": "edit_item now deterministically re-extracts scopes, aliases and source evidence and rejects edits that extract to multiple items.",
+    "verification_release": "sha256-63f1855f93f63d48f2bec3e0032e82e4cbdf5a3f2adf282d9575b37bd70f242a",
+    "verification_revision": "sha256-fcca1ab453a144dc76ccbb66336f13cb16c3c81a2e400001a0c4b366b9fb2c0e",
+    "structured_scopes": [
+      "Pressure Safety Valve"
+    ],
+    "evidence_count": 1,
+    "full_batch_result": {
+      "path": "eval/results/triage/knowledge-kb-edit-v1-scoped",
+      "tickets_sha256": "1daa8d5188f6db01cf4fca3989464fd054e39372a491cd1e9e379f34f6aaa157",
+      "F-1002": "L9/I8/U9",
+      "F-1016": "L2/I8/U7",
+      "F-1005": "L9/I6/U9",
+      "application_sends": 21,
+      "elapsed_seconds": 649.64,
+      "input_tokens": 1022398,
+      "output_tokens": 39506,
+      "illustrative_openai_usd": 2.4399
+    },
+    "delivery_limit": "Restoring structured scope did not narrow provider delivery in the all-21 batch. Because the batch contains PSV findings, the scoped item is admitted to one batch-wide knowledge pool and appears in every finding assessment. Per-finding knowledge isolation is not implemented."
+  },
+  "accounting": {
+    "application_sends": 87,
+    "elapsed_seconds": 2836.141,
+    "input_tokens": 4164475,
+    "output_tokens": 166348,
+    "illustrative_openai_usd": 9.9924,
+    "pricing_assumption": "US$2/M input and US$10/M output without cache discount",
+    "actual_copilot_usd": null,
+    "http_attempts": null
+  },
+  "excluded_learning_cost": {
+    "first_release_run": {
+      "application_sends": 21,
+      "elapsed_seconds": 690.75,
+      "input_tokens": 1027837,
+      "output_tokens": 40458,
+      "illustrative_openai_usd": 2.4603
+    },
+    "aborted_wrong_scope_harness": {
+      "application_sends_observed_before_stop": 4,
+      "token_usage": null,
+      "reason": "Stopped immediately after the owner corrected the experiment scope."
+    }
+  },
+  "assessment": {
+    "contract": "pass for all four retained full-batch outputs",
+    "semantic": "needs_review; calibrated 63-dimension reviews were not rerun",
+    "production_promotion": "rejected",
+    "reason": "The rule is synthetic, test-informed, conflicts with the test reference framing and lacks authenticated domain-owner approval; the study demonstrates delivery and influence, not engineering correctness.",
+    "working_candidate": "Reset to the eight-item baseline release after the experiment.",
+    "current_activation": "config/triage-activation-v12.json pins the unchanged baseline release with the fixed editor/retrieval implementation hash."
+  }
+}

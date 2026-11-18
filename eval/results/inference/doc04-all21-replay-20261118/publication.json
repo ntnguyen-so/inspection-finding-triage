@@ -1,0 +1,21 @@
+{
+  "contract": "triage-publication-receipt-v1",
+  "published_at": "2026-11-18T02:50:51.410674+00:00",
+  "publication_method": "same-directory-temporary-file_then_os_replace",
+  "output_path": "C:\\Users\\thanh\\.copilot\\session-state\\e52b82da-5ba3-426d-98b7-7b88dcbe8ff1\\files\\doc04-all21-replay\\run-current\\tickets.experimental.json",
+  "output_sha256": "0186bb605fd9b2d87c88c9c6c457c834cf731a3c2152e5df75822cbb2bf01b4f",
+  "output_bytes": 38587,
+  "tickets_generated": 21,
+  "previous_output_sha256": null,
+  "run_config_sha256": "c87d0787b44c7a9e3d3796f49bbfce0002d07784b8a728370ff3d14027437b8f",
+  "context_hash": "ad9196b059f0deab08cb28d6daa8eaa6735331fb19cb7ba413303c69b14f6477",
+  "assessment_prompt": {
+    "version": "assessment-system-v7",
+    "sha256": "f275552a9a7cc12fc091b3d7ced214f5e3ef82ac6c31e692a4fcf599c0c66fd8",
+    "assessment_contract": "native-assessment-v4",
+    "schema_contract": "triage-assessment-schema-v3",
+    "context_contract_version": 3
+  },
+  "policy_version": "triage-policy-v16",
+  "verified_after_replace": true
+}

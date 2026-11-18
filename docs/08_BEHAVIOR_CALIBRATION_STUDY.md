@@ -1,1024 +1,427 @@
-# Behavior Calibration Study
+# Behavior Calibration: Observed Changes and Remaining Work
 
-> **Purpose:** change system behavior through general, versioned policy rather
-> than hand-correcting `tickets.json` or adding finding-specific branches.
->
-> **Study status:** executed, then post-delivery audited. V9 and v10 were
-> rejected; v11 retained the assessment anchors, restored mandatory uncertainty
-> review and the v8 urgency formula, and generated the current root delivery.
-> V11 remains useful evidence but is not yet a panel-ready output-quality
-> baseline: its post-delivery audit found unstable action completeness, one
-> unresolved local-to-asset consequence-scope judgment and excessive ticket
-> verbosity.
+> **Document status:** executed, test-informed calibration study. This document
+> reports observed system-level behavior changes and rejected interventions; it
+> is not a controlled single-variable experiment, domain-certified scorecard or
+> evidence of unseen-case accuracy.
+
+## Open the two ticket sets side-by-side
+
+| Artifact | Open | Identity | SHA-256 |
+|---|---|---|---|
+| Retained baseline experiment | [baseline 21-ticket JSON](../eval/results/behavior-calibration/baseline-triage-policy-v5-tickets.json) | model `gpt-6-sol`; application policy `triage-policy-v5`; experimental and not acceptance-eligible | `2c6b2a0d85e0462ebe589eadeb3522b078e4c364b9472220ec5ad1e944037381` |
+| Current delivery artifact | [root `tickets.json`](../tickets.json) | model `gpt-6.1-sol`; assessment prompt v7; application policy `triage-policy-v16`; provisional AI-only review | `2bb8d0f34da36142042c6f5f983622be358e45fc4690378a935e28ba189f1f98` |
+
+Open both files and compare tickets with the same `finding_id`. Section 5 below
+highlights five representative changes; section 4 gives the complete aggregate
+comparison.
+
+In this document, **v5 means `triage-policy-v5`**, the baseline version of the
+code-owned urgency and review policy recorded in each ticket's urgency
+rationale. It is not model version 5, Document 05 or the version of the whole
+system. The baseline also used a different model, prompt/context and assessment
+implementation, so the two files are a system-level before/after comparison,
+not a policy-only A/B test.
+
+The baseline link is a byte-identical panel-facing copy of
+`eval/results/triage/copilot-gpt6-current-all21/tickets.experimental.json` from
+the retained lossless archive. Its hash matches the archived manifest; no ticket
+was regenerated or edited for this comparison.
 
 ## Abstract
 
-The v8 system completed three all-21 runs and generated the required root
-`tickets.json`, but the evidence exposed two calibration problems. First,
-adjacent impact scores remained unresolved where the hazard was credible but
-consequence modifiers were missing. Second, 19 of 21 tickets received urgency
-7-10 and 20 of 21 required targeted review, which provides weak prioritisation
-beyond the Candidate Brief's global human-approval requirement.
+Calibration began because a retained complete experimental ticket set was
+structurally valid but operationally unconvincing. Nineteen of 21 tickets were
+at U7-U9, 13 were at impact 8 and all 21 had `review_required=true`. The field
+then represented broad review obligations, including SCE and material-
+uncertainty review, rather than only exceptional prequeue arbitration.
 
-This study uses two stages so that causal attribution is not lost. The v9
-ablation changes ordinal impact anchors and the meaning of `review_required`
-while holding urgency mathematics constant. The v10 full calibration retains
-those changes and replaces the urgency formula with a prospectively declared
-interaction formula. Confirmed overrides, safety floors, source package and
-knowledge release remain unchanged. Two all-21 runs per stage measure the
-resulting behavior. A separate frozen B02 experiment reruns the reference-1.3
-knowledge-influence probe to test whether a knowledge-only change causes the
-intended assessment change without leaking to an inapplicable control. The
-study is designed to reveal trade-offs, not to force a preferred score
-distribution. The result was deliberately non-linear: B02 passed, but both v9
-and v10 failed semantic review because reduced review routing hid material
-uncertainty. V10 also added formula complexity without measurable operational
-benefit. V11 therefore restores mandatory review and the original urgency
-formula while retaining the more explicit impact anchors. A subsequent
-ticket-level audit changed the delivery interpretation, not the recorded
-experiment: v11 is structurally valid and has no semantic `fail`, but its
-actions and presentation are not consistently strong enough for submission.
-The next calibration must improve consequence-scope handling, acceptance
-planning and human-readable projection before another urgency-formula
-experiment is justified.
+The current 21-ticket delivery artifact behaves differently:
+
+- exceptional prequeue review is 6/21 rather than a universal broad-review flag;
+- U7-U9 concentration is 15/21 rather than 19/21, while U9 remains 7/21;
+- likelihood changed on 7 findings, impact on 9 and numeric urgency on 7;
+- five findings changed scheduling band; and
+- representative cases now apply a narrower operational-function assessment
+  convention instead of automatically transferring a possible whole-equipment
+  consequence to the observed local defect.
+
+These are improvements against the declared current design, not proof of numeric
+risk truth. Model, prompt, assessment policy, ticket projection and application
+policy all changed. Review routing and model-proposed rule inputs also interact,
+so the 15 removed flags cannot be assigned to independent additive causes. The
+result must be read as a system-level calibration outcome with explicit causal
+limits.
 
 ## 1. Why this study exists
 
-The Candidate Brief evaluates output quality, score defensibility, the
-model/code boundary and maintainable knowledge. V8 established structural
-reliability, but structural success did not answer four panel questions:
+This document began as the record of consequence-anchor, review-routing and
+urgency-policy experiments. Knowledge lifecycle architecture now belongs in
+Document 05, the knowledge change experiment in Document 07, and workflow policy
+in Document 06. This study returns to one question:
 
-1. Does missing consequence detail prevent unjustified escalation as well as
-   prevent unjustified dismissal?
-2. Does `review_required` identify additional targeted review, or merely restate
-   that every generated ticket requires human approval?
-3. Can calibration reduce alarm concentration without weakening explicit safety
-   rules?
-4. Can a knowledge-only change cause the intended model behavior while leaving
-   an inapplicable negative control unchanged?
+**What changed in generated triage behavior, why did it change, and what remains
+to calibrate?**
 
-The correct response is a bounded experiment. Editing the final JSON, adding
-finding-ID conditions or repeatedly tuning until the desired distribution
-appears would make the system less defensible.
+The trigger was not a schema failure. A retained complete experimental output
+passed important software controls but still provided weak prioritisation:
 
-## 2. Baseline observation
+| Baseline symptom | Observed result | Why it was a problem |
+|---|---:|---|
+| High urgency concentration | 19/21 at U7-U9 | The queue provided little separation between local defects, material degradation and immediate protection decisions |
+| Broad review saturation | 21/21 flagged | `review_required` did not distinguish ordinary approval from exceptional prequeue arbitration |
+| Impact concentration | 13/21 at I8 | Different consequence types frequently collapsed onto one anchor |
+| Weak decision distinction | SCE and uncertainty frequently implied review | Asset class or missing information became a routing shortcut rather than a fact-sensitive decision |
 
-The baseline is `triage-policy-v8` with assessment policy
-`triage-assessment-v1`.
+This baseline is the retained experimental ticket file, not root `tickets.json`
+and not a hand-written scorecard. Distribution located suspicious uniformity;
+it did not define the desired answer. Each retained change still required
+source-grounded case review and deterministic safety checks.
 
-| Measure | V8 observation |
-|---|---:|
-| Completed all-21 repeats | 3/3 |
-| Application sends | 21 / 23 / 21 |
-| Exact L/I/U agreement | 15/21, 19/21, 17/21 |
-| Urgency-band agreement | 21/21 |
-| Root urgency 7-10 | 19/21 |
-| Root `review_required=true` | 20/21 |
-| Root primary semantic review | 61 pass, 2 pending, 0 fail |
+## 2. What calibration meant
 
-The two root pending judgments are F-1010 and F-1019 impact grounding. F-1010
-has a confirmed refuge-pressurisation failure and an explicit life-safety
-function, but no external anchor resolves impact 8 versus 9. F-1019 has a
-credible dropped-object mechanism, but mass, fall height and personnel exposure
-are absent, so impact 7 versus an adjacent lower band is unresolved.
+Calibration was not model fine-tuning and did not hand-correct the final
+`tickets.json`. It changed general system surfaces and regenerated the batch:
 
-The review flag is code-derived. V8 uses `bool(rules)`, so every uncertainty,
-floor, source-directed action or explicit review rule activates it. The root
-artifact contains 62 `P-SAFETY-UNKNOWN` rule instances. This behavior is
-traceable but insufficiently selective.
+1. inspect generated experimental tickets and identify a repeated failure mode;
+2. map the failure to its authority surface: assessment rubric, knowledge,
+   prompt protocol, application policy or projection;
+3. define the intended behavioral change and the safety condition that must not
+   regress;
+4. change a bounded general surface rather than branch on finding ID;
+5. run deterministic tests, targeted provider experiments and semantic review;
+6. reject changes that improved one metric while weakening grounding,
+   uncertainty handling, planning completeness or X01 stability; and
+7. regenerate rather than edit published ticket text.
 
-### 2.1 Before/after policy contract
+The protected invariants were:
 
-The study distinguishes a **declared policy change** from an **observed behavior
-change**. The first table records what each experimental version declared before
-inference. It is not evidence that the model responded as intended.
+- the model proposes L/I, while code derives urgency;
+- unknown is not converted into confirmed absence;
+- a review flag cannot legitimize unsupported scores;
+- supported high-consequence corners and confirmed overrides retain their floors;
+- every draft still requires ordinary human approval; and
+- evaluation expectations are not weakened to make a run pass.
 
-| System dimension | Before: frozen v8 | Ablation: v9 | Full calibration: v10 |
+A requested working capacity target of no more than seven exceptional prequeue
+routes was used to test whether the queue remained usable. It is a workload
+constraint, not a quality threshold. Per-ticket evidence and semantic review
+remain the quality checks.
+
+### 2.1 Comparison identities and causal limits
+
+| Observation | Model | Assessment/policy surface | Result |
 |---|---|---|---|
-| Assessment policy | `triage-assessment-v1` | `triage-assessment-v2` | Same as v9 |
-| Execution policy | `triage-policy-v8` | `triage-policy-v9` | `triage-policy-v10` |
-| Impact 7-8 threshold | Broad severe operational, delayed-integrity or major-accident exposure | Specific supported severe consequence path, exposure, scale or delayed-integrity threat | Same as v9 |
-| Missing severity modifiers | Recorded as uncertainty, but the anchor did not explicitly prevent them from supporting the higher adjacent band | Remain unknown and trigger verification; they cannot supply evidence for a higher band | Same as v9 |
-| Generic serious-injury possibility | Could be interpreted as sufficient for impact 7-8 | Is insufficient without a supported severe consequence path, exposure or scale | Same as v9 |
-| Targeted-review calculation | `bool(rules)` | Explicit rule classification plus whether a floor changes disposition | Same as v9 |
-| Non-binding `P-SAFETY-UNKNOWN` | Always sets `review_required=true` | Does not set targeted review by itself when the formula base already meets the floor | Same as v9 |
-| Explicit review/override/source attention | Sets targeted review | Continues to set targeted review | Continues to set targeted review |
-| Failed test, evacuation and restoration cases | Set targeted review | Continue to set targeted review even when their floors are non-binding | Same as v9 |
-| Urgency formula | `ceil(0.7I + 0.3L)` | Held constant to isolate assessment/routing effects | `ceil((5I + 2L + 3sqrt(IL)) / 10)` |
-| Asymmetric corners `(L=10,I=1)` / `(L=1,I=10)` | `4 / 8` | `4 / 8` | `4 / 7` |
-| Safety floors and confirmed overrides | v8 values | Unchanged | Unchanged |
-| Human approval | Required for every draft | Required for every draft | Required for every draft |
-| Finding-specific branches | Prohibited | Prohibited | Prohibited |
+| retained baseline experiment | `gpt-6-sol` | prompt-context hash `746e29...b1b5`; assessment-implementation hash `2605dd...601e`; `triage-policy-v5` | 19/21 U7-U9; 21/21 review flags; 13/21 at I8 |
+| same-model near-control | `gpt-6.1-sol` | `copilot-gpt61-current-all21` retry; same assessment implementation hash as baseline; `triage-policy-v5`; context hash `7118d3...9024` rather than baseline `746e29...b1b5` | 19/21 U7-U9; 20/21 review flags; 13/21 at I8 |
+| current artifact | `gpt-6.1-sol` | `assessment-system-v7`; `triage-assessment-v2`; `native-assessment-v4`; `ticket-projection-v4`; `triage-policy-v16` | 15/21 U7-U9; 6/21 exceptional review routes; 10/21 at I8 |
 
-This design should make `review_required` mean “additional targeted review is
-needed for this disposition,” rather than “this draft requires approval.”
-Approval remains universal and is not encoded by that field.
+Model, prompt, assessment policy, projection and application policy did not
+remain fixed between baseline and current. The comparison therefore demonstrates
+system-level behavior change, not the isolated causal effect of one parameter.
+The same-model near-control is useful but not a formal control. It retained the
+baseline assessment implementation and policy hashes, but not the same complete
+context hash. It is also recorded as a failed experiment whose two semantic
+reviews each passed 60/63 dimensions. It still shows that one `gpt-6.1-sol` run
+on the older implementation/policy surface retained the earlier urgency
+concentration, impact-8 concentration and review saturation. F-1009 and F-1016
+also retained their baseline L2/I8/U7/review pattern in that run.
 
-The experiment rejected that intended v9 meaning. The acceptance contract
-requires every material uncertainty to remain review-routed even when its
-urgency floor is non-binding. V11 therefore returns to `bool(rules)` and treats
-the field as a conservative review gate, not a selective workload queue.
+## 3. What changed in the system
 
-### 2.2 Before/after observed behavior
+The outcome did not come from one threshold adjustment. It came from separating
+assessment, uncertainty, routing and projection concerns that the baseline
+conflated.
 
-The second table is the empirical comparison a panel should use to judge the
-calibration. Values come from both declared all-21 runs and the same semantic
-review configuration; they are observations, not preferred targets.
+### 3.1 Assessment target and anchors
 
-| Measure | Before: retained v8 | Ablation: v9 | Full calibration: v10 |
+The current prompt and assessment surface make a narrower operational-function
+interpretation more explicit instead of treating generic deterioration or any
+possible consequence as the scored failure event. The underlying "required
+function" language predates this calibration; prompt v7 adds the more specific
+failure-basis instruction. This explains the largest likelihood changes for
+local defects such as degraded coating and lost identification.
+
+Impact anchors also distinguish production disruption, maintainability,
+personnel exposure and major-accident potential rather than assigning one
+default high anchor. Severe personnel or major-accident consequences remain high
+where evidence supports them.
+
+The operational-function interpretation is a candidate design choice, not a
+supplied domain rule or independently certified truth. It remains a point for
+domain-owner confirmation.
+
+### 3.2 Fact and uncertainty treatment
+
+Confirmed, false, suspected and unknown states are explicit. Unknown facts are
+not automatically treated as proof of the worst consequence.
+
+This was not uniformly a stronger precaution. Several non-protection unknowns
+moved from score floors or broad review into required action checks. That change
+reduces queue saturation but places more weight on action-plan execution. It
+must not be described as preserving the same precaution through a different
+label.
+
+### 3.3 Urgency derivation
+
+The code-owned base calculation was unchanged between baseline and current:
+
+```text
+base  = ceil(0.7 * impact + 0.3 * likelihood)
+final = max(base, applicable floors and confirmed overrides)
+```
+
+The observed urgency changes came from changed model-proposed L/I scores and
+changed structured fact, uncertainty and policy-rule inputs, plus application
+policy changes - not from replacing the base formula.
+
+### 3.4 Review semantics and decomposition
+
+The meaning of the published review field was narrowed. In the baseline it
+represented broad "needs review" obligations, including SCE and material
+uncertainty. In the current artifact it represents exceptional human arbitration
+before normal queuing. Routine verification remains in the recommended action.
+A confirmed urgent condition can therefore be U9 without exceptional review.
+
+Policy and model inputs interact, so the 15 removed flags were tested by replay,
+not inferred from projected ticket text. Replaying the baseline assessment
+inputs through current `derive_policy` reproduces this split:
+
+| Replay result | Findings | Count |
+|---|---|---:|
+| Current routing alone removes the baseline flag | F-1001, F-1004, F-1006, F-1007, F-1009, F-1014, F-1015, F-1016, F-1019 | 9 |
+| Current routing still flags the baseline inputs; changed assessment inputs are also required | F-1003, F-1005, F-1010, F-1011, F-1018, F-1021 | 6 |
+
+The replay was checked by feeding the current run's own inputs through the same
+function; it reproduced the six published exceptional-review routes exactly.
+
+All six input-dependent removals are protection cases. F-1003 and F-1005 no
+longer emit protection-affecting uncertainties; F-1010 and F-1011 no longer emit
+any material uncertainties; and F-1018 and F-1021 change
+`protection_impaired` from `suspected` to `unknown` while also dropping
+protection-affecting uncertainties. This may be justified where a confirmed
+failed test already fixes immediate attention and the remaining uncertainty
+only changes diagnosis or redundancy. It is also the highest-risk calibration
+dependency: lower review counts must not be achieved by suppressing unresolved
+protection decisions.
+
+The reduction from 21 to 6 is therefore not a pure routing-policy result and not
+an unqualified quality improvement. It combines an intentional field-semantics
+change with changed model outputs that require case-level scrutiny.
+
+### 3.5 Retained and rejected interventions
+
+Several plausible changes were rejected:
+
+- an early selective-review policy removed review from cases that still had
+  unresolved safety decisions;
+- a more complex interaction-sensitive urgency formula passed mathematical
+  checks but produced little defensible operational benefit;
+- a prompt-only provenance repair changed urgency bands and review routing in
+  the fixed comparison; and
+- a broader prompt-authority reduction introduced a real-case semantic
+  regression and frequent action repair.
+
+Calibration did not mean keeping every intervention that lowered urgency or
+review count.
+
+## 4. Aggregate before-and-after result
+
+The baseline aggregate is summarized in
+`eval\results\design-behavior-demonstration.json`; its raw ticket bytes remain
+in the lossless archive indexed by
+`eval\results\artifacts-manifest.json`. The current column is computed from root
+`tickets.json`.
+
+| Measure | Baseline | Current | Observed change |
 |---|---:|---:|---:|
-| Completed all-21 runs | 3/3 | 2/2 | 2/2 |
-| Application sends | 21 / 23 / 21 | 23 / 22 | 21 / 21 |
-| Exact L/I/U agreement | 15/21, 19/21, 17/21 | 17/21, 17/21, 18/21 | 18/21, 16/21, 19/21 |
-| Urgency-band agreement | 21/21 | 20/21 | 20/21 |
-| Findings with urgency 7-10 | 19/21 in root artifact | 18/21 and 19/21 | 19/21 and 18/21 |
-| Findings with targeted review | 20/21 in root artifact | 18/21 and 19/21 | 19/21 and 18/21 |
-| Primary semantic judgments | 61 pass, 2 pending, 0 fail | 54/6/3 and 56/5/2 | 57/4/2 and 54/6/3 |
-| F-1010 impact | 9; adjacent 8/9 unresolved | 8 in both repeats | 8 in both repeats |
-| F-1019 impact | 7; severe-band grounding unresolved | 5 in both repeats | 5 in both repeats |
-| Safety-invariant regressions | None observed in retained deterministic checks | Material-uncertainty review lost for F-1004/F-1013 and once for F-1018 | Same D01 regression |
-| Wall time, tokens and equivalent API cost | 635.64 s, 983,821 input, 40,200 output, about US$2.37 for root delivery | 1,341.14 s; 2,118,966 input; 84,529 output; about US$5.08 | 1,368.69 s; 1,972,976 input; 81,448 output; about US$4.76 |
+| Tickets | 21 | 21 | Complete coverage preserved |
+| Published review flag | 21 broad review | 6 exceptional review | -15 flags, with changed semantics |
+| U7-U9 | 19 | 15 | -4 |
+| U9 | 7 | 7 | Unchanged |
+| Likelihood values changed | - | 7 findings | 5 adjacent; 2 changed by at least 2 |
+| Impact values changed | - | 9 findings | 5 adjacent; 4 changed by at least 2 |
+| Urgency values changed | - | 7 findings | 6 adjacent; 1 changed by at least 2 |
+| Scheduling band changed | - | 5 findings | Fewer than numeric urgency changes |
+
+In this selected baseline/current pair U9 remains seven, so calibration did not
+suppress every supported urgent case merely to flatten the histogram. A sibling
+retained `gpt-6-sol` / `triage-policy-v5` run produced eight U9 tickets, which
+confirms run-to-run variation and prevents treating "7 unchanged" as a stability
+result. Fifteen of 21 current tickets remain at U7-U9, so the result is improved
+discrimination rather than a balanced or low-urgency queue.
+
+### 4.1 Distribution change
+
+| Score | Baseline likelihood | Current likelihood | Baseline impact | Current impact | Baseline urgency | Current urgency |
+|---:|---:|---:|---:|---:|---:|---:|
+| 2 | 2 | 0 | 0 | 1 | 0 | 0 |
+| 3 | 0 | 0 | 0 | 3 | 0 | 0 |
+| 4 | 2 | 2 | 2 | 0 | 1 | 2 |
+| 5 | 3 | 2 | 0 | 1 | 1 | 1 |
+| 6 | 1 | 2 | 1 | 5 | 0 | 3 |
+| 7 | 3 | 2 | 5 | 1 | 4 | 2 |
+| 8 | 2 | 3 | 13 | 10 | 8 | 6 |
+| 9 | 8 | 8 | 0 | 0 | 7 | 7 |
+| 10 | 0 | 2 | 0 | 0 | 0 | 0 |
+
+Most numeric changes were adjacent-anchor moves and may reflect ordinary model
+variation as well as policy calibration. The stronger evidence is concentrated
+in the large L/I changes, deterministic routing changes and repeated aggregate
+pattern.
+
+### 4.2 Partition check
+
+| Partition | Review flags | U7-U9 | L changes | I changes | U changes |
+|---|---:|---:|---:|---:|---:|
+| development (13 findings) | 13 -> 3 | 13 -> 9 | 6 | 5 | 4 |
+| test (8 findings) | 8 -> 3 | 6 -> 6 | 1 | 4 | 3 |
+
+The review change was not limited to development findings. This is not a blind
+generalisation claim: the split is non-blind and AI-assisted, and the complete
+system surface changed.
+
+## 5. Representative decision changes
+
+| Finding | Baseline | Current | Interpretation |
+|---|---|---|---|
+| F-1009, degraded deck coating | L2 / I8 / U7 / broad review | L9 / I2 / U5 / no exceptional review | The baseline explicitly did not claim section loss, but assigned I8 to a possible structural-support consequence. The current run instead scores the observed corrosion-barrier failure. This aligns with the revised convention; it does not independently prove the convention or score is correct. |
+| F-1016, illegible PSV tag | L2 / I8 / U7 / broad review | L10 / I3 / U6 / no exceptional review | The current run treats identification as the failed local function while the register supports in-date recertification. This demonstrates the effect of the revised target, not domain certification of the anchors. |
+| F-1001, compressor vibration trend | L7 / I8 / U9 / broad review | L7 / I6 / U9 / no exceptional review | Both artifacts cite the same production consequence. The current anchor classifies it as material operational loss rather than severe personnel or major-accident loss. U9 remains because the supplied source requires same-day specialist attention. |
+| F-1019, loose cladding | L7 / I7 / U7 / broad review | L8 / I5 / U6 / no exceptional review | Both artifacts exclude compressor process loss. The current run treats unknown drop exposure as a required field check rather than established high consequence. This is less precautionary and depends on execution of the verification action. |
+| F-1017, uncertain firewater duty | L5 / I8 / U8 / broad review | L6 / I8 / U8 / exceptional review retained | Missing flow and unresolved test-path validity still change the protection decision. Selective routing retains review where uncertainty is decision-material. |
+
+These examples cannot be summarized as "lower scores." The intended change is
+different function definition, evidence scope and decision routing. Whether
+those choices are operationally correct still requires domain-owner calibration.
+
+## 6. Current result and its limits
+
+The current artifact contains six exceptional-review routes: F-1002, F-1008,
+F-1012, F-1013, F-1017 and F-1020. Each names a concrete protection, evacuation,
+restoration or related verification decision. Six meets the requested working
+capacity target of no more than seven; meeting that target is not a quality
+result. Current routing applied to the baseline and same-model near-control
+assessment inputs would still produce 12 and 13 flags respectively. Reaching six
+therefore depends on the new assessment surface as well as routing policy, and
+the six protection-case input changes above remain a specific regression risk.
+All 21 drafts still require ordinary human approval.
+
+Current urgency is U4=2, U5=1, U6=3, U7=2, U8=6 and U9=7. It is more
+discriminating than the baseline, but it is not evidence that fifteen
+weekly-or-faster tickets are operationally optimal.
+
+The exact current artifact received one complete primary semantic review and
+recorded `provisional_pass` with 63/63 applicable dimensions. That review is
+AI-only, non-blind and not domain certification. X01 remains inconclusive for full protocol acceptance
+because its semantic procedure was supplementary and reviewer identity was
+incomplete.
+
+## 7. Claim boundaries
+
+- The before/after comparison is confounded by changes to model, prompt,
+  assessment policy, projection and application policy.
+- The baseline and current `review_required` fields have different operational
+  meanings; 21 to 6 is not a like-for-like semantic metric.
+- Review-policy and model-input changes overlap. Six protection cases required
+  changed assessment inputs as well as current routing, so fewer flags could
+  otherwise hide less uncertainty surfacing.
+- Most score changes are adjacent-anchor moves and may include normal model
+  variation.
+- The operational-function assessment convention is candidate-owned and awaits
+  domain-owner confirmation.
+- The reviewer is AI-only and not an independent domain expert.
+- The split is non-blind and AI-assisted.
+- Score distributions show discrimination, not score accuracy.
+
+## 8. Calibration authority and future work
+
+The calibration surface has three authority classes.
 
-The retained result includes a 21-row transition matrix with v8 and both v9
-values for likelihood, impact, urgency, urgency band and targeted review. Every
-changed finding requires a source-grounded explanation; unchanged findings are
-retained so that the report cannot hide regressions through selective examples.
+### 8.1 Source-owned constraints
 
-## 3. Research questions and hypotheses
+These are inputs to honor, not candidate tuning knobs:
 
-### RQ1 — Impact calibration
+- explicit source timing or attention instructions;
+- supplied override conditions and domain rules; and
+- recorded equipment and finding facts.
 
-Can explicit evidence thresholds distinguish a supported severe consequence
-from a merely possible severe consequence?
+Changing them requires source-backed correction or an authorized contract
+change.
 
-**H1.** A generic anchor that requires a supported exposure, scale or protection
-path for impact 7-8 will reduce unsupported severe-band choices without treating
-missing evidence as confirmed absence.
+### 8.2 Candidate-owned policy
 
-**Disconfirmation.** New outputs still choose severe bands solely because a
-hazard could theoretically cause serious injury, or they suppress source-backed
-major-accident consequences.
+These can be calibrated with controlled evidence:
 
-### RQ2 — Targeted review
+- likelihood and impact anchor wording;
+- precautionary floors for unknown protection state and other material unknowns;
+- exceptional-review thresholds and SCE routing;
+- urgency-band mapping from numeric urgency to scheduling action;
+- action-plan checks and closure evidence; and
+- prompt/schema requirements for structured uncertainty.
 
-Can `review_required` carry information beyond mandatory global approval?
+The 0.7 impact and 0.3 likelihood weights can also be studied, but the current
+behavior change did not come from changing them. Current choices are code and
+prompt artifacts, not runtime sliders. A change requires focused tests, retained
+before/after evidence and an explicit comparability note.
 
-**H2.** Requiring targeted review for explicit review rules, disposition-changing
-floors, confirmed overrides and source-directed attention will reduce saturation
-while retaining every safety-critical and materially uncertain case that changes
-disposition.
+### 8.3 Model-influenced assessments
 
-**Disconfirmation.** The flag remains almost universal, or a confirmed
-override/floor case loses review.
+The model proposes facts, fact states, uncertainty materiality, safety
+relevance, affected decisions and L/I scores. Code validates structure and then
+applies deterministic urgency and review policy. These outputs are sensitive to
+prompt and model behavior but must not be tuned indirectly toward a preferred
+histogram.
 
-### RQ3 — Operational prioritisation and urgency mathematics
+High urgency and exceptional review are intentionally separate. A confirmed
+urgent condition can justify U9 without exceptional arbitration; review is for
+an unresolved decision, not a second severity scale.
 
-Can an impact-led but interaction-sensitive formula preserve the required
-asymmetric corners while avoiding urgency that is almost a restatement of
-impact?
-
-**H3.** The v10 formula
-`ceil((5I + 2L + 3sqrt(IL)) / 10)` remains monotone, preserves impact dominance
-and yields the required corners 4 and 7. Its interaction term raises urgency
-when likelihood and impact are jointly high instead of applying the same impact
-weight independently of likelihood. No target distribution is a pass criterion.
-Confirmed failed protection, evacuation, restoration and source-directed
-same-day cases must retain their code-owned floors.
-
-**Disconfirmation.** The function violates range, monotonicity or corner
-constraints; lower concentration is achieved by weakening a safety invariant;
-or the change creates unjustified low urgency for source-supported cases.
-
-### RQ4 — Knowledge influence
+### 8.4 Next credible calibration
 
-Does a knowledge-only change produce the intended isolated score change?
-
-**H4.** Under reference 1.3, the synthetic positive PSV case changes likelihood
-6 to 8 while impact remains 3; the tag-only negative control does not receive
-the synthetic passing rule.
-
-**Disconfirmation.** The positive case is unassessable, impact changes, the
-negative control receives the rule, or orchestration/code changes are required.
+1. run repeated same-configuration generations to estimate score and route
+   stability;
+2. obtain domain-owner review of the assessment-target convention and disputed
+   L/I anchors;
+3. test one model, prompt or policy change at a time against the frozen
+   scenarios;
+4. replay and adjudicate F-1003, F-1005, F-1010, F-1011, F-1018 and F-1021 to
+   verify that lower review counts do not come from suppressing unresolved
+   protection uncertainty;
+5. calibrate exceptional-review capacity against actual staffing rather than
+   treating the current count target as a quality threshold;
+6. use unseen or newly collected findings to test generalisation; and
+7. retain both improved and failed observations.
 
-## 4. Interventions
+Until that work exists, the current result is stronger prototype behavior, not a
+completed or universally transferable calibration.
 
-### 4.1 Assessment policy v2
+## 9. Evidence map
 
-The likelihood definition and confirmed-failure minimum remain unchanged.
-Impact anchors become more explicit:
-
-- 1-2: appearance, housekeeping or similarly limited low-energy consequence;
-- 3-4: localized, recoverable consequence with supported containment or
-  functional alternatives;
-- 5-6: material operational or personnel consequence where severe exposure,
-  scale or protection loss is not established;
-- 7-8: a specific supported severe consequence path, delayed integrity threat or
-  major-accident exposure, accounting for actual protection;
-- 9-10: extreme consequence supported by the actual scenario, not by an SCE
-  label, generic hazard possibility or missing mitigating evidence.
-
-Missing evidence remains unknown. It neither proves safety nor supplies the
-evidence required for a higher consequence band. When adjacent bands are
-plausible, the model selects the highest band directly supported by known facts
-and routes the unresolved modifier to review.
-
-### 4.2 Review-routing policy v9
-
-The code continues to own `review_required`. A ticket requires targeted review
-when at least one of the following is true:
-
-1. an explicit `review` rule applies;
-2. a rule raises urgency above the formula base;
-3. a confirmed override applies;
-4. source evidence requires same-day attention; or
-5. a failed protection test, unresolved evacuation capacity or unresolved
-   restoration rule applies.
-
-A generic uncertainty that is already represented in the action and does not
-change urgency does not by itself set the targeted flag. Global human approval
-still applies to every draft.
-
-### 4.3 Urgency policy v10
-
-V9 deliberately holds `ceil(0.7I + 0.3L)` constant as an ablation control. V10
-then changes only the base formula:
-
-`U_base = ceil((5I + 2L + 3sqrt(IL)) / 10)`
-
-The linear impact term preserves consequence dominance, the likelihood term
-preserves sensitivity at the high-likelihood/low-impact corner, and the
-geometric interaction term increases urgency when both inputs are high. At the
-four acceptance anchors the function returns 1, 4, 7 and 10. It is neither a
-plain average nor a plain maximum. The formula is still a prototype ordinal
-policy, not a calibrated probability or domain-certified risk equation.
-
-All 100 input pairs require independently worked expected values, range checks
-and monotonicity checks before inference. Existing floors and overrides apply
-after the base score and are not lowered.
-
-### 4.4 What does not change
-
-- no finding-ID or expected-answer branch;
-- no change to confirmed override or safety-floor values;
-- no change to the supplied package or production knowledge;
-- no manual edit to generated tickets;
-- no tuning after the first calibrated send.
-
-## 5. Experimental method
-
-### 5.1 Calibration runs
-
-1. Hash-pin v9, assessment policy v2, prompt, activation, configuration, source
-   and knowledge release.
-2. Run two all-21 v9 ablation batches with identical settings and fresh ledgers.
-3. Freeze v10 as a sequential, explicitly test-informed intervention after v9;
-   change only the base urgency formula and its independently worked tests.
-4. Run two all-21 v10 batches with identical settings and fresh ledgers.
-5. Retain every malformed response, retry, failure and output.
-6. Apply the same calibrated primary semantic reviewer to all outputs.
-7. Compare v8, v9 and v10; do not select only the better repeat.
-
-### 5.2 Measures
-
-- completion and application sends;
-- L/I/U scores and urgency bands;
-- number and cause of targeted-review flags;
-- semantic pass/pending/fail by dimension;
-- changes for every finding, not only F-1010/F-1019;
-- runtime, token usage and illustrative equivalent API cost;
-- invariant checks for confirmed overrides, failed tests and safety floors.
-
-### 5.3 Decision rules
-
-The calibrated policy is rejected if it introduces a structural failure, a
-finding-specific branch, a safety-invariant regression or a new semantic fail
-that is attributable to the intervention. A lower high-urgency count or lower
-review count is evidence only when the changed tickets remain defensible.
-
-Two repeats are insufficient to establish general reliability. They are adequate
-to demonstrate whether the intervention moves behavior in the intended
-direction without hiding immediate regressions.
-
-## 6. B02 reference-1.3 rerun
-
-### 6.1 Why B02 exists
-
-The architecture makes a stronger claim than “the request contains a knowledge
-section.” It claims that `triage_knowledge` owns maintainable domain knowledge,
-retrieves applicable material, and supplies it to an otherwise independent
-triage workflow. Request capture already proves **delivery**: selected knowledge
-reaches the model boundary. Delivery alone does not prove **influence**. The
-model could ignore the material, apply it to the wrong equipment, or reproduce
-the expected score from its own prior behavior.
-
-B02 therefore tests a causal question:
-
-> When only an applicable knowledge rule changes, does the assessment change in
-> the direction specified by that rule while an inapplicable control remains
-> unchanged?
-
-This matters to the Candidate Brief's knowledge-encapsulation criterion. Without
-such evidence, separating `triage_knowledge` from orchestration is a clean code
-boundary but not yet a demonstrated behavioral capability.
-
-### 6.2 Why the experiment is synthetic and isolated
-
-A production-knowledge edit would be a poor causal test. Real policy changes can
-alter several facts at once, may require domain authorization, and can make it
-impossible to determine whether a score changed because of knowledge, prompt
-wording, model variability or code. B02 instead uses the preregistered reference
-1.3 probe as an evaluation-only overlay:
-
-- production knowledge and final ticket generation remain unchanged;
-- code, model, prompt, source inputs and inference settings are held constant;
-- the positive rule changes only the declared likelihood value;
-- impact is fixed, providing an internal check against unrelated drift;
-- a tag-only negative control tests scope isolation;
-- outputs are labelled synthetic and can never become delivery tickets.
-
-The artificial scores are diagnostic instruments, not asserted engineering
-truth. Their purpose is to make the expected causal effect observable and
-falsifiable.
-
-### 6.3 Four-condition design
-
-B02 executes four conditions:
-
-| Condition | Synthetic rule | Expected diagnostic |
-|---|---|---|
-| Positive before | L=6, I=3 | exact synthetic scores |
-| Positive after | L=8, I=3 | likelihood changes; impact fixed |
-| Negative before | before rule | no passing-rule inference |
-| Negative after | after rule | no passing-rule inference |
-
-The positive pair tests sensitivity: the applicable knowledge-only change must
-move likelihood from 6 to 8 while impact stays 3. The negative pair tests
-specificity: an equipment tag without the rule's required applicability
-conditions must not inherit the synthetic passing rule. Both are required.
-Passing only the positive pair could mean the model applies any nearby text
-indiscriminately; passing only the negative pair could mean the model ignores
-knowledge entirely.
-
-The experiment has four nominal and eight maximum application sends. A numeric
-positive response alone is insufficient. The negative outputs require semantic
-review because “not equal to the expected positive score” does not establish
-that the rule was correctly excluded; the model might fail for an unrelated
-reason.
-
-### 6.4 Relationship to v9/v10 calibration
-
-B02 is run after the calibration code is frozen because its plan fingerprints
-the exact runtime. It is not used to select the v9 impact anchors or the v10
-urgency formula. The calibration study asks whether general assessment and
-prioritisation behavior improves; B02 asks whether the knowledge module has
-causal, correctly scoped influence. Keeping those questions separate prevents a
-successful calibration run from being misrepresented as evidence for knowledge
-encapsulation.
-
-### 6.5 Interpretation boundary
-
-A B02 pass supports three narrow claims: the isolated knowledge was delivered,
-the applicable assessment responded in the declared direction, and the negative
-control did not receive that rule. It does not prove that the synthetic scores
-are operationally correct, that all production knowledge is influential, or
-that unseen retrieval cases will behave correctly. A fail or inconclusive result
-is retained as a module-boundary limitation rather than repaired by changing the
-probe after seeing its output.
-
-## 7. Cost and stopping policy
-
-The four calibration runs used 87 application sends: 45 for v9 and 42 for v10.
-B02 used four more sends, and the selected v11 delivery used 21. The four
-calibration runs consumed 4,091,942 input and 165,977 output tokens, implying
-about US$9.84 under the simple equivalent-rate assumption. V11 separately
-implies about US$2.37. These are reproducibility estimates, not actual Copilot
-subscription charges; hidden HTTP attempts remain unknown.
-
-The study stops after the declared runs. A failed or inconclusive result is
-reported as such. Further changes require a new version and a new prospective
-study; they cannot be folded into this result.
-
-## 8. Results
-
-### 8.1 V9 ablation: rejected
-
-Both runs completed, but all four v9/v10 semantic reviews found the same
-contract failure: F-1004 and F-1013 had material safety uncertainty while
-`review_required=false`. F-1018 showed the same failure in one v9 repeat and one
-v10 repeat. Higher base urgency could therefore remove review even though the
-uncertainty itself remained material. This violated D01 and contradicted the
-assessment instruction to route unresolved decision modifiers to review.
-
-V9 reduced impact for the two original challenge cases: F-1010 was 8 in both
-repeats and F-1019 was 5 in both repeats. That is useful evidence that the new
-anchors changed behavior, but it does not rescue the intervention. Other
-grounding/planning judgments remained pending, reviewer comparability with the
-v8 root is limited, and the complete v9 policy failed its preregistered gate.
-
-### 8.2 V10 urgency formula: rejected
-
-V10 passed the 100-cell range, monotonicity and corner tests, and both runs
-completed without repair. It did not improve the observed prioritisation:
-urgency 7-10 remained 19/21 and 18/21, compared with 19/21 for the v8 root.
-Only three observed score combinations exposed a different base value. One was
-masked by a safety floor, one increased urgency and one reduced it.
-
-The formula therefore added a square-root interaction and a new explanation
-surface without a demonstrated operational benefit. It also inherited the v9
-review-routing failure. V10 is retained as a falsified design experiment, not
-promoted production policy.
-
-### 8.3 B02: bounded pass
-
-All four conditions completed in one send each with code fingerprints stable.
-The positive case changed from L6/I3 to L8/I3 exactly. Independent semantic
-review confirmed that both unchanged F-1016 negative controls remained in-date,
-tag-only observations and did not receive the synthetic passing rule. This is a
-bounded pass for knowledge delivery, causal influence and scope isolation; it
-does not certify production knowledge correctness or general retrieval quality.
-
-### 8.4 V11 adoption result
-
-Two critical reviews accepted the v9 D01 finding and rejected the v10 formula.
-V11 makes the smallest correction:
-
-- retain assessment-policy v2 as a disclosed post-hoc selection;
-- restore `ceil(0.7I + 0.3L)`;
-- restore `review_required = bool(rules)`;
-- keep every safety floor, confirmed override, source and knowledge release
-  unchanged.
-
-The v11 delivery generated 21 tickets in 21 sends and replaced root
-`tickets.json` with SHA-256
-`641c8ee358544d562267e40b215ed2bdbe3f2221259437783156a90d889b9694`.
-It took 688.11 seconds, reported 986,488 input and 39,404 output tokens, and has
-an illustrative equivalent API cost of US$2.37 under the stated uncached-input
-assumption. The primary AI-only review returned 54 pass, 9 `needs_review` and
-0 fail. The preregistered zero-fail gate passed, but human approval remains
-mandatory and the nine pending judgments are not hidden.
-
-The current urgency distribution is one U4, one U5, six U7, six U8 and seven U9;
-19/21 remain at urgency 7-10 and 20/21 require review. Calibration therefore did
-not create a selective review queue or materially reduce urgency concentration.
-The accepted benefit is narrower: clearer consequence evidence thresholds
-without weakening uncertainty handling.
-
-## 9. Interpretation limits
-
-This study is AI-assisted, non-blind and based on the supplied 21 findings. It
-cannot establish domain truth, unseen-case accuracy or calibrated operational
-risk. Its value is narrower: it shows whether behavior can be changed through
-maintainable generic policy, whether code preserves safety invariants, and
-whether the resulting trade-offs are measured rather than asserted.
-
-The semantic reviewer was reused across runs, and many review explanations were
-textually similar. Counts against the earlier v8 review are therefore not clean
-causal estimates. V11 is accepted only against its declared zero-fail gate, not
-because its pass count exceeds v8.
-
-## 10. Post-delivery ticket-quality audit
-
-The zero-fail gate was deliberately permissive: it prevented a known semantic
-failure from being promoted, but it did not prove that the resulting tickets
-were concise, operationally complete or panel-defensible. After the knowledge
-experiments exposed additional output concerns, the root v11 artifact was
-audited against the Candidate Brief's expected level of detail, the frozen
-review constraints and all retained v9-v11 reviews. This is post-hoc diagnosis,
-not a relabelled blind test.
-
-### 10.1 V11 is valid JSON, not yet a strong work-queue draft
-
-The root artifact has 54 passed and nine unresolved semantic dimensions. Eight
-of the nine are planning judgments:
-
-| Finding | Missing or ambiguous planning evidence |
+| Claim | Evidence |
 |---|---|
-| F-1003 | witnessed start/performance acceptance |
-| F-1005 | explicit post-correction gas-response and voting test |
-| F-1009 | explicit underlying-steel condition/thickness inspection |
-| F-1011 | witnessed north-quadrant delivery-pattern acceptance |
-| F-1013 | independent actual-level reference before control transfer |
-| F-1015 | restored readability and local level comparison |
-| F-1017 | witnessed pressure/flow acceptance |
-| F-1018 | independent actual-level reference coordinated with both legs |
-
-These are not cosmetic wording preferences. They determine whether the
-recommended work can demonstrate restoration of the failed or degraded
-function. F-1003 and F-1017 remained unresolved in every v9, v10 and v11
-review. Six other actions passed in at least one earlier repeat but were
-`needs_review` in v11. The system can generate the required checks, but the
-current free-text planning contract does not produce them reliably. F-1015 is
-also the only v11 ticket with `review_required=false`; its unresolved planning
-scope shows that rule-driven review routing is not an output-completeness
-validator. The proposed planning gate must reject such an incomplete draft
-before it can reach the work queue without targeted review.
-
-This comparison does not isolate generator variance. F-1007 and F-1020 moved
-from unresolved planning judgments in at least one earlier review to `pass` in
-v11, the runs span different policies, and the reused reviewer was not blind to
-earlier outputs. The evidence supports an unstable end-to-end planning judgment,
-not a clean estimate of model-only randomness. Reviewer test-retest belongs in
-the next experiment.
-
-The ninth unresolved judgment is F-1009 impact grounding. The observation is
-coating breakdown with no measured section loss. V11 correctly keeps the B4
-crack separate and consistently defines the assessed function as cellar-deck
-structural support. The unresolved choice is whether this local C2-C5 coating
-observation can inherit the registered asset's whole-function consequence when
-the supplied evidence does not establish local section loss, supported loads or
-load-path importance. The domain notes say impact depends mainly on what the
-equipment does and separately use a coating blister on a critical vessel as a
-low-likelihood example. They also reserve the lowest consequence direction for
-housekeeping or appearance. The SC-1001 comment says coating reports are
-"frequent and mostly cosmetic." These statements support competing readings of
-the local observation. The current policy does not resolve that tension. I7 is
-therefore an unresolved scope judgment, not a demonstrated change of function
-between L and I.
-
-### 10.2 The ticket projection is too verbose
-
-The Candidate Brief's example ticket uses short rationales that explain the
-decision. V11 instead exposes most internal policy trace inside each draft:
-
-| Field | V11 median length | V11 maximum |
-|---|---:|---:|
-| Summary | 204 characters | 265 |
-| Recommended action | 251 characters | 277 |
-| Likelihood rationale | 320 characters | 406 |
-| Impact rationale | 332 characters | 550 |
-| Urgency rationale | 1,319 characters | 1,983 |
-| Review reason | 1,253 characters | 1,917 |
-
-Thirteen of 21 review reasons exceed 1,000 characters. The information is
-traceable, but it is not an effective work-queue explanation. Rule identifiers,
-all source references and repeated uncertainty prose belong in retained run
-evidence. The ticket should state the formula outcome, disposition-changing
-override or floor, and a concise human-review reason. Auditability must not be
-implemented by copying the full internal decision log into the user-facing
-artifact.
-
-### 10.3 Urgency concentration is a symptom, not the root defect
-
-The v11 distribution remains concentrated, but the decomposition does not
-support changing the formula merely to improve the histogram:
-
-- 10 of 21 findings have model-assessed impact 8;
-- 15 of 21 already have base urgency 7-9 before policy floors;
-- six findings are raised above their base by source-directed attention,
-  failed-test or material-uncertainty policy;
-- applying the rejected v10 formula to the v11 L/I pairs still leaves 15 of 21
-  base values at 7-9.
-
-The apparently counter-intuitive F-1016 result also has a source basis. It is a
-low-likelihood, high-impact SCE finding, and the supplied domain notes state
-that this corner still requires attention this week. The ticket must not call
-the tag defect a functional failure, but lowering urgency solely because the
-observed defect is administrative would contradict the declared consequence
-policy.
-
-The formula remains a legitimate calibration surface, but the current evidence
-does not identify it as the main cause of poor tickets. Replacing it again
-before fixing function scope and planning completeness would add complexity
-without addressing the observed defects.
-
-### 10.4 Root-cause map
-
-| Observed defect | Primary cause | Contract area |
-|---|---|---|
-| Missing restoration/acceptance checks | Free-text action generation is requested but not structurally represented or validated | A03, D01 |
-| F-1009 I7 whole-asset consequence | Local-condition to registered-asset consequence scope is not explicit | C03, D03 |
-| Very long urgency/review text | Internal rule trace is used directly as user-facing rationale | A01, A04, D01 |
-| 20/21 review flags | Conservative rule-driven routing; poor as a workload queue and unable to detect F-1015's planning omission | D01, D03 |
-| 19/21 urgency 7-10 | High-impact sample plus explicit floors; formula-only change has little leverage | C01-C04 |
-| Different action quality across repeats | No deterministic completeness gate for model-authored planning | X01, X02 |
-
-Knowledge retrieval is not the primary explanation for these v11 failures. The
-official-KB experiment separately found batch-wide delivery and possible
-non-target influence, but the same planning omissions occur with unchanged
-baseline knowledge and vary across repeated generation.
-
-### 10.5 Required next intervention
-
-The next version must be staged so causes remain attributable:
-
-1. **Planning contract.** Add structured model fields for assessed function,
-   diagnostic activity, authorized disposition and post-correction acceptance
-   activity. Acceptance must name the restored function and criterion. Where
-   the declared policy requires independence or witnessing, code should require
-   those explicit attributes rather than infer them from an engineer title.
-   Code should reject missing components and compose the bounded action.
-2. **Consequence-scope check.** Require an explicit, cited path from the
-   observed local condition to the registered function used for impact. Do not
-   impose a generic ceiling on coating, label or housekeeping findings:
-   F-1015 and F-1016 demonstrate that a minor observed defect can coexist with
-   material equipment-failure consequences. Instead, route an unsupported
-   local-to-asset scope choice to review and test its effects across contrasting
-   cases before adoption. F-1008 is a must-not-lower control because the same
-   registered structure has a confirmed primary-connection crack; F-1004 and
-   other multi-location assets check that local evidence is not automatically
-   treated as trivial.
-3. **Concise projection.** Keep complete rule objects and citations in run
-   evidence, but render only the base/final urgency explanation, any
-   disposition-changing floor or override, and a concise review reason in
-   `tickets.json`.
-4. **Disclosed test-informed preflight.** The current diagnosis has already used
-   frozen reference-card judgments, including test-partition action constraints.
-   The intervention cannot restore blindness by paraphrasing them as generic
-   rules. Implement and tune only on development findings and newly declared
-   isolated fixtures, but label the policy itself test-informed and justify any
-   independence or witnessing requirement as an explicit prototype engineering
-   choice rather than supplied domain truth.
-5. **Frozen full-batch repeats.** Only after the planning and projection gates
-   pass, freeze a new version, run repeated all-21 generation and apply the same
-   semantic review. Retain every output; do not select the better repeat or
-   describe test-partition improvement as held-out performance.
-6. **Urgency ablation last.** Revisit the formula only if defensible L/I and
-   concise tickets still show an operational prioritisation problem. Hold
-   safety floors fixed and require a finding-level benefit, not a prettier
-   distribution.
-
-Until that sequence succeeds, the root `tickets.json` is retained historical
-evidence rather than promoted as submission-ready output.
-
-## 11. Prompt-length hypothesis and management decision
-
-The assessment system prompt is 17,198 characters, about 2,249 words and roughly
-4,000 tokens. It combines task boundaries, fact semantics, citation mechanics,
-scoring guidance, retry behavior, action composition and character-budget
-instructions. That is a maintainability problem and creates plausible
-instruction collisions, but the retained evidence does **not** show that prompt
-length is the primary cause of ticket instability.
-
-### 11.1 Arguments against shortening first
-
-- The prompt hash was unchanged across v9, v10 and v11, while several planning
-  elements appeared and disappeared between repeats. Sampling variance and the
-  absence of a planning-completeness gate explain this better than a changed
-  instruction set.
-- F-1003 and F-1017 lacked witnessed acceptance in every retained review. The
-  current prompt does not declare that general requirement; this is missing
-  structure, not evidence that an existing instruction was lost in length.
-- The v9 impact-anchor sentence changed several findings despite the long
-  prompt, demonstrating that prominent instructions can influence behavior.
-- The prompt is less than ten percent of a typical provider-bound request.
-  Shortening it would reduce cost modestly but would not materially reduce the
-  much larger finding, registry, history, knowledge and citation context.
-- Urgency and review verbosity are code-generated. A shorter prompt cannot fix
-  those ticket fields.
-
-### 11.2 Arguments for controlled reduction
-
-- The prompt contains route-inapplicable citation instructions, retry-only text
-  sent on first attempts, schema-enforced rules, duplicated assessment-policy
-  anchors and detailed action-budget arithmetic that code should own.
-- Accumulated clauses encode behavior learned from individual development and
-  test findings. Removing finding IDs does not make those clauses independent
-  of the observed cases. This increases overfitting risk and weakens the claim
-  that maintainable domain changes belong in `triage_knowledge`.
-- Summary and action instructions compete for many facts inside hard
-  300-character limits. Moving planning structure and composition to schema and
-  code reduces that collision without deleting safety meaning.
-- A separately versioned prompt artifact gives the panel a reviewable
-  model/code/knowledge boundary and permits exact hash pinning.
-
-### 11.3 Decision
-
-Do not use a prompt rewrite as the immediate quality fix. Use two separate,
-reviewed changes:
-
-1. **Byte-preserving extraction.** Move the current prompt unchanged from
-   `triage\assessment.py` to a packaged UTF-8 prompt artifact. Give it an
-   independent version and SHA-256, pin compatibility with the assessment,
-   schema and context contracts, fail before provider dispatch on any mismatch,
-   and prove that the provider-bound `system_sha256` is unchanged. This is a
-   maintainability and reproducibility refactor, not a behavior improvement.
-2. **Behavioral shortening after planning structure.** First implement the
-   structured planning contract in section 10.5. Then run a prompt-only,
-   test-informed ablation with policy, schema, knowledge, provider settings and
-   user context held byte-identical. Remove dead or route-specific text first,
-   then prose already enforced by code, and consolidate semantic guidance last.
-
-Every removed clause must be mapped to one of four dispositions: enforced by
-code/schema, maintained in cited knowledge, retained in the prompt with a stated
-reason, or deliberately deleted with an explicit regression risk. Test-card
-derived behavior remains disclosed as test-informed wherever it moves.
-
-### 11.4 Promotion and rejection evidence
-
-A shorter prompt can be called a quality improvement only if repeated
-development runs show non-inferior semantic verdicts and planning-element
-coverage, no D01 regression, no loss of known safety behavior, and an
-improvement outside reviewer test-retest noise. All-21 observations remain
-non-blind and cannot justify tuning.
-
-Reject the short-prompt quality hypothesis if shorter outputs omit acceptance or
-uncertainty content, score/band stability worsens, supposedly redundant text
-proves behaviorally necessary, or gains occur only on tuning-exposed findings.
-If quality is equivalent but every hard gate passes, the shorter artifact may
-still be adopted honestly as a maintainability refactor.
-
-## 12. Prompt-authority result
-
-The subsequent experiment did not attempt the broad shortening proposed above.
-It created authority-only prompt v2 by generalising the seven clause edits in
-the frozen ledger while preserving the remainder of v1. The paired development
-study, causal fixtures and disclosed all-21 regression are recorded under
-`eval\results\triage\prompt-authority-v1`.
-
-The main result is positive but narrower than promotion:
-
-- v2 had no high-confidence source, registry or knowledge-authority regression
-  in 52 paired development tickets;
-- knowledge-only, equipment-only, observation-only and isolated
-  operational-state changes moved outputs in the preregistered directions;
-- code-owned failed-test closure removed the F-1003/F-1005 retest omission and
-  all six failed-test tickets in the all-21 run contained the fixed witnessed
-  post-correction test;
-- every prior planning gap listed in section 10.1 has an explicit verification
-  or acceptance activity in the all-21 v2 artifact.
-
-The experiment also confirms that prompt editing alone is not the final quality
-solution. Seven of 21 all-batch tickets needed action-length repair, F-1016
-still treats identity-to-certificate verification as a safety uncertainty, and
-the strict documentation-only no-review fixture failed even though it avoided
-a safety floor. The all-21 deterministic contract passed, but calibrated
-semantic review remains pending.
-
-The real F-1014 regression is blocking: v2 changed the non-SCE, bypassable,
-out-of-service test separator from U4 to U7 by treating unverified current
-isolation as safety uncertainty, despite no established severe consequence
-path and a registry statement that this class of work can usually wait for a
-planned shutdown. The isolated fixture demonstrated the desired direction but
-did not establish that the real unconfirmed branch was acceptable.
-
-Therefore v2 remains experimental and root v11 remains unchanged. This is not a
-failure of the authority direction; it is evidence that the next improvement
-belongs in a reviewed operational-state rule and a structured
-planning/uncertainty contract rather than another equipment-specific prompt
-example or an urgency-formula change.
-
-## 13. V3 correction: what improved and what did not
-
-V3 tested the smallest generic correction after the v2 rejection. It required a
-cited current safety path before classifying a missing current-state fact as
-safety uncertainty, kept documentation-only identity checks in planning or
-non-safety review, and reused one shorter code-owned failed-test closure.
-
-The targeted cases demonstrate the intended fixes. F-1014 returned to U4 in two
-valid repeats, F-1016 stopped using identity matching itself as a safety-floor
-basis, and failed-test actions completed in one send with one closure. However,
-the preregistered study failed because one F-1019 repeat moved two likelihood
-points from the selected v2 all-21 control. The movement did not change urgency
-or exposure rules and matches earlier/root observations, but it remains a
-formal failed control.
-
-The subsequent all-21 run was explicitly diagnostic, not a replacement
-promotion test. It completed 21 tickets in 21 sends. Secondary review found
-F-1015 and F-1018 fixed, F-1009 covered but ordered incorrectly, F-1003,
-F-1005, F-1011 and F-1013 partial, and F-1017 still missing witnessed
-acceptance. Compared with root v11, the remaining quality picture is:
-
-| Measure | Root v11 | V3 diagnostic |
-|---|---:|---:|
-| Application sends | 21 | 21 |
-| Tickets requiring review | 20 | 21 |
-| Tickets at urgency 7-9 | 19 | 19 |
-| Median action length | 251 | 261 |
-| Median urgency rationale | 1,319 | 1,465 |
-| Median review reason | 1,253 | 1,400 |
-
-This separates the problems cleanly. The authority and failed-test closure fixes
-work. Prompt edits do not solve the remaining dominant defects: free-text
-planning order, incomplete witnessed acceptance, verbose user-facing
-projection, a non-selective review queue and score instability such as F-1014
-L4-5 in targeted runs versus L7 in the grouped diagnostic. The next
-implementation should therefore be the structured planning and
-concise-projection work already specified in section 10.5, not another
-urgency-formula calibration or more case examples in the prompt.
-
-## 14. V19 structured-planning diagnostic
-
-V19 replaced the free-text action core with typed diagnosis, disposition,
-correction and acceptance slots. Code now owns phase order, exactly-once
-activity coverage, functional/witnessed closure requirements and the concise
-ticket projection. Full rule reasons and citations remain in run evidence.
-Two bounded implementation reviews initially rejected the change for incomplete
-activity coverage, replaceable closure wording, missing implementation pins and
-loss of C04 factual basis. Those blockers were fixed and the same reviewers
-subsequently returned a live-test go decision.
-
-The provider study was test-informed and underwent several disclosed revisions
-after fail-closed observations exposed schema-budget, retry-cascade and lossy
-projection defects. Intermediate sharded and atomic failures remain retained.
-They must not be selected or merged into a delivery artifact.
-
-The final intervention removed semantic phrase rewriting from the active v4
-path. The model now owns concise wording inside length-bounded typed slots.
-Code owns exact activity coverage, phase order, typed conditional/witnessed/
-independent-reference flags, policy activities, the 300-character cap, attempts
-and atomic publication. A model-authored deviation-record alias may be covered
-by the code-owned reconciliation activity and is deduplicated structurally,
-without keyword matching or paraphrase.
-
-Seven same-pin preflight shards then generated all 21 tickets in 23 application
-sends. A separate same-pin atomic run generated all 21 tickets in 22 application
-sends and 680.109 seconds. The CLI returned `published_output=true`, and the
-output file exists at the intended hash. The retained `run.json` is intentionally
-a pre-publication record (`ready_to_publish`, `published_output=false`); this
-version does not persist a separate post-publication receipt:
-
-- output:
-  `eval\results\triage\structured-planning-v19\atomic-text-agnostic\tickets.experimental.json`;
-- output SHA-256:
-  `a9b74137b79210eefdce84f24b70abf190f9061bc9fa30ed2eea672490857721`;
-- prompt SHA-256:
-  `f59afc09cfe79c84a4f1ea2de4d013a419014418cc132173cf21917733ee72d4`;
-- execution-policy SHA-256:
-  `a7f35706e7b19eb4219a5d0c32cc810f329ee264b657c13d553f278965b15b8b`;
-- knowledge content SHA-256:
-  `b215857575e443ba5fd9cb56a19f3079003cd68acb03fdf0e33ca7fbed59e097`.
-
-The output contract passed. A bounded AI-only exact-artifact review found no
-high-confidence semantic fail, so the declared zero-fail output gate has a
-provisional go observation. It retained needs-review judgments for planning or
-scope questions including the local level comparison, independent level
-references, lifeboat recertification, the F-1009 consequence scope and related
-DEL-8300 chronology. This review is not calibrated domain certification and
-does not establish full A-D acceptance. The run remains
-`acceptance_eligible=false`; HTTP-attempt and USD-cost evidence are unknown.
-
-Root `tickets.json` remains unchanged. Final provenance and limitations are in
-`eval\results\triage\structured-planning-v19\atomic-text-agnostic\summary.json`;
-earlier run history remains indexed in `diagnostic-summary.json`.
-
-### 14.1 Provenance correction and reviewer sensitivity
-
-Follow-up review found that v19 still inferred some code ownership from exact
-activity text and allowed acceptance to duplicate policy pre-work. V21 removed
-text-equality ownership, made the capacity check model-owned, rejected fixed or
-covered pre-work in acceptance, and required closure for suspected uncertain
-impairment. Seven parallel shards then generated 21/21 tickets in 23 sends.
-
-V22 added one disclosed test-informed, generic planning rule: when an obscured
-local indication has an independent live indication, post-correction acceptance
-must compare them rather than establish readability alone. Its targeted F-1015
-run passed in one send. The same-pin atomic run generated 21 tickets in 24 sends
-and 646.781 seconds:
-
-- output:
-  `eval\results\triage\structured-planning-v22\atomic\tickets.experimental.json`;
-- output SHA-256:
-  `5ea7ca03863a4eebf4f2e250c2204287eaf4bbfd5cd3deb253d88d6280b7c60c`;
-- prompt SHA-256:
-  `28f18321afc4ee71a8ab644de7e4758b66f7340c28d20642ba60afd21e390c2e`;
-- execution-policy SHA-256:
-  `16ced0ccdf2f6610b81ac96b0b78cffba64086f8dbe139c3751e39e583d71d47`.
-
-Deterministic validation passed: 315 production tests, 127 evaluator tests,
-reference validation and `git diff --check`. Exact-artifact AI reviews were not
-stable enough to establish a semantic gate: one returned 61 pass / 2 fail while
-the sensitivity reviewer returned 61 pass / 2 needs-review / 0 fail. Document
-03 requires disagreement to remain inconclusive and forbids treating a second
-reviewer as majority-vote truth. These ad hoc agents were not one frozen,
-calibrated reviewer configuration; rerunning them until green would be reviewer
-shopping. V22 therefore remains `acceptance_eligible=false`, semantic status
-inconclusive, and not a replacement for root `tickets.json`.
-
-After Document 11 froze the checklist and prohibited new rubric items, one
-primary reviewer configuration was calibrated against both seeded contradictions
-and reviewed the exact v22 artifact once. Evaluator verification returned
-63 pass / 0 needs-review / 0 fail and `provisional_pass`. The earlier ad hoc
-disagreement remains recorded as sensitivity history rather than being deleted.
-This result is still AI-only: the agent runtime did not expose model,
-reasoning-effort or prompt identity, so those fields are recorded as
-`unknown_not_exposed`. It establishes the provisional semantic output gate, not
-human approval, domain certification, hidden HTTP-attempt accounting, cost
-evidence, full A-D acceptance or promotion of the root artifact.
-
-The project owner subsequently approved the disclosed equivalent-cost assumption
-and promoted the v22 output byte-for-byte to root `tickets.json`. The promoted
-root SHA-256 is
-`5ea7ca03863a4eebf4f2e250c2204287eaf4bbfd5cd3deb253d88d6280b7c60c`.
-
-### 14.2 Urgency-spread sensitivity
-
-The panel concern that 19 of 21 tickets fall in U7-U9 is legitimate. It must be
-answered with a controlled sensitivity analysis rather than a formula selected
-because it produces a prettier histogram. The v22 L/I assessments and applied
-rules were therefore held fixed while four code-only policies were replayed
-offline:
-
-| Scenario | U1-U3 | U4-U6 | U7-U10 | Interpretation |
-|---|---:|---:|---:|---|
-| Current `ceil(0.7I+0.3L)`, uncertainty floor 7 | 0 | 2 | 19 | Retained policy |
-| Rejected v10 interaction formula, floor 7 | 0 | 2 | 19 | Two ticket values move; concentration does not |
-| Quadratic compression, floor 7 | 2 | 0 | 19 | Mid-band values collapse into the floor |
-| Quadratic compression, uncertainty floor 6 | 2 | 8 | 11 | Material spread, but two policy levers change |
-
-The decomposition explains the result. Sixteen tickets already have formula
-base U7 or higher. Five are raised above base, including three raised into U7+
-by the material-safety-uncertainty floor. Formula-only changes cannot provide a
-meaningful spread while that floor remains 7.
-
-The 2/8/11 candidate is not promoted. It lowers cases including the repeatedly
-interrupted inhibitor pump from U8 to U6 and the confirmed structural crack from
-U7 to U6, while also changing the frozen acceptance policy for material safety
-uncertainty. That may eventually be defensible, but it requires an explicit
-owner/domain decision about whether U7 means prompt human disposition or
-completed corrective work, independently worked safety expectations, a
-reference-version change and fresh end-to-end evidence. It cannot be justified
-only by queue size.
-
-For the retained policy, the operational explanation is:
-
-- U9: immediate human disposition or source-required same-day attention;
-- U7-U8: expedited review/attention within the declared weekly band, not a claim
-  that every repair must be completed that week;
-- U4-U6: planned work with ordinary prioritisation;
-- the numeric score remains the tie-breaker inside a band.
-
-The reproducible result is
-`eval\results\triage\structured-planning-v22\urgency-sensitivity.json`, generated
-by `tools\analyze_urgency_sensitivity.py`. This is sensitivity evidence, not a
-retrospective claim that the current formula is calibrated risk truth.
-
-### 14.3 Decision trace for `ceil(0.7I + 0.3L)`
-
-The numeric weights are not supplied domain truth. Their authority chain is:
-
-1. **Candidate Brief:** urgency must be code-derived from L/I by a documented
-   function, must be neither a plain average nor a plain maximum, must explain
-   both asymmetric corners, and must support overrides. It supplies no formula.
-2. **Domain notes:** a near-certain inconsequential failure may wait for the next
-   shutdown (U3-U4), while a low-likelihood/high-impact SCE still needs attention
-   this week (U7-U8). Urgency means time to human attention, not repair
-   completion.
-3. **Document 01:** identifies urgency as a transparent attention policy and
-   explicitly says the package does not prescribe a complete numeric formula.
-4. **Document 02:** defines the corner experiments and deterministic ownership,
-   but explicitly leaves formula selection to implementation design.
-5. **Document 03:** freezes range, monotonicity, corner evidence, provenance and
-   code ownership. It explicitly does not select a formula.
-6. **DESIGN.md:** chooses the linear family
-   `ceil(wI + (1-w)L)` as the simplest monotone, explainable candidate response.
-
-For the extreme high-L/low-I corner `(L=10,I=1)` to remain in the
-next-shutdown band:
-
-```text
-3 <= ceil(10 - 9w) <= 4  =>  2/3 <= w < 8/9
-```
-
-For the extreme low-L/high-I corner `(L=1,I=10)` to remain in the weekly band:
-
-```text
-7 <= ceil(1 + 9w) <= 8  =>  5/9 < w <= 7/9
-```
-
-Thus the qualitative source constraints admit approximately
-`0.667 <= w <= 0.778`. The implementation chose `w=0.7` because it is a simple
-interior decimal with exact integer arithmetic, not because historical failure
-data calibrated 70/30 as optimal.
-
-This derivation makes the policy non-arbitrary but not empirically calibrated.
-Three additional assumptions remain candidate-owned: use of a weighted-linear
-family, mapping the qualitative examples to the extreme 1/10 corners, and using
-the upper endpoints U4/U8 as inequalities. The later
-`P-SCE-HIGH-IMPACT` floor also demonstrates that the base formula alone does not
-encode every domain statement. The section 14.2 sensitivity result therefore
-supports a precise panel answer: 70/30 is a transparent constrained heuristic;
-the observed queue concentration is a calibration risk, and changing the
-weights alone does not solve it on the current evidence.
-
-## 15. Disclosed test-informed chronology repair
-
-The frozen v29 delivery generated all 21 tickets and passed the deterministic
-contract, but its first calibrated exact-artifact review failed F-1011
-grounding and uncertainty. The ticket retained the failed north-quadrant
-delivery test but omitted the related later observation that the branch valve
-was found chained closed, reopened, and not followed by evidence of restored
-spray coverage. The failed artifact and 61/63 review remain retained under
-`eval\results\triage\structured-planning-v29\final`.
-
-This is a test-informed result and is not relabelled blind. The first prompt-only repair, v30, was rejected: its two development repeats
-changed two urgency bands and one review flag. No v30 all-21 run was made.
-
-The replacement keeps prompt v7 unchanged and does not copy F-1011/F-1020 fact
-states, change expected answers, propagate a related finding's directive, or
-alter urgency. Ticket projection v4 makes provenance already selected by the
-model visible: when a typed fact cites another finding, the ticket carries at
-most two neutral, source-labelled fact notes containing the fact name/state,
-model-authored reason and exact related finding-description quote. This is
-deterministic provenance projection, not new semantic inference; related facts
-remain scoped to their own finding. A dry run over the failed v29 delivery
-changes only F-1011 and F-1018, adding one related-finding note to each
-likelihood rationale (559 and 591 characters respectively). F-1018 is
-therefore included explicitly in the new
-exact-artifact review even though F-1011 triggered the change.
-
-The affected gates are semantic grounding/uncertainty, D01 uncertainty
-visibility and X01 comparability. Any rerun is disclosed as test-informed,
-uses a new execution/configuration identity, reruns development stability first,
-and preserves the failed v29 observation. Promotion remains prohibited unless
-the new development pair, one all-21 delivery, exact-artifact semantic review,
-publication receipt and final contract checks all pass.
+| Baseline 19/21 U7-U9, 21/21 review and impact concentration | `eval\results\design-behavior-demonstration.json` |
+| Baseline raw tickets | [Direct panel copy](../eval/results/behavior-calibration/baseline-triage-policy-v5-tickets.json), lossless archive and manifest under `eval\results` |
+| Current-policy replay of baseline, near-control and current assessment inputs | `eval\results\behavior-calibration-replay.json` |
+| Current L/I/U and review dispositions | Root `tickets.json` |
+| Current exact-artifact review and run identity | `eval\results\triage\structured-planning-v31\final\reviewer-observation.json` |
+| Current status and remaining limits | Root `README.md` and `eval\results\README.md` |
+| Knowledge lifecycle architecture | `docs\05_KNOWLEDGE_LIFECYCLE.md` |
+| Knowledge change experiment | `docs\07_KNOWLEDGE_CHANGE_STUDY.md` |
+| Controlled failures and rejected experiments | `eval\results\README.md` |
+| Current urgency and routing implementation | `triage\policy.py`, `triage\projection.py` and focused tests |
+| Current assessment anchors and failure-basis instruction | `triage\assessment_policy.py` and `triage\prompts\assessment-system-v7.txt` |
+
+## 15. Controlled-change disclosure
+
+This section number remains because the owner-controlled `DESIGN.md` references
+it. Calibration used exposed findings and is therefore test-informed rather than
+blind. Failed experiments and prior outputs remain retained; the final file was
+regenerated through general mechanisms rather than hand-corrected. No source
+package, split, evidence card, expected answer or evaluator rule was weakened to
+produce the current distribution.
+
+Any future calibration that changes anchors, floors, review routing,
+urgency-band mapping, prompt semantics or model must preserve the prior artifact,
+state affected scenarios and comparability impact, and rerun relevant validation
+and semantic review.

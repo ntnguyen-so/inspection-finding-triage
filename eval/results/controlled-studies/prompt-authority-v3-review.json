@@ -1,0 +1,44 @@
+{
+  "review_type": "bounded_secondary_ai_critique_not_calibrated_semantic_acceptance",
+  "verdict": "not_ready_to_replace_root_tickets",
+  "positive_findings": [
+    "All 21 diagnostic tickets validated in 21 application sends with no repair.",
+    "F-1014 no longer receives the v2 operational-state safety floor.",
+    "F-1016 no longer treats identity matching itself as evidence of impaired protection.",
+    "Failed-test closure is present exactly once and no longer causes action-overflow repair."
+  ],
+  "blocking_findings": [
+    "The targeted study failed its preregistered F-1019 numeric control, so the later all-21 run is diagnostic only.",
+    "F-1005 places diagnosis after repair text.",
+    "F-1009 places steel-thickness verification after coating renewal.",
+    "F-1016 places identity verification after tag replacement."
+  ],
+  "planning_gap_review": {
+    "fixed": [
+      "F-1015",
+      "F-1018"
+    ],
+    "fixed_with_order_defect": [
+      "F-1009"
+    ],
+    "partial": [
+      "F-1003",
+      "F-1005",
+      "F-1011",
+      "F-1013"
+    ],
+    "still_missing_witnessed_acceptance": [
+      "F-1017"
+    ]
+  },
+  "other_limitations": [
+    "F-1009 local-condition to whole-asset consequence scope remains unresolved.",
+    "Median urgency rationale and review reason are longer than root v11.",
+    "All 21 tickets require review and 19 remain at urgency 7 or above.",
+    "F-1014 likelihood remains unstable across grouped and targeted contexts."
+  ],
+  "limitations": [
+    "This is not the pinned calibrated semantic reviewer or domain certification.",
+    "Deterministic evidence and the failed preregistered control remain authoritative."
+  ]
+}

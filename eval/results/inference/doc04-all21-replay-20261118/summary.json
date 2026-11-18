@@ -1,0 +1,60 @@
+{
+  "activation_comparison_file": "activation-comparison.json",
+  "activation_sha256": "fe3b42ac623784afcb58db304118b07520faa41650287025e1026df52d0c4a64",
+  "application_sends": 21,
+  "attempt_ledger_sha256": "113679116400ef8625b272165e170b6c8cd33fbc76e11aafd90c935f1103dd71",
+  "comparison_file": "comparison.json",
+  "config_file_sha256": "cfb0d3e277fe49c524ec0774c0c54fa3069f94b26d7142a898c6c243abf93756",
+  "contract": "doc04-current-code-all21-replay-summary-v1",
+  "elapsed_seconds": 639.0629999999655,
+  "execution_mode": "copilot_experiment",
+  "git_revision": "04e6d0d47c0c90a92f39c0c1a08158adcb641034",
+  "http_attempts": null,
+  "illustrative_openai_equivalent": {
+    "cache_discount_or_write_premium_applied": false,
+    "checked_on": "2026-11-18",
+    "input_usd_per_million": 2.0,
+    "interpretation": "Not actual Copilot billing; neither floor nor ceiling for Copilot metering.",
+    "model": "gpt-6.1-sol",
+    "output_usd_per_million": 10.0,
+    "pricing_source": "https://developers.openai.com/api/docs/pricing",
+    "tier": "Standard short context",
+    "usd": 2.348636
+  },
+  "limitations": [
+    "Hidden HTTP attempts and Copilot AI-unit-to-USD conversion are unknown.",
+    "Current replay is contract-valid but not semantically reviewed and does not replace root tickets.json."
+  ],
+  "metering": {
+    "actual_usd": null,
+    "aiu": 283.53385,
+    "cacheReadTokens": 0,
+    "cacheWriteTokens": 973405,
+    "inputTokens": 973468,
+    "nano_aiu": 283533850000.0,
+    "outputTokens": 40170,
+    "reasoningTokens": 7113,
+    "request_cost_units": 21.0,
+    "usd_conversion": "unknown"
+  },
+  "observation_date": "2026-11-18",
+  "output_sha256": "0186bb605fd9b2d87c88c9c6c457c834cf731a3c2152e5df75822cbb2bf01b4f",
+  "preflight_application_sends": 0,
+  "preflight_failures": 4,
+  "publication_file": "publication.json",
+  "publication_receipt_sha256": "23cbc14cc51b2ec27ea75fca380d61b3efa606afbbeea38a30b6dd2e9af0cea1",
+  "retained_raw_files": {
+    "activation": "raw/activation.current.experimental.json",
+    "attempt_ledger": "raw/attempts.experimental-ledger.json",
+    "config": "raw/config.json",
+    "run": "raw/run.json",
+    "tickets": "raw/tickets.experimental.json"
+  },
+  "run_config_sha256": "c87d0787b44c7a9e3d3796f49bbfce0002d07784b8a728370ff3d14027437b8f",
+  "run_json_sha256": "379f4a5cffcb56a9cd4375e5e9b848935560bc7a0e4ecffd291dea0e027d1301",
+  "run_status": "published",
+  "scope": "User-authorized current-code Copilot all-21 replay; not semantic acceptance or replacement delivery",
+  "semantic_review": "not_run",
+  "strict_attempt_contract": "not_established",
+  "tickets_generated": 21
+}

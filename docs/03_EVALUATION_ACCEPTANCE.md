@@ -1,11 +1,12 @@
 # Acceptance Contract and Evidence Rules
 
-> **Document status:** panel summary of the acceptance contract. Requirements
-> below are specifications, not presumed results. The exact pre-rewrite v1.3
-> working contract
-> is preserved at
-> `docs\original-decision-process\03_EVALUATION_ACCEPTANCE.md`; executable
-> scenarios are authoritative in `eval\spec\acceptance.json`.
+> **Document status:** panel summary of the acceptance contract,
+> fixed-identity reliability protocol and semantic-review procedure.
+> `eval\spec\acceptance.json` is the executable scenario authority and binds its
+> design contract to
+> `docs\original-decision-process\03_EVALUATION_ACCEPTANCE.md` (SHA-256
+> `ab6cdaaebb84a6ebf17cc9dbc9021ad2d6d9c4b3eb35d19ff5e931ce0210f86f`).
+> This document explains that contract without replacing it.
 
 ## Abstract
 
@@ -108,15 +109,10 @@ only in an isolated knowledge input, with artificial values labelled synthetic.
 **Failure.** No intended decision change, uncontrolled context differences or an
 uncalibrated negative control.
 
-**Current status.** Retained v1.2 B02 evidence remains failed/inconclusive: the
-likelihood-only overlay left impact unsupported, so both positive cases were
-unassessable and no complete strict L/I draft existed to compare. The negative
-controls remained unchanged. Reference v1.3 is a test-informed correction that
-adds the same synthetic impact 3 to both policies while likelihood varies from 6
-to 8. The v1.3 rerun completed all four conditions: the positive changed
-L6/I3→L8/I3 and calibrated semantic review confirmed both unchanged tag-only
-negative controls excluded the synthetic passing rule. This is a bounded pass
-for influence and isolation, not production knowledge correctness.
+**Limit.** Run-level influence status belongs in `eval\results`; §8 assesses only
+whether this requirement exposed its intended failure modes. Even a passing
+synthetic intervention establishes only bounded influence and isolation, not
+production knowledge correctness.
 
 ### B03 — Maintenance path
 
@@ -125,7 +121,7 @@ knowledge source/release and activation, not through prompt surgery or
 finding-ID code.
 
 **Pass evidence.** Source/release lifecycle checks, explicit edit surface and a
-bound active version.
+bound active release identity.
 
 **Limit.** The current repository demonstrates mechanics, not a
 domain-owner-approved PSV behavior change.
@@ -189,7 +185,7 @@ shutdown authority, autonomous web authority or domain certification.
 ### D04 — Assumptions and AI assistance
 
 **Requirement.** Disclose material assumptions, AI-assisted development,
-candidate overrides, test-informed changes and unresolved limits.
+candidate overrides, use of exposed evaluation evidence and unresolved limits.
 
 ## 6. Cross-cutting evidence
 
@@ -207,6 +203,13 @@ A band/review flip or new unsupported claim fails or leaves the scenario
 unresolved. Numeric drift is never hidden, even when the operational band stays
 stable. A supplementary third run cannot rescue a failed pair.
 
+For the semantic part of this comparison, apply §7 to each artifact with the
+development partition: 13 findings across three dimensions, or 39 judgments per
+artifact. This development-partition semantic review is a supplementary
+protocol extension rather than a preregistered gate. It can expose unsupported
+claims but cannot by itself establish X01 acceptance. It is not the all-21
+semantic delivery gate.
+
 This evaluates observed stability of one configuration, not model determinism or
 future reliability.
 
@@ -214,67 +217,248 @@ future reliability.
 
 A result must identify code/config/context hashes, provider route, model settings,
 assessment time, cache mode, application sends, errors, exposed usage, latency,
-cost and output hash. The current contract caps total provider attempts per
-finding, including SDK/transport retries, at two. If a route hides those attempts,
-the SDK-inclusive attempt result is inconclusive rather than accepted as an
-application-send pass. Unknown price also remains unknown.
+cost and output hash. Cost reporting separates measured usage, a reproducible
+API-equivalent estimate under declared rates, and the provider's actual billed
+or allocated USD. The current contract caps total provider attempts per finding,
+including SDK/transport retries, at two. If a route hides those attempts, the
+SDK-inclusive attempt result is inconclusive rather than accepted as an
+application-send pass. An unavailable provider billing conversion remains
+unknown; it does not erase a separately labelled equivalent estimate.
 
 Passing `eval.validate` proves artifact consistency only. A complete delivery
 also requires the generated root `tickets.json`, successful declared route and
-applicable semantic evidence.
+applicable semantic evidence. Run-level delivery status belongs in root
+`README.md` and `eval\results\README.md`; §8 assesses the contract design rather
+than serving as a current status source.
 
-The current root artifact satisfies the file-presence and deterministic-contract
-parts of that statement. It does not satisfy the remaining parts: its assessor
-status is `needs_review`, human approval is pending, the receipt is
-`acceptance_eligible=false`, and the declared generating workflow hash differs
-from current `main`.
+### Fixed-identity reliability protocol
 
-## 7. Reviewer and reference policy
+X01 and X02 measure one fixed system identity; they do not select a favorable
+run or produce a composite reliability score. Reliability remains separated
+into dimensions because each supports a different claim:
+
+| Dimension | Evidence | Highest defensible claim |
+|---|---|---|
+| Deterministic control | Schema, identity, urgency, attempt and publication tests | Tested control behavior |
+| Batch execution | Planned completions, repairs, terminal failures and publication hashes | Observed completion for the declared route |
+| Decision stability | L/I/U, bands, review routing, rules and unsupported claims across fixed repeats | Stability of those repeats, not model determinism |
+| Semantic quality | Grounding, planning and uncertainty review | Provisional reviewer judgment |
+| Usefulness | Urgency, impact and exceptional-review distributions | Observed discrimination, not optimal calibration |
+| Reproduction and cost | Clean identity, command, hashes, exposed usage, latency and price | Reproduction/accounting for exposed values only |
+
+Before measured inference, freeze the exact code, configuration, prompt,
+knowledge, activation, provider route, model settings, assessment time and
+reviewer identity. Fix the sample, repeat count, fresh ledgers and attempt/cost
+budget. Retain every response, repair and terminal failure; do not tune between
+repeats, stop early after agreement or add runs to rescue a failed comparison.
+Supplementary all-21 repeats use already exposed findings and remain
+route-specific bounded diagnostics, not a held-out test or population estimate.
+
+Report raw counts and `pass`, `fail`, `inconclusive` or `not run` for each
+dimension. Provider routes are separate observations. Reviewer disagreement on
+identical or preregistered repeat evidence makes the affected dimension
+inconclusive rather than inviting majority voting. Hidden retries, unavailable
+prices and missing clean-checkout provenance remain unknown or inconclusive,
+never zero or pass.
+
+Run results and limitations are observations under `eval\results`; they do not
+alter this protocol.
+
+## 7. Current semantic reviewer protocol
+
+Semantic review checks one generated artifact against the declared evidence
+cards. It does not redesign the ticket, invent engineering best practice or
+search for a new issue after every run. `eval.assess` validates review structure
+and output-bound quotations; it does not generate reviewer judgments.
+
+This section is the current panel-facing summary of the semantic-review
+procedure; the binding acceptance identities and criteria remain under
+`eval\spec`. Unbound checklists, ad hoc cross-review, reviewer voting and
+repeated review until green cannot establish or overturn the gate.
+
+Only one frozen primary reviewer configuration may determine the semantic gate.
+Ad hoc free-form agent reviews and secondary reviewers are sensitivity
+observations only; they cannot establish or overturn that gate.
+
+### 7.1 Reviewer and reference authority
 
 The semantic reference and reviewers are AI-assisted and non-blind. Therefore:
 
-- calibrating on seeded contradictions proves only that the reviewer rejected
-  those fixtures;
+- seeded calibration proves only that the reviewer rejected those fixtures;
 - `needs_review` is not a pass;
-- repeat reviewer disagreement makes that dimension inconclusive;
-- a second reviewer is sensitivity evidence, not majority-vote truth;
+- repeat disagreement makes the disputed dimension inconclusive;
+- a secondary reviewer is sensitivity evidence, not a majority vote;
 - output-bound quotations and provenance are required; and
 - independent human/domain review remains outside the current evidence.
 
-The operational reviewer checklist and verdict boundaries are frozen in
-`docs\11_SEMANTIC_REVIEW_PROTOCOL.md`. Ad hoc free-form agent reviews are
-sensitivity observations only and cannot establish or overturn the semantic
-gate.
-
 Reference expectations may not be changed merely to make an observed failure
-pass. Genuine corrections require preserved prior bytes, rationale,
-comparability analysis, versioned semantic change and rerun of affected checks.
+pass. A genuine correction requires preserved replaced bytes, rationale,
+comparability analysis, explicit semantic change and rerun of affected checks.
 
-## 8. Evidence status
+### 7.2 Required review inputs
 
-| Evidence | What it currently establishes |
+Run the commands below from the repository root with Python 3.11 or later.
+Values in angle brackets are placeholders and must be replaced with the selected
+partition and repository-relative artifact paths.
+
+Before reviewing, record:
+
+- exact ticket-file SHA-256;
+- reference identity and partition;
+- reviewer provider, model, reasoning setting and prompt SHA-256;
+- calibration result for `eval\spec\probes.json`; and
+- the generic checklist generated by:
+
+```powershell
+python -B -m eval.assess --partition all --checklist
+```
+
+The generic checklist has `output_sha256=null` and is guidance only. Bind the
+review to the actual artifact and selected partition with:
+
+```powershell
+python -B -m eval.assess --partition <partition> --tickets <tickets.json>
+```
+
+Use `all` for the 21-ticket delivery gate and `development` for an X01 artifact.
+The resulting `review_template` contains the exact ticket SHA-256 and is the
+review input. Use the same partition again when submitting the completed review.
+Before reviewing real output, test the same reviewer configuration against the
+seeded probes:
+
+```powershell
+python -B -m eval.assess --partition development `
+  --calibration-reviews <calibration-reviews.json>
+```
+
+The reviewer may use only supplied source records, domain knowledge and the
+unchanged expectation fields embedded in the artifact-bound template.
+Production prompts and generation context must never consume evidence cards or
+expected answers.
+
+After the primary reviewer completes the artifact-bound template, produce the
+semantic result with the same partition and ticket artifact:
+
+```powershell
+python -B -m eval.assess --partition <partition> `
+  --tickets <tickets.json> --reviews <primary-reviews.json>
+```
+
+The assessor validates review structure, ticket hash and output-bound quotations.
+Its `overall` values map to the gate as follows: `fail` fails, `needs_review`
+remains pending and `provisional_pass` is an AI-only provisional pass. When a
+JSON report is produced, exit codes are 1, 2 and 0 respectively. Exit 1 with no
+JSON report and a `Ticket assessment FAILED` diagnostic means the input or review
+binding is invalid; it is not a semantic-gate verdict.
+
+### 7.3 Dimension checklist
+
+#### Grounding
+
+Check only `observed_facts`, `required_evidence`, `expected_behavior` and
+`forbidden_claims`.
+
+- **fail:** direct source contradiction, forbidden claim, fabricated material
+  fact, materially absent required evidence or violation of an applicable
+  expected behavior;
+- **needs_review:** adjacent score or consequence-scope judgment that the
+  supplied evidence cannot resolve;
+- **pass:** every applicable expectation is met and the judgment is defensible
+  within the supplied evidence, even if another engineering choice could also
+  be reasonable.
+
+Do not fail for score concentration, stylistic preference or a more conservative
+alternative that the card does not require.
+
+#### Planning
+
+Check only the card's `action_constraints`. Every listed constraint applies by
+default. If applicability is genuinely disputed, use `needs_review`; never
+silently exclude the item and pass.
+
+- **fail:** a listed required activity or closure condition is absent, or the
+  action directs a forbidden/unsafe operation;
+- **needs_review:** the requirement may be covered but the wording is genuinely
+  ambiguous;
+- **pass:** every explicit constraint is materially covered.
+
+Do not add preferred maintenance steps, authorities, tests, thresholds or
+wording that the card and source do not require. Concision and telegraphic
+phrasing are not failures when the required activity remains clear.
+
+#### Uncertainty
+
+Check only the card's `unknowns`, `review_required` and `review_reason`. Every
+listed unknown applies by default. If applicability or materiality is disputed,
+use `needs_review`; never silently exclude it and pass.
+
+- **fail:** a listed unknown is asserted as known, a confirmed fact is treated
+  as absent, or a listed unknown is omitted without a concrete verification
+  route;
+- **needs_review:** the materiality or decision effect cannot be resolved from
+  supplied evidence;
+- **pass:** relevant uncertainty is preserved and routed without fabrication.
+
+Do not require missing data or generic engineering unknowns that are not listed
+in the card.
+
+### 7.4 Stability and rerun rules
+
+The primary reviewer must:
+
+1. pass both seeded contradiction probes before real-output review;
+2. review each selected finding across all three dimensions exactly once: 63
+   pairs for the all-21 delivery gate, or 39 pairs for a declared
+   development-partition X01 review;
+3. quote the exact ticket field supporting every pass or fail;
+4. use `needs_review` rather than guessing;
+5. reject any proposed issue that cannot be mapped to one frozen expectation;
+   and
+6. retain the first complete result, including failures.
+
+No rerun is allowed merely to obtain a better count. A changed reviewer
+implementation is a new reviewer configuration: it must be calibrated again,
+both configurations remain recorded and the change must be disclosed. A rerun
+requires a changed ticket artifact, a changed approved reference or a
+preregistered reliability repeat. A preregistered repeat that disagrees with the
+first review makes that dimension inconclusive; it is not a green-seeking retry.
+
+### 7.5 Gate interpretation
+
+| Primary result | Semantic-gate interpretation |
 |---|---|
-| Reference validator | Current spec/artifact integrity; no ticket/model assessment |
-| Evaluator unit tests | Assessor software behavior on fixtures |
-| Deterministic workflow evidence | D-pass for stated contract, urgency, budget and publication paths |
-| Real-model observations | Mixed route/version-specific outcomes, including retained failures |
-| AI-only semantic reviews | Provisional judgments, not certification |
-| Final acceptance-eligible output | Missing |
+| Any `fail` | Fail |
+| No fail and one or more `needs_review` | Pending |
+| All 63 pass after calibration | Provisional AI-only pass |
+| Primary/secondary or preregistered-repeat disagreement | Preserve both; disputed dimensions remain inconclusive and the gate stays pending unless a primary fail already fails it |
 
-Scenario-by-scenario observed status is maintained in
-`eval\results\README.md`. The frozen-version reliability method is
-`docs\07_VERSION_RELIABILITY_PROTOCOL.md`.
+Even 63/63 is not domain certification, human approval or full A-D system
+acceptance.
 
-## 9. Controlled layout migration
+## 8. Current assessment of the acceptance contract
 
-The pre-rewrite reference-v1.3 working contract was snapshotted at
-`docs\original-decision-process\03_EVALUATION_ACCEPTANCE.md` with its exact
-pre-rewrite bytes and SHA-256 digest. `eval\spec\acceptance.json` points to that
-preserved contract. The committed v1.2 contract remains in Git at revision
-`92734d6` with SHA-256
-`ed0d6488673615857d47d396f148217e218469d2289704e3410308ea4a662e70`.
+This non-authoritative assessment does not redefine gates or duplicate current
+delivery status. Run-level authority remains in root `README.md` and
+`eval\results\README.md`.
 
-Reference v1.3 is a semantic, test-informed B02 correction. Layout revision 2 is
-the separate path move into `original-decision-process`; it changes no v1.3
-scenario semantics or membership. Historical evidence retains the hashes and
-paths recorded at execution time.
+| Contract area | Current evidence | Interpretation and remaining limit |
+|---|---|---|
+| A — Structure and failure | Current tests exercise malformed output, bounded repair, exhaustion, complete coverage and publication rollback. The experimental 21-ticket output has a verified publication receipt; root `tickets.json` is contract-valid and byte-identical by SHA-256 after separate promotion. | **Supported for current code, observed experimental publication and hash-checked promotion.** The root copy has no separate workflow receipt, and contract validity does not establish semantic quality. |
+| B — Knowledge | Source delivery and maintenance mechanics were exercised; one synthetic intervention showed bounded influence and negative-control isolation. | **Partially supported.** Broad causal use and domain correctness remain unproven. |
+| C — Urgency | Code ownership, range, monotonicity, corners and fact-sensitive escalation are tested. | **Supported as declared software policy.** Numeric calibration is not operational risk truth. |
+| D — Limits and deferral | Unsupported scores fail visibly; uncertainty and exceptional review are explicit. | **Supported in tested paths.** Routing thresholds remain candidate-owned and uncalibrated. |
+| X01 — Stability | A declared development repeat preserved urgency bands and review routing while exposing numeric and rule-trace drift. Its retained adjudication file records execution-time `x01.status: pass` for that operational comparison, but its 39-pair semantic observations use the supplementary extension above and the runtime did not expose the reviewer identity required by §7.2. | **Inconclusive for full protocol acceptance.** The protocol-level interpretation supersedes the narrower status embedded in the retained execution record. The comparison is informative, but its semantic component is not fully protocol-conformant; the evidence is not independent of configuration selection and does not establish model determinism. |
+| X02 — Reproducibility | Hashes, configs, latency, application sends, publication evidence, exact producer bytes and measured token usage are retained. Applying the declared public-rate convention gives US$2.350286 for the retained delivery. | **Partial.** The API-equivalent estimate is reproducible; clean-checkout reproduction, hidden provider attempts and the actual Copilot billing allocation remain unresolved. |
+| Semantic reviewer protocol | The retained review recorded 63 passing dimensions, but the runtime did not expose every reviewer identity and prompt field required by §7.2. The evidence is not independent of configuration selection. | **Protocol deviation.** Treat the result as an AI-only observation, not fully protocol-conformant acceptance. |
+
+## 9. Controlled change and authority
+
+`eval\spec\acceptance.json` is the machine-readable scenario authority. Its
+`design_contract` field names the bound design-contract bytes and their identity
+is recorded in this document's status statement. This panel summary and the
+reviewer procedure above explain the rationale and review method; they do not
+overwrite executable specifications or results.
+
+A genuine source-backed correction, grader bug or authorized requirement change
+must preserve replaced bytes and failures, state comparability impact, update
+only intentional semantic identities and rerun affected checks.

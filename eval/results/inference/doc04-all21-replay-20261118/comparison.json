@@ -1,0 +1,193 @@
+{
+  "application_sends": 21,
+  "byte_identical": false,
+  "cacheReadTokens": 0,
+  "cacheWriteTokens": 973405,
+  "changed_fields": {
+    "F-1001": [
+      "summary",
+      "recommended_action",
+      "likelihood_of_failure",
+      "impact_of_failure",
+      "urgency"
+    ],
+    "F-1002": [
+      "summary",
+      "recommended_action",
+      "likelihood_of_failure",
+      "impact_of_failure",
+      "urgency",
+      "review_reason"
+    ],
+    "F-1003": [
+      "summary",
+      "recommended_action",
+      "likelihood_of_failure",
+      "impact_of_failure"
+    ],
+    "F-1004": [
+      "summary",
+      "recommended_action",
+      "likelihood_of_failure",
+      "impact_of_failure",
+      "urgency"
+    ],
+    "F-1005": [
+      "summary",
+      "recommended_action",
+      "likelihood_of_failure",
+      "impact_of_failure"
+    ],
+    "F-1006": [
+      "summary",
+      "recommended_action",
+      "likelihood_of_failure",
+      "impact_of_failure"
+    ],
+    "F-1007": [
+      "summary",
+      "recommended_action",
+      "likelihood_of_failure",
+      "impact_of_failure"
+    ],
+    "F-1008": [
+      "summary",
+      "recommended_action",
+      "likelihood_of_failure",
+      "impact_of_failure"
+    ],
+    "F-1009": [
+      "summary",
+      "recommended_action",
+      "likelihood_of_failure",
+      "impact_of_failure"
+    ],
+    "F-1010": [
+      "summary",
+      "recommended_action",
+      "likelihood_of_failure",
+      "impact_of_failure"
+    ],
+    "F-1011": [
+      "summary",
+      "recommended_action",
+      "likelihood_of_failure",
+      "impact_of_failure"
+    ],
+    "F-1012": [
+      "summary",
+      "recommended_action",
+      "likelihood_of_failure",
+      "impact_of_failure",
+      "urgency",
+      "review_reason"
+    ],
+    "F-1013": [
+      "summary",
+      "recommended_action",
+      "likelihood_of_failure",
+      "impact_of_failure",
+      "review_reason"
+    ],
+    "F-1014": [
+      "summary",
+      "recommended_action",
+      "likelihood_of_failure",
+      "impact_of_failure"
+    ],
+    "F-1015": [
+      "summary",
+      "recommended_action",
+      "likelihood_of_failure",
+      "impact_of_failure"
+    ],
+    "F-1016": [
+      "summary",
+      "recommended_action",
+      "likelihood_of_failure",
+      "impact_of_failure",
+      "urgency"
+    ],
+    "F-1017": [
+      "summary",
+      "recommended_action",
+      "likelihood_of_failure",
+      "impact_of_failure",
+      "review_reason"
+    ],
+    "F-1018": [
+      "summary",
+      "recommended_action",
+      "likelihood_of_failure",
+      "impact_of_failure",
+      "urgency"
+    ],
+    "F-1019": [
+      "summary",
+      "recommended_action",
+      "likelihood_of_failure",
+      "impact_of_failure"
+    ],
+    "F-1020": [
+      "summary",
+      "recommended_action",
+      "likelihood_of_failure",
+      "impact_of_failure",
+      "review_reason"
+    ],
+    "F-1021": [
+      "summary",
+      "recommended_action",
+      "likelihood_of_failure",
+      "impact_of_failure"
+    ]
+  },
+  "contract": "doc04-all21-comparison-v1",
+  "elapsed_seconds": 639.0629999999655,
+  "equivalent_cost_assumption": {
+    "actual_copilot_billing": false,
+    "cache_discount_applied": false,
+    "checked_on": "2026-11-18",
+    "input_usd_per_million": 2.0,
+    "model": "gpt-6.1-sol",
+    "output_usd_per_million": 10.0,
+    "source": "https://developers.openai.com/api/docs/pricing",
+    "tier": "Standard short context"
+  },
+  "exact_ticket_matches": [],
+  "illustrative_equivalent_usd": 2.348636,
+  "inputTokens": 973468,
+  "liu_match_count": 19,
+  "outputTokens": 40170,
+  "reasoningTokens": 7113,
+  "replay_sha256": "0186bb605fd9b2d87c88c9c6c457c834cf731a3c2152e5df75822cbb2bf01b4f",
+  "review_required_match_count": 21,
+  "root_sha256": "2bb8d0f34da36142042c6f5f983622be358e45fc4690378a935e28ba189f1f98",
+  "same_finding_ids": true,
+  "score_or_route_differences": {
+    "F-1002": {
+      "L": {
+        "replay": 6,
+        "root": 7
+      }
+    },
+    "F-1016": {
+      "I": {
+        "replay": 2,
+        "root": 3
+      },
+      "L": {
+        "replay": 9,
+        "root": 10
+      },
+      "U": {
+        "replay": 5,
+        "root": 6
+      }
+    }
+  },
+  "score_or_route_match_count": 19,
+  "semantic_review": "not_run",
+  "ticket_count": 21,
+  "usage_records": 21
+}

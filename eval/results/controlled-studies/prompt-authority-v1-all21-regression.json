@@ -1,0 +1,523 @@
+{
+  "status": "deterministic_pass",
+  "tickets": 21,
+  "combined_output": "eval\\results\\triage\\prompt-authority-v1\\all-21-v2-regression\\tickets-v2-all-21.experimental.json",
+  "combined_sha256": "b14fa464e63d7bab03df9299c35b0b139ed5b3e5b94bbd3767640b05c335aa43",
+  "application_sends": 30,
+  "send_statuses": {
+    "failed": 9,
+    "validated": 21
+  },
+  "repairs": 9,
+  "usage": {
+    "inputTokens": 964316,
+    "outputTokens": 59570,
+    "cacheReadTokens": 109672,
+    "cacheWriteTokens": 854554,
+    "reasoningTokens": 9654,
+    "cost": 30.0
+  },
+  "hidden_http_attempts": "unknown",
+  "prompt_identities": [
+    [
+      "assessment-system-v2",
+      "6fb6b8113d3bcd8aab375c9c7a2ae960fc864365f723b24ee68f35aa8a146385"
+    ]
+  ],
+  "knowledge_versions": [
+    "sha256-b215857575e443ba5fd9cb56a19f3079003cd68acb03fdf0e33ca7fbed59e097"
+  ],
+  "source_ref_prefix_counts": {
+    "equipment": 239,
+    "finding": 317,
+    "knowledge": 18
+  },
+  "root_tickets_sha256": "641c8ee358544d562267e40b215ed2bdbe3f2221259437783156a90d889b9694",
+  "root_unchanged": true,
+  "transitions": [
+    {
+      "finding_id": "F-1001",
+      "v11": [
+        7,
+        6,
+        9,
+        true
+      ],
+      "v2": [
+        7,
+        6,
+        9,
+        true
+      ],
+      "delta": [
+        0,
+        0,
+        0
+      ],
+      "review_flip": false,
+      "action_chars": 286
+    },
+    {
+      "finding_id": "F-1002",
+      "v11": [
+        6,
+        8,
+        8,
+        true
+      ],
+      "v2": [
+        6,
+        8,
+        8,
+        true
+      ],
+      "delta": [
+        0,
+        0,
+        0
+      ],
+      "review_flip": false,
+      "action_chars": 264
+    },
+    {
+      "finding_id": "F-1003",
+      "v11": [
+        9,
+        8,
+        9,
+        true
+      ],
+      "v2": [
+        9,
+        7,
+        9,
+        true
+      ],
+      "delta": [
+        0,
+        -1,
+        0
+      ],
+      "review_flip": false,
+      "action_chars": 275
+    },
+    {
+      "finding_id": "F-1004",
+      "v11": [
+        8,
+        8,
+        8,
+        true
+      ],
+      "v2": [
+        8,
+        7,
+        8,
+        true
+      ],
+      "delta": [
+        0,
+        -1,
+        0
+      ],
+      "review_flip": false,
+      "action_chars": 275
+    },
+    {
+      "finding_id": "F-1005",
+      "v11": [
+        10,
+        6,
+        9,
+        true
+      ],
+      "v2": [
+        10,
+        6,
+        9,
+        true
+      ],
+      "delta": [
+        0,
+        0,
+        0
+      ],
+      "review_flip": false,
+      "action_chars": 278
+    },
+    {
+      "finding_id": "F-1006",
+      "v11": [
+        4,
+        6,
+        7,
+        true
+      ],
+      "v2": [
+        4,
+        6,
+        7,
+        true
+      ],
+      "delta": [
+        0,
+        0,
+        0
+      ],
+      "review_flip": false,
+      "action_chars": 276
+    },
+    {
+      "finding_id": "F-1007",
+      "v11": [
+        9,
+        7,
+        8,
+        true
+      ],
+      "v2": [
+        9,
+        7,
+        8,
+        true
+      ],
+      "delta": [
+        0,
+        0,
+        0
+      ],
+      "review_flip": false,
+      "action_chars": 270
+    },
+    {
+      "finding_id": "F-1008",
+      "v11": [
+        6,
+        7,
+        7,
+        true
+      ],
+      "v2": [
+        6,
+        7,
+        7,
+        true
+      ],
+      "delta": [
+        0,
+        0,
+        0
+      ],
+      "review_flip": false,
+      "action_chars": 267
+    },
+    {
+      "finding_id": "F-1009",
+      "v11": [
+        2,
+        7,
+        7,
+        true
+      ],
+      "v2": [
+        2,
+        6,
+        7,
+        true
+      ],
+      "delta": [
+        0,
+        -1,
+        0
+      ],
+      "review_flip": false,
+      "action_chars": 252
+    },
+    {
+      "finding_id": "F-1010",
+      "v11": [
+        9,
+        8,
+        9,
+        true
+      ],
+      "v2": [
+        9,
+        8,
+        9,
+        true
+      ],
+      "delta": [
+        0,
+        0,
+        0
+      ],
+      "review_flip": false,
+      "action_chars": 273
+    },
+    {
+      "finding_id": "F-1011",
+      "v11": [
+        9,
+        8,
+        9,
+        true
+      ],
+      "v2": [
+        9,
+        8,
+        9,
+        true
+      ],
+      "delta": [
+        0,
+        0,
+        0
+      ],
+      "review_flip": false,
+      "action_chars": 277
+    },
+    {
+      "finding_id": "F-1012",
+      "v11": [
+        10,
+        8,
+        9,
+        true
+      ],
+      "v2": [
+        9,
+        8,
+        9,
+        true
+      ],
+      "delta": [
+        -1,
+        0,
+        0
+      ],
+      "review_flip": false,
+      "action_chars": 279
+    },
+    {
+      "finding_id": "F-1013",
+      "v11": [
+        8,
+        6,
+        7,
+        true
+      ],
+      "v2": [
+        8,
+        6,
+        7,
+        true
+      ],
+      "delta": [
+        0,
+        0,
+        0
+      ],
+      "review_flip": false,
+      "action_chars": 251
+    },
+    {
+      "finding_id": "F-1014",
+      "v11": [
+        4,
+        3,
+        4,
+        true
+      ],
+      "v2": [
+        5,
+        3,
+        7,
+        true
+      ],
+      "delta": [
+        1,
+        0,
+        3
+      ],
+      "review_flip": false,
+      "action_chars": 238
+    },
+    {
+      "finding_id": "F-1015",
+      "v11": [
+        2,
+        6,
+        5,
+        false
+      ],
+      "v2": [
+        2,
+        5,
+        5,
+        true
+      ],
+      "delta": [
+        0,
+        -1,
+        0
+      ],
+      "review_flip": true,
+      "action_chars": 167
+    },
+    {
+      "finding_id": "F-1016",
+      "v11": [
+        1,
+        8,
+        7,
+        true
+      ],
+      "v2": [
+        2,
+        7,
+        7,
+        true
+      ],
+      "delta": [
+        1,
+        -1,
+        0
+      ],
+      "review_flip": false,
+      "action_chars": 220
+    },
+    {
+      "finding_id": "F-1017",
+      "v11": [
+        6,
+        8,
+        8,
+        true
+      ],
+      "v2": [
+        6,
+        7,
+        7,
+        true
+      ],
+      "delta": [
+        0,
+        -1,
+        -1
+      ],
+      "review_flip": false,
+      "action_chars": 259
+    },
+    {
+      "finding_id": "F-1018",
+      "v11": [
+        10,
+        6,
+        8,
+        true
+      ],
+      "v2": [
+        9,
+        6,
+        7,
+        true
+      ],
+      "delta": [
+        -1,
+        0,
+        -1
+      ],
+      "review_flip": false,
+      "action_chars": 230
+    },
+    {
+      "finding_id": "F-1019",
+      "v11": [
+        6,
+        5,
+        7,
+        true
+      ],
+      "v2": [
+        8,
+        5,
+        7,
+        true
+      ],
+      "delta": [
+        2,
+        0,
+        0
+      ],
+      "review_flip": false,
+      "action_chars": 256
+    },
+    {
+      "finding_id": "F-1020",
+      "v11": [
+        9,
+        8,
+        9,
+        true
+      ],
+      "v2": [
+        9,
+        8,
+        9,
+        true
+      ],
+      "delta": [
+        0,
+        0,
+        0
+      ],
+      "review_flip": false,
+      "action_chars": 279
+    },
+    {
+      "finding_id": "F-1021",
+      "v11": [
+        5,
+        8,
+        8,
+        true
+      ],
+      "v2": [
+        5,
+        7,
+        7,
+        true
+      ],
+      "delta": [
+        0,
+        -1,
+        -1
+      ],
+      "review_flip": false,
+      "action_chars": 285
+    }
+  ],
+  "max_abs_score_shift": 3,
+  "review_flips": 1,
+  "urgency_flips": 4,
+  "failed_test_findings": [
+    "F-1003",
+    "F-1005",
+    "F-1010",
+    "F-1011",
+    "F-1012",
+    "F-1020"
+  ],
+  "failed_test_retest_complete": true,
+  "review_required_false": [],
+  "action_chars": {
+    "min": 167,
+    "median": 270,
+    "max": 286
+  },
+  "notes": [
+    "All 21 assessments passed production schema, citation, fact-state and projection validation. This is not semantic/domain acceptance.",
+    "Root tickets.json was not modified."
+  ]
+}

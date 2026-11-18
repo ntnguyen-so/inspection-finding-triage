@@ -1,0 +1,16 @@
+{
+  "schema": "knowledge-release-change-accounting-v1",
+  "scope": "Four observed Copilot application sends in the retained v4 run",
+  "elapsed_seconds": 100.859,
+  "input_tokens": 124075,
+  "output_tokens": 5330,
+  "cache_read_tokens": 0,
+  "cache_write_tokens": 124063,
+  "reasoning_tokens": 251,
+  "premium_requests": 4,
+  "http_attempts": null,
+  "actual_copilot_usd": null,
+  "illustrative_openai_usd": 0.3015,
+  "pricing_assumption": "Observed input/output tokens at US$2 per million input and US$10 per million output tokens, with no cache discount. This is an equivalent API estimate, not the Copilot charge.",
+  "source": "Each condition's run.json application_sends[0].receipt.usage[0] and elapsed_seconds"
+}

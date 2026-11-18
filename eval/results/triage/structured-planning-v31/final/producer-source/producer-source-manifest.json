@@ -1,0 +1,18 @@
+{
+  "contract": "producer-source-recovery-v1",
+  "run_record": "eval/results/triage/structured-planning-v31/final/evidence/run.json",
+  "recorded_path": "triage/workflow.py",
+  "recorded_sha256": "b83cda64eacf9888967895d2ed82cca87f48ebc9497cfdb310e6fac4153e0376",
+  "recovered_path": "eval/results/triage/structured-planning-v31/final/producer-source/triage/workflow.py",
+  "recovered_sha256": "b83cda64eacf9888967895d2ed82cca87f48ebc9497cfdb310e6fac4153e0376",
+  "recovered_from_git_unreachable_blob": "064e2500f293c4267adaec4a75621581d90c1518",
+  "committed_at_execution": false,
+  "current_production_sha256": "9d2a4a3e8ed8cbfc6401a21a0743d7841d0b6155c47e918d6db66713bb55b51b",
+  "current_production_matches_recorded": false,
+  "delta_to_current_production": {
+    "scope": "Current production adds post-publication rollback after a later failure: restore the prior output or remove a newly created output, remove the publication receipt, and record rollback state.",
+    "ticket_content_effect_for_retained_successful_run": "none",
+    "test_interpretation": "Current production tests cover this rollback behavior; they do not establish the recovered producer's behavior after a post-publication failure."
+  },
+  "interpretation": "The exact workflow bytes used by the retained run were not part of a reachable commit at execution. They were recovered from a local unreachable Git blob and are retained here as evidence; this does not establish clean-checkout reproduction."
+}

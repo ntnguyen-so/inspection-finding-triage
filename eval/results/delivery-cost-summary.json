@@ -1,0 +1,40 @@
+{
+  "actual_copilot_usd": null,
+  "api_equivalent_usd": {
+    "cache_aware_30m_write_scenario": 2.4931861,
+    "simple_input_output": 2.350286,
+    "simple_per_ticket": 0.11191838095238095
+  },
+  "application_sends": 21,
+  "contract": "delivery-cost-summary-v1",
+  "findings": 21,
+  "limitations": [
+    "API-equivalent values are pricing scenarios, not a Copilot invoice.",
+    "Copilot AI-unit-to-USD conversion and hidden HTTP attempts are not exposed.",
+    "Cache-aware repricing assumes OpenAI 30-minute cache-write semantics."
+  ],
+  "measured_usage": {
+    "aiUnits": 249.31861,
+    "cacheReadTokens": 143251,
+    "cacheWriteTokens": 830154,
+    "inputTokens": 973468,
+    "outputTokens": 40335,
+    "reasoningTokens": 6983,
+    "requestCostUnits": 21.0,
+    "uncachedInputTokens": 63
+  },
+  "pricing_assumption": {
+    "checked_on": "2026-11-18",
+    "model": "gpt-6.1-sol",
+    "source": "https://developers.openai.com/api/docs/pricing",
+    "tier": "Standard short context",
+    "usd_per_million_tokens": {
+      "cache_read": 0.1,
+      "cache_write_30m": 2.5,
+      "input": 2.0,
+      "output": 10.0
+    }
+  },
+  "source_run": "eval\\results\\triage\\structured-planning-v31\\final\\evidence\\run.json",
+  "source_run_sha256": "b23bc50f558bc29973dec61c6b235e656314b170ffd7624979b589b32fa4bcd1"
+}

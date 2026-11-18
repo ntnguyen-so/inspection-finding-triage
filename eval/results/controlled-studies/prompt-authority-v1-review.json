@@ -1,0 +1,36 @@
+{
+  "review_type": "bounded_secondary_ai_critique_not_calibrated_semantic_acceptance",
+  "development_review": {
+    "scope": "52 paired v1/v2 development tickets",
+    "result": "provisional_non_inferiority_with_blockers",
+    "findings": [
+      "No high-confidence source, equipment or knowledge-authority regression was attributable to the seven prompt edits.",
+      "F-1003 and F-1005 v2-r2 omitted post-correction retest planning.",
+      "F-1014 operational-state behavior and F-1016 documentation-only uncertainty routing required causal fixtures before an all-21 run."
+    ]
+  },
+  "all_21_cross_review": {
+    "scope": "v2 all-21 experimental output compared with root v11",
+    "result": "not_promotable",
+    "blocking_findings": [
+      "F-1014 changed from L4/I3/U4 to L5/I3/U7 because unverified current isolation created a safety-uncertainty floor despite the supplied out-of-service, bypassable, low-impact context.",
+      "This was the declared regression case for the generalized operational-state clause and therefore fails the preregistered no-new-semantic-regression rule."
+    ],
+    "non_blocking_findings": [
+      "F-1016 still routes identity-to-certificate verification through safety uncertainty.",
+      "Seven action-overflow repairs show that the fixed failed-test retest is not budgeted effectively on first attempts.",
+      "F-1020 contains duplicated function-test closure wording and compressed fragments.",
+      "Seven impact scores moved down by one point and require explicit semantic adjudication rather than aggregate averaging."
+    ],
+    "positive_findings": [
+      "All 21 tickets passed deterministic schema, citation, fact-state and projection checks.",
+      "No review flag changed from true to false.",
+      "All six P-FAILED-TEST tickets include the code-owned post-correction retest.",
+      "No new citation, equipment-transfer or knowledge-authority regression was identified."
+    ]
+  },
+  "limitations": [
+    "These are AI-assisted secondary critiques, not the pinned calibrated semantic reviewer or domain certification.",
+    "Deterministic checks and retained provider evidence remain primary."
+  ]
+}

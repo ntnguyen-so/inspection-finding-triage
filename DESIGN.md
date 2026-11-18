@@ -1,252 +1,182 @@
 # Inspection Finding Triage — System Design
 
-## Five-minute status
+## Executive summary
 
-This prototype turns 21 supplied inspection findings into draft maintenance
-tickets. It has a tested implementation, controlled knowledge lifecycle,
-code-derived urgency, retained real-model experiments and a generated root
-`tickets.json` covering all 21 findings. The artifact passes the deterministic
-output contract but is **not acceptance-eligible**: semantic assessment remains
-provisionally 63/63 pass under the calibrated primary AI reviewer, while human
-approval is outstanding and clean-checkout reproduction has not been run. Six
-tickets require exceptional prequeue review; every draft still requires ordinary
-human approval.
+The system converts a fixed snapshot of inspection findings, equipment data and
+reviewed domain guidance into a complete batch of maintenance-planning drafts.
+Its main design decision is an explicit separation of judgment and control:
 
-| Panel question | Current answer |
-|---|---|
-| Can it generate the required structure? | Yes in offline tests and real experiments; malformed and schema-invalid responses were observed and regenerated once or failed closed. |
-| Does it use the supplied engineering context? | The complete bounded source package, registry and maintained knowledge are hash-pinned and captured. Reference-1.3 B02 provides a bounded causal-influence and negative-control pass; general domain correctness remains unproven. |
-| Is urgency model-authored? | No. The model proposes L/I and facts; code computes urgency and applies traceable rules. |
-| Is the required file present? | Yes. Root `tickets.json` contains exactly 21 system-generated drafts and passes the deterministic contract. |
-| Is it submission-ready? | The required draft file exists. The v31 primary AI review is provisionally 63/63, with six exceptional review routes; the receipt remains non-eligible and human approval is mandatory. Actual Copilot USD allocation is unknown. |
+- the model interprets free text and proposes likelihood, impact, fact states,
+  uncertainty, a summary and a recommended activity;
+- deterministic code owns identity, schema, evidence checks, urgency,
+  escalation, review routing, attempts, coverage and publication; and
+- a human owns approval and operational action.
 
-The ordered rationale from requirements through reliability measurement is in
-[`docs/README.md`](docs/README.md); evidence status and limitations are indexed in
-[`eval/results/README.md`](eval/results/README.md).
+This boundary follows the Candidate Brief rather than treating an LLM response
+as the product. A fluent but unsupported answer is not allowed to become a
+ticket merely because it is valid JSON.
 
-## The four judgment traps
+The four engineering traps that shaped the design are:
 
-1. **Missing evidence is not evidence of absence.** Unknown deviation, capacity,
-   restoration or partner condition must remain unknown; it cannot activate a
-   supplied override that requires a confirmed fact.
-2. **Redundancy is not automatically creditable.** A stated 2oo3 arrangement
-   proves a relationship, not that every partner is currently available and
-   capable.
-3. **Impact is not repair cost.** The assessment includes loss of required
-   function, escalation, delayed or hidden consequences and the protected
-   major-accident scenario where supported.
-4. **Valid JSON is not a valid engineering answer.** The system must separate
-   malformed output, structural errors, unsupported semantics and genuinely
-   unassessable evidence.
+1. missing evidence is unknown, not confirmed absence;
+2. redundancy is a claim until partner availability and capability are shown;
+3. SCE impact concerns the protected major-accident scenario, not repair cost;
+4. structural validity and engineering validity are different gates.
 
-These traps drive the architecture. Probabilistic interpretation is used where
-language and evidence must be synthesized; predictable engineering controls stay
-in code.
-
-### Why knowledge and triage are separate modules
-
-`triage_knowledge` owns source ingestion, extraction, review, immutable releases,
-selection and context validation. `triage` owns assessment orchestration,
-urgency policy, attempts, complete coverage and publication. Triage consumes a
-pinned knowledge/context contract; it does not know how the store extracted or
-selected the underlying items.
-
-This one-way dependency separates content authority from execution authority. A
-domain owner can update approved PSV guidance without editing workflow code, and
-a workflow developer cannot silently turn evaluation cases into maintained
-knowledge. The workflow is independent of store internals, not independent of
-engineering context: missing or invalid required context remains a terminal
-failure.
-
-### Why inference is a separate module
-
-The candidate already had a GitHub Copilot CLI subscription that included access
-to the coding models used for development without a separately visible per-call
-API charge. A provider-neutral `llm_inference` boundary allowed repeated probes
-to use that lower-marginal-cost route instead of funding every iteration through
-a separately billed OpenAI/Azure API, while keeping orchestration, validation and
-policy independent of Copilot.
-
-This was an economic development choice, not a claim that Copilot inference is
-free or equivalent to a fully observable direct route. Subscription cost and
-quotas are real, hidden HTTP attempts and per-run USD allocation are unavailable,
-and another reviewer may not share the entitlement. The final draft uses the
-explicit `copilot_delivery` mode: application sends are bounded and audited, but
-strict transport accounting remains unestablished and acceptance remains false.
+The supporting decision trail is in [`docs\README.md`](docs/README.md).
 
 ## Architecture and responsibility boundary
 
 ```text
-validated findings + registry + pinned knowledge + fixed configuration
-  -> complete source-first context and independent hash checks             [code]
-  -> L/I, fact states, uncertainty, summary and proposed activity         [model]
-  -> identity, schema, quotations, citations and fact consistency checks  [code]
-  -> urgency arithmetic, floors, review routing and required checks       [code]
-  -> exact 21-ticket coverage and atomic tickets.json replacement         [code]
-  -> semantic evaluation and human approval                    [outside generation]
+unchanged candidate inputs
+  + reviewed source-first knowledge
+  + pinned prompt, policy and configuration
+                         |
+                         v
+              deterministic context assembly          [code]
+                         |
+                         v
+        L / I, facts, uncertainty and planning text   [model]
+                         |
+                         v
+       schema, identity, quotation and evidence checks [code]
+                         |
+                         v
+          urgency, escalation and review routing       [code]
+                         |
+                         v
+          complete coverage and atomic publication     [code]
+                         |
+                         v
+                    human approval
 ```
 
 | Model interprets or authors | Deterministic code owns |
 |---|---|
-| Meaning of observations and comments | Input shape, IDs, joins, dates and score directions |
+| Meaning of findings and engineer comments | Input shape, IDs, joins, dates and score direction |
 | Near-term likelihood and consequence | Closed schemas, ranges and text limits |
-| Confirmed/false/suspected/unknown facts | Exact citations, quotations and state consistency |
-| Uncertainty and proposed verification | Urgency, floors, override conditions and review rules |
+| Confirmed, false, suspected and unknown facts | Citation existence, exact quotations and fact consistency |
+| Material uncertainty and proposed checks | Urgency arithmetic, floors and review rules |
 | Summary and recommended activity | Attempt budget, complete coverage and atomic publication |
 | Explicit inability to support L/I | Nonzero failure; never a guessed fallback score |
 
-The boundary does not make model judgment deterministic or correct. It makes the
-consequences observable and bounded. Real runs produced malformed JSON and schema
-violations; model repair attempts guided by code-generated feedback validated four
-responses in one batch, while another batch failed after both attempts. A later
-fixed-configuration gpt-6 X01 pair completed both generations but reviewed
-38/39 then 37/39. The final v31 development pair closes the current observed
-stability gate: both outputs reviewed 39/39, all 13 urgency bands and review
-flags matched, and visible numeric/rule drift was adjudicated without selecting
-a better run. No
-counterfactual experiment has compared this design with model-authored urgency,
-so that alternative is rejected on predictability and brief compliance, not
-claimed empirical superiority.
+Three modules keep authority separate:
 
-### Worked example: F-1005
+- `triage_knowledge` owns source ingestion, provenance, review, immutable
+  release, activation inputs and context validation;
+- `llm_inference` exposes restricted provider calls without owning engineering
+  policy; and
+- `triage` owns assessment orchestration, validation, urgency, attempts and
+  publication.
 
-The detector head failed two gas tests; the other two heads in the 2oo3 group
-responded. The model assessed `L=9`: failure of this head's required function was
-confirmed. It assessed `I=6`: detection was degraded, but the observation still
-showed two responsive heads and therefore did not justify treating group
-protection as lost.
+The dependency is one-way: triage consumes a pinned knowledge contract.
+Knowledge tooling cannot publish tickets or choose urgency, and provider
+adapters cannot redefine triage policy.
 
-Code calculated a base urgency of 7. A separately labelled candidate policy for a
-confirmed failed protection-function test raised the final urgency to 9 and
-required checks of the impairment/deviation record and current group condition.
-The supplied confirmed override was **not** claimed because absence of a recorded
-deviation was unknown, not confirmed. This example shows the intended separation:
-semantic assessment may vary; arithmetic, fact-state requirements and provenance
-do not.
+Detailed component decisions are recorded in
+[`04_INFERENCE_LIBRARY.md`](docs/04_INFERENCE_LIBRARY.md),
+[`05_KNOWLEDGE_LIFECYCLE.md`](docs/05_KNOWLEDGE_LIFECYCLE.md) and
+[`06_TRIAGE_WORKFLOW.md`](docs/06_TRIAGE_WORKFLOW.md).
 
 ## A. Structured output and failure behavior
 
-Each model response must satisfy a closed assessment schema. Code rejects extra
-fields, duplicate keys, wrong identity, non-integer or out-of-range scores,
-unsupported citations, inexact quotations, invalid fact combinations and missing
-required activities. A repair receives the same pinned context, the rejected
-draft and a bounded error message. Only explicitly recoverable output errors get
-one further application attempt.
+The model returns an internal assessment object rather than the final public
+ticket. Code then projects the validated assessment into the required ticket
+schema.
 
-The L/I rubric defines ordinal bands. A confirmed required-function failure must
-be in the 9-10 likelihood band; a lower but otherwise valid score is an
-`assessment_contradiction` and gets one repair. Code can similarly detect
-citation and fact-state contradictions. A coherent, in-range but engineering-wrong
-score cannot be proven wrong by schema code: it remains subject to offline
-semantic review and human approval, as the Azure v5 failures demonstrate.
-Model-authored fact states can also activate code-owned floors—for example, a
-confirmed failed protection-function test triggers a floor of 9. Code validates
-the fact state's form, citations and internal consistency, not its engineering
-truth. Independent fact-state calibration remains future work.
+The assessment parser rejects:
 
-The batch has a persistent 42-attempt budget. Provider retries are disabled on
-the strict Azure route. Any failed finding exits nonzero and publishes nothing;
-an existing output remains byte-identical. Only a complete, revalidated
-21-ticket wrapper is flushed and atomically substituted for `tickets.json`.
+- malformed JSON and duplicate keys;
+- extra or missing fields, wrong identity and invalid score types/ranges;
+- unsupported citations or quotations that do not match supplied evidence;
+- inconsistent fact states and missing verification activities; and
+- text or planning output that violates the declared contract.
 
-### Observed control behavior
+### Recovery policy
 
-The retained
-[`behavior demonstration`](eval/results/design-behavior-demonstration.json)
-binds a 195,917-byte raw verifier report by SHA-256. It ran 125 component tests
-with zero failures, plus 63 inference/provider tests, 81 knowledge/context tests,
-126 evaluator tests and frozen-reference validation. It predates the current v8
-production changes and is historical control evidence, not current-v8
-certification.
-
-| Adversarial behavior exercised | Observed result | What it establishes |
-|---|---|---|
-| Malformed JSON versus structural schema failure | Classified separately; each received only its allowed repair | Errors are not collapsed into a success-shaped fallback |
-| Both attempts invalid | Nonzero failure; previous output preserved | Exhaustion cannot masquerade as current success |
-| One finding fails within a batch | No partial batch published | Completeness is enforced at publication |
-| Atomic replace fails | Old bytes preserved; temporary file removed | Publication failure is fail-closed |
-| New process tries to reset budget | Persistent budget still enforced | Restarting cannot create unbounded retries |
-| Evidence cannot support L/I | No midpoint or placeholder score | Review does not legitimize fabrication |
-| Timeout, refusal or context mutation | No publication | Transport and provenance failures are terminal |
-
-These are deterministic self-tests, not evidence that the proposed L/I values are
-correct.
-
-### Observed model behavior
-
-| Experiment | Observation | Interpretation |
-|---|---|---|
-| Pre-v8 policy-v5 Copilot at `235bdd1`, 21 findings | 25 sends; four first attempts failed: two malformed JSON and two schema violations; all four repairs succeeded | Bounded repair solved observed output faults on that route/version, but the run is not acceptance-eligible |
-| Pre-v8 Copilot X01 first run | F-1017 returned malformed JSON twice; batch failed and no repeat was run | The same controls also rejected a real exhausted response |
-| Later pre-v8 gpt-6 X01 pair at `4debeba` | Both 13-ticket generations completed; semantic reviews were 38/39 `needs_review` and 37/39 `fail` on F-1003/F-1005 planning | Recorded X01 **fail**; the separate 63/63 all-21 result did not establish stability |
-| Later pre-v8 gpt-6.1 first all-21 run | Failed at F-1015 after 15 sends because the response crossed the output boundary | A newer model did not reproduce complete generation on its first attempt |
-| Later pre-v8 gpt-6.1 retry | 21 contract-valid tickets in 23 sends; two separate calibrated AI-only reviews each failed at 60/63 | The earlier gpt-6 63/63 result is best-of-several evidence, not stable quality |
-| Direct Azure v5, 21 findings | 24 requests produced 21 contract-valid tickets; semantic gate still failed despite 60/63 reviewed dimensions | Structural success is insufficient |
-
-The historical Azure experiment used 1,289,873 prompt tokens, 45,878 completion tokens and
-16,474 reasoning tokens. Reported cache reuse was small relative to cache writes;
-its USD cost remains unknown because no deployment tariff was captured.
-
-The current v31 Copilot delivery completed 21 application sends in 617.75
-seconds. The retained run record exposes the application-level receipts and
-latencies, but not hidden HTTP attempts or an actual Copilot USD allocation.
-No API-equivalent estimate is presented as the subscription cost. Exact final
-run provenance is retained in
-`eval\results\triage\structured-planning-v31\final\evidence\run.json`.
-
-## B. Knowledge, context and maintenance
-
-The corpus is small and relationship-heavy, so every assessment receives the
-complete bounded registry, all selected findings and engineer comments, exact
-source-faithful domain items, deterministic same-equipment history and explicit
-relationships. This avoids lossy summaries, vector infrastructure and unsupported
-top-k retrieval assumptions. The supplied package is preserved byte-for-byte.
-
-A run pins input, knowledge release, selector, prompt, assessment policy and
-execution policy by hash. Code independently reconstructs and validates context
-before provider dispatch. Evaluation cards, expected answers and reviewer
-judgments are excluded from production context.
-
-An engineer changing PSV behavior uses one of three explicit surfaces:
-
-| Intended change | Correct surface |
+| Failure | System behavior |
 |---|---|
-| General PSV guidance or exception | Import an approved PSV-scoped source, review it, publish an immutable knowledge release, then approve and repin activation |
-| Fact about one PSV | Update the registry snapshot and revalidate it |
-| Generic L/I anchor or urgency/review policy | Change versioned application policy and focused tests |
+| Malformed response | One bounded repair with the same pinned context and a concise parser diagnostic |
+| Structural or evidence violation | One bounded repair with the rejected draft and named contract errors |
+| Deterministically contradictory score/fact | One bounded repair when code can prove the contradiction |
+| Coherent but engineering-wrong score | Schema code cannot prove it wrong; it remains subject to semantic and human review |
+| Unsupported or unassessable L/I | Terminal batch failure; no midpoint or placeholder score |
+| Both attempts invalid | Nonzero exit; no new publication |
 
-This avoids prompt surgery and finding-ID branches. It also exposes a limitation:
-captured context proves delivery, not causal use. Earlier B02 attempts were
-failed or inconclusive. The retained reference-1.3 B02 probe later demonstrated
-bounded artificial-policy influence and negative-control isolation, but not
-general causal use, domain correctness or a production PSV policy change.
+One repair was chosen because observed malformed/schema-invalid responses were
+sometimes corrected by explicit feedback, while additional retries would raise
+cost and create optional stopping. The total batch attempt budget is persisted
+for one run, so restarting that run cannot refund spent attempts. A new
+operator-authorized invocation creates a new ledger and budget.
 
-The concrete general-guidance path is:
+The final wrapper is validated for exact input coverage. Publication uses a
+same-volume temporary file and atomic replacement. If any finding fails, the
+batch is incomplete or replacement fails, the previous `tickets.json` remains
+unchanged. Partial publication was rejected because it can conceal a missing
+finding inside an apparently successful planning package.
 
-```powershell
-python -B -m triage_knowledge --store knowledge\source-first import-source `
-  --source "path\to\approved-psv-guidance.md" --name "approved-psv-source"
-python -B -m triage_knowledge --store knowledge\source-first review `
-  --item "item-id" --expected-digest "digest" --reviewer "reviewer" --reason "scope checked"
-python -B -m triage_knowledge --store knowledge\source-first publish `
-  --expected-digest "digest" --author "author" --reviewer "reviewer" --reason "approved"
-```
+The system can validate evidence use and internal consistency; it cannot certify
+that a plausible L/I judgment is engineering truth. That is why deterministic
+validation, separate semantic review and human approval remain distinct.
 
-The returned `knowledge_version` must be reviewed and pinned in a **new**
-activation identity and fresh run configuration; activation remains separate
-from knowledge publication. `config\triage-activation-v31.experimental.json`
-records the activation used by the promoted v31 delivery. The prototype still
-does not provide a dedicated activation-approval CLI.
+## B. Domain knowledge and maintainability
 
-The current root `tickets.json` is byte-identical to the retained v31 final
-output generated with that activation and
-`config\triage-v31-final.experimental.json`. This closes the earlier
-activation-provenance gap for the recorded run, but not the separate
-clean-checkout reproduction or human-approval gates.
+Every assessment receives:
 
-## C. Urgency derivation and observed stability
+- the selected finding and its inspection metadata;
+- the complete bounded equipment registry, including `engineer_comment`;
+- deterministic same-equipment and declared relationship evidence;
+- reviewed, source-faithful domain items from the active immutable release; and
+- prompt, policy, selector, release and input identities.
 
-The model never outputs urgency. For ordinal likelihood `L` and impact `I`:
+The supplied `reference\domain_knowledge.md` bytes are preserved, extracted into
+source-linked items, explicitly reviewed, published in an immutable release and
+delivered in the hash-bound provider context. `engineer_comment` reaches the
+same request through the validated registry snapshot rather than through the
+maintained knowledge release.
+
+Production context excludes evaluation cards, expected answers and reviewer
+judgments. The workflow independently rebuilds and validates the expected
+context before provider dispatch.
+
+Complete bounded context was chosen over vector RAG because the supplied corpus
+contains only 21 findings and 18 assets, while relationships can change the
+decision. This avoids ranking and omission failure modes at the cost of more
+input tokens. If the corpus grows materially, measured retrieval quality and
+safe context reduction would be required before changing this choice.
+
+### Six months later: changing PSV behavior
+
+The correct edit surface depends on what changed:
+
+| Requested change | Owner and change surface |
+|---|---|
+| New approved PSV evidence or interpretation inside the existing rubric | Domain owner adds/replaces an approved source; a knowledge steward imports, reviews and publishes a new immutable release; a runtime approver activates it |
+| A new fact about one valve | Asset-data owner supplies a new registry snapshot |
+| A generic likelihood/impact anchor | Application-policy owner changes `triage\assessment_policy.py` and focused tests; a runtime approver issues a new reviewed activation |
+| An urgency threshold or exceptional-review rule | Application-policy owner changes `triage\policy.py` and focused tests; a runtime approver issues a new reviewed activation |
+| Extraction or selector behavior | Knowledge-tooling owner changes `triage_knowledge`, reruns the component evaluation and issues a new reviewed activation |
+
+Knowledge publication and activation are separate decisions. Saving or
+publishing technically valid source material does not automatically give it
+runtime authority. A change that overlaps interpretation still embedded in the
+prompt requires compatibility review before activation.
+
+This path was exercised in a controlled study. It demonstrated visible,
+bounded influence, exposed a scope/provenance defect and non-target variance,
+and ended with a decision not to promote the experimental PSV rule. That is the
+intended maintenance property: changes are observable, reviewable and
+reversible; output movement alone is not proof that a new rule is correct.
+
+See [`05_KNOWLEDGE_LIFECYCLE.md`](docs/05_KNOWLEDGE_LIFECYCLE.md) for the
+production interface and
+[`07_KNOWLEDGE_CHANGE_STUDY.md`](docs/07_KNOWLEDGE_CHANGE_STUDY.md) for the
+observed experiment.
+
+## C. Urgency derivation
+
+The model never outputs urgency. For ordinal likelihood `L` and impact `I`, code
+computes:
 
 ```text
 base  = ceil(0.7 * I + 0.3 * L)
@@ -254,158 +184,174 @@ base  = ceil(0.7 * I + 0.3 * L)
 final = max(base, every applicable rule floor)
 ```
 
-This is a candidate-owned attention policy, not probability, expected loss or a
-calibrated risk model. The qualitative corner behavior is source-backed. The
-supplied `reference\domain_knowledge.md` states that a low-likelihood,
-high-impact SCE still requires attention this week and that a near-certain
-failure of something inconsequential can wait for the next shutdown. The same
-section maps "this week" to U7-U8 and "next planned shutdown" to U3-U4.
+The supplied notes require asymmetric corners: low-likelihood/high-impact SCE
+findings still need prompt attention, while near-certain low-consequence failure
+may wait for shutdown. A normalized weighted form
+`ceil(w*I + (1-w)*L)` satisfies the stated corner bands when
+`2/3 <= w <= 7/9`. `w=0.7` is a simple interior value with exact integer
+arithmetic. It is a declared prototype policy, not an empirically calibrated
+risk model.
 
-The numeric construction remains candidate-owned. It maps those qualitative
-examples to the extreme points `(L=1,I=10)` and `(L=10,I=1)`, selects the
-normalized weighted-linear family
-`ceil(w*I + (1-w)*L)`, and requires the points to remain in their stated bands:
+| L / I | Plain mean | Plain maximum | Chosen base | Behavior |
+|---|---:|---:|---:|---|
+| 1 / 1 | 1 | 1 | 1 | Low/low remains low |
+| 10 / 1 | 5.5 | 10 | 4 | High likelihood does not erase low consequence |
+| 1 / 10 | 5.5 | 10 | 8 | High consequence still receives prompt attention |
+| 10 / 10 | 10 | 10 | 10 | High/high reaches the ceiling |
 
-```text
-3 <= ceil(10 - 9w) <= 4  =>  2/3 <= w < 8/9
-7 <= ceil(1 + 9w) <= 8   =>  5/9 < w <= 7/9
-```
+All 100 L/I pairs are range-checked and monotone. These checks establish formula
+behavior, not operational calibration.
 
-Their intersection is `2/3 <= w <= 7/9`. `w=0.7` is a simple interior decimal
-with exact integer arithmetic; it is not an empirically fitted optimum. The
-likelihood weight `0.3` is not a second independently sourced constant: it is
-the normalized complement `1-w`. Normalization preserves the 1-10 scale and
-ensures that equal inputs map to the same base score. Other interior choices,
-such as 0.68/0.32 or 0.75/0.25, would satisfy these two corner constraints and
-would require calibration evidence to distinguish.
+### Overrides and policy floors
 
-| L / I | Plain mean | Plain maximum | Chosen formula |
-|---|---:|---:|---:|
-| 1 / 1 | 1 | 1 | 1 |
-| 10 / 1 | 5.5 | 10 | 4 |
-| 1 / 10 | 5.5 | 10 | 8 |
-| 10 / 10 | 10 | 10 | 10 |
+The two supplied overrides apply only when their required facts are confirmed:
 
-All 100 input pairs were range-checked and monotone. A 16-state fact experiment
-also showed that the supplied protection override fires only for confirmed
-impairment plus confirmed absence of a recorded deviation; suspected or unknown
-states receive separately labelled precaution/review treatment.
+| Rule | Trigger | Effect |
+|---|---|---:|
+| Protection override | Confirmed protection impairment and confirmed absence of a recorded deviation | Floor 9 |
+| Evacuation override | Confirmed available evacuation capacity below POB | Floor 9 |
 
-The base formula alone gives `L=1,I=8 -> U=6`, so it does not satisfy the supplied
-statement that a low-likelihood, high-impact SCE still needs attention this week.
-`P-SCE-HIGH-IMPACT` closes that specific gap with a floor of 7. It was added after
-an observed development-repeat band failure, but its design authority is the
-supplied SCE rule; the threshold remains candidate-owned and uncalibrated.
+Missing deviation, restoration, POB or partner evidence cannot be converted into
+a confirmed override. Separately labelled candidate policies provide
+precautionary floors or focused review when safety-relevant state is material
+but unresolved—for example, a confirmed failed protection-function test,
+unverified evacuation capacity, unverified restoration, or an SCE assessed at
+high impact.
 
-| Rule | Trigger and effect | Authority |
-|---|---|---|
-| `O-PROTECTION` | Confirmed impairment and confirmed no recorded deviation; floor 9 | Supplied override |
-| `O-EVACUATION` | Confirmed evacuation capacity below POB; floor 9 | Supplied override |
-| `S-SOURCE-TODAY` | Cited active source explicitly requires same-day attention; floor 9 | Source directive composed by code |
-| `P-FAILED-TEST` | Confirmed failed protection-function test; floor 9 | Candidate precaution |
-| `P-EVACUATION` | Craft unavailable but capacity/POB comparison unresolved; floor 9 plus verification | Candidate precaution |
-| `P-RESTORATION` | Unlogged impairment and restoration false/unverified; floor 9 plus closure checks | Candidate precaution |
-| `P-SAFETY-UNKNOWN` | Material safety uncertainty, including unknown deviation; floor 7 plus verification | Candidate precaution |
-| `P-SCE-HIGH-IMPACT` | SCE with assessed impact at least 8; floor 7 | Supplied SCE intent, candidate threshold |
-| `R-MATERIAL` | Material non-safety uncertainty; no urgency floor | Candidate review policy |
+A plain mean was rejected because it understates the low-L/high-I corner. A
+plain maximum was rejected because it overstates high-L/low-I findings. Asking
+the model for urgency was rejected because it violates the brief and hides
+arithmetic and rule provenance.
 
-F-1020 demonstrates `O-PROTECTION`: impairment and absence of a deviation record
-were both confirmed. F-1012 demonstrates the opposite boundary: unavailable craft
-with unknown POB comparison activates `P-EVACUATION`, not the supplied
-`O-EVACUATION` override.
+The complete rule set and calibration history are in
+[`06_TRIAGE_WORKFLOW.md`](docs/06_TRIAGE_WORKFLOW.md) and
+[`08_BEHAVIOR_CALIBRATION_STUDY.md`](docs/08_BEHAVIOR_CALIBRATION_STUDY.md).
 
-### What the outputs reveal
+## D. Deferral, limits and rejected scope
 
-| Observation | Result |
+The system has three valid outcomes:
+
+1. a supported draft;
+2. a supported draft with a specific verification activity and, where material,
+   exceptional prequeue review; or
+3. terminal inability to produce the complete batch.
+
+`review_required` identifies a specific unresolved decision before work-queue
+entry. It does not replace the ordinary human approval required for every draft.
+No output authorizes maintenance, shutdown or work-order creation.
+
+The system fails rather than guesses when required scores cannot be justified,
+authority conflicts cannot be resolved, evidence quotations are unsupported,
+or the attempt budget is exhausted.
+
+The following alternatives were deliberately not built:
+
+| Alternative | Reason rejected |
 |---|---|
-| Pre-v8 policy-v5 Copilot urgency | 7 today, 12 this week, 1 this month, 1 next shutdown |
-| Current v31 urgency distribution | U4=2, U5=1, U6=3, U7=2, U8=6, U9=7 |
-| Current v31 urgency bands | 7 today, 8 this week, 4 this month, 2 next shutdown |
-| Current v31 exceptional review flag | 6/21 true |
-| Azure v5 versus pre-v8 policy-v5 Copilot urgency band | 19/21 the same; F-1007 and F-1014 differed |
-| Current v31 development X01 | 13/13 band and review matches; both artifacts 39/39 |
-| Current v31 final semantic review | 63/63 provisional pass |
+| Model-authored urgency | Conflicts with the brief and obscures deterministic provenance |
+| Rules-only L/I | Brittle for interacting free-text evidence and likely to encode case-specific answers |
+| Placeholder/midpoint scores | Converts inability into false completeness |
+| Automatic redundancy credit | A registry label does not prove current partner health |
+| Code rewriting semantic prose | Can manufacture plausibility without new evidence |
+| Vector RAG or autonomous web retrieval | Adds ranking, omission and authority risks without need at this corpus size |
+| Unbounded retries or partial publication | Raises cost and can hide unstable or missing findings |
+| Automatic operational action | Outside the brief; every result remains a human-approved draft |
 
-The concentration remains material but is no longer the earlier 19/21 result:
-15 tickets are weekly-or-faster. More importantly, global draft approval is now
-separate from exceptional prequeue review. Six tickets require the latter for a
-specific unresolved protection, evacuation, redundancy or restoration
-decision; documentation checks, confirmed failed tests and ordinary diagnosis
-do not automatically saturate the exceptional queue.
+The production core is intentionally smaller than the evaluation apparatus.
+Frozen cards, semantic reviewers, archives and experiment ledgers establish
+evidence for the prototype; they are not runtime dependencies of ticket
+generation.
 
-The final policy is disclosed as test-informed. V29 exposed an omitted related
-chronology; unstable prompt-only v30 was rejected at development X01. V31 kept
-the v29 prompt/policy and used deterministic source-labelled provenance
-projection for model-selected related-finding facts. The retained failed runs
-and section 15 of Document 08 preserve comparability and prevent the final
-63/63 review from being presented as untouched blind evidence.
+## Assumptions
 
-Controlled repeats show the remaining semantic variance. Before policy v4,
-F-1016 changed from U7 to U6 and crossed from this-week to this-month. A later
-gpt-6.1 repeat changed three of 39 impact values but no final urgency band; one
-threshold rule trace changed. The high-impact SCE floor that absorbed the earlier
-corner is explicitly test-informed, not independently calibrated.
-
-## D. Limits, alternatives and human authority
-
-The system has only three valid outcomes: supported draft; supported but
-materially uncertain draft with a specific check; or unassessable batch failure.
-Human approval is always outside generation. No output authorizes maintenance,
-shutdown or work-order creation.
-
-The main rejected alternatives are model-authored urgency, rules-only L/I, plain
-mean/maximum urgency, automatic credit for redundancy, using the SCE label alone
-to force high L/I or immediate urgency, placeholder scores, semantic rewriting in
-code, vector RAG for this corpus, unbounded retries and partial publication. Each
-either conflicts with the brief, hides uncertainty or adds infrastructure without
-demonstrated need.
-
-The production-essential core is smaller than the evidence apparatus: validated
-context, one bounded repair, schema/fact checks, urgency policy and atomic
-publication. The calibrated reviewers, frozen cards, archives and experiment
-ledgers are prototype evaluation scaffolding. They explain failures and prevent
-success-shaped claims, but they would not belong in the runtime service. The
-current balance is still too evaluation-heavy for the brief because it has not
-yet produced the required final artifact.
-
-### High-impact assumptions
-
-| Assumption | Safeguard or consequence |
+| Assumption | Consequence or safeguard |
 |---|---|
-| Supplied files are the complete selected snapshot | No unprovided state is invented |
-| Assessment cutoff is `2026-07-01T00:00:00+00:00` | Later deterioration or repair is not assumed |
-| Registry comments are evidence, not conclusions | They require grounded interpretation |
-| Redundancy relationships do not prove partner health | Availability and capability require evidence |
-| Missing deviation, POB or restoration data remains unknown | Confirmed overrides cannot be inferred |
-| L/I/U are ordinal scales | Numerical gaps are not treated as equal quantities |
-| One trusted local writer and same-volume replacement are available | No distributed-concurrency claim |
-| Model/reviewer labels expose configuration, not hidden weights or expertise | Results are evidence, not certification |
+| The supplied files are the complete selected snapshot | The system does not invent later repair, deterioration or operating state |
+| The assessment cutoff is fixed at `2026-07-01T00:00:00+00:00` | Evidence is interpreted as of one declared time |
+| Registry comments are evidence, not conclusions | They must be interpreted and grounded like finding text |
+| Missing records remain unknown | Confirmed overrides cannot be inferred from silence |
+| Redundancy labels do not establish availability/capability | Partner evidence is checked before credit is applied |
+| Reliability and criticality are directed priors | They inform but never replace finding-specific L/I judgment |
+| SCE consequence is judged against the protected scenario | Repair cost is not the impact definition |
+| L/I/U are ordinal scales | Numeric gaps are not treated as calibrated probabilities or equal intervals |
+| One bounded repair is an acceptable cost/recovery trade-off | Further retries require new evidence |
+| The small corpus justifies complete bounded context | Retrieval infrastructure is deferred until scale creates a demonstrated need |
+| A trusted local writer can perform same-volume atomic replacement | No distributed-concurrency guarantee is claimed |
+| Every generated ticket is a draft | Human approval remains mandatory |
 
-### AI assistance and candidate overrides
+## Evidence and known limitations
 
-AI assisted code, tests, documentation, review and experiments. Candidate-owned
-decisions overrode AI suggestions by keeping urgency in code, rejecting
-per-finding answer tables and placeholder scores, retaining failed/inconclusive
-results, and preserving frozen evaluation fingerprints. Restoration sequencing,
-the high-impact SCE floor and some guidance are disclosed test-informed changes;
-they are not presented as untouched blind-test findings.
+The final artifact covers all 21 findings and passes the deterministic output
+contract. It was generated by the retained reviewed delivery and promoted
+byte-identically. The workflow now included in this submission was subsequently
+replayed successfully across all 21 findings from a dirty worktree; this is
+behavior evidence rather than clean-checkout reproduction. Retained real-model runs show that
+malformed JSON, schema violations and exhausted responses occur in practice;
+the controls made those outcomes bounded and fail-closed. The final development
+repeat preserved urgency bands and exceptional review routing, but full
+stability acceptance remains inconclusive because the reviewer runtime did not
+expose every required identity.
 
-## Submission gap and ordered next work
+The current evidence does not establish independent domain certification,
+population-level model reliability, per-finding knowledge isolation or
+byte-identical replay of model output. Numeric urgency thresholds and candidate
+precautionary floors require domain-owner calibration before operational use.
+Actual Copilot subscription allocation is unavailable; measured usage supports
+the disclosed API-equivalent estimate.
 
-1. Perform semantic and human review of the generated root `tickets.json`; either
-   restore and commit the exact generating workflow or regenerate from a clean,
-   approved frozen identity so the result is reproducible.
-2. Calibrate impact anchors, precaution thresholds and targeted review with a
-   domain owner, especially the low-consequence weekly cases.
-3. Demonstrate a PSV knowledge change with a controlled ablation.
-4. Add hash-pinned per-finding resume without weakening atomic final publication.
-5. Reduce repeated context cost and, if available, capture actual Copilot billing
-   rather than relying on the disclosed US$2.37 equivalent-API estimate.
-6. Repeat controlled stability experiments on held-out or independently
-   reviewed cases.
+The retained replay used the same `triage` CLI, source and session-only replay
+activation in `copilot_experiment` mode. The root `run_triage.py` convenience
+wrapper builds fresh paths and `copilot_delivery` configuration and has
+deterministic wrapper coverage, but that exact wrapper mode has not been
+separately live-executed.
 
-The strongest demonstrated claim is narrow: **model behavior varied, including
-real malformed and schema-invalid output; deterministic controls made those
-failures traceable, bounded and fail-closed.** The prototype is technically
-substantial, and the required file now exists. Final semantic acceptance and
-reproducible delivery provenance remain open.
+Observed results and exact limitations are indexed in
+[`eval\results\README.md`](eval/results/README.md). The acceptance contract and
+claim boundaries are explained in
+[`03_EVALUATION_ACCEPTANCE.md`](docs/03_EVALUATION_ACCEPTANCE.md).
+
+## AI assistance, accountability and compliance
+
+I developed this system end to end in this repository with GitHub Copilot CLI
+as an AI coding assistant. Copilot helped explore architecture alternatives,
+implement code and tests, draft documentation, run experiments and critique
+changes. I made the final architecture and engineering decisions, directed and
+reviewed the AI output, resolved conflicting suggestions and remain accountable
+for everything submitted.
+
+I overrode or rejected AI proposals where they weakened the design:
+
+- urgency remains code-derived and is never model-scored;
+- per-finding answer tables, placeholder scores and silent fallbacks were
+  rejected;
+- redundancy is not credited without partner evidence;
+- failed and inconclusive observations are retained rather than rerun until
+  green;
+- evaluation answers remain outside production context; and
+- test-informed changes are disclosed instead of presented as blind evidence.
+
+Two concrete examples are retained for review: the prompt-only chronology
+repair was rejected after it changed development routing
+([Document 08](docs/08_BEHAVIOR_CALIBRATION_STUDY.md)), and an experimental PSV
+knowledge release was not promoted after the study exposed authority, scope and
+non-target risks
+([Document 07](docs/07_KNOWLEDGE_CHANGE_STUDY.md)).
+
+No other candidate's solution or copied implementation was used.
+
+The repository follows the Candidate Brief restrictions:
+
+- no LangChain, LangGraph, LlamaIndex, CrewAI, AutoGen, Haystack, Semantic
+  Kernel, DSPy, Pydantic AI or equivalent orchestration framework is present;
+- orchestration, structured-output validation, repair, urgency and publication
+  are implemented in this repository;
+- `github-copilot-sdk` is restricted to bare inference: the adapter replaces
+  the system message and disables tools, MCP servers, skills, custom
+  instructions, host operations and framework discovery;
+- the Azure/OpenAI SDK-only route is available through the same
+  provider-neutral inference boundary;
+- no API key is committed; and
+- `tickets.json` is generated by the system, not hand-authored or corrected.
+
+Provider setup and the one-command end-to-end run through `run_triage.py` are documented in
+[`README.md`](README.md).

@@ -1,0 +1,46 @@
+{
+  "schema": "knowledge-release-change-bounded-review-v1",
+  "scope": "Observed applicability of the v4 likelihood rule only; not score calibration, domain certification or full system acceptance",
+  "review": {
+    "kind": "ai_assisted_bounded_artifact_review",
+    "independent_of_generation": true,
+    "calibrated_semantic_reviewer": false,
+    "domain_expert_claimed": false,
+    "reviewers": [
+      "Copilot CLI bounded critical reviewer; model not exposed",
+      "Copilot CLI cross-critic; model not exposed"
+    ]
+  },
+  "positive_before": {
+    "artifact": "positive-before.experimental.json",
+    "sha256": "e4a98dc411b1673505dc00fffb3fc227651ff8c90fde36f52743c8775ab56309",
+    "observed": "L4/I7/U7",
+    "quote": "This matches the limited-degradation policy band and applicable technical guidance."
+  },
+  "positive_after": {
+    "artifact": "positive-after.experimental.json",
+    "sha256": "121e634cc3c539b5f4a19d153b8301f629adf7f0c5f979fd48d486c6f106c141",
+    "observed": "L8/I7/U8",
+    "quote": "The controlled-test result matches fleet evidence identifying 2-3% low lift as a recurrent precursor with strong progression."
+  },
+  "negative_before": {
+    "artifact": "negative-before.experimental.json",
+    "sha256": "b37b58beefeeb79e3bebd04b2e2165ab51ceb8db33759681371e265c29ada9d5",
+    "observed": "L2/I7/U6",
+    "quote": "Label corrosion is not valve deterioration; the low-set-pressure test rule does not apply."
+  },
+  "negative_after": {
+    "artifact": "negative-after.experimental.json",
+    "sha256": "4d96d9ae898b5d9347925130ecc308f629e9d002b0850cc1caec85c3a0d96a06",
+    "observed": "L2/I7/U6",
+    "quote": "Label corrosion is not valve deterioration; the low-set-pressure test rule does not apply."
+  },
+  "conclusion": "Bounded pass for one retained four-condition observation: the activated likelihood guidance changed the applicable assessment from L4 to L8, while both tag-only controls remained L2 and explicitly excluded the rule. Impact was held at I7 by scenario-shaped source guidance and is not causal-isolation evidence.",
+  "limitations": [
+    "The protocol was iterated after v1-v3 failures; v4 is not a prospective B02 pass.",
+    "One observation per condition does not establish model stability.",
+    "No no-rule baseline was run.",
+    "The calibrated semantic reviewer used for v8/B02 was not rerun here.",
+    "Actual Copilot USD allocation and hidden HTTP retry count are unknown."
+  ]
+}

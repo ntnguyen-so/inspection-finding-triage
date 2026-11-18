@@ -1,0 +1,97 @@
+{
+  "status": "four_conditions_completed_review_pending",
+  "positive_release_response_observed": true,
+  "negative_control_decision_stable": true,
+  "conditions": {
+    "positive-before": {
+      "status": "draft_generated",
+      "receipt": {
+        "run_status": "experimental_draft_generated",
+        "published_output": true,
+        "output": "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\knowledge-release-change-v4-run1\\positive-before.experimental.json",
+        "output_sha256": "e4a98dc411b1673505dc00fffb3fc227651ff8c90fde36f52743c8775ab56309",
+        "tickets_generated": 1,
+        "semantic_status": "not_reviewed",
+        "acceptance_eligible": false,
+        "execution_mode": "copilot_experiment",
+        "http_attempts": null,
+        "application_send_count": 1
+      },
+      "observed": {
+        "likelihood": 4,
+        "impact": 7,
+        "urgency": 7,
+        "review_required": true
+      }
+    },
+    "positive-after": {
+      "status": "draft_generated",
+      "receipt": {
+        "run_status": "experimental_draft_generated",
+        "published_output": true,
+        "output": "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\knowledge-release-change-v4-run1\\positive-after.experimental.json",
+        "output_sha256": "121e634cc3c539b5f4a19d153b8301f629adf7f0c5f979fd48d486c6f106c141",
+        "tickets_generated": 1,
+        "semantic_status": "not_reviewed",
+        "acceptance_eligible": false,
+        "execution_mode": "copilot_experiment",
+        "http_attempts": null,
+        "application_send_count": 1
+      },
+      "observed": {
+        "likelihood": 8,
+        "impact": 7,
+        "urgency": 8,
+        "review_required": true
+      }
+    },
+    "negative-before": {
+      "status": "draft_generated",
+      "receipt": {
+        "run_status": "experimental_draft_generated",
+        "published_output": true,
+        "output": "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\knowledge-release-change-v4-run1\\negative-before.experimental.json",
+        "output_sha256": "b37b58beefeeb79e3bebd04b2e2165ab51ceb8db33759681371e265c29ada9d5",
+        "tickets_generated": 1,
+        "semantic_status": "not_reviewed",
+        "acceptance_eligible": false,
+        "execution_mode": "copilot_experiment",
+        "http_attempts": null,
+        "application_send_count": 1
+      },
+      "observed": {
+        "likelihood": 2,
+        "impact": 7,
+        "urgency": 6,
+        "review_required": true
+      }
+    },
+    "negative-after": {
+      "status": "draft_generated",
+      "receipt": {
+        "run_status": "experimental_draft_generated",
+        "published_output": true,
+        "output": "C:\\Users\\thanh\\falkor_case2\\eval\\results\\triage\\knowledge-release-change-v4-run1\\negative-after.experimental.json",
+        "output_sha256": "4d96d9ae898b5d9347925130ecc308f629e9d002b0850cc1caec85c3a0d96a06",
+        "tickets_generated": 1,
+        "semantic_status": "not_reviewed",
+        "acceptance_eligible": false,
+        "execution_mode": "copilot_experiment",
+        "http_attempts": null,
+        "application_send_count": 1
+      },
+      "observed": {
+        "likelihood": 2,
+        "impact": 7,
+        "urgency": 6,
+        "review_required": true
+      }
+    }
+  },
+  "semantic_specificity_status": "pending_calibrated_review",
+  "code_stable_during_run": true,
+  "phase_reservations": 4,
+  "acceptance_eligible": false,
+  "http_attempts": null,
+  "usd_cost": null
+}

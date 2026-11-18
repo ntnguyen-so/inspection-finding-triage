@@ -1,0 +1,731 @@
+{
+  "status": "diagnostic_contract_pass",
+  "tickets": 21,
+  "application_sends": 21,
+  "send_statuses": {
+    "validated": 21
+  },
+  "repairs": 0,
+  "usage": {
+    "inputTokens": 663784,
+    "outputTokens": 43488,
+    "cacheReadTokens": 0,
+    "cacheWriteTokens": 663721,
+    "reasoningTokens": 9259,
+    "cost": 21.0
+  },
+  "combined_output": "eval\\results\\triage\\prompt-authority-v3\\all-21-diagnostic\\tickets-v3-all-21.experimental.json",
+  "combined_sha256": "15dc41b62ddeab7d15369b58b309720c2811f3c270dadb252a718e3911103679",
+  "root_tickets_sha256": "641c8ee358544d562267e40b215ed2bdbe3f2221259437783156a90d889b9694",
+  "root_unchanged": true,
+  "transitions": [
+    {
+      "finding_id": "F-1001",
+      "root_v11": [
+        7,
+        6,
+        9,
+        true
+      ],
+      "v2": [
+        7,
+        6,
+        9,
+        true
+      ],
+      "v3": [
+        7,
+        6,
+        9,
+        true
+      ],
+      "delta_vs_root": [
+        0,
+        0,
+        0
+      ],
+      "delta_vs_v2": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "finding_id": "F-1002",
+      "root_v11": [
+        6,
+        8,
+        8,
+        true
+      ],
+      "v2": [
+        6,
+        8,
+        8,
+        true
+      ],
+      "v3": [
+        6,
+        7,
+        7,
+        true
+      ],
+      "delta_vs_root": [
+        0,
+        -1,
+        -1
+      ],
+      "delta_vs_v2": [
+        0,
+        -1,
+        -1
+      ]
+    },
+    {
+      "finding_id": "F-1003",
+      "root_v11": [
+        9,
+        8,
+        9,
+        true
+      ],
+      "v2": [
+        9,
+        7,
+        9,
+        true
+      ],
+      "v3": [
+        9,
+        7,
+        9,
+        true
+      ],
+      "delta_vs_root": [
+        0,
+        -1,
+        0
+      ],
+      "delta_vs_v2": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "finding_id": "F-1004",
+      "root_v11": [
+        8,
+        8,
+        8,
+        true
+      ],
+      "v2": [
+        8,
+        7,
+        8,
+        true
+      ],
+      "v3": [
+        8,
+        8,
+        8,
+        true
+      ],
+      "delta_vs_root": [
+        0,
+        0,
+        0
+      ],
+      "delta_vs_v2": [
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "finding_id": "F-1005",
+      "root_v11": [
+        10,
+        6,
+        9,
+        true
+      ],
+      "v2": [
+        10,
+        6,
+        9,
+        true
+      ],
+      "v3": [
+        10,
+        6,
+        9,
+        true
+      ],
+      "delta_vs_root": [
+        0,
+        0,
+        0
+      ],
+      "delta_vs_v2": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "finding_id": "F-1006",
+      "root_v11": [
+        4,
+        6,
+        7,
+        true
+      ],
+      "v2": [
+        4,
+        6,
+        7,
+        true
+      ],
+      "v3": [
+        4,
+        6,
+        7,
+        true
+      ],
+      "delta_vs_root": [
+        0,
+        0,
+        0
+      ],
+      "delta_vs_v2": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "finding_id": "F-1007",
+      "root_v11": [
+        9,
+        7,
+        8,
+        true
+      ],
+      "v2": [
+        9,
+        7,
+        8,
+        true
+      ],
+      "v3": [
+        9,
+        7,
+        8,
+        true
+      ],
+      "delta_vs_root": [
+        0,
+        0,
+        0
+      ],
+      "delta_vs_v2": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "finding_id": "F-1008",
+      "root_v11": [
+        6,
+        7,
+        7,
+        true
+      ],
+      "v2": [
+        6,
+        7,
+        7,
+        true
+      ],
+      "v3": [
+        6,
+        6,
+        7,
+        true
+      ],
+      "delta_vs_root": [
+        0,
+        -1,
+        0
+      ],
+      "delta_vs_v2": [
+        0,
+        -1,
+        0
+      ]
+    },
+    {
+      "finding_id": "F-1009",
+      "root_v11": [
+        2,
+        7,
+        7,
+        true
+      ],
+      "v2": [
+        2,
+        6,
+        7,
+        true
+      ],
+      "v3": [
+        2,
+        6,
+        7,
+        true
+      ],
+      "delta_vs_root": [
+        0,
+        -1,
+        0
+      ],
+      "delta_vs_v2": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "finding_id": "F-1010",
+      "root_v11": [
+        9,
+        8,
+        9,
+        true
+      ],
+      "v2": [
+        9,
+        8,
+        9,
+        true
+      ],
+      "v3": [
+        9,
+        8,
+        9,
+        true
+      ],
+      "delta_vs_root": [
+        0,
+        0,
+        0
+      ],
+      "delta_vs_v2": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "finding_id": "F-1011",
+      "root_v11": [
+        9,
+        8,
+        9,
+        true
+      ],
+      "v2": [
+        9,
+        8,
+        9,
+        true
+      ],
+      "v3": [
+        9,
+        8,
+        9,
+        true
+      ],
+      "delta_vs_root": [
+        0,
+        0,
+        0
+      ],
+      "delta_vs_v2": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "finding_id": "F-1012",
+      "root_v11": [
+        10,
+        8,
+        9,
+        true
+      ],
+      "v2": [
+        9,
+        8,
+        9,
+        true
+      ],
+      "v3": [
+        9,
+        7,
+        9,
+        true
+      ],
+      "delta_vs_root": [
+        -1,
+        -1,
+        0
+      ],
+      "delta_vs_v2": [
+        0,
+        -1,
+        0
+      ]
+    },
+    {
+      "finding_id": "F-1013",
+      "root_v11": [
+        8,
+        6,
+        7,
+        true
+      ],
+      "v2": [
+        8,
+        6,
+        7,
+        true
+      ],
+      "v3": [
+        7,
+        6,
+        7,
+        true
+      ],
+      "delta_vs_root": [
+        -1,
+        0,
+        0
+      ],
+      "delta_vs_v2": [
+        -1,
+        0,
+        0
+      ]
+    },
+    {
+      "finding_id": "F-1014",
+      "root_v11": [
+        4,
+        3,
+        4,
+        true
+      ],
+      "v2": [
+        5,
+        3,
+        7,
+        true
+      ],
+      "v3": [
+        7,
+        3,
+        5,
+        true
+      ],
+      "delta_vs_root": [
+        3,
+        0,
+        1
+      ],
+      "delta_vs_v2": [
+        2,
+        0,
+        -2
+      ]
+    },
+    {
+      "finding_id": "F-1015",
+      "root_v11": [
+        2,
+        6,
+        5,
+        false
+      ],
+      "v2": [
+        2,
+        5,
+        5,
+        true
+      ],
+      "v3": [
+        2,
+        5,
+        5,
+        true
+      ],
+      "delta_vs_root": [
+        0,
+        -1,
+        0
+      ],
+      "delta_vs_v2": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "finding_id": "F-1016",
+      "root_v11": [
+        1,
+        8,
+        7,
+        true
+      ],
+      "v2": [
+        2,
+        7,
+        7,
+        true
+      ],
+      "v3": [
+        2,
+        7,
+        7,
+        true
+      ],
+      "delta_vs_root": [
+        1,
+        -1,
+        0
+      ],
+      "delta_vs_v2": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "finding_id": "F-1017",
+      "root_v11": [
+        6,
+        8,
+        8,
+        true
+      ],
+      "v2": [
+        6,
+        7,
+        7,
+        true
+      ],
+      "v3": [
+        6,
+        7,
+        7,
+        true
+      ],
+      "delta_vs_root": [
+        0,
+        -1,
+        -1
+      ],
+      "delta_vs_v2": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "finding_id": "F-1018",
+      "root_v11": [
+        10,
+        6,
+        8,
+        true
+      ],
+      "v2": [
+        9,
+        6,
+        7,
+        true
+      ],
+      "v3": [
+        9,
+        6,
+        7,
+        true
+      ],
+      "delta_vs_root": [
+        -1,
+        0,
+        -1
+      ],
+      "delta_vs_v2": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "finding_id": "F-1019",
+      "root_v11": [
+        6,
+        5,
+        7,
+        true
+      ],
+      "v2": [
+        8,
+        5,
+        7,
+        true
+      ],
+      "v3": [
+        7,
+        5,
+        7,
+        true
+      ],
+      "delta_vs_root": [
+        1,
+        0,
+        0
+      ],
+      "delta_vs_v2": [
+        -1,
+        0,
+        0
+      ]
+    },
+    {
+      "finding_id": "F-1020",
+      "root_v11": [
+        9,
+        8,
+        9,
+        true
+      ],
+      "v2": [
+        9,
+        8,
+        9,
+        true
+      ],
+      "v3": [
+        9,
+        8,
+        9,
+        true
+      ],
+      "delta_vs_root": [
+        0,
+        0,
+        0
+      ],
+      "delta_vs_v2": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "finding_id": "F-1021",
+      "root_v11": [
+        5,
+        8,
+        8,
+        true
+      ],
+      "v2": [
+        5,
+        7,
+        7,
+        true
+      ],
+      "v3": [
+        5,
+        7,
+        7,
+        true
+      ],
+      "delta_vs_root": [
+        0,
+        -1,
+        -1
+      ],
+      "delta_vs_v2": [
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "review_required_count": 21,
+  "urgency_distribution": {
+    "5": 2,
+    "7": 10,
+    "8": 2,
+    "9": 7
+  },
+  "lengths": {
+    "summary": {
+      "min": 160,
+      "median": 208,
+      "max": 256
+    },
+    "recommended_action": {
+      "min": 201,
+      "median": 261,
+      "max": 289
+    },
+    "likelihood_rationale": {
+      "median": 322,
+      "max": 468
+    },
+    "impact_rationale": {
+      "median": 354,
+      "max": 457
+    },
+    "urgency_rationale": {
+      "median": 1465,
+      "max": 2293
+    },
+    "review_reason": {
+      "median": 1400,
+      "max": 2228
+    }
+  },
+  "failed_test_findings": [
+    "F-1003",
+    "F-1005",
+    "F-1010",
+    "F-1011",
+    "F-1012"
+  ],
+  "failed_test_closure_complete": true,
+  "planning_actions": {
+    "F-1003": "Firewater engineer to direct repairs and operating disposition. Reconcile impairment/deviation record. Test batteries/charger and starting air. Verify FW-8101 pressure/flow capability. Witness function test; close impairment only after pass.",
+    "F-1005": "Repair/replace per diagnosis; use 50% LEL for test. Reconcile impairment/deviation record. Verify current voting and both healthy heads. Instrument engineer: diagnose and disposition. Witness function test; close impairment only after pass.",
+    "F-1009": "Use existing fabric work: inspect C2\u2013C5 substrate, prepare and renew coating; obtain structural engineer disposition if steel loss is found and verify coating acceptance. Check steel thickness against structural limits. Verify supported loads and personnel exposure.",
+    "F-1011": "Fire-protection engineer: inspect branches/nozzles; clear blockage if confirmed; set operating disposition. Verify current protection control alignment. Reconcile impairment/deviation record. Check current wellhead-area exposure. Witness function test; close impairment only after pass.",
+    "F-1013": "Instrument engineer: diagnose drift; recalibrate/repair as found and approve disposition. Reconcile impairment/deviation record. Test both legs, control/alarm to agreed limits. Verify current protection control alignment. Check actual level and current exposure.",
+    "F-1015": "Clean and inspect gauge glass under approved isolation procedures; repair damage if found and confirm normal level control and no carryover indications. Verify readable gauge level against transmitter.",
+    "F-1017": "Mechanical/fire engineer: inspect valves/wear; direct repair/disposition; retain weekly tests. Reconcile impairment/deviation record. Verify duty; retest flow/pressure vs 11 barg. Verify FW-8102 start reliability/restoration. Check current fire exposure and controls.",
+    "F-1018": "Instrument engineer to direct repair per findings and operating disposition. Reconcile impairment/deviation record. Inspect impulse line and sensor. Check both legs, alarm role and live exposure. Test repaired leg against independent level."
+  },
+  "notes": [
+    "Diagnostic only; does not override the failed v3 targeted control or pending semantic review.",
+    "All 21 provider outputs validated in one application send each."
+  ]
+}

@@ -1,8 +1,9 @@
 # Fail-Closed Triage Workflow
 
-> **Document status:** current workflow rationale. Deterministic controls and a
-> v31 root delivery is demonstrated; semantic review is provisional and
-> human approval is required.
+> **Document status:** current workflow rationale and evidence assessment.
+> Deterministic controls are demonstrated. The root artifact is a hash-checked,
+> byte-identical promotion of a published experimental output; semantic review
+> is provisional and human approval is required.
 
 ## Abstract
 
@@ -63,20 +64,64 @@ load and validate inputs
   -> optionally repair one recoverable output error
   -> derive urgency, floors, review routing and required checks in code
   -> repeat within persistent attempt budget
-  -> revalidate exact 21-ticket coverage
-  -> atomically replace tickets.json
+  -> revalidate exact selected-set coverage (21 tickets for the delivery run)
+  -> atomically replace the configured output
 ```
 
-Any terminal finding failure stops the batch. The previous output remains
-unchanged.
+Any terminal finding failure stops the batch before publication. Failures after
+replacement that enter the workflow's handled failure path trigger rollback to
+the previous bytes, or removal when no previous output existed; a rollback
+failure remains visible rather than being reported as successful publication.
+The retained run published an experimental output with its own receipt. Root
+`tickets.json` was promoted separately by a byte-for-byte, hash-checked copy; the
+workflow did not directly publish the root file.
 
 The assessment system prompt is a packaged workflow artifact, not inline Python
-or mutable runtime configuration. Activation v2 pins its version, raw SHA-256,
-assessment contract, schema contract and context contract. Loading or
-compatibility failure occurs before provider dispatch. The prompt governs task
-protocol. Document 10 defines the intended authority of observed equipment facts
-and reviewed knowledge, and also records that prompt v1 still contains embedded
-domain clauses; extraction alone does not remove that compatibility risk.
+or mutable runtime configuration. Activation pins its exact bytes and contract
+bindings. Loading or compatibility failure occurs before provider dispatch.
+
+### Prompt authority and controlled change
+
+The prompt specifies the reasoning protocol and output task; it is not a second
+knowledge base. Authority remains deliberately separated:
+
+| Information | Authority |
+|---|---|
+| Finding observations and supplied registry fields | Selected input snapshot; missing current state is not inferred |
+| Source-backed domain guidance | Reviewed, immutable and activated knowledge release |
+| L/I anchors and declared assessment choices | Pinned assessment policy |
+| Urgency, review floors and publication rules | Application policy and code |
+| Reasoning sequence and response task | Packaged prompt artifact |
+| Operational approval | Human reviewer |
+
+Durable prompt protocol includes treating source text as data rather than
+instructions, separating likelihood from impact, distinguishing missing
+evidence from confirmed absence, qualifying suspected causes and returning
+inability instead of inventing a fallback score. Related observations do not
+establish causation, repair or present state.
+
+The active prompt instructs the model to return `unassessable` when an authority
+conflict prevents a required score from being justified; code then fails the
+batch. This is a model-followed instruction, not a detected invariant: a
+conflict the model resolves while still producing a score is not caught by
+code. Hash and contract binding make prompt identity reproducible, but do not
+detect every semantic conflict between prompt, policy and knowledge. Some domain
+interpretation remains embedded in the packaged prompt; that is a disclosed
+compatibility risk, not an achieved clean authority separation.
+
+The prompt instructs the model to treat supplied observations as evidence rather
+than instructions. The route places that prompt as a replace-mode system message
+and records the separation as requested rather than proving raw provider
+equivalence. A knowledge change that overlaps interpretation embedded in the
+active prompt therefore requires focused prompt-compatibility review before
+activation; it is not assumed to override prompt wording.
+
+Prompt changes therefore follow the controlled-change boundary. Each removed
+clause needs a destination, provenance and focused regression evidence.
+Code/schema duplication is removed only after deterministic enforcement and
+behavioral preservation are demonstrated. A shorter prompt is not promoted
+merely because it is easier to maintain or cheaper to send. This gate applies
+to future changes; the current prompt remains a disclosed compatibility surface.
 
 ## 2. Responsibility boundary
 
@@ -114,10 +159,12 @@ application rejects extra fields, duplicate keys, wrong identity, non-integer or
 out-of-range scores, excessive text, missing citations, inexact quotations,
 contradictory fact combinations and missing required activities.
 
-Recoverable malformed or structural errors may receive one further application
+Recoverable response or contract errors may receive one further application
 attempt using the same pinned context, the rejected draft and bounded diagnostic
-feedback. Semantic uncertainty is not repaired by silently changing a score.
-When both attempts fail, the application exits nonzero and publishes nothing.
+feedback. This includes named evidence, fact, planning and policy-verification
+violations; unsupported semantic uncertainty is not repaired by silently
+changing a score. When both attempts fail, the application exits nonzero and
+publishes nothing.
 
 ### Why one repair
 
@@ -180,9 +227,8 @@ excluded.
 Full bounded context was chosen because the supplied corpus is small and
 relationship-heavy. This avoids unsupported top-k assumptions, but it has a
 measured token cost and does not prove that the model used every relevant item.
-The reference-1.3 B02 influence experiment is a bounded pass for the declared
-synthetic positive and negative-control scope; it is not production domain
-certification.
+The bounded knowledge-influence experiment supports one declared synthetic
+positive and negative-control scope; it is not production domain certification.
 
 ## 6. Complete-batch publication
 
@@ -213,58 +259,63 @@ There are three valid outcomes:
 specific check beyond the global approval required for every draft. No output
 authorizes maintenance, shutdown or work-order creation.
 
-The current root artifact sets `review_required` on 6/21 tickets. Global human
-approval remains universal; the exceptional flag is now reserved for specific
-unresolved protection, evacuation, redundancy or restoration decisions. Each
-flagged ticket projects a concrete `Why:` explanation and verification check.
-F-1016 and F-1019 no longer enter the exceptional queue merely because they are
-SCE-adjacent or uncertain.
+Global human approval remains universal. The exceptional flag is reserved for
+specific unresolved protection, evacuation, restoration or an SCE finding's
+unregistered redundancy-partner decision; SCE adjacency, general uncertainty or
+redundancy wording alone does not trigger it. Each flagged ticket projects a
+concrete `Why:` explanation and verification check.
 
-## 8. Evidence status
+## 8. Current assessment of the workflow design
 
-| Area | Retained observation | Status |
+| Design hypothesis | Current evidence | Interpretation and remaining limit |
 |---|---|---|
-| Schema, identity, bounded repair, exhaustion and atomic publication | Deterministic fault and behavior demonstrations | **D-pass** for stated control behavior |
-| Urgency range, monotonicity, corners and fact-state rules | Regression and 100-cell grid checks | **D-pass** for implemented policy; not calibrated truth |
-| Knowledge/context delivery | Captured provider-bound context, source integration checks and reference-1.3 B02 | **D-pass** for delivery; bounded causal-influence/isolation pass |
-| Pre-v8 policy-v5 Copilot all-21 at `235bdd1` | One gpt-6 batch reviewed 63/63 | **Provisional**, selected and non-eligible |
-| Later pre-v8 gpt-6 X01 pair at `4debeba` | Both generations completed; semantic reviews were 38/39 and 37/39 | **Fail**; matching-model stability gate not closed |
-| Later gpt-6.1 all-21 | First run failed; retry failed two AI-only reviews at 60/63 | **Fail**, contradicting stable-quality claims |
-| Strict Azure delivery | Latest applicable route failed closed | **Fail/pending**; no accepted root output |
-| V8 Copilot reliability series | Three all-21 batches completed in 21/23/21 sends; bands 21/21 stable, review flags 20/21 stable | **Controlled dirty-worktree observation**; primary reviews retain 9/4/3 pending dimensions and sensitivity disagreement |
-| V9/v10 calibration | Four all-21 runs completed; all semantic reviews failed mandatory uncertainty routing; v10 added no demonstrated prioritisation benefit | **Rejected**, retained as negative evidence |
-| V11 Copilot root delivery | Published all 21 tickets in 21 sends; deterministic assessor contract passed; primary review 54 pass, 9 pending, 0 fail | **Provisional**; zero-fail gate passed, human approval pending, receipt non-eligible and clean reproduction unresolved |
-| V29 final | Published 21 tickets with 6 review flags; exact-artifact review failed F-1011 at 61/63 | **Fail retained**; triggered disclosed chronology repair |
-| V30 prompt repair | Development pair changed two urgency bands and one review flag | **Rejected before final run** |
-| V31 development X01 | Both 13-ticket runs reviewed 39/39; 13/13 bands and review flags matched | **Provisional pass** after visible drift adjudication |
-| V31 final/root | Published 21 tickets in 21 sends; receipt verified; primary review 63/63; 6 review flags | **Provisional pass**; human approval, clean reproduction and provider-hidden accounting remain open |
-| V31 delivery time | 617.75 s wall clock | Actual Copilot usage/USD and hidden HTTP attempts unknown |
-| V11 delivery cost/time | 688.11 s wall clock; 986,488 input and 39,404 output tokens | Actual Copilot USD unknown; simple equivalent OpenAI API estimate **US$2.37** under documented assumptions |
-| V8 output adjudication | F-1010/F-1019 adjacent impact scores remain review-routed; repeat-2 F-1013 issue is absent from the root action | **Honest deferral**; no hand correction or post-result policy tuning |
-| Human/domain certification | Not performed | **Not run** |
+| Deterministic controls remain outside the model | Fault and behavior tests cover schema, identity, bounded repair, exhaustion, urgency and atomic publication. | **Pass for tested control behavior.** Formula behavior is not calibrated risk truth. |
+| Knowledge reaches assessment without becoming policy | Captured provider-bound context and a bounded positive/negative comparison exercise the boundary. | **Pass for inspected delivery paths; inconclusive for broad causal use.** The evidence is not domain certification. |
+| Fixed-identity comparison exposes decision drift | The current X01 comparison preserves operational routing while disclosing numeric and rule-trace drift. | **Inconclusive for full X01 acceptance.** Its semantic observations use a supplementary procedure and lack complete reviewer identity. |
+| Complete-batch publication is observable | The experimental 21-ticket output has a verified publication receipt; root `tickets.json` is byte-identical by SHA-256 but was promoted outside the workflow. | **Pass for the observed experimental publication and hash-checked promotion.** The root file has no separate workflow receipt; human approval remains required and clean-checkout reproduction is unresolved. |
+| Semantic quality is reviewed separately | The retained all-finding review reports no failed dimensions. | **Inconclusive for protocol-conformant acceptance.** Required reviewer identity fields were not exposed. |
+| Accounting limits remain visible | Retained evidence exposes application sends, latency and provider metering. Measured input/output tokens produce a US$2.350286 API-equivalent estimate for the retained delivery under declared public rates. | **Partial.** The estimate is reproducible; actual Copilot billing allocation and hidden HTTP attempts remain unknown. |
 
 The evidence authority is `eval\results\README.md`. Test counts, evaluator
 self-tests and AI review are never presented as equivalent to system acceptance.
 
-## 9. Material evolution and disclosure
+### Cost interpretation
 
-The workflow evolved through multiple policies after observed failures. Some
-changes were generic reliability controls; others were test-informed. The
-current v8 direction retains bounded attempts, code-owned urgency and
-fail-closed publication while withdrawing case-shaped planning rules.
+The retained 21-ticket delivery used 973,468 input and 40,335 output tokens in
+21 application sends. Applying the declared OpenAI Standard short-context rates
+of US$2 per million input tokens and US$10 per million output tokens gives:
 
-The high-impact SCE urgency floor remains explicitly test-informed: an observed
-development repeat changed one finding from weekly to monthly routing, and the
-floor was added to protect the supplied low-L/high-I corner. This provenance is
-why the policy is labelled candidate-owned and uncalibrated.
+```text
+(973,468 * 2 + 40,335 * 10) / 1,000,000 = US$2.350286
+```
 
-The v8 series is reported as controlled dirty-worktree evidence, not silently
-promoted to a clean frozen-study pass. The measurement authority and remaining
-provenance limitation are in `docs\07_VERSION_RELIABILITY_PROTOCOL.md`.
+This is a measured, reproducible API-equivalent cost proxy, approximately
+US$0.111918 per generated ticket. It is not the Copilot subscription's billed
+cost: the route does not expose its AI-unit-to-USD conversion or hidden HTTP
+attempts. The receipt separately reports 21 request-cost units and 249.31861 AI
+units. Its cache fields and catalog schedule also support a cache-aware
+OpenAI-equivalent scenario of US$2.493186, but that remains a pricing scenario,
+not a Copilot invoice. The workflow retains raw usage with `usd_cost=null`; the
+equivalent figures are explicit calculations over that evidence rather than
+runtime billing fields. The
+[delivery cost evidence](..\eval\results\delivery-cost-summary.json) records the
+source-run hash, measured totals, formula assumptions and the official
+[OpenAI API pricing](https://developers.openai.com/api/docs/pricing) source.
+Document 04 owns the detailed provider/accounting rationale.
+
+## 9. Current provenance and disclosure
+
+The current policy and configuration are informed by exposed evaluation
+evidence, so the retained observations are not independent confirmation of
+stable quality. The high-impact SCE urgency floor protects the supplied
+low-L/high-I corner and remains candidate-owned and uncalibrated. Document 03
+§6 defines the fixed-identity reliability protocol; current evidence does not
+establish a clean checkout reproduction or independent reviewer authority.
 
 ## 10. Assumptions and limitations
 
-- Inputs represent one selected snapshot; later field state is not invented.
+- Inputs represent one selected snapshot; state outside that snapshot is not
+  invented.
 - Redundancy labels do not establish current partner health.
 - L/I/U are ordinal scales.
 - The explicit asymmetric examples take precedence over the domain note's more
@@ -272,11 +323,7 @@ provenance limitation are in `docs\07_VERSION_RELIABILITY_PROTOCOL.md`.
 - One trusted local writer and same-volume replacement are assumed.
 - Provider labels expose configuration, not hidden weights or expertise.
 - AI reviewers are provisional and may share model-family failure modes.
-- Cost and transport attempts remain unknown where the route does not expose
-  them.
+- API-equivalent cost is calculable from measured tokens; actual provider
+  billing and hidden transport attempts remain unknown where the route does not
+  expose them.
 - A successful draft still requires human approval.
-
-The exact development chronology, policy versions, failed runs, withdrawn
-proposals and handoffs are preserved in
-`docs\original-decision-process\05_TRIAGE_WORKFLOW.md`. They explain how the
-design evolved but do not override current code, configuration or evidence.

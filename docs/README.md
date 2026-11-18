@@ -1,206 +1,261 @@
-# Development argument and documentation map
+# Project Development Chronology
 
-The numbered documents are not seven independent essays or a literal chronology.
-They present the **logical dependency order** of the engineering argument:
+This directory explains how the assignment progressed from an ambiguous
+engineering brief to a generated, evidence-bound submission.
+
+The numbered documents are now a contiguous **01-08 development narrative**.
+They are not eight competing design authorities:
+
+- root [`README.md`](../README.md) is the submission entry point, current status
+  and run/verification guide;
+- root [`DESIGN.md`](../DESIGN.md) is the concise answer to Candidate Brief
+  sections A-D;
+- numbered Documents 01-08 explain the reasoning, implementation sequence and
+  controlled studies behind that design;
+- [`eval\spec`](../eval/spec) defines what counts;
+- [`eval\results\README.md`](../eval/results/README.md) indexes what actually
+  happened, including failures and unresolved limits; and
+- root [`tickets.json`](../tickets.json) is the generated draft deliverable.
+
+## Panel review path
+
+1. Read root [`README.md`](../README.md) for the submission contents, setup and
+   run command; use [`eval\results\README.md`](../eval/results/README.md) for
+   current evidence status and known limitations.
+2. Read root [`DESIGN.md`](../DESIGN.md) for the model/code boundary, knowledge
+   mechanism, urgency derivation, deferral policy and rejected alternatives.
+3. Open root [`tickets.json`](../tickets.json) and the side-by-side baseline link
+   at the top of
+   [`08_BEHAVIOR_CALIBRATION_STUDY.md`](08_BEHAVIOR_CALIBRATION_STUDY.md).
+4. Read
+   [`07_KNOWLEDGE_CHANGE_STUDY.md`](07_KNOWLEDGE_CHANGE_STUDY.md) for the
+   six-month PSV-maintenance answer and observed influence evidence.
+5. Use [`eval\results\README.md`](../eval/results/README.md) only when detailed
+   run, review, cost or failure evidence is needed.
+
+## End-to-end development map
+
+| Step | Engineering question | Main decision or result | Document |
+|---:|---|---|---|
+| 01 | What is the assignment actually asking, and where are the judgment traps? | Separate semantic assessment from deterministic control; identify unsupported assumptions before choosing components | [`01_INITIAL_INVESTIGATION.md`](01_INITIAL_INVESTIGATION.md) |
+| 02 | What data, relationships and evidence boundaries make evaluation honest? | Profile 21 findings and 18 assets; define grouped, non-blind evaluation and production-context exclusions | [`02_DATA_EVALUATION_PLAN.md`](02_DATA_EVALUATION_PLAN.md) |
+| 03 | What must count as success or failure before outputs are judged? | Define A-D/X scenarios, semantic review, fixed-identity reliability, accounting and controlled-change rules | [`03_EVALUATION_ACCEPTANCE.md`](03_EVALUATION_ACCEPTANCE.md) |
+| 04 | How should model access be isolated and accounted for? | Introduce a provider-neutral inference boundary; distinguish measured Copilot usage from API-equivalent cost | [`04_INFERENCE_LIBRARY.md`](04_INFERENCE_LIBRARY.md) |
+| 05 | How can domain guidance change without prompt surgery or workflow edits? | Build source-faithful extraction, review, immutable releases, separate activation and validated context delivery | [`05_KNOWLEDGE_LIFECYCLE.md`](05_KNOWLEDGE_LIFECYCLE.md) |
+| 06 | How are the components integrated without hiding failure? | Implement bounded assessment, deterministic urgency/review policy, complete coverage and atomic publication | [`06_TRIAGE_WORKFLOW.md`](06_TRIAGE_WORKFLOW.md) |
+| 07 | Does the six-month knowledge-maintenance path work in practice? | Demonstrate bounded influence and official-store traversal; expose hard-coded-score, scope and non-target risks; reject promotion | [`07_KNOWLEDGE_CHANGE_STUDY.md`](07_KNOWLEDGE_CHANGE_STUDY.md) |
+| 08 | Did calibration make the ticket set more useful, and what caused the change? | Compare accessible baseline/current tickets, decompose review changes, retain failed interventions and state residual risks | [`08_BEHAVIOR_CALIBRATION_STUDY.md`](08_BEHAVIOR_CALIBRATION_STUDY.md) |
+| Submit | What should the panel inspect and what remains unresolved? | Root README, DESIGN, tickets and evidence index form the submission; no separate readiness report competes with them | [`README.md`](../README.md), [`DESIGN.md`](../DESIGN.md), [`tickets.json`](../tickets.json), [`eval\results\README.md`](../eval/results/README.md) |
+
+## Phase 1 - Understand the problem and define evidence
+
+### 01 - Investigate before designing
+
+The work started by reading the Candidate Brief, source data and outgoing
+engineer's notes as authority rather than treating the example ticket as a gold
+answer. The investigation identified the recurring traps:
+
+- reliability runs in the opposite direction to likelihood;
+- redundancy is a claim that needs partner evidence;
+- SCE impact concerns the protected major-accident scenario, not repair cost;
+- missing evidence is unknown, not confirmed absence; and
+- valid JSON can still contain an invalid engineering judgment.
+
+This produced the first architecture boundary: use the model where evidence must
+be interpreted, but keep urgency, schema, attempts, coverage and publication in
+code.
+
+**Gate unlocked:** an evaluation plan could now test the actual brief rather than
+an attractive implementation.
+
+### 02 - Define data, context and leakage boundaries
+
+The next step profiled the complete supplied corpus and mapped relationships that
+can change an assessment. The split was deliberately labelled non-blind and
+AI-assisted; it was never presented as independent gold.
+
+Production context was separated from evaluator cards, expected answers and
+reviewer judgments. Related equipment evidence was grouped to reduce obvious
+leakage, while the documents retained the limitation that not every operational
+dependency can be known from 21 rows.
+
+**Gate unlocked:** acceptance scenarios could be frozen without silently using
+test answers as production knowledge.
+
+### 03 - Decide what counts before judging outputs
+
+The evaluation contract mapped Candidate Brief A-D plus cross-cutting stability
+and reproducibility requirements to observable evidence:
+
+- A: structure, coverage, repair and semantic failure;
+- B: context delivery, bounded influence and maintenance path;
+- C: code-derived urgency, corners, overrides and fact assessment;
+- D: deferral, inability to assess, exclusions and provenance;
+- X: fixed-identity stability, delivery, accounting and cost.
+
+This phase also separated deterministic self-tests from semantic model quality.
+A passing validator was not allowed to become a claim that the scores were
+correct.
+
+**Gate unlocked:** implementation and paid experiments had explicit stop/fail
+conditions.
+
+## Phase 2 - Build the system boundaries
+
+### 04 - Isolate inference transport
+
+The inference layer was kept smaller than the triage system. It records provider
+identity, request boundaries, usage, latency and failures without owning
+engineering policy.
+
+Copilot enabled low-marginal-cost development under an existing subscription.
+Direct Azure remained useful where strict provider accounting was needed. The
+documents distinguish measured tokens and AI units, reproducible
+API-equivalent estimates and unknown actual Copilot billing allocation.
+
+**Gate unlocked:** triage could change provider routes without moving urgency or
+knowledge authority into a provider adapter.
+
+### 05 - Separate knowledge authority from orchestration
+
+The supplied notes and future approved guidance were moved behind a source-first
+lifecycle:
 
 ```text
-understand the problem
-  -> define honest evidence boundaries
-  -> decide what would count before observing results
-  -> isolate model transport
-  -> isolate knowledge authority
-  -> integrate a fail-closed workflow
-  -> measure one frozen version without tuning it
+approved source
+  -> source-faithful extraction
+  -> review
+  -> immutable release
+  -> separate activation
+  -> validated provider context
 ```
 
-This order matters as a review structure. Reversing the dependencies would
-encourage implementation before the failure policy is explicit, evaluation
-after results are visible, or knowledge rules hidden inside orchestration. The
-actual development chronology included iterations and test-informed corrections,
-disclosed below.
+This answered the brief's maintainability question: an integrity engineer can
+change approved PSV interpretation through a reviewed source/release rather than
+editing the prompt or adding a finding-specific branch. Generic score anchors
+and urgency rules remain application-policy changes.
 
-## Five-minute panel path
+**Gate unlocked:** the workflow could consume knowledge without owning how it
+was authored or approved.
 
-| Need | Read |
+### 06 - Integrate one fail-closed workflow
+
+The workflow joins validated findings, registry data and pinned context; requests
+model-proposed L/I, facts, uncertainty and planning text; validates the result;
+derives urgency and review routing in code; enforces the total attempt ledger;
+and publishes only a complete atomic batch.
+
+Malformed output, structural violations, unsupported evidence and inability to
+justify scores remain distinct failure classes. A failed finding cannot publish
+a partial new batch or make an old output look current.
+
+**Gate unlocked:** real-model observations could test the integrated system
+rather than isolated components.
+
+## Phase 3 - Exercise change paths and calibrate behavior
+
+### 07 - Validate the knowledge-maintenance path
+
+The knowledge study first used an isolated artificial context intervention, then
+exercised the official source store and complete 21-ticket command.
+
+The target result moved as intended, while the negative tag-only PSV remained
+bounded. The exercise also revealed that:
+
+- the experimental source hard-coded scores that should belong to the rubric;
+- an editor path lost structured scope and evidence;
+- scoped PSV guidance still entered a shared batch knowledge pool;
+- non-target scores varied; and
+- the rule lacked authenticated domain-owner approval.
+
+The editor defect was fixed and verified, but the experimental releases were not
+promoted. The working candidate returned to the baseline authority.
+
+**Gate unlocked:** maintainability was demonstrated as a controlled,
+rejectable process rather than assumed from code structure.
+
+### 08 - Calibrate the integrated ticket behavior
+
+The retained baseline was structurally valid but operationally weak: 19/21
+tickets were U7-U9 and all 21 carried the earlier broad review flag.
+
+Calibration changed several system surfaces, so the final comparison is
+explicitly not a single-variable A/B test. The study exposes both full ticket
+files at its top, records the model/policy identities and decomposes the review
+reduction with deterministic replay.
+
+The current result has 15/21 tickets at U7-U9 and six exceptional prequeue review
+routes. That is improved discrimination, not calibrated risk truth. Six
+protection cases still depend on changed assessment inputs as well as routing
+policy, and the study keeps that as a named regression risk.
+
+**Gate unlocked:** the generated ticket set could be submitted with a clear
+before/after explanation and explicit causal limits.
+
+## Phase 4 - Assemble the submission
+
+The final submission has four primary entry points:
+
+| Artifact | Purpose |
 |---|---|
-| Current architecture and brief A-D | [`DESIGN.md`](../DESIGN.md) |
-| Why each step depends on the previous one | This page |
-| Current delivery/evidence status | [`eval\results\README.md`](../eval/results/README.md) |
-| How one frozen version is measured | [`07_VERSION_RELIABILITY_PROTOCOL.md`](07_VERSION_RELIABILITY_PROTOCOL.md) |
-| How behavior, knowledge, prompt authority and semantic review are controlled | [`08_BEHAVIOR_CALIBRATION_STUDY.md`](08_BEHAVIOR_CALIBRATION_STUDY.md), [`09_KNOWLEDGE_CHANGE_STUDY.md`](09_KNOWLEDGE_CHANGE_STUDY.md), [`10_PROMPT_AUTHORITY_AUDIT.md`](10_PROMPT_AUTHORITY_AUDIT.md), [`11_SEMANTIC_REVIEW_PROTOCOL.md`](11_SEMANTIC_REVIEW_PROTOCOL.md) |
-| Final submission-readiness decision, issue closure and limitations | [`12_SUBMISSION_READINESS_REPORT.md`](12_SUBMISSION_READINESS_REPORT.md) |
+| Root [`README.md`](../README.md) | What is included, current status, run command and fastest panel path |
+| Root [`DESIGN.md`](../DESIGN.md) | Concise answer to Candidate Brief A-D and architectural trade-offs |
+| Root [`tickets.json`](../tickets.json) | System-generated 21-ticket draft output |
+| [`eval\results\README.md`](../eval/results/README.md) | Evidence index, actual observations, cost/accounting and unresolved gates |
 
-## Why the logical process is ordered 01 to 07
+There is no separate submission-readiness report. A second status document would
+duplicate these authorities and create drift risk.
 
-### 01 — Frame the engineering problem before choosing components
+The final artifact is contract-valid and has a provisional AI-only semantic
+observation. It is not human-approved, independently domain-certified or
+clean-checkout reproduced. Hidden provider attempts and actual Copilot USD
+allocation remain unknown.
 
-[`01_INITIAL_INVESTIGATION.md`](01_INITIAL_INVESTIGATION.md) separates explicit
-Candidate Brief requirements from candidate interpretations and domain traps.
-It establishes the core boundary: semantic interpretation may be probabilistic,
-but urgency, contracts, attempts and publication require predictable control.
+## Where development was iterative
 
-**Why first:** without a source-derived problem statement, later architecture
-could optimize for attractive tickets rather than the assignment.
+The project did not occur once in a perfect waterfall:
 
-**Output/gate:** requirement map, unresolved assumptions and rejected shortcuts.
-This unlocks a defensible evaluation design.
+- early workflow work preceded the final knowledge-lifecycle boundary;
+- Document 08 includes early calibration interventions that preceded the
+  Document 07 knowledge exercise; the numbering places Document 07 before the
+  **final** behavior calibration rather than claiming a strict file-by-file
+  execution order;
+- failed B02 attempts exposed a confounded synthetic probe before the corrected
+  isolated comparison;
+- the official knowledge-change exercise exposed a real editor scope defect;
+- prompt-only chronology repair was rejected after it changed development
+  urgency/review behavior;
+- calibration used exposed findings and is disclosed as test-informed; and
+- the final producing workflow was retained by hash after the run rather than
+  established by clean-checkout reproduction.
 
-### 02 — Define data and evidence boundaries before writing acceptance tests
+These are not rewritten as planned successes. Failed observations remain under
+`eval\results` or in its lossless archive, and Git preserves the implementation
+history.
 
-[`02_DATA_EVALUATION_PLAN.md`](02_DATA_EVALUATION_PLAN.md) profiles the 21
-findings/18 assets, identifies related evidence, declares the split non-blind and
-specifies what production context may not contain.
-
-**Why second:** acceptance scenarios are only meaningful after leakage,
-relationship groups, reference limitations and claim boundaries are known.
-
-**Output/gate:** split/context contract and evidence classes. This unlocks
-preregistration without pretending the dataset is independent gold.
-
-### 03 — State what counts before running the system
-
-[`03_EVALUATION_ACCEPTANCE.md`](03_EVALUATION_ACCEPTANCE.md) maps Brief A-D plus
-X01/X02 to observable evidence and explicit failure conditions.
-
-**Why third:** building or reviewing outputs first would allow the success
-criteria to move after failures are observed.
-
-**Output/gate:** preregistered executable expectations, attempt/accounting rules
-and claim limits. Reference v1.3 is tracked, but remains a disclosed
-test-informed, non-blind revision rather than independent gold. This unlocks
-component implementation and controlled experiments.
-
-### 04 — Isolate model transport and development economics
-
-[`04_INFERENCE_LIBRARY.md`](04_INFERENCE_LIBRARY.md) defines a small provider
-boundary. The existing Copilot CLI subscription enabled economical development
-probes; direct Azure remains the strict route when attempts and usage must be
-observable.
-
-**Why before workflow:** provider retries, schemas and accounting must not own
-ticket policy. The workflow should be able to change routes without being
-rewritten.
-
-**Output/gate:** explicit inference request/response/failure contract. This
-unlocks provider-independent orchestration.
-
-### 05 — Isolate knowledge authority before consuming knowledge
-
-[`05_KNOWLEDGE_DESIGN_DECISION.md`](05_KNOWLEDGE_DESIGN_DECISION.md) assigns
-source import, extraction, provenance, review, immutable release, selection and
-context validation to `triage_knowledge`.
-
-**Why before workflow:** embedding knowledge extraction inside orchestration
-would combine content approval with execution authority and make PSV maintenance
-require workflow changes.
-
-**Output/gate:** pinned validated knowledge/context contract and explicit edit
-surfaces. This unlocks triage without coupling it to store internals.
-
-### 06 — Integrate the contracts into one fail-closed workflow
-
-[`06_TRIAGE_WORKFLOW.md`](06_TRIAGE_WORKFLOW.md) consumes inference and knowledge
-contracts, validates assessment evidence, derives urgency in code, enforces the
-attempt ledger and publishes only a complete atomic batch.
-
-**Why after 04/05:** orchestration can remain small only when provider behavior
-and knowledge authority already have stable boundaries.
-
-**Output/gate:** one end-to-end implementation with deterministic failure paths.
-This unlocks real-model observation, while not itself proving semantic quality.
-
-### 07 — Measure a frozen version rather than select a favorable run
-
-[`07_VERSION_RELIABILITY_PROTOCOL.md`](07_VERSION_RELIABILITY_PROTOCOL.md)
-defines how to freeze identity, retain failures, separate reliability dimensions
-and report decision/reviewer variance without a composite score.
-
-**Why last:** reliability cannot be interpreted until the requirements,
-evaluation contract, component identities and workflow are fixed. Historical
-development runs cannot be promoted retrospectively.
-
-**Output/gate:** a prospective measurement protocol plus a completed,
-hash-pinned dirty-worktree observation. The clean-freeze/reproduction result is
-**inconclusive**, not all-green.
-
-### 08-11 — Record controlled changes without rewriting failed observations
-
-[`08_BEHAVIOR_CALIBRATION_STUDY.md`](08_BEHAVIOR_CALIBRATION_STUDY.md) records
-the rejected v9/v10 policy calibrations and the retained v11 decision.
-[`09_KNOWLEDGE_CHANGE_STUDY.md`](09_KNOWLEDGE_CHANGE_STUDY.md) records how a
-future PSV source change traverses the official source-first lifecycle,
-including three failed protocol iterations before the bounded v4 observation,
-while [`10_PROMPT_AUTHORITY_AUDIT.md`](10_PROMPT_AUTHORITY_AUDIT.md) separates
-prompt protocol from code, source evidence, equipment registry and reviewed
-knowledge authority. [`11_SEMANTIC_REVIEW_PROTOCOL.md`](11_SEMANTIC_REVIEW_PROTOCOL.md)
-freezes reviewer scope, checklist dimensions and verdict boundaries so ad hoc
-reviewer variation cannot be used as a delivery gate.
-
-**Why after 07:** Documents 08-10 are observed change studies, not prerequisites
-that can be presented as prospectively frozen acceptance. Document 11 is a
-retrospective reviewer protocol for future reviews; it does not rescore earlier
-observations.
-
-## Where the actual chronology deviated
-
-The clean dependency chain is a retrospective explanation, not a claim that
-development occurred once in seven perfect phases:
-
-- workflow work historically preceded the knowledge redesign; the archive keeps
-  the original `05 Workflow -> 06 Knowledge` order;
-- retained v1.2 B02 failures motivated the disclosed reference-v1.3 fixture
-  correction;
-- the `P-SCE-HIGH-IMPACT` floor was added after a development stability failure
-  crossed the weekly/monthly urgency boundary; and
-- the detailed reliability protocol prose was finalized after the local
-  `v8r1`-`v8r3` series, while the machine-readable run order, hashes, budget and
-  no-tuning rule were recorded before sends; the result is therefore useful
-  controlled evidence but not a committed clean-freeze study; and
-- the knowledge-change study was redesigned after v1-v3 failures. V4 is useful
-  exploratory lifecycle evidence, not the original prospective B02 protocol.
-
-These deviations are evidence of iteration, not erased history. The numbered
-order shows how a reviewer should reason about the final design and which
-dependency should govern future changes.
-
-The panel-facing tree retains current evidence and the material v29/v30 failures,
-not every generated transcript. Superseded raw experiments remain recoverable in
-Git commit `071d29e62be419bb7443a6e18bf55d2763d46e69`; see
-`eval\results\README.md` for the retained evidence map.
-
-## Authority and evidence
+## Authority and evidence hierarchy
 
 | Question | Authority |
 |---|---|
-| Supplied requirement/domain rule | Candidate package |
-| Current system behavior | Production code and pinned configuration |
-| Current system design | `DESIGN.md` |
-| Evaluation membership/scenarios | `eval\spec\split.json` and `eval\spec\acceptance.json` |
-| Current working evaluation contract | `eval\spec`; archived v1.3 Documents 02/03 provide fingerprinted prose |
-| Component rationale, controlled change studies and reviewer protocol | Documents 01-11, subordinate to `DESIGN.md`, code/config, `eval\spec` and `eval\assess.py` on conflict |
-| Runtime string `Document 05 section 4` | Historical pointer to `docs\original-decision-process\05_TRIAGE_WORKFLOW.md` §4; it does not mean current panel Document 05 |
-| Observed outcome | `eval\results` |
-| Chronological development narrative | Archived Documents 01-06 and Git history |
+| What did Falkor require? | Unchanged Candidate Brief and supplied domain notes |
+| What is the current design? | Root `DESIGN.md` |
+| What does the system currently do? | Production code and pinned configuration |
+| What was supposed to count? | `eval\spec`; Documents 02-03 explain that contract and its rationale |
+| Why were component/workflow decisions made? | Documents 01, 04-06 |
+| What happened during controlled changes? | Documents 07-08 and linked evidence |
+| What actually passed, failed or remains unknown? | `eval\results` |
+| What should the panel run or read first? | Root `README.md` |
 
 Specifications define what would count; results record what happened. Integrity
-checks, evaluator self-tests and AI review are not system acceptance.
+checks, evaluator self-tests and AI review are not operational approval.
 
-## Original Decision Process
+## Original decision process
 
 [`original-decision-process\README.md`](original-decision-process/README.md)
-explains the exact pre-rewrite working-tree snapshot of Documents 01-06.
-`manifest.json` binds each file by byte length and SHA-256 digest.
+indexes the exact pre-rewrite working snapshot of Documents 01-06, bound by
+`manifest.json`. It preserves the detailed historical order and earlier
+terminology without competing with the current panel-facing narrative.
 
-The archive preserves detailed chronology, failed approaches and handoffs. It is
-not a second current design. Historical result files retain the code,
-configuration, paths and hashes recorded at execution time; Git remains the
-authority for earlier revisions.
-
-An uncommitted draft decision summary was folded into `DESIGN.md`, Documents
-04-07 and the evidence index. Keeping another summary layer would duplicate
-authority and invite status drift.
-
-Adversarial-review suggestions to present the provisional Copilot batch as
-accepted or to weaken the freeze gate were rejected because they would change
-labels rather than create evidence. Suggestions that exposed missing failures,
-stale status or unclear provenance were accepted and incorporated.
+Root `DESIGN.md` links to the current numbered documents for decision detail;
+the numbered files remain supporting rationale rather than competing design
+authorities.
