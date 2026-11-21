@@ -86,6 +86,15 @@ The current system is evaluated against the following principles. Concrete
 providers, rubrics, formulas, storage and publication mechanisms remain
 implementation choices within these boundaries.
 
+The source constraints require more than accurate prompting. Reliability and
+criticality must remain directed priors; redundancy and override facts require
+explicit evidence states; and urgency must remain reproducible in code. Combined
+with the brief's requirements for maintainable knowledge, visible failure and
+one complete output, they lead to the five system-level principles below. These
+principles are not a one-to-one restatement of the domain rules: each consolidates
+several source constraints and delivery requirements into an enforceable
+boundary.
+
 ### Decision 1 — Treat the model as an assessor, not the workflow owner
 
 **Decision.** Ask the model to propose likelihood, impact, fact states,
