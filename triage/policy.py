@@ -1,3 +1,4 @@
+"""Deterministic post-assessment urgency, escalation and review policy."""
 from __future__ import annotations
 
 from .assessment import SAME_DAY_VALIDATOR, validate_facts
@@ -17,7 +18,8 @@ def gap_verification_activity(gap: dict) -> str:
 
 
 def base_urgency(likelihood: int, impact: int) -> int:
-    return (3 * score(likelihood) + 7 * score(impact) + 9) // 10
+    weighted_tenths = 3 * score(likelihood) + 7 * score(impact)
+    return (weighted_tenths + 9) // 10  # Integer ceiling avoids rounding urgency down.
 
 
 def derive_policy(likelihood: int, impact: int, facts: dict, uncertainties: list,
