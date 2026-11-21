@@ -136,20 +136,6 @@ Do not write the key into a config file or commit it. The value passed to
   --model "<azure-deployment-name>"
 ```
 
-The pinned parity configuration is `gpt-6.1-sol` `2026-09-29`, medium reasoning,
-an 8,192-token output cap, a 300-second provider deadline and the Azure
-chat-completions API. The adapter verifies the deployment's observed model,
-disables SDK retries and preserves the application attempt budget. This is the
-strictly provider-SDK route; it does not use the Copilot CLI runtime. Copilot
-does not expose its backend version, so matching the public model ID and request
-payload does not imply byte-identical provider behavior.
-
-An Azure replay with this model/version generated all 21 temporary tickets in
-22 sends. It was not semantically reviewed and used the immediately preceding
-execution-policy revision, so it demonstrates the provider path without
-replacing review of the submitted artifact. See
-[`azure-gpt61-parity-20261118-summary.json`](eval/results/inference/azure-gpt61-parity-20261118-summary.json).
-
 ## Run behavior
 
 Each command above:
