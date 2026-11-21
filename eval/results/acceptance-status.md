@@ -21,6 +21,29 @@ test findings had been exposed, so this is test-informed regression evidence,
 not an untouched test result. It is ticket-content evidence, not a substitute
 for the system-level scenarios below.
 
+## Why B01 is not met
+
+This is an **evaluation-isolation failure**, not a failure to generate the final
+21 tickets.
+
+- A DEV run was intended to assess only the 13 DEV findings.
+- The workflow selected those 13 outputs, but built the model context from all
+  21 findings.
+- The model therefore received the descriptions of all eight TEST findings
+  while generating the DEV outputs.
+- This violated B01's declared rule that TEST finding descriptions must stay
+  out of development inference context.
+
+Using all 21 findings in the **final delivery run is correct**, because the
+candidate brief requires 21 generated tickets. The problem applies only to the
+claim that the 13/8 evaluation split isolated the TEST cases.
+
+This is also separate from **test-informed tuning**. Context leakage means the
+model could see TEST descriptions during DEV inference. Test-informed tuning
+means later system changes were made after TEST results had been observed. Both
+reduce evaluation independence, but only the first is the direct reason B01 is
+marked **Not met**.
+
 ## Scenario status
 
 | Scenario | Status | Retained evidence | Remaining limit |
@@ -29,7 +52,7 @@ for the system-level scenarios below.
 | A02 — Bounded recovery | **Partial** | [Malformed/schema recovery observations](design-behavior-demonstration.json); [Azure parity replay](inference/azure-gpt61-parity-20261118-summary.json) | Application sends are bounded, but hidden Copilot HTTP/SDK attempts are not observable. |
 | A03 — Exhaustion and publication failure | **Supported** | [Current-revision validation](offline-validation-20261121.json); [fail-closed fault report](triage/native-v2-fault-evidence-1/report.json); [production tests](../../tests/test_triage.py) | Evidence is deterministic fault injection rather than a production outage. |
 | A04 — Valid but semantically wrong output | **Partial** | [Calibrated final semantic observation](triage/structured-planning-v31/final/reviewer-observation.json) | Reviewer identity was incomplete, and the required unresolved adjacent-score `needs_review` behavior was not exercised. |
-| B01 — Actual knowledge/context delivery | **Not met** | [Development-context audit](triage/structured-planning-v31/b01-development-context-audit.json); [final provider-bound context](triage/structured-planning-v31/final/evidence/run.json) | The v31 DEV runs selected 13 findings but sent all eight TEST finding records in every provider input. No evidence-card or expected-answer leak was found, but the test-description exclusion criterion was violated. |
+| B01 — Actual knowledge/context delivery | **Not met** | [Development-context audit](triage/structured-planning-v31/b01-development-context-audit.json); [final provider-bound context](triage/structured-planning-v31/final/evidence/run.json) | Evaluation isolation failed: DEV selected 13 outputs, but every DEV provider input contained all eight TEST finding records. Final all-21 generation remains valid. |
 | B02 — Bounded knowledge influence | **Partial** | [Frozen-protocol execution](triage/v10-calibration/b02-execution/report.json); [semantic negative-control review](triage/v10-calibration/b02-execution/negative-control-semantic-review.json) | The SDK-inclusive attempt bound is inconclusive, each condition has one observation, and the study predates the delivered implementation and knowledge release. |
 | B03 — Six-month maintenance path | **Supported** | [DESIGN.md section B](../../DESIGN.md); [knowledge-change study](../../docs/07_KNOWLEDGE_CHANGE_STUDY.md); [official-store edit study](controlled-studies/knowledge-kb-edit-v1-study.json); [release disposition](controlled-studies/knowledge-kb-edit-v1-release-disposition.json) | The policy-v11 study was test-informed by F-1002 and exposed an editor-scope defect; its experimental guidance was rejected rather than promoted. |
 | C01 — Urgency grid and monotonicity | **Supported** | [Current-revision validation](offline-validation-20261121.json); [100-cell urgency-grid evidence](design-behavior-demonstration.json); [design rationale](../../DESIGN.md) | The formula is a declared prototype attention policy, not calibrated operational risk truth. |
