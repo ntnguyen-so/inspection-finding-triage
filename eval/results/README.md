@@ -6,13 +6,19 @@ Specifications under `eval\spec` define gates; they are not results.
 
 > **CURRENT STATUS — GENERATED DELIVERABLE, HUMAN APPROVAL PENDING.**
 > Root `tickets.json` contains all 21 findings and matches the v31 final output.
-> The AI reviewer reports 63/63 after seeded calibration, but the runtime did not
-> expose every reviewer-configuration identity required by the semantic
-> protocol. Six tickets require exceptional prequeue review, and every draft
-> still requires ordinary human approval. Clean-checkout reproduction, hidden
-> HTTP attempts and actual Copilot billing allocation remain unresolved.
+> The AI reviewer reports 63/63 after test-informed seeded calibration, but the
+> runtime did not expose every reviewer-configuration identity required by the
+> semantic protocol. The retained DEV runs also sent all eight TEST finding
+> records in provider context, so B01 is not met and later TEST results are
+> regression evidence rather than case-isolated evaluation. Six tickets require
+> exceptional prequeue review, and every draft still requires ordinary human
+> approval. Clean-checkout reproduction, hidden HTTP attempts and actual
+> Copilot billing allocation remain unresolved.
 > Measured tokens support a US$2.350286 API-equivalent estimate for the retained
 > delivery under the declared public-rate convention.
+
+The current scenario-by-scenario adjudication against the frozen acceptance
+contract is in [`acceptance-status.md`](acceptance-status.md).
 
 ## Evidence review path
 
@@ -64,7 +70,7 @@ Specifications under `eval\spec` define gates; they are not results.
 |---|---|---|
 | Required 21-ticket JSON and field contract | Root `tickets.json`; final tickets and reviews | Deterministic contract pass; 63/63 AI-only observation has reviewer-identity protocol limits |
 | Structured output, bounded repair and failure policy | Production tests; `design-behavior-demonstration.json`; native fault report | Deterministic pass |
-| Domain knowledge and maintainability | `knowledge\`; v10 B02 semantic review; Documents 05 and 07 | AI-reviewed bounded influence/isolation pass; general domain correctness is not certified |
+| Domain knowledge and maintainability | `knowledge\`; v10 B02 semantic review; Documents 05 and 07; B01 context audit | B01 not met because DEV context included TEST findings; bounded influence is partial and general domain correctness is not certified |
 | Code-derived urgency | `triage\policy.py`; deterministic tests; `DESIGN.md` section C | Deterministic pass for the declared prototype policy |
 | Deferral and review | v31 final reviews; projection/policy tests | Six exceptional review routes; all drafts still require human approval |
 | Repeat stability | v31 development tickets/reviews, comparison and adjudication | Inconclusive for full X01 protocol acceptance: operational routing is stable, but the semantic procedure is supplementary and reviewer identity is incomplete |
@@ -72,6 +78,10 @@ Specifications under `eval\spec` define gates; they are not results.
 
 ## Retained failed and rejected observations
 
+- `triage\structured-planning-v31\b01-development-context-audit.json` records
+  that every retained DEV provider input contained all eight TEST finding
+  records. It distinguishes this failure from evaluator-card or expected-answer
+  leakage.
 - `triage\structured-planning-v29\final` retains the 61/63 F-1011 chronology
   failure as reviews, observation, ticket output and publication receipt.
 - `triage\structured-planning-v30` retains the rejected development comparison

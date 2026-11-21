@@ -183,7 +183,7 @@ turning observations into new specifications.
 |---|---|---|
 | Group related findings | Current split membership keeps assessment-changing equipment and protection evidence together. | **Supported as leakage control.** It does not prove that every operational dependency is known. |
 | Label the split non-blind | All findings are exposed and the current configuration is informed by exposed evaluation evidence. | **Honest but non-independent.** Current test evidence supports regression claims, not blind generalization. |
-| Isolate test descriptions and answers | Captured provider context and boundary tests show that production did not import evaluator cards or expected answers. | **Supported for inspected paths.** Delivery isolation is not proof of correct model use. |
+| Isolate test descriptions and answers | Boundary tests show that production did not import evaluator cards or expected answers, but the retained v31 development provider context contained all eight test finding records. | **Not met for the retained development runs.** The failure is test-description leakage, not evidence-card or expected-answer leakage; the 13/8 split therefore supports regression workflow, not case-isolated generalization. |
 | Use cards rather than exact scores | The current semantic procedure evaluates grounding, planning and uncertainty while allowing unresolved adjacent-score judgment. | **Supported provisionally.** Reviewer calibration is narrow and AI-assisted. |
 | Separate specifications from results | Executable specifications remain under `eval\spec`; current observations remain under `eval\results`. | **Supported structurally.** Current status must be read from root `README.md` and the evidence index. |
 
@@ -191,6 +191,10 @@ turning observations into new specifications.
 
 - **Small, exposed sample.** All findings were read during development; no
   population or unseen-data claim is available.
+- **Development-context leakage.** The retained v31 development runs selected
+  13 DEV findings but sent all eight TEST finding records in provider context.
+  Later TEST results are test-informed regression evidence, not isolated
+  held-out evidence.
 - **Relationship-heavy cases.** Grouping reduces obvious leakage but cannot prove
   independence between all operationally connected equipment.
 - **AI-assisted reference and review.** Cards and semantic judgments are useful
