@@ -1,3 +1,4 @@
+"""Command-line boundary for isolated provider inference and model discovery."""
 from __future__ import annotations
 
 import argparse
@@ -12,6 +13,7 @@ from .contracts import strict_json
 
 
 async def run(args: argparse.Namespace) -> dict:
+    """Validate CLI controls and execute one provider operation."""
     if args.provider == "azure":
         if args.models or args.executable:
             raise InferenceError(
@@ -68,6 +70,7 @@ async def run(args: argparse.Namespace) -> dict:
 
 
 def main() -> int:
+    """Render one JSON result or one structured inference diagnostic."""
     parser = argparse.ArgumentParser(description="Azure OpenAI or restricted Copilot inference")
     parser.add_argument("--provider", choices=("copilot", "azure"), default="copilot")
     group = parser.add_mutually_exclusive_group(required=True)

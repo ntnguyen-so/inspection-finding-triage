@@ -1,3 +1,4 @@
+"""Project full policy decisions into concise ticket-facing explanations."""
 from __future__ import annotations
 
 from .contracts import nonblank, require
@@ -18,6 +19,7 @@ _REVIEW_LABELS = {
 
 
 def project_related_context(facts: dict, finding_id: str) -> str:
+    """Expose at most two related-finding citations already used by typed facts."""
     priority = (
         "protection_restored", "required_function_failed", "protection_impaired",
         "protection_test_failed", "evacuation_unavailable", "capacity_below_pob",
@@ -54,6 +56,7 @@ def project_related_context(facts: dict, finding_id: str) -> str:
 
 
 def project_ticket_text(decision: dict, likelihood: int, impact: int) -> dict:
+    """Render urgency provenance and exceptional-review reasons from rule traces."""
     rules = decision["rules"]
     counts: dict[tuple[str, str, int], int] = {}
     for rule in rules:

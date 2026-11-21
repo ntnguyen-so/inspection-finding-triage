@@ -1,3 +1,4 @@
+"""Lossless CSV input loading and provider-context contract validation."""
 from __future__ import annotations
 
 import csv
@@ -33,6 +34,7 @@ KINDS = {
 
 @dataclass(frozen=True)
 class Inputs:
+    """Validated input maps plus exact original bytes and source hashes."""
     encoded: str
     findings_hash: str
     registry_hash: str
@@ -51,6 +53,7 @@ class ContextExport(Protocol):
 
 
 def read_inputs(findings_path: Path, registry_path: Path) -> Inputs:
+    """Read exact CSV bytes, validate joins, and retain reproducibility hashes."""
     def load(path: Path, fields: tuple[str, ...]) -> tuple[dict, bytes]:
         raw = path.read_bytes()
         reader = csv.DictReader(io.StringIO(raw.decode("utf-8-sig"), newline=""))
@@ -73,6 +76,7 @@ def read_inputs(findings_path: Path, registry_path: Path) -> Inputs:
 
 
 def missing_partner_gaps(data: dict) -> list[dict]:
+    """Report declared redundancy partners absent from the supplied registry."""
     gaps = []
     for identifier, row in sorted(data["registry"].items()):
         affected = sorted(k for k, v in data["findings"].items() if v["equipment_id"] == identifier)
@@ -87,6 +91,7 @@ def missing_partner_gaps(data: dict) -> list[dict]:
 
 
 def validate_rows(findings: dict, registry: dict) -> None:
+    """Validate identities, dates, types, priors and finding-to-equipment joins."""
     require(isinstance(findings, dict) and findings and isinstance(registry, dict) and registry,
             "input_shape", "Nonempty finding and registry maps required")
     for identifier, row in registry.items():
@@ -124,6 +129,7 @@ def validate_context(
     source: ContextExport, inputs: Inputs, version: str, assessment_time: str,
     max_bytes: int, *, purpose: str = "normal", overlay_ref: dict | None = None,
 ) -> tuple[dict, str, dict]:
+    """Validate a legacy export against trusted inputs and configured pins."""
     try:
         return _validate_context(source, inputs, version, assessment_time, max_bytes,
                                  purpose=purpose, overlay_ref=overlay_ref)

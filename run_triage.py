@@ -1,3 +1,4 @@
+"""Create an isolated live-run workspace and invoke the validated triage CLI."""
 from __future__ import annotations
 
 import argparse
@@ -23,6 +24,7 @@ def build_config(
     knowledge_version: str,
     reasoning_effort: str | None,
 ) -> dict:
+    """Build the explicit provider and evidence configuration for one fresh run."""
     return {
         "model": model,
         "knowledge_version": knowledge_version,
@@ -41,6 +43,7 @@ def build_config(
 
 
 def parser() -> argparse.ArgumentParser:
+    """Define the convenience CLI without duplicating triage validation rules."""
     result = argparse.ArgumentParser(
         description="Generate tickets.json with fresh configuration, evidence and attempt paths."
     )
@@ -62,6 +65,7 @@ def parser() -> argparse.ArgumentParser:
 
 
 def main(argv: list[str] | None = None) -> int:
+    """Create collision-resistant run paths, then delegate to ``triage``."""
     args = parser().parse_args(argv)
     if args.provider == "azure" and not args.model:
         parser().error("--model is required for Azure and must be the deployment name")

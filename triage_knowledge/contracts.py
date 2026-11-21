@@ -1,3 +1,4 @@
+"""Strict serialization, identity and immutable table-source contracts."""
 from __future__ import annotations
 
 import csv
@@ -11,6 +12,7 @@ from typing import Any
 
 
 class KnowledgeError(ValueError):
+    """Source-first knowledge failure with a stable field-aware diagnostic."""
     def __init__(self, code: str, message: str, field: str = ""):
         super().__init__(message)
         self.code = code
@@ -68,6 +70,7 @@ def _json_value(value: object) -> None:
 
 
 def canonical_bytes(value: object) -> bytes:
+    """Serialize the restricted knowledge JSON domain into canonical UTF-8 bytes."""
     try:
         _json_value(value)
         return json.dumps(value, ensure_ascii=False, sort_keys=True,
@@ -79,6 +82,7 @@ def canonical_bytes(value: object) -> bytes:
 
 
 def strict_json(raw: bytes | str) -> Any:
+    """Decode strict integer-valued JSON while rejecting duplicate keys."""
     require(isinstance(raw, (bytes, str)), "json_decode", "UTF-8 JSON bytes or text are required.")
     def pairs(items: list) -> dict:
         result = {}
@@ -110,6 +114,7 @@ def fields(value: object, names: set[str], path: str) -> dict:
 
 @dataclass(frozen=True)
 class TableSource:
+    """Exact CSV bytes bound to an authorized logical source and input kind."""
     source_id: str
     kind: str
     raw: bytes

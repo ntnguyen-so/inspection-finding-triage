@@ -1,3 +1,4 @@
+"""Load versioned prompt artifacts and verify activation-bound identities."""
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -41,6 +42,7 @@ _RESOURCES = {
 
 @dataclass(frozen=True)
 class PromptArtifact:
+    """Immutable prompt text and the contracts it is allowed to request."""
     version: str
     text: str
     sha256: str
@@ -59,6 +61,7 @@ class PromptArtifact:
 
 @lru_cache(maxsize=None)
 def assessment_prompt(version: str = DEFAULT_ASSESSMENT_PROMPT_VERSION) -> PromptArtifact:
+    """Load and hash a repository-owned prompt version."""
     require(version in _RESOURCES, "assessment_prompt", "Unknown assessment prompt version")
     try:
         resource, assessment_contract, schema_contract = _RESOURCES[version]
@@ -78,6 +81,7 @@ def assessment_prompt(version: str = DEFAULT_ASSESSMENT_PROMPT_VERSION) -> Promp
 
 
 def prompt_from_identity(identity: dict) -> PromptArtifact:
+    """Resolve a prompt only when every reviewed identity field still matches."""
     require(isinstance(identity, dict) and set(identity) == {
         "version", "sha256", "assessment_contract", "schema_contract",
         "context_contract_version",

@@ -1,3 +1,4 @@
+"""Local Streamlit UI for reviewed source-first knowledge maintenance."""
 from __future__ import annotations
 
 from datetime import datetime, timezone
@@ -13,6 +14,7 @@ from triage_knowledge.retrieval import binding_from_tables, get_triage_knowledge
 
 
 def main() -> None:
+    """Render the local editor; publication remains an unauthenticated declaration."""
     import streamlit as st
 
     st.set_page_config(page_title="Source-first Knowledge", layout="wide")

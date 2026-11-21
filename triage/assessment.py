@@ -1,3 +1,4 @@
+"""Schemas and evidence validation for model-authored assessments and plans."""
 from __future__ import annotations
 
 from copy import deepcopy
@@ -126,6 +127,7 @@ NATIVE_ASSESSMENT_CONTRACT = ASSESSMENT_CONTRACT
 
 
 def assessment_schema(assessment_contract: str) -> dict:
+    """Build the exact schema variant pinned by the selected prompt contract."""
     require(assessment_contract in {
         ASSESSMENT_CONTRACT, PLANNED_ASSESSMENT_CONTRACT,
         GROUNDED_PLAN_ASSESSMENT_CONTRACT,
@@ -170,6 +172,7 @@ def assessment_schema(assessment_contract: str) -> dict:
 
 
 def citation_catalog(index: dict) -> dict:
+    """Assign stable short IDs to nonblank source lines in the context index."""
     catalog = {}
     for address in sorted(index):
         for line in index[address].split("\n"):
@@ -179,11 +182,13 @@ def citation_catalog(index: dict) -> dict:
 
 
 def attention_addresses(finding_id: str, equipment_id: str) -> set[str]:
+    """Return target-local sources permitted to trigger same-day attention."""
     return {f"finding:{finding_id}:finding_description", f"equipment:{equipment_id}:engineer_comment"}
 
 
 def request_schema(context: dict, finding_id: str, equipment_id: str,
                    assessment_contract: str = ASSESSMENT_CONTRACT) -> dict:
+    """Bind the assessment schema to addresses and citations in one context."""
     schema = assessment_schema(assessment_contract)
     planned = assessment_contract in {
         PLANNED_ASSESSMENT_CONTRACT, GROUNDED_PLAN_ASSESSMENT_CONTRACT,
@@ -299,6 +304,7 @@ def request_schema(context: dict, finding_id: str, equipment_id: str,
 
 
 def project_native_assessment(raw: str, index: dict) -> tuple[str, list]:
+    """Resolve native citation IDs into source references before validation."""
     try:
         result = strict_json(raw)
     except (ValueError, RecursionError) as error:
@@ -346,6 +352,7 @@ def request_for(model: str, context_text: str, finding_id: str, equipment_id: st
                 model_appended_activities: list[str] | None = None,
                 retry_action_budget: dict | None = None,
                 assessment_contract: str = ASSESSMENT_CONTRACT) -> InferenceRequest:
+    """Build one self-contained inference request for a target finding."""
     context = strict_json(context_text)
     message = {"context": context, "target_finding_id": finding_id,
                "primary_equipment_id": equipment_id, "validation_error": feedback,
@@ -395,6 +402,7 @@ def request_for(model: str, context_text: str, finding_id: str, equipment_id: st
 
 
 def validate_facts(facts: dict) -> None:
+    """Enforce complete, internally consistent policy fact states."""
     require(isinstance(facts, dict) and set(facts) == set(FACT_NAMES),
             "fact_contract", "Every named policy fact is required")
     for name, fact in facts.items():
@@ -409,6 +417,7 @@ def validate_facts(facts: dict) -> None:
 
 
 def citation_problems(citations: list, index: dict, location: str) -> list[tuple[str, str]]:
+    """Collect exact-address and exact-quote violations for one evidence list."""
     problems = []
     for number, citation in enumerate(citations):
         address, quote = citation["source_ref"], citation["quote"]
@@ -425,6 +434,7 @@ def citation_problems(citations: list, index: dict, location: str) -> list[tuple
 
 
 def validate_same_day_attention(items: list, finding: dict, index: dict) -> list:
+    """Require target-local evidence for any source-directed same-day route."""
     require(SAME_DAY_VALIDATOR.is_valid(items), "assessment_schema", "Invalid same-day routing evidence")
     allowed = attention_addresses(finding["finding_id"], finding["equipment_id"])
     for number, item in enumerate(items):
@@ -440,6 +450,7 @@ def validate_same_day_attention(items: list, finding: dict, index: dict) -> list
 
 def validate_assessment(raw: str, finding: dict, index: dict,
                         assessment_contract: str = ASSESSMENT_CONTRACT) -> dict:
+    """Validate identity, scores, evidence, facts and inability semantics."""
     try:
         result = strict_json(raw)
     except (ValueError, RecursionError) as error:

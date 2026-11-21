@@ -1,3 +1,4 @@
+"""Fail-closed CLI boundary for validated ticket generation and evidence capture."""
 from __future__ import annotations
 
 import argparse
@@ -16,11 +17,14 @@ from .workflow import RunConfig, run_workflow
 
 
 class Parser(argparse.ArgumentParser):
+    """Translate argparse failures into the repository's structured diagnostic."""
+
     def error(self, message):
         raise TriageError("configuration", message)
 
 
 def main(argv: list[str] | None = None) -> int:
+    """Validate path/provider controls and run the asynchronous workflow."""
     parser = Parser(description="Generate human-approval drafts using pinned source-first knowledge and workflow policy.")
     parser.add_argument("--findings", type=Path, required=True, help="Already selected findings CSV")
     parser.add_argument("--registry", type=Path, required=True)

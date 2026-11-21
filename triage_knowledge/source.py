@@ -85,6 +85,7 @@ def _copy(value):
 
 @dataclass(frozen=True)
 class SourceDocument:
+    """Byte-preserved user source split into deterministic line-addressed units."""
     raw: bytes
     name: str
     source_id: str
@@ -119,6 +120,7 @@ class SourceDocument:
 
 @dataclass(frozen=True)
 class Extraction:
+    """Validated source grouping proposal with materialized source-faithful text."""
     document: SourceDocument
     _proposal_bytes: bytes
     _group_bytes: bytes
@@ -134,6 +136,7 @@ class Extraction:
 
 
 def metadata_supported(label: str, quote: str, unit_text: str) -> bool:
+    """Check that metadata appears with whole-word boundaries in cited source text."""
     for location in re.finditer(re.escape(quote), unit_text):
         for label_match in re.finditer(re.escape(label), quote):
             start = location.start() + label_match.start()
@@ -145,6 +148,7 @@ def metadata_supported(label: str, quote: str, unit_text: str) -> bool:
 
 
 def validate_proposal(document: SourceDocument, proposal) -> Extraction:
+    """Validate complete unit coverage, evidence ownership and source-literal metadata."""
     proposal = _copy(proposal)
     unit_evidence = isinstance(proposal, dict) and "contract_version" in proposal
     if unit_evidence:
@@ -215,6 +219,7 @@ def validate_proposal(document: SourceDocument, proposal) -> Extraction:
 
 
 def extract_code(document: SourceDocument) -> Extraction:
+    """Create the deterministic line-preserving extraction used for normal intake."""
     groups, current, fence = [], [], None
     for unit in document.units:
         text = unit["text"].lstrip("\ufeff")
@@ -277,6 +282,7 @@ def extract_code(document: SourceDocument) -> Extraction:
 
 def extraction_request(document: SourceDocument, *, model, reasoning_effort="low",
                        timeout_seconds=90):
+    """Build the unqualified experimental extraction request without sending it."""
     from llm_inference import InferenceRequest
     return InferenceRequest(model=model, system=SYSTEM,
                             user=canonical_bytes({"source_id": document.source_id,

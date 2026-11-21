@@ -1,3 +1,4 @@
+"""Shared deterministic validation primitives and structured triage errors."""
 from __future__ import annotations
 
 import hashlib
@@ -8,6 +9,7 @@ from llm_inference.contracts import canonical, strict_json
 
 
 class TriageError(RuntimeError):
+    """Workflow failure carrying stable diagnostic and publication state."""
     def __init__(self, code: str, message: str, finding_id: str | None = None):
         super().__init__(message)
         self.code = code

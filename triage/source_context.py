@@ -17,6 +17,7 @@ from .prompt import DEFAULT_ASSESSMENT_PROMPT_VERSION, assessment_prompt, prompt
 
 
 def execution_policy_hash() -> str:
+    """Hash top-level ``triage`` modules; provider adapters are pinned elsewhere."""
     root = Path(__file__).parent
     manifest = {
         path.name: digest(path.read_bytes())
@@ -26,6 +27,7 @@ def execution_policy_hash() -> str:
 
 
 def retrieval_index_hash(candidate: dict) -> str:
+    """Hash retrieval-relevant release metadata without mutable review prose."""
     items = {item_id: {
         "revision_id": item["revision_id"], "review_state": item["review_state"],
         **{key: item["revision"][key] for key in
@@ -62,6 +64,8 @@ class _PinnedStore(SourceKnowledgeStore):
 
 
 class NativeContext:
+    """Prepare a source-first context only after validating all activation pins."""
+
     def __init__(self, store: Path, activation: dict):
         self.store_path = Path(store)
         self._activation = canonical_bytes(activation)

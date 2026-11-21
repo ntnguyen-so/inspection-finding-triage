@@ -1,3 +1,4 @@
+"""End-to-end assessment, repair, policy, evidence and atomic publication."""
 from __future__ import annotations
 
 import asyncio
@@ -42,16 +43,21 @@ ACTION_SAFETY_CHARS = ACTION_MAX_CHARS - ACTION_TARGET_CHARS
 
 
 class AccountedProvider(InferenceProvider, Protocol):
+    """Inference provider that exposes auditable runtime configuration."""
+
     def configuration(self) -> dict: ...
 
 
 @runtime_checkable
 class CatalogProvider(AccountedProvider, Protocol):
+    """Accounted provider that can prove the selected model is available."""
+
     def models(self) -> list[dict]: ...
 
 
 @dataclass(frozen=True)
 class RunConfig:
+    """Explicit run controls whose canonical form is retained in evidence."""
     model: str
     knowledge_version: str
     assessment_time: str
@@ -102,6 +108,7 @@ def _distinct_actions(activities: list[str]) -> list[str]:
 
 def compose_action(core: str, activities: list[str],
                    fixed_activities: list[str] | None = None) -> dict:
+    """Merge model action text with required activities without silent dropping."""
     required = _distinct_actions(activities)
     fixed_required = _distinct_actions(fixed_activities or [])
     model_core = core
@@ -125,6 +132,7 @@ def compose_action(core: str, activities: list[str],
 
 
 def require_fixed_actions_fit(fixed_activities: list[str]) -> None:
+    """Fail before inference when code-owned text leaves no usable action budget."""
     fixed = _distinct_actions(fixed_activities)
     fixed_chars = sum(len(activity) + 1 for activity in fixed)
     require(fixed_chars + 1 <= ACTION_TARGET_CHARS, "policy_verification_impossible",
@@ -134,6 +142,7 @@ def require_fixed_actions_fit(fixed_activities: list[str]) -> None:
 
 
 def action_retry_budget(composition: dict) -> dict:
+    """Allocate a deterministic repair budget while preserving fixed activities."""
     fixed = composition.get("fixed_required_activities",
                             composition["fixed_appended_activities"])
     model = composition["model_appended_activities"]
@@ -167,6 +176,7 @@ def action_retry_budget(composition: dict) -> dict:
 
 
 def action_overflow_message(composition: dict) -> tuple[str, dict]:
+    """Describe an exact one-retry shortening budget for model-authored fields."""
     budget = action_retry_budget(composition)
     model = composition["model_appended_activities"]
     return (
@@ -181,6 +191,7 @@ def action_overflow_message(composition: dict) -> tuple[str, dict]:
 
 
 def repair_feedback(code: str, error: Exception) -> str:
+    """Bound retry feedback and reinforce the full plan contract when applicable."""
     detail = str(error)
     if code != "plan_contract":
         return detail[:500]
@@ -193,6 +204,7 @@ def repair_feedback(code: str, error: Exception) -> str:
 
 
 def validate_output(payload: dict, findings: dict) -> None:
+    """Validate final identity, coverage, text, scores and review disposition."""
     require(isinstance(payload, dict) and set(payload) ==
             {"generated_at", "tickets_generated", "tickets"}, "output_schema", "Invalid wrapper")
     timestamp(payload["generated_at"])
@@ -234,6 +246,7 @@ def validate_output(payload: dict, findings: dict) -> None:
 
 
 def save_json(path: Path, value: dict) -> None:
+    """Persist mutable run evidence durably at its owned path."""
     encoded = (json.dumps(value, ensure_ascii=True, indent=2, allow_nan=False) + "\n").encode()
     with path.open("wb") as stream:
         stream.write(encoded)
@@ -242,6 +255,7 @@ def save_json(path: Path, value: dict) -> None:
 
 
 def save_json_atomic(path: Path, value: dict) -> None:
+    """Publish a standalone JSON artifact with same-directory replacement."""
     encoded = (json.dumps(value, ensure_ascii=True, indent=2, allow_nan=False) + "\n").encode()
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = None
@@ -261,6 +275,7 @@ def save_json_atomic(path: Path, value: dict) -> None:
 
 
 def checked_receipt(receipt: dict) -> None:
+    """Require one observable retry-free direct-provider dispatch."""
     require(isinstance(receipt, dict)
             and type(receipt.get("http_dispatches_observed")) is int
             and receipt["http_dispatches_observed"] == 1
@@ -271,6 +286,7 @@ def checked_receipt(receipt: dict) -> None:
 
 
 def checked_azure_receipt(receipt: dict, config: RunConfig, system: str, user: str) -> None:
+    """Bind the Azure receipt to configured API, model and exact wire messages."""
     require(receipt.get("api") == "azure-openai-v1-" + config.azure_api.replace("_", "-")
             and receipt.get("max_completion_tokens") == config.azure_max_completion_tokens
             and receipt.get("requested_model") == config.model
@@ -288,6 +304,7 @@ def checked_azure_receipt(receipt: dict, config: RunConfig, system: str, user: s
 
 
 def copilot_preflight(provider: AccountedProvider, config: RunConfig) -> dict:
+    """Verify restricted capabilities and the requested account-visible model."""
     configuration = provider.configuration()
     capabilities = configuration.get("capabilities") if isinstance(configuration, dict) else None
     require(isinstance(capabilities, dict) and configuration.get("provider") == "github-copilot"
@@ -314,6 +331,7 @@ def copilot_preflight(provider: AccountedProvider, config: RunConfig) -> dict:
 
 
 def checked_copilot_receipt(receipt: dict, model: str, system: str, user: str) -> None:
+    """Require one tool-free Copilot call with exact message and cleanup evidence."""
     require(isinstance(receipt, dict)
             and receipt.get("provider") == "github-copilot"
             and type(receipt.get("adapter_attempts")) is int and receipt["adapter_attempts"] == 1
@@ -342,6 +360,7 @@ def checked_copilot_receipt(receipt: dict, model: str, system: str, user: str) -
 
 
 def reserve_attempt(path: Path, budget: int, token: str, execution_mode: str = "strict") -> None:
+    """Persistently reserve one send before dispatch so crashes still consume budget."""
     initial = {"budget": budget, "reservations": []}
     if execution_mode in {"copilot_experiment", "copilot_delivery"}:
         initial["execution_mode"] = execution_mode
@@ -379,6 +398,7 @@ async def run_workflow(
     *, purpose: str = "normal", overlay_ref: dict | None = None,
     selected_finding_ids: list[str] | None = None,
 ) -> dict:
+    """Generate all selected drafts and publish only a completely validated payload."""
     output, evidence = output.resolve(), evidence.resolve()
     copilot = config.execution_mode in {"copilot_experiment", "copilot_delivery"}
     experimental = config.execution_mode == "copilot_experiment"
@@ -436,6 +456,8 @@ async def run_workflow(
         selected_findings = {
             identifier: data["findings"][identifier] for identifier in selected_ids
         }
+        # Selection limits generated outputs; context preparation still receives the
+        # complete batch so final delivery can reason over related findings.
         report["selected_finding_ids"] = selected_ids
         native = isinstance(context_source, NativeContext)
         if native:
@@ -702,6 +724,7 @@ async def run_workflow(
         report.update(run_status="ready_to_publish", intended_output_sha256=digest(encoded),
                       elapsed_seconds=time.monotonic() - started)
         save_json(evidence / "run.json", report)
+        # Stage validated bytes in the same directory before one os.replace.
         output.parent.mkdir(parents=True, exist_ok=True)
         with tempfile.NamedTemporaryFile(dir=output.parent, prefix=".triage-", suffix=".tmp",
                                          delete=False) as stream:
@@ -774,6 +797,7 @@ async def run_workflow(
         failure.attempts = attempts
         failure.execution_mode = config.execution_mode
         if publication_succeeded:
+            # Attempt to restore the prior visible output and record rollback failure.
             rollback_temporary = None
             try:
                 if previous_output_existed:

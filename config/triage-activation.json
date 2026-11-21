@@ -3,12 +3,12 @@
   "knowledge_version": "sha256-b215857575e443ba5fd9cb56a19f3079003cd68acb03fdf0e33ca7fbed59e097",
   "strategy": {
     "strategy": "source-selector-v1",
-    "implementation_sha256": "a3af5f16e58e4ecb30ccb6e9e2adddd0e6e5699a23731c44ad3cbd1680d435da",
+    "implementation_sha256": "7532a45c15f09229d72f865c0ca2f06a8a30966916d13c83acfd1109c170ee40",
     "implementation_files": {
-      "retrieval.py": "5c77502ca74a4c3b485d1ba3bab2ad22c79ab3b01a5a1ee9bd6f12dea080ec91",
-      "source_store.py": "230d947b9ffe0e1a7d6ab9b2c02c15c131f33750a52464355f11de3a0fdb8187",
-      "source.py": "d2cb494ff1088d2e262f2c924467cd126c41921ab6e8191cf0cc86c2a4033e79",
-      "contracts.py": "ab812eb5124d6fdae77d208519e2511526857214cbff57fcfc80341bc5354c74"
+      "retrieval.py": "2a81496ddb9e532257aa94aad05716b68a837ce500c7f7da2a55cb43cdb84828",
+      "source_store.py": "93a857528610d1b7b7af6a433456f6c642a4c80cbd6e501f94e641ef5527b688",
+      "source.py": "b4cf51da95b8d30dee65d4f6804e8c6c7d93739cb7befe730c1a0442e73f00f7",
+      "contracts.py": "01c207521fd89e50738824b06aca1612ed6c61652a63f98bea2ece2599db6447"
     },
     "parameters": {
       "closure": "bidirectional",
@@ -26,7 +26,7 @@
   },
   "retrieval_index_sha256": "420e4db9257f64d416030a1726acc7496511213b3a777e0c74f51bcfc2a39092",
   "assessment_policy_sha256": "0474934be96ecc2ddfeaae0bed84810dfa762f713b74291a9e7cf1919799e34e",
-  "execution_policy_sha256": "65e1e0192fc69e2a466c99d0c7f2a8aa8a89802166a041148ab169d6da0a4261",
+  "execution_policy_sha256": "951b99a098eb6059fb643282830f2a3e5081e52e13524db5416dcf34c66159ca",
   "assessment_prompt": {
     "version": "assessment-system-v7",
     "sha256": "f275552a9a7cc12fc091b3d7ced214f5e3ef82ac6c31e692a4fcf599c0c66fd8",
@@ -35,9 +35,9 @@
     "context_contract_version": 3
   },
   "review": {
-    "reviewer": "User-authorized provider-parity policy update",
-    "reason": "User-authorized provider-parity fix: Azure now pins and verifies the tested gpt-6.1-sol version, provider-owned deadlines complete before the workflow guard, and the single plan repair receives full-contract and 280-character guidance; knowledge, retrieval, assessment policy and prompt remain pinned.",
-    "reviewed_at": "2026-11-18T05:55:13.1710562+00:00",
+    "reviewer": "User-authorized maintainability documentation and activation repair",
+    "reason": "Source documentation was added for module/API ownership and non-obvious invariants. This activation also repairs the stale pin left by the prior behavior-equivalent base_urgency refactor; policy values, prompt, knowledge release, retrieval parameters and runtime semantics are unchanged.",
+    "reviewed_at": "2026-11-21T08:53:34.086434+00:00",
     "source_policy_compatible": true
   }
 }

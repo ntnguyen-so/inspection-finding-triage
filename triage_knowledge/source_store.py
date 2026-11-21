@@ -33,6 +33,8 @@ ITEM_FIELDS = {"revision_id", "revision", "review_state", "review", "decision_re
 
 
 class SourceKnowledgeStore:
+    """Single-writer store for mutable candidates and immutable reviewed releases."""
+
     def __init__(self, root=r"knowledge\source-first", *, experimental_profile=None):
         self.root = Path(root)
         if experimental_profile is not None:

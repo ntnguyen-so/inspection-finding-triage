@@ -1,3 +1,4 @@
+"""Build and independently validate source-first provider context bundles."""
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -11,6 +12,7 @@ from .source_store import SourceKnowledgeStore
 
 @dataclass(frozen=True)
 class SourceContext:
+    """Canonical provider context bytes with separate construction evidence."""
     encoded: bytes
     evidence_bytes: bytes
 

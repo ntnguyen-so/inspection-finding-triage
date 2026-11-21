@@ -1,3 +1,5 @@
+"""Module entry point for the source-first knowledge lifecycle CLI."""
+
 from .source_cli import DEFAULT_DOMAIN, main
 
 DOMAIN_PATH = str(DEFAULT_DOMAIN)

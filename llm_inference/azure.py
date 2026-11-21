@@ -32,6 +32,7 @@ from .contracts import (
 
 
 def azure_base_url(endpoint: str) -> str:
+    """Validate an Azure resource endpoint and normalize its OpenAI v1 base URL."""
     try:
         parsed = urlsplit(endpoint)
         valid = (
@@ -56,6 +57,7 @@ def azure_base_url(endpoint: str) -> str:
 
 
 def native_schema(schema: dict) -> dict:
+    """Project the authored schema onto Azure's native structured-output subset."""
     if schema.get("type") != "object":
         raise InferenceError("invalid_schema", "Native JSON requires a root object schema")
 
@@ -146,6 +148,8 @@ def _responses_text(response: object, receipt: dict) -> str:
 
 
 class AzureOpenAIProvider:
+    """Retry-free Azure OpenAI adapter with wire and model identity receipts."""
+
     def __init__(
         self,
         endpoint: str | None = None,

@@ -52,4 +52,5 @@ ASSESSMENT_POLICY_SHA256 = digest(_ENCODED)
 
 
 def assessment_policy() -> dict:
+    """Return a defensive copy of the versioned model-facing L/I rubric."""
     return strict_json(_ENCODED.decode("utf-8"))

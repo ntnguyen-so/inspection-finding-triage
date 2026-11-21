@@ -14,16 +14,19 @@ FAILED_TEST_RETEST_ACTIVITY = RESTORATION_CLOSURE_ACTIVITY
 
 
 def gap_verification_activity(gap: dict) -> str:
+    """Render the code-owned check for a missing declared redundancy partner."""
     return f"Verify {gap['partner_equipment_id']} availability/capability."
 
 
 def base_urgency(likelihood: int, impact: int) -> int:
+    """Return the conservative 30/70 weighted L/I base urgency."""
     weighted_tenths = 3 * score(likelihood) + 7 * score(impact)
     return (weighted_tenths + 9) // 10  # Integer ceiling avoids rounding urgency down.
 
 
 def derive_policy(likelihood: int, impact: int, facts: dict, uncertainties: list,
                   *, sce: bool, gaps: list, same_day_attention: list | None = None) -> dict:
+    """Apply deterministic floors, activities and review routing to assessed facts."""
     base = base_urgency(likelihood, impact)
     validate_facts(facts)
     require(type(sce) is bool and isinstance(uncertainties, list) and isinstance(gaps, list),

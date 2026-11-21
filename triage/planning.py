@@ -1,3 +1,4 @@
+"""Validate structured work plans and compose bounded ticket action text."""
 from __future__ import annotations
 
 from .contracts import nonblank, require
@@ -29,6 +30,7 @@ def _state_requires_acceptance(facts: dict) -> bool:
 
 
 def fixed_plan_activities(decision: dict) -> list[str]:
+    """Return deduplicated verification activities owned by deterministic policy."""
     return _distinct(decision["fixed_verification_activities"])
 
 
@@ -37,6 +39,7 @@ def _project_fixed(activity: str) -> str:
 
 
 def validate_plan(plan: dict, decision: dict, facts: dict, uncertainties: list) -> dict:
+    """Enforce exact placement, disposition and functional-acceptance invariants."""
     require(isinstance(plan, dict), "plan_contract", "Assessed output requires plan-v1")
     diagnose = plan["diagnose"]
     disposition = plan["disposition"]
@@ -120,6 +123,7 @@ def validate_plan(plan: dict, decision: dict, facts: dict, uncertainties: list) 
 
 
 def compose_plan(plan: dict, decision: dict) -> dict:
+    """Merge code-owned prework and model-authored plan fields without truncation."""
     fixed = fixed_plan_activities(decision)
     prework = [activity for activity in fixed if activity != RESTORATION_CLOSURE_ACTIVITY]
     projected_prework = _distinct([_project_fixed(activity) for activity in prework])

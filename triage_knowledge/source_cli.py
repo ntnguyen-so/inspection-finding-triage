@@ -1,3 +1,4 @@
+"""CLI for source-first knowledge intake, review, release and bounded query."""
 from __future__ import annotations
 
 import argparse
@@ -15,6 +16,7 @@ DEFAULT_STORE = Path("knowledge") / "source-first"
 
 
 def parser() -> argparse.ArgumentParser:
+    """Define lifecycle commands without performing store I/O."""
     result = argparse.ArgumentParser(description="Maintain source-first knowledge; no L/I/U inference.")
     result.add_argument("--store", type=Path, default=DEFAULT_STORE)
     commands = result.add_subparsers(dest="command", required=True)
@@ -68,6 +70,7 @@ def parser() -> argparse.ArgumentParser:
 
 
 def write_new_json(path: Path, value: dict) -> None:
+    """Write a new observation via temp-file replace; callers serialize writers."""
     raw = (json.dumps(value, ensure_ascii=True, sort_keys=True,
                       allow_nan=False, indent=2) + "\n").encode()
     if path.exists():
@@ -88,6 +91,7 @@ def write_new_json(path: Path, value: dict) -> None:
 
 
 def main(argv: list[str] | None = None) -> int:
+    """Execute one knowledge lifecycle command and emit structured JSON."""
     args = parser().parse_args(argv)
     from .source import SourceDocument, extract_code
     from .source_store import SourceKnowledgeStore

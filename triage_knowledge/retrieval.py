@@ -45,6 +45,7 @@ def _freeze(value):
 
 
 def strategy_binding():
+    """Bind retrieval parameters to the exact implementation bytes that enforce them."""
     # Actual executable bytes, not a manually maintained label alone.
     implementation = {name: sha256(Path(__file__).with_name(name).read_bytes())
                       for name in ("retrieval.py", "source_store.py", "source.py", "contracts.py")}
@@ -95,6 +96,7 @@ def _validate_query(query):
 
 @dataclass(frozen=True)
 class InputBinding:
+    """Immutable independently constructed snapshot of authorized input tables."""
     _encoded: bytes
 
     @property
@@ -168,6 +170,7 @@ def _checked_binding(binding, input_purpose):
 
 @dataclass(frozen=True)
 class KnowledgeResult:
+    """Immutable retrieval result plus separately retained selection evidence."""
     _encoded: bytes
     _evidence: bytes
 

@@ -1,3 +1,4 @@
+"""Restricted Copilot adapter with fresh sessions, no tools and audited events."""
 from __future__ import annotations
 
 import asyncio
@@ -44,6 +45,7 @@ CAPABILITIES = {
 
 
 def child_environment() -> dict[str, str]:
+    """Remove unrelated provider credentials and disable child telemetry."""
     excluded = (
         "COPILOT_",
         "GITHUB_COPILOT_",
@@ -65,6 +67,7 @@ def child_environment() -> dict[str, str]:
 
 
 def session_options(system: str) -> dict:
+    """Build the deny-by-default Copilot session configuration."""
     return {
         "system_message": {"mode": "replace", "content": system},
         "available_tools": [],
@@ -107,6 +110,8 @@ def session_options(system: str) -> dict:
 
 
 class EventAudit:
+    """Reject unexpected agent activity and retain model/message accounting."""
+
     def __init__(self, system: str = "", user: str = "") -> None:
         self.counts: Counter = Counter()
         self.usages: list[dict] = []

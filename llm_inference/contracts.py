@@ -1,3 +1,4 @@
+"""Provider-neutral request, response, strict-JSON and schema contracts."""
 from __future__ import annotations
 
 import json
@@ -9,6 +10,7 @@ from jsonschema import Draft202012Validator, SchemaError, ValidationError
 
 
 class InferenceError(RuntimeError):
+    """Structured provider-boundary failure safe for JSON diagnostics."""
     def __init__(self, code: str, message: str, receipt: dict | None = None, *,
                  response_text: str | None = None):
         super().__init__(message)
@@ -39,6 +41,7 @@ def _reject_constant(value: str) -> None:
 
 
 def strict_json(text: str) -> object:
+    """Decode JSON while rejecting duplicate keys and non-finite numbers."""
     def finite_float(value: str) -> float:
         number = float(value)
         if not math.isfinite(number):
@@ -54,11 +57,13 @@ def strict_json(text: str) -> object:
 
 
 def canonical(value: object) -> str:
+    """Serialize a JSON-compatible value with stable ordering and finite numbers."""
     return json.dumps(value, ensure_ascii=True, sort_keys=True, allow_nan=False)
 
 
 @dataclass(frozen=True)
 class InferenceRequest:
+    """Provider request whose ``prepared()`` method enforces the local contract."""
     model: str
     system: str
     user: str
@@ -164,6 +169,7 @@ class InferenceRequest:
 
 
 def validate_content(text: str, validator: Draft202012Validator | None) -> object:
+    """Validate response size, strict JSON syntax and the requested schema."""
     if not isinstance(text, str) or not text.strip():
         raise InferenceError("empty_response", "No final assistant text")
     try:
@@ -189,10 +195,13 @@ def validate_content(text: str, validator: Draft202012Validator | None) -> objec
 
 @dataclass(frozen=True)
 class InferenceResponse:
+    """Provider text, optional parsed value and auditable transport receipt."""
     text: str
     parsed: object
     receipt: dict
 
 
 class InferenceProvider(Protocol):
+    """Minimal async inference interface consumed by the triage workflow."""
+
     async def generate(self, request: InferenceRequest) -> InferenceResponse: ...
