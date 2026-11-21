@@ -439,7 +439,9 @@ acceptance.
 
 This non-authoritative assessment does not redefine gates or duplicate current
 delivery status. Run-level authority remains in root `README.md` and
-`eval\results\README.md`.
+[`eval\results\README.md`](../eval/results/README.md). The frozen,
+machine-readable scenario contract is
+[`eval\spec\acceptance.json`](../eval/spec/acceptance.json).
 
 | Contract area | Current evidence | Interpretation and remaining limit |
 |---|---|---|
@@ -453,7 +455,8 @@ delivery status. Run-level authority remains in root `README.md` and
 
 ## 9. Controlled change and authority
 
-`eval\spec\acceptance.json` is the machine-readable scenario authority. Its
+[`eval\spec\acceptance.json`](../eval/spec/acceptance.json) is the
+machine-readable scenario authority. Its
 `design_contract` field names the bound design-contract bytes and their identity
 is recorded in this document's status statement. This panel summary and the
 reviewer procedure above explain the rationale and review method; they do not
