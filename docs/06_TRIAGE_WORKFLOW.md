@@ -1,9 +1,9 @@
 # Fail-Closed Triage Workflow
 
-The workflow combines model assessment with deterministic validation, urgency,
-review routing and publication. The root artifact is a hash-checked,
-byte-identical promotion of a published experimental output. Semantic review
-remains provisional, and human approval is required.
+This document explains how a validated input snapshot becomes draft tickets,
+where model judgment stops, and how the workflow fails without publishing a
+partial batch. It describes runtime behavior; it does not claim that code can
+prove engineering correctness.
 
 ## Abstract
 
@@ -21,18 +21,33 @@ This boundary does not make model output correct or deterministic. It makes
 failure visible and prevents invalid, partial or unsupported output from looking
 like a successful current delivery.
 
+For this document:
+
+- **L** is likelihood of failure, **I** is impact of failure and **U** is
+  code-derived urgency, all on the declared 1-10 ordinal scale.
+- **SCE** means Safety Critical Element.
+- An **activation** is the reviewed manifest that pins the knowledge release,
+  selector, prompt and policy identities for a run.
+- Every generated batch requires ordinary human approval. The ticket field
+  `review_required` marks an additional exceptional check before work-queue
+  entry; it does not replace that universal approval.
+
+Sections 1-3 explain the execution and failure path, section 4 defines urgency,
+sections 5-7 cover context, publication and human review, and sections 8-10
+state the observed evidence and remaining limits.
+
 ### Module boundary and dependency direction
 
-The workflow does not extract or maintain domain guidance. It asks
-`triage_knowledge` for a pinned, validated context bundle and then treats that
-bundle as an input contract:
+The workflow does not extract or maintain domain guidance.
+`triage_knowledge` creates the pinned context bundle, `llm_inference` performs
+one observable model call at a time, and `triage` owns the orchestration:
 
 ```text
-llm_inference  -> one observable model call
-triage_knowledge -> one validated knowledge/context bundle
-                         |
-                         v
-triage -> assessment orchestration, policy, attempts and atomic publication
+triage_knowledge -> validated context bundle --+
+                                               |
+triage ----------------------------------------+-> llm_inference
+  |                                                one model call
+  +-> validation -> policy -> complete batch -> atomic publication
 ```
 
 This separation allows knowledge sources, extraction and retrieval to evolve
@@ -46,12 +61,14 @@ source maintenance and operational execution one permission surface. A change to
 PSV guidance could then require editing orchestration code, while a workflow
 developer could silently alter the knowledge authority.
 
-## 1. Workflow question
+## 1. End-to-end execution
 
 The brief requires more than generating 21 JSON objects. The system
 must explain what happens when output is malformed, structurally invalid,
-semantically wrong or impossible to support. It must also document how knowledge
-reaches assessment, derive urgency in code and defer to a human.
+violates an enforceable semantic contract or cannot support a score. It must also
+document how knowledge reaches assessment, derive urgency in code and defer to a
+human. Separate semantic and human review remain necessary because code cannot
+prove that every plausible score is correct.
 
 The implemented lifecycle is:
 
@@ -78,7 +95,9 @@ workflow did not directly publish the root file.
 
 The assessment system prompt is a packaged workflow artifact, not inline Python
 or mutable runtime configuration. Activation pins its exact bytes and contract
-bindings. Loading or compatibility failure occurs before provider dispatch.
+bindings in
+[`config\triage-activation.json`](../config/triage-activation.json). Loading or
+compatibility failure occurs before provider dispatch.
 
 ### Prompt authority and controlled change
 
@@ -109,18 +128,19 @@ detect every semantic conflict between prompt, policy and knowledge. Some domain
 interpretation remains embedded in the packaged prompt; that is a disclosed
 compatibility risk, not an achieved clean authority separation.
 
-The route places that prompt as a replace-mode system message and records the
-separation as requested rather than proving raw provider equivalence. A
-knowledge change that overlaps interpretation embedded in the active prompt
-therefore requires focused prompt-compatibility review before activation; it is
-not assumed to override prompt wording.
+The Copilot route sends the packaged prompt as the system message. Retained
+evidence records that requested separation but cannot prove how the provider
+handles messages internally. A knowledge change that overlaps interpretation
+in the active prompt therefore requires focused prompt-compatibility review
+before activation; it is not assumed to override prompt wording.
 
 Prompt changes therefore follow the controlled-change boundary. Each removed
 clause needs a destination, provenance and focused regression evidence.
 Code/schema duplication is removed only after deterministic enforcement and
 behavioral preservation are demonstrated. A shorter prompt is not promoted
 merely because it is easier to maintain or cheaper to send. This gate applies
-to future changes; the current prompt remains a disclosed compatibility surface.
+to future changes. The current prompt still contains some domain interpretation,
+so maintainers must review it when overlapping knowledge changes.
 
 ## 2. Responsibility boundary
 
@@ -164,6 +184,18 @@ feedback. This includes named evidence, fact, planning and policy-verification
 violations; unsupported semantic uncertainty is not repaired by silently
 changing a score. When both attempts fail, the application exits nonzero and
 publishes nothing.
+
+Each send is reserved in a persistent ledger before provider dispatch. A process
+interruption therefore consumes the reservation instead of resetting the
+configured run budget. The application allows at most two sends for one finding,
+but provider-internal retries can only be counted when the route exposes them;
+the Copilot delivery route did not expose hidden HTTP attempts.
+
+These validators catch defined semantic errors such as invented citations,
+contradictory fact states and unsupported required activities. A schema-valid
+but poorly judged adjacent score can still pass code validation. That case
+requires the separate semantic-review and human-approval layers, and current A04
+evidence remains partial.
 
 ### Why one repair
 
@@ -218,10 +250,11 @@ formula behavior, not domain calibration.
 
 ## 5. Context and knowledge safeguards
 
-Every assessment receives the selected finding, complete bounded registry,
-engineer comments, related evidence and the active source-faithful knowledge
-release. Production code independently rebuilds and hash-checks the context
-before dispatch. Evaluation cards, expected answers and reviewer judgments are
+Each per-finding model call identifies one target finding, but its shared context
+payload contains **every finding in that run's input CSV**, the complete bounded
+registry and engineer comments, derived history, and the active source-faithful
+knowledge release. Production code rebuilds and hash-checks that payload before
+dispatch. Evaluation cards, expected answers and reviewer judgments are
 excluded.
 
 Full bounded context was chosen because the supplied corpus is small and
@@ -230,9 +263,15 @@ measured token cost and does not prove that the model used every relevant item.
 The bounded knowledge-influence experiment supports one declared synthetic
 positive and negative-control scope; it is not production domain certification.
 
+This design is valid for the final delivery because its input is all 21
+findings. It violated B01 when the development run selected 13 output findings
+but supplied the all-21 CSV: every development provider request also contained
+the eight test finding records. That is an evaluation-isolation failure, not a
+failure of the final all-21 generation.
+
 ## 6. Complete-batch publication
 
-The public wrapper must contain exactly one ticket for every input finding.
+The output JSON must contain exactly one ticket for every input finding.
 Publication occurs only after batch-level identity and coverage validation. A
 temporary file is flushed and atomically substituted on the same volume; if
 replacement fails, old bytes remain.
@@ -251,8 +290,8 @@ not weaken final all-or-nothing publication.
 
 There are three valid outcomes:
 
-1. a supported draft;
-2. a supported draft with a specific additional check; or
+1. a draft ticket with no exceptional prequeue check;
+2. a draft ticket with a specific additional check; or
 3. terminal inability to produce the batch.
 
 `review_required` does not mean “the score may be unsupported.” It identifies a
@@ -267,33 +306,36 @@ concrete `Why:` explanation and verification check.
 
 ## 8. Current assessment of the workflow design
 
-| Design hypothesis | Current evidence | Interpretation and remaining limit |
+| Question | Evidence | Current conclusion |
 |---|---|---|
-| Deterministic controls remain outside the model | Fault and behavior tests cover schema, identity, bounded repair, exhaustion, urgency and atomic publication. | **Pass for tested control behavior.** Formula behavior is not calibrated risk truth. |
-| Knowledge reaches assessment without becoming policy | Captured provider-bound context and a bounded positive/negative comparison exercise the boundary. The retained development runs also sent TEST finding records in provider context. | **Delivery observed; B01 not met for the retained development runs.** Broad causal use remains inconclusive, and the evidence is not domain certification. |
-| Fixed-identity comparison exposes decision drift | The current X01 comparison preserves operational routing while disclosing numeric and rule-trace drift. | **Inconclusive for full X01 acceptance.** Its semantic observations use a supplementary procedure and lack complete reviewer identity. |
-| Complete-batch publication is observable | The experimental 21-ticket output has a verified publication receipt; root `tickets.json` is byte-identical by SHA-256 but was promoted outside the workflow. | **Pass for the observed experimental publication and hash-checked promotion.** The root file has no separate workflow receipt; human approval remains required and clean-checkout reproduction is unresolved. |
-| Semantic quality is reviewed separately | The retained all-finding review reports no failed dimensions. | **Inconclusive for protocol-conformant acceptance.** Required reviewer identity fields were not exposed. |
-| Accounting limits remain visible | Retained evidence exposes application sends, latency and provider metering. Measured input/output tokens produce a US$2.350286 API-equivalent estimate for the retained delivery under declared public rates. | **Partial.** The estimate is reproducible; actual Copilot billing allocation and hidden HTTP attempts remain unknown. |
+| Are deterministic controls outside the model? | [Production tests](../tests/test_triage.py) and [fault evidence](../eval/results/triage/native-v2-fault-evidence-1/report.json) cover schema, identity, bounded repair, exhaustion, urgency and publication. | Supported for tested control behavior; formula behavior is not calibrated risk truth. |
+| Does knowledge reach assessment without becoming policy? | [Final provider-bound context](../eval/results/triage/structured-planning-v31/final/evidence/run.json) shows delivery; the [B01 audit](../eval/results/triage/structured-planning-v31/b01-development-context-audit.json) shows TEST findings in DEV context. | B01 is not met for the retained development runs. Broad causal use remains inconclusive, and the evidence is not domain certification. |
+| Does fixed-identity comparison expose decision drift? | The [X01 adjudication](../eval/results/triage/structured-planning-v31/x01-development-adjudication.json) preserves operational routing while disclosing numeric and rule-trace drift. | Inconclusive for full X01 acceptance because the semantic procedure was supplementary and reviewer identity was incomplete. |
+| Is complete-batch publication observable? | The experimental output has a [publication receipt](../eval/results/triage/structured-planning-v31/final/evidence/publication.json); root `tickets.json` is byte-identical by SHA-256 but was promoted outside the workflow. | Supported for the observed publication and hash-checked promotion. The root file has no separate workflow receipt; human approval and clean-checkout reproduction remain unresolved. |
+| Was semantic quality reviewed separately? | The [all-finding review](../eval/results/triage/structured-planning-v31/final/reviewer-observation.json) reports no failed dimensions. | Inconclusive for protocol-conformant acceptance because required reviewer identity fields were not exposed. |
+| Are accounting limits visible? | [Delivery cost evidence](../eval/results/delivery-cost-summary.json) records application sends and provider metering. Measured tokens produce a US$2.350286 API-equivalent estimate under declared public rates. | Partial: the estimate is reproducible; actual Copilot billing allocation and hidden HTTP attempts remain unknown. |
 
-The evidence authority is `eval\results\README.md`. Test counts, evaluator
-self-tests and AI review are never presented as equivalent to system acceptance.
+The evidence authority is
+[`eval\results\README.md`](../eval/results/README.md). Test counts, evaluator
+self-tests and AI review are not equivalent to system acceptance.
 
 ### Cost interpretation
 
 The retained 21-ticket delivery used 973,468 input and 40,335 output tokens
 (US$2.350286 API-equivalent under the declared public rates, not a Copilot
-invoice). Document 04 §6 owns the calculation, cache-aware scenario and billing
-limits; the underlying totals and assumptions are retained in the
-[delivery cost evidence](..\eval\results\delivery-cost-summary.json).
+invoice). [Document 04 section 6](04_INFERENCE_LIBRARY.md#6-reproducibility-and-cost-limits)
+owns the calculation, cache-aware scenario and billing limits; the underlying
+totals and assumptions are retained in the
+[delivery cost evidence](../eval/results/delivery-cost-summary.json).
 
 ## 9. Current provenance and disclosure
 
 The current policy and configuration are informed by exposed evaluation
 evidence, so the retained observations are not independent confirmation of
 stable quality. The high-impact SCE urgency floor protects the supplied
-low-L/high-I corner and remains project-defined and uncalibrated. Document 03
-§6 defines the fixed-identity reliability protocol; current evidence does not
+low-L/high-I corner and remains project-defined and uncalibrated.
+[Document 03 section 6](03_EVALUATION_ACCEPTANCE.md#6-cross-cutting-evidence)
+defines the fixed-identity reliability protocol; current evidence does not
 establish a clean checkout reproduction or independent reviewer authority.
 
 ## 10. Assumptions and limitations
