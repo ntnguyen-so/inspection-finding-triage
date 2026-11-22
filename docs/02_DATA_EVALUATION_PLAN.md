@@ -1,8 +1,8 @@
 # Data, Context and Evaluation Boundaries
 
-This document explains what the supplied data can support, how cases and context
-are separated, and which evidence classes must remain distinct. Executable
-membership and fingerprints remain authoritative in `eval\spec`.
+The evaluation design defines what the supplied data can support, how cases and
+context are separated, and which evidence classes must remain distinct.
+Executable membership and fingerprints remain authoritative in `eval\spec`.
 
 ## Abstract
 
@@ -123,7 +123,7 @@ Exact expected scores would manufacture precision and encourage case-specific
 branches.
 
 **Rejected alternative.** A single “correct” L/I/U tuple per finding would turn
-candidate judgment into an invented oracle.
+engineering judgment into an invented oracle.
 
 ### Decision 5 — Keep observations outside specifications
 
@@ -225,5 +225,5 @@ Document 03 §9 defines the current controlled-change procedure.
 - Acceptance scenarios and semantic reviewer protocol:
   `docs\03_EVALUATION_ACCEPTANCE.md`
 - Observed outcomes: `eval\results\README.md`
-- Current delivery status and panel path: root `README.md`
+- Current delivery status and run instructions: root `README.md`
 - Detailed observed evidence and limitations: `eval\results\README.md`

@@ -1,8 +1,7 @@
 # Inference Boundary and Provider Control
 
-This document describes the provider boundary and the evidence retained around
-it. A successful provider call establishes transport behavior, not ticket
-quality.
+The inference boundary isolates provider transport from ticket policy. A
+successful provider call establishes transport behavior, not ticket quality.
 
 ## Abstract
 
@@ -11,18 +10,18 @@ hash-identified assessment request to an explicitly selected provider route and
 return an observable response or failure. It does not own ticket policy, urgency,
 workflow retries, publication or semantic acceptance.
 
-This boundary follows the Candidate Brief’s permission to use provider SDKs while
-requiring candidate-owned orchestration. It also responds to an empirical
+The brief permits provider SDKs but requires repository-owned orchestration. The
+boundary also responds to an empirical
 constraint: real providers returned malformed JSON, schema violations, token
 exhaustion and timeouts. Provider structured output is therefore a useful first
 line, not a trust boundary.
 
-There was also a practical economic reason to make inference replaceable. The
-candidate already had a GitHub Copilot CLI subscription that exposed the coding
-models used during development without a separately visible per-call API charge.
-Using that entitlement made repeated development probes materially cheaper than
-funding every iteration through a separately billed OpenAI or Azure route. The
-module prevents that cost choice from becoming workflow architecture.
+There was also a practical economic reason to make inference replaceable. An
+existing GitHub Copilot CLI subscription exposed the coding models used during
+development without a separately visible per-call API charge. Using that
+entitlement made repeated probes materially cheaper than funding every iteration
+through a separately billed OpenAI or Azure route. The module prevents that
+cost choice from becoming workflow architecture.
 
 ## 1. Why this component exists
 
@@ -49,7 +48,7 @@ The component answers four questions:
 It does **not** answer whether L/I are defensible or whether a maintenance action
 is operationally correct.
 
-## 2. Candidate Brief trace
+## 2. Requirements mapped to inference design
 
 | Brief expectation | Inference design response |
 |---|---|
@@ -59,8 +58,8 @@ is operationally correct.
 | Reproducible model instructions | The workflow supplies an exact, hash-pinned packaged prompt artifact; the adapter records the transmitted system hash |
 | Human deferral | Refusal, timeout or exhausted output budget returns failure; the adapter does not invent a fallback ticket |
 
-The strict interpretation of observable attempts is a candidate-owned policy,
-not wording supplied by Falkor.
+The strict interpretation of observable attempts is a project-defined policy,
+not a requirement stated by the brief.
 
 ## 3. Design decisions
 
@@ -86,8 +85,8 @@ and delivery experiments, while keeping the same application contract portable
 to direct Azure or another supported provider. Route identity is part of every
 observation; no provider is accepted merely because it completes a batch.
 
-**Rationale.** The subscription reduced the candidate's marginal cash cost and
-made it practical to probe multiple models and failure modes. A dedicated
+**Rationale.** The subscription reduced marginal development cost and made it
+practical to probe multiple models and failure modes. A dedicated
 inference module preserved direct Azure as a comparison route with disabled SDK
 retries, explicit ledgers and provider usage fields. Azure observations exposed
 useful transport/accounting differences, but their retained semantic and
@@ -218,8 +217,8 @@ using the configured model's OpenAI Standard short-context rates published at
 on 2026-11-18.
 The production workflow records raw usage and leaves `usd_cost` null; it does not
 calculate this proxy. The repository's controlled-experiment helper implements
-the same rate formula, and this document applies it transparently to the retained
-run receipts. The simple estimate deliberately ignores cache adjustments so that
+the same rate formula, which is applied transparently to the retained run
+receipts. The simple estimate deliberately ignores cache adjustments so that
 it depends only on the measured input/output totals named in the formula.
 
 The retained receipt also exposes 143,251 cache-read tokens, 830,154 cache-write
@@ -244,8 +243,8 @@ pricing assumptions are indexed in `eval\results\README.md`.
 ## 7. Assumptions and limitations
 
 - Provider SDK behavior is observable only to the extent exposed by the route.
-- The candidate's existing Copilot entitlement is a personal development
-  constraint, not an availability or pricing assumption for reviewers.
+- The existing Copilot entitlement is a development constraint, not a general
+  availability or pricing assumption.
 - Account isolation, caches and hidden transport retries are not inferred from a
   model label.
 - A response hash proves byte identity of the retained response, not how hidden

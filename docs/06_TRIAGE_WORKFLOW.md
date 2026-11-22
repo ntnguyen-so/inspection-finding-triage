@@ -1,8 +1,9 @@
 # Fail-Closed Triage Workflow
 
-This document explains the workflow and its deterministic controls. The root
-artifact is a hash-checked, byte-identical promotion of a published experimental
-output. Semantic review remains provisional, and human approval is required.
+The workflow combines model assessment with deterministic validation, urgency,
+review routing and publication. The root artifact is a hash-checked,
+byte-identical promotion of a published experimental output. Semantic review
+remains provisional, and human approval is required.
 
 ## Abstract
 
@@ -47,7 +48,7 @@ developer could silently alter the knowledge authority.
 
 ## 1. Workflow question
 
-The Candidate Brief requires more than generating 21 JSON objects. The system
+The brief requires more than generating 21 JSON objects. The system
 must explain what happens when output is malformed, structurally invalid,
 semantically wrong or impossible to support. It must also document how knowledge
 reaches assessment, derive urgency in code and defer to a human.
@@ -172,7 +173,8 @@ fault while keeping the maximum batch budget finite. More retries would increase
 cost and create optional stopping; zero repair would discard observed cases where
 the same model corrected malformed JSON or a schema violation.
 
-The two-attempt limit is a project policy, not a Falkor requirement.
+The two-attempt limit is a project policy, not a requirement stated by the
+brief.
 
 ## 4. Urgency and fact-state policy
 
@@ -191,8 +193,8 @@ urgency is generally closer to the maximum; that statement conflicts with the
 explicit high-likelihood/low-impact example that may wait for shutdown. The
 prototype resolves the ambiguity by weighting impact: it is closer to the
 maximum when `I >= L`, but deliberately follows the explicit shutdown example
-when `L > I`. The 0.7 weight is a candidate interpretation, not calibrated risk
-mathematics.
+when `L > I`. The 0.7 weight is a project-defined interpretation, not
+calibrated risk mathematics.
 
 | L / I | Chosen base | Interpretation |
 |---|---:|---|
@@ -201,7 +203,7 @@ mathematics.
 | 1 / 10 | 8 | Rare catastrophic consequence still receives prompt attention |
 | 10 / 10 | 10 | High/high reaches the ceiling |
 
-Supplied overrides require confirmed facts. Candidate-owned precautions and
+Supplied overrides require confirmed facts. Project-defined precautions and
 review rules are separately labelled. Unknown deviation, personnel-on-board,
 restoration or partner state cannot be converted into a confirmed trigger.
 
@@ -307,7 +309,7 @@ Document 04 owns the detailed provider/accounting rationale.
 The current policy and configuration are informed by exposed evaluation
 evidence, so the retained observations are not independent confirmation of
 stable quality. The high-impact SCE urgency floor protects the supplied
-low-L/high-I corner and remains candidate-owned and uncalibrated. Document 03
+low-L/high-I corner and remains project-defined and uncalibrated. Document 03
 §6 defines the fixed-identity reliability protocol; current evidence does not
 establish a clean checkout reproduction or independent reviewer authority.
 

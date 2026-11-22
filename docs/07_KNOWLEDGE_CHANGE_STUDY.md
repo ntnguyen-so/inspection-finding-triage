@@ -1,15 +1,14 @@
 # Knowledge Change: Maintenance Path and Observed Impact
 
-This test-informed study demonstrates the maintenance mechanism and a bounded
-behavior influence. It does not certify the experimental PSV guidance or
-authorize production use.
+The test-informed study exercises the maintenance mechanism and measures one
+bounded behavior influence. It does not certify the experimental PSV guidance
+or authorize production use.
 
 ## Abstract
 
-The Candidate Brief asks:
-
-> An integrity engineer needs to change how PSV findings are scored six months
-> from now. What do they modify?
+The brief asks what an integrity engineer would modify to change how PSV
+findings are scored six months from now. The study answers that question and
+tests the answer.
 
 For a new source-backed PSV interpretation **inside the existing assessment
 rubric**, they add or replace an approved knowledge source, review the extracted
@@ -43,7 +42,7 @@ The correct edit surface depends on what the engineer is actually changing:
 | New approved PSV evidence or interpretation within the existing L/I rubric | A source under the knowledge lifecycle, followed by review, immutable publication and separate activation; if it overlaps prompt-embedded interpretation, complete the Document 06 compatibility review before activation | Ad-hoc prompt surgery, orchestration code or finding-specific branches |
 | A new generic likelihood or impact anchor | `triage\assessment_policy.py` and focused tests | Knowledge text pretending to override the scoring contract |
 | A new urgency floor or exceptional-review rule | `triage\policy.py` and focused tests | Model instructions asking it to choose urgency |
-| A new fact about one valve | A new registry snapshot supplied to the run | The preserved candidate package or general knowledge release |
+| A new fact about one valve | A new registry snapshot supplied to the run | The preserved supplied package or general knowledge release |
 | A selector or extraction behavior change | `triage_knowledge` retrieval/extraction code and controlled component evaluation | The source guidance itself |
 
 This separation matters. Knowledge owns approved engineering interpretation;
@@ -56,8 +55,8 @@ omission failures at the cost of more input tokens. Immutable releases and
 separate activation make each change reviewable, reconstructable and rejectable
 without prompt surgery.
 
-Document 05 defines the production architecture and commands. This document
-shows what happened when that maintenance path was exercised.
+Document 05 defines the production architecture and commands. The study records
+what happened when that maintenance path was exercised.
 
 The official-store full-batch exercise used `gpt-6.1-sol` and
 `triage-policy-v11`; it predates the delivered `triage-policy-v16` behavior
@@ -242,9 +241,9 @@ same baseline release; it had not been moved to an experimental release. Root
 This is the intended governance behavior: a release may prove that the mechanism
 works and still be rejected as engineering authority.
 
-## 7. Candidate-brief evidence map
+## 7. Requirement coverage
 
-| Candidate-brief question | Repository answer | Evidence status |
+| Requirement | Repository answer | Evidence status |
 |---|---|---|
 | How does `domain_knowledge.md` reach the model? | Preserved source bytes become reviewed release items, are selected into hash-bound context and are revalidated before provider dispatch | B01 delivery evidence exists; delivery alone does not prove use |
 | How does `engineer_comment` reach the model? | The selected registry snapshot and comments are included as source-addressable context | Captured provider context and component checks |

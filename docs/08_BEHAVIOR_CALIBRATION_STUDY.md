@@ -1,6 +1,6 @@
 # Behavior Calibration: Observed Changes and Remaining Work
 
-This test-informed calibration study reports observed system behavior and
+The test-informed calibration study reports observed system behavior and
 rejected interventions. Because the interventions were not controlled as
 single-variable experiments, the study does not establish domain-certified
 scores or accuracy on unseen cases.
@@ -16,14 +16,14 @@ Open both files and compare tickets with the same `finding_id`. Section 5 below
 highlights five representative changes; section 4 gives the complete aggregate
 comparison.
 
-In this document, **v5 means `triage-policy-v5`**, the baseline version of the
+Here, **v5 means `triage-policy-v5`**, the baseline version of the
 code-owned urgency and review policy recorded in each ticket's urgency
 rationale. It is not model version 5, Document 05 or the version of the whole
 system. The baseline also used a different model, prompt/context and assessment
 implementation, so the two files are a system-level before/after comparison,
 not a policy-only A/B test.
 
-The baseline link is a byte-identical panel-facing copy of
+The baseline link is a byte-identical retained copy of
 `eval/results/triage/copilot-gpt6-current-all21/tickets.experimental.json` from
 the retained lossless archive. Its hash matches the archived manifest; no ticket
 was regenerated or edited for this comparison.
@@ -55,10 +55,9 @@ limits.
 
 ## 1. Why this study exists
 
-This document began as the record of consequence-anchor, review-routing and
-urgency-policy experiments. Knowledge lifecycle architecture now belongs in
-Document 05, the knowledge change experiment in Document 07, and workflow policy
-in Document 06. This study returns to one question:
+Knowledge lifecycle architecture is covered in Document 05, the knowledge
+change experiment in Document 07, and workflow policy in Document 06. This study
+focuses on one question:
 
 **What changed in generated triage behavior, why did it change, and what remains
 to calibrate?**
@@ -147,8 +146,8 @@ personnel exposure and major-accident potential rather than assigning one
 default high anchor. Severe personnel or major-accident consequences remain high
 where evidence supports them.
 
-The operational-function interpretation is a candidate design choice, not a
-supplied domain rule or independently certified truth. It remains a point for
+The operational-function interpretation is a project-defined design choice, not
+a supplied domain rule or independently certified truth. It remains a point for
 domain-owner confirmation.
 
 ### 3.2 Fact and uncertainty treatment
@@ -328,7 +327,7 @@ incomplete.
   otherwise hide less uncertainty surfacing.
 - Most score changes are adjacent-anchor moves and may include normal model
   variation.
-- The operational-function assessment convention is candidate-owned and awaits
+- The operational-function assessment convention is project-defined and awaits
   domain-owner confirmation.
 - The reviewer is AI-only and not an independent domain expert.
 - The split is non-blind and AI-assisted.
@@ -340,7 +339,7 @@ The calibration surface has three authority classes.
 
 ### 8.1 Source-owned constraints
 
-These are inputs to honor, not candidate tuning knobs:
+These are fixed inputs, not calibration controls:
 
 - explicit source timing or attention instructions;
 - supplied override conditions and domain rules; and
@@ -349,7 +348,7 @@ These are inputs to honor, not candidate tuning knobs:
 Changing them requires source-backed correction or an authorized contract
 change.
 
-### 8.2 Candidate-owned policy
+### 8.2 Project-defined policy
 
 These can be calibrated with controlled evidence:
 
@@ -401,7 +400,7 @@ completed or universally transferable calibration.
 | Claim | Evidence |
 |---|---|
 | Baseline 19/21 U7-U9, 21/21 review and impact concentration | `eval\results\design-behavior-demonstration.json` |
-| Baseline raw tickets | [Direct panel copy](../eval/results/behavior-calibration/baseline-triage-policy-v5-tickets.json), lossless archive and manifest under `eval\results` |
+| Baseline raw tickets | [Retained baseline copy](../eval/results/behavior-calibration/baseline-triage-policy-v5-tickets.json), lossless archive and manifest under `eval\results` |
 | Current-policy replay of baseline, near-control and current assessment inputs | `eval\results\behavior-calibration-replay.json` |
 | Current L/I/U and review dispositions | Root `tickets.json` |
 | Current exact-artifact review and run identity | `eval\results\triage\structured-planning-v31\final\reviewer-observation.json` |
@@ -414,8 +413,7 @@ completed or universally transferable calibration.
 
 ## 15. Controlled-change disclosure
 
-This section number remains because the owner-controlled `DESIGN.md` references
-it. Calibration used exposed findings and is therefore test-informed rather than
+Calibration used exposed findings and is therefore test-informed rather than
 blind. Failed experiments and prior outputs remain retained; the final file was
 regenerated through general mechanisms rather than hand-corrected. No source
 package, split, evidence card, expected answer or evaluator rule was weakened to

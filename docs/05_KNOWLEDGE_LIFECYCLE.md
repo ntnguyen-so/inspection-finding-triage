@@ -1,6 +1,6 @@
 # Source-First Knowledge Lifecycle
 
-This document describes the knowledge architecture and maintenance interface.
+The knowledge architecture separates source maintenance from runtime authority.
 Extraction experiments and change-study results are evidence rather than
 runtime authority; current observations remain in Document 07 and
 `eval\results`.
@@ -127,7 +127,7 @@ The edit surface depends on what changed:
 | Requested change | Correct change surface |
 |---|---|
 | New general PSV evidence or interpretation inside the existing rubric | Add a separately approved source; import, review and publish a new knowledge release; if guidance overlaps prompt-embedded interpretation, complete the Document 06 compatibility review before activation |
-| New fact about one asset | Create a new registry snapshot outside the supplied candidate package and pass it with `--registry`; do not edit the preserved source package |
+| New fact about one asset | Create a new registry snapshot outside the supplied package and pass it with `--registry`; do not edit the preserved source package |
 | New generic L/I anchor or scoring rule | Update `triage\assessment_policy.py` and focused tests |
 | New urgency threshold or review floor | Update `triage\policy.py` and focused tests |
 | New extraction grammar or selector behavior | Update `triage_knowledge\source.py` or retrieval code and rerun the controlled component evaluation |
@@ -177,6 +177,6 @@ work; Document 04 records the calculation and billing boundary.
 
 ## 7. Reader path
 
-- Current architecture and maintenance interface: this document.
+- Current architecture and maintenance interface: sections 1-6 above.
 - Knowledge lifecycle validation study: Document 07.
 - Observed evidence: `eval\results\README.md` and `eval\results\knowledge`.

@@ -1,7 +1,7 @@
-# From Candidate Brief to Engineering Problem
+# Requirements and Design Principles
 
-This document frames the requirements and design choices. Implementation and
-acceptance evidence are recorded separately.
+Requirements analysis and design principles are separated from implementation
+and acceptance evidence.
 
 ## Abstract
 
@@ -14,18 +14,17 @@ The central design problem is therefore: **where should probabilistic
 interpretation stop and predictable software control begin?** The supplied
 material requires an LLM or equivalent reasoning component to interpret
 free-text evidence, but explicitly requires code-derived urgency and a human
-approval boundary. This document derives the engineering questions from the
-Candidate Brief and domain notes, identifies the assumptions that the source
-package does not resolve, and records the design principles applied by the
-current triage workflow.
+approval boundary. The resulting engineering questions expose assumptions that
+the source package does not resolve; the sections below set out the design
+principles used by the current triage workflow.
 
-## 1. What Falkor actually asks the candidate to demonstrate
+## 1. Requirements and engineering questions
 
 The required deliverable is one generated `tickets.json` containing a draft for
 each of 21 findings. The brief creates the following connected engineering
 questions:
 
-| Candidate Brief expectation | Engineering question created |
+| Brief requirement | Engineering question |
 |---|---|
 | Structured tickets and explicit failure behavior | How can malformed, structurally invalid and semantically unsupported output remain visibly different? |
 | Maintainable domain knowledge | How do source rules and `engineer_comment` reach assessment, and what does an engineer edit six months later? |
@@ -162,7 +161,7 @@ required file's meaning and move failure detection onto downstream readers.
 
 The provider and model, numeric L/I rubric, urgency formula, knowledge packaging,
 atomic replacement mechanism and review-routing thresholds are engineering
-choices, not requirements supplied by Falkor.
+choices, not requirements supplied by the brief.
 
 ## 4. Current assessment of the design hypotheses
 
@@ -172,14 +171,13 @@ different claims and are not interchangeable.
 | Design principle | Current evidence | Interpretation and remaining limit |
 |---|---|---|
 | Treat the model as an assessor | Current tests and run evidence show that identity, coverage, urgency and publication remain code-owned while provider failures stay visible. | **Supported at the application boundary.** Measured token usage supports an approximately US$2.35 API-equivalent estimate for the retained delivery; hidden provider retries and the actual Copilot billing allocation remain unknown. |
-| Preserve uncertainty | Unsupported scores fail instead of receiving defaults; the current root delivery has six explicit exceptional-review routes while every draft still requires ordinary approval. | **Supported provisionally.** The routing threshold remains candidate-owned and operationally uncalibrated. |
+| Preserve uncertainty | Unsupported scores fail instead of receiving defaults; the current root delivery has six explicit exceptional-review routes while every draft still requires ordinary approval. | **Supported provisionally.** The routing threshold remains project-defined and operationally uncalibrated. |
 | Use supplied sources as bounded authority | The source-first lifecycle supports edit, review, immutable release and separate activation. Current B02 evidence includes one bounded synthetic influence comparison with a negative control (Document 07; evidence indexed in `eval\results\README.md`). | **Partially supported.** Maintainability and one isolated influence claim are demonstrated; broad causal use and domain correctness are not. |
 | Evaluate semantics separately from structure | The current root artifact is contract-valid and has a provisional 63-dimension AI review whose reviewer identity is incomplete under the declared protocol. | **Supported as an evaluation principle.** AI review is not expert certification or human approval. |
 | Publish a complete batch or fail closed | Current fault tests preserve old output on handled failures. The 21-ticket experimental output has a verified publication receipt, and root `tickets.json` is byte-identical by SHA-256 after separate promotion. | **Supported for current code, observed experimental publication and hash-checked promotion.** The root copy has no separate workflow receipt; clean-checkout reproduction remains unresolved, and the design sacrifices partial availability. |
 
-Detailed observations and current gate status remain in root `README.md` and
-`eval\results\README.md`; this section records what those observations imply
-for the initial design reasoning.
+Root `README.md` and `eval\results\README.md` contain the detailed observations
+and current gate status.
 
 ## 5. Assumptions requiring explicit ownership
 
@@ -197,28 +195,27 @@ for the initial design reasoning.
 
 Numeric calibration, acceptable false-positive cost and the organization’s final
 review-routing policy are not supplied. The prototype must therefore label its
-thresholds as candidate-owned policy rather than Falkor-certified truth.
+thresholds as project-defined policy rather than certified engineering truth.
 
 ## 6. Requirement-to-evidence chain
 
 The requirement-to-evidence chain is:
 
 ```text
-Candidate Brief and domain notes
+Brief and domain notes
   -> Document 02: data, context and evidence boundaries
   -> Document 03: observable acceptance and fixed-identity reliability protocol
   -> Documents 04-06: component and workflow decisions
   -> Documents 07-08: controlled knowledge and behavior studies
-  -> root README + eval\results: submission status, observations and limits
+  -> root README + eval\results: delivery status, observations and limits
 ```
 
 The current system and observed status are described in `DESIGN.md` and
 `eval\results\README.md`.
 
-## 7. Limits of this document
+## 7. Known limitations
 
-This analysis can establish traceability from the assignment to engineering
-questions. It cannot establish that the chosen urgency policy is calibrated,
-that the model uses delivered knowledge, that semantic review is correct, or
-that the generated drafts are operationally approved. Those require executable
-evidence and, for operational use, domain-owner judgment.
+Requirements traceability does not establish that the urgency policy is
+calibrated, that the model uses delivered knowledge, that semantic review is
+correct, or that generated drafts are operationally approved. Those claims
+require executable evidence and, for operational use, domain-owner judgment.
