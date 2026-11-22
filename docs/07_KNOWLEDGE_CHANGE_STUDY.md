@@ -29,6 +29,11 @@ Use this path when approved engineering guidance changes but the existing
 likelihood/impact rubric still applies.
 
 1. Create a new approved source file outside the preserved candidate package.
+   The retained
+   [experimental PSV source](../knowledge/source-documents/psv-seat-tightness-policy-2026-11.md)
+   shows the expected source-file format and provenance path. It was rejected
+   and has no runtime authority, so use it as an example only rather than as
+   approved guidance.
 2. Import, review and publish it:
 
    ```powershell
