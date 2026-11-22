@@ -24,6 +24,9 @@ The four engineering traps that shaped the design are:
 4. structural validity and engineering validity are different gates.
 
 The supporting decision trail is in [`docs\README.md`](docs/README.md).
+Sections A-D answer the four design questions in the Candidate Brief. Sections
+E-F summarize reproducibility and cost constraints; their detailed evidence is
+linked rather than repeated here.
 
 ## Architecture and responsibility boundary
 
@@ -145,9 +148,10 @@ validation, separate semantic review and human approval remain distinct.
 > `engineer_comment` reach the model, why is that mechanism used, and what does
 > an integrity engineer modify to change how PSV findings are scored?
 
-Every assessment receives:
+Each model call targets one finding, but the shared context contains:
 
-- the selected finding and its inspection metadata;
+- every finding in that run's input CSV, including the target finding and its
+  inspection metadata;
 - the complete bounded equipment registry, including `engineer_comment`;
 - deterministic same-equipment and declared relationship evidence;
 - reviewed, source-faithful domain items from the active immutable release; and
@@ -163,6 +167,13 @@ Production context excludes evaluation cards, expected answers and reviewer
 judgments. The workflow independently rebuilds and validates the expected
 context before provider dispatch.
 
+For the final delivery, the input CSV contains all 21 required findings, so this
+complete context is intentional. The retained development run selected 13
+output findings but still supplied the all-21 input CSV; every provider request
+therefore included the eight TEST finding descriptions. B01 is not met for that
+development/test isolation claim. The audit found no evaluator cards, expected
+answers or reviewer judgments in production context.
+
 Complete bounded context was chosen over vector RAG because the supplied corpus
 contains only 21 findings and 18 assets, while relationships can change the
 decision. This avoids ranking and omission failure modes at the cost of more
@@ -175,7 +186,7 @@ The correct edit surface depends on what changed:
 
 | Requested change | Owner and change surface |
 |---|---|
-| New approved PSV evidence or interpretation inside the existing rubric | Domain owner adds/replaces an approved source; a knowledge steward imports, reviews and publishes a new immutable release; a runtime approver activates it |
+| New approved PSV evidence or interpretation inside the existing rubric | Domain owner adds or edits an approved source; a knowledge steward imports, reviews and publishes a new immutable release; a runtime approver activates it |
 | A new fact about one valve | Asset-data owner supplies a new registry snapshot |
 | A generic likelihood/impact anchor | Application-policy owner changes `triage\assessment_policy.py` and focused tests; a runtime approver issues a new reviewed activation |
 | An urgency threshold or exceptional-review rule | Application-policy owner changes `triage\policy.py` and focused tests; a runtime approver issues a new reviewed activation |
@@ -262,8 +273,8 @@ The complete rule set and calibration history are in
 
 The system has three valid outcomes:
 
-1. a supported draft;
-2. a supported draft with a specific verification activity and, where material,
+1. a draft with no exceptional prequeue check;
+2. a draft with a specific verification activity and, where material,
    exceptional prequeue review; or
 3. terminal inability to produce the complete batch.
 
@@ -299,7 +310,8 @@ generation.
 > documented command. How can another engineer execute it, and what identifies
 > the exact inputs, configuration and output of a run?
 
-The root `README.md` documents one command for each supported provider:
+The root [`README.md`](README.md) documents setup and one end-to-end command for
+each supported provider:
 
 ```powershell
 .\.venv\Scripts\python.exe -B run_triage.py --provider copilot
@@ -307,9 +319,9 @@ The root `README.md` documents one command for each supported provider:
   --provider azure --model "<deployment-name>"
 ```
 
-The wrapper creates fresh configuration, evidence and attempt-ledger paths,
-then invokes the same production `triage` CLI used by the retained runs. A run
-binds:
+The wrapper creates fresh configuration, evidence and attempt-ledger paths, then
+invokes the same production `triage` CLI used by the retained runs. Each run
+records:
 
 - exact finding and registry hashes;
 - knowledge release and activation identity;
@@ -318,29 +330,17 @@ binds:
 - application sends, errors, exposed token usage and latency; and
 - publication receipt and final output SHA-256.
 
-The declared provider baseline uses the public model ID `gpt-6.1-sol` with
-medium reasoning on both routes. Azure additionally pins version `2026-09-29`,
-an 8,192-token output cap and a 300-second deadline, and rejects a deployment
-whose observed model identity differs. Copilot exposes the model ID but not its
-backend version, so route parity is explicit and auditable without claiming
-that the two hosted services are identical.
-
-The input package remains byte-preserved, direct dependencies are pinned, the
-activation is committed and successful publication is atomic. Deterministic
-tests cover wrapper configuration, activation compatibility, failure paths and
-the production workflow. Model output is not expected to be byte-identical
-between runs; reproducibility means that the same declared system can be
-identified, executed and audited without silently changing its inputs or
-policy.
+The declared baseline uses `gpt-6.1-sol` with medium reasoning. Azure also pins
+the deployment's observed model version and explicit request limits. Copilot
+does not expose its backend version, so the two routes are treated as auditable
+provider paths rather than claimed to be identical.
 
 The submitted root artifact was produced by the retained reviewed delivery and
-promoted byte-identically. An earlier execution-policy revision was replayed
-contract-valid across all 21 findings using the same `triage` CLI and source in
-`copilot_experiment` mode; that replay was not semantically reviewed and
-predates the current provider-parity changes. A separate Azure parity replay
-also generated all 21 tickets and records its own policy identity, tokens and
-publication receipt. These observations demonstrate both provider paths;
-semantic acceptance remains attached only to the reviewed submitted artifact.
+promoted byte-identically. Later Copilot and Azure replays generated
+contract-valid all-21 batches, but neither replaces semantic review of the
+submitted artifact. Model output is not expected to be byte-identical between
+runs; reproducibility here means that inputs, policy, provider settings, output
+and limitations can be identified and audited without silent substitution.
 
 ## F. Cost and run budget
 
@@ -351,62 +351,31 @@ semantic acceptance remains attached only to the reviewed submitted artifact.
 Application work is bounded structurally even though provider-level cost is
 only partially observable:
 
-- one assessment request is prepared per finding;
-- malformed or structurally invalid output receives at most one application
-  repair;
-- the persistent ledger prevents a restarted run from refunding spent
-  attempts;
+- at most two application sends are allowed for each of 21 findings;
+- each send is reserved in a persistent ledger before dispatch;
 - partial success is not published; and
-- the small fixed corpus uses complete bounded context instead of additional
-  retrieval infrastructure.
+- complete bounded context avoids adding retrieval infrastructure for this
+  small corpus.
 
-The application ceiling is 42 sends: at most two for each of 21 findings. This
-is not a provider-attempt or USD ceiling because Copilot can hide transport
-attempts and repair payloads may be larger than first attempts. The retained
-delivery needed no repairs: it used 21 application sends, 973,468 input tokens
-and 40,335 output tokens. Applying the declared public short-context rates of
-US$2 per million input tokens and US$10 per million output tokens gives:
+The application ceiling is therefore 42 sends, but this is not a provider-level
+attempt or USD ceiling because Copilot does not expose hidden HTTP retries. The
+retained delivery needed 21 sends, 973,468 input tokens and 40,335 output tokens.
+Its simple API-equivalent estimate is US$2.350286, or about US$0.111918 per
+ticket; a separately declared cache-aware scenario is US$2.493186. These are
+reproducible pricing scenarios, not a Copilot invoice.
 
-```text
-(973,468 * US$2 + 40,335 * US$10) / 1,000,000
-= US$2.350286
-```
-
-That is a reproducible API-equivalent estimate, about US$0.111918 per ticket,
-not a Copilot invoice. Applying the separately declared cache-read and
-30-minute cache-write assumptions gives a higher US$2.493186 scenario. The
-receipt reports 21 request-cost units and 249.31861 AI units. Copilot does not
-expose the subscription's per-run USD allocation, its AI-unit-to-USD conversion
-or hidden HTTP attempts, so those values remain unknown.
-
-The Azure parity replay measured 1,176,914 input tokens, including 18,097 cached
-tokens, and 44,921 output tokens across 22 sends. Applying Microsoft Azure's
-published GPT-6.1 Sol Global Standard rates of US$2 per million uncached input,
-US$0.10 per million cached input and US$10 per million output gives:
-
-```text
-(1,158,817 * US$2 + 18,097 * US$0.10 + 44,921 * US$10) / 1,000,000
-= US$2.7686537
-```
-
-This is a retail-rate estimate, not the invoiced charge. Azure subscription
-usage details had not posted a line item when queried immediately after the
-run, and contract discounts or later billing adjustments may change the actual
-amount. The pricing source is the
-[Azure OpenAI pricing page](https://azure.microsoft.com/en-us/pricing/details/azure-openai/);
-the measured usage and billing-query status are retained in
-[`azure-gpt61-parity-20261118-summary.json`](eval/results/inference/azure-gpt61-parity-20261118-summary.json).
+The Azure parity replay used 22 sends and reprices to US$2.7686537 under the
+declared public retail rates. Its actual invoiced amount was not available when
+checked. Exact usage, source-run hashes, rates and billing limitations are in
+[`delivery-cost-summary.json`](eval/results/delivery-cost-summary.json),
+[`azure-gpt61-parity-20261118-summary.json`](eval/results/inference/azure-gpt61-parity-20261118-summary.json)
+and [Document 04](docs/04_INFERENCE_LIBRARY.md).
 
 Input represents about 82.8% of the simple estimate. Complete context was still
 chosen for this small corpus because relationship omissions were a larger
 prototype risk than the measured cost. If the corpus grows, safe context
 reduction is the first cost optimization to evaluate; it must demonstrate
 retrieval coverage before replacing complete context.
-
-Exact usage, source-run hash, rates and calculation are retained in
-[`delivery-cost-summary.json`](eval/results/delivery-cost-summary.json).
-Provider and cache-aware cost boundaries are detailed in
-[`04_INFERENCE_LIBRARY.md`](docs/04_INFERENCE_LIBRARY.md).
 
 ## Assumptions
 
@@ -440,6 +409,12 @@ The current evidence does not establish independent domain certification,
 population-level model reliability, per-finding knowledge isolation or
 byte-identical replay of model output. Numeric urgency thresholds and candidate
 precautionary floors require domain-owner calibration before operational use.
+
+Against the frozen 17-scenario contract, the retained evidence currently records
+8 Supported, 7 Partial, 1 Inconclusive and 1 Not met. The Not met scenario is
+B01 because TEST finding descriptions entered the retained development
+inference context. This does not invalidate final generation over the required
+all-21 input.
 
 Observed results and exact limitations are indexed in
 [`eval\results\README.md`](eval/results/README.md). The acceptance contract and
@@ -489,5 +464,5 @@ The repository follows the Candidate Brief restrictions:
 - no API key is committed; and
 - `tickets.json` is generated by the system, not hand-authored or corrected.
 
-Provider setup and the one-command end-to-end run through `run_triage.py` are documented in
-[`README.md`](README.md).
+Provider setup and the one-command end-to-end run through `run_triage.py` are
+documented in [`README.md`](README.md).

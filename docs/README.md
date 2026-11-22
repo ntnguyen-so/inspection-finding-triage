@@ -1,14 +1,15 @@
 # Engineering Development Record
 
-These documents describe the system requirements, design decisions,
-implementation sequence and evaluation evidence.
+These documents provide the decision trail behind the submitted design. They
+are supporting material rather than a second copy of the root `README.md` or
+`DESIGN.md`.
 
 Documents 01-08 provide supporting rationale and study results. Each artifact
 has a distinct role:
 
 - root [`README.md`](../README.md) contains setup, current status and verified
   run commands;
-- root [`DESIGN.md`](../DESIGN.md) is the concise answer to Candidate Brief
+- root [`DESIGN.md`](../DESIGN.md) is the direct answer to Candidate Brief
   sections A-D;
 - numbered Documents 01-08 explain the reasoning, implementation sequence and
   controlled studies behind that design;
@@ -19,16 +20,18 @@ has a distinct role:
 
 ## Reading guide
 
-1. For setup, current status and run commands, start with root
-   [`README.md`](../README.md) and
-   [`eval\results\README.md`](../eval/results/README.md).
-2. For architecture and trade-offs, read root [`DESIGN.md`](../DESIGN.md).
-3. For generated output, open root [`tickets.json`](../tickets.json) and the
-   side-by-side baseline link at the top of
-   [`08_BEHAVIOR_CALIBRATION_STUDY.md`](08_BEHAVIOR_CALIBRATION_STUDY.md).
-4. For the knowledge-maintenance path and observed influence, see the six-month
-   pressure safety valve (PSV) example in
-   [`07_KNOWLEDGE_CHANGE_STUDY.md`](07_KNOWLEDGE_CHANGE_STUDY.md).
+For a first review, use this shorter path:
+
+1. root [`README.md`](../README.md) for setup, run commands and delivery status;
+2. root [`DESIGN.md`](../DESIGN.md) for the direct Candidate Brief A-D answers;
+3. root [`tickets.json`](../tickets.json) for the generated deliverable; and
+4. [`eval\results\acceptance-status.md`](../eval/results/acceptance-status.md)
+   for scenario-by-scenario evidence and limits.
+
+Use Documents 01-06 when a design decision needs its rationale. Documents 07-08
+are worked studies: Document 07 follows a six-month pressure safety valve (PSV)
+knowledge change, while Document 08 compares the accessible baseline with the
+current ticket behavior.
 
 ## End-to-end development map
 
@@ -38,7 +41,7 @@ has a distinct role:
 | 02 | What data, relationships and evidence boundaries make evaluation honest? | Profile 21 findings and 18 assets; define grouped, non-blind evaluation and production-context exclusions | [`02_DATA_EVALUATION_PLAN.md`](02_DATA_EVALUATION_PLAN.md) |
 | 03 | What must count as success or failure before outputs are judged? | Define A-D/X scenarios, semantic review, fixed-identity reliability, accounting and controlled-change rules | [`03_EVALUATION_ACCEPTANCE.md`](03_EVALUATION_ACCEPTANCE.md) |
 | 04 | How should model access be isolated and accounted for? | Introduce a provider-neutral inference boundary; distinguish measured Copilot usage from API-equivalent cost | [`04_INFERENCE_LIBRARY.md`](04_INFERENCE_LIBRARY.md) |
-| 05 | How can domain guidance change without prompt surgery or workflow edits? | Build source-faithful extraction, review, immutable releases, separate activation and validated context delivery | [`05_KNOWLEDGE_LIFECYCLE.md`](05_KNOWLEDGE_LIFECYCLE.md) |
+| 05 | How can domain guidance change without being embedded in orchestration? | Build source-faithful extraction, review, immutable releases, separate activation and validated context delivery | [`05_KNOWLEDGE_LIFECYCLE.md`](05_KNOWLEDGE_LIFECYCLE.md) |
 | 06 | How are the components integrated without hiding failure? | Implement bounded assessment, deterministic urgency/review policy, complete coverage and atomic publication | [`06_TRIAGE_WORKFLOW.md`](06_TRIAGE_WORKFLOW.md) |
 | 07 | Does the six-month knowledge-maintenance path work in practice? | Demonstrate bounded influence and official-store traversal; expose hard-coded-score, scope and non-target risks; reject promotion | [`07_KNOWLEDGE_CHANGE_STUDY.md`](07_KNOWLEDGE_CHANGE_STUDY.md) |
 | 08 | Did calibration make the ticket set more useful, and what caused the change? | Compare accessible baseline/current tickets, decompose review changes, retain failed interventions and state residual risks | [`08_BEHAVIOR_CALIBRATION_STUDY.md`](08_BEHAVIOR_CALIBRATION_STUDY.md) |
@@ -73,7 +76,8 @@ reviewer judgments. Related equipment evidence was grouped to reduce obvious
 leakage, while the documents retained the limitation that not every operational
 dependency can be known from 21 rows. The retained development runs nevertheless
 sent all eight TEST finding records to the provider, so the split supports
-regression evidence rather than case-isolated generalization (Document 02 §7).
+regression evidence rather than case-isolated generalization
+([Document 02 section 7](02_DATA_EVALUATION_PLAN.md#7-current-assessment-of-the-evaluation-design)).
 
 ### 03 - Decide what counts before judging outputs
 
@@ -98,10 +102,11 @@ The inference layer was kept smaller than the triage system. It records provider
 identity, request boundaries, usage, latency and failures without owning
 engineering policy.
 
-Copilot enabled low-marginal-cost development under an existing subscription.
-Direct Azure remained useful where strict provider accounting was needed. The
-documents distinguish measured tokens and AI units, reproducible
-API-equivalent estimates and unknown actual Copilot billing allocation.
+Copilot was available through an existing subscription, but its per-run billing
+allocation was not exposed. Direct Azure remained useful where strict provider
+accounting was needed. The documents distinguish measured tokens and AI units,
+reproducible API-equivalent estimates and unknown actual Copilot billing
+allocation.
 
 ### 05 - Separate knowledge authority from orchestration
 
@@ -111,6 +116,7 @@ lifecycle:
 ```text
 approved source
   -> source-faithful extraction
+  -> mutable, digest-guarded working candidate
   -> review
   -> immutable release
   -> separate activation
@@ -120,7 +126,9 @@ approved source
 This answered the brief's maintainability question: an integrity engineer can
 change approved PSV interpretation through a reviewed source/release rather than
 editing the prompt or adding a finding-specific branch. Generic score anchors
-and urgency rules remain application-policy changes.
+and urgency rules remain application-policy changes. If new guidance overlaps
+domain interpretation still present in the prompt, it also requires a focused
+prompt-compatibility review before activation.
 
 ### 06 - Integrate one fail-closed workflow
 
@@ -128,6 +136,11 @@ The workflow joins validated findings, registry data and pinned context; request
 model-proposed L/I, facts, uncertainty and planning text; validates the result;
 derives urgency and review routing in code; enforces the total attempt ledger;
 and publishes only a complete atomic batch.
+
+Each model call targets one finding but receives every finding in that run's
+input CSV. This is correct for final all-21 generation and is the reason the
+retained 13-finding development run did not satisfy B01, as described in
+section 02 above.
 
 Malformed output, structural violations, unsupported evidence and inability to
 justify scores remain distinct failure classes. A failed finding cannot publish
