@@ -1,8 +1,9 @@
 # Source-First Knowledge Lifecycle
 
-> **Document status:** current knowledge architecture and maintenance interface.
-> Extraction experiments and change-study results are evidence, not runtime
-> authority; current observations remain in Document 07 and `eval\results`.
+This document describes the knowledge architecture and maintenance interface.
+Extraction experiments and change-study results are evidence rather than
+runtime authority; current observations remain in Document 07 and
+`eval\results`.
 
 ## Abstract
 

@@ -1,9 +1,9 @@
 # Behavior Calibration: Observed Changes and Remaining Work
 
-> **Document status:** executed, test-informed calibration study. This document
-> reports observed system-level behavior changes and rejected interventions; it
-> is not a controlled single-variable experiment, domain-certified scorecard or
-> evidence of unseen-case accuracy.
+This test-informed calibration study reports observed system behavior and
+rejected interventions. Because the interventions were not controlled as
+single-variable experiments, the study does not establish domain-certified
+scores or accuracy on unseen cases.
 
 ## Open the two ticket sets side-by-side
 

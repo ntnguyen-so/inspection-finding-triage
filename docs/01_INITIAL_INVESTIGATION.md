@@ -1,8 +1,7 @@
 # From Candidate Brief to Engineering Problem
 
-> **Document status:** current requirement analysis and design assessment. It
-> explains the problem framing without serving as implementation or acceptance
-> evidence.
+This document frames the requirements and design choices. Implementation and
+acceptance evidence are recorded separately.
 
 ## Abstract
 

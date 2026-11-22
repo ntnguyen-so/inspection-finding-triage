@@ -1,9 +1,8 @@
 # Fail-Closed Triage Workflow
 
-> **Document status:** current workflow rationale and evidence assessment.
-> Deterministic controls are demonstrated. The root artifact is a hash-checked,
-> byte-identical promotion of a published experimental output; semantic review
-> is provisional and human approval is required.
+This document explains the workflow and its deterministic controls. The root
+artifact is a hash-checked, byte-identical promotion of a published experimental
+output. Semantic review remains provisional, and human approval is required.
 
 ## Abstract
 

@@ -1,9 +1,8 @@
 # Data, Context and Evaluation Boundaries
 
-> **Document status:** evaluation-design analysis. It defines what the supplied
-> data can support, how cases and context are separated, and which evidence
-> classes must not be conflated. Executable membership and fingerprints are
-> authoritative in `eval\spec`.
+This document explains what the supplied data can support, how cases and context
+are separated, and which evidence classes must remain distinct. Executable
+membership and fingerprints remain authoritative in `eval\spec`.
 
 ## Abstract
 

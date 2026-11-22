@@ -1,8 +1,8 @@
 # Knowledge Change: Maintenance Path and Observed Impact
 
-> **Document status:** completed, test-informed knowledge-change study. It
-> demonstrates the maintenance mechanism and bounded behavior influence; it
-> does not certify the experimental PSV guidance or authorize production use.
+This test-informed study demonstrates the maintenance mechanism and a bounded
+behavior influence. It does not certify the experimental PSV guidance or
+authorize production use.
 
 ## Abstract
 

@@ -1,12 +1,11 @@
 # Acceptance Contract and Evidence Rules
 
-> **Document status:** panel summary of the acceptance contract,
-> fixed-identity reliability protocol and semantic-review procedure.
-> `eval\spec\acceptance.json` is the executable scenario authority and binds its
-> design contract to
-> `docs\original-decision-process\03_EVALUATION_ACCEPTANCE.md` (SHA-256
-> `ab6cdaaebb84a6ebf17cc9dbc9021ad2d6d9c4b3eb35d19ff5e931ce0210f86f`).
-> This document explains that contract without replacing it.
+This document explains the acceptance contract, fixed-identity reliability
+protocol and semantic-review procedure. The executable scenario authority is
+`eval\spec\acceptance.json`; it binds the design contract to
+`docs\original-decision-process\03_EVALUATION_ACCEPTANCE.md` (SHA-256
+`ab6cdaaebb84a6ebf17cc9dbc9021ad2d6d9c4b3eb35d19ff5e931ce0210f86f`).
+Nothing here replaces that contract.
 
 ## Abstract
 
@@ -51,7 +50,7 @@ bound to its input.
 **Failure.** Missing, duplicate, extra or mismatched identities; invalid wrapper;
 out-of-range values; unvalidated extra fields.
 
-**Limit.** Schema success does not establish defensible L/I or planning text.
+Passing the schema does not establish defensible L/I or planning text.
 
 ### A02 — Recoverable malformed or structural output
 
@@ -85,7 +84,7 @@ explicit rubric anchor. Submit coherent remaining semantics to frozen review.
 
 **Failure.** Treating “valid JSON” or “review_required=true” as sufficient.
 
-**Limit.** Code cannot prove every engineering judgment. AI review remains
+These code checks cannot prove every engineering judgment. AI review remains
 provisional and human approval remains mandatory.
 
 ## 3. Area B — Knowledge and maintainability
@@ -99,7 +98,8 @@ configuration.
 **Pass evidence.** Hash-bound context and independent validation of selected
 source/input identities.
 
-**Limit.** Delivery does not prove causal use.
+Captured delivery shows what reached the provider, not whether the model used it
+causally.
 
 ### B02 — Knowledge influence
 
@@ -109,10 +109,10 @@ only in an isolated knowledge input, with artificial values labelled synthetic.
 **Failure.** No intended decision change, uncontrolled context differences or an
 uncalibrated negative control.
 
-**Limit.** Run-level influence status belongs in `eval\results`; §8 assesses only
-whether this requirement exposed its intended failure modes. Even a passing
-synthetic intervention establishes only bounded influence and isolation, not
-production knowledge correctness.
+Run-level influence status belongs in `eval\results`; §8 assesses only whether
+this requirement exposed its intended failure modes. Even a passing synthetic
+intervention establishes only bounded influence and isolation, not production
+knowledge correctness.
 
 ### B03 — Maintenance path
 
@@ -123,8 +123,8 @@ finding-ID code.
 **Pass evidence.** Source/release lifecycle checks, explicit edit surface and a
 bound active release identity.
 
-**Limit.** The current repository demonstrates mechanics, not a
-domain-owner-approved PSV behavior change.
+The current repository demonstrates the maintenance mechanics; it does not
+contain a domain-owner-approved PSV behavior change.
 
 ## 4. Area C — Code-derived urgency
 
@@ -159,7 +159,7 @@ confirmed trigger, or fabricating an override condition by inflating L/I.
 **Requirement.** The published urgency rationale identifies base inputs,
 applicable rule IDs and why the final value changed.
 
-**Limit.** A correct trace proves application consistency, not correctness of the
+A correct trace proves application consistency, not correctness of the
 model-proposed L/I.
 
 ## 5. Area D — Limits and deferral

@@ -1,7 +1,8 @@
 # Inference Boundary and Provider Control
 
-> **Document status:** current component design and evidence assessment.
-> Provider transport success is not ticket-quality acceptance.
+This document describes the provider boundary and the evidence retained around
+it. A successful provider call establishes transport behavior, not ticket
+quality.
 
 ## Abstract
 
