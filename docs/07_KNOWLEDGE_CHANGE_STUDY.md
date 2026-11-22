@@ -241,20 +241,24 @@ Delivery, influence and correctness are different claims. Captured context can
 prove delivery. A before/after comparison can support influence. Neither proves
 that the engineering rule itself is correct.
 
-## 3. Why there are two experiments
+## 3. Two experiments, not two maintenance steps
 
-The two studies changed different surfaces:
+Sections 4 and 5 describe historical experiments. They are not two steps that a
+maintainer performs in sequence.
 
-| Section | What changed | Was production code changed? | Did it become production authority? |
+| Section | What changed for the experiment? | What stayed unchanged? | Production result |
 |---|---|---|---|
-| 4 - isolated diagnostic | One artificial instruction in an evaluation-only context overlay | No | No |
-| 5 - maintenance-path exercise | An experimental PSV source was imported, reviewed, published and selected by a run-specific activation | Not initially; the exercise later exposed an editor bug that was fixed in `triage_knowledge\source_store.py` | No; all experimental releases were rejected |
+| 4 - controlled context test | One temporary field in the evaluation context sent to the model | Prompt files, production code and the active knowledge release | Nothing was published or activated |
+| 5 - maintenance simulation | An experimental PSV domain source was imported, reviewed, published and selected for a comparison run | Prompt files and scoring/routing policy | The source was rejected; a separate editor-code bug found during the exercise was fixed |
 
-Section 4 asks only whether a controlled instruction can influence one target
-without changing a negative control. Section 5 asks whether a domain source can
-travel through the real knowledge lifecycle and affect generated tickets. The
-code fix found during section 5 repaired the editor mechanism; it did not move
-the experimental PSV interpretation into code or approve that interpretation.
+Section 4 is a narrow model-behavior test: if one field in the supplied context
+changes, does the intended result change without affecting the negative control?
+It does not test the knowledge-maintenance workflow.
+
+Section 5 is the maintenance simulation: can a new domain source travel through
+import, review, release, activation and ticket generation? The code fix found
+during that exercise repaired the editor mechanism; it did not move the
+experimental PSV interpretation into code or approve that interpretation.
 
 The ownership rule is:
 
@@ -270,18 +274,28 @@ Activation only selects an exact reviewed source/policy/prompt binding for a
 run. The experimental source in section 5 mixed these boundaries by prescribing
 L9/I8 directly, which is one reason it was rejected.
 
-## 4. Diagnostic only: evaluation-context instruction
+## 4. Controlled test: change one context field
 
-The B02 diagnostic (the acceptance scenario for knowledge influence and its
-negative control) held the model, configuration, implementation and synthetic
-input fixed. Only an artificial instruction changed: the positive synthetic
-condition should use likelihood 8 instead of 6 while impact remained 3. The
-instruction was carried under
-`context.assessment_policy.isolated_experiment`.
+This experiment did **not** edit the system prompt. The prompt artifact,
+production code, model configuration and active knowledge release were
+identical before and after.
 
-Nothing was edited in the active knowledge store, `triage\assessment_policy.py`
-or `triage\policy.py`. The overlay existed only inside the isolated evaluation
-request.
+The only difference was one temporary field in the context JSON prepared for
+the evaluation request:
+
+```text
+before: no synthetic scoring instruction
+after:  for the synthetic positive condition, use likelihood 8 instead of 6
+```
+
+Impact remained 3. Internally, the temporary field was
+`context.assessment_policy.isolated_experiment`. It existed only in the isolated
+test input and was never written to:
+
+- a file under `triage\prompts`;
+- the active knowledge store;
+- `triage\assessment_policy.py`; or
+- `triage\policy.py`.
 
 | Condition | Before | After |
 |---|---:|---:|
@@ -297,18 +311,18 @@ before/after and negative before/after) as a pass.
 This supports one bounded claim: an isolated context instruction influenced the
 intended assessment and was not blindly applied to the tag-only control. It does
 not demonstrate source import, release activation, repeat stability, production
-correctness or domain approval. The instruction was carried on an
-assessment-policy diagnostic channel, not as a released production knowledge
-item.
+correctness or domain approval. This was a test-fixture change inside the
+request context, not a prompt change or a released knowledge change.
 
 Evidence:
 [B02 semantic review](../eval/results/triage/v10-calibration/b02-execution/negative-control-semantic-review.json).
 
 ## 5. Real path: experimental domain-source change
 
-The second experiment used the actual knowledge store and full triage command.
-An experimental source described audible tailpipe hissing and hydrocarbon odour
-below set pressure as PSV seat-tightness evidence.
+This is the experiment that represents a future domain-knowledge update. It did
+not edit the prompt. It added an experimental source describing audible
+tailpipe hissing and hydrocarbon odour below set pressure as PSV seat-tightness
+evidence, then used the actual knowledge store and full triage command.
 
 The intended change surface was domain knowledge: add the source, publish an
 immutable experimental release and select it through a run-specific activation.
