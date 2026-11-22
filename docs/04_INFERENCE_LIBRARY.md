@@ -19,9 +19,10 @@ line, not a trust boundary.
 There was also a practical economic reason to make inference replaceable. An
 existing GitHub Copilot CLI subscription exposed the coding models used during
 development without a separately visible per-call API charge. Using that
-entitlement made repeated probes materially cheaper than funding every iteration
-through a separately billed OpenAI or Azure route. The module prevents that
-cost choice from becoming workflow architecture.
+entitlement avoided separately visible per-call charges while probing multiple
+models and failure modes. The actual Copilot USD allocation remains unknown, so
+this is an observed funding-route difference rather than a quantified savings
+claim. The module prevents that cost choice from becoming workflow architecture.
 
 ## 1. Why this component exists
 
@@ -47,6 +48,18 @@ The component answers four questions:
 
 It does **not** answer whether L/I are defensible or whether a maintenance action
 is operationally correct.
+
+In this document:
+
+- **L/I/U** mean likelihood, impact and code-derived urgency;
+- a **receipt** is sanitized provider metadata about a request, response, usage
+  and latency, not proof of hidden transport behavior;
+- **request-cost units** and **AI units** are provider-exposed Copilot metering
+  fields; neither has an exposed subscription USD conversion; and
+- the **promoted artifact** is root
+  [`tickets.json`](../tickets.json), which is byte-identical by SHA-256 to the
+  final `structured-planning-v31` Copilot run output. It was copied to root after
+  review rather than generated there by a second workflow run.
 
 ## 2. Requirements mapped to inference design
 
@@ -88,8 +101,13 @@ The subscription reduced marginal development cost and made it practical to
 probe multiple models and failure modes. A dedicated inference module preserved
 direct Azure as a comparison route with disabled SDK retries, explicit ledgers
 and provider usage fields. Azure observations exposed useful transport and
-accounting differences, but their retained results did not justify replacing
-the promoted Copilot artifact.
+accounting differences. Its completed batch was not semantically reviewed and
+did not replace the promoted Copilot artifact.
+
+The promoted artifact came from the Copilot `copilot_experiment` route and was
+promoted by matching its SHA-256. This records the route used for delivery, but
+does not convert hidden Copilot transport attempts into a strict attempt
+contract.
 
 Coding directly against one separately billed provider was rejected because it
 would couple experimentation cost and vendor behavior to the workflow. Coding
@@ -171,19 +189,22 @@ causes and different evidence value.
 The evidence below assesses whether the design decisions expose the intended
 failure modes. It does not establish a provider benchmark. Detailed artifacts
 and current status remain in
-`eval\results\README.md`.
+[`eval\results\README.md`](../eval/results/README.md).
 
 | Design hypothesis | Current evidence | Assessment and remaining limit |
 |---|---|---|
 | Native structured output still requires local validation and bounded repair | Real calls produced malformed JSON and schema faults; bounded repair recovered some responses, while an exhausted fault failed the batch without publication. | **Supported.** The boundary exposed recoverable and terminal failures, but hidden provider attempts remain unknown. |
-| Route completion must remain separate from semantic acceptance | Both provider routes produced structurally valid batches, while one completed Azure batch failed semantic review and the promoted Copilot delivery required a separate review. | **Supported.** Transport success is not evidence of ticket quality. |
+| Route completion must remain separate from semantic acceptance | Both provider routes produced structurally valid batches. The completed Azure batch was not semantically reviewed. The promoted Copilot artifact received a separate AI-only review with 63/63 applicable dimensions and six exceptional-review routes, but that review had a declared protocol deviation. | **Supported.** Transport success is not evidence of ticket quality; the Copilot result remains provisional rather than domain-certified. |
 | Provider choice must not become workflow policy | Current retained observations cover Copilot and direct Azure routes under the same application contract. | **Supported.** Urgency and publication policy remain outside both adapters; route completion does not establish equivalent behavior. |
-| Cross-setup comparison must not be presented as fixed-identity reproduction | The all-21 comparison used current code with a different activation and execution-policy identity from the retained delivery. It preserved review routing for every ticket and L/I/U for 19 tickets, but changed every ticket's text. | **Bounded observation only.** It is neither X01 evidence nor clean reproduction, and the differences mix model variability with setup changes. |
+| Cross-setup comparison must not be presented as fixed-identity reproduction | The all-21 comparison used current code with a different prompt/knowledge activation and run-policy configuration from the retained delivery. It preserved review routing for every ticket and L/I/U for 19 tickets, but changed every ticket's text. | **Bounded observation only.** It is neither decision-stability scenario X01 evidence nor clean reproduction, and the differences mix model variability with setup changes. |
 
 The comparison encountered preflight failures before provider dispatch and its
 successful artifact received no semantic review. It therefore cannot replace or
 strengthen the retained ticket-quality result. Its evidence is indexed in
-`eval\results\README.md`.
+[`eval\results\README.md`](../eval/results/README.md).
+
+The promoted Copilot review is retained in
+[`reviewer-observation.json`](../eval/results/triage/structured-planning-v31/final/reviewer-observation.json).
 
 ## 6. Reproducibility and cost limits
 
@@ -204,7 +225,7 @@ Cost is reported in four distinct views:
 
 The retained totals, source-run SHA-256, assumptions and calculations are
 available in the compact
-[delivery cost evidence](..\eval\results\delivery-cost-summary.json), which is
+[delivery cost evidence](../eval/results/delivery-cost-summary.json), which is
 derived only from per-send receipt usage rather than duplicated accounting
 checkpoints.
 
@@ -212,7 +233,10 @@ The equivalent calculation is
 `input_tokens * US$2 / 1,000,000 + output_tokens * US$10 / 1,000,000`,
 using the configured model's OpenAI Standard short-context rates published at
 [OpenAI API pricing](https://developers.openai.com/api/docs/pricing) and checked
-on 2026-11-18.
+on 2026-11-18. The configured model was `gpt-6.1-sol`; the retained pricing
+assumption records US$2.00 per million ordinary input tokens, US$0.10 per
+million cache-read tokens, US$2.50 per million 30-minute cache-write tokens and
+US$10.00 per million output tokens.
 The production workflow records raw usage and leaves `usd_cost` null; it does not
 calculate this proxy. The repository's controlled-experiment helper implements
 the same rate formula, which is applied transparently to the retained run
@@ -223,10 +247,10 @@ The retained receipt also exposes 143,251 cache-read tokens, 830,154 cache-write
 tokens and a model-catalog schedule whose unit ratios match the public
 short-context rates for ordinary input, cached input, 30-minute cache writes and
 output. Applying that schedule gives a cache-aware OpenAI-equivalent scenario of
-US$2.493186 and reproduces the reported 249.31861 AI units after the documented
-unit scaling. This stronger scenario is still not an invoice: Copilot does not
-expose an AI-unit-to-USD conversion or establish that subscription allocation
-equals public API billing.
+US$2.493186. The reported 249.31861 AI units are numerically 100 times that
+scenario, but this observed ratio is not an exposed billing rule or USD
+conversion. The cache-aware scenario is still not an invoice: Copilot does not
+establish that subscription allocation equals public API billing.
 
 The retained delivery estimate consists of US$1.946936 input and US$0.403350
 output, approximately US$0.111918 per ticket. Input accounts for about 82.8% of
@@ -236,7 +260,8 @@ These estimates should be reported, not hidden under “unknown cost.” They re
 API-equivalent planning values rather than Copilot invoices. Copilot does not
 expose hidden transport attempts. Direct Azure exposes attempts and tokens, but
 the retained observations do not include a deployment tariff. Metering and
-pricing assumptions are indexed in `eval\results\README.md`.
+pricing assumptions are indexed in
+[`eval\results\README.md`](../eval/results/README.md).
 
 ## 7. Assumptions and limitations
 
@@ -248,8 +273,10 @@ pricing assumptions are indexed in `eval\results\README.md`.
 - A response hash proves byte identity of the retained response, not how hidden
   model weights produced it.
 - Strict schema reduces formatting risk but cannot certify engineering judgment.
-- Restricted-session or CLI-mediated experiments are development routes unless
-  explicitly accepted and frozen as delivery configuration.
+- The current root artifact came from the Copilot `copilot_experiment` route and
+  was promoted by hash. That retained delivery remains a bounded experimental
+  route with unknown hidden attempts, not a strict-attempt production route.
 
-Current system-level responsibility remains in `DESIGN.md`; measured run
-outcomes remain in `eval\results`.
+Current system-level responsibility remains in [root `DESIGN.md`](../DESIGN.md);
+measured run outcomes remain in
+[`eval\results\README.md`](../eval/results/README.md).
