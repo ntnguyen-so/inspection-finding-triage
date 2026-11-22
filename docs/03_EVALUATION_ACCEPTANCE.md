@@ -1,11 +1,17 @@
 # Acceptance Contract and Evidence Rules
 
-The acceptance contract defines the fixed-identity reliability protocol and
-semantic-review procedure. The executable scenario authority is
-`eval\spec\acceptance.json`; it binds the design contract to
-`docs\original-decision-process\03_EVALUATION_ACCEPTANCE.md` (SHA-256
-`ab6cdaaebb84a6ebf17cc9dbc9021ad2d6d9c4b3eb35d19ff5e931ce0210f86f`).
-Nothing here replaces that contract.
+This file is the reader-oriented explanation of the acceptance contract. The
+machine-readable scenario authority is
+[`eval\spec\acceptance.json`](../eval/spec/acceptance.json), which binds the
+scenario definitions to the frozen original decision-process document
+[`docs\original-decision-process\03_EVALUATION_ACCEPTANCE.md`](original-decision-process/03_EVALUATION_ACCEPTANCE.md)
+by path. Its SHA-256 is
+`ab6cdaaebb84a6ebf17cc9dbc9021ad2d6d9c4b3eb35d19ff5e931ce0210f86f`
+and is pinned separately by
+[`eval\spec\split.json`](../eval/spec/split.json) and the
+[`original-decision-process` manifest](original-decision-process/manifest.json).
+This explanation can improve readability but cannot change those frozen
+identities or criteria.
 
 ## Abstract
 
@@ -24,6 +30,10 @@ Some rules are stricter project-defined prototype policies, including the
 two-attempt budget and precautionary review/urgency floors. They are labelled as
 such rather than attributed to the brief or a domain expert.
 
+Sections 2-6 define the scenarios, section 7 explains how semantic review is
+performed, section 8 summarizes current evidence without changing the contract,
+and section 9 defines how an authorized contract correction is handled.
+
 ## 1. Acceptance model
 
 | Area | Question | Scenario IDs |
@@ -36,6 +46,18 @@ such rather than attributed to the brief or a domain expert.
 
 Each scenario defines required evidence and the highest claim that evidence can
 support. No composite score is used.
+
+Throughout this document, **L**, **I** and **U** mean likelihood, impact and
+code-derived urgency. `review_required` is an exceptional prequeue-review flag;
+every draft still requires ordinary human approval. A **fixed identity** means
+the exact code, configuration, prompt, knowledge, provider/model settings and
+reviewer configuration being compared. The **primary reviewer** is the one
+frozen reviewer configuration allowed to determine the semantic gate.
+A **partition** is the selected development, test or all-21 finding set. Each
+finding has a frozen, AI-assisted expectation record, called an **evidence
+card**, in
+[`eval\data\development.jsonl`](../eval/data/development.jsonl) or
+[`eval\data\test.jsonl`](../eval/data/test.jsonl).
 
 ## 2. Area A — Structured output and failure
 
@@ -153,13 +175,15 @@ project-defined precautionary floors and review policies separately identified.
 **Failure.** Converting unknown deviation, capacity or restoration state into a
 confirmed trigger, or fabricating an override condition by inflating L/I.
 
-### C04 — Rationale consistency
+### C04 — Fact assessment before urgency
 
-**Requirement.** The published urgency rationale identifies base inputs,
-applicable rule IDs and why the final value changed.
+**Requirement.** Extracted known and unknown facts must match the source before
+code applies urgency. Missing personnel-on-board, capacity or deviation data is
+not confirmed absence; a reopened valve is not verified restored coverage.
 
-A correct trace proves application consistency, not correctness of the
-model-proposed L/I.
+The published urgency rationale must still identify its base inputs, applicable
+rule IDs and why the final value changed. A correct trace proves application
+consistency, not correct upstream fact assessment.
 
 ## 5. Area D — Limits and deferral
 
@@ -176,16 +200,19 @@ review to excuse unsupported scores.
 **Requirement.** If required L/I cannot be justified, fail visibly. Do not assign
 midpoint, minimum or placeholder values.
 
-### D03 — Exclusions and authority
+### D03 — SCE and local-defect distinctions
 
-**Requirement.** State what the prototype does not do: no live work-order action,
-shutdown authority, autonomous web authority or domain certification.
+**Requirement.** Do not label every Safety Critical Element finding as an
+immediate functional failure. Distinguish the observed defect mechanism and
+decision-changing evidence; any all-SCE review policy must remain explicit and
+must not replace consequence assessment.
 
-### D04 — Assumptions and AI assistance
+### D04 — Exclusions, assumptions and AI assistance
 
 **Requirement.** Disclose material assumptions, AI-assisted development,
 where AI suggestions were overridden, use of exposed evaluation evidence and
-unresolved limits.
+unresolved limits. State deliberate exclusions with reasons: no live work-order
+action, shutdown authority, autonomous web authority or domain certification.
 
 ## 6. Cross-cutting evidence
 
@@ -271,14 +298,18 @@ cards. It does not redesign the ticket, invent engineering best practice or
 search for a new issue after every run. `eval.assess` validates review structure
 and output-bound quotations; it does not generate reviewer judgments.
 
+The workflow is:
+
+1. generate a checklist bound to the exact ticket file and partition;
+2. record and calibrate one reviewer configuration on the seeded probes;
+3. have that reviewer complete grounding, planning and uncertainty judgments;
+4. submit the completed review against the same artifact and partition; and
+5. retain the first complete result, including failures and `needs_review`.
+
 The semantic-review procedure below is explanatory; binding acceptance
 identities and criteria remain under `eval\spec`. Unbound checklists, ad hoc
 cross-review, reviewer voting and repeated review until green cannot establish
 or overturn the gate.
-
-Only one frozen primary reviewer configuration may determine the semantic gate.
-Ad hoc free-form agent reviews and secondary reviewers are sensitivity
-observations only; they cannot establish or overturn that gate.
 
 ### 7.1 Reviewer and reference authority
 
@@ -429,16 +460,18 @@ first review makes that dimension inconclusive; it is not a green-seeking retry.
 |---|---|
 | Any `fail` | Fail |
 | No fail and one or more `needs_review` | Pending |
-| All 63 pass after calibration | Provisional AI-only pass |
+| All 63 pass after calibration | Provisional AI-only pass for the all-21 delivery gate |
+| All 39 pass for a development-partition X01 review | Supplementary X01 evidence only; not a standalone acceptance gate |
 | Primary/secondary or preregistered-repeat disagreement | Preserve both; disputed dimensions remain inconclusive and the gate stays pending unless a primary fail already fails it |
 
 Even 63/63 is not domain certification, human approval or full A-D system
 acceptance.
 
-## 8. Current assessment of the acceptance contract
+## 8. Non-authoritative current status summary
 
-This non-authoritative assessment does not redefine gates or duplicate current
-delivery status. Run-level authority remains in root `README.md` and
+This non-authoritative assessment summarizes current evidence but does not
+redefine gates. If it differs from the scenario-by-scenario status file, that
+file governs. Run-level authority remains in root `README.md` and
 [`eval\results\README.md`](../eval/results/README.md). The frozen,
 machine-readable scenario contract is
 [`eval\spec\acceptance.json`](../eval/spec/acceptance.json), and its current
@@ -447,22 +480,34 @@ scenario-by-scenario evidence status is
 
 | Contract area | Current evidence | Interpretation and remaining limit |
 |---|---|---|
-| A — Structure and failure | Current tests exercise malformed output, bounded repair, exhaustion, complete coverage and publication rollback. The experimental 21-ticket output has a verified publication receipt; root `tickets.json` is contract-valid and byte-identical by SHA-256 after separate promotion. | **Supported for current code, observed experimental publication and hash-checked promotion.** The root copy has no separate workflow receipt, and contract validity does not establish semantic quality. |
-| B — Knowledge | Source delivery and maintenance mechanics were exercised; one synthetic intervention showed bounded influence and negative-control isolation. However, the retained `structured-planning-v31` development runs sent all eight TEST finding records in provider context. | **Partially supported overall, with B01 not met.** Broad causal use and domain correctness remain unproven, and the DEV/TEST partition does not provide case-isolated inference evidence. |
-| C — Urgency | Code ownership, range, monotonicity, corners and fact-sensitive escalation are tested. | **Supported as declared software policy.** Numeric calibration is not operational risk truth. |
-| D — Limits and deferral | Unsupported scores fail visibly; uncertainty and exceptional review are explicit. | **Supported in tested paths.** Routing thresholds remain project-defined and uncalibrated. |
+| A — Structure and failure | Current tests exercise malformed output, bounded repair, exhaustion, complete coverage and publication rollback. The experimental 21-ticket output has a verified publication receipt; root `tickets.json` is contract-valid and byte-identical by SHA-256 after separate promotion. | **Mixed: A01 and A03 are Supported; A02 and A04 are Partial.** Hidden provider retries remain unobservable, semantic-review limitations remain, the root copy has no separate workflow receipt, and contract validity does not establish semantic quality. |
+| B — Knowledge | Source delivery and maintenance mechanics were exercised; one synthetic intervention showed bounded influence and negative-control isolation. However, every retained development provider input contained all eight test finding records. | **Partially supported overall, with B01 Not met.** Broad causal use and domain correctness remain unproven, and the development/test partition does not provide case-isolated inference evidence. |
+| C — Urgency | Code ownership, range, monotonicity, corners and fact-sensitive escalation are tested. | **Mostly supported: C01-C03 are Supported; C04 is Partial.** Numeric calibration is not operational risk truth, and current fact assessment has AI-only rather than domain-expert review. |
+| D — Limits and deferral | Unsupported scores fail visibly; uncertainty and exceptional review are explicit. | **Mixed: D02 and D04 are Supported; D01 and D03 are Partial.** The exceptional routes and local-defect distinctions are test-informed, while routing thresholds remain project-defined and uncalibrated. |
 | X01 — Stability | Two development runs kept all 13 urgency bands and review flags unchanged. Two numeric scores and one rule trace differed without changing a scheduling or review decision, so the retained run records an operational `x01.status: pass`. However, those runs sent all eight TEST finding records in provider context, the runtime did not expose the semantic reviewer's model, settings or prompt identity required by §7.2, and the configuration was selected using development evidence. | **Inconclusive for formal acceptance.** The observed pair supports stable operational decisions, but context leakage, missing reviewer identity and non-independent configuration selection prevent a protocol-level pass. Treat it as useful repeat-run evidence, not proof of deterministic model behavior. |
 | X02 — Reproducibility | Hashes, configs, latency, application sends, publication evidence, exact producer bytes and measured token usage are retained. Applying the declared public-rate convention gives US$2.350286 for the retained delivery. | **Partial.** The API-equivalent estimate is reproducible; clean-checkout reproduction, hidden provider attempts and the actual Copilot billing allocation remain unresolved. |
-| Semantic reviewer protocol | The retained review recorded 63 passing dimensions after test-informed calibration, but the runtime did not expose every reviewer identity and prompt field required by §7.2. The evidence is not independent of configuration selection. | **Protocol deviation.** Treat the result as an AI-only regression observation, not fully protocol-conformant acceptance. |
+| Semantic reviewer protocol | The retained review recorded 63 passing dimensions after calibration on two seeded contradiction fixtures, but the runtime did not expose every reviewer identity and prompt field required by §7.2. The required unresolved adjacent-score `needs_review` behavior was not exercised, and the evidence is not independent of configuration selection. | **Protocol deviation; A04 remains Partial.** Treat the result as an AI-only regression observation, not fully protocol-conformant acceptance. |
 
 ## 9. Controlled change and authority
 
 [`eval\spec\acceptance.json`](../eval/spec/acceptance.json) is the
 machine-readable scenario authority. Its
-`design_contract` field names the bound design-contract bytes and their identity
-(SHA-256), which is recorded in the opening paragraph. The rationale and review
-method above do not overwrite executable specifications or results.
+`design_contract` field names the frozen design-contract document. Its SHA-256
+is pinned separately by `eval\spec\split.json` and the preserved
+`original-decision-process` manifest, as described in the opening paragraph.
+The rationale and review method above do not overwrite executable
+specifications or results.
 
 A genuine source-backed correction, grader bug or authorized requirement change
 must preserve replaced bytes and failures, state comparability impact, update
 only intentional semantic identities and rerun affected checks.
+
+For navigation:
+
+- frozen scenario authority:
+  [`eval\spec\acceptance.json`](../eval/spec/acceptance.json);
+- scenario-by-scenario current status:
+  [`eval\results\acceptance-status.md`](../eval/results/acceptance-status.md);
+- observed evidence and limitations:
+  [`eval\results\README.md`](../eval/results/README.md); and
+- current delivery and commands: [root `README.md`](../README.md).
