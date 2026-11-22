@@ -59,7 +59,7 @@ Extraction creates a proposal; it never creates runtime authority by itself.
 
 The implementation supports two proposal paths:
 
-- deterministic C0 grouping and metadata extraction in
+- deterministic C0 (rule-based, no-model) grouping and metadata extraction in
   `triage_knowledge\source.py`; and
 - an optional schema-bound model extraction request for component experiments.
 

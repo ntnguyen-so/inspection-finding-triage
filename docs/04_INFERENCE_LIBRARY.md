@@ -63,96 +63,94 @@ not a requirement stated by the brief.
 
 ## 3. Design decisions
 
-### Decision 1 — Keep the adapter smaller than the workflow
+### 3.1 Keep the adapter smaller than the workflow
 
-**Decision.** The adapter accepts explicit messages, schema and provider
-configuration, performs one observable inference call, and returns response
-content plus exposed metadata.
+The adapter accepts explicit messages, schema and provider configuration,
+performs one observable inference call, and returns response content plus
+exposed metadata.
 
-**Rationale.** Ticket identity, assessment repair, urgency and publication are
-application concerns. Keeping them outside the adapter makes the model/code
-boundary reviewable and prevents provider behavior from silently changing
-business policy.
+Ticket identity, assessment repair, urgency and publication are application
+concerns. Keeping them outside the adapter makes the model/code boundary
+reviewable and prevents provider behavior from silently changing business
+policy.
 
-**Rejected alternative.** A provider-specific agent that loops, repairs and
-publishes would duplicate orchestration and make attempt accounting route
-dependent.
+A provider-specific agent that loops, repairs and publishes was rejected because
+it would duplicate orchestration and make attempt accounting route-dependent.
 
-### Decision 2 — Separate route economics from acceptance authority
+### 3.2 Separate route economics from acceptance authority
 
-**Decision.** Use the existing Copilot CLI entitlement for bounded development
-and delivery experiments, while keeping the same application contract portable
-to direct Azure or another supported provider. Route identity is part of every
-observation; no provider is accepted merely because it completes a batch.
+The existing Copilot CLI entitlement supports bounded development and delivery
+experiments, while the application contract remains portable to direct Azure or
+another supported provider. Every observation records route identity; completing
+a batch does not by itself establish provider acceptance.
 
-**Rationale.** The subscription reduced marginal development cost and made it
-practical to probe multiple models and failure modes. A dedicated
-inference module preserved direct Azure as a comparison route with disabled SDK
-retries, explicit ledgers and provider usage fields. Azure observations exposed
-useful transport/accounting differences, but their retained semantic and
-completion results did not justify replacing the promoted Copilot artifact.
+The subscription reduced marginal development cost and made it practical to
+probe multiple models and failure modes. A dedicated inference module preserved
+direct Azure as a comparison route with disabled SDK retries, explicit ledgers
+and provider usage fields. Azure observations exposed useful transport and
+accounting differences, but their retained results did not justify replacing
+the promoted Copilot artifact.
 
-**Rejected alternative.** Coding directly against one separately billed
-provider would couple experimentation cost and vendor behavior to the workflow.
-Coding directly against Copilot would make the included subscription route look
-like a universal deployment assumption.
+Coding directly against one separately billed provider was rejected because it
+would couple experimentation cost and vendor behavior to the workflow. Coding
+directly against Copilot would make the included subscription route look like a
+universal deployment assumption.
 
-**Cost boundary.** “Included in an existing subscription” does not mean zero
+“Included in an existing subscription” does not mean zero
 economic cost or measured API spend. Copilot receipts expose request-cost units,
 AI-unit metering and token/cache counts. They do not expose the subscription's
 AI-unit-to-USD conversion, hidden transport attempts or an actual per-run USD
 charge. Token counts can support a declared API-equivalent estimate, but not a
 claim about Copilot billing.
 
-### Decision 3 — Require explicit route and model configuration
+### 3.3 Require explicit route and model configuration
 
-**Decision.** Provider route, model/deployment and settings are pinned in run
+Provider route, model or deployment, and settings are pinned in run
 configuration. There is no automatic model fallback inside a run.
 
-**Rationale.** Model name alone does not identify behavior. Copilot and direct
-Azure expose different controls, retries, receipts and cost information.
-Switching routes after failure would create a different experiment while
-presenting it as one run.
+Model name alone does not identify behavior. Copilot and direct Azure expose
+different controls, retries, receipts and cost information. Switching routes
+after failure would create a different experiment while presenting it as one
+run.
 
-**Rejected alternative.** Environment-driven implicit defaults and automatic
-fallback optimize for completion but weaken provenance and comparability.
+Environment-driven implicit defaults and automatic fallback were rejected
+because they optimize for completion but weaken provenance and comparability.
 
-### Decision 4 — Revalidate locally even when native schema is available
+### 3.4 Revalidate locally even when native schema is available
 
-**Decision.** Use provider-native strict structure where available, then parse
-and validate the returned bytes again in application code.
+Provider-native strict structure is used where available, then the returned
+bytes are parsed and validated again in application code.
 
-**Rationale.** The provider can reduce formatting errors but cannot enforce
-repository-specific identity, quotation, coverage or semantic rules. Local
-validation provides one route-independent contract.
+The provider can reduce formatting errors but cannot enforce repository-specific
+identity, quotation, coverage or semantic rules. Local validation provides one
+route-independent contract.
 
-**Rejected alternative.** Trusting a provider “structured output” success flag
+Trusting a provider “structured output” success flag was rejected because it
 would confuse transport acceptance with application correctness.
 
-### Decision 5 — Do not hide application retries in the adapter
+### 3.5 Do not hide application retries in the adapter
 
-**Decision.** One adapter invocation represents one application send. The
-workflow decides whether a classified error receives its single permitted
-repair.
+One adapter invocation represents one application send. The workflow decides
+whether a classified error receives its single permitted repair.
 
-**Rationale.** The brief asks for failure behavior. That behavior is auditable
-only when attempt ownership and budget are explicit.
+Failure behavior is auditable only when attempt ownership and budget are
+explicit.
 
-**Rejected alternative.** Silent repair or unbounded retry in the provider layer
-could turn repeated failures into a success-shaped response and invalidate cost
+Silent repair and unbounded provider retries were rejected because they could
+turn repeated failures into a success-shaped response and invalidate cost
 accounting.
 
-### Decision 6 — Sanitize evidence without claiming wire-level proof
+### 3.6 Sanitize evidence without claiming wire-level proof
 
-**Decision.** Retain hashes, timing, exposed usage, response state and sanitized
-receipts; never persist credentials.
+Run evidence retains hashes, timing, exposed usage, response state and sanitized
+receipts, but never credentials.
 
-**Rationale.** Reviewers need enough information to identify and compare runs,
-but logs must not leak secrets. Provider receipts are supporting provenance, not
-proof of hidden SDK or transport behavior.
+The retained fields are sufficient to identify and compare runs without leaking
+secrets. Provider receipts are supporting provenance, not proof of hidden SDK or
+transport behavior.
 
-**Rejected alternative.** Capturing entire environments or authorization
-headers would create security risk without establishing semantic correctness.
+Capturing entire environments or authorization headers was rejected because it
+would create security risk without establishing semantic correctness.
 
 ## 4. Failure classification
 
@@ -195,7 +193,7 @@ did not produce the promoted root artifact: both that artifact and the
 cross-setup comparison used Copilot. This establishes route provenance, not a
 strict attempt contract; provider-hidden attempts remain unknown.
 
-Cost is reported in three distinct layers:
+Cost is reported in four distinct views:
 
 | Cost view | Retained delivery | Defensible claim |
 |---|---:|---|

@@ -312,9 +312,10 @@ weekly-or-faster tickets are operationally optimal.
 
 The exact current artifact received one complete primary semantic review and
 recorded `provisional_pass` with 63/63 applicable dimensions. That review is
-AI-only, non-blind and not domain certification. X01 remains inconclusive for full protocol acceptance
-because its semantic procedure was supplementary and reviewer identity was
-incomplete.
+AI-only, non-blind, test-informed and a protocol deviation: the runtime did not
+expose the reviewer identity fields required by Document 03 §7.2. It is not
+domain certification. X01 also remains inconclusive because its semantic
+procedure was supplementary.
 
 ## 7. Claim boundaries
 
@@ -411,7 +412,7 @@ completed or universally transferable calibration.
 | Current urgency and routing implementation | `triage\policy.py`, `triage\projection.py` and focused tests |
 | Current assessment anchors and failure-basis instruction | `triage\assessment_policy.py` and `triage\prompts\assessment-system-v7.txt` |
 
-## 15. Controlled-change disclosure
+## 10. Controlled-change disclosure
 
 Calibration used exposed findings and is therefore test-informed rather than
 blind. Failed experiments and prior outputs remain retained; the final file was

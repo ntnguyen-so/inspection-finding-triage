@@ -58,7 +58,7 @@ honest than percentages on this sample.
 | Criticality and reliability are priors | Do not use registry values as exact expected scores |
 | Related findings share equipment or protection state | Keep assessment-changing groups together |
 | Redundancy labels do not establish partner health | Test actual delivered partner evidence |
-| Missing deviation, POB or restoration data | Preserve unknown state; do not infer confirmed absence |
+| Missing deviation, personnel-on-board (POB) or restoration data | Preserve unknown state; do not infer confirmed absence |
 | One example ticket is exposed | Treat it as format/detail guidance, not a scoring key |
 | Only 21 findings exist | Report named outcomes; avoid accuracy and confidence claims |
 
@@ -74,68 +74,66 @@ triage system.
 
 ## 4. Evaluation decisions
 
-### Decision 1 — Group by shared assessment-changing evidence
+### 4.1 Group by shared assessment-changing evidence
 
-**Decision.** Findings stay in the same partition when one can materially change
-the other’s L/I, redundancy credit, fact state or planning decision.
+Findings stay in the same partition when one can materially change the other’s
+L/I, redundancy credit, fact state or planning decision.
 
-**Rationale.** Splitting linked observations could expose the answer context in
-development while presenting the paired test finding as independent.
+Splitting linked observations could expose answer context during development
+while presenting the paired test finding as independent.
 
-**Rejected alternative.** Grouping every equipment or process adjacency together
+Grouping every equipment or process adjacency together was rejected because it
 would collapse the already small dataset without evidence that every
 relationship changes assessment.
 
-### Decision 2 — Label the split non-blind
+### 4.2 Label the split non-blind
 
-**Decision.** Maintain separate development and designated test partitions while
-disclosing that all source rows are exposed and the current system is
-informed by exposed evaluation evidence.
+Development and designated test partitions remain separate, but all source rows
+are disclosed as exposed and the current system is informed by evaluation
+evidence.
 
-**Rationale.** Partition discipline can reduce direct tuning on some cases, but
-“held out” or “unseen” would overstate independence after source exposure and
-AI-assisted reference construction.
+Partition discipline can reduce direct tuning on some cases. Calling the test
+set “held out” or “unseen,” however, would overstate independence after source
+exposure and AI-assisted reference construction.
 
-**Rejected alternative.** Calling the test set blind would turn a procedural
-separation into a false generalization claim.
+The term “blind test” was rejected because it would turn a procedural separation
+into a false generalization claim.
 
-### Decision 3 — Keep test descriptions out of development provider context
+### 4.3 Keep test descriptions out of development provider context
 
-**Decision.** Development inference may use the shared registry and approved
-domain material, but not test finding descriptions, evidence cards, reviewer
-judgments or expected probe answers.
+Development inference may use the shared registry and approved domain material,
+but not test finding descriptions, evidence cards, reviewer judgments or
+expected probe answers.
 
-**Rationale.** Shared domain sources are part of the production problem.
-Case-specific test answers are evaluation artifacts and would leak the target.
+Shared domain sources are part of the production problem. Case-specific test
+answers are evaluation artifacts and would leak the target.
 
-**Rejected alternative.** Enriching a shared knowledge store with test examples
+Enriching a shared knowledge store with test examples was rejected because it
 could improve measured cases while destroying the meaning of the partition.
 
-### Decision 4 — Use evidence cards as a bounded review contract, not exact gold scores
+### 4.4 Use evidence cards instead of exact gold scores
 
-**Decision.** Cards identify evidence, contradictions, required distinctions and
-forbidden claims for the semantic procedure in Document 03 §7. They constrain
-what the reviewer may judge without prescribing one exact L/I tuple. Adjacent
-L/I values may remain defensible.
+Evidence cards identify contradictions, required distinctions and forbidden
+claims for the semantic procedure in Document 03 §7. They constrain reviewer
+judgment without prescribing one exact L/I tuple, so adjacent values may remain
+defensible.
 
-**Rationale.** The source package does not provide calibrated numeric truth.
-Exact expected scores would manufacture precision and encourage case-specific
-branches.
+The source package does not provide calibrated numeric truth. Exact expected
+scores would manufacture precision and encourage case-specific branches.
 
-**Rejected alternative.** A single “correct” L/I/U tuple per finding would turn
+A single “correct” L/I/U tuple per finding was rejected because it would turn
 engineering judgment into an invented oracle.
 
-### Decision 5 — Keep observations outside specifications
+### 4.5 Keep observations outside specifications
 
-**Decision.** Membership, scenarios and evidence rules live under `eval\spec`;
-executed outcomes live under `eval\results`.
+Membership, scenarios and evidence rules live under `eval\spec`; executed
+outcomes live under `eval\results`.
 
-**Rationale.** A specification defines what would count. A result records what
-happened. Mixing them makes failed evidence easy to overwrite with current
-status.
+A specification defines what would count, while a result records what happened.
+Mixing them makes failed evidence easy to overwrite with current status.
 
-**Rejected alternative.** Updating scenario definitions as a progress tracker
-would allow the target to move after observing failures.
+Using scenario definitions as a progress tracker was rejected because it would
+allow the target to move after observing failures.
 
 ## 5. Context boundary
 
@@ -182,7 +180,7 @@ turning observations into new specifications.
 |---|---|---|
 | Group related findings | Current split membership keeps assessment-changing equipment and protection evidence together. | **Supported as leakage control.** It does not prove that every operational dependency is known. |
 | Label the split non-blind | All findings are exposed and the current configuration is informed by exposed evaluation evidence. | **Honest but non-independent.** Current test evidence supports regression claims, not blind generalization. |
-| Isolate test descriptions and answers | Boundary tests show that production did not import evaluator cards or expected answers, but the retained v31 development provider context contained all eight test finding records. | **Not met for the retained development runs.** The failure is test-description leakage, not evidence-card or expected-answer leakage; the 13/8 split therefore supports regression workflow, not case-isolated generalization. |
+| Isolate test descriptions and answers | Boundary tests show that production did not import evaluator cards or expected answers, but the retained `structured-planning-v31` development provider context contained all eight test finding records. | **Not met for the retained development runs.** The failure is test-description leakage, not evidence-card or expected-answer leakage; the 13/8 split therefore supports regression workflow, not case-isolated generalization. |
 | Use cards rather than exact scores | The current semantic procedure evaluates grounding, planning and uncertainty while allowing unresolved adjacent-score judgment. | **Supported provisionally.** Reviewer calibration is narrow and AI-assisted. |
 | Separate specifications from results | Executable specifications remain under `eval\spec`; current observations remain under `eval\results`. | **Supported structurally.** Current status must be read from root `README.md` and the evidence index. |
 
@@ -190,8 +188,9 @@ turning observations into new specifications.
 
 - **Small, exposed sample.** All findings were read during development; no
   population or unseen-data claim is available.
-- **Development-context leakage.** The retained v31 development runs selected
-  13 DEV findings but sent all eight TEST finding records in provider context.
+- **Development-context leakage.** The retained `structured-planning-v31`
+  development runs selected 13 DEV findings but sent all eight TEST finding
+  records in provider context.
   Later TEST results are test-informed regression evidence, not isolated
   held-out evidence.
 - **Relationship-heavy cases.** Grouping reduces obvious leakage but cannot prove
@@ -224,6 +223,5 @@ Document 03 §9 defines the current controlled-change procedure.
 - Current split and hashes: `eval\spec\split.json`
 - Acceptance scenarios and semantic reviewer protocol:
   `docs\03_EVALUATION_ACCEPTANCE.md`
-- Observed outcomes: `eval\results\README.md`
+- Observed outcomes, evidence and limitations: `eval\results\README.md`
 - Current delivery status and run instructions: root `README.md`
-- Detailed observed evidence and limitations: `eval\results\README.md`

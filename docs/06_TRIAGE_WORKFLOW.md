@@ -21,7 +21,7 @@ This boundary does not make model output correct or deterministic. It makes
 failure visible and prevents invalid, partial or unsupported output from looking
 like a successful current delivery.
 
-## Module boundary and dependency direction
+### Module boundary and dependency direction
 
 The workflow does not extract or maintain domain guidance. It asks
 `triage_knowledge` for a pinned, validated context bundle and then treats that
@@ -41,7 +41,7 @@ context contract without exercising the knowledge store. The reverse dependency
 is prohibited: knowledge tooling does not publish tickets, choose urgency or
 consume evaluator answers.
 
-**Rejected alternative.** Putting retrieval inside the workflow would make
+Putting retrieval inside the workflow was rejected because it would make
 source maintenance and operational execution one permission surface. A change to
 PSV guidance could then require editing orchestration code, while a workflow
 developer could silently alter the knowledge authority.
@@ -109,12 +109,11 @@ detect every semantic conflict between prompt, policy and knowledge. Some domain
 interpretation remains embedded in the packaged prompt; that is a disclosed
 compatibility risk, not an achieved clean authority separation.
 
-The prompt instructs the model to treat supplied observations as evidence rather
-than instructions. The route places that prompt as a replace-mode system message
-and records the separation as requested rather than proving raw provider
-equivalence. A knowledge change that overlaps interpretation embedded in the
-active prompt therefore requires focused prompt-compatibility review before
-activation; it is not assumed to override prompt wording.
+The route places that prompt as a replace-mode system message and records the
+separation as requested rather than proving raw provider equivalence. A
+knowledge change that overlaps interpretation embedded in the active prompt
+therefore requires focused prompt-compatibility review before activation; it is
+not assumed to override prompt wording.
 
 Prompt changes therefore follow the controlled-change boundary. Each removed
 clause needs a destination, provenance and focused regression evidence.
@@ -238,11 +237,11 @@ Publication occurs only after batch-level identity and coverage validation. A
 temporary file is flushed and atomically substituted on the same volume; if
 replacement fails, old bytes remain.
 
-**Rationale.** A partial file could be mistaken for the complete planning
-package and hide which findings failed.
+A partial file could be mistaken for the complete planning package and hide
+which findings failed.
 
-**Rejected alternative.** Publishing valid tickets while dropping one failed
-finding optimizes availability at the cost of silent incompleteness.
+Publishing valid tickets while dropping one failed finding was rejected because
+it optimizes availability at the cost of silent incompleteness.
 
 This choice has a real trade-off: whole-batch generation is fragile and can
 waste completed work. Hash-pinned per-finding resume is future work, but it must
@@ -271,7 +270,7 @@ concrete `Why:` explanation and verification check.
 | Design hypothesis | Current evidence | Interpretation and remaining limit |
 |---|---|---|
 | Deterministic controls remain outside the model | Fault and behavior tests cover schema, identity, bounded repair, exhaustion, urgency and atomic publication. | **Pass for tested control behavior.** Formula behavior is not calibrated risk truth. |
-| Knowledge reaches assessment without becoming policy | Captured provider-bound context and a bounded positive/negative comparison exercise the boundary. | **Pass for inspected delivery paths; inconclusive for broad causal use.** The evidence is not domain certification. |
+| Knowledge reaches assessment without becoming policy | Captured provider-bound context and a bounded positive/negative comparison exercise the boundary. The retained development runs also sent TEST finding records in provider context. | **Delivery observed; B01 not met for the retained development runs.** Broad causal use remains inconclusive, and the evidence is not domain certification. |
 | Fixed-identity comparison exposes decision drift | The current X01 comparison preserves operational routing while disclosing numeric and rule-trace drift. | **Inconclusive for full X01 acceptance.** Its semantic observations use a supplementary procedure and lack complete reviewer identity. |
 | Complete-batch publication is observable | The experimental 21-ticket output has a verified publication receipt; root `tickets.json` is byte-identical by SHA-256 but was promoted outside the workflow. | **Pass for the observed experimental publication and hash-checked promotion.** The root file has no separate workflow receipt; human approval remains required and clean-checkout reproduction is unresolved. |
 | Semantic quality is reviewed separately | The retained all-finding review reports no failed dimensions. | **Inconclusive for protocol-conformant acceptance.** Required reviewer identity fields were not exposed. |
@@ -282,27 +281,11 @@ self-tests and AI review are never presented as equivalent to system acceptance.
 
 ### Cost interpretation
 
-The retained 21-ticket delivery used 973,468 input and 40,335 output tokens in
-21 application sends. Applying the declared OpenAI Standard short-context rates
-of US$2 per million input tokens and US$10 per million output tokens gives:
-
-```text
-(973,468 * 2 + 40,335 * 10) / 1,000,000 = US$2.350286
-```
-
-This is a measured, reproducible API-equivalent cost proxy, approximately
-US$0.111918 per generated ticket. It is not the Copilot subscription's billed
-cost: the route does not expose its AI-unit-to-USD conversion or hidden HTTP
-attempts. The receipt separately reports 21 request-cost units and 249.31861 AI
-units. Its cache fields and catalog schedule also support a cache-aware
-OpenAI-equivalent scenario of US$2.493186, but that remains a pricing scenario,
-not a Copilot invoice. The workflow retains raw usage with `usd_cost=null`; the
-equivalent figures are explicit calculations over that evidence rather than
-runtime billing fields. The
-[delivery cost evidence](..\eval\results\delivery-cost-summary.json) records the
-source-run hash, measured totals, formula assumptions and the official
-[OpenAI API pricing](https://developers.openai.com/api/docs/pricing) source.
-Document 04 owns the detailed provider/accounting rationale.
+The retained 21-ticket delivery used 973,468 input and 40,335 output tokens
+(US$2.350286 API-equivalent under the declared public rates, not a Copilot
+invoice). Document 04 §6 owns the calculation, cache-aware scenario and billing
+limits; the underlying totals and assumptions are retained in the
+[delivery cost evidence](..\eval\results\delivery-cost-summary.json).
 
 ## 9. Current provenance and disclosure
 

@@ -199,7 +199,8 @@ stability.
 
 ### 5.3 What the exercise exposed
 
-The exercise found three issues that a simpler demo would have hidden:
+Beyond the non-target variance and domain-semantics conflict discussed in §6,
+the exercise exposed three implementation issues:
 
 1. **Authority wording leaked into guidance.** The first source called itself an
    evaluation-only proposal, so the model correctly declined to treat it as

@@ -1,8 +1,5 @@
 # Requirements and Design Principles
 
-Requirements analysis and design principles are separated from implementation
-and acceptance evidence.
-
 ## Abstract
 
 The assignment is not a text-transformation exercise. It asks for a system that
@@ -53,7 +50,7 @@ the finding evidence and reverse the meaning of the scale.
 Impact concerns failure of the required function and its consequences. It must
 consider actual redundancy, delayed or hidden consequences, escalation
 potential, and the protected major-accident scenario for Safety Critical
-Elements. `criticality_score` is therefore a prior, not the answer.
+Elements (SCEs). `criticality_score` is therefore a prior, not the answer.
 
 ### 2.3 Redundancy is a claim requiring current evidence
 
@@ -93,75 +90,69 @@ principles are not a one-to-one restatement of the domain rules: each consolidat
 several source constraints and delivery requirements into an enforceable
 boundary.
 
-### Decision 1 — Treat the model as an assessor, not the workflow owner
+### 3.1 The model assesses; the workflow controls
 
-**Decision.** Ask the model to propose likelihood, impact, fact states,
-uncertainty, summary and activity. Keep identity, schema, score ranges, urgency,
-attempts, coverage and publication in code.
+The model proposes likelihood, impact, fact states, uncertainty, summary and
+activity. Identity, schema, score ranges, urgency, attempts, coverage and
+publication remain in code.
 
-**Rationale.** Free-text evidence requires contextual interpretation. The output
-contract, arithmetic and failure policy are deterministic invariants that can be
-tested and must not vary with wording. Code-owned attempts, failure diagnostics
-and publication keep those controls independent of response wording.
+Free-text evidence requires contextual interpretation. The output contract,
+arithmetic and failure policy are deterministic invariants that can be tested
+and must not vary with wording.
 
-**Rejected alternative.** Asking the model for the complete final ticket,
-including urgency, violates the brief and makes retry/publication behavior
+Asking the model for the complete final ticket, including urgency, was rejected
+because it violates the brief and makes retry and publication behavior
 prompt-dependent.
 
-### Decision 2 — Preserve uncertainty rather than manufacture completeness
+### 3.2 Preserve uncertainty rather than manufacture completeness
 
-**Decision.** A supported draft may carry a targeted verification requirement.
-If the evidence cannot justify required L/I scores, generation fails visibly.
+A supported draft may carry a targeted verification requirement. If the
+evidence cannot justify required L/I scores, generation fails visibly.
 
-**Rationale.** Human review cannot legitimize fabricated scores. A review flag is
-useful only when the assessment is already supportable and the remaining check is
-specific.
+Human review cannot legitimize fabricated scores. A review flag is useful only
+when the assessment is already supportable and the remaining check is specific.
 
-**Rejected alternative.** Midpoint defaults, placeholder tickets or treating
-unknown facts as false would produce complete-looking but ungrounded output.
+Midpoint defaults, placeholder tickets and treating unknown facts as false were
+rejected because they produce complete-looking but ungrounded output.
 
-### Decision 3 — Use the supplied sources as bounded authority
+### 3.3 Use the supplied sources as bounded authority
 
-**Decision.** Preserve and deliver the supplied domain notes, registry comments,
-finding text and relevant related history. Keep project policy visibly separate
-from supplied rules.
+The system preserves and delivers the supplied domain notes, registry comments,
+finding text and relevant related history. Project policy remains visibly
+separate from supplied rules.
 
-**Rationale.** The corpus is small and relationship-heavy. Source fidelity and
-bounded context are more important than adding external authority or retrieval
-complexity to this exercise.
+The corpus is small and relationship-heavy, so source fidelity and bounded
+context are more useful than external authority or additional retrieval
+complexity.
 
-**Rejected alternative.** Autonomous web retrieval or generated engineering
-guidance would add unverifiable authority and weaken reproducibility.
+Autonomous web retrieval and generated engineering guidance were rejected
+because they add unverifiable authority and weaken reproducibility.
 
-### Decision 4 — Evaluate semantics separately from structure
+### 3.4 Evaluate semantics separately from structure
 
-**Decision.** Test contract behavior deterministically and assess grounded
-quality through explicit scenarios and retained real-model observations.
+Contract behavior is tested deterministically. Grounded quality is assessed
+through explicit scenarios and retained real-model observations.
 
-**Rationale.** Valid JSON can still contain an unsupported score or unsafe
-activity. Conversely, an evaluator self-test proves only that the evaluator
-software detects its seeded fixture.
+Valid JSON can still contain an unsupported score or unsafe activity.
+Conversely, an evaluator self-test proves only that the evaluator software
+detects its seeded fixture.
 
-**Rejected alternative.** Treating schema conformance, unit-test count or AI
-reviewer agreement as system acceptance would overstate the evidence.
+Schema conformance, unit-test count and AI reviewer agreement are not treated as
+system acceptance because each would overstate the available evidence.
 
-### Decision 5 — Publish a complete batch or fail closed
+### 3.5 Publish a complete batch or fail closed
 
-**Decision.** Publish only after every selected finding has produced a
-contract-valid ticket and the complete batch passes coverage checks. Preserve
-any previous output when the new run fails.
+Publication occurs only after every selected finding has produced a
+contract-valid ticket and the complete batch passes coverage checks. A failed
+run preserves any previous output.
 
-**Rationale.** The assignment requires one complete `tickets.json`. A partial
-batch could be mistaken for successful coverage and silently omit the finding
-that most needs explicit deferral.
+The assignment requires one complete `tickets.json`. A partial batch could be
+mistaken for successful coverage and silently omit the finding that most needs
+explicit deferral.
 
-**Rejected alternative.** Publishing the other valid drafts with a missing or
-placeholder ticket would improve partial availability, but would weaken the
-required file's meaning and move failure detection onto downstream readers.
-
-The provider and model, numeric L/I rubric, urgency formula, knowledge packaging,
-atomic replacement mechanism and review-routing thresholds are engineering
-choices, not requirements supplied by the brief.
+Publishing valid drafts while omitting or replacing a failed finding would
+improve partial availability, but it would weaken the required file's meaning
+and move failure detection onto downstream readers.
 
 ## 4. Current assessment of the design hypotheses
 
@@ -172,7 +163,7 @@ different claims and are not interchangeable.
 |---|---|---|
 | Treat the model as an assessor | Current tests and run evidence show that identity, coverage, urgency and publication remain code-owned while provider failures stay visible. | **Supported at the application boundary.** Measured token usage supports an approximately US$2.35 API-equivalent estimate for the retained delivery; hidden provider retries and the actual Copilot billing allocation remain unknown. |
 | Preserve uncertainty | Unsupported scores fail instead of receiving defaults; the current root delivery has six explicit exceptional-review routes while every draft still requires ordinary approval. | **Supported provisionally.** The routing threshold remains project-defined and operationally uncalibrated. |
-| Use supplied sources as bounded authority | The source-first lifecycle supports edit, review, immutable release and separate activation. Current B02 evidence includes one bounded synthetic influence comparison with a negative control (Document 07; evidence indexed in `eval\results\README.md`). | **Partially supported.** Maintainability and one isolated influence claim are demonstrated; broad causal use and domain correctness are not. |
+| Use supplied sources as bounded authority | The source-first lifecycle supports edit, review, immutable release and separate activation. Current B02 knowledge-influence evidence includes one bounded synthetic comparison with a negative control (Document 07; evidence indexed in `eval\results\README.md`). | **Partially supported.** Maintainability and one isolated influence claim are demonstrated; broad causal use and domain correctness are not. |
 | Evaluate semantics separately from structure | The current root artifact is contract-valid and has a provisional 63-dimension AI review whose reviewer identity is incomplete under the declared protocol. | **Supported as an evaluation principle.** AI review is not expert certification or human approval. |
 | Publish a complete batch or fail closed | Current fault tests preserve old output on handled failures. The 21-ticket experimental output has a verified publication receipt, and root `tickets.json` is byte-identical by SHA-256 after separate promotion. | **Supported for current code, observed experimental publication and hash-checked promotion.** The root copy has no separate workflow receipt; clean-checkout reproduction remains unresolved, and the design sacrifices partial availability. |
 

@@ -70,11 +70,10 @@ rewriting that makes an invalid response appear provider-valid.
 **Requirement.** If one finding cannot be produced within budget, exit nonzero,
 publish no partial batch and preserve any previous output.
 
-**Rationale.** A partial file could masquerade as the required complete planning
-package.
+A partial file could masquerade as the required complete planning package.
 
-**Rejected alternative.** Placeholder scores or omitted findings make failure
-look like completion.
+**Failure.** Placeholder scores, omitted findings or a partial file that makes
+failure look like completion.
 
 ### A04 — Valid structure, wrong meaning
 
@@ -449,7 +448,7 @@ scenario-by-scenario evidence status is
 | Contract area | Current evidence | Interpretation and remaining limit |
 |---|---|---|
 | A — Structure and failure | Current tests exercise malformed output, bounded repair, exhaustion, complete coverage and publication rollback. The experimental 21-ticket output has a verified publication receipt; root `tickets.json` is contract-valid and byte-identical by SHA-256 after separate promotion. | **Supported for current code, observed experimental publication and hash-checked promotion.** The root copy has no separate workflow receipt, and contract validity does not establish semantic quality. |
-| B — Knowledge | Source delivery and maintenance mechanics were exercised; one synthetic intervention showed bounded influence and negative-control isolation. However, the retained v31 development runs sent all eight TEST finding records in provider context. | **Partially supported overall, with B01 not met.** Broad causal use and domain correctness remain unproven, and the DEV/TEST partition does not provide case-isolated inference evidence. |
+| B — Knowledge | Source delivery and maintenance mechanics were exercised; one synthetic intervention showed bounded influence and negative-control isolation. However, the retained `structured-planning-v31` development runs sent all eight TEST finding records in provider context. | **Partially supported overall, with B01 not met.** Broad causal use and domain correctness remain unproven, and the DEV/TEST partition does not provide case-isolated inference evidence. |
 | C — Urgency | Code ownership, range, monotonicity, corners and fact-sensitive escalation are tested. | **Supported as declared software policy.** Numeric calibration is not operational risk truth. |
 | D — Limits and deferral | Unsupported scores fail visibly; uncertainty and exceptional review are explicit. | **Supported in tested paths.** Routing thresholds remain project-defined and uncalibrated. |
 | X01 — Stability | Two development runs kept all 13 urgency bands and review flags unchanged. Two numeric scores and one rule trace differed without changing a scheduling or review decision, so the retained run records an operational `x01.status: pass`. However, those runs sent all eight TEST finding records in provider context, the runtime did not expose the semantic reviewer's model, settings or prompt identity required by §7.2, and the configuration was selected using development evidence. | **Inconclusive for formal acceptance.** The observed pair supports stable operational decisions, but context leakage, missing reviewer identity and non-independent configuration selection prevent a protocol-level pass. Treat it as useful repeat-run evidence, not proof of deterministic model behavior. |
@@ -461,7 +460,7 @@ scenario-by-scenario evidence status is
 [`eval\spec\acceptance.json`](../eval/spec/acceptance.json) is the
 machine-readable scenario authority. Its
 `design_contract` field names the bound design-contract bytes and their identity
-(SHA-256) is recorded in the opening paragraph above. The rationale and review
+(SHA-256), which is recorded in the opening paragraph. The rationale and review
 method above do not overwrite executable specifications or results.
 
 A genuine source-backed correction, grader bug or authorized requirement change

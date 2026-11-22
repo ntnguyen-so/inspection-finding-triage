@@ -27,7 +27,7 @@ has a distinct role:
    side-by-side baseline link at the top of
    [`08_BEHAVIOR_CALIBRATION_STUDY.md`](08_BEHAVIOR_CALIBRATION_STUDY.md).
 4. For the knowledge-maintenance path and observed influence, see the six-month
-   PSV example in
+   pressure safety valve (PSV) example in
    [`07_KNOWLEDGE_CHANGE_STUDY.md`](07_KNOWLEDGE_CHANGE_STUDY.md).
 
 ## End-to-end development map
@@ -53,7 +53,8 @@ answer. The investigation identified the recurring traps:
 
 - reliability runs in the opposite direction to likelihood;
 - redundancy is a claim that needs partner evidence;
-- SCE impact concerns the protected major-accident scenario, not repair cost;
+- Safety Critical Element (SCE) impact concerns the protected major-accident
+  scenario, not repair cost;
 - missing evidence is unknown, not confirmed absence; and
 - valid JSON can still contain an invalid engineering judgment.
 
@@ -70,7 +71,9 @@ AI-assisted; it was never presented as independent gold.
 Production context was separated from evaluator cards, expected answers and
 reviewer judgments. Related equipment evidence was grouped to reduce obvious
 leakage, while the documents retained the limitation that not every operational
-dependency can be known from 21 rows.
+dependency can be known from 21 rows. The retained development runs nevertheless
+sent all eight TEST finding records to the provider, so the split supports
+regression evidence rather than case-isolated generalization (Document 02 §7).
 
 ### 03 - Decide what counts before judging outputs
 
@@ -182,7 +185,7 @@ allocation remain unknown.
 
 ## Where development was iterative
 
-The project did not occur once in a perfect waterfall:
+Development was iterative rather than a linear waterfall:
 
 - early workflow work preceded the final knowledge-lifecycle boundary;
 - Document 08 includes early calibration interventions that preceded the
