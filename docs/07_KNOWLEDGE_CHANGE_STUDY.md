@@ -19,22 +19,94 @@ behavior and can be rolled back. They do **not** establish that the experimental
 PSV rule was correct. The rule was not promoted, and production remained on the
 baseline knowledge release.
 
-## 1. Choose the correct change surface
+## 1. What to edit six months later
 
-Not every future behavior change is a knowledge update.
+Start by identifying the type of change, then follow the matching procedure.
 
-| Requested change | Correct edit surface | Do not use |
-|---|---|---|
-| New approved PSV evidence or interpretation within the existing L/I rubric | Add or replace an approved knowledge source, review the extracted item, publish an immutable release and activate it separately | Prompt edits, orchestration changes or finding-ID branches |
-| New generic likelihood or impact anchor | `triage\assessment_policy.py` and focused tests | Knowledge text that tries to override the scoring contract |
-| New urgency floor or exceptional-review rule | `triage\policy.py` and focused tests | Model instructions that ask the model to choose urgency |
-| New fact about one valve | A new registry snapshot supplied to the run | General knowledge or changes to the preserved source package |
-| New selector or extraction behavior | `triage_knowledge` retrieval/extraction code and controlled component evaluation | Rewording the source guidance to compensate for code behavior |
+### 1.1 Change general PSV evidence or interpretation
 
-This separation keeps approved engineering interpretation distinct from
-code-owned scoring and routing policy. Document 05 defines the production
-commands and release architecture; this document records what happened when
-that architecture was exercised.
+Use this path when approved engineering guidance changes but the existing
+likelihood/impact rubric still applies.
+
+1. Create a new approved source file outside the preserved candidate package.
+2. Import, review and publish it:
+
+   ```powershell
+   python -B -m triage_knowledge --store knowledge\source-first import-source `
+     --source "path\to\approved-psv-guidance.md" `
+     --name "approved-psv-source"
+   python -B -m triage_knowledge --store knowledge\source-first review `
+     --item "item-id" --expected-digest "digest" `
+     --reviewer "reviewer" --reason "scope and source checked"
+   python -B -m triage_knowledge --store knowledge\source-first publish `
+     --expected-digest "digest" --author "author" `
+     --reviewer "reviewer" --reason "approved"
+   ```
+
+3. Inspect the immutable release and
+   `triage.source_context.activation_candidate`.
+4. Have the runtime approver record provenance, create a new activation identity
+   and repin a fresh run configuration. Publication alone does not activate the
+   release; there is currently no activation-approval CLI.
+5. Regenerate tickets and compare the intended finding, a negative control and
+   non-target findings before promotion.
+
+If the guidance overlaps interpretation embedded in the prompt, complete the
+prompt-compatibility review in Document 06 before activation.
+
+### 1.2 Change a fact about one asset
+
+Create a new registry snapshot outside the candidate package, preserve its exact
+bytes and hash, and point a fresh run configuration at that snapshot. Regenerate
+the affected batch and retain evidence against the new registry identity. Do not
+edit the preserved supplied registry.
+
+### 1.3 Change a generic likelihood or impact anchor
+
+Edit the anchors and instructions in `triage\assessment_policy.py`, update the
+focused cases in `tests\test_triage.py`, and run:
+
+```powershell
+python -B -m unittest tests.test_triage
+```
+
+Then refresh the activation identity and run configuration because the
+assessment-policy hash has changed. Rerun the affected acceptance scenarios and
+semantic review before using the new rubric.
+
+### 1.4 Change urgency or exceptional-review routing
+
+Edit the deterministic formula, floors or escalation rules in
+`triage\policy.py`, update the independently worked expectations in
+`tests\test_triage.py`, and run:
+
+```powershell
+python -B -m unittest tests.test_triage
+```
+
+Refresh the activation identity, regenerate the tickets and compare urgency and
+review-routing changes. The model does not choose urgency.
+
+### 1.5 Change extraction or selection behavior
+
+Edit `triage_knowledge\source.py` for extraction behavior or the retrieval code
+for selection behavior. Update and run the focused component tests:
+
+```powershell
+python -B -m unittest `
+  tests.test_source_workflow `
+  tests.test_source_context `
+  tests.test_source_knowledge
+```
+
+If the selected knowledge or implementation identity changes, publish any
+required replacement release and obtain a new activation approval before a
+production run.
+
+These procedures keep approved engineering interpretation separate from
+code-owned scoring and routing policy. Document 05 owns the full production
+architecture; this study records what happened when its maintenance path was
+exercised.
 
 ## 2. How a knowledge change reaches assessment
 
