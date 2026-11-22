@@ -30,11 +30,11 @@ The retained evidence shows that this path works:
   domain-semantics conflict, so the working candidate was reset, no experimental
   release was promoted and production activation stayed on the baseline release.
 
-This is the Senior-level conclusion: the system makes knowledge change
-observable, reviewable and reversible, but it does not treat a visible output
-change as proof that the new engineering rule is correct.
+The study supports a narrower conclusion: the system makes knowledge change
+observable, reviewable and reversible, but a visible output change does not
+prove that the new engineering rule is correct.
 
-## 1. Direct answer to the panel
+## 1. Knowledge-change surfaces
 
 The correct edit surface depends on what the engineer is actually changing:
 
