@@ -2,7 +2,9 @@
 
 The evaluation design defines what the supplied data can support, how cases and
 context are separated, and which evidence classes must remain distinct.
-Executable membership and fingerprints remain authoritative in `eval\spec`.
+Exact case membership and file fingerprints are stored in
+[`eval\spec\split.json`](../eval/spec/split.json); this prose does not override
+that executable specification.
 
 ## Abstract
 
@@ -16,6 +18,16 @@ percentage. It is how to obtain useful evidence from a non-blind, relationship-
 heavy case set while preserving the distinction between artifact integrity,
 deterministic system behavior and semantic ticket quality. Passing one of these
 classes does not imply the others.
+
+The intended development/test context boundary is described below, but the
+retained development runs did not preserve it: all eight test finding records
+reached the provider context. The current split therefore organizes regression
+evidence; it does not provide case-isolated inference evidence. This is the
+failure recorded by acceptance scenario B01.
+
+Sections 2-3 describe what the dataset can support, sections 4-6 define the
+evaluation and context rules, and sections 7-8 report the evidence currently
+available against those rules.
 
 ## 1. Research questions
 
@@ -37,6 +49,11 @@ notes and one illustrative ticket. The evaluation split contains 13 development
 cases in nine relationship groups and eight test cases in four groups. All source
 rows and the example were available during development. The semantic reference
 is AI-assisted and is not independent expert gold.
+
+A **partition** is the named development or test membership. A
+**relationship group** keeps findings together when they share evidence that
+can change an assessment. **L**, **I** and **U** mean likelihood, impact and
+code-derived urgency on ordinal 1-10 scales.
 
 Consequently, the evaluation may support statements about:
 
@@ -111,12 +128,18 @@ answers are evaluation artifacts and would leak the target.
 Enriching a shared knowledge store with test examples was rejected because it
 could improve measured cases while destroying the meaning of the partition.
 
+This is the intended boundary. The retained development runs violated it, as
+reported in section 7; evaluator cards and expected answers remained isolated,
+but test finding descriptions did not.
+
 ### 4.4 Use evidence cards instead of exact gold scores
 
-Evidence cards identify contradictions, required distinctions and forbidden
-claims for the semantic procedure in Document 03 §7. They constrain reviewer
-judgment without prescribing one exact L/I tuple, so adjacent values may remain
-defensible.
+An **evidence card** is an evaluator-only checklist of relevant source evidence,
+contradictions, required distinctions and forbidden claims. The cards support
+the semantic procedure in
+[Document 03 section 7](03_EVALUATION_ACCEPTANCE.md#7-current-semantic-reviewer-protocol).
+They constrain reviewer judgment without prescribing one exact L/I tuple, so
+adjacent values may remain defensible.
 
 The source package does not provide calibrated numeric truth. Exact expected
 scores would manufacture precision and encourage case-specific branches.
@@ -153,8 +176,9 @@ Production assessment must not receive:
 - test-derived per-finding rules; or
 - copied final or gold tickets.
 
-Provider-bound context is captured where possible. Capture can establish delivery
-of named context, not that the model used it causally or correctly.
+**Provider-bound context** is the exact context prepared for the model request.
+Capture can establish delivery of named inputs, not that the model used them
+causally or correctly.
 
 ## 6. Evidence model
 
@@ -180,19 +204,18 @@ turning observations into new specifications.
 |---|---|---|
 | Group related findings | Current split membership keeps assessment-changing equipment and protection evidence together. | **Supported as leakage control.** It does not prove that every operational dependency is known. |
 | Label the split non-blind | All findings are exposed and the current configuration is informed by exposed evaluation evidence. | **Honest but non-independent.** Current test evidence supports regression claims, not blind generalization. |
-| Isolate test descriptions and answers | Boundary tests show that production did not import evaluator cards or expected answers, but the retained `structured-planning-v31` development provider context contained all eight test finding records. | **Not met for the retained development runs.** The failure is test-description leakage, not evidence-card or expected-answer leakage; the 13/8 split therefore supports regression workflow, not case-isolated generalization. |
+| Isolate test descriptions and answers | Boundary tests show that production did not import evaluator cards or expected answers, but every retained development provider input contained all eight test finding records. | **B01 is not met for the retained development runs.** The failure is test-description leakage, not evaluator-answer leakage; the 13/8 split supports regression workflow, not case-isolated generalization. See the [B01 audit](../eval/results/triage/structured-planning-v31/b01-development-context-audit.json) and [Document 03 B01](03_EVALUATION_ACCEPTANCE.md#b01--context-delivery). |
 | Use cards rather than exact scores | The current semantic procedure evaluates grounding, planning and uncertainty while allowing unresolved adjacent-score judgment. | **Supported provisionally.** Reviewer calibration is narrow and AI-assisted. |
-| Separate specifications from results | Executable specifications remain under `eval\spec`; current observations remain under `eval\results`. | **Supported structurally.** Current status must be read from root `README.md` and the evidence index. |
+| Separate specifications from results | Executable specifications remain under `eval\spec`; current observations remain under `eval\results`. | **Supported structurally.** Current status must be read from root `README.md` and [`eval\results\README.md`](../eval/results/README.md). |
 
 ## 8. Threats to validity and claim limits
 
 - **Small, exposed sample.** All findings were read during development; no
   population or unseen-data claim is available.
-- **Development-context leakage.** The retained `structured-planning-v31`
-  development runs selected 13 DEV findings but sent all eight TEST finding
-  records in provider context.
-  Later TEST results are test-informed regression evidence, not isolated
-  held-out evidence.
+- **Development-context leakage.** The retained development runs generated
+  tickets for the 13 development findings, but every provider request also
+  included the descriptions of all eight test findings. Later test results are
+  test-informed regression evidence, not isolated held-out evidence.
 - **Relationship-heavy cases.** Grouping reduces obvious leakage but cannot prove
   independence between all operationally connected equipment.
 - **AI-assisted reference and review.** Cards and semantic judgments are useful
@@ -211,17 +234,19 @@ claims it can support.
 
 ## 9. Controlled-change boundary
 
-This design document does not define a second change procedure. Executable
-specifications remain the machine-checked authority, results remain separate,
-and replaced contract bytes or failed observations must not be silently
-reinterpreted.
-Document 03 §9 defines the current controlled-change procedure.
+This document does not define a second change procedure. Machine-checked
+specifications remain under `eval\spec`, observations remain under
+`eval\results`, and failed or replaced evidence is preserved. Changes to the
+evaluation contract follow
+[Document 03 section 9](03_EVALUATION_ACCEPTANCE.md#9-controlled-change-and-authority).
 
 ## 10. Reader path
 
-- Source package: `docs\candidate-pack\candidate-pack`
-- Current split and hashes: `eval\spec\split.json`
+- Source package:
+  [`docs\candidate-pack\candidate-pack`](candidate-pack/candidate-pack/README.md)
+- Current split and hashes: [`eval\spec\split.json`](../eval/spec/split.json)
 - Acceptance scenarios and semantic reviewer protocol:
-  `docs\03_EVALUATION_ACCEPTANCE.md`
-- Observed outcomes, evidence and limitations: `eval\results\README.md`
-- Current delivery status and run instructions: root `README.md`
+  [Document 03](03_EVALUATION_ACCEPTANCE.md)
+- Observed outcomes, evidence and limitations:
+  [`eval\results\README.md`](../eval/results/README.md)
+- Current delivery status and run instructions: [root `README.md`](../README.md)
