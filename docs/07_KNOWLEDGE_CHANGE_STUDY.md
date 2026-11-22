@@ -21,7 +21,9 @@ baseline knowledge release.
 
 ## 1. What to edit six months later
 
-Start by identifying the type of change, then follow the matching procedure.
+Sections 1.1-1.5 are independent change paths, not sequential steps. Start with
+the path that matches the requested change; if one change spans multiple types,
+follow each relevant path and review the combined scope explicitly.
 
 ### 1.1 Change general PSV evidence or interpretation
 
