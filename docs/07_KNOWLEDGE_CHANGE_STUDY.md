@@ -19,6 +19,11 @@ behavior and can be rolled back. They do **not** establish that the experimental
 PSV rule was correct. The rule was not promoted, and production remained on the
 baseline knowledge release.
 
+In this document, **publish** means creating an immutable reviewed release,
+**activate** means approving one exact release/policy/prompt binding for a run,
+and **promote** means replacing the production activation after the comparison
+and review gates pass.
+
 ## 1. What to edit six months later
 
 Sections 1.1-1.5 are independent change paths, not sequential steps. Start with
@@ -42,48 +47,109 @@ likelihood/impact rubric still applies.
    python -B -m triage_knowledge --store knowledge\source-first import-source `
      --source "path\to\approved-psv-guidance.md" `
      --name "approved-psv-source"
+   python -B -m triage_knowledge --store knowledge\source-first check
    python -B -m triage_knowledge --store knowledge\source-first review `
-     --item "item-id" --expected-digest "digest" `
+     --item "<item-id from check>" `
+     --expected-digest "<candidate_digest from check>" `
      --reviewer "reviewer" --reason "scope and source checked"
    python -B -m triage_knowledge --store knowledge\source-first publish `
-     --expected-digest "digest" --author "author" `
+     --expected-digest "<candidate_digest from review>" --author "author" `
      --reviewer "reviewer" --reason "approved"
    ```
 
+   The `check` output lists the extracted item IDs and current candidate digest.
+   Review every pending item, using the latest digest returned after each
+   review. The publish command returns the immutable `knowledge_version` used in
+   the next step.
 3. Generate an activation-manifest draft with the Python helper:
 
    ```python
+   import json
    from pathlib import Path
 
    from triage.source_context import activation_candidate
    from triage_knowledge import SourceKnowledgeStore
 
    store = SourceKnowledgeStore(Path("knowledge/source-first"))
-   candidate = activation_candidate(store, "sha256-<published-release>")
+   candidate = activation_candidate(
+       store,
+       "<knowledge_version from publish>",
+   )
+   print(json.dumps(candidate, indent=2))
    ```
 
    The returned dictionary pins the release, retrieval strategy and index,
-   assessment policy, execution policy and prompt identity. Its `review` field
-   is `None`, so this object is a candidate for approval, not an active release.
+   including hashes of the extraction/selection code, plus the assessment
+   policy, execution policy and prompt identity. Its `review` field is `None`,
+   so this object is a candidate for approval, not an active release.
 4. Have the runtime approver compare those pins with the intended change. If
-   compatible, add a `review` record containing `reviewer`, `reason`,
-   `reviewed_at` and `source_policy_compatible: true`, then save the reviewed
-   manifest as the activation artifact used by a fresh run configuration.
-   The root delivery uses `config\triage-activation.json`; controlled experiments
-   should use a run-specific `activation.json`. There is currently no
-   activation-approval CLI.
-5. Regenerate tickets and compare the intended finding, a negative control and
-   non-target findings before promotion.
+   compatible, create a unique comparison directory and save a reviewed
+   activation plus matching run configuration. Continue in the same Python
+   script or session used in step 3:
+
+   ```python
+   import json
+   from pathlib import Path
+
+   from run_triage import build_config
+
+   run = Path(".runs/psv-comparison-<unique-id>")
+   run.mkdir(parents=True, exist_ok=False)
+   candidate["review"] = {
+       "reviewer": "<approver>",
+       "reason": "<why the exact source/policy binding is compatible>",
+       "reviewed_at": "<ISO-8601 timestamp>",
+       "source_policy_compatible": True,
+   }
+   (run / "activation.json").write_text(
+       json.dumps(candidate, indent=2) + "\n",
+       encoding="utf-8",
+   )
+   config = build_config(
+       "copilot",
+       "gpt-6.1-sol",
+       run / "attempts.experimental-ledger.json",
+       candidate["knowledge_version"],
+       "medium",
+   )
+   (run / "config.json").write_text(
+       json.dumps(config, indent=2) + "\n",
+       encoding="utf-8",
+   )
+   ```
+
+   There is currently no activation-approval CLI. The root delivery uses
+   `config\triage-activation.json`, but replacing that file is a production
+   promotion step, not part of a comparison run.
+5. Generate comparison tickets with the run-specific activation:
+
+   ```powershell
+   python -B -m triage `
+     --provider copilot `
+     --findings docs\candidate-pack\candidate-pack\data\inspection_findings.csv `
+     --registry docs\candidate-pack\candidate-pack\data\equipment_registry.csv `
+     --knowledge-store knowledge\source-first `
+     --activation .runs\psv-comparison-<unique-id>\activation.json `
+     --config .runs\psv-comparison-<unique-id>\config.json `
+     --output .runs\psv-comparison-<unique-id>\tickets.json `
+     --evidence .runs\psv-comparison-<unique-id>\evidence `
+     --allow-inference
+   ```
+
+   Compare the intended finding, a negative control and non-target findings
+   before promotion. This command performs paid/provider inference. Use a new
+   directory for each run so old evidence cannot look like current evidence.
 
 If the guidance overlaps interpretation embedded in the prompt, complete the
 prompt-compatibility review in Document 06 before activation.
 
 ### 1.2 Change a fact about one asset
 
-Create a new registry snapshot outside the candidate package, preserve its exact
-bytes and hash, and point a fresh run configuration at that snapshot. Regenerate
-the affected batch and retain evidence against the new registry identity. Do not
-edit the preserved supplied registry.
+Create a new registry snapshot outside the candidate package and preserve its
+exact bytes and hash. Follow the comparison procedure in section 1.1, replacing
+the `--registry` path in step 5 with the new snapshot. Retain the output and
+evidence against that registry identity. Do not edit the preserved supplied
+registry.
 
 ### 1.3 Change a generic likelihood or impact anchor
 
@@ -94,9 +160,11 @@ focused cases in `tests\test_triage.py`, and run:
 python -B -m unittest tests.test_triage
 ```
 
-Then refresh the activation identity and run configuration because the
-assessment-policy hash has changed. Rerun the affected acceptance scenarios and
-semantic review before using the new rubric.
+Then repeat steps 3-5 of section 1.1, passing the currently active
+`knowledge_version` from `config\triage-activation.json` to
+`activation_candidate`, because the assessment-policy hash has changed. Rerun
+the affected acceptance scenarios and semantic review before using the new
+rubric.
 
 ### 1.4 Change urgency or exceptional-review routing
 
@@ -108,13 +176,16 @@ Edit the deterministic formula, floors or escalation rules in
 python -B -m unittest tests.test_triage
 ```
 
-Refresh the activation identity, regenerate the tickets and compare urgency and
-review-routing changes. The model does not choose urgency.
+Repeat steps 3-5 of section 1.1, passing the currently active
+`knowledge_version` from `config\triage-activation.json` to
+`activation_candidate`. Compare urgency and review-routing changes. The model
+does not choose urgency.
 
 ### 1.5 Change extraction or selection behavior
 
-Edit `triage_knowledge\source.py` for extraction behavior or the retrieval code
-for selection behavior. Update and run the focused component tests:
+Edit `triage_knowledge\source.py` for extraction behavior or
+`triage_knowledge\retrieval.py` for selection behavior. Update and run the
+focused component tests:
 
 ```powershell
 python -B -m unittest `
@@ -123,9 +194,10 @@ python -B -m unittest `
   tests.test_source_knowledge
 ```
 
-If the selected knowledge or implementation identity changes, publish any
-required replacement release and obtain a new activation approval before a
-production run.
+Editing either file always changes the pinned implementation hash. Repeat steps
+3-5 of section 1.1 with the currently active `knowledge_version`; if the
+knowledge content also changes, publish the replacement release first and use
+its new version. Obtain a new activation approval before a production run.
 
 These procedures keep approved engineering interpretation separate from
 code-owned scoring and routing policy. Document 05 owns the full production
@@ -140,7 +212,7 @@ approved source bytes
   -> explicit review
   -> immutable release
   -> separate activation approval
-  -> provider-bound context with release identity
+  -> provider-bound context (the exact context prepared for the model request)
   -> regenerated assessment and ticket
   -> before/after review
   -> promotion or rejection
@@ -162,7 +234,8 @@ Each boundary answers a separate question:
 The prototype sends complete bounded source and registry context because the
 corpus contains only 21 findings and 18 equipment records. This avoids retrieval
 ranking and omission failures, but it uses more input tokens and does not provide
-selector-level per-finding isolation.
+selector-level per-finding isolation: scoped guidance enters the shared batch
+context, and the model must decide whether it applies to each finding.
 
 Delivery, influence and correctness are different claims. Captured context can
 prove delivery. A before/after comparison can support influence. Neither proves
@@ -188,8 +261,10 @@ combined into one stronger claim.
 
 The B02 diagnostic (the acceptance scenario for knowledge influence and its
 negative control) held the model, configuration, implementation and synthetic
-input fixed. Only an artificial instruction under
-`context.assessment_policy.isolated_experiment` changed.
+input fixed. Only an artificial instruction changed: the positive synthetic
+condition should use likelihood 8 instead of 6 while impact remained 3. The
+instruction was carried under
+`context.assessment_policy.isolated_experiment`.
 
 | Condition | Before | After |
 |---|---:|---:|
@@ -199,8 +274,8 @@ input fixed. Only an artificial instruction under
 
 The positive case followed the changed convention while impact remained fixed.
 The F-1016 control did not apply that convention merely because it also involved
-a PSV. The calibrated AI reviewer marked the four-condition comparison as a
-pass.
+a PSV. The calibrated AI reviewer marked all four retained outputs (positive
+before/after and negative before/after) as a pass.
 
 This supports one bounded claim: an isolated context instruction influenced the
 intended assessment and was not blindly applied to the tag-only control. It does
@@ -227,11 +302,13 @@ The exercise passed through three states:
 
 1. the first source described itself as an experiment, so the model declined to
    treat it as engineering authority;
-2. a revised source was published as release `a39d...` and run twice, but an
-   editor defect was later found to have removed its scope and evidence fields;
-   and
-3. after the editor fix, release `63f1...` restored those fields and received
-   one verification run.
+2. a revised source was published as release
+   [`a39d...`](../knowledge/source-first/releases/sha256-a39db135667b8b13df866500124c3b0417f0e899e3576303cfd45a532863c5da.json)
+   and run twice, but an editor defect was later found to have removed its
+   equipment-type scope and links to exact supporting source spans; and
+3. after the editor fix, release
+   [`63f1...`](../knowledge/source-first/releases/sha256-63f1855f93f63d48f2bec3e0032e82e4cbdf5a3f2adf282d9575b37bd70f242a.json)
+   restored those fields and received one verification run.
 
 All three states remained experimental and were rejected in section 6.
 
@@ -248,7 +325,7 @@ delivered system.
 
 | Finding | Baseline | Experimental release | Interpretation |
 |---|---|---|---|
-| F-1002, PSV seat-tightness observation | Two runs at L7/I8/U8 | Two runs at L9/I8/U9 | The source declared L9/I8; the existing confirmed-function-failure minimum also enforces L9. U9 follows from the L9/I8 calculation, not an urgency override |
+| F-1002, PSV seat-tightness observation | Two runs at L7/I8/U8 | Two runs at L9/I8/U9 | The source declared L9/I8; the code-owned minimum for confirmed loss of function also enforces L9. U9 follows from the L9/I8 calculation, not an urgency override |
 | F-1016, tag-only defect | L2 in both runs | L2 in both runs | The seat-tightness rule did not change likelihood for the tag-only condition |
 | F-1005, non-target protection case | L10 in both runs | L9 in all three experimental runs | A possible non-target effect remained unresolved |
 
@@ -282,17 +359,20 @@ The exercise found problems that a happy-path demonstration would have hidden:
 1. **Experiment wording entered engineering guidance.** The first source called
    itself an evaluation-only proposal, so the model correctly declined to treat
    it as active authority. Experiment status was moved to release metadata.
-2. **The editor lost scope and evidence.** The editor was fixed to re-extract
-   scope, aliases and source evidence and to reject ambiguous edits. Prior
-   release evidence was preserved rather than rewritten.
+2. **The editor lost scope and evidence.** The editor removed the equipment type
+   to which the rule applied and its links to exact supporting source spans. It
+   was fixed to re-extract scope, aliases and source evidence and to reject
+   ambiguous edits. Prior release evidence was preserved rather than rewritten.
 3. **Restored scope did not create per-finding isolation.** The scoped PSV item
    entered the shared batch knowledge pool and appeared in every request.
    Applicability still depended on model interpretation.
 4. **Non-target behavior was not stable.** F-1005 changed, and F-1016 impact
    varied even though its likelihood control remained intact.
-5. **The proposed rule conflicted with the evaluation reference.** It treated
-   suspected passing too much like proven inability to relieve and hard-coded
-   numeric scores.
+5. **The proposed rule conflicted with the preregistered evaluation
+   distinction.** The reference cases distinguish suspected PSV seat leakage
+   from evidence that the valve cannot perform its relief function. The
+   experimental rule treated those states too similarly and hard-coded numeric
+   scores.
 
 These findings are evidence that the maintenance mechanism was exercised under
 failure, not evidence that the proposed rule should be accepted.
@@ -329,7 +409,7 @@ Evidence:
 |---|---|---|
 | How does `domain_knowledge.md` reach the model? | Preserved source bytes become reviewed release items, are selected into hash-bound context and are revalidated before dispatch | Delivery is observable. B01, the context-isolation scenario, remains not met for the retained development runs |
 | How does `engineer_comment` reach the model? | The selected registry snapshot and comments are included as source-addressable context | Captured provider context and component checks |
-| What does the engineer modify six months later? | An approved knowledge source and reviewed release for interpretation changes; policy code for rubric or deterministic-routing changes | B03, the maintainable-knowledge lifecycle scenario, is demonstrated mechanically |
+| What does the engineer modify six months later? | An approved knowledge source and reviewed release for interpretation changes; policy code for rubric or deterministic-routing changes | B03 lifecycle mechanics were exercised; content approval was not established |
 | Can a released change affect output? | Yes, in the official maintenance-path exercise | Visible influence demonstrated; not domain correctness or clean score causality |
 | Can an isolated instruction affect its target without changing the negative control? | Yes, in the B02 diagnostic | Bounded influence and applicability; not release-path evidence |
 | Can an old release be recovered? | Releases are immutable and replacement history is retained | Component tests and retained releases |
