@@ -50,11 +50,28 @@ likelihood/impact rubric still applies.
      --reviewer "reviewer" --reason "approved"
    ```
 
-3. Inspect the immutable release and
-   `triage.source_context.activation_candidate`.
-4. Have the runtime approver record provenance, create a new activation identity
-   and repin a fresh run configuration. Publication alone does not activate the
-   release; there is currently no activation-approval CLI.
+3. Generate an activation-manifest draft with the Python helper:
+
+   ```python
+   from pathlib import Path
+
+   from triage.source_context import activation_candidate
+   from triage_knowledge import SourceKnowledgeStore
+
+   store = SourceKnowledgeStore(Path("knowledge/source-first"))
+   candidate = activation_candidate(store, "sha256-<published-release>")
+   ```
+
+   The returned dictionary pins the release, retrieval strategy and index,
+   assessment policy, execution policy and prompt identity. Its `review` field
+   is `None`, so this object is a candidate for approval, not an active release.
+4. Have the runtime approver compare those pins with the intended change. If
+   compatible, add a `review` record containing `reviewer`, `reason`,
+   `reviewed_at` and `source_policy_compatible: true`, then save the reviewed
+   manifest as the activation artifact used by a fresh run configuration.
+   The root delivery uses `config\triage-activation.json`; controlled experiments
+   should use a run-specific `activation.json`. There is currently no
+   activation-approval CLI.
 5. Regenerate tickets and compare the intended finding, a negative control and
    non-target findings before promotion.
 
