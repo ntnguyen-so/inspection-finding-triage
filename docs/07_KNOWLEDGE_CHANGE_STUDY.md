@@ -241,24 +241,19 @@ Delivery, influence and correctness are different claims. Captured context can
 prove delivery. A before/after comparison can support influence. Neither proves
 that the engineering rule itself is correct.
 
-## 3. Two experiments, not two maintenance steps
+## 3. Scope of the evidence
 
-Sections 4 and 5 describe historical experiments. They are not two steps that a
-maintainer performs in sequence.
+The Candidate Brief does not require an artificial context-injection experiment.
+It asks how knowledge reaches the model and what an engineer changes six months
+later. The main evidence for that question is the real maintenance-path exercise
+in section 4.
 
-| Section | What changed for the experiment? | What stayed unchanged? | Production result |
-|---|---|---|---|
-| 4 - controlled context test | One temporary field in the evaluation context sent to the model | Prompt files, production code and the active knowledge release | Nothing was published or activated |
-| 5 - maintenance simulation | An experimental PSV domain source was imported, reviewed, published and selected for a comparison run | Prompt files and scoring/routing policy | The source was rejected; a separate editor-code bug found during the exercise was fixed |
-
-Section 4 is a narrow model-behavior test: if one field in the supplied context
-changes, does the intended result change without affecting the negative control?
-It does not test the knowledge-maintenance workflow.
-
-Section 5 is the maintenance simulation: can a new domain source travel through
-import, review, release, activation and ticket generation? The code fix found
-during that exercise repaired the editor mechanism; it did not move the
-experimental PSV interpretation into code or approve that interpretation.
+A separate B02 diagnostic changed one temporary field in an isolated evaluation
+request while keeping the prompt, production code, model configuration and active
+knowledge release unchanged. It showed bounded influence on one synthetic target
+and no likelihood change in its negative control. That diagnostic is retained as
+supplementary evaluation evidence, not as part of the maintenance workflow:
+[B02 semantic review](../eval/results/triage/v10-calibration/b02-execution/negative-control-semantic-review.json).
 
 The ownership rule is:
 
@@ -271,53 +266,10 @@ The ownership rule is:
 
 Publishing and activating a knowledge release does not “escalate it into code.”
 Activation only selects an exact reviewed source/policy/prompt binding for a
-run. The experimental source in section 5 mixed these boundaries by prescribing
+run. The experimental source in section 4 mixed these boundaries by prescribing
 L9/I8 directly, which is one reason it was rejected.
 
-## 4. Controlled test: change one context field
-
-This experiment did **not** edit the system prompt. The prompt artifact,
-production code, model configuration and active knowledge release were
-identical before and after.
-
-The only difference was one temporary field in the context JSON prepared for
-the evaluation request:
-
-```text
-before: no synthetic scoring instruction
-after:  for the synthetic positive condition, use likelihood 8 instead of 6
-```
-
-Impact remained 3. Internally, the temporary field was
-`context.assessment_policy.isolated_experiment`. It existed only in the isolated
-test input and was never written to:
-
-- a file under `triage\prompts`;
-- the active knowledge store;
-- `triage\assessment_policy.py`; or
-- `triage\policy.py`.
-
-| Condition | Before | After |
-|---|---:|---:|
-| Synthetic positive likelihood | 6 | 8 |
-| Synthetic positive impact | 3 | 3 |
-| Tag-only F-1016 interpretation | Identification-tag defect with no functional evidence; seat-leakage rule excluded | Identification-tag defect with no functional evidence; seat-leakage rule excluded |
-
-The positive case followed the changed convention while impact remained fixed.
-The F-1016 control did not apply that convention merely because it also involved
-a PSV. The calibrated AI reviewer marked all four retained outputs (positive
-before/after and negative before/after) as a pass.
-
-This supports one bounded claim: an isolated context instruction influenced the
-intended assessment and was not blindly applied to the tag-only control. It does
-not demonstrate source import, release activation, repeat stability, production
-correctness or domain approval. This was a test-fixture change inside the
-request context, not a prompt change or a released knowledge change.
-
-Evidence:
-[B02 semantic review](../eval/results/triage/v10-calibration/b02-execution/negative-control-semantic-review.json).
-
-## 5. Real path: experimental domain-source change
+## 4. Maintenance-path exercise
 
 This is the experiment that represents a future domain-knowledge update. It did
 not edit the prompt. It added an experimental source describing audible
@@ -350,7 +302,7 @@ hash is activation-pinned, the unchanged baseline production release also
 needed a newly reviewed activation after the fix. The experimental PSV content
 still was not promoted.
 
-All three states remained experimental and were rejected in section 6.
+All three states remained experimental and were rejected in section 5.
 
 The change traversed source import, extraction, review, immutable publication,
 separate activation and complete 21-finding generation. No finding-ID branch was
@@ -361,7 +313,7 @@ delivered `triage-policy-v16` calibration. It therefore demonstrates the
 maintenance mechanism under its recorded run identity, not revalidation of the
 delivered system.
 
-### 5.1 Observed output
+### 4.1 Observed output
 
 | Finding | Baseline | Experimental release | Interpretation |
 |---|---|---|---|
@@ -392,7 +344,7 @@ as causal effects of the source update.
 Evidence:
 [full-batch study](../eval/results/controlled-studies/knowledge-kb-edit-v1-study.json).
 
-### 5.2 What the exercise revealed
+### 4.2 What the exercise revealed
 
 The exercise found problems that a happy-path demonstration would have hidden:
 
@@ -417,7 +369,7 @@ The exercise found problems that a happy-path demonstration would have hidden:
 These findings are evidence that the maintenance mechanism was exercised under
 failure, not evidence that the proposed rule should be accepted.
 
-## 6. Promotion decision
+## 5. Promotion decision
 
 The experimental releases were rejected because:
 
@@ -443,7 +395,7 @@ maintenance mechanism works while its engineering content is still rejected.
 Evidence:
 [release disposition](../eval/results/controlled-studies/knowledge-kb-edit-v1-release-disposition.json).
 
-## 7. Answers to the maintenance requirements
+## 6. Answers to the maintenance requirements
 
 | Question | Repository answer | Evidence status |
 |---|---|---|
@@ -451,21 +403,19 @@ Evidence:
 | How does `engineer_comment` reach the model? | The selected registry snapshot and comments are included as source-addressable context | Captured provider context and component checks |
 | What does the engineer modify six months later? | An approved knowledge source and reviewed release for interpretation changes; policy code for rubric or deterministic-routing changes | B03 lifecycle mechanics were exercised; content approval was not established |
 | Can a released change affect output? | Yes, in the official maintenance-path exercise | Visible influence demonstrated; not domain correctness or clean score causality |
-| Can an isolated instruction affect its target without changing the negative control? | Yes, in the B02 diagnostic | Bounded influence and applicability; not release-path evidence |
 | Can an old release be recovered? | Releases are immutable and replacement history is retained | Component tests and retained releases |
 | Can a technically valid release be rejected? | Yes; publication and activation are separate, and no experimental PSV release became production authority | Release disposition evidence |
 
 Provider-bound evidence that includes registry comments is retained in the
 [final run record](../eval/results/triage/structured-planning-v31/final/evidence/run.json).
 
-## 8. What this study supports
+## 7. What this study supports
 
 The evidence supports:
 
 - source import, extraction, review, immutable publication and separate
   activation;
 - provider delivery of the selected release;
-- one bounded intended-influence and negative-control comparison;
 - visible full-batch influence through the official knowledge store; and
 - rejection and rollback while production remained on the baseline release.
 
