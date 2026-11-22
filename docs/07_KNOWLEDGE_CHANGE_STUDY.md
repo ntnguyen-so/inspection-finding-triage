@@ -14,10 +14,10 @@ The short answer is:
 - compare the resulting behavior before deciding whether the new release is
   safe to use.
 
-The retained experiments show that this maintenance path can change model
-behavior and can be rolled back. They do **not** establish that the experimental
-PSV rule was correct. The rule was not promoted, and production remained on the
-baseline knowledge release.
+The retained maintenance exercise shows that this path can change model behavior
+and can be rolled back. It does **not** establish that the experimental PSV rule
+was correct. The rule was not promoted, and production remained on the baseline
+knowledge release.
 
 In this document, **publish** means creating an immutable reviewed release,
 **activate** means approving one exact release/policy/prompt binding for a run,
@@ -241,19 +241,16 @@ Delivery, influence and correctness are different claims. Captured context can
 prove delivery. A before/after comparison can support influence. Neither proves
 that the engineering rule itself is correct.
 
-## 3. Scope of the evidence
+## 3. Change ownership in this study
 
-The Candidate Brief does not require an artificial context-injection experiment.
-It asks how knowledge reaches the model and what an engineer changes six months
-later. The main evidence for that question is the real maintenance-path exercise
-in section 4.
+The maintenance exercise changed an experimental domain source and selected its
+release through a run-specific activation. It did not edit the prompt, the L/I
+rubric or urgency/review-routing policy.
 
-A separate B02 diagnostic changed one temporary field in an isolated evaluation
-request while keeping the prompt, production code, model configuration and active
-knowledge release unchanged. It showed bounded influence on one synthetic target
-and no likelihood change in its negative control. That diagnostic is retained as
-supplementary evaluation evidence, not as part of the maintenance workflow:
-[B02 semantic review](../eval/results/triage/v10-calibration/b02-execution/negative-control-semantic-review.json).
+The exercise later exposed a separate editor-code defect. Fixing that defect
+changed the knowledge-maintenance mechanism, not the experimental engineering
+interpretation. The source content and the code fix therefore had separate
+review and activation decisions.
 
 The ownership rule is:
 
