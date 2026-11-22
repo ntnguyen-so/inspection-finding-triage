@@ -243,21 +243,34 @@ that the engineering rule itself is correct.
 
 ## 3. Why there are two experiments
 
-The repository retains two related but different studies:
+The two studies changed different surfaces:
 
-1. an **isolated context diagnostic**, which asks whether one artificial
-   instruction can influence the intended case without changing a negative
-   control; and
-2. an **official maintenance-path exercise**, which asks whether a source can
-   traverse import, review, release, activation and the production triage
-   command.
+| Section | What changed | Was production code changed? | Did it become production authority? |
+|---|---|---|---|
+| 4 - isolated diagnostic | One artificial instruction in an evaluation-only context overlay | No | No |
+| 5 - maintenance-path exercise | An experimental PSV source was imported, reviewed, published and selected by a run-specific activation | Not initially; the exercise later exposed an editor bug that was fixed in `triage_knowledge\source_store.py` | No; all experimental releases were rejected |
 
-The first provides a cleaner influence comparison but does not exercise the
-knowledge release mechanism. The second exercises the real mechanism but uses a
-test-informed synthetic rule and exposed several defects. They should not be
-combined into one stronger claim.
+Section 4 asks only whether a controlled instruction can influence one target
+without changing a negative control. Section 5 asks whether a domain source can
+travel through the real knowledge lifecycle and affect generated tickets. The
+code fix found during section 5 repaired the editor mechanism; it did not move
+the experimental PSV interpretation into code or approve that interpretation.
 
-## 4. Isolated context diagnostic
+The ownership rule is:
+
+- source-backed interpretation inside the existing L/I rubric belongs in an
+  approved domain source and knowledge release;
+- a generic numeric L/I anchor belongs in
+  `triage\assessment_policy.py`; and
+- an urgency floor or exceptional-review escalation belongs in
+  `triage\policy.py`.
+
+Publishing and activating a knowledge release does not “escalate it into code.”
+Activation only selects an exact reviewed source/policy/prompt binding for a
+run. The experimental source in section 5 mixed these boundaries by prescribing
+L9/I8 directly, which is one reason it was rejected.
+
+## 4. Diagnostic only: evaluation-context instruction
 
 The B02 diagnostic (the acceptance scenario for knowledge influence and its
 negative control) held the model, configuration, implementation and synthetic
@@ -265,6 +278,10 @@ input fixed. Only an artificial instruction changed: the positive synthetic
 condition should use likelihood 8 instead of 6 while impact remained 3. The
 instruction was carried under
 `context.assessment_policy.isolated_experiment`.
+
+Nothing was edited in the active knowledge store, `triage\assessment_policy.py`
+or `triage\policy.py`. The overlay existed only inside the isolated evaluation
+request.
 
 | Condition | Before | After |
 |---|---:|---:|
@@ -287,16 +304,18 @@ item.
 Evidence:
 [B02 semantic review](../eval/results/triage/v10-calibration/b02-execution/negative-control-semantic-review.json).
 
-## 5. Official maintenance-path exercise
+## 5. Real path: experimental domain-source change
 
 The second experiment used the actual knowledge store and full triage command.
 An experimental source described audible tailpipe hissing and hydrocarbon odour
 below set pressure as PSV seat-tightness evidence.
 
+The intended change surface was domain knowledge: add the source, publish an
+immutable experimental release and select it through a run-specific activation.
 The source also prescribed L9/I8 directly. That was intentionally retained as a
 visible anti-pattern: engineering sources should state the supported
-interpretation, while the approved assessment rubric owns numeric anchors. This
-alone would have blocked promotion.
+interpretation, while `triage\assessment_policy.py` owns generic numeric
+anchors. This alone would have blocked promotion.
 
 The exercise passed through three states:
 
@@ -309,6 +328,13 @@ The exercise passed through three states:
 3. after the editor fix, release
    [`63f1...`](../knowledge/source-first/releases/sha256-63f1855f93f63d48f2bec3e0032e82e4cbdf5a3f2adf282d9575b37bd70f242a.json)
    restored those fields and received one verification run.
+
+The code change in state 3 fixed `SourceKnowledgeStore.edit_item(...)` in
+`triage_knowledge\source_store.py` so an edited item re-extracts its scope,
+aliases and source evidence and rejects a multi-item edit. Because that code
+hash is activation-pinned, the unchanged baseline production release also
+needed a newly reviewed activation after the fix. The experimental PSV content
+still was not promoted.
 
 All three states remained experimental and were rejected in section 6.
 
