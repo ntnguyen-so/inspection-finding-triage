@@ -1,206 +1,213 @@
 # Inference Boundary and Provider Control
 
-The inference boundary isolates provider transport from ticket policy. A
-successful provider call establishes transport behavior, not ticket quality.
+The inference component sends requests to a model provider. It keeps that
+communication separate from the rules for tickets. A successful model call
+shows that communication worked. It does not show that the ticket is correct.
 
 ## Abstract
 
-The inference component has one narrow responsibility: send a fully constructed,
-hash-identified assessment request to an explicitly selected provider route and
-return an observable response or failure. It does not own ticket policy, urgency,
-workflow retries, publication or semantic acceptance.
+The component sends a complete assessment request through a provider route
+selected in the run configuration. A route is the way the application reaches
+the provider, such as Copilot CLI or direct Azure. A hash identifies the exact
+request bytes. The component returns the response or reports failure.
 
-The brief permits provider SDKs but requires repository-owned orchestration. The
-boundary also responds to an empirical
-constraint: real providers returned malformed JSON, schema violations, token
-exhaustion and timeouts. Provider structured output is therefore a useful first
-line, not a trust boundary.
+Other code owns ticket rules, urgency, retries, publication and review of the
+response's meaning. The brief allows provider SDKs (software libraries for
+calling providers), but requires this repository to control the workflow.
 
-There was also a practical economic reason to make inference replaceable. An
-existing GitHub Copilot CLI subscription exposed the coding models used during
-development without a separately visible per-call API charge. Using that
-entitlement avoided separately visible per-call charges while probing multiple
-models and failure modes. The actual Copilot USD allocation remains unknown, so
-this is an observed funding-route difference rather than a quantified savings
-claim. The module prevents that cost choice from becoming workflow architecture.
+Real calls returned invalid JSON, responses that broke the required structure,
+responses that ran out of output tokens, and timeouts. Tokens are the units of
+text a model reads and generates. Provider features for
+structured output help prevent some errors. The application must still check
+the result.
+
+The component is also replaceable for cost reasons. An existing GitHub Copilot
+CLI subscription gave development access to several models without a separately
+visible charge for each call. This made it practical to try models and failure
+cases. Copilot did not expose the run's share of the subscription cost in USD.
+The evidence therefore shows a different funding route, not a measured saving.
+Keeping provider calls in this module prevents that funding choice from
+controlling the rest of the workflow.
 
 ## 1. Why this component exists
 
-The workflow needs probabilistic interpretation, but provider APIs differ in
-configuration, schema support, usage reporting, retry behavior and receipt
-visibility. Without an explicit adapter boundary, these differences leak into
-ticket policy and make one run difficult to reproduce.
+The workflow needs a model to interpret evidence. Providers differ in settings,
+supported response structures, usage reports, retries and request records.
+An **adapter** is the small piece of code that handles these provider-specific
+differences. Without separate adapters, those differences could change ticket
+rules and make runs harder to reproduce.
 
 The separate module therefore serves two purposes:
 
-1. **Engineering isolation:** provider transport cannot own triage policy,
-   retries, urgency or publication.
-2. **Economic portability:** development can use an already-paid Copilot
-   entitlement, while a stricter or separately billed route can be selected when
-   attempt visibility, reproducibility or delivery policy requires it.
+1. **Separate responsibilities:** provider communication cannot control triage
+   rules, workflow retries, urgency or publication.
+2. **Allow a different funding route:** development can use an existing Copilot
+   subscription. A stricter or separately billed route can be selected when the
+   run needs better attempt records or different delivery controls.
 
 The component answers four questions:
 
 1. What exact request crossed the provider boundary?
 2. Which route, model and settings were selected?
-3. What did the provider expose about response, usage and latency?
+3. What did the provider report about the response, usage and elapsed time?
 4. Which failures belong to transport, structure or application policy?
 
-It does **not** answer whether L/I are defensible or whether a maintenance action
-is operationally correct.
+It does **not** decide whether evidence supports the likelihood and impact
+scores, or whether a maintenance action is correct.
 
 In this document:
 
-- **L/I/U** mean likelihood, impact and code-derived urgency;
-- a **receipt** is sanitized provider metadata about a request, response, usage
-  and latency, not proof of hidden transport behavior;
+- **L/I/U** mean likelihood, impact and urgency calculated by code;
+- a **schema** defines the required response fields, types and limits;
+- a **receipt** is a provider record of a request, response, usage and elapsed
+  time, with secrets removed. It does not prove what happened inside the
+  provider's communication layer;
 - **request-cost units** and **AI units** are provider-exposed Copilot metering
   fields; neither has an exposed subscription USD conversion; and
 - the **promoted artifact** is root
   [`tickets.json`](../tickets.json), which is byte-identical by SHA-256 to the
-  final `structured-planning-v31` Copilot run output. It was copied to root after
-  review rather than generated there by a second workflow run.
+  final `structured-planning-v31` Copilot run output. SHA-256 is the hash used to
+  check that the bytes match. The file was copied to root after review. A second
+  workflow run did not generate it there.
 
 ## 2. Requirements mapped to inference design
 
 | Brief expectation | Inference design response |
 |---|---|
-| Provider SDKs permitted; orchestration frameworks prohibited | Thin adapters call inference endpoints; workflow and policy remain repository-owned |
-| Malformed and structurally invalid output handled explicitly | Provider response is parsed and locally revalidated; error class remains visible |
-| One reproducible command and low cost | Route/model/settings and exposed usage are captured; API-equivalent cost is calculable while hidden retries and Copilot billing conversion remain unknown |
-| Reproducible model instructions | The workflow supplies an exact, hash-pinned packaged prompt artifact; the adapter records the transmitted system hash |
-| Human deferral | Refusal, timeout or exhausted output budget returns failure; the adapter does not invent a fallback ticket |
+| Provider SDKs permitted; orchestration frameworks prohibited | Small adapters call model endpoints; repository code controls the workflow and rules |
+| Malformed and structurally invalid output handled explicitly | Application code parses and checks the response again, and records the error type |
+| One reproducible command and low cost | Run records include route, model, settings and reported usage. Declared API rates allow a cost estimate; hidden retries and Copilot's USD conversion remain unknown |
+| Reproducible model instructions | The workflow supplies a packaged prompt identified by its exact hash; the adapter records the hash of the system message sent |
+| Human deferral | Refusal, timeout or exhausted output budget returns failure; the adapter does not invent a replacement ticket |
 
-The strict interpretation of observable attempts is a project-defined policy,
-not a requirement stated by the brief.
+The project requires strict records of attempts. The brief does not state that
+stricter rule.
 
 ## 3. Design decisions
 
 ### 3.1 Keep the adapter smaller than the workflow
 
-The adapter accepts explicit messages, schema and provider configuration,
-performs one observable inference call, and returns response content plus
-exposed metadata.
+The adapter receives messages, a schema, and
+provider settings. It makes one call visible to the application, then returns
+the response and the metadata the provider exposes.
 
-Ticket identity, assessment repair, urgency and publication are application
-concerns. Keeping them outside the adapter makes the model/code boundary
-reviewable and prevents provider behavior from silently changing business
-policy.
+Application code checks ticket identity, repairs eligible assessment errors,
+calculates urgency and publishes output. Keeping these tasks outside the adapter
+makes responsibilities easy to inspect. Provider behavior cannot silently change
+ticket policy.
 
-A provider-specific agent that loops, repairs and publishes was rejected because
-it would duplicate orchestration and make attempt accounting route-dependent.
+We rejected a provider-specific agent that repeats calls, repairs responses and
+publishes tickets. It would duplicate the workflow and make attempt counting
+depend on the provider route.
 
 ### 3.2 Separate route economics from acceptance authority
 
-The existing Copilot CLI entitlement supports bounded development and delivery
-experiments, while the application contract remains portable to direct Azure or
-another supported provider. Every observation records route identity; completing
-a batch does not by itself establish provider acceptance.
+The existing Copilot CLI subscription supports limited development and delivery
+experiments. The same application contract can also use direct Azure or another
+supported provider. Each observation names its route. A completed batch alone
+does not show that the route meets acceptance requirements.
 
-The subscription reduced marginal development cost and made it practical to
-probe multiple models and failure modes. A dedicated inference module preserved
-direct Azure as a comparison route with disabled SDK retries, explicit ledgers
-and provider usage fields. Azure observations exposed useful transport and
-accounting differences. Its completed batch was not semantically reviewed and
-did not replace the promoted Copilot artifact.
+The subscription avoided separately visible charges for development calls.
+The separate inference module also kept direct Azure available for comparison.
+On that route, SDK retries were disabled and the application retained an explicit
+attempt ledger and provider usage fields. The Azure runs showed useful
+communication and accounting differences. The completed Azure batch did not
+receive a review of its meaning and did not replace the Copilot delivery.
 
-The promoted artifact came from the Copilot `copilot_experiment` route and was
-promoted by matching its SHA-256. This records the route used for delivery, but
-does not convert hidden Copilot transport attempts into a strict attempt
-contract.
+The promoted file came from the Copilot `copilot_experiment` route. Its SHA-256
+matched the reviewed output. That proves which retained file was delivered; it
+does not reveal Copilot's hidden communication attempts or establish compliance
+with the strict attempt limit.
 
-Coding directly against one separately billed provider was rejected because it
-would couple experimentation cost and vendor behavior to the workflow. Coding
-directly against Copilot would make the included subscription route look like a
-universal deployment assumption.
+We rejected tying workflow code directly to one separately billed provider.
+That would tie both experiment cost and workflow behavior to a vendor. Tying it
+directly to Copilot would instead assume that every deployment has the same
+subscription access.
 
-“Included in an existing subscription” does not mean zero
-economic cost or measured API spend. Copilot receipts expose request-cost units,
-AI-unit metering and token/cache counts. They do not expose the subscription's
-AI-unit-to-USD conversion, hidden transport attempts or an actual per-run USD
-charge. Token counts can support a declared API-equivalent estimate, but not a
-claim about Copilot billing.
+“Included in an existing subscription” does not mean zero cost or measured API
+spend. Copilot receipts report request-cost units, AI units and token/cache
+counts. They do not report a USD conversion, hidden attempts or a USD charge for
+the run. Token counts support an estimate at declared API rates, not a claim
+about the Copilot bill.
 
 ### 3.3 Require explicit route and model configuration
 
-Provider route, model or deployment, and settings are pinned in run
-configuration. There is no automatic model fallback inside a run.
+Run configuration fixes the route, model or deployment, and settings. A run
+does not automatically switch to another model after failure.
 
-Model name alone does not identify behavior. Copilot and direct Azure expose
-different controls, retries, receipts and cost information. Switching routes
-after failure would create a different experiment while presenting it as one
-run.
+A model name alone does not describe run behavior. Copilot and direct Azure
+expose different controls, retries, receipts and cost information. Switching
+routes after failure would mix two experiments while calling them one run.
 
-Environment-driven implicit defaults and automatic fallback were rejected
-because they optimize for completion but weaken provenance and comparability.
+We rejected unrecorded defaults taken from the environment and automatic
+fallback. They might help finish a batch, but would make its history and
+comparisons less reliable.
 
 ### 3.4 Revalidate locally even when native schema is available
 
-Provider-native strict structure is used where available, then the returned
-bytes are parsed and validated again in application code.
+Where supported, the provider is asked to enforce the response structure.
+Application code still parses and checks the returned bytes.
 
-The provider can reduce formatting errors but cannot enforce repository-specific
-identity, quotation, coverage or semantic rules. Local validation provides one
-route-independent contract.
+The provider can reduce formatting errors. It cannot enforce this repository's
+rules for identity, quotations, coverage or meaning. Local checks give both
+routes the same application contract.
 
-Trusting a provider “structured output” success flag was rejected because it
-would confuse transport acceptance with application correctness.
+We rejected trusting a provider's “structured output” success flag alone.
+A provider accepting a response does not make that response correct for triage.
 
 ### 3.5 Do not hide application retries in the adapter
 
-One adapter invocation represents one application send. The workflow decides
-whether a classified error receives its single permitted repair.
+One adapter call represents one application send. The workflow identifies the
+error type and decides whether it may use the single allowed repair.
 
-Failure behavior is auditable only when attempt ownership and budget are
-explicit.
+To inspect failures, we need to know which component owns retries and what
+attempt limit applies.
 
-Silent repair and unbounded provider retries were rejected because they could
-turn repeated failures into a success-shaped response and invalidate cost
-accounting.
+We rejected hidden repair and unlimited provider retries. They could hide
+repeated failures behind a successful response and make cost records incomplete.
 
 ### 3.6 Sanitize evidence without claiming wire-level proof
 
-Run evidence retains hashes, timing, exposed usage, response state and sanitized
-receipts, but never credentials.
+Run evidence keeps hashes, timing, reported usage, response status and receipts
+with secrets removed. It never keeps credentials.
 
-The retained fields are sufficient to identify and compare runs without leaking
-secrets. Provider receipts are supporting provenance, not proof of hidden SDK or
-transport behavior.
+These fields identify runs and support comparison. Provider receipts help trace
+a run's history, but do not prove hidden SDK or communication behavior.
 
-Capturing entire environments or authorization headers was rejected because it
-would create security risk without establishing semantic correctness.
+We rejected capturing whole environments or authorization headers. That would
+expose secrets without showing whether an assessment was correct.
 
 ## 4. Failure classification
 
 | Failure | Adapter responsibility | Workflow consequence |
 |---|---|---|
-| Authentication/configuration | Return explicit terminal diagnostic | No ticket, no publication |
-| Timeout/refusal/transport failure | Return visible provider failure | Governed by declared run policy; never a guessed draft |
-| Malformed JSON | Preserve response and parse error | May receive one budgeted application repair |
-| Schema violation | Preserve structured validation errors | May receive one budgeted application repair |
-| Valid but unsupported assessment | Not decided by adapter | Application contradiction checks, offline review and human approval |
-| Hidden provider retry count | Record as unknown | SDK-inclusive attempt claim is inconclusive |
+| Authentication/configuration | Report an explicit terminal error | No ticket, no publication |
+| Timeout/refusal/communication failure | Report the provider failure | Follow declared run policy; never guess a draft |
+| Malformed JSON | Keep the response and parsing error | May receive one application repair within the attempt budget |
+| Schema violation | Keep errors from checking response structure | May receive one application repair within the attempt budget |
+| Valid structure but unsupported assessment | Adapter does not decide this | Application contradiction checks, offline review and human approval |
+| Hidden provider retry count | Record as unknown | Cannot establish a limit that includes SDK retries |
 
-This separation matters because the same outward “no ticket” can have different
-causes and different evidence value.
+Several failures can all result in “no ticket”. Recording the cause tells a
+reviewer what failed and what the observation can support.
 
 ## 5. Current assessment of the inference design
 
-The evidence below assesses whether the design decisions expose the intended
-failure modes. It does not establish a provider benchmark. Detailed artifacts
-and current status remain in
+The evidence below checks whether the design makes failures visible as intended.
+It is not a benchmark of provider quality. Detailed records and current status
+remain in
 [`eval\results\README.md`](../eval/results/README.md).
 
-| Design hypothesis | Current evidence | Assessment and remaining limit |
+| Design question | Current evidence | Assessment and remaining limit |
 |---|---|---|
-| Native structured output still requires local validation and bounded repair | Real calls produced malformed JSON and schema faults; bounded repair recovered some responses, while an exhausted fault failed the batch without publication. | **Supported.** The boundary exposed recoverable and terminal failures, but hidden provider attempts remain unknown. |
-| Route completion must remain separate from semantic acceptance | Both provider routes produced structurally valid batches. The completed Azure batch was not semantically reviewed. The promoted Copilot artifact received a separate AI-only review with 63/63 applicable dimensions and six exceptional-review routes, but that review had a declared protocol deviation. | **Supported.** Transport success is not evidence of ticket quality; the Copilot result remains provisional rather than domain-certified. |
-| Provider choice must not become workflow policy | Current retained observations cover Copilot and direct Azure routes under the same application contract. | **Supported.** Urgency and publication policy remain outside both adapters; route completion does not establish equivalent behavior. |
-| Cross-setup comparison must not be presented as fixed-identity reproduction | The all-21 comparison used current code with a different prompt/knowledge activation and run-policy configuration from the retained delivery. It preserved review routing for every ticket and L/I/U for 19 tickets, but changed every ticket's text. | **Bounded observation only.** It is neither decision-stability scenario X01 evidence nor clean reproduction, and the differences mix model variability with setup changes. |
+| Does provider-structured output still need local checks and limited repair? | Real calls returned invalid JSON and structural errors. Repair recovered some responses. An error that exhausted the budget stopped the batch without publication. | **Supported.** Recoverable and terminal failures were visible. Hidden provider attempts remain unknown. |
+| Must route completion remain separate from acceptance of ticket meaning? | Both routes produced valid batch structures. The completed Azure batch had no review of meaning. The promoted Copilot file had a separate AI-only review: 63/63 applicable dimensions and six exceptional-review routes. That review deviated from the required procedure. | **Supported.** Successful communication does not prove ticket quality. The Copilot result remains provisional, not domain-certified. |
+| Can provider choice stay separate from workflow rules? | Saved observations cover Copilot and direct Azure under the same application contract. | **Supported.** Both adapters leave urgency and publication to application code. Completing both routes does not prove equivalent behavior. |
+| Can a comparison with a different setup count as exact reproduction? | The all-21 comparison used current code, but different prompt/knowledge activation and run-policy settings from the saved delivery. Every ticket kept its review routing; 19 kept L/I/U. Every ticket's text changed. | **Limited observation only.** This is neither X01 decision-stability evidence nor clean reproduction. Model variation and setup changes are mixed. |
 
-The comparison encountered preflight failures before provider dispatch and its
-successful artifact received no semantic review. It therefore cannot replace or
-strengthen the retained ticket-quality result. Its evidence is indexed in
+The comparison first failed checks before any request reached the provider.
+Its later successful output received no review of meaning. It therefore cannot
+replace or strengthen the retained ticket-quality result. Its evidence is listed in
 [`eval\results\README.md`](../eval/results/README.md).
 
 The promoted Copilot review is retained in
@@ -208,26 +215,25 @@ The promoted Copilot review is retained in
 
 ## 6. Reproducibility and cost limits
 
-Direct Azure was evaluated as the stricter accounting route because the
-application can disable SDK/transport retries and retain an explicit ledger. It
-did not produce the promoted root artifact: both that artifact and the
-cross-setup comparison used Copilot. This establishes route provenance, not a
-strict attempt contract; provider-hidden attempts remain unknown.
+Direct Azure was tested as the route with stricter accounting. The application
+can disable SDK/communication retries and keep an explicit attempt ledger there.
+It did not produce the promoted root file. Both that file and the comparison
+with a different setup used Copilot. These records identify the route; they do
+not establish the strict attempt limit. Hidden provider attempts remain unknown.
 
 Cost is reported in four distinct views:
 
 | Cost view | Retained delivery | Defensible claim |
 |---|---:|---|
-| Measured usage | 973,468 input; 40,335 output tokens | Receipt-backed usage |
+| Measured usage | 973,468 input; 40,335 output tokens | Usage reported in receipts |
 | Simple API-equivalent repricing | US$2.350286 | Reproducible estimate under declared rates |
-| Copilot metering | 21 request-cost units; 249.31861 AI units | Receipt-backed units without an exposed USD conversion |
+| Copilot metering | 21 request-cost units; 249.31861 AI units | Units reported in receipts; USD conversion not exposed |
 | Actual Copilot USD allocation | Unknown | Not exposed by the subscription route |
 
-The retained totals, source-run SHA-256, assumptions and calculations are
-available in the compact
+The saved totals, source-run SHA-256, assumptions and calculations are in the
 [delivery cost evidence](../eval/results/delivery-cost-summary.json), which is
-derived only from per-send receipt usage rather than duplicated accounting
-checkpoints.
+calculated from each send's receipt. Repeated accounting checkpoints are not
+counted again.
 
 The equivalent calculation is
 `input_tokens * US$2 / 1,000,000 + output_tokens * US$10 / 1,000,000`,
@@ -237,46 +243,52 @@ on 2026-11-18. The configured model was `gpt-6.1-sol`; the retained pricing
 assumption records US$2.00 per million ordinary input tokens, US$0.10 per
 million cache-read tokens, US$2.50 per million 30-minute cache-write tokens and
 US$10.00 per million output tokens.
-The production workflow records raw usage and leaves `usd_cost` null; it does not
-calculate this proxy. The repository's controlled-experiment helper implements
-the same rate formula, which is applied transparently to the retained run
-receipts. The simple estimate deliberately ignores cache adjustments so that
-it depends only on the measured input/output totals named in the formula.
+The production workflow records raw usage and leaves `usd_cost` null. It does not
+calculate this estimate. The repository's controlled-experiment helper uses the
+same formula on saved run receipts. The simple estimate deliberately ignores
+cache adjustments. It uses only the measured input and output totals in the
+formula.
 
-The retained receipt also exposes 143,251 cache-read tokens, 830,154 cache-write
-tokens and a model-catalog schedule whose unit ratios match the public
+The saved receipt also reports 143,251 cache-read tokens and 830,154 cache-write
+tokens. Cache tokens represent input reused from, or stored in, a provider
+cache. The model catalog reports a unit schedule with ratios matching public
 short-context rates for ordinary input, cached input, 30-minute cache writes and
-output. Applying that schedule gives a cache-aware OpenAI-equivalent scenario of
-US$2.493186. The reported 249.31861 AI units are numerically 100 times that
-scenario, but this observed ratio is not an exposed billing rule or USD
-conversion. The cache-aware scenario is still not an invoice: Copilot does not
-establish that subscription allocation equals public API billing.
+output. Applying that schedule gives a cache-aware OpenAI-equivalent estimate of
+US$2.493186.
+
+The reported 249.31861 AI units are numerically 100 times that estimate.
+This observed ratio is not a published billing rule or USD conversion.
+The cache-aware estimate is not an invoice either. Copilot does not establish
+that its subscription allocation equals public API billing.
 
 The retained delivery estimate consists of US$1.946936 input and US$0.403350
 output, approximately US$0.111918 per ticket. Input accounts for about 82.8% of
-this proxy, making bounded-context size the clearest cost-optimization surface.
+this estimate. Reducing context size safely is therefore the clearest place to
+investigate lower cost.
 
-These estimates should be reported, not hidden under “unknown cost.” They remain
-API-equivalent planning values rather than Copilot invoices. Copilot does not
-expose hidden transport attempts. Direct Azure exposes attempts and tokens, but
-the retained observations do not include a deployment tariff. Metering and
-pricing assumptions are indexed in
+Report these estimates rather than writing “unknown cost.” They are
+planning estimates at API rates, not Copilot invoices. Copilot does not expose
+hidden communication attempts. Direct Azure exposes attempts and tokens, but the
+saved observations do not include the deployment's prices. Usage records and
+pricing assumptions are listed in
 [`eval\results\README.md`](../eval/results/README.md).
 
 ## 7. Assumptions and limitations
 
-- Provider SDK behavior is observable only to the extent exposed by the route.
-- The existing Copilot entitlement is a development constraint, not a general
-  availability or pricing assumption.
-- Account isolation, caches and hidden transport retries are not inferred from a
-  model label.
-- A response hash proves byte identity of the retained response, not how hidden
-  model weights produced it.
-- Strict schema reduces formatting risk but cannot certify engineering judgment.
+- We can observe SDK behavior only where the route reports it.
+- Development used an existing Copilot subscription. This does not assume that
+  others have the same access or prices.
+- A model label does not prove account isolation, cache behavior or hidden
+  communication retries.
+- A response hash identifies the saved bytes. It does not explain how the
+  model's internal parameters produced them.
+- A strict response structure reduces formatting risk. It cannot certify
+  engineering judgment.
 - The current root artifact came from the Copilot `copilot_experiment` route and
-  was promoted by hash. That retained delivery remains a bounded experimental
-  route with unknown hidden attempts, not a strict-attempt production route.
+  was promoted after checking its hash. The saved delivery used a limited
+  experimental route with unknown hidden attempts. It did not use a production
+  route proven to meet the strict attempt limit.
 
-Current system-level responsibility remains in [root `DESIGN.md`](../DESIGN.md);
-measured run outcomes remain in
+The full system design is in [root `DESIGN.md`](../DESIGN.md).
+Measured run outcomes remain in
 [`eval\results\README.md`](../eval/results/README.md).

@@ -1,162 +1,160 @@
 # Data, Context and Evaluation Boundaries
 
-The evaluation design defines what the supplied data can support, how cases and
-context are separated, and which evidence classes must remain distinct.
-Exact case membership and file fingerprints are stored in
+This document explains what we can learn from the supplied data, how we separate
+cases and model context, and why different kinds of evidence must stay separate.
+Exact case membership and file hashes are stored in
 [`eval\spec\split.json`](../eval/spec/split.json); this prose does not override
 that executable specification.
 
 ## Abstract
 
-The supplied dataset is too small, related and already exposed to support claims
-of blind generalization. The evaluation design therefore uses it for a narrower
-purpose: make engineering decisions, context boundaries and failure evidence
-explicit without turning the 21 findings into a hidden answer key.
+There are only 21 findings. Many are related, and all were available during
+development. They cannot show how well the system performs on unseen data.
+Instead, we use them to check named behaviors, document context limits and
+record failures. We do not turn them into a hidden answer key.
 
-The central methodological problem is not how to calculate an accuracy
-percentage. It is how to obtain useful evidence from a non-blind, relationship-
-heavy case set while preserving the distinction between artifact integrity,
-deterministic system behavior and semantic ticket quality. Passing one of these
-classes does not imply the others.
+Three questions need separate evidence: are the saved files intact, does code
+follow its rules, and are the tickets supported by evidence? Passing one check
+does not answer the other two.
 
-The intended development/test context boundary is described below, but the
-retained development runs did not preserve it: all eight test finding records
-reached the provider context. The current split therefore organizes regression
-evidence; it does not provide case-isolated inference evidence. This is the
-failure recorded by acceptance scenario B01.
+The retained development runs broke the intended context boundary: all eight
+test finding records reached the provider. B01 is therefore not met. The split
+now organizes **regression evidence**: checks of behavior on already exposed
+cases. It does not show inference with test cases kept out of development
+requests.
 
-Sections 2-3 describe what the dataset can support, sections 4-6 define the
-evaluation and context rules, and sections 7-8 report the evidence currently
-available against those rules.
+Sections 2-3 explain the dataset's limits. Sections 4-6 define evaluation and
+context rules. Sections 7-8 report current evidence and its limits.
 
 ## 1. Research questions
 
-The evaluation design addresses four questions:
+The evaluation asks four questions:
 
-1. **Claim boundary:** what can 21 exposed findings establish without implying
-   unseen-data performance or domain certification?
-2. **Unit of independence:** which findings share evidence strongly enough that
-   splitting them would create leakage or a false independence claim?
-3. **Context boundary:** what may reach production assessment, and what must
-   remain isolated as evaluator-only information?
-4. **Evidence interpretation:** which observations establish software behavior,
-   semantic quality, stability or maintainability, and with what limits?
+1. **Claim boundary:** what can 21 already exposed findings show? What would
+   wrongly imply unseen-data performance or domain certification?
+2. **Case grouping:** which findings share evidence? Would splitting them leak
+   information or wrongly suggest that they are independent?
+3. **Context boundary:** what may the production model receive? What must stay
+   available only to the evaluator?
+4. **Evidence meaning:** what shows code behavior, ticket quality, stability or
+   maintainability? What does each observation leave unknown?
 
 ## 2. Dataset and claim boundary
 
-The supplied package contains 21 findings and 18 equipment records, plus domain
-notes and one illustrative ticket. The evaluation split contains 13 development
-cases in nine relationship groups and eight test cases in four groups. All source
-rows and the example were available during development. The semantic reference
-is AI-assisted and is not independent expert gold.
+The supplied package contains 21 findings, 18 equipment records, domain notes and
+one example ticket. The split has 13 development cases in nine relationship
+groups and eight test cases in four groups. All source rows and the example were
+available during development. AI helped create the reference used to judge
+ticket meaning. It is not independent, expert-verified truth.
 
 A **partition** is the named development or test membership. A
-**relationship group** keeps findings together when they share evidence that
-can change an assessment. **L**, **I** and **U** mean likelihood, impact and
-code-derived urgency on ordinal 1-10 scales.
+**relationship group** keeps findings together when shared evidence can change
+their assessments. **L**, **I** and **U** mean likelihood, impact and code-derived
+urgency. Their 1-10 scales are **ordinal**: higher numbers mean higher priority,
+not measured probabilities or expected losses.
 
-Consequently, the evaluation may support statements about:
+The evaluation may support claims about:
 
 - behavior on named scenarios;
 - source and context delivery;
-- deterministic contract enforcement;
-- observed decision stability; and
-- retained model and reviewer outcomes.
+- code enforcing the contract rules;
+- how stable the observed decisions were; and
+- saved model and reviewer results.
 
-It may not support population accuracy, unseen-data performance, statistical
-failure rates or domain certification. Raw outcomes and limitations are more
-honest than percentages on this sample.
+It cannot establish accuracy across a wider population, performance on unseen
+data, statistical failure rates or domain certification. Report individual
+outcomes and limits instead of accuracy percentages for this small sample.
 
 ## 3. Data risks that shaped the evaluation
 
 | Data characteristic | Evaluation implication |
 |---|---|
-| Reliability score runs opposite to likelihood | Include explicit direction checks and contradiction probes |
-| Criticality and reliability are priors | Do not use registry values as exact expected scores |
-| Related findings share equipment or protection state | Keep assessment-changing groups together |
-| Redundancy labels do not establish partner health | Test actual delivered partner evidence |
-| Missing deviation, personnel-on-board (POB) or restoration data | Preserve unknown state; do not infer confirmed absence |
-| One example ticket is exposed | Treat it as format/detail guidance, not a scoring key |
-| Only 21 findings exist | Report named outcomes; avoid accuracy and confidence claims |
+| Reliability runs in the opposite direction to likelihood | Check the scale direction and use test inputs with deliberate contradictions |
+| Criticality and reliability are priors, or starting points | Do not treat registry values as exact expected scores |
+| Related findings share equipment or protection state | Keep findings together when shared evidence changes the assessment |
+| Redundancy (backup) labels do not prove partner health | Check the partner evidence actually sent to the model |
+| Deviation records, personnel-on-board (POB) counts or restoration evidence may be missing | Keep the state unknown; missing records do not prove absence |
+| The example ticket was available during development | Use it for format and detail, not as a scoring key |
+| Only 21 findings exist | Report named outcomes, not accuracy or statistical confidence claims |
 
-The deluge observations illustrate why relationship grouping matters. One
-finding records poor delivery above producing wellheads; a related finding
-records a closed branch valve, reopening and missing impairment entry. Either
-row can change the interpretation of the other, while neither proves restored
-nozzle performance. Treating them as independent cases would erase
-assessment-changing evidence.
+The deluge findings show why grouping matters. **Deluge** is the water-spray
+protection system. One finding records poor delivery above producing wellheads.
+A related finding records a closed branch valve, its reopening and a missing
+impairment entry. Either finding can change how the other is understood. Neither
+proves that nozzle performance was restored. Treating them as independent would
+remove evidence that changes the assessment.
 
-Source profiling establishes these characteristics. It does not evaluate the
-triage system.
+Inspecting the source data identifies these risks. It does not test the triage
+system.
 
 ## 4. Evaluation decisions
 
 ### 4.1 Group by shared assessment-changing evidence
 
-Findings stay in the same partition when one can materially change the other’s
-L/I, redundancy credit, fact state or planning decision.
+Findings stay in the same partition when one can meaningfully change the other's
+L/I, impact reduction for backup equipment, fact state or planned activity.
 
-Splitting linked observations could expose answer context during development
-while presenting the paired test finding as independent.
+Splitting linked observations could give development the evidence needed to
+assess the paired test finding, while still calling that test finding independent.
 
-Grouping every equipment or process adjacency together was rejected because it
-would collapse the already small dataset without evidence that every
-relationship changes assessment.
+We rejected grouping all nearby or process-linked equipment together. That would
+leave too few groups without evidence that every link changes the assessment.
 
 ### 4.2 Label the split non-blind
 
-Development and designated test partitions remain separate, but all source rows
-are disclosed as exposed and the current system is informed by evaluation
-evidence.
+The development and designated test sets remain separate. But all source rows
+were available during development, and evaluation evidence influenced the
+current system. We disclose this as **non-blind** evaluation.
 
-Partition discipline can reduce direct tuning on some cases. Calling the test
-set “held out” or “unseen,” however, would overstate independence after source
-exposure and AI-assisted reference construction.
+Keeping the sets separate can reduce direct tuning on some cases. It cannot
+undo source exposure or AI assistance in building the reference. Calling the
+test set “held out” or “unseen” would overstate its independence.
 
-The term “blind test” was rejected because it would turn a procedural separation
-into a false generalization claim.
+We rejected the term “blind test.” Separating files does not prove performance
+on new cases.
 
 ### 4.3 Keep test descriptions out of development provider context
 
-Development inference may use the shared registry and approved domain material,
-but not test finding descriptions, evidence cards, reviewer judgments or
-expected probe answers.
+Development model requests may use the shared registry and approved domain
+material. They must not include test finding descriptions, evaluator checklists
+(**evidence cards**), reviewer judgments or expected answers to test probes.
 
-Shared domain sources are part of the production problem. Case-specific test
-answers are evaluation artifacts and would leak the target.
+Shared domain sources are legitimate production inputs. Case-specific test
+answers belong to evaluation. Sending them to the model would reveal what the
+test expects.
 
-Enriching a shared knowledge store with test examples was rejected because it
-could improve measured cases while destroying the meaning of the partition.
+We rejected adding test examples to shared knowledge. That could improve the
+measured results by teaching the model the test cases.
 
-This is the intended boundary. The retained development runs violated it, as
-reported in section 7; evaluator cards and expected answers remained isolated,
-but test finding descriptions did not.
+This was the intended rule. The retained development runs broke it, as section 7
+reports. Evaluator cards and expected answers stayed out of production context.
+Test finding descriptions did not.
 
 ### 4.4 Use evidence cards instead of exact gold scores
 
-An **evidence card** is an evaluator-only checklist of relevant source evidence,
-contradictions, required distinctions and forbidden claims. The cards support
-the semantic procedure in
+An **evidence card** is a checklist used only by the evaluator. It lists relevant
+source evidence, contradictions to check, distinctions to preserve and claims
+that must not appear. The cards support semantic review in
 [Document 03 section 7](03_EVALUATION_ACCEPTANCE.md#7-current-semantic-reviewer-protocol).
-They constrain reviewer judgment without prescribing one exact L/I tuple, so
-adjacent values may remain defensible.
+They limit what the reviewer may judge without requiring one exact L/I pair.
+Nearby scores may both be defensible.
 
-The source package does not provide calibrated numeric truth. Exact expected
-scores would manufacture precision and encourage case-specific branches.
+The source package does not supply calibrated “true” scores. Requiring exact
+scores would invent precision and encourage code that answers specific cases.
 
-A single “correct” L/I/U tuple per finding was rejected because it would turn
-engineering judgment into an invented oracle.
+We rejected one “correct” L/I/U combination per finding. The source does not
+provide such an answer key.
 
 ### 4.5 Keep observations outside specifications
 
-Membership, scenarios and evidence rules live under `eval\spec`; executed
-outcomes live under `eval\results`.
+Membership, scenarios and evidence rules live under `eval\spec`. Results of
+executed checks live under `eval\results`.
 
-A specification defines what would count, while a result records what happened.
-Mixing them makes failed evidence easy to overwrite with current status.
+A specification defines what counts as success. A result records what happened.
+Mixing them makes it easy to overwrite a failure with a newer status.
 
-Using scenario definitions as a progress tracker was rejected because it would
-allow the target to move after observing failures.
+We rejected using scenario definitions to track progress. That would let us
+change the target after seeing failures.
 
 ## 5. Context boundary
 
@@ -164,80 +162,79 @@ Production assessment may receive:
 
 - the selected finding;
 - the supplied registry and `engineer_comment` fields;
-- deterministic related history and declared relationships;
-- approved source-faithful domain knowledge; and
-- prompt, rubric and policy identities required to explain one run.
+- related history selected by code and declared relationships;
+- approved domain knowledge that preserves the supplied source meaning; and
+- prompt, scoring guide (rubric) and policy versions needed to explain the run.
 
 Production assessment must not receive:
 
 - evidence cards or expected answers;
 - semantic reviewer judgments;
-- seeded contradictions and their expected labels;
-- test-derived per-finding rules; or
-- copied final or gold tickets.
+- test contradictions deliberately added by the evaluator, or their expected labels;
+- rules for specific findings learned from test results; or
+- copied final tickets or reference-answer tickets.
 
-**Provider-bound context** is the exact context prepared for the model request.
-Capture can establish delivery of named inputs, not that the model used them
-causally or correctly.
+**Provider-bound context** is the exact context prepared for a model request.
+Saving it shows which inputs were sent. It does not prove that those inputs
+caused a decision or that the model used them correctly.
 
 ## 6. Evidence model
 
 | Evidence class | What it can establish | What it cannot establish |
 |---|---|---|
-| Source/profile validation | Counts, keys, joins, hashes and declared membership are internally consistent | Ticket quality or model behavior |
-| Evaluator self-tests | The evaluator detects its seeded fixtures | Evaluator accuracy on real outputs |
+| Source/profile validation | Counts, keys, linked records, hashes and membership agree | Ticket quality or model behavior |
+| Evaluator self-tests | The evaluator detects deliberately added test errors | Evaluator accuracy on real outputs |
 | Deterministic production tests | Code follows tested schema, urgency, budget and publication rules | Correct L/I or action wording |
-| Captured provider context | Named inputs reached the provider boundary | Correct causal use |
-| Token-based cost calculation | A reproducible API-equivalent estimate under declared public rates | The Copilot subscription's actual per-run USD allocation |
-| Bounded intervention | One isolated input change produced the preregistered effect while controls remained semantically excluded | General knowledge correctness |
-| AI semantic review | Provisional judgment under one reviewer configuration | Independent expert certification |
-| Human/domain review | Operational judgment within reviewer scope | General model reliability without a study |
+| Captured provider context | Named inputs were sent at the provider boundary | Whether those inputs caused the right decision |
+| Token-based cost calculation | An API-equivalent estimate can be repeated using declared public rates | Actual per-run USD allocated to the Copilot subscription |
+| Bounded intervention | One isolated input change produced the effect defined before the run; controls remained outside that rule's meaning | General correctness of the knowledge |
+| AI semantic review | Provisional judgment using one reviewer configuration | Independent expert certification |
+| Human/domain review | Operational judgment within that reviewer's scope | General model reliability without a study |
 
 `needs_review`, unexecuted checks and unknown accounting are not passes.
 
 ## 7. Current assessment of the evaluation design
 
-The table assesses the evaluation design against current evidence without
-turning observations into new specifications.
+This table compares the evaluation design with current evidence. It does not
+change the specifications.
 
 | Evaluation decision | Current evidence | Interpretation and remaining limit |
 |---|---|---|
-| Group related findings | Current split membership keeps assessment-changing equipment and protection evidence together. | **Supported as leakage control.** It does not prove that every operational dependency is known. |
-| Label the split non-blind | All findings are exposed and the current configuration is informed by exposed evaluation evidence. | **Honest but non-independent.** Current test evidence supports regression claims, not blind generalization. |
-| Isolate test descriptions and answers | Boundary tests show that production did not import evaluator cards or expected answers, but every retained development provider input contained all eight test finding records. | **B01 is not met for the retained development runs.** The failure is test-description leakage, not evaluator-answer leakage; the 13/8 split supports regression workflow, not case-isolated generalization. See the [B01 audit](../eval/results/triage/structured-planning-v31/b01-development-context-audit.json) and [Document 03 B01](03_EVALUATION_ACCEPTANCE.md#b01--context-delivery). |
-| Use cards rather than exact scores | The current semantic procedure evaluates grounding, planning and uncertainty while allowing unresolved adjacent-score judgment. | **Supported provisionally.** Reviewer calibration is narrow and AI-assisted. |
-| Separate specifications from results | Executable specifications remain under `eval\spec`; current observations remain under `eval\results`. | **Supported structurally.** Current status must be read from root `README.md` and [`eval\results\README.md`](../eval/results/README.md). |
+| Group related findings | The split keeps shared equipment and protection evidence together when it changes assessments. | **Supported as leakage control.** It does not prove that all operational dependencies are known. |
+| Label the split non-blind | All findings were exposed. Exposed evaluation evidence influenced the current configuration. | **Honest but non-independent.** Test results support regression claims, not performance on unseen cases. |
+| Isolate test descriptions and answers | Boundary tests show that production did not import evaluator cards or expected answers. But every retained development provider input contained all eight test finding records. | **B01 is not met for the retained development runs.** Test descriptions leaked; evaluator answers did not. The 13/8 split organizes regression work, not inference on isolated new cases. See the [B01 audit](../eval/results/triage/structured-planning-v31/b01-development-context-audit.json) and [Document 03 B01](03_EVALUATION_ACCEPTANCE.md#b01--context-delivery). |
+| Use cards rather than exact scores | Review checks evidence, planning and uncertainty. It can leave nearby-score choices unresolved. | **Supported provisionally.** Reviewer calibration covers few cases and is AI-assisted. |
+| Separate specifications from results | Specifications remain under `eval\spec`; observations remain under `eval\results`. | **Supported structurally.** Read current status in root `README.md` and [`eval\results\README.md`](../eval/results/README.md). |
 
 ## 8. Threats to validity and claim limits
 
-- **Small, exposed sample.** All findings were read during development; no
-  population or unseen-data claim is available.
-- **Development-context leakage.** The retained development runs generated
-  tickets for the 13 development findings, but every provider request also
-  included the descriptions of all eight test findings. Later test results are
-  test-informed regression evidence, not isolated held-out evidence.
-- **Relationship-heavy cases.** Grouping reduces obvious leakage but cannot prove
-  independence between all operationally connected equipment.
-- **AI-assisted reference and review.** Cards and semantic judgments are useful
-  structured evidence, not domain-expert gold.
-- **Evaluation-conditioned configuration.** Current behavior and policy reflect
-  exposed evaluation evidence, so the resulting observations support regression
-  claims rather than blind evaluation.
-- **Provider opacity.** Token and cache metering are exposed, and declared public
-  rates support a reproducible API-equivalent estimate. Hidden HTTP attempts and
-  the actual Copilot billing allocation remain unknown.
-- **Source provenance.** Exact producer bytes are retained and hash-bound, but
-  clean-checkout reproduction is not established.
+- **Small, exposed sample.** All findings were read during development. We cannot
+  make claims about a wider population or unseen data.
+- **Development-context leakage.** The saved development runs generated tickets
+  for 13 findings. Every provider request also included all eight test finding
+  descriptions. Later test results are test-informed regression evidence, not
+  evidence from an isolated test set.
+- **Related cases.** Grouping reduces obvious leakage. It does not prove that all
+  operationally linked equipment is independent across groups.
+- **AI-assisted reference and review.** Cards and semantic judgments provide
+  structured evidence, not domain-expert truth.
+- **Configuration chosen using evaluation evidence.** Exposed results influenced
+  current behavior and policy. New observations therefore support regression
+  claims, not blind evaluation.
+- **Hidden provider behavior.** Token and cache usage are exposed. Public rates
+  allow a repeatable API-equivalent estimate. Hidden HTTP attempts and actual
+  Copilot billing allocation remain unknown.
+- **Origin of the producing code.** Exact source bytes used to produce the output
+  are saved and identified by hashes. Reproduction from a clean checkout is not
+  established.
 
-These limitations do not make the prototype evidence useless. They bound the
-claims it can support.
+The evidence is still useful. These limits define what we may claim from it.
 
 ## 9. Controlled-change boundary
 
-This document does not define a second change procedure. Machine-checked
-specifications remain under `eval\spec`, observations remain under
-`eval\results`, and failed or replaced evidence is preserved. Changes to the
-evaluation contract follow
+This document does not add another change procedure. Specifications checked by
+code remain under `eval\spec`. Observations remain under `eval\results`. Failed
+or replaced evidence must be kept. Changes to the evaluation contract follow
 [Document 03 section 9](03_EVALUATION_ACCEPTANCE.md#9-controlled-change-and-authority).
 
 ## 10. Reader path

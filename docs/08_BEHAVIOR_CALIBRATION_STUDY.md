@@ -1,17 +1,17 @@
 # Behavior Calibration Study
 
-This study asks one question: **did the generated ticket set become more useful
-for prioritisation, what changed to produce that result, and what evidence is
-still missing?**
+This study asks: **did the generated tickets become more useful for deciding
+which work comes first, what changed, and what evidence is still missing?**
 
-Calibration here does not mean model fine-tuning or hand-editing tickets. It
-means changing general assessment, prompt, routing or projection behavior,
-regenerating all 21 tickets, and retaining both successful and failed
-observations.
+Here, **calibration** means adjusting general assessment rules, prompts, review
+routing or the code that creates ticket fields, then generating all 21 tickets
+again. Successful and failed observations are both kept. It does not mean
+training the model further or editing tickets by hand.
 
-The comparison is test-informed and non-blind. It shows a system-level behavior
-change; it does not establish domain-certified scores, accuracy on unseen cases
-or the isolated effect of one parameter.
+The comparison used test evidence, and the findings were already known to the
+developers. It shows a change in the whole system's behavior. It does not prove
+that experts have certified the scores, that the system is accurate on unseen
+cases, or that one setting alone caused the change.
 
 ## 1. What is being compared
 
@@ -22,111 +22,115 @@ Open the two ticket sets and compare rows with the same `finding_id`:
 | Retained baseline experiment | [Baseline 21-ticket JSON](../eval/results/behavior-calibration/baseline-triage-policy-v5-tickets.json) | model `gpt-6-sol`; application policy `triage-policy-v5`; experimental and not acceptance-eligible | `2c6b2a0d85e0462ebe589eadeb3522b078e4c364b9472220ec5ad1e944037381` |
 | Current delivery artifact | [Root `tickets.json`](../tickets.json) | model `gpt-6.1-sol`; assessment prompt v7; application policy `triage-policy-v16`; provisional AI-only review | `2bb8d0f34da36142042c6f5f983622be358e45fc4690378a935e28ba189f1f98` |
 
-The baseline link is a byte-identical retained copy of the archived experimental
-output. It was not regenerated or edited for this study.
+The baseline link points to a saved copy of the archived experimental output.
+Every byte matches. The study did not regenerate or edit it.
 
-The two systems differ in model, prompt, assessment implementation, projection
-and application policy. This is therefore a before/after comparison of the
-whole system, not an A/B test of `triage-policy-v5` versus
+The two systems use different models, prompts, assessment code, ticket-field
+generation and application policies. This is a before/after comparison of the
+whole system. It is not an A/B experiment changing only `triage-policy-v5` to
 `triage-policy-v16`.
 
 ### 1.1 Terms used in this document
 
-- **L** is model-proposed likelihood on the 1-10 assessment scale.
-- **I** is model-proposed impact on the 1-10 assessment scale.
-- **U** is code-derived urgency on the 1-10 scale.
+- **L** is likelihood proposed by the model on the 1-10 assessment scale.
+- **I** is impact proposed by the model on the 1-10 assessment scale.
+- **U** is urgency calculated by code on the 1-10 scale.
 - **Review flag** means the published `review_required` field. Its meaning
-  changed: the baseline used it for broad review obligations, while the current
-  system uses it only for exceptional human arbitration before normal queuing.
-  Every ticket still requires ordinary human approval.
-- **Scheduling band** groups numeric urgency into the ticket's operational
-  action window. A numeric change does not always cross a band boundary.
+  changed. The baseline used it for broad review obligations. The current system
+  uses it only for a specific unresolved decision needing an exceptional human
+  check before normal queuing. Every ticket still needs ordinary human approval.
+- **Scheduling band** groups urgency scores into an action window, such as today
+  or this week. A score change does not always change the action window.
 - **SCE** means Safety Critical Element.
 - **PSV** means pressure safety valve.
-- **Projection** is the deterministic code that turns validated assessment and
-  policy decisions into ticket fields and reader-facing text.
+- **Projection** is code that turns validated assessments and policy decisions
+  into ticket fields and text. With the same inputs, it gives the same result.
 - **Near-control** means one retained `gpt-6.1-sol` run on the older assessment
-  implementation and `triage-policy-v5`. Its complete context hash differed
-  from the baseline, so it is supporting evidence rather than a formal control.
-- **Replay** means taking retained model-proposed scores, facts and uncertainty
-  from an older run and passing them through the current deterministic routing
-  code. It isolates routing effects without claiming that the retained model
-  inputs were correct.
-- **Activation** is the reviewed manifest that pins the exact knowledge release,
-  retrieval implementation, assessment policy, execution code and prompt for a
-  run. Document 07 section 1.1 shows how it is regenerated and approved.
+  implementation and `triage-policy-v5`. Its complete context hash did not match
+  the baseline. It is therefore supporting evidence, not a formal control that
+  holds all other conditions fixed.
+- **Replay** means passing saved model-proposed scores, facts and uncertainty
+  through the current routing code. It makes no new model calls. Replaying the
+  same inputs shows the code's routing effect; it does not prove those inputs
+  were correct.
+- **Activation** is the reviewed manifest, or record, fixing the exact knowledge
+  release, retrieval code, assessment policy, execution code and prompt for a
+  run. Document 07 section 1.1 shows how to regenerate and approve it.
 
 ## 2. Bottom line
 
 | Measure | Baseline | Current | Interpretation |
 |---|---:|---:|---|
 | Tickets | 21 | 21 | Complete coverage preserved |
-| Published review flag | 21 broad-review flags | 6 exceptional-review flags | Lower count, but the field semantics changed |
+| Published review flag | 21 broad-review flags | 6 exceptional-review flags | Lower count, but the field has a different meaning |
 | U7-U9 | 19 | 15 | More separation, but the current queue remains urgency-heavy |
 | U9 | 7 | 7 | Unchanged in this selected pair; not a stability result |
-| I8 | 13 | 10 | Less impact concentration |
-| Likelihood changed | - | 7 findings | Five adjacent moves; two changed by at least two points |
-| Impact changed | - | 9 findings | Five adjacent moves; four changed by at least two points |
-| Numeric urgency changed | - | 7 findings | Six adjacent moves; one changed by at least two points |
+| I8 | 13 | 10 | Fewer findings share the same impact score |
+| Likelihood changed | - | 7 findings | Five one-point moves; two changed by at least two points |
+| Impact changed | - | 9 findings | Five one-point moves; four changed by at least two points |
+| Numeric urgency changed | - | 7 findings | Six one-point moves; one changed by at least two points |
 | Scheduling band changed | - | 5 findings | Fewer changes than the numeric urgency count |
 
-The current tickets are more differentiated under the declared current design.
-That is useful prototype evidence, not proof that each numeric score is
-operationally correct.
+The current design separates the tickets more clearly. That is useful prototype
+evidence, not proof that each score is correct for operational decisions.
 
-The largest caveat is the review reduction. Current routing alone explains nine
-of the 15 removed flags. The remaining six also depend on changed model-proposed
-facts and uncertainty in protection cases. Those six require domain scrutiny
-before the lower review count can be treated as safe.
+The review reduction needs the most caution. Replay of saved baseline
+assessments under current routing changes 21 flags to 12: routing alone removes
+nine. Under that same routing, current assessments produce six flags instead
+of 12. Those additional six removals depend on changed assessment inputs.
+All six are protection cases with unresolved decision risk. They need domain
+review before anyone can treat the lower count as safe.
 
 ## 3. Why calibration was needed
 
-The baseline was structurally valid but weak as a prioritisation queue:
+The baseline had valid structure, but was weak at separating work priorities:
 
 | Baseline symptom | Observed result | Why it mattered |
 |---|---:|---|
 | High urgency concentration | 19/21 at U7-U9 | Local defects, material degradation and immediate protection decisions were poorly separated |
-| Review saturation | 21/21 flagged | The field did not distinguish ordinary approval from exceptional arbitration |
-| Impact concentration | 13/21 at I8 | Different consequence types frequently collapsed onto one anchor |
+| Review saturation | 21/21 flagged | The field did not distinguish ordinary approval from an exceptional decision check |
+| Impact concentration | 13/21 at I8 | Different consequence types often received the same score anchor |
 | Routing shortcuts | SCE status and broad uncertainty frequently implied review | Asset class or missing information could replace a fact-sensitive decision |
 
-The distribution identified suspicious uniformity; it did not define the
-correct answer. Each change still needed case-level evidence review and
-deterministic safety checks.
+The distribution suggested that scores and flags were too uniform. It did not
+tell us the correct answer. Each change still needed review of individual case
+evidence and safety checks in code.
 
 A working-capacity target of no more than seven exceptional routes was used to
-test whether the queue remained usable. It is a workload constraint, not a
-quality threshold.
+check whether the queue remained usable. This limits review workload. It is not
+a score-quality or safety threshold.
 
 ## 4. What changed in the system
 
-The result did not come from one threshold adjustment. Assessment target,
-uncertainty handling, review semantics and ticket projection changed together.
+The result did not come from changing one threshold. The assessed failure,
+handling of uncertainty, meaning of the review flag and ticket generation code
+changed together.
 
 ### 4.1 Assessment target and anchors
 
-The current assessment asks about failure of the observed required function,
-rather than automatically transferring a possible whole-equipment consequence
-to every local defect.
+The current assessment first asks which required function the observation shows
+to be failing. It does not automatically assign a possible whole-equipment
+consequence to every local defect.
 
 For example, degraded coating is assessed first as loss of corrosion protection,
 and an illegible PSV tag as loss of identification. Severe personnel or
 major-accident consequences remain high where the evidence supports them.
 
-The current impact anchors also distinguish production disruption,
-maintainability, personnel exposure and major-accident potential. This
-operational-function convention is a project-defined design choice, not a
-supplied domain rule or independently certified truth.
+The current impact anchors (descriptions of what each score means) distinguish
+production disruption, ability to maintain equipment, personnel exposure and
+major-accident potential. Assessing the observed operational function first is
+a project design choice. It is not a supplied domain rule or a choice certified
+by independent experts.
 
 ### 4.2 Facts and uncertainty
 
 The current assessment records facts as confirmed, false, suspected or unknown.
 Missing evidence is not treated as confirmed absence.
 
-Some non-protection unknowns moved from score floors or broad review flags into
-explicit verification actions. This reduced queue saturation, but it is not the
-same precaution expressed differently: it places more reliance on executing the
-action plan.
+For some unknowns not about protection, minimum score rules or broad review flags
+were replaced by explicit verification actions. This reduced the number of
+flagged tickets. It is not simply the same precaution in different words:
+the decision now relies more on people carrying out the action plan.
 
 ### 4.3 Urgency formula
 
@@ -137,71 +141,79 @@ base  = ceil(0.7 * impact + 0.3 * likelihood)
 final = max(base, applicable floors and confirmed overrides)
 ```
 
-Observed urgency changes came from changed L/I proposals, changed structured
-facts and uncertainty, and application-policy rules. The model still does not
-choose urgency.
+Urgency changed because L/I proposals, structured facts, uncertainty and
+application-policy rules changed. The model still does not choose urgency.
 
 ### 4.4 Review semantics
 
-The baseline review flag covered broad obligations, including SCE and material
-uncertainty review. The current flag is narrower: it identifies an unresolved
-decision that needs exceptional human arbitration before normal queuing.
-Routine checks remain in the recommended action.
+The baseline flag covered broad obligations, including SCE review and review of
+uncertainty that matters to a decision. The current flag is narrower. It marks
+an unresolved decision needing an exceptional human check before normal
+queuing. Routine checks remain in the recommended action.
 
 A confirmed urgent condition can therefore be U9 without an exceptional review
 flag. High urgency and exceptional review are separate decisions.
 
 ## 5. What caused the review-count reduction
 
-The review flag fell from 21 to 6, but the two fields are not semantically
-identical. A deterministic replay was used to separate two causes.
+The count fell from 21 to six, but the old broad flag and new exceptional flag
+have different definitions. This is not a like-for-like count of the same
+review obligation.
 
-First, the baseline assessment inputs were passed through the current routing
-code without changing their model-proposed scores, facts or uncertainty. This
-produced 12 flags instead of 21:
+A deterministic replay reused saved assessments through routing code. It made
+no model calls. The replay separated the code effect from differences in the
+assessment inputs.
+
+First, current routing processed the saved baseline scores, facts and uncertainty
+without changing them. It produced 12 flags instead of the original 21.
+Thus, routing alone accounts for nine removals:
 
 | Cause | Findings | Count |
 |---|---|---:|
 | Current routing alone removes the baseline flag | F-1001, F-1004, F-1006, F-1007, F-1009, F-1014, F-1015, F-1016, F-1019 | 9 |
 | Current routing still flags the baseline inputs | F-1002, F-1003, F-1005, F-1008, F-1010, F-1011, F-1012, F-1013, F-1017, F-1018, F-1020, F-1021 | 12 |
 
-Second, the current assessment inputs were replayed through the same routing
-code. The replay reproduced the six flags in the published artifact exactly:
+Second, current assessment inputs passed through the same routing code.
+This reproduced the six flags in the published file exactly:
 F-1002, F-1008, F-1012, F-1013, F-1017 and F-1020.
 
-The additional six removals therefore require changed assessment inputs as well
-as current routing:
+The change from 12 to six therefore depends on changed assessment inputs under
+the same routing. It is not another routing-only reduction:
 
 | Finding | Relevant input change |
 |---|---|
-| F-1003, F-1005 | No longer emit protection-affecting uncertainty |
-| F-1010, F-1011 | No longer emit material uncertainty |
-| F-1018, F-1021 | Change `protection_impaired` from `suspected` to `unknown` and drop protection-affecting uncertainty |
+| F-1003, F-1005 | The assessment no longer lists uncertainty that affects the protection function |
+| F-1010, F-1011 | The assessment no longer lists uncertainty that can change the decision |
+| F-1018, F-1021 | `protection_impaired` changes from `suspected` to `unknown`; the assessment no longer lists uncertainty that affects the protection function |
 
-All six are protection cases. Their changed inputs may be defensible where a
-confirmed failed test already fixes immediate attention and the uncertainty
-only changes diagnosis or redundancy. They are also the highest-risk
-calibration dependency: a lower review count must not come from hiding an
-unresolved protection decision.
+All six are protection cases with unresolved decision risk. The changed inputs
+may be defensible if a confirmed failed test already requires immediate
+attention and uncertainty affects only diagnosis or redundancy. The study has
+not resolved that question.
+
+These six cases are the highest-risk dependency in the calibration. A lower
+review count must not come from hiding an unresolved protection decision.
+The replay explains how code routes the saved inputs. It does not prove safety
+or isolate a causal improvement in the model.
 
 The replay evidence is retained in
 [`behavior-calibration-replay.json`](../eval/results/behavior-calibration-replay.json).
 
 ## 6. Comparison identities and causal limits
 
-| Observation | Model and system surface | Result | Use in this study |
+| Observation | Model and system setup | Result | Use in this study |
 |---|---|---|---|
 | Baseline | `gpt-6-sol`; prompt-context hash `746e29...b1b5`; assessment implementation `2605dd...601e`; `triage-policy-v5` | 19/21 U7-U9; 21/21 review flags; 13/21 at I8 | Starting behavior |
-| Near-control | `gpt-6.1-sol`; older assessment implementation and `triage-policy-v5`; context hash `7118d3...9024` | 19/21 U7-U9; 20/21 flags; 13/21 at I8 | Shows that one newer-model run on the older surface retained the concentration; not a formal control |
+| Near-control | `gpt-6.1-sol`; older assessment implementation and `triage-policy-v5`; context hash `7118d3...9024` | 19/21 U7-U9; 20/21 flags; 13/21 at I8 | One newer-model run with the older setup kept the concentration; not a formal control |
 | Current | `gpt-6.1-sol`; `assessment-system-v7`; `native-assessment-v4`; `ticket-projection-v4`; `triage-policy-v16` | 15/21 U7-U9; 6/21 exceptional flags; 10/21 at I8 | Current delivered behavior |
 
-The near-control had two semantic reviews, each with 60/63 applicable dimensions
-passing, and remains a failed experiment. It does not isolate model choice
-because its complete context differed from the baseline.
+The near-control had two reviews of meaning. Each passed 60/63 applicable
+dimensions, and the experiment remains failed. Its complete context differed
+from the baseline, so it does not isolate the effect of model choice.
 
-Model, prompt, assessment policy, projection and application policy all changed
-between baseline and current. No result in this study should be read as the
-isolated causal effect of one parameter.
+Model, prompt, assessment policy, ticket projection and application policy all
+changed between baseline and current. No result here establishes the isolated
+causal effect of one setting.
 
 ## 7. Score distributions
 
@@ -217,9 +229,9 @@ isolated causal effect of one parameter.
 | 9 | 8 | 8 | 0 | 0 | 7 | 7 |
 | 10 | 0 | 2 | 0 | 0 | 0 | 0 |
 
-Most numeric changes were adjacent-anchor moves and may include normal model
-variation. Stronger evidence comes from large L/I changes, deterministic routing
-changes and repeated aggregate patterns.
+Most score changes were one point and may include normal model variation.
+Larger L/I changes, replayed routing changes and patterns seen in repeated runs
+give stronger evidence that behavior changed. They still do not prove accuracy.
 
 ### 7.1 Development/test partition check
 
@@ -228,39 +240,40 @@ changes and repeated aggregate patterns.
 | Development, 13 findings | 13 -> 3 | 13 -> 9 | 6 | 5 | 4 |
 | Designated test, 8 findings | 8 -> 3 | 6 -> 6 | 1 | 4 | 3 |
 
-The review change was not limited to development findings. This is not a blind
-generalisation result. All findings were exposed, and every retained development
-provider input also contained all eight designated TEST finding records. B01
-context isolation was therefore not met; the split supports regression analysis,
-not case-isolated inference. The complete system surface also changed.
+Review counts changed in both partitions, not just development. This does not
+show blind performance on new cases. All findings were exposed, and every saved
+development request also contained all eight designated TEST records.
+The runs therefore failed B01 context isolation. The split supports analysis of
+changes and regressions, not inference isolated from test cases. The whole
+system setup also changed.
 
 ## 8. Representative ticket changes
 
 | Finding | Baseline | Current | What changed and what remains uncertain |
 |---|---|---|---|
-| F-1009, degraded deck coating | L2 / I8 / U7 / broad review | L9 / I2 / U5 / no exceptional review | The baseline did not claim section loss but scored a possible structural-support consequence. The current run scores the observed corrosion-barrier failure. This demonstrates the revised convention, not that L9/I2 is independently correct |
-| F-1016, illegible PSV tag | L2 / I8 / U7 / broad review | L10 / I3 / U6 / no exceptional review | The current run scores loss of identification while the register supports in-date recertification. The anchors still require domain confirmation |
-| F-1001, compressor vibration trend | L7 / I8 / U9 / broad review | L7 / I6 / U9 / no exceptional review | Both cite production consequence. The current impact anchor treats it as material operational loss rather than severe personnel or major-accident loss. U9 remains because the supplied source requires same-day specialist attention |
-| F-1019, loose cladding | L7 / I7 / U7 / broad review | L8 / I5 / U6 / no exceptional review | Both exclude compressor process loss. The current run treats unknown drop exposure as a required field check rather than established high consequence. This is less precautionary and depends on executing that check |
-| F-1017, uncertain firewater duty | L5 / I8 / U8 / broad review | L6 / I8 / U8 / exceptional review retained | Missing flow and unresolved test-path validity still change the protection decision, so exceptional review remains |
+| F-1009, degraded deck coating | L2 / I8 / U7 / broad review | L9 / I2 / U5 / no exceptional review | The baseline did not claim section loss, but scored a possible consequence for structural support. The current run scores the observed failure of the corrosion barrier. This shows the revised convention; it does not independently justify L9/I2 |
+| F-1016, illegible PSV tag | L2 / I8 / U7 / broad review | L10 / I3 / U6 / no exceptional review | The current run scores loss of identification. The register supports recertification still being in date. A domain owner must still confirm the score anchors |
+| F-1001, compressor vibration trend | L7 / I8 / U9 / broad review | L7 / I6 / U9 / no exceptional review | Both cite production consequences. The current impact anchor treats these as material operational loss, not severe personnel or major-accident loss. U9 remains because the supplied source requires same-day specialist attention |
+| F-1019, loose cladding | L7 / I7 / U7 / broad review | L8 / I5 / U6 / no exceptional review | Both exclude compressor process loss. The current run requires a field check of unknown exposure to falling cladding instead of treating high consequence as established. This is less precautionary and depends on completing that check |
+| F-1017, uncertain firewater duty | L5 / I8 / U8 / broad review | L6 / I8 / U8 / exceptional review retained | Flow is missing and the validity of the test path is unresolved. Both still affect the protection decision, so exceptional review remains |
 
-These examples are not uniformly lower scores. They reflect a different failure
-target, evidence scope and review decision. Operational correctness still needs
-domain-owner calibration.
+The scores do not all go down. These examples assess different failure targets,
+use different evidence scope and make different review decisions. A domain owner
+still needs to check whether those choices are operationally correct.
 
 ## 9. Rejected interventions
 
-Calibration retained failed observations rather than keeping every change that
-reduced urgency or review count:
+Failed observations were kept. Not every change that lowered urgency or review
+count was accepted:
 
 - an early selective-review policy removed review from cases that still had
   unresolved safety decisions;
-- a more complex interaction-sensitive urgency formula passed mathematical
-  checks but produced little defensible operational benefit;
-- a prompt-only provenance repair changed urgency bands and review routing in a
-  fixed comparison; and
-- a broader prompt-authority reduction introduced a real-case semantic
-  regression and frequent action repair.
+- a more complex urgency formula accounting for interactions passed mathematical
+  checks but showed little defensible operational benefit;
+- a prompt-only correction to event ordering changed urgency bands and review
+  routing in a fixed comparison; and
+- a broader reduction in prompt authority made the meaning of a real-case
+  assessment worse and frequently required action repair.
 
 The base urgency formula remained unchanged.
 
@@ -270,49 +283,50 @@ The six current exceptional-review routes are F-1002, F-1008, F-1012, F-1013,
 F-1017 and F-1020. Each names a concrete protection, evacuation, restoration or
 verification decision.
 
-Six meets the requested working-capacity target of no more than seven. Meeting
-that target is not a quality result. Current routing applied to baseline and
-near-control assessment inputs would still produce 12 and 13 flags respectively,
-so reaching six depends on the changed assessment surface.
+Six meets the requested working-capacity target of no more than seven.
+That is not evidence of quality or safety. Current routing applied to baseline
+and near-control inputs still produces 12 and 13 flags respectively.
+Reaching six therefore depends on changed assessment inputs, not routing alone.
 
 Current urgency is U4=2, U5=1, U6=3, U7=2, U8=6 and U9=7. Fifteen tickets remain
-at U7-U9. The queue is more differentiated than the baseline, but this does not
-show that the current concentration is operationally optimal. A sibling retained
-baseline run produced eight U9 tickets, so seven U9 in the selected pair is not
-a repeat-stability result.
+at U7-U9. The queue separates priorities more than the baseline, but the study
+does not show that this urgency distribution is best for operations.
+Another saved baseline run produced eight U9 tickets. Seven U9 in the selected
+pair therefore does not establish stable results across repeats.
 
-The exact current artifact received one complete primary semantic review and
-recorded `provisional_pass` with 63/63 applicable dimensions. That review is:
+The exact current file received one complete primary review of meaning.
+It recorded `provisional_pass` with 63/63 applicable dimensions. That review is:
 
 - AI-only and not domain certification;
-- non-blind and test-informed; and
-- a protocol deviation because the runtime did not expose the reviewer identity
+- based on known findings and test evidence; and
+- a deviation from the required procedure because the runtime did not expose the reviewer identity
   fields required by Document 03 section 7.2.
 
-The reviewer was calibrated on only two seeded contradiction fixtures, and the
-required unresolved adjacent-score `needs_review` behavior was not exercised.
-Scenario A04 (valid structure but wrong meaning) therefore remains Partial.
+The reviewer was calibrated on only two fixtures with deliberately added
+contradictions. The calibration did not test the required `needs_review` response
+for an unresolved score near a defensible anchor. Scenario A04 (valid structure
+but wrong meaning) therefore remains Partial.
 
-Scenario X01 (decision stability, Document 03) remains Inconclusive. The
-development repeats preserved urgency bands and review flags, but their provider
-context contained TEST records, reviewer identity was incomplete, and the
-configuration was selected using development evidence. Those protocol failures
-prevent a formal stability result.
+Scenario X01 (decision stability, Document 03) remains Inconclusive.
+Development repeats kept the same urgency bands and review flags. However, their
+requests contained TEST records, reviewer identity was incomplete, and the
+configuration was chosen using development evidence. Those failures of the
+required procedure prevent a formal stability result.
 
 ## 11. How to perform the next calibration
 
-Treat the following as a sequence, unlike the independent maintenance paths in
-Document 07:
+Follow these steps in order. Unlike Document 07's separate maintenance options,
+this is a sequence:
 
 1. **State one hypothesis.** Example: "Unknown non-safety exposure should create
    a verification action rather than an exceptional review flag."
-2. **Choose one primary surface.**
+2. **Choose one main component to change.**
    - assessment anchors: `triage\assessment_policy.py`;
    - deterministic urgency/review routing: `triage\policy.py`;
    - ticket-facing projection: `triage\projection.py`;
    - prompt protocol: `triage\prompts\assessment-system-v7.txt`; or
    - model/settings: explicit run configuration.
-3. **Record the baseline identity.** Retain model, prompt, policy, activation,
+3. **Record the exact baseline setup.** Retain model, prompt, policy, activation,
    input and output hashes before changing anything.
 4. **Update focused tests.** For policy and projection behavior, run:
 
@@ -320,26 +334,29 @@ Document 07:
    python -B -m unittest tests.test_triage
    ```
 
-5. **Refresh activation when a pinned surface changes.** Follow the activation
+5. **Refresh activation when a pinned component changes.** Follow the activation
    generation and approval procedure in Document 07 section 1.1.
 6. **Generate into a new run directory.** Use the run-specific activation,
    configuration and explicit comparison command in Document 07 section 1.1,
    step 5. Do not overwrite root `tickets.json` during comparison.
-7. **Compare decisions, not only histograms.** Review changed L/I values,
+7. **Compare decisions, not only score distributions.** Review changed L/I values,
    urgency, scheduling band, exceptional routing, uncertainty and action text.
-8. **Replay routing where applicable.** Use retained assessment inputs to
-   separate deterministic policy effects from changed model inputs.
-9. **Run semantic review and repeat generation.** One successful batch does not
-   establish stability.
-10. **Promote or reject.** Promotion requires grounded case behavior, preserved
-    safety constraints, disclosed comparability impact and the controlled-change
-    process in Document 03.
+8. **Replay routing where applicable.** Pass saved assessment inputs through code,
+   without model calls, to separate routing effects from changed assessment inputs.
+9. **Review meaning and repeat generation.** One successful batch does not show
+   stable behavior.
+10. **Promote or reject.** Promotion requires case decisions supported by evidence,
+    preserved safety constraints, a clear account of which comparisons remain
+    valid, and the controlled-change process in Document 03.
 
-The next credible study should also obtain domain-owner review of the
-operational-function convention and disputed anchors, repeat the same
-configuration to estimate stability, adjudicate the six protection cases in
-section 5, calibrate exceptional-review capacity against actual staffing, and
-use unseen or newly collected findings.
+The next credible study also needs to:
+
+- obtain domain-owner review of the operational-function convention and disputed
+  score anchors;
+- repeat the same configuration to estimate stability;
+- resolve the six protection-case decisions in section 5;
+- check exceptional-review capacity against actual staffing; and
+- use unseen or newly collected findings.
 
 ## 12. Claim boundaries
 
@@ -347,21 +364,22 @@ This study supports:
 
 - complete before/after ticket comparison;
 - more differentiated current behavior under the declared design;
-- deterministic decomposition of routing-only versus assessment-input effects;
+- replay separating routing-only changes from assessment-input differences;
 - retention of failed interventions; and
-- a bounded list of unresolved protection cases.
+- a specific, limited list of unresolved protection cases.
 
 It does not support:
 
-- isolated causal attribution to model, prompt or policy;
+- proof that model, prompt or policy alone caused the change;
 - like-for-like interpretation of the 21-to-6 review count;
 - independent correctness of the current L/I anchors;
 - stable behavior across repeated identical runs;
-- blind generalisation to unseen findings;
+- blind performance evidence on unseen findings;
 - domain-owner approval; or
 - operational validation of the current staffing target.
 
-Score distributions show discrimination, not score accuracy.
+Score distributions show that scores differ. They do not show that the scores
+are accurate.
 
 ## 13. Evidence map
 
@@ -380,13 +398,13 @@ Score distributions show discrimination, not score accuracy.
 
 ## 14. Controlled-change disclosure
 
-Calibration used exposed findings and is test-informed rather than blind.
-Failed experiments and prior outputs remain retained; the final file was
-regenerated through general mechanisms rather than hand-corrected. No source
-package, split, evidence card, expected answer or evaluator rule was weakened to
-produce the current distribution.
+Calibration used known findings and test evidence. It was not blind.
+Failed experiments and earlier outputs are still saved. General system
+mechanisms regenerated the final file; nobody corrected it by hand.
+No source package, split, evidence card, expected answer or evaluator rule was
+weakened to obtain the current score distribution.
 
-Future changes to anchors, floors, review routing, urgency-band mapping, prompt
-semantics or model identity must preserve the prior artifact, state affected
-scenarios and comparability impact, and rerun relevant validation and semantic
-review.
+Future changes to score anchors, urgency floors, review routing, urgency-band
+mapping, prompt meaning or model identity must preserve the previous file.
+State which scenarios are affected and which comparisons remain valid.
+Rerun the relevant validation and review of meaning.

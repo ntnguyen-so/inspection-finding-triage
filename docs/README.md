@@ -1,19 +1,19 @@
 # Engineering Development Record
 
-These documents provide the decision trail behind the submitted design. They
-are supporting material rather than a second copy of the root `README.md` or
-`DESIGN.md`.
+These documents explain how the submitted design developed and why decisions
+were made. They support root `README.md` and `DESIGN.md`; they do not replace
+or duplicate them.
 
-Documents 01-08 provide supporting rationale and study results. Each artifact
-has a distinct role:
+Documents 01-08 explain decisions and study results. Each file has a different
+role:
 
 - root [`README.md`](../README.md) contains setup, current status and verified
   run commands;
 - root [`DESIGN.md`](../DESIGN.md) is the direct answer to Candidate Brief
   sections A-D;
-- numbered Documents 01-08 explain the reasoning, implementation sequence and
-  controlled studies behind that design;
-- [`eval\spec`](../eval/spec) defines what counts;
+- numbered Documents 01-08 explain the decisions, build sequence and controlled
+  studies behind that design;
+- [`eval\spec`](../eval/spec) defines what counts as acceptance evidence;
 - [`eval\results\README.md`](../eval/results/README.md) indexes what actually
   happened, including failures and unresolved limits; and
 - root [`tickets.json`](../tickets.json) is the generated draft deliverable.
@@ -28,90 +28,94 @@ For a first review, use this shorter path:
 4. [`eval\results\acceptance-status.md`](../eval/results/acceptance-status.md)
    for scenario-by-scenario evidence and limits.
 
-Use Documents 01-06 when a design decision needs its rationale. Documents 07-08
-are worked studies: Document 07 follows a six-month pressure safety valve (PSV)
-knowledge change, while Document 08 compares the accessible baseline with the
-current ticket behavior.
+Use Documents 01-06 to understand why a design decision was made. Documents 07-08
+show worked studies. Document 07 follows a pressure safety valve (PSV) knowledge
+change of the kind an engineer might make six months later. Document 08 compares
+the available earlier result (the **baseline**) with current tickets.
 
 ## End-to-end development map
 
 | Step | Engineering question | Main decision or result | Document |
 |---:|---|---|---|
-| 01 | What is the assignment actually asking, and where are the judgment traps? | Separate semantic assessment from deterministic control; identify unsupported assumptions before choosing components | [`01_INITIAL_INVESTIGATION.md`](01_INITIAL_INVESTIGATION.md) |
-| 02 | What data, relationships and evidence boundaries make evaluation honest? | Profile 21 findings and 18 assets; define grouped, non-blind evaluation and production-context exclusions | [`02_DATA_EVALUATION_PLAN.md`](02_DATA_EVALUATION_PLAN.md) |
-| 03 | What must count as success or failure before outputs are judged? | Define A-D/X scenarios, semantic review, fixed-identity reliability, accounting and controlled-change rules | [`03_EVALUATION_ACCEPTANCE.md`](03_EVALUATION_ACCEPTANCE.md) |
-| 04 | How should model access be isolated and accounted for? | Introduce a provider-neutral inference boundary; distinguish measured Copilot usage from API-equivalent cost | [`04_INFERENCE_LIBRARY.md`](04_INFERENCE_LIBRARY.md) |
-| 05 | How can domain guidance change without being embedded in orchestration? | Build source-faithful extraction, review, immutable releases, separate activation and validated context delivery | [`05_KNOWLEDGE_LIFECYCLE.md`](05_KNOWLEDGE_LIFECYCLE.md) |
-| 06 | How are the components integrated without hiding failure? | Implement bounded assessment, deterministic urgency/review policy, complete coverage and atomic publication | [`06_TRIAGE_WORKFLOW.md`](06_TRIAGE_WORKFLOW.md) |
-| 07 | Does the six-month knowledge-maintenance path work in practice? | Demonstrate bounded influence and official-store traversal; expose hard-coded-score, scope and non-target risks; reject promotion | [`07_KNOWLEDGE_CHANGE_STUDY.md`](07_KNOWLEDGE_CHANGE_STUDY.md) |
-| 08 | Did calibration make the ticket set more useful, and what caused the change? | Compare accessible baseline/current tickets, decompose review changes, retain failed interventions and state residual risks | [`08_BEHAVIOR_CALIBRATION_STUDY.md`](08_BEHAVIOR_CALIBRATION_STUDY.md) |
+| 01 | What does the assignment require? Where can judgment go wrong? | Separate model interpretation from fixed code rules. Identify unsupported assumptions before choosing components | [`01_INITIAL_INVESTIGATION.md`](01_INITIAL_INVESTIGATION.md) |
+| 02 | What can the data show? How should related cases and model context be separated? | Inspect 21 findings and 18 assets. Group related cases, disclose prior exposure and exclude evaluator material from production context | [`02_DATA_EVALUATION_PLAN.md`](02_DATA_EVALUATION_PLAN.md) |
+| 03 | What counts as success or failure? | Define A-D/X scenarios, review of ticket meaning, fixed-version repeat checks, usage accounting and contract-change rules | [`03_EVALUATION_ACCEPTANCE.md`](03_EVALUATION_ACCEPTANCE.md) |
+| 04 | How do we isolate model access and record usage? | Use an inference boundary that supports different providers. Separate measured Copilot usage from estimated API-equivalent cost | [`04_INFERENCE_LIBRARY.md`](04_INFERENCE_LIBRARY.md) |
+| 05 | How can guidance change without editing workflow code? | Preserve source meaning during extraction and review. Create releases that cannot be changed. Approve runtime use separately and check delivered context | [`05_KNOWLEDGE_LIFECYCLE.md`](05_KNOWLEDGE_LIFECYCLE.md) |
+| 06 | How do the components work together without hiding failure? | Limit assessment attempts. Keep urgency and review rules in code. Require complete coverage and replace output in one step | [`06_TRIAGE_WORKFLOW.md`](06_TRIAGE_WORKFLOW.md) |
+| 07 | Does the six-month knowledge-change process work? | Show limited influence and exercise the official store. Expose fixed-score, scope and non-target risks. Do not promote the experimental rule | [`07_KNOWLEDGE_CHANGE_STUDY.md`](07_KNOWLEDGE_CHANGE_STUDY.md) |
+| 08 | Did calibration make tickets more useful? What caused the changes? | Compare baseline and current tickets. Separate causes of review changes. Keep failed experiments and explain remaining risks | [`08_BEHAVIOR_CALIBRATION_STUDY.md`](08_BEHAVIOR_CALIBRATION_STUDY.md) |
 
 ## Phase 1 - Understand the problem and define evidence
 
 ### 01 - Investigate before designing
 
-The work started by reading the Candidate Brief, source data and outgoing
-engineer's notes as authority rather than treating the example ticket as a gold
-answer. The investigation identified the recurring traps:
+We started with the Candidate Brief, source data and outgoing engineer's notes.
+These are the source authority. The example ticket is not an answer key. The
+investigation identified these recurring traps:
 
 - reliability runs in the opposite direction to likelihood;
-- redundancy is a claim that needs partner evidence;
+- redundancy (backup equipment) needs evidence that the partner can perform;
 - Safety Critical Element (SCE) impact concerns the protected major-accident
   scenario, not repair cost;
 - missing evidence is unknown, not confirmed absence; and
 - valid JSON can still contain an invalid engineering judgment.
 
-This produced the first architecture boundary: use the model where evidence must
-be interpreted, but keep urgency, schema, attempts, coverage and publication in
-code.
+This led to the first responsibility boundary. The model interprets evidence.
+Code controls urgency, schema (allowed fields and types), attempts, coverage and
+publication.
 
 ### 02 - Define data, context and leakage boundaries
 
-The next step profiled the complete supplied corpus and mapped relationships that
-can change an assessment. The split was deliberately labelled non-blind and
-AI-assisted; it was never presented as independent gold.
+We then inspected all supplied data and mapped relationships that can change an
+assessment. We labelled the split **non-blind** because all cases had been
+exposed, and disclosed AI assistance. We did not claim independent expert truth.
 
-Production context was separated from evaluator cards, expected answers and
-reviewer judgments. Related equipment evidence was grouped to reduce obvious
-leakage, while the documents retained the limitation that not every operational
-dependency can be known from 21 rows. The retained development runs nevertheless
-sent all eight TEST finding records to the provider, so the split supports
-regression evidence rather than case-isolated generalization
+Production context excluded evaluator cards, expected answers and reviewer
+judgments. Related equipment evidence was grouped to reduce obvious information
+leakage. We also noted that 21 rows cannot reveal every operational dependency.
+
+The saved development runs nevertheless sent all eight TEST finding records to
+the provider. B01 is not met. The split supports **regression evidence** (checks
+on already exposed cases), not inference on cases isolated from development
+context
 ([Document 02 section 7](02_DATA_EVALUATION_PLAN.md#7-current-assessment-of-the-evaluation-design)).
 
 ### 03 - Decide what counts before judging outputs
 
-The evaluation contract mapped Candidate Brief A-D plus cross-cutting stability
-and reproducibility requirements to observable evidence:
+The contract linked Candidate Brief A-D and stability/reproduction requirements
+to checks we could observe:
 
-- A: structure, coverage, repair and semantic failure;
-- B: context delivery, bounded influence and maintenance path;
+- A: structure, coverage, repair and incorrect ticket meaning;
+- B: context delivery, limited knowledge influence and maintenance;
 - C: code-derived urgency, corners, overrides and fact assessment;
-- D: deferral, inability to assess, exclusions and provenance;
-- X: fixed-identity stability, delivery, accounting and cost.
+- D: requests for human help, inability to assess, exclusions and source records;
+- X: stability with fixed versions, delivery, accounting and cost.
 
-This phase also separated deterministic self-tests from semantic model quality.
-A passing validator was not allowed to become a claim that the scores were
-correct.
+This phase separated software self-tests from review of actual model output.
+A passing validator does not prove that scores are correct.
 
 ## Phase 2 - Build the system boundaries
 
 ### 04 - Isolate inference transport
 
-The inference layer was kept smaller than the triage system. It records provider
-identity, request boundaries, usage, latency and failures without owning
-engineering policy.
+The inference layer handles model requests, not triage decisions. It records
+provider identity, request boundaries, usage, request duration and failures. It
+does not own engineering policy.
 
-Copilot was available through an existing subscription, but its per-run billing
-allocation was not exposed. Direct Azure remained useful where strict provider
-accounting was needed. The documents distinguish measured tokens and AI units,
-reproducible API-equivalent estimates and unknown actual Copilot billing
-allocation.
+An existing subscription provided Copilot access. Copilot did not expose billing
+allocation for each run. Direct Azure remained useful for stricter provider
+accounting.
+
+The documents separate measured tokens and Copilot AI units from API-equivalent
+cost estimates. These estimates apply declared API prices to measured usage;
+they are not actual Copilot charges. Actual Copilot billing allocation remains
+unknown.
 
 ### 05 - Separate knowledge authority from orchestration
 
-The supplied notes and future approved guidance were moved behind a source-first
-lifecycle:
+We created a **source-first lifecycle** for supplied notes and future approved
+guidance. The process preserves the source before preparing model context:
 
 ```text
 approved source
@@ -123,62 +127,68 @@ approved source
   -> validated provider context
 ```
 
-This answered the brief's maintainability question: an integrity engineer can
-change approved PSV interpretation through a reviewed source/release rather than
-editing the prompt or adding a finding-specific branch. Generic score anchors
-and urgency rules remain application-policy changes. If new guidance overlaps
-domain interpretation still present in the prompt, it also requires a focused
-prompt-compatibility review before activation.
+In this process, extraction preserves source meaning. The working candidate can
+be edited, but its digest (hash) guards against unexpected changes. A reviewed
+release cannot be changed. Separate activation approves it for runtime use.
+
+This answers the brief's maintenance question. An integrity engineer can change
+approved PSV interpretation through a reviewed source and release, instead of
+editing the prompt or adding code for one finding. General score anchors and
+urgency rules still require an application-policy change. If new guidance
+overlaps domain interpretation in the prompt, check prompt compatibility before
+activation.
 
 ### 06 - Integrate one fail-closed workflow
 
-The workflow joins validated findings, registry data and pinned context; requests
-model-proposed L/I, facts, uncertainty and planning text; validates the result;
-derives urgency and review routing in code; enforces the total attempt ledger;
-and publishes only a complete atomic batch.
+The workflow links validated findings, registry data and version-fixed context.
+It asks the model for likelihood/impact (L/I), facts, uncertainty and planning
+text. Code validates the response, calculates urgency and review routing, and
+enforces the total attempt record. It publishes only a complete batch, replacing
+the output file in one step (**atomic publication**).
 
 Each model call targets one finding but receives every finding in that run's
-input CSV. This is correct for final all-21 generation and is the reason the
-retained 13-finding development run did not satisfy B01, as described in
-section 02 above.
+input CSV. This is correct for final all-21 generation. The saved development run
+generated 13 tickets but included all 21 finding records in its input context.
+That is why it failed B01, as described in section 02 above.
 
-Malformed output, structural violations, unsupported evidence and inability to
-justify scores remain distinct failure classes. A failed finding cannot publish
-a partial new batch or make an old output look current.
+Unreadable JSON, schema violations, unsupported evidence and inability to justify
+scores remain different failure types. If one finding fails, the system cannot
+publish a partial batch or present an old output as the current result.
 
 ## Phase 3 - Exercise change paths and calibrate behavior
 
 ### 07 - Validate the knowledge-maintenance path
 
-The knowledge study first used an isolated artificial context intervention, then
-exercised the official source store and complete 21-ticket command.
+The knowledge study first changed one isolated artificial context input. It then
+tested the official source store and the complete 21-ticket command.
 
-The target result moved as intended, while the negative tag-only PSV remained
-bounded. The exercise also revealed that:
+The target result changed as intended. The negative control, a PSV identified
+only by its tag, remained outside the rule's scope. The exercise also showed that:
 
-- the experimental source hard-coded scores that should belong to the rubric;
-- an editor path lost structured scope and evidence;
-- scoped PSV guidance still entered a shared batch knowledge pool;
+- the experimental source fixed scores that should belong to the scoring guide;
+- one editor path lost structured scope and evidence;
+- PSV guidance with a limited scope still entered the knowledge shared across
+  the batch;
 - non-target scores varied; and
 - the rule lacked authenticated domain-owner approval.
 
-The editor defect was fixed and verified, but the experimental releases were not
-promoted. The working candidate returned to the baseline authority.
+The editor defect was fixed and checked. The experimental releases were not
+approved for promotion. The working candidate returned to the baseline authority.
 
 ### 08 - Calibrate the integrated ticket behavior
 
-The retained baseline was structurally valid but operationally weak: 19/21
-tickets were U7-U9 and all 21 carried the earlier broad review flag.
+The saved baseline had valid structure but gave planners little separation:
+19/21 tickets were U7-U9, and all 21 had the earlier broad review flag.
 
-Calibration changed several system surfaces, so the final comparison is
-explicitly not a single-variable A/B test. The study exposes both full ticket
-files at its top, records the model/policy identities and decomposes the review
-reduction with deterministic replay.
+Calibration changed several parts of the system. The final comparison is not a
+single-variable A/B test. The study links both complete ticket files at the top,
+records model and policy identities, and uses code replay to separate causes of
+the review reduction.
 
-The current result has 15/21 tickets at U7-U9 and six exceptional prequeue review
-routes. That is improved discrimination, not calibrated risk truth. Six
-protection cases still depend on changed assessment inputs as well as routing
-policy, and the study keeps that as a named regression risk.
+The current result has 15/21 tickets at U7-U9 and six extra-review routes before
+normal queuing. The tickets are less uniform; that does not prove calibrated
+risk. Six protection cases changed because of assessment inputs as well as
+routing policy. The study records this as a specific regression risk.
 
 ## Phase 4 - Delivery artifacts
 
@@ -187,36 +197,36 @@ Current delivery status is available through four primary artifacts:
 | Artifact | Purpose |
 |---|---|
 | Root [`README.md`](../README.md) | Included artifacts, current status and run commands |
-| Root [`DESIGN.md`](../DESIGN.md) | Concise answer to Candidate Brief A-D and architectural trade-offs |
+| Root [`DESIGN.md`](../DESIGN.md) | Direct answers to Candidate Brief A-D and reasons for design choices |
 | Root [`tickets.json`](../tickets.json) | System-generated 21-ticket draft output |
-| [`eval\results\README.md`](../eval/results/README.md) | Evidence index, actual observations, cost/accounting and unresolved gates |
+| [`eval\results\README.md`](../eval/results/README.md) | Evidence index, observations, cost/accounting and unresolved acceptance checks |
 
-The final artifact is contract-valid and has a provisional AI-only semantic
-observation. It is not human-approved, independently domain-certified or
-clean-checkout reproduced. Hidden provider attempts and actual Copilot USD
-allocation remain unknown.
+The final file meets the structural contract and has a provisional AI-only
+review of its meaning. It is not human-approved or independently
+domain-certified. Reproduction from a clean checkout is not established.
+Hidden provider attempts and actual Copilot USD allocation remain unknown.
 
 ## Where development was iterative
 
-Development was iterative rather than a linear waterfall:
+We revised the system as evidence arrived. Work did not follow a strict sequence:
 
 - early workflow work preceded the final knowledge-lifecycle boundary;
 - Document 08 includes early calibration interventions that preceded the
   Document 07 knowledge exercise; the numbering places Document 07 before the
   **final** behavior calibration rather than claiming a strict file-by-file
   execution order;
-- failed B02 attempts exposed a confounded synthetic probe before the corrected
-  isolated comparison;
+- failed B02 attempts revealed a synthetic probe that changed more than one
+  variable; we corrected it before the isolated comparison;
 - the official knowledge-change exercise exposed a real editor scope defect;
-- prompt-only chronology repair was rejected after it changed development
-  urgency/review behavior;
+- a prompt-only correction to event ordering was rejected because it changed
+  development urgency and review behavior;
 - calibration used exposed findings and is disclosed as test-informed; and
-- the final producing workflow was retained by hash after the run rather than
-  established by clean-checkout reproduction.
+- the exact workflow code that produced the final output was saved and hashed
+  after the run; it was not verified by reproduction from a clean checkout.
 
-These are not rewritten as planned successes. Failed observations remain under
-`eval\results` or in its lossless archive, and Git preserves the implementation
-history.
+We do not rewrite these events as planned successes. Failed observations remain
+under `eval\results` or in its archive without data loss. Git preserves the
+implementation history.
 
 ## Authority and evidence hierarchy
 
@@ -225,21 +235,34 @@ history.
 | What are the source requirements? | Unchanged Candidate Brief and supplied domain notes |
 | What is the current design? | Root `DESIGN.md` |
 | What does the system currently do? | Production code and pinned configuration |
-| What was supposed to count? | `eval\spec`; Documents 02-03 explain that contract and its rationale |
+| What was supposed to count? | `eval\spec`; Documents 02-03 explain the contract and its reasons |
 | Why were component/workflow decisions made? | Documents 01, 04-06 |
 | What happened during controlled changes? | Documents 07-08 and linked evidence |
 | What actually passed, failed or remains unknown? | `eval\results` |
 | Where are setup and run commands? | Root `README.md` |
 
-Specifications define what would count; results record what happened. Integrity
-checks, evaluator self-tests and AI review are not operational approval.
+Specifications define what counts as success. Results record what happened.
+File integrity checks, evaluator self-tests and AI review are not approval for
+operational use.
 
 ## Original decision process
 
 [`original-decision-process\README.md`](original-decision-process/README.md)
-indexes the exact pre-rewrite working snapshot of Documents 01-06, bound by
-`manifest.json`. It preserves the detailed historical order and earlier
-terminology.
+indexes the exact working snapshot of Documents 01-06 before the rewrite.
+`manifest.json` records its file identities. This snapshot preserves the detailed
+historical order and earlier terminology.
 
-Root `DESIGN.md` links to the current numbered documents for decision detail;
-the numbered files provide supporting rationale and study results.
+Root `DESIGN.md` links to the current numbered documents for more detail. These
+files explain decisions and report studies.
+
+## Plain-English documentation review
+
+The current documents, root `README.md` and root `DESIGN.md` were rewritten for
+readers who use English as a second language. The supplied candidate package and
+historical snapshots remain unchanged.
+
+Two AI agents reviewed the rewrite in sequence. The first found no remaining
+issue. The second found one misleading explanation: a prompt change corrected
+event ordering, not records of origin. That correction was accepted. No review
+suggestion was rejected. These were documentation reviews, not new evidence that
+the system passes acceptance or that its engineering judgments are correct.
