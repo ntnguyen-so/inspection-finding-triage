@@ -33,9 +33,12 @@ show worked studies. Document 07 follows a pressure safety valve (PSV) knowledge
 change of the kind an engineer might make six months later. Document 08 compares
 the available earlier result (the **baseline**) with current tickets.
 
-## End-to-end development map
+## Development topics
 
-| Step | Engineering question | Main decision or result | Document |
+The numbers give a reading order, not an exact timeline. We revisited components
+when tests exposed problems.
+
+| Document | Engineering question | Main decision or result | File |
 |---:|---|---|---|
 | 01 | What does the assignment require? Where can judgment go wrong? | Separate model interpretation from fixed code rules. Identify unsupported assumptions before choosing components | [`01_INITIAL_INVESTIGATION.md`](01_INITIAL_INVESTIGATION.md) |
 | 02 | What can the data show? How should related cases and model context be separated? | Inspect 21 findings and 18 assets. Group related cases, disclose prior exposure and exclude evaluator material from production context | [`02_DATA_EVALUATION_PLAN.md`](02_DATA_EVALUATION_PLAN.md) |
@@ -205,28 +208,6 @@ The final file meets the structural contract and has a provisional AI-only
 review of its meaning. It is not human-approved or independently
 domain-certified. Reproduction from a clean checkout is not established.
 Hidden provider attempts and actual Copilot USD allocation remain unknown.
-
-## Where development was iterative
-
-We revised the system as evidence arrived. Work did not follow a strict sequence:
-
-- early workflow work preceded the final knowledge-lifecycle boundary;
-- Document 08 includes early calibration interventions that preceded the
-  Document 07 knowledge exercise; the numbering places Document 07 before the
-  **final** behavior calibration rather than claiming a strict file-by-file
-  execution order;
-- failed B02 attempts revealed a synthetic probe that changed more than one
-  variable; we corrected it before the isolated comparison;
-- the official knowledge-change exercise exposed a real editor scope defect;
-- a prompt-only correction to event ordering was rejected because it changed
-  development urgency and review behavior;
-- calibration used exposed findings and is disclosed as test-informed; and
-- the exact workflow code that produced the final output was saved and hashed
-  after the run; it was not verified by reproduction from a clean checkout.
-
-We do not rewrite these events as planned successes. Failed observations remain
-under `eval\results` or in its archive without data loss. Git preserves the
-implementation history.
 
 ## Authority and evidence hierarchy
 

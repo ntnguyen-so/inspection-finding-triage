@@ -337,8 +337,9 @@ this is a sequence:
 5. **Refresh activation when a pinned component changes.** Follow the activation
    generation and approval procedure in Document 07 section 1.1.
 6. **Generate into a new run directory.** Use the run-specific activation,
-   configuration and explicit comparison command in Document 07 section 1.1,
-   step 5. Do not overwrite root `tickets.json` during comparison.
+   configuration and comparison procedure in Document 07 section 1.1,
+   steps 4-5. Its section 8.1 shows the command syntax using an unchanged-source
+   software example. Do not overwrite root `tickets.json` during comparison.
 7. **Compare decisions, not only score distributions.** Review changed L/I values,
    urgency, scheduling band, exceptional routing, uncertainty and action text.
 8. **Replay routing where applicable.** Pass saved assessment inputs through code,

@@ -64,7 +64,9 @@ contract is in [`acceptance-status.md`](acceptance-status.md).
    repaired schema violation, 22 sends, measured tokens, retail-rate estimates
    and the execution-policy identity used by the run.
 13. [`knowledge-command-replay-20261124.json`](knowledge-command-replay-20261124.json)
-   — Document 07 section 1.1 command replay: isolated source import, eight
+   — Command replay, now described in
+   [Document 07 section 8.2](../../docs/07_KNOWLEDGE_CHANGE_STUDY.md#82-what-actually-ran-on-24-november-2026):
+   isolated source import, eight
    reviews, publication, activation and 21 experimental drafts from 25 sends.
    It keeps startup/configuration failures and measured usage. The source was
    unchanged and the live default prompt was v1, not delivery v7; this is
