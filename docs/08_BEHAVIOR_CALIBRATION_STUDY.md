@@ -106,7 +106,27 @@ The result did not come from changing one threshold. The assessed failure,
 handling of uncertainty, meaning of the review flag and ticket generation code
 changed together.
 
+The sections below connect each behavior change to the files we edited.
+These are general rules, not a table of answers for individual findings.
+Unlike the knowledge-only exercise in Document 07, this calibration changed
+application behavior as well as model instructions. The model changed too,
+as section 6 records; the comparison cannot measure each edit's separate effect.
+
 ### 4.1 Assessment target and anchors
+
+We revised the impact-band descriptions in
+[`triage\assessment_policy.py`](../triage/assessment_policy.py).
+High impact needs a supported severe consequence, not only an SCE label or
+missing information. These descriptions guide the model; Python does not
+assign impact from them.
+
+We also changed the prompt, now
+[`triage\prompts\assessment-system-v7.txt`](../triage/prompts/assessment-system-v7.txt),
+to require one shared failure event for L and I. The response contract in
+[`triage\assessment.py`](../triage/assessment.py) now requires a cited
+`failure_basis` describing the item, required function and failure event.
+Code checks that this field and its citations are present and valid. It
+cannot prove that the model chose the correct engineering interpretation.
 
 The current assessment first asks which required function the observation shows
 to be failing. It does not automatically assign a possible whole-equipment
@@ -124,6 +144,13 @@ by independent experts.
 
 ### 4.2 Facts and uncertainty
 
+We changed the prompt's uncertainty instructions: routine diagnostic questions
+belong in the action plan, while unresolved immediate safety decisions belong
+in the uncertainty fields. In
+[`triage\policy.py`](../triage/policy.py), `derive_policy` now distinguishes
+verification activities from rules that require exceptional review.
+This changes both what the model reports and how code handles it.
+
 The current assessment records facts as confirmed, false, suspected or unknown.
 Missing evidence is not treated as confirmed absence.
 
@@ -134,7 +161,9 @@ the decision now relies more on people carrying out the action plan.
 
 ### 4.3 Urgency formula
 
-The code-owned base formula did not change:
+The `base_urgency` function in `triage\policy.py` kept the same formula.
+The `derive_policy` function applies the relevant minimum urgency values and
+confirmed overrides:
 
 ```text
 base  = ceil(0.7 * impact + 0.3 * likelihood)
@@ -143,8 +172,16 @@ final = max(base, applicable floors and confirmed overrides)
 
 Urgency changed because L/I proposals, structured facts, uncertainty and
 application-policy rules changed. The model still does not choose urgency.
+The validator in `triage\assessment.py` also retains the check that a confirmed
+required-function failure cannot have L below 9. It rejects a contradictory
+assessment rather than silently changing the score.
 
 ### 4.4 Review semantics
+
+We changed `derive_policy` in `triage\policy.py` so each rule has a separate
+`requires_review` decision. Previously, applying any rule could set the review
+flag. Now, code sets it only when at least one applied rule specifically
+requires exceptional review.
 
 The baseline flag covered broad obligations, including SCE review and review of
 uncertainty that matters to a decision. The current flag is narrower. It marks
@@ -153,6 +190,34 @@ queuing. Routine checks remain in the recommended action.
 
 A confirmed urgent condition can therefore be U9 without an exceptional review
 flag. High urgency and exceptional review are separate decisions.
+For example, the confirmed failed protection-test rule still requires at least
+U9 and a functional retest, but does not automatically require exceptional
+review. An unresolved protection or evacuation decision can still trigger it.
+
+We added ticket rendering in
+[`triage\projection.py`](../triage/projection.py) that explains urgency rules
+separately from exceptional-review reasons. This makes the changed meaning
+visible in the ticket; it does not remove the need for ordinary human approval.
+
+### 4.5 Action plans and ticket generation
+
+We extended the response contract in `triage\assessment.py` with structured
+planning fields and evidence-backed planning requirements, instead of relying
+only on a free-text recommended action.
+We added [`triage\planning.py`](../triage/planning.py) to validate and combine
+diagnosis, the responsible person's decision, correction and acceptance testing.
+It checks that required verification activities appear in the right phase and
+that function impairment has the required correction and witnessed functional
+test. Overlong composed actions are rejected, not truncated.
+
+This matters when a routine unknown no longer triggers exceptional review:
+the required check must still appear in the action plan. A lower flag count
+must not silently remove work needed to resolve the unknown.
+
+We updated [`triage\workflow.py`](../triage/workflow.py) to connect assessment
+validation, policy calculation, plan validation and ticket rendering.
+We regenerated the tickets through that workflow; we did not hand-adjust
+scores or remove flags from the output JSON.
 
 ## 5. What caused the review-count reduction
 
