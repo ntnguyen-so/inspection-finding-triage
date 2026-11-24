@@ -41,115 +41,334 @@ types, follow each relevant option and review their combined effect.
 Use this option when approved engineering guidance changes but the current
 likelihood/impact scoring rules still apply.
 
-1. Create a new approved source file outside the preserved candidate package.
-   The retained
-   [experimental PSV source](../knowledge/source-documents/psv-seat-tightness-policy-2026-11.md)
-   shows the expected file format and how to record its source. It was rejected
-   and is not approved for runtime use. Use it only as a format example, not as
-   engineering guidance.
-2. Import, review and publish it:
+For a real change, first obtain approved engineering guidance outside the
+preserved candidate package. Keep the existing baseline guidance when adding
+the new source. Review the proposed interpretation before approving any item.
+The [experimental PSV source](../knowledge/source-documents/psv-seat-tightness-policy-2026-11.md)
+is a rejected format example, not approved engineering guidance.
+
+**Concrete software example.** The commands below instead copy the unchanged
+supplied domain notes into a new, isolated store. This lets us exercise every
+command without inventing or approving a new PSV rule. The reviewer label
+explicitly means a software replay, not domain-owner approval. Do not use that
+label or automatically approve items in a real engineering update.
+
+Run the blocks in order, from the repository root, in **one PowerShell session**.
+The variables carry real item IDs, hashes and release versions between commands;
+there are no values to fill in by hand.
+
+1. Create a unique workspace and copy the source without changing its bytes:
 
    ```powershell
-   python -B -m triage_knowledge --store knowledge\source-first import-source `
-     --source "path\to\approved-psv-guidance.md" `
-     --name "approved-psv-source"
-   python -B -m triage_knowledge --store knowledge\source-first check
-   python -B -m triage_knowledge --store knowledge\source-first review `
-     --item "<item-id from check>" `
-     --expected-digest "<candidate_digest from check>" `
-     --reviewer "reviewer" --reason "scope and source checked"
-   python -B -m triage_knowledge --store knowledge\source-first publish `
-     --expected-digest "<candidate_digest from review>" --author "author" `
-     --reviewer "reviewer" --reason "approved"
+   $ErrorActionPreference = "Stop"
+   $python = (Resolve-Path ".venv\Scripts\python.exe").Path
+   $run = Join-Path (Get-Location) (
+       ".runs\doc07-command-replay-" + [DateTime]::UtcNow.ToString("yyyyMMddTHHmmssfffffffZ")
+   )
+   New-Item -ItemType Directory -Path $run | Out-Null
+   $store = Join-Path $run "store"
+   $source = Join-Path $run "domain-notes-copy.md"
+   Copy-Item -LiteralPath `
+     "docs\candidate-pack\candidate-pack\reference\domain_knowledge.md" `
+     -Destination $source
    ```
 
-   The `check` output lists extracted item IDs and the current candidate digest
-   (content hash). Review every pending item. Use the latest digest returned
-   after each review, because review changes the candidate. The publish command
-   returns the immutable `knowledge_version` needed in the next step.
-3. Generate an activation-manifest draft with the Python helper:
+   **Runtime compatibility observed on 24 November 2026:** the repository's
+   SDK `1.0.34` connected to native Copilot CLI `1.0.112`. The installed CLI
+   `1.0.114` failed before inference: the SDK supported protocol 3, while the
+   server reported protocol 4.
 
-   ```python
-   import json
+   This was the exact local workaround on the test machine. It uses an
+   existing backup, not a new installation, and changes `PATH` only in this
+   PowerShell session. The backup filename is machine-specific; it is not a
+   fresh-machine installation command. Another machine needs a compatible
+   native CLI before continuing.
+
+   ```powershell
+   $runtime = Join-Path $run "runtime"
+   New-Item -ItemType Directory -Path $runtime | Out-Null
+   $backup = Join-Path $env:LOCALAPPDATA `
+     "GitHub CLI\copilot\copilot.exe.old-13012-1795159849973"
+   Copy-Item -LiteralPath $backup -Destination (Join-Path $runtime "copilot.exe")
+   $env:PATH = "$runtime;$env:PATH"
+   copilot --no-auto-update --version
+   ```
+
+2. Import, check, review every extracted item, then publish:
+
+   ```powershell
+   $import = & $python -B -m triage_knowledge --store $store import-source `
+     --source $source --name "domain-notes-command-example" | ConvertFrom-Json
+   if ($LASTEXITCODE -ne 0) { throw "Source import failed" }
+
+   $check = & $python -B -m triage_knowledge --store $store check | ConvertFrom-Json
+   if ($LASTEXITCODE -ne 0) { throw "Candidate check failed" }
+   $digest = $check.candidate_digest
+   $items = @($check.candidate.items.PSObject.Properties | Sort-Object Name)
+
+   foreach ($item in $items) {
+       $review = & $python -B -m triage_knowledge --store $store review `
+         --item $item.Name --expected-digest $digest `
+         --reviewer "software-replay-not-domain-approval" `
+         --reason "Unchanged supplied domain; isolated software workflow check only." |
+         ConvertFrom-Json
+       if ($LASTEXITCODE -ne 0) { throw "Item review failed: $($item.Name)" }
+       $digest = $review.candidate_digest
+   }
+
+   $checked = & $python -B -m triage_knowledge --store $store check | ConvertFrom-Json
+   if ($LASTEXITCODE -ne 0) { throw "Post-review check failed" }
+   $status = & $python -B -m triage_knowledge --store $store status | ConvertFrom-Json
+   if ($LASTEXITCODE -ne 0) { throw "Store status failed" }
+   $status.review_counts
+
+   $publish = & $python -B -m triage_knowledge --store $store publish `
+     --expected-digest $checked.candidate_digest `
+     --author "software-command-replay" `
+     --reviewer "software-replay-not-domain-approval" `
+     --reason "Isolated publication of unchanged supplied domain; not production approval." |
+     ConvertFrom-Json
+   if ($LASTEXITCODE -ne 0) { throw "Publication failed" }
+   $version = $publish.knowledge_version
+   $publish
+   ```
+
+   `check` returns the item IDs and `candidate_digest`, the current content
+   hash. The loop takes those actual IDs and updates the digest after each
+   review. A review response still says `pending_review`; it does not mean
+   publication failed. Check `status.review_counts` to see how many items remain
+   pending. The tested source produced eight items; after eight reviews the
+   counts were `pending: 0`, `reviewed: 8`, `rejected: 0`.
+
+   `publish` returns `knowledge_version`. Its approval field explicitly says
+   `local_declaration_not_authenticated`: a reviewer string is not verified
+   engineering approval.
+
+3. Generate and save a draft activation with the Python helper:
+
+   ```powershell
+   @'
+   import json, sys
    from pathlib import Path
-
    from triage.source_context import activation_candidate
    from triage_knowledge import SourceKnowledgeStore
 
-   store = SourceKnowledgeStore(Path("knowledge/source-first"))
-   candidate = activation_candidate(
-       store,
-       "<knowledge_version from publish>",
+   run = Path(sys.argv[1])
+   candidate = activation_candidate(SourceKnowledgeStore(Path(sys.argv[3])), sys.argv[2])
+   assert candidate["review"] is None
+   (run / "activation.draft.json").write_text(
+       json.dumps(candidate, indent=2) + "\n", encoding="utf-8"
    )
    print(json.dumps(candidate, indent=2))
+   '@ | & $python -B - $run $version $store
+   if ($LASTEXITCODE -ne 0) { throw "Activation draft failed" }
    ```
 
-   The returned dictionary fixes the release, retrieval strategy and index.
-   It includes hashes of extraction and selection code, assessment policy,
-   execution policy and prompt. The `review` field is `None`, so the dictionary
-   is a draft for approval, not an active release.
-4. Have the runtime approver check that those exact versions match the intended
-   change and are compatible. If they are, create a unique comparison directory.
-   Save a reviewed activation and matching run configuration there. Continue in
-   the same Python script or session used in step 3:
+   The draft fixes the release, retrieval strategy/index, implementation,
+   policy and prompt hashes. Its `review` is `null`, so it cannot yet authorize
+   a run.    The here-string sends Python code to standard input; the three arguments
+   after `-` supply the workspace, published version and store.
+
+   **Prompt choice matters.** This tested helper call uses its default
+   `assessment-system-v1`. Production currently selects `assessment-system-v7`.
+   The example is therefore not a replay of the submitted delivery. For a real
+   knowledge-only comparison, keep the intended prompt unchanged rather than
+   silently taking the helper default. In the Python block above, use:
 
    ```python
-   import json
-   from pathlib import Path
+   production = json.loads(
+       Path(r"config\triage-activation.json").read_text(encoding="utf-8")
+   )
+   candidate = activation_candidate(
+       SourceKnowledgeStore(Path(sys.argv[3])),
+       sys.argv[2],
+       prompt_version=production["assessment_prompt"]["version"],
+   )
+   ```
 
+4. Save a separate test activation and matching configuration:
+
+   ```powershell
+   @'
+   import json, sys
+   from datetime import datetime, timezone
+   from pathlib import Path
    from run_triage import build_config
 
-   run = Path(".runs/psv-comparison-<unique-id>")
-   run.mkdir(parents=True, exist_ok=False)
+   run = Path(sys.argv[1])
+   candidate = json.loads((run / "activation.draft.json").read_text(encoding="utf-8"))
    candidate["review"] = {
-       "reviewer": "<approver>",
-       "reason": "<why the exact source/policy binding is compatible>",
-       "reviewed_at": "<ISO-8601 timestamp>",
+       "reviewer": "software-replay-not-domain-approval",
+       "reason": "Unchanged supplied domain and current policy pins; isolated software compatibility test, not production approval.",
+       "reviewed_at": datetime.now(timezone.utc).isoformat(),
        "source_policy_compatible": True,
    }
    (run / "activation.json").write_text(
-       json.dumps(candidate, indent=2) + "\n",
-       encoding="utf-8",
+       json.dumps(candidate, indent=2) + "\n", encoding="utf-8"
    )
    config = build_config(
-       "copilot",
-       "gpt-6.1-sol",
-       run / "attempts.experimental-ledger.json",
-       candidate["knowledge_version"],
-       "medium",
+       "copilot", "gpt-6.1-sol", run / "attempts.experimental-ledger.json",
+       sys.argv[2], "medium",
    )
+   config["execution_mode"] = "copilot_experiment"
    (run / "config.json").write_text(
-       json.dumps(config, indent=2) + "\n",
-       encoding="utf-8",
+       json.dumps(config, indent=2) + "\n", encoding="utf-8"
    )
+   print(json.dumps(config, indent=2))
+   '@ | & $python -B - $run $version
+   if ($LASTEXITCODE -ne 0) { throw "Activation/configuration failed" }
    ```
 
-   There is currently no activation-approval command-line interface (CLI).
-   The root delivery uses
-   `config\triage-activation.json`, but replacing that file is a production
-   promotion step, not part of a comparison run.
-5. Generate comparison tickets with the run-specific activation:
+   This approval declaration is only for the unchanged-source software example.
+   A real update needs the runtime approver to check the exact source/policy
+   compatibility before setting it to `True`. There is no activation-approval
+   CLI. Neither this activation nor the new store replaces
+   `config\triage-activation.json` or `knowledge\source-first`.
+
+5. Generate comparison tickets using the isolated store and activation:
 
    ```powershell
-   python -B -m triage `
+   & $python -B -m triage `
      --provider copilot `
      --findings docs\candidate-pack\candidate-pack\data\inspection_findings.csv `
      --registry docs\candidate-pack\candidate-pack\data\equipment_registry.csv `
-     --knowledge-store knowledge\source-first `
-     --activation .runs\psv-comparison-<unique-id>\activation.json `
-     --config .runs\psv-comparison-<unique-id>\config.json `
-     --output .runs\psv-comparison-<unique-id>\tickets.json `
-     --evidence .runs\psv-comparison-<unique-id>\evidence `
+     --knowledge-store $store `
+     --activation (Join-Path $run "activation.json") `
+     --config (Join-Path $run "config.json") `
+     --output (Join-Path $run "tickets.experimental.json") `
+     --evidence (Join-Path $run "evidence") `
      --allow-inference
+   $generationExit = $LASTEXITCODE
+   if ($generationExit -ne 0) { throw "Generation failed; inspect its JSON diagnostic and evidence" }
    ```
 
-   Before promotion, compare the target finding, a negative control (a finding
-   where the new rule should not apply), and other non-target findings.
-   This command calls the provider and may incur inference charges. Use a new
-   directory for every run so old evidence cannot look like new evidence.
+   The `.experimental.json` suffix is required in `copilot_experiment` mode.
+   Naming the output `tickets.json`, even inside a test directory, fails the
+   configuration check before inference. Do not remove the guard to make the
+   example run.
+
+   This is the only step that sends assessment requests to the provider.
+   It may incur charges and permits at most 42 application sends for 21
+   findings. Hidden provider attempts and actual Copilot USD remain unknown.
+   A nonzero exit is a failure, not a usable new ticket batch.
+
+   For a real PSV change, compare the target finding, a negative control and
+   other non-target findings before considering promotion. This unchanged-source
+   replay only checks the command path. It does not establish a new rule's
+   influence, correctness or readiness for production.
 
 If the guidance overlaps interpretation already in the prompt, complete the
 prompt-compatibility review in Document 06 before activation.
+
+For options 1.3-1.5 below, create a fresh comparison workspace as in step 1,
+but do not reimport or rereview the source just to change code. Select the
+existing production store and release before steps 3-5:
+
+```powershell
+$store = (Resolve-Path "knowledge\source-first").Path
+$version = (
+    Get-Content -LiteralPath "config\triage-activation.json" -Raw | ConvertFrom-Json
+).knowledge_version
+```
+
+Step 3 then pins the changed implementation. Step 4's software-example approval
+is not authorization for a real change: obtain and record a new compatibility
+review of those exact pins. Keep the intended production prompt as described in
+step 3, and keep comparison output separate from production.
+
+#### 1.1.1 Actual rerun: 24 November 2026
+
+The command chain was rerun, including a real all-21 provider call. The source
+was the unchanged domain-note copy described above, not the rejected PSV rule.
+The [compact replay record](../eval/results/knowledge-command-replay-20261124.json)
+contains command results, versions, hashes, usage and retained failures.
+
+| Command or step | Observed result |
+|---|---|
+| `import-source` and `check` | Both exited 0. Import returned `pending_review`; check found eight extracted items |
+| Eight `review` commands, then `check` and `status` | All exited 0. Counts: 0 pending, 8 reviewed, 0 rejected |
+| `publish` | Exited 0 and created immutable release `sha256-f6bc1e73a1b8dfea57ad782d4d1f4dbdea4b4f89cb5b359b2fc4a296ec369258` |
+| Activation helper and test activation | Draft review was `null`; a separate software-only declaration selected the release, default prompt v1 and current policy v16 |
+| Corrected `triage` invocation | Exited 0. Generated and published 21 experimental drafts in 718.891 seconds, about 12 minutes |
+| Application recovery | 25 sends: 21 validated responses and four failed first attempts recovered on their second attempt |
+| Output and preservation | Publication was verified. All 29 protected files were unchanged, including root tickets, production activation/store and the supplied package |
+
+**How the variables expanded.** This is the first review command from that
+rerun, shown with repository-relative paths. It is a historical example, not
+a command to run against the already-reviewed store. The loop above obtains
+fresh IDs and digests for a new run.
+
+```powershell
+.\.venv\Scripts\python.exe -B -m triage_knowledge `
+  --store .runs\doc07-command-replay-20261124T0500018156886Z\store review `
+  --item "item-17ccaa2d0ee16e243bba3389cabb7995" `
+  --expected-digest "9cc097486137a0707b138e4ffe9fb7749ef4f3d755ae86e6b01867e3a17450f0" `
+  --reviewer "software-replay-not-domain-approval" `
+  --reason "Unchanged supplied domain; isolated software workflow check only."
+```
+
+It returned `pending_review` and the new candidate digest
+`3ea2f8ef178d4be14151456c92805ba9ca9c89c13200c3903c43f44daa3059fb`.
+After all eight reviews, the candidate digest was
+`391562b035c2bbafdaecc72533bfb36b9a5fa448804c7a760879d54244f8b3da`.
+Use returned values rather than copying these historical hashes.
+
+Selected fields from the actual generation command's JSON output:
+
+```json
+{
+  "run_status": "experimental_draft_generated",
+  "published_output": true,
+  "tickets_generated": 21,
+  "application_send_count": 25,
+  "semantic_status": "not_reviewed",
+  "acceptance_eligible": false
+}
+```
+
+The four first-attempt failures were `policy_verification` for F-1003, F-1010
+and F-1012, and `malformed_json` for F-1021. Each used one repair send. Before
+that live run, a configuration attempt using `tickets.json` was rejected with
+zero sends; the corrected run used a new directory and
+`tickets.experimental.json`. Both failure history and successful results remain
+in the replay record.
+
+To inspect the generated file without another provider call:
+
+```powershell
+$batch = Get-Content -LiteralPath `
+  ".runs\doc07-command-replay-20261124T0500018156886Z\tickets.experimental.json" `
+  -Raw | ConvertFrom-Json
+$batch.tickets |
+  Where-Object { $_.finding_id -in @("F-1002", "F-1005", "F-1016") } |
+  Select-Object finding_id,
+    @{Name="L"; Expression={$_.likelihood_of_failure.score}},
+    @{Name="I"; Expression={$_.impact_of_failure.score}},
+    @{Name="U"; Expression={$_.urgency.score}},
+    review_required
+```
+
+| Finding | L | I | U | Extra review required |
+|---|---:|---:|---:|---|
+| F-1002 | 7 | 8 | 8 | true |
+| F-1005 | 10 | 6 | 9 | true |
+| F-1016 | 2 | 7 | 7 | false |
+
+There were 13 extra-review flags in the full batch. These are observed drafts,
+not approved scores. The v1 prompt differs from delivery v7, so this is not a
+comparison showing that knowledge improved or worsened the output.
+
+Measured usage was 1,188,873 input and 48,488 output tokens, including repair
+sends. Reusing the declared US$2/million input and US$10/million output rates
+gives a simple US$2.862626 estimate. Rates were not checked again; cache pricing
+is not included. This is not the actual Copilot charge. No semantic review,
+production promotion or new engineering approval was performed.
+
+The literal PowerShell blocks for steps 1-4 were also executed without another
+model run. All six main blocks passed PowerShell syntax checks, and the
+explicit v7 prompt option passed local activation/context checks only.
+Raw replay files are local under `.runs`, not a shared evidence archive; the
+compact JSON retains the observed statuses and artifact hashes.
 
 ### 1.2 Change a fact about one asset
 

@@ -1,0 +1,415 @@
+{
+  "contract": "knowledge-command-replay-observation-v1",
+  "recorded_at": "2026-11-24T05:18:16.098006+00:00",
+  "scope": "Document 07 section 1.1 software-command replay using unchanged supplied domain notes, not a PSV rule update or production promotion.",
+  "requirement_mapping": {
+    "candidate_brief": "6B: knowledge maintenance; 5: end-to-end execution",
+    "scenarios": [
+      "B03",
+      "A01",
+      "A03",
+      "X02"
+    ],
+    "claim_limit": "Command/lifecycle and publication observations, not formal scenario acceptance."
+  },
+  "code_revision": "4576f791a434ac7097d2c2dde6f9250a8c6aaf12",
+  "worktree": "Dirty documentation: DESIGN and documents 02-04 were already edited; document 07 was edited during inference. No production code, dependency or frozen-reference changes.",
+  "reference_version": "1.3",
+  "run_started_at": "2026-11-24T05:00:01.8237562Z",
+  "run_finished_at": "2026-11-24T05:12:08.2206598Z",
+  "run_directory": ".runs\\doc07-command-replay-20261124T0500018156886Z",
+  "source": {
+    "original": "docs\\candidate-pack\\candidate-pack\\reference\\domain_knowledge.md",
+    "copy": ".runs\\doc07-command-replay-20261124T0500018156886Z\\domain-notes-copy.md",
+    "sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+    "bytes_unchanged": true,
+    "new_psv_rule": false
+  },
+  "knowledge": {
+    "item_count": 8,
+    "review_counts": {
+      "pending": 0,
+      "reviewed": 8,
+      "rejected": 0
+    },
+    "version": "sha256-f6bc1e73a1b8dfea57ad782d4d1f4dbdea4b4f89cb5b359b2fc4a296ec369258",
+    "publication_approval": "local_declaration_not_authenticated",
+    "runtime_review": "software-replay-not-domain-approval: isolated local declaration, not domain-owner or production approval"
+  },
+  "provider": {
+    "provider": "github-copilot",
+    "sdk_version": "1.0.34",
+    "runtime_version": "1.0.112",
+    "binary_sha256": "32d01e0b0100fcdeaa684fba2cc8d00b6f127ac408749ff3c1b1a6fa0b2b8698"
+  },
+  "configuration": {
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "medium",
+    "assessment_time": "2026-07-01T00:00:00+00:00",
+    "execution_mode": "copilot_experiment",
+    "phase_attempt_budget": 42,
+    "timeout_seconds": 180
+  },
+  "cache_mode": "no_application_result_cache",
+  "assessment_prompt": {
+    "version": "assessment-system-v1",
+    "sha256": "44206b1b43708f90ce7c2900796daeb3716b54fa39e921438739ba1f57b74bb0",
+    "assessment_contract": "native-assessment-v2",
+    "schema_contract": "triage-assessment-schema-v1",
+    "context_contract_version": 3
+  },
+  "production_prompt_version": "assessment-system-v7",
+  "policy_version": "triage-policy-v16",
+  "bindings": {
+    "input_sha256": {
+      "findings": "4bb4b2d324b53cf8c748e25c7a511a1a5d683dc0bfba6602013da89c8256652b",
+      "registry": "5520713b74a28a907b7167da638dca8879849ce3d85d99e1d3ef9968fb000033"
+    },
+    "context_hash": "ba8265a7c470b07faa3fa6975cf626589c579c9865c9ef0cd569a69bf15bcdd5",
+    "config_sha256": "b93af35fb127fe5ac6fce708ce2880ac1d0481c09c74d4a3968ebde5e564f859",
+    "output_sha256": "0a1afa2da6be666b0176edf67e9352ce914370edf9d91871733badd5e69c0d55",
+    "publication_receipt_sha256": "e852207afe9b17a8cdce711bc44dc30a896a33002df63d887f76f2218d9e47d8",
+    "triage_implementation_sha256": {
+      "__init__.py": "51f62fcfafec299f8d680aa5383a2c1167776721cc2d3ebbdf3ec22fbf2ad648",
+      "__main__.py": "5b1fd226879c70890b3c65f5549d4ecb0615b5cb55a353cb875d294c5ec8ad08",
+      "assessment.py": "c0be91802401ff0e8018c77ebd31e680e216fda315002e559a038c5e1149cf73",
+      "assessment_policy.py": "431a2f170b68c6d5568ec7edc7088fa12186612da1d6929b3b29a5a93f6bbdc9",
+      "contracts.py": "c5464397acc0321b36338ea00a6cc1c31c192a3159ee50b6dd42822d412affd5",
+      "inputs.py": "de89b0245edd84f2575c1e9abd2db5b971e00becb4bda7a1f9d811147a8696bc",
+      "planning.py": "98dd7b25d020ab455f40be24fb8027d5b74dee2dbcfab16956f11cff227b28be",
+      "policy.py": "bca1c04bdab9dd0f4a6fa4f947e002ebbd815e3213b7d02dd7b2a63fe44f9656",
+      "projection.py": "30f0509b502eeccea1197d154b3a919c23345737c389f9c54751cf90ff8a8287",
+      "prompt.py": "57ec1f5ee65f1f144006aac4cd0aec6b08d616214ba9bb24851f65206bea5d67",
+      "source_context.py": "1a7940646cc40e38611a4831eba97539a9c099bfb6dfc4504d200c9e6a96318f",
+      "workflow.py": "58a34ac69e4989092b6c0b6b37677c6bc0e3e320f0d883943af80cc91b54fbd8"
+    },
+    "knowledge_implementation_sha256": {
+      "__init__.py": "ad88d9716743dbdcca5f51c2508d18d32c4619ae90ed1ebc9f2936c05a6cb9eb",
+      "__main__.py": "7d1da3190bedee4cbe4845a7de30cf35703efdf46871a0d8a376ee65c97a1146",
+      "contracts.py": "01c207521fd89e50738824b06aca1612ed6c61652a63f98bea2ece2599db6447",
+      "editor.py": "2e03e14afacfab53fed6799a649cfa58916b736582a1e8f3c1750f5815674920",
+      "retrieval.py": "2a81496ddb9e532257aa94aad05716b68a837ce500c7f7da2a55cb43cdb84828",
+      "source.py": "b4cf51da95b8d30dee65d4f6804e8c6c7d93739cb7befe730c1a0442e73f00f7",
+      "source_cli.py": "0462da9bf93714c963d1fcc2c7a3102384c8f3d6221a67cf3ea193b38c20013e",
+      "source_context.py": "381ab7c187e7d5615ad2742a7936e94e3e3ae9c8a56b2f539bf2d8ac051f9e87",
+      "source_editor.py": "d163b0eb13f4a92eaa0be37b97982699f4986594e12360256c10f2d90c7583b5",
+      "source_store.py": "93a857528610d1b7b7af6a433456f6c642a4c80cbd6e501f94e641ef5527b688"
+    }
+  },
+  "command_sequence": [
+    {
+      "operation": "import-source",
+      "exit_code": 0,
+      "result": {
+        "status": "pending_review",
+        "candidate_digest": "9cc097486137a0707b138e4ffe9fb7749ef4f3d755ae86e6b01867e3a17450f0",
+        "source_id": "source-5bdc39e19ca7e885234c391fe24e0ea2",
+        "approved": false
+      }
+    },
+    {
+      "operation": "check",
+      "exit_code": 0,
+      "status": "valid_working_candidate",
+      "candidate_digest": "9cc097486137a0707b138e4ffe9fb7749ef4f3d755ae86e6b01867e3a17450f0",
+      "item_count": 8
+    },
+    {
+      "operation": "review",
+      "exit_code": 0,
+      "item_id": "item-17ccaa2d0ee16e243bba3389cabb7995",
+      "expected_digest": "9cc097486137a0707b138e4ffe9fb7749ef4f3d755ae86e6b01867e3a17450f0",
+      "returned_status": "pending_review",
+      "candidate_digest": "3ea2f8ef178d4be14151456c92805ba9ca9c89c13200c3903c43f44daa3059fb"
+    },
+    {
+      "operation": "review",
+      "exit_code": 0,
+      "item_id": "item-2648036b82510ec665851bcac5d5d8f2",
+      "expected_digest": "3ea2f8ef178d4be14151456c92805ba9ca9c89c13200c3903c43f44daa3059fb",
+      "returned_status": "pending_review",
+      "candidate_digest": "c16365e61c3e0839f618e006412ca387ab3afabcff8e4a1ebd25821216987ad8"
+    },
+    {
+      "operation": "review",
+      "exit_code": 0,
+      "item_id": "item-288cc2987b619157c373c867a903d96f",
+      "expected_digest": "c16365e61c3e0839f618e006412ca387ab3afabcff8e4a1ebd25821216987ad8",
+      "returned_status": "pending_review",
+      "candidate_digest": "20223a5715988fd3d1e3a5a5e1362a7694b698a6bdcc771731d446dac17baea5"
+    },
+    {
+      "operation": "review",
+      "exit_code": 0,
+      "item_id": "item-5c3958e35208687d7ede791426e95e2b",
+      "expected_digest": "20223a5715988fd3d1e3a5a5e1362a7694b698a6bdcc771731d446dac17baea5",
+      "returned_status": "pending_review",
+      "candidate_digest": "2034002a52251d75de9df1e96a108577d1e0201e8106e3330480304340e93cf6"
+    },
+    {
+      "operation": "review",
+      "exit_code": 0,
+      "item_id": "item-79775e8aedca0c6740844f31ee87ddd0",
+      "expected_digest": "2034002a52251d75de9df1e96a108577d1e0201e8106e3330480304340e93cf6",
+      "returned_status": "pending_review",
+      "candidate_digest": "f05132cd5bfa2f2f8daaf8774a6d5c70542f009d340a17338b347b298e67d691"
+    },
+    {
+      "operation": "review",
+      "exit_code": 0,
+      "item_id": "item-8092dcd74bf1463373f5a7f507fb6d5e",
+      "expected_digest": "f05132cd5bfa2f2f8daaf8774a6d5c70542f009d340a17338b347b298e67d691",
+      "returned_status": "pending_review",
+      "candidate_digest": "3ad7d1b7bd14688ae3bfa0e80ad7bec3dbebc62ff6c8ffdf4526a3cfe7749f1e"
+    },
+    {
+      "operation": "review",
+      "exit_code": 0,
+      "item_id": "item-9ab508675a7434eb8c05ae4d5c020215",
+      "expected_digest": "3ad7d1b7bd14688ae3bfa0e80ad7bec3dbebc62ff6c8ffdf4526a3cfe7749f1e",
+      "returned_status": "pending_review",
+      "candidate_digest": "ccf17b263e7da6b3ef1354e306f95e72074e59fe9ecb207ba3d9a4b898263f38"
+    },
+    {
+      "operation": "review",
+      "exit_code": 0,
+      "item_id": "item-f151bf8cb9e4280fe3f4809298a06205",
+      "expected_digest": "ccf17b263e7da6b3ef1354e306f95e72074e59fe9ecb207ba3d9a4b898263f38",
+      "returned_status": "pending_review",
+      "candidate_digest": "391562b035c2bbafdaecc72533bfb36b9a5fa448804c7a760879d54244f8b3da"
+    },
+    {
+      "operation": "check",
+      "exit_code": 0,
+      "status": "valid_working_candidate",
+      "candidate_digest": "391562b035c2bbafdaecc72533bfb36b9a5fa448804c7a760879d54244f8b3da",
+      "item_count": 8
+    },
+    {
+      "operation": "status",
+      "exit_code": 0,
+      "review_counts": {
+        "pending": 0,
+        "reviewed": 8,
+        "rejected": 0
+      }
+    },
+    {
+      "operation": "publish",
+      "exit_code": 0,
+      "result": {
+        "status": "published",
+        "knowledge_version": "sha256-f6bc1e73a1b8dfea57ad782d4d1f4dbdea4b4f89cb5b359b2fc4a296ec369258",
+        "approval": "local_declaration_not_authenticated"
+      }
+    },
+    {
+      "operation": "triage",
+      "exit_code": 0,
+      "result": {
+        "run_status": "experimental_draft_generated",
+        "published_output": true,
+        "tickets_generated": 21,
+        "semantic_status": "not_reviewed",
+        "acceptance_eligible": false,
+        "application_send_count": 25
+      }
+    }
+  ],
+  "generation": {
+    "exit_code": 0,
+    "tickets_generated": 21,
+    "application_sends": 25,
+    "validated_sends": 21,
+    "failed_first_attempts": [
+      {
+        "finding_id": "F-1003",
+        "attempt": 1,
+        "error_class": "policy_verification",
+        "second_attempt": "validated"
+      },
+      {
+        "finding_id": "F-1010",
+        "attempt": 1,
+        "error_class": "policy_verification",
+        "second_attempt": "validated"
+      },
+      {
+        "finding_id": "F-1012",
+        "attempt": 1,
+        "error_class": "policy_verification",
+        "second_attempt": "validated"
+      },
+      {
+        "finding_id": "F-1021",
+        "attempt": 1,
+        "error_class": "malformed_json",
+        "second_attempt": "validated"
+      }
+    ],
+    "recovered_second_attempts": 4,
+    "elapsed_seconds": 718.890999999996,
+    "publication_verified": true,
+    "review_required_count": 13,
+    "semantic_status": "not_reviewed",
+    "acceptance_eligible": false
+  },
+  "usage": {
+    "source": "One assistant.usage event per send; includes failed attempts; accounting checkpoints not counted again.",
+    "input_tokens": 1188873,
+    "output_tokens": 48488,
+    "cache_read_tokens": 46830,
+    "cache_write_tokens": 1141968,
+    "copilot_request_cost_units": 25.0,
+    "copilot_ai_units": 334.4633
+  },
+  "cost": {
+    "simple_api_equivalent_usd": 2.862626,
+    "rate_assumption_usd_per_million": {
+      "input": 2,
+      "output": 10
+    },
+    "method": "Reuse the repository declared rates: input*2/1e6 + output*10/1e6. No fresh tariff lookup or cache adjustment.",
+    "actual_copilot_usd": null,
+    "status": "Planning estimate, not an invoice or Copilot-unit-to-USD conversion."
+  },
+  "selected_ticket_observations": [
+    {
+      "finding_id": "F-1002",
+      "likelihood": 7,
+      "impact": 8,
+      "urgency": 8,
+      "review_required": true
+    },
+    {
+      "finding_id": "F-1005",
+      "likelihood": 10,
+      "impact": 6,
+      "urgency": 9,
+      "review_required": true
+    },
+    {
+      "finding_id": "F-1016",
+      "likelihood": 2,
+      "impact": 7,
+      "urgency": 7,
+      "review_required": false
+    }
+  ],
+  "preservation": {
+    "protected_file_count": 29,
+    "all_protected_files_unchanged": true,
+    "root_tickets_sha256_before_and_after": "2bb8d0f34da36142042c6f5f983622be358e45fc4690378a935e28ba189f1f98",
+    "production_activation_sha256_before_and_after": "16fca77d67ca6cce5f28aca2f2ee755a2d780c68db24d7b04afe058f66be5f7b",
+    "production_knowledge_store_unchanged": true,
+    "candidate_package_unchanged": true,
+    "promotion_performed": false
+  },
+  "retained_failures": [
+    {
+      "stage": "default CLI preflight",
+      "sdk": "1.0.34",
+      "cli": "1.0.114",
+      "exit_code": 1,
+      "diagnostic": "SDK supports protocol versions 3-3, but server reports version 4.",
+      "observed_time": "not separately captured",
+      "assessment_sends": 0,
+      "resolution": "Use an existing native CLI 1.0.112 backup for this run only; no global CLI or dependency change."
+    },
+    {
+      "stage": "first generation configuration",
+      "diagnostic": {
+        "run_status": "failed",
+        "finding_id": null,
+        "error_class": "configuration",
+        "message": "Copilot output must end with .experimental.json, never final tickets.json",
+        "attempts": 0,
+        "published_output": false,
+        "execution_mode": "copilot_experiment",
+        "acceptance_eligible": false,
+        "attempt_accounting_unit": "application_sends_http_attempts_unknown"
+      },
+      "resolution": "New isolated directory and .experimental.json output. No provider responses were seen before this correction."
+    }
+  ],
+  "documentation_checks": {
+    "literal_steps_1_to_4": "Executed from Markdown; updated steps 3-4 also executed separately.",
+    "all_six_powershell_blocks_syntax": "valid",
+    "explicit_production_prompt_argument": "Native context validated with assessment-system-v7, without another inference run.",
+    "helper_metadata_corrections": "The initial context helper mislabeled text as a hash, and the summary helper initially looked for the wrong split-version field. Raw model observations were not changed."
+  },
+  "raw_artifacts": {
+    "retention": "Local ignored .runs paths, not a shared or durable evidence store. This compact summary retains statuses and hash bindings.",
+    "files": [
+      {
+        "path": ".runs\\doc07-command-replay-20261124T0500018156886Z\\commands.json",
+        "sha256": "3b1319cbfdd9a6861b059479988765725b21cc465c9689f6ffefe1baef494618",
+        "bytes": 9976
+      },
+      {
+        "path": ".runs\\doc07-command-replay-20261124T0500018156886Z\\replay-result.json",
+        "sha256": "2fc6e34bbc028354491d39bb739e9cfe4a982dacd2cce8a3187ed88ff9a03a44",
+        "bytes": 1492
+      },
+      {
+        "path": ".runs\\doc07-command-replay-20261124T0500018156886Z\\domain-notes-copy.md",
+        "sha256": "5bdc39e19ca7e885234c391fe24e0ea2e9585af57be456948c2b1506bf8ac066",
+        "bytes": 4326
+      },
+      {
+        "path": ".runs\\doc07-command-replay-20261124T0500018156886Z\\activation.draft.json",
+        "sha256": "b69031fab90f96a224b060c81e53808a22a9cb6536bf5dab81b3122e7fec2b60",
+        "bytes": 1816
+      },
+      {
+        "path": ".runs\\doc07-command-replay-20261124T0500018156886Z\\activation.json",
+        "sha256": "80279afc705bd4067d48eec053ee4fcb4a95bc5321a593ff02452336b5acf86a",
+        "bytes": 2100
+      },
+      {
+        "path": ".runs\\doc07-command-replay-20261124T0500018156886Z\\config.json",
+        "sha256": "a6e762effe6d801bfb10cc20400bdb58777873441fc9a11059fa1122571f9155",
+        "bytes": 642
+      },
+      {
+        "path": ".runs\\doc07-command-replay-20261124T0500018156886Z\\evidence\\run.json",
+        "sha256": "f3d63187e8f80f606dce385302e96cdb77d2270f776bb06fca458473c08389d2",
+        "bytes": 5357810
+      },
+      {
+        "path": ".runs\\doc07-command-replay-20261124T0500018156886Z\\evidence\\publication.json",
+        "sha256": "e852207afe9b17a8cdce711bc44dc30a896a33002df63d887f76f2218d9e47d8",
+        "bytes": 1023
+      },
+      {
+        "path": ".runs\\doc07-command-replay-20261124T0500018156886Z\\tickets.experimental.json",
+        "sha256": "0a1afa2da6be666b0176edf67e9352ce914370edf9d91871733badd5e69c0d55",
+        "bytes": 49173
+      },
+      {
+        "path": ".runs\\doc07-command-replay-20261124T0459036438065Z\\generation-stderr.txt",
+        "sha256": "4315c0aa0a150414eba4b335c1a4182a51edf0e5494afe4a291a9812a68d1942",
+        "bytes": 348
+      },
+      {
+        "path": ".runs\\doc07-command-replay-20261124T0459036438065Z\\commands.json",
+        "sha256": "ab2e4c7f074e74ee6a0427236f0a7b9b49f102a6fd0ea9f546bcd6e5fc44e9e0",
+        "bytes": 9963
+      },
+      {
+        "path": ".runs\\doc07-command-replay-20261124T0459036438065Z\\replay-result.json",
+        "sha256": "0c5b646cea7caf4ca4902d62018d65de281fa8a3b5a64bd8ed70e206362081b4",
+        "bytes": 1492
+      }
+    ]
+  },
+  "limitations": [
+    "All 21 supplied findings were already exposed; this is not an isolated or blind test.",
+    "The live default prompt is assessment-system-v1; the submitted delivery selected assessment-system-v7. No knowledge-only effect, model superiority or X01 reproduction is claimed.",
+    "No new PSV interpretation was introduced or approved.",
+    "Draft structure and publication were checked; ticket meaning was not semantically reviewed.",
+    "Local reviewer strings are software fixtures, not verified domain-owner approval.",
+    "Copilot hidden HTTP attempts, backend snapshot and actual subscription USD remain unknown.",
+    "The compatible CLI is a machine-specific existing backup, not distributed with the repository."
+  ]
+}

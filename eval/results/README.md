@@ -63,6 +63,12 @@ contract is in [`acceptance-status.md`](acceptance-status.md).
    generated and atomically published 21 temporary tickets. It records one
    repaired schema violation, 22 sends, measured tokens, retail-rate estimates
    and the execution-policy identity used by the run.
+13. [`knowledge-command-replay-20261124.json`](knowledge-command-replay-20261124.json)
+   — Document 07 section 1.1 command replay: isolated source import, eight
+   reviews, publication, activation and 21 experimental drafts from 25 sends.
+   It keeps startup/configuration failures and measured usage. The source was
+   unchanged and the live default prompt was v1, not delivery v7; this is
+   command-path evidence, not a PSV policy change, semantic pass or promotion.
 
 ## Requirement-to-evidence map
 
