@@ -308,6 +308,23 @@ Never report them as zero or pass.
 
 Keep run results and limits under `eval\results`. They do not change this protocol.
 
+### Model-selection trials are not stability repeats
+
+Development exercised several generation models; the
+[trial history](04_INFERENCE_LIBRARY.md#51-models-tried-during-development)
+records their outcomes. Trying alternatives was an additional project choice,
+not a multi-model benchmark required by the Candidate Brief.
+
+These trials help document model selection and failure handling. They do not
+satisfy X01 or X02 by themselves. Changing the model, prompt or other required
+identity makes a run a different setup, not a fixed-identity repeat. Earlier
+reviews against reference 1.2 cannot establish acceptance under reference 1.3.
+The later Azure run used the same `gpt-6.1-sol` family on another route and had
+no semantic review; it is not a second-model quality comparison.
+
+Keep earlier failures with their original identities. A later provisional
+pass does not erase them or change the current gate status in section 8.
+
 ## 7. Current semantic reviewer protocol
 
 Semantic review checks one generated output against its declared evidence cards.

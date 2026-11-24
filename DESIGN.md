@@ -351,6 +351,24 @@ requires the deployment to report the selected model version and uses explicit
 request limits. Copilot does not report its backend version. We record the two
 routes separately; we do not claim they are identical.
 
+### Models tried and the retained baseline
+
+Development runs used several recorded model labels: `o4-mini-2025-04-16`,
+`gpt-chat-latest`, `gpt-5.1-codex-max`, `gpt-6-sol` and `gpt-6.1-sol`.
+These were real generation attempts, not just entries in a model catalog.
+Some attempts failed; some produced valid structure but failed AI review of
+the ticket content. [Document 04](docs/04_INFERENCE_LIBRARY.md#51-models-tried-during-development)
+lists the outcomes and links to the original records.
+
+We retain `gpt-6.1-sol` with medium reasoning as the delivery baseline. It has a
+complete saved 21-ticket batch, an AI review of that exact file and a repeatable
+cost estimate. This is a practical baseline, not a claim that it beat every
+alternative. The trials used different setups and exposed findings, so they
+are not a controlled model ranking. Testing several models was an additional
+project choice; the supplied brief allows model/provider choice but does not
+require a multi-model benchmark. The Azure run used the same model family on
+a different route, not another model.
+
 The submitted root `tickets.json` is an unchanged copy of the reviewed delivery
 output. Later Copilot and Azure runs produced complete batches that passed the
 output checks. They do not replace semantic review of the submitted file.

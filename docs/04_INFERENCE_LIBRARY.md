@@ -213,6 +213,49 @@ replace or strengthen the retained ticket-quality result. Its evidence is listed
 The promoted Copilot review is retained in
 [`reviewer-observation.json`](../eval/results/triage/structured-planning-v31/final/reviewer-observation.json).
 
+### 5.1 Models tried during development
+
+The Candidate Brief allows any model/provider. It does not require a multi-model
+benchmark. We tried alternatives as an additional development step, to exercise
+structured output, recovery and ticket generation.
+
+The table shows representative recorded attempts, not every run or a ranking.
+The model names come from saved observations, not folder names or catalog
+availability. In particular, `gpt-chat-latest` is a reported alias, not a pinned
+backend version. The folder named `native-strict-model53` does not establish
+that its backend was a specific GPT-5.3 version.
+
+| Recorded generation model | Route and trial | Application sends | Observed outcome | Evidence |
+|---|---|---:|---|---|
+| `o4-mini-2025-04-16` | Azure native structured output; an early development attempt | 2 | Failed with a nonzero exit and no validated output. No semantic review. | [S1](https://github.com/ntnguyen-so/inspection-finding-triage/blob/071d29e62be419bb7443a6e18bf55d2763d46e69/eval/results/triage/native-strict-o4/development-1/observation.json) |
+| `gpt-chat-latest` | Azure native structured output; development batch | 16 | Output structure passed. The subsequent AI semantic review failed under reference 1.2. | [S2](https://github.com/ntnguyen-so/inspection-finding-triage/blob/071d29e62be419bb7443a6e18bf55d2763d46e69/eval/results/triage/native-strict-model53/development-1/observation.json), [review](https://github.com/ntnguyen-so/inspection-finding-triage/blob/071d29e62be419bb7443a6e18bf55d2763d46e69/eval/results/triage/native-strict-model53/review-1/report.json) |
+| `gpt-5.1-codex-max` | Azure native structured output; a later development attempt | 15 | Output structure passed. The subsequent AI semantic review failed under reference 1.2. | [S3](https://github.com/ntnguyen-so/inspection-finding-triage/blob/071d29e62be419bb7443a6e18bf55d2763d46e69/eval/results/triage/native-strict-codex/development-4/observation.json), [review](https://github.com/ntnguyen-so/inspection-finding-triage/blob/071d29e62be419bb7443a6e18bf55d2763d46e69/eval/results/triage/native-strict-codex/review-1/report.json) |
+| `gpt-6-sol` | Copilot; all 21 findings, medium reasoning | 25 | 21 structurally valid tickets. Four sends failed. AI review recorded a provisional 63/63 result for this artifact. | [S4](https://github.com/ntnguyen-so/inspection-finding-triage/blob/071d29e62be419bb7443a6e18bf55d2763d46e69/eval/results/triage/copilot-gpt6-current-all21/observation.json) |
+| `gpt-6.1-sol` | Copilot; earlier policy-v5 all-21 trial, medium reasoning | 21 | 21 tickets. AI review recorded 62/63 passing dimensions; one planning dimension failed. | [S5](https://github.com/ntnguyen-so/inspection-finding-triage/blob/071d29e62be419bb7443a6e18bf55d2763d46e69/eval/results/triage/copilot-gpt61-policy-v5-all21/observation.json) |
+| `gpt-6.1-sol` | Copilot; later retained delivery, medium reasoning | 21 | 21 published tickets. The exact artifact received a provisional 63/63 AI review, with the disclosed reviewer-protocol limits. | [Delivery](../eval/results/triage/structured-planning-v31/final/reviewer-observation.json) |
+| `gpt-6.1-sol-2026-09-29` | Azure; later same-family route check, medium reasoning | 22 | 21 structurally valid tickets after one repair. No semantic review or promotion. | [Azure](../eval/results/inference/azure-gpt61-parity-20261118-summary.json) |
+
+S1-S5 and the two earlier review reports link to the preserved Git snapshot
+`071d29e62be419bb7443a6e18bf55d2763d46e69`. Their exact bytes are also retained
+in the archive indexed by
+[`artifacts-manifest.json`](../eval/results/artifacts-manifest.json).
+Application sends are counts for each listed attempt, not total development
+spend or hidden provider retries. All of these runs are experimental;
+successful structure or a provisional review is not full system acceptance.
+
+**Why retain `gpt-6.1-sol`?** The later delivery provides a complete saved
+batch, a review bound to that exact output and the cost evidence in section 6.
+That makes it a usable prototype baseline. It does not prove superiority over
+`gpt-6-sol` or the other alternatives. In particular, the earlier
+`gpt-6.1-sol` failure remains part of the record.
+
+Code, prompts, policies, reference versions and reviewer configurations changed
+during development. The findings were already exposed. Differences between
+these outcomes therefore cannot be attributed to the model alone or reported
+as accuracy on unseen findings. The same-family Copilot/Azure runs are route
+checks, not two distinct models. Catalog listings, provider smoke tests and
+models used by coding/review agents are not additional triage-quality trials.
+
 ## 6. Reproducibility and cost limits
 
 Direct Azure was tested as the route with stricter accounting. The application
